@@ -368,6 +368,7 @@ export default function ScraperPage() {
   const store = useScraperStore();
   const stepIndex = STEPS.findIndex((s) => s.key === store.step);
   const [authLoading, setAuthLoading] = useState(true);
+  const [user, setUser] = useState<User | null>(null);
 
   useEffect(() => {
     store.checkExtension();
