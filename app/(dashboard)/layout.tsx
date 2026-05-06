@@ -79,7 +79,7 @@ export default function DashboardLayout({
   const toggleNameDict = () => nameDictToggle(currentNovelId);
 
   const [user, setUser] = useState<User | null>(null);
-  const [authLoading, setAuthLoading] = useState(true);
+  const [authLoading, setAuthLoading] = useState(false);
   const isAdmin = true;
   const isVip = true;
 
@@ -88,50 +88,7 @@ export default function DashboardLayout({
     nameDictSetNovelId(currentNovelId);
   }, [currentNovelId, nameDictSetNovelId]);
 
-  useEffect(() => {
-    if (!supabase) {
-      // No Supabase configured - just let users use the app without auth
-      setAuthLoading(false);
-      return;
-    }
 
-    let cancelled = false;
-
-    // Try to get session if available, but don't force login
-    const getInitialSession = async () => {
-      try {
-        const { data: { session }, error } = await supabase!.auth.getSession();
-        if (cancelled) return;
-        if (error) {
-          console.error('Error getting session:', error);
-        }
-        setUser(session?.user ?? null);
-      } catch (err) {
-        console.error('Exception getting session:', err);
-        if (!cancelled) setUser(null);
-      } finally {
-        if (!cancelled) setAuthLoading(false);
-      }
-    };
-
-    getInitialSession();
-
-    // Listen for auth changes
-    const { data: listener } = supabase.auth.onAuthStateChange((event, session) => {
-      if (cancelled) return;
-      if (event === 'SIGNED_OUT') {
-        setUser(null);
-        return;
-      }
-      setUser(session?.user ?? null);
-      setAuthLoading(false);
-    });
-
-    return () => {
-      cancelled = true;
-      listener.subscription.unsubscribe();
-    };
-  }, [router]);
 
   const handleLogout = useCallback(async () => {
     if (!supabase) return;
@@ -193,12 +150,7 @@ export default function DashboardLayout({
               </BreadcrumbItem>
             </BreadcrumbList>
           </Breadcrumb>
-          {/* Auth section hidden as per request */}
-          <div className="ml-3 flex items-center gap-2 text-sm text-muted-foreground">
-             <span className="rounded-full bg-emerald-100 px-2 py-0.5 text-[11px] font-semibold text-emerald-700">
-                Chế độ khách (VIP)
-             </span>
-          </div>
+
           <div className="ml-auto flex items-center gap-1">
             <Button
               variant="ghost"

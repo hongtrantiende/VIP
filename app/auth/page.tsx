@@ -13,47 +13,8 @@ export default function AuthPage() {
   const [logoError, setLogoError] = useState(false)
 
   useEffect(() => {
-    if (!supabase) {
-      // No Supabase configured - go straight to dashboard
-      window.location.href = '/dashboard'
-      return
-    }
-
-    // Check session with a timeout to prevent infinite loading
-    let resolved = false
-    const timeout = setTimeout(() => {
-      if (!resolved) {
-        resolved = true
-        setLoading(false)
-      }
-    }, 3000)
-
-    supabase.auth.getSession().then(({ data: { session } }) => {
-      if (resolved) return
-      resolved = true
-      clearTimeout(timeout)
-      if (session) {
-        window.location.href = '/dashboard'
-      } else {
-        setLoading(false)
-      }
-    }).catch(() => {
-      if (!resolved) {
-        resolved = true
-        clearTimeout(timeout)
-        setLoading(false)
-      }
-    })
-
-    const { data: listener } = supabase.auth.onAuthStateChange((_event, session) => {
-      if (session) window.location.href = '/dashboard'
-    })
-
-    return () => {
-      clearTimeout(timeout)
-      listener.subscription.unsubscribe()
-    }
-  }, [router])
+    window.location.href = '/dashboard'
+  }, [])
 
   const handleGoogleLogin = useCallback(async () => {
     if (!supabase || signingIn) return
