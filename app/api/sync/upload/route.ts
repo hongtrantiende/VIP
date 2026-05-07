@@ -2,7 +2,6 @@ import { handleUpload, type HandleUploadBody } from "@vercel/blob/client";
 import { NextRequest, NextResponse } from "next/server";
 import { checkSyncUploadRateLimit } from "@/lib/sync-ratelimit";
 
-export const maxDuration = 60;
 
 const CODE_PATTERN = /^[0-9A-F]{8}$/;
 const MAX_UPLOAD_BYTES = 100 * 1024 * 1024;

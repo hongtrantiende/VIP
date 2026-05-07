@@ -134,6 +134,7 @@ export default function ScraperGeneratorPage() {
       let tocUrl: string | null = null;
       const candidates: any[] = [];
 
+      let candidateIndex = 1;
       // Tìm cả link <a> và nút bấm <button>, <li> để xử lý Tab chuyển chương
       const potentialNextLinks = doc.querySelectorAll("ul.pagination a, .pagination a, a[rel='next'], a[href], button, li[class*='tab'], div[class*='tab']");
       
@@ -147,7 +148,7 @@ export default function ScraperGeneratorPage() {
           try {
             const abs = href ? new URL(href, targetUrl).toString() : null;
             if (abs && abs.startsWith("http") && !candidates.find(c => c.url === abs)) {
-              candidates.push({ title: text || "Link " + i++, url: abs });
+              candidates.push({ title: text || "Link " + candidateIndex++, url: abs });
             } else if (isButton || !href) {
               // Nếu là nút bấm (Tab chuyển chương), lưu selector để click
               const sel = el.id ? `#${el.id}` : el.className ? `.${el.className.trim().split(/\s+/)[0]}` : null;

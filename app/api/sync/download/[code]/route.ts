@@ -1,7 +1,6 @@
 import { list } from "@vercel/blob";
 import { NextRequest, NextResponse } from "next/server";
 
-export const maxDuration = 60;
 
 const CODE_PATTERN = /^[0-9A-F]{8}$/;
 

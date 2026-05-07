@@ -6,7 +6,6 @@ import {
 import { checkFeedbackRateLimit } from "@/lib/feedback-ratelimit";
 import { NextRequest, NextResponse } from "next/server";
 
-export const maxDuration = 60;
 
 const FEEDBACK_TYPES = ["bug", "suggestion", "other"] as const;
 type FeedbackType = (typeof FEEDBACK_TYPES)[number];
