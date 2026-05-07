@@ -9,7 +9,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "build:cloudflare": "opennextjs-cloudflare",
+    "build:cloudflare": "opennextjs-cloudflare build",
     "deploy:cloudflare": "npm run build:cloudflare && wrangler deploy",
     "zip:android": "powershell -Command \"Compress-Archive -Path extension\\manifest.json, extension\\background.js -DestinationPath public\\novel-studio-connector-android.zip -Force\"",
     "zip:pc": "powershell -Command \"Compress-Archive -Path extension-pc\\manifest.json, extension-pc\\background.js, extension-pc\\content.js -DestinationPath public\\novel-studio-connector-pc.zip -Force\"",
