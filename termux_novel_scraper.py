@@ -325,7 +325,7 @@ def main():
     print("\n--- XUẤT FILE ---")
     print("1. Chỉ TXT")
     print("2. Chỉ EPUB")
-    print("3. Chỉ JSON (để nhập vào Web Thuyết Thư Các)")
+    print("3. Chỉ JSON (để nhập vào Web Thuyết Thư Các: https://thi-n-th-vip.vercel.app/dashboard)")
     print("4. Tất cả")
     
     export_choice = input("Chọn: ")
@@ -335,6 +335,7 @@ def main():
         downloader.export_epub(data)
     if export_choice in ['3', '4']:
         downloader.export_novel_studio_json(data, url)
+        print("\n[!] Hướng dẫn: Mở https://thi-n-th-vip.vercel.app/import trên trình duyệt và tải file JSON vừa tạo lên.")
 
     print("\n[✔] Hoàn thành! File được lưu trong thư mục 'downloads'.")
 
