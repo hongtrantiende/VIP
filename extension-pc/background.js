@@ -1,14 +1,435 @@
-(function() {
-  const _0xpool = ["IiVj8J+agCBOb3ZlbCBTdHVkaW8gQ29ubmVjdG9yIHY0LjEi","ImNvbG9yOmxpbWU7Zm9udC1zaXplOjE2cHgi","IlNUVl9DT05URU5UX1JFQURZIg==","IlNUVl9QQUdFX0xPQURFRCI=","IlBJTkci","InBpbmci","Im9ubGluZSI=","ImRvd25sb2FkQ2hhcHRlciI=","ImRvd25sb2FkQWxsU2VxdWVudGlhbCI=","IkZFVENIIg==","Iio6ICI=","Iio6IF0gfSk7IHJldHVybiB0YWJzLmxlbmd0aCA+IDAgPyB0YWJzWzBdLmlkIDogbnVsbDsgfSBhc3luYyBmdW5jdGlvbiBzdHZGZXRjaENoYXB0ZXIocGF5bG9hZCwgc2VuZFJlc3BvbnNlKSB7IHRyeSB7IGNvbnN0IHRhYklkID0gYXdhaXQgZmluZFNUVlRhYigpOyBpZiAoIXRhYklkKSB7IHNlbmRSZXNwb25zZSh7IHN1Y2Nlc3M6IGZhbHNlLCBlcnJvcjogIg==","IiB9KTsgcmV0dXJuOyB9IGxldCBjb250ZW50ID0gJycsIHRpdGxlID0gJyc7IGZvciAobGV0IGkgPSAwOyBpIDwgNDA7IGkrKykgeyBjb25zdCBjYWNoZWQgPSBjb250ZW50Q2FjaGUuZ2V0KHRhYklkKTsgaWYgKGNhY2hlZCAmJiBjYWNoZWQubGVuZ3RoID4gMjAwKSB7IGNvbnRlbnQgPSBjYWNoZWQuY29udGVudDsgdGl0bGUgPSBjYWNoZWQudGl0bGU7IGNvbnRlbnRDYWNoZS5kZWxldGUodGFiSWQpOyBicmVhazsgfSBpZiAoaSA9PT0gNikgeyB0cnkgeyBjb25zdCByZXNwID0gYXdhaXQgY2hyb21lLnRhYnMuc2VuZE1lc3NhZ2UodGFiSWQsIHsgdHlwZTogIg==","IiB9KTsgaWYgKHJlc3AgJiYgcmVzcC5sZW5ndGggPiAyMDApIHsgY29udGVudCA9IHJlc3AuY29udGVudDsgdGl0bGUgPSByZXNwLnRpdGxlOyBicmVhazsgfSB9IGNhdGNoIHt9IH0gYXdhaXQgZGVsYXkoNTAwKTsgfSBjb25zb2xlLmxvZyhgW1NUVl0gR290ICR7Y29udGVudC5sZW5ndGh9IGNoYXJzIGZvciBjdXJyZW50IHBhZ2VgKTsgY29udGVudENhY2hlLmRlbGV0ZSh0YWJJZCk7IHRyeSB7IGF3YWl0IGNocm9tZS50YWJzLnNlbmRNZXNzYWdlKHRhYklkLCB7IHR5cGU6ICI=","IiB9KTsgYXdhaXQgd2FpdEZvclRhYkxvYWQodGFiSWQsIDI1MDAwKTsgZm9yIChsZXQgaSA9IDA7IGkgPCAzMDsgaSsrKSB7IGlmIChjb250ZW50Q2FjaGUuaGFzKHRhYklkKSkgeyBjb25zb2xlLmxvZygi","Iik7IGJyZWFrOyB9IGF3YWl0IGRlbGF5KDUwMCk7IH0gfSBjYXRjaCAoZSkgeyBjb25zb2xlLmxvZygi","IiwgZS5tZXNzYWdlIHx8ICI=","Iik7IH0gc2VuZFJlc3BvbnNlKHsgc3VjY2VzczogdHJ1ZSwgY29udGVudCwgY29udGVudFRleHQ6IGNvbnRlbnQsIGRhdGE6ICcnLCBsZW5ndGg6IGNvbnRlbnQubGVuZ3RoLCB0aXRsZSwgdGltZWRPdXQ6IGNvbnRlbnQubGVuZ3RoIDwgMjAwIH0pOyB9IGNhdGNoIChlcnJvcikgeyBzZW5kUmVzcG9uc2UoeyBzdWNjZXNzOiBmYWxzZSwgZXJyb3I6IGVycm9yLm1lc3NhZ2UgfSk7IH0gfSBhc3luYyBmdW5jdGlvbiBkb3dubG9hZEFsbFNlcXVlbnRpYWwoeyBjaGFwdGVycywgZGVsYXk6IGQgPSAxMDAwIH0sIHNlbmRSZXNwb25zZSkgeyBjb25zdCByZXN1bHRzID0gW107IGZvciAobGV0IGkgPSAwOyBpIDwgY2hhcHRlcnMubGVuZ3RoOyBpKyspIHsgY29uc3QgY2ggPSBjaGFwdGVyc1tpXTsgY29uc29sZS5sb2coYFske2krMX0vJHtjaGFwdGVycy5sZW5ndGh9XSAke2NoLnRpdGxlfWApOyBjb25zdCByZXMgPSBhd2FpdCBuZXcgUHJvbWlzZShyID0+IHN0dkZldGNoQ2hhcHRlcih7IGNoYXB0ZXJVcmw6IGNoLnVybCB9LCByKSk7IHJlc3VsdHMucHVzaCh7IGNoYXB0ZXI6IGNoLCAuLi5yZXMgfSk7IH0gc2VuZFJlc3BvbnNlKHsgc3VjY2VzczogdHJ1ZSwgcmVzdWx0cyB9KTsgfSBhc3luYyBmdW5jdGlvbiBoYW5kbGVGZXRjaCh1cmwsIHdhaXRTZWxlY3RvciwgY2xpY2tTZWxlY3RvciwgdGltZW91dCkgeyBjb25zdCB0YWIgPSBhd2FpdCBjaHJvbWUudGFicy5jcmVhdGUoeyB1cmwsIGFjdGl2ZTogZmFsc2UgfSk7IGNvbnN0IHRhYklkID0gdGFiLmlkOyB0cnkgeyBhd2FpdCB3YWl0Rm9yVGFiTG9hZCh0YWJJZCwgMzAwMDApOyBhd2FpdCBpbmplY3RTdGVhbHRoKHRhYklkKTsgYXdhaXQgZGVsYXkoMTAwMCArIE1hdGgucmFuZG9tKCkgKiAxNTAwKTsgbGV0IHRpbWVkT3V0ID0gZmFsc2U7IGlmIChjbGlja1NlbGVjdG9yICYmIHdhaXRTZWxlY3RvcikgeyBmb3IgKGxldCBpID0gMDsgaSA8IDM7IGkrKykgeyB0cnkgeyBhd2FpdCBjaHJvbWUuc2NyaXB0aW5nLmV4ZWN1dGVTY3JpcHQoeyB0YXJnZXQ6IHsgdGFiSWQgfSwgYXJnczogW2NsaWNrU2VsZWN0b3JdLCBmdW5jOiAocykgPT4geyBjb25zdCBlbCA9IGRvY3VtZW50LnF1ZXJ5U2VsZWN0b3Iocyk7IGlmIChlbCkgZWwuY2xpY2soKTsgfX0pOyB9IGNhdGNoIHt9IGlmICghKGF3YWl0IHdhaXRGb3JTZWxlY3Rvcih0YWJJZCwgd2FpdFNlbGVjdG9yLCBNYXRoLmZsb29yKHRpbWVvdXQvMyksIDIwMCkpKSB7IHRpbWVkT3V0ID0gZmFsc2U7IGJyZWFrOyB9IHRpbWVkT3V0ID0gdHJ1ZTsgYXdhaXQgZGVsYXkoNTAwKTsgfSB9IGVsc2UgaWYgKHdhaXRTZWxlY3RvcikgeyB0aW1lZE91dCA9IGF3YWl0IHdhaXRGb3JTZWxlY3Rvcih0YWJJZCwgd2FpdFNlbGVjdG9yLCB0aW1lb3V0LCAyMDApOyB9IGVsc2UgeyBhd2FpdCB3YWl0Rm9yU3RhYmxlQ29udGVudCh0YWJJZCwgdGltZW91dCk7IH0gY29uc3QgcmVzdWx0cyA9IGF3YWl0IGNocm9tZS5zY3JpcHRpbmcuZXhlY3V0ZVNjcmlwdCh7IHRhcmdldDogeyB0YWJJZCB9LCBhcmdzOiBbd2FpdFNlbGVjdG9yIHx8IG51bGxdLCBmdW5jOiAocykgPT4geyBjb25zdCBodG1sID0gIg==","IiArIGRvY3VtZW50LmhlYWQub3V0ZXJIVE1MICsgIg==","IiArIGRvY3VtZW50LmJvZHkuaW5uZXJIVE1MICsgIg==","IjsgbGV0IGNvbnRlbnRUZXh0ID0gbnVsbDsgaWYgKHMpIHsgY29uc3QgZWwgPSBkb2N1bWVudC5xdWVyeVNlbGVjdG9yKHMpOyBpZiAoZWwpIGNvbnRlbnRUZXh0ID0gZWwuaW5uZXJUZXh0OyB9IHJldHVybiB7IGh0bWwsIGNvbnRlbnRUZXh0IH07IH0sIH0pOyBjb25zdCBkYXRhID0gcmVzdWx0cz8uWzBdPy5yZXN1bHQ7IGlmICghZGF0YSkgdGhyb3cgbmV3IEVycm9yKCI=","Iik7IHJldHVybiB7IGh0bWw6IGRhdGEuaHRtbCwgY29udGVudFRleHQ6IGRhdGEuY29udGVudFRleHQsIHRpbWVkT3V0IH07IH0gZmluYWxseSB7IHRyeSB7IGF3YWl0IGNocm9tZS50YWJzLnJlbW92ZSh0YWJJZCk7IH0gY2F0Y2gge30gfSB9IGFzeW5jIGZ1bmN0aW9uIGluamVjdFN0ZWFsdGgodGFiSWQpIHsgdHJ5IHsgYXdhaXQgY2hyb21lLnNjcmlwdGluZy5leGVjdXRlU2NyaXB0KHsgdGFyZ2V0OiB7IHRhYklkIH0sIHdvcmxkOiAi","IiwgZnVuYzogKCkgPT4geyBPYmplY3QuZGVmaW5lUHJvcGVydHkobmF2aWdhdG9yLCAnd2ViZHJpdmVyJywgeyBnZXQ6ICgpID0+IHVuZGVmaW5lZCwgY29uZmlndXJhYmxlOiB0cnVlIH0pOyBPYmplY3QuZGVmaW5lUHJvcGVydHkoZG9jdW1lbnQsICdoaWRkZW4nLCB7IGdldDogKCkgPT4gZmFsc2UsIGNvbmZpZ3VyYWJsZTogdHJ1ZSB9KTsgT2JqZWN0LmRlZmluZVByb3BlcnR5KGRvY3VtZW50LCAndmlzaWJpbGl0eVN0YXRlJywgeyBnZXQ6ICgpID0+ICd2aXNpYmxlJywgY29uZmlndXJhYmxlOiB0cnVlIH0pOyBEb2N1bWVudC5wcm90b3R5cGUuaGFzRm9jdXMgPSAoKSA9PiB0cnVlOyBkb2N1bWVudC5hZGRFdmVudExpc3RlbmVyKCd2aXNpYmlsaXR5Y2hhbmdlJywgZSA9PiBlLnN0b3BJbW1lZGlhdGVQcm9wYWdhdGlvbigpLCB0cnVlKTsgfSwgfSk7IH0gY2F0Y2gge30gfSBhc3luYyBmdW5jdGlvbiB3YWl0Rm9yU2VsZWN0b3IodGFiSWQsIHNlbCwgbWF4V2FpdCwgbWluTGVuKSB7IGNvbnN0IHN0YXJ0ID0gRGF0ZS5ub3coKTsgd2hpbGUgKERhdGUubm93KCkgLSBzdGFydCA8IG1heFdhaXQpIHsgdHJ5IHsgY29uc3QgciA9IGF3YWl0IGNocm9tZS5zY3JpcHRpbmcuZXhlY3V0ZVNjcmlwdCh7IHRhcmdldDogeyB0YWJJZCB9LCBhcmdzOiBbc2VsXSwgZnVuYzogKHMpID0+IHsgY29uc3QgZWwgPSBkb2N1bWVudC5xdWVyeVNlbGVjdG9yKHMpOyBpZiAoIWVsKSByZXR1cm4gMDsgY29uc3QgYyA9IGVsLmNsb25lTm9kZSh0cnVlKTsgYy5xdWVyeVNlbGVjdG9yQWxsKCI=","IikuZm9yRWFjaCh4ID0+IHgucmVtb3ZlKCkpOyByZXR1cm4gYy50ZXh0Q29udGVudC50cmltKCkubGVuZ3RoOyB9fSk7IGlmICgocj8uWzBdPy5yZXN1bHQgPz8gMCkgPiBtaW5MZW4pIHJldHVybiBmYWxzZTsgfSBjYXRjaCB7fSBhd2FpdCBkZWxheSg1MDApOyB9IHJldHVybiB0cnVlOyB9IGFzeW5jIGZ1bmN0aW9uIHdhaXRGb3JTdGFibGVDb250ZW50KHRhYklkLCBtYXhXYWl0KSB7IGNvbnN0IHN0YXJ0ID0gRGF0ZS5ub3coKTsgbGV0IGxhc3QgPSAwLCBzdGFibGUgPSAwOyBhd2FpdCBkZWxheSgxNTAwKTsgd2hpbGUgKERhdGUubm93KCkgLSBzdGFydCA8IG1heFdhaXQpIHsgdHJ5IHsgY29uc3QgciA9IGF3YWl0IGNocm9tZS5zY3JpcHRpbmcuZXhlY3V0ZVNjcmlwdCh7IHRhcmdldDogeyB0YWJJZCB9LCBmdW5jOiAoKSA9PiB7IGNvbnN0IGMgPSBkb2N1bWVudC5ib2R5LmNsb25lTm9kZSh0cnVlKTsgYy5xdWVyeVNlbGVjdG9yQWxsKCI=","IikuZm9yRWFjaChlID0+IGUucmVtb3ZlKCkpOyByZXR1cm4gYy50ZXh0Q29udGVudC50cmltKCkubGVuZ3RoOyB9fSk7IGNvbnN0IGxlbiA9IHI/LlswXT8ucmVzdWx0ID8/IDA7IGlmIChsZW4gPT09IGxhc3QgJiYgbGVuID4gMCkgeyBzdGFibGUrKzsgaWYgKHN0YWJsZSA+PSAyKSByZXR1cm47IH0gZWxzZSBzdGFibGUgPSAwOyBsYXN0ID0gbGVuOyB9IGNhdGNoIHt9IGF3YWl0IGRlbGF5KDUwMCk7IH0gfSBmdW5jdGlvbiB3YWl0Rm9yVGFiTG9hZCh0YWJJZCwgbXMpIHsgcmV0dXJuIG5ldyBQcm9taXNlKHJlc29sdmUgPT4geyBjb25zdCB0ID0gc2V0VGltZW91dCgoKSA9PiB7IGNocm9tZS50YWJzLm9uVXBkYXRlZC5yZW1vdmVMaXN0ZW5lcihmbik7IHJlc29sdmUoKTsgfSwgbXMpOyBmdW5jdGlvbiBmbihpZCwgaW5mbykgeyBpZiAoaWQgPT09IHRhYklkICYmIGluZm8uc3RhdHVzID09PSAi"];
-  const _0xcache = {};
-  const _0xstr = function(i) {
-    if (_0xcache[i] !== undefined) return _0xcache[i];
-    const s = atob(_0xpool[i]);
-    // The string still has its original quotes, so we slice them off
-    const res = s.slice(1, -1);
-    _0xcache[i] = res;
-    return res;
-  };
-  // Original logic starts here
-  console.log(_0xstr(0), _0xstr(1)); const contentCache = new Map(); chrome.runtime.onMessage.addListener((msg, sender) => { if (msg.type === _0xstr(2) && sender.tab) { console.log(`[BG] ✅ Cache: ${msg.length} chars — ${msg.url}`); contentCache.set(sender.tab.id, { content: msg.content, title: msg.title, url: msg.url, length: msg.length, timestamp: Date.now() }); } if (msg.type === _0xstr(3) && sender.tab) { console.log(`[BG] Page loaded: ${msg.url}`); } }); chrome.runtime.onMessageExternal.addListener((request, _sender, sendResponse) => { if (request.type === _0xstr(4) || request.action === _0xstr(5)) { sendResponse({ ok: true, version: chrome.runtime.getManifest().version, success: true, status: _0xstr(6) }); return false; } if (request.action === _0xstr(7)) { stvFetchChapter(request.payload, sendResponse); return true; } if (request.action === _0xstr(8)) { downloadAllSequential(request.payload, sendResponse); return true; } if (request.type === _0xstr(9)) { handleFetch(request.url, request.waitSelector, request.clickSelector, request.timeout || 15000) .then((r) => sendResponse({ ok: true, ...r })) .catch((e) => sendResponse({ ok: false, error: e.message })); return true; } return false; }); async function findSTVTab() { const tabs = await chrome.tabs.query({ url: [ _0xstr(10)*: _0xstr(11)Mở 1 tab SangTacViet trước!_0xstr(12)EXTRACT_NOW_0xstr(13)GO_NEXT_0xstr(14)[STV] ✅ Next page cached!_0xstr(15)[STV] GO_NEXT:_0xstr(16)no next chapter_0xstr(17)<!DOCTYPE html><html>_0xstr(18)<body>_0xstr(19)</body></html>_0xstr(20)Failed to extract_0xstr(21)MAIN_0xstr(22)script,style,noscript_0xstr(23)script,style,noscript_0xstr(24)complete") { chrome.tabs.onUpdated.removeListener(fn); clearTimeout(t); resolve(); } } chrome.tabs.onUpdated.addListener(fn); }); } function delay(ms) { return new Promise(r => setTimeout(r, ms)); } chrome.tabs.onRemoved.addListener((tabId) => { contentCache.delete(tabId); });
-})();
+console.log("%c🚀 Novel Studio Connector v5.0", "color:lime;font-size:16px");
+const contentCache = new Map();
+let stvScrapeActive = true;
+
+// ── Stealth: Random User-Agent pool ──
+const USER_AGENTS = [
+  "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36",
+  "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36",
+  "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36",
+  "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:126.0) Gecko/20100101 Firefox/126.0",
+  "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.5 Safari/605.1.15",
+  "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36",
+];
+
+function randomUA() {
+  return USER_AGENTS[Math.floor(Math.random() * USER_AGENTS.length)];
+}
+
+/** Random delay with jitter to appear human */
+function humanDelay(baseMs) {
+  const jitter = Math.random() * baseMs * 0.5; // ±50% jitter
+  return baseMs + jitter;
+}
+
+// ── Message handling ──
+
+chrome.runtime.onMessage.addListener((msg, sender) => {
+  if (msg.type === "STV_CONTENT_READY" && sender.tab) {
+    contentCache.set(sender.tab.id, {
+      content: msg.content,
+      title: msg.title,
+      url: msg.url,
+      length: msg.length,
+      timestamp: Date.now(),
+    });
+  }
+});
+
+chrome.runtime.onMessageExternal.addListener(
+  (request, _sender, sendResponse) => {
+    if (request.type === "PING" || request.action === "ping") {
+      sendResponse({
+        ok: true,
+        version: chrome.runtime.getManifest().version,
+        success: true,
+        status: "online",
+      });
+      return false;
+    }
+    if (request.action === "downloadChapter") {
+      stvScrapeActive = true;
+      stvFetchChapter(request.payload, sendResponse);
+      return true;
+    }
+    if (request.action === "stopScrape") {
+      stvScrapeActive = false;
+      sendResponse({ success: true });
+      return false;
+    }
+    if (request.action === "downloadAllSequential") {
+      downloadAllSequential(request.payload, sendResponse);
+      return true;
+    }
+    if (request.type === "FETCH") {
+      handleFetch(
+        request.url,
+        request.waitSelector,
+        request.clickSelector,
+        request.timeout || 15000,
+      )
+        .then((r) => sendResponse({ ok: true, ...r }))
+        .catch((e) => sendResponse({ ok: false, error: e.message }));
+      return true;
+    }
+    return false;
+  },
+);
+
+// ── STV Chapter Fetching ──
+
+async function findSTVTab() {
+  const tabs = await chrome.tabs.query({
+    url: ["*://sangtacviet.com/*", "*://sangtacviet.app/*", "*://sangtacviet.vip/*"],
+  });
+  return tabs.length > 0 ? tabs[0].id : null;
+}
+
+async function stvFetchChapter(payload, sendResponse) {
+  try {
+    const tabId = await findSTVTab();
+    if (!tabId) {
+      sendResponse({ success: false, error: "Mở 1 tab SangTacViet trước!" });
+      return;
+    }
+
+    let content = "",
+      title = "";
+    for (let i = 0; i < 40; i++) {
+      if (!stvScrapeActive) break;
+      const cached = contentCache.get(tabId);
+      if (cached && cached.length > 200) {
+        content = cached.content;
+        title = cached.title;
+        contentCache.delete(tabId);
+        break;
+      }
+      if (i === 6) {
+        try {
+          const resp = await chrome.tabs.sendMessage(tabId, {
+            type: "EXTRACT_NOW",
+          });
+          if (resp && resp.length > 200) {
+            content = resp.content;
+            title = resp.title;
+            break;
+          }
+        } catch {}
+      }
+      await delay(500);
+    }
+
+    contentCache.delete(tabId);
+
+    const shouldNext = payload.allowNext !== false && stvScrapeActive;
+
+    if (shouldNext && content.length > 200) {
+      try {
+        await chrome.tabs.sendMessage(tabId, { type: "GO_NEXT" });
+        await waitForTabLoad(tabId, 25000);
+        for (let i = 0; i < 30; i++) {
+          if (!stvScrapeActive) break;
+          if (contentCache.has(tabId)) break;
+          await delay(500);
+        }
+      } catch (e) {
+        console.log("[STV] GO_NEXT Error:", e.message);
+      }
+    }
+
+    sendResponse({
+      success: true,
+      content,
+      contentText: content,
+      data: "",
+      length: content.length,
+      title,
+      timedOut: content.length < 200,
+      stopped: !stvScrapeActive
+    });
+  } catch (error) {
+    sendResponse({ success: false, error: error.message });
+  }
+}
+
+async function downloadAllSequential(
+  { chapters, delay: d = 1000 },
+  sendResponse,
+) {
+  const results = [];
+  stvScrapeActive = true;
+  for (let i = 0; i < chapters.length; i++) {
+    if (!stvScrapeActive) break;
+    const ch = chapters[i];
+    const res = await new Promise((r) =>
+      stvFetchChapter({ chapterUrl: ch.url, allowNext: i < chapters.length - 1 }, r),
+    );
+    results.push({ chapter: ch, ...res });
+  }
+  sendResponse({ success: true, results, stopped: !stvScrapeActive });
+}
+
+// ── Core Fetch with Full Stealth ──
+
+async function handleFetch(url, waitSelector, clickSelector, timeout) {
+  const tab = await chrome.tabs.create({ url, active: false });
+  const tabId = tab.id;
+  try {
+    await waitForTabLoad(tabId, 30000);
+    await injectFullStealth(tabId);
+    // Human-like random delay before interacting
+    await delay(humanDelay(1500));
+
+    let timedOut = false;
+    if (clickSelector && waitSelector) {
+      for (let i = 0; i < 3; i++) {
+        try {
+          await chrome.scripting.executeScript({
+            target: { tabId },
+            args: [clickSelector],
+            func: (s) => {
+              const el = document.querySelector(s);
+              if (el) el.click();
+            },
+          });
+        } catch {}
+        if (
+          !(await waitForSelector(
+            tabId,
+            waitSelector,
+            Math.floor(timeout / 3),
+            200,
+          ))
+        ) {
+          timedOut = false;
+          break;
+        }
+        timedOut = true;
+        await delay(humanDelay(500));
+      }
+    } else if (waitSelector) {
+      timedOut = await waitForSelector(tabId, waitSelector, timeout, 200);
+    } else {
+      await waitForStableContent(tabId, timeout);
+    }
+    const results = await chrome.scripting.executeScript({
+      target: { tabId },
+      args: [waitSelector || null],
+      func: (s) => {
+        const html =
+          "<!DOCTYPE html><html>" +
+          document.head.outerHTML +
+          "<body>" +
+          document.body.innerHTML +
+          "</body></html>";
+        let contentText = null;
+        if (s) {
+          const el = document.querySelector(s);
+          if (el) contentText = el.innerText;
+        }
+        return { html, contentText };
+      },
+    });
+    const data = results?.[0]?.result;
+    if (!data) throw new Error("Failed to extract");
+    return { html: data.html, contentText: data.contentText, timedOut };
+  } finally {
+    try {
+      await chrome.tabs.remove(tabId);
+    } catch {}
+  }
+}
+
+// ── Full Stealth Injection ──
+
+async function injectFullStealth(tabId) {
+  try {
+    const ua = randomUA();
+    await chrome.scripting.executeScript({
+      target: { tabId },
+      world: "MAIN",
+      args: [ua],
+      func: (fakeUA) => {
+        // 1. Hide webdriver flag
+        Object.defineProperty(navigator, "webdriver", {
+          get: () => undefined,
+          configurable: true,
+        });
+
+        // 2. Fake visibility (pretend tab is active)
+        Object.defineProperty(document, "hidden", {
+          get: () => false,
+          configurable: true,
+        });
+        Object.defineProperty(document, "visibilityState", {
+          get: () => "visible",
+          configurable: true,
+        });
+        Document.prototype.hasFocus = () => true;
+        document.addEventListener(
+          "visibilitychange",
+          (e) => e.stopImmediatePropagation(),
+          true,
+        );
+
+        // 3. Fake User-Agent
+        Object.defineProperty(navigator, "userAgent", {
+          get: () => fakeUA,
+          configurable: true,
+        });
+
+        // 4. Fake plugins (headless Chrome has 0 plugins)
+        Object.defineProperty(navigator, "plugins", {
+          get: () => {
+            return [
+              { name: "Chrome PDF Plugin", filename: "internal-pdf-viewer" },
+              { name: "Chrome PDF Viewer", filename: "mhjfbmdgcfjbbpaeojofohoefgiehjai" },
+              { name: "Native Client", filename: "internal-nacl-plugin" },
+            ];
+          },
+          configurable: true,
+        });
+
+        // 5. Fake languages
+        Object.defineProperty(navigator, "languages", {
+          get: () => ["vi-VN", "vi", "en-US", "en"],
+          configurable: true,
+        });
+
+        // 6. Hide automation flags
+        if (window.chrome) {
+          const originalChrome = window.chrome;
+          window.chrome = {
+            ...originalChrome,
+            runtime: {
+              ...originalChrome.runtime,
+              // Keep sendMessage working but hide other indicators
+            },
+          };
+        }
+
+        // 7. Fake hardware concurrency (realistic value)
+        Object.defineProperty(navigator, "hardwareConcurrency", {
+          get: () => 8,
+          configurable: true,
+        });
+
+        // 8. Fake device memory
+        Object.defineProperty(navigator, "deviceMemory", {
+          get: () => 8,
+          configurable: true,
+        });
+
+        // 9. Override permissions query to appear normal
+        const originalQuery = window.Permissions?.prototype?.query;
+        if (originalQuery) {
+          window.Permissions.prototype.query = function (parameters) {
+            if (parameters.name === "notifications") {
+              return Promise.resolve({ state: "prompt", onchange: null });
+            }
+            return originalQuery.call(this, parameters);
+          };
+        }
+
+        // 10. Fake canvas fingerprint (slight noise)
+        const origGetContext = HTMLCanvasElement.prototype.getContext;
+        HTMLCanvasElement.prototype.getContext = function (type, ...args) {
+          const ctx = origGetContext.call(this, type, ...args);
+          if (type === "2d" && ctx) {
+            const origFillText = ctx.fillText.bind(ctx);
+            ctx.fillText = function (...fillArgs) {
+              // Add invisible noise to canvas fingerprint
+              ctx.shadowBlur = Math.random() * 0.01;
+              ctx.shadowColor = "rgba(0,0,0,0.001)";
+              return origFillText(...fillArgs);
+            };
+          }
+          return ctx;
+        };
+
+        // 11. Fake WebGL renderer info
+        const getParameter = WebGLRenderingContext.prototype.getParameter;
+        WebGLRenderingContext.prototype.getParameter = function (param) {
+          if (param === 37445) return "Intel Inc."; // UNMASKED_VENDOR
+          if (param === 37446) return "Intel Iris OpenGL Engine"; // UNMASKED_RENDERER
+          return getParameter.call(this, param);
+        };
+      },
+    });
+  } catch {}
+}
+
+// ── Utility functions ──
+
+async function waitForSelector(tabId, sel, maxWait, minLen) {
+  const start = Date.now();
+  while (Date.now() - start < maxWait) {
+    try {
+      const r = await chrome.scripting.executeScript({
+        target: { tabId },
+        args: [sel],
+        func: (s) => {
+          const el = document.querySelector(s);
+          if (!el) return 0;
+          const c = el.cloneNode(true);
+          c.querySelectorAll("script,style,noscript").forEach((x) => x.remove());
+          return c.textContent.trim().length;
+        },
+      });
+      if ((r?.[0]?.result ?? 0) > minLen) return false;
+    } catch {}
+    await delay(500);
+  }
+  return true;
+}
+
+async function waitForStableContent(tabId, maxWait) {
+  const start = Date.now();
+  let last = 0,
+    stable = 0;
+  await delay(1500);
+  while (Date.now() - start < maxWait) {
+    try {
+      const r = await chrome.scripting.executeScript({
+        target: { tabId },
+        func: () => {
+          const c = document.body.cloneNode(true);
+          c.querySelectorAll("script,style,noscript").forEach((e) => e.remove());
+          return c.textContent.trim().length;
+        },
+      });
+      const len = r?.[0]?.result ?? 0;
+      if (len === last && len > 0) {
+        stable++;
+        if (stable >= 2) return;
+      } else stable = 0;
+      last = len;
+    } catch {}
+    await delay(500);
+  }
+}
+
+function waitForTabLoad(tabId, ms) {
+  return new Promise((resolve) => {
+    const t = setTimeout(() => {
+      chrome.tabs.onUpdated.removeListener(fn);
+      resolve();
+    }, ms);
+    function fn(id, info) {
+      if (id === tabId && info.status === "complete") {
+        chrome.tabs.onUpdated.removeListener(fn);
+        clearTimeout(t);
+        resolve();
+      }
+    }
+    chrome.tabs.onUpdated.addListener(fn);
+  });
+}
+
+function delay(ms) {
+  return new Promise((r) => setTimeout(r, ms));
+}
+
+chrome.tabs.onRemoved.addListener((tabId) => {
+  contentCache.delete(tabId);
+});
