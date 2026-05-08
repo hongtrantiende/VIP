@@ -196,7 +196,7 @@ chrome.runtime.onMessageExternal.addListener((request, _sender, sendResponse) =>
 // 5. STV CHAPTER FETCHING (unchanged)
 // ══════════════════════════════════════════════════════════════
 async function findSTVTab() {
-  const tabs = await chrome.tabs.query({ url: ["*://sangtacviet.com/*", "*://sangtacviet.app/*", "*://sangtacviet.vip/*"] });
+  const tabs = await chrome.tabs.query({ url: ["*://sangtacviet.com/*", "*://sangtacviet.app/*", "*://sangtacviet.vip/*", "*://fanqienovel.com/*", "*://*.fanqienovel.com/*"] });
   return tabs.length > 0 ? tabs[0].id : null;
 }
 

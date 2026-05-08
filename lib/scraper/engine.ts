@@ -105,7 +105,7 @@ export async function scrapeChapters(
 
       while (attempts < 3 && !success) {
         try {
-          if (adapter.name === "STV" && chapter.id) {
+          if ((adapter.name === "STV" || adapter.name === "Fanqie Novel") && chapter.id) {
             const res = await extensionDownloadSTVChapter(
               chapter.id,
               chapter.url,

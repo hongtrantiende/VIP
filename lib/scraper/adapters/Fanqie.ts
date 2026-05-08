@@ -20,21 +20,13 @@ export const FanqieAdapter: SiteAdapter = {
     const coverImg = doc.querySelector(".book-cover-img");
     const coverImage = coverImg ? new URL(coverImg.getAttribute("src") || "", currentBase).href : undefined;
 
-    const chapters: any[] = [];
-    const chapterLinks = doc.querySelectorAll(".chapter-item a, a.chapter-item-title, .dir-list a");
-    
-    Array.from(chapterLinks).forEach((a) => {
-      const titleText = a.textContent?.trim() || "";
-      if (titleText.includes("最近更新") || titleText.includes("最新章节") || titleText.includes("最近")) {
-        return;
+    const chapters = [
+      {
+        title: "Bắt đầu từ chương hiện tại",
+        url: currentUrl,
+        order: 0,
       }
-      const absUrl = new URL(a.getAttribute("href") || "", currentBase).href;
-      chapters.push({
-        title: titleText || `Chương ${chapters.length + 1}`,
-        url: absUrl,
-        order: chapters.length,
-      });
-    });
+    ];
 
     return { title, author, description, chapters, coverImage };
   },
