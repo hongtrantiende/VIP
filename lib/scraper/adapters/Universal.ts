@@ -109,6 +109,20 @@ export const UniversalAdapter: SiteAdapter = {
       .filter(line => !/quảng cáo|click|truyenfull|metruyenchu|ads/i.test(line))
       .join("\n\n");
 
-    return { title, content };
+    // Attempt to find Next Chapter URL for dynamic crawling
+    let nextChapterUrl = "";
+    const nextLinks = Array.from(doc.querySelectorAll("a[href]"));
+    for (const link of nextLinks) {
+      const text = link.textContent?.toLowerCase() || "";
+      if (text.includes("chương sau") || text.includes("chương kế") || text === "tiếp" || text === "next" || text.includes("sau »") || text.includes("tiếp theo")) {
+         const href = link.getAttribute("href");
+         if (href && !href.startsWith("javascript")) {
+             nextChapterUrl = new URL(href, _url).toString();
+             break;
+         }
+      }
+    }
+
+    return { title, content, nextChapterUrl };
   },
 };

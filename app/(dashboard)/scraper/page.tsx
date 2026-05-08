@@ -20,9 +20,7 @@ import { SettingsIcon, BookIcon, LoaderIcon, PauseIcon, PlayIcon, TrashIcon, Dow
 const SERVER_FETCH_DOMAINS = [
   "chomered.com",
   "welove-gourmet.com",
-  "metruyenchu.com.vn",
-  "piaotia.com",
-  "jjwxc.net"
+  "metruyenchu.com.vn"
 ];
 
 function isServerFetchable(url: string): boolean {
@@ -263,6 +261,12 @@ export default function ScraperLibraryPage() {
                       <Button variant="outline" size="sm" className="border-blue-200 bg-blue-50 dark:bg-blue-950/20" asChild>
                         <a href="https://www.jjwxc.net/" target="_blank" rel="noreferrer"><ZapIcon className="mr-1.5 w-3 h-3 text-purple-600"/> Jjwxc</a>
                       </Button>
+                      <Button variant="outline" size="sm" className="border-blue-200 bg-blue-50 dark:bg-blue-950/20" asChild>
+                        <a href="https://www.guihualianpian.cn/" target="_blank" rel="noreferrer"><ZapIcon className="mr-1.5 w-3 h-3 text-orange-600"/> Guihua</a>
+                      </Button>
+                      <Button variant="outline" size="sm" className="border-blue-200 bg-blue-50 dark:bg-blue-950/20" asChild>
+                        <a href="https://www.timotxt.com/" target="_blank" rel="noreferrer"><ZapIcon className="mr-1.5 w-3 h-3 text-indigo-600"/> Timotxt</a>
+                      </Button>
                     </div>
                     <Label className="text-xs font-bold text-muted-foreground uppercase mt-4">Web Việt (Cần Extension)</Label>
                     <div className="flex flex-wrap gap-2">
@@ -282,7 +286,9 @@ export default function ScraperLibraryPage() {
                       <Button variant="outline" size="sm" asChild><a href="https://www.69shuba.com/" target="_blank" rel="noreferrer"><GlobeIcon className="mr-1.5 w-3 h-3 text-green-700"/> 69Shu</a></Button>
                       <Button variant="outline" size="sm" asChild><a href="https://www.cuoceng.com/" target="_blank" rel="noreferrer"><GlobeIcon className="mr-1.5 w-3 h-3 text-indigo-600"/> CuoCeng</a></Button>
                       <Button variant="outline" size="sm" asChild><a href="https://www.69shuba.tw/" target="_blank" rel="noreferrer"><GlobeIcon className="mr-1.5 w-3 h-3 text-emerald-600"/> 69Shu.TW</a></Button>
+                      <Button variant="outline" size="sm" asChild><a href="https://czbooks.net/" target="_blank" rel="noreferrer"><GlobeIcon className="mr-1.5 w-3 h-3 text-blue-600"/> Czbooks</a></Button>
                       <Button variant="outline" size="sm" asChild><a href="https://www.po18.tw/" target="_blank" rel="noreferrer"><GlobeIcon className="mr-1.5 w-3 h-3 text-pink-500"/> PO18</a></Button>
+                      <Button variant="outline" size="sm" asChild><a href="https://www.popo.tw/" target="_blank" rel="noreferrer"><GlobeIcon className="mr-1.5 w-3 h-3 text-pink-400"/> POPO</a></Button>
                     </div>
                   </div>
 

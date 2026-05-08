@@ -66,6 +66,7 @@ export async function scrapeChapters(
   onDebug?: (entry: ScrapeDebugEntry) => void,
   delayMs: number = 300,
   onPauseCheck?: () => boolean,
+  onDynamicChapterAdded?: (newChapter: ChapterLink) => void,
 ): Promise<ChapterContent[]> {
   const results: ChapterContent[] = [];
   const contentHashes = new Set<string>();
@@ -212,6 +213,22 @@ export async function scrapeChapters(
         `Đã dừng: ${MAX_CONSECUTIVE_ERRORS} chương liên tiếp có vấn đề (trùng/lỗi/ngắn). Kiểm tra lại trang nguồn.`,
       );
     }
+
+    // ── Dynamic Next Chapter Crawling ──
+    // If we just processed the last chapter in our list, and it gave us a next link
+    if (i === chapters.length - 1 && content.nextChapterUrl) {
+      // Make sure we haven't seen it yet
+      const alreadyExists = chapters.some((ch) => ch.url === content.nextChapterUrl);
+      if (!alreadyExists && content.nextChapterUrl.startsWith("http")) {
+        const newChapter: ChapterLink = {
+          title: `Chương ${chapters.length + 1} (Đang lấy tiêu đề...)`,
+          url: content.nextChapterUrl,
+          order: chapters.length,
+        };
+        chapters.push(newChapter);
+        onDynamicChapterAdded?.(newChapter);
+      }
+    }
   }
 
   await extensionStopScrape();
@@ -272,6 +289,7 @@ export async function serverScrapeChapters(
   onDebug?: (entry: ScrapeDebugEntry) => void,
   delayMs: number = 1000,
   onPauseCheck?: () => boolean,
+  onDynamicChapterAdded?: (newChapter: ChapterLink) => void,
 ): Promise<ChapterContent[]> {
   const results: ChapterContent[] = [];
   const contentHashes = new Set<string>();
@@ -372,6 +390,20 @@ export async function serverScrapeChapters(
 
     onDebug?.(debugEntry);
     results.push(content);
+
+    // ── Dynamic Next Chapter Crawling ──
+    if (i === chapters.length - 1 && content.nextChapterUrl) {
+      const alreadyExists = chapters.some((ch) => ch.url === content.nextChapterUrl);
+      if (!alreadyExists && content.nextChapterUrl.startsWith("http")) {
+        const newChapter: ChapterLink = {
+          title: `Chương ${chapters.length + 1} (Đang lấy tiêu đề...)`,
+          url: content.nextChapterUrl,
+          order: chapters.length,
+        };
+        chapters.push(newChapter);
+        onDynamicChapterAdded?.(newChapter);
+      }
+    }
   }
 
   return results;

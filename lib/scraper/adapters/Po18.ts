@@ -1,10 +1,15 @@
-import { SiteAdapter } from "../types";
+import type { SiteAdapter } from "../types";
 
 export const Po18Adapter: SiteAdapter = {
-  name: "Po18",
-  urlPattern: /po18\.tw/,
+  name: "Popo / PO18",
+  group: "cn",
+  urlPattern: /popo\.tw|po18\.tw/,
+  // Wait for the actual reading content container
+  chapterWaitSelector: ".read-txt, .article-content, .b_content",
+  // Click the "I am 18+" button if it appears
+  chapterClickSelector: "a.yes",
 
-  getNovelInfo(html, url) {
+  async getNovelInfo(html, url, onProgress) {
     const doc = new DOMParser().parseFromString(html, "text/html");
 
     const title = doc.querySelector("h1.book_name, h1")?.textContent?.trim() || "Unknown Title";
@@ -16,7 +21,6 @@ export const Po18Adapter: SiteAdapter = {
     const seenUrls = new Set<string>();
 
     // PO18 chapter links are typically found under /books/[id]/articles/[article_id]
-    // The actual link to read is often an <a> with href containing "/articles/"
     const links = Array.from(doc.querySelectorAll("a[href*='/articles/']"));
 
     links.forEach((link) => {
@@ -46,9 +50,8 @@ export const Po18Adapter: SiteAdapter = {
       }
 
       const fullUrl = new URL(href, url).toString();
+      let cleanUrl = fullUrl.split("#")[0].split("?")[0];
 
-      // Avoid duplicates and self-referencing links
-      const cleanUrl = fullUrl.split("#")[0].split("?")[0];
       if (!seenUrls.has(cleanUrl)) {
         chapters.push({
           title: titleText,
@@ -72,24 +75,69 @@ export const Po18Adapter: SiteAdapter = {
     const doc = new DOMParser().parseFromString(html, "text/html");
     const chapterTitle = doc.querySelector("h1, h2, .l_chaptname")?.textContent?.trim() || "";
 
-    // Extension stealth mode usually provides text directly
-    if (contentText) {
-      return { title: chapterTitle, content: contentText };
+    // PO18 content is inside .read-txt
+    // Remove watermark blockquotes: <blockquote class="copyright">
+    const contentNode = doc.querySelector(".read-txt, .article-content, #article_content, .b_content, #b_content");
+
+    let rawText = "";
+    if (contentNode) {
+      // Remove copyright watermarks and junk
+      const junkSelectors = ["script", "style", "iframe", ".watermark", ".hidden", "blockquote.copyright", "blockquote[cite]"];
+      junkSelectors.forEach(sel => {
+        contentNode.querySelectorAll(sel).forEach(el => el.remove());
+      });
+
+      // Extract text from remaining <p> and <font> tags
+      const clone = contentNode.cloneNode(true) as HTMLElement;
+      clone.querySelectorAll("br").forEach((br) => br.replaceWith("\n"));
+      clone.querySelectorAll("p").forEach((p) => {
+        // Get the deepest text, ignoring nested <font> tags
+        const text = p.textContent?.trim() || "";
+        if (text) {
+          p.replaceWith("\n" + text + "\n");
+        } else {
+          p.remove();
+        }
+      });
+      
+      rawText = (clone.textContent || "")
+        .replace(/\u00a0/g, " ")  // Replace &nbsp;
+        .replace(/ {2,}/g, " ")   // Collapse multiple spaces
+        .split("\n")
+        .map(line => line.trim())
+        .filter(line => line.length > 0)
+        .filter(line => !/^[A-Za-z0-9]{30,}$/.test(line)) // Remove any remaining hash watermarks
+        .join("\n\n");
     }
 
-    // Typical PO18 content container
-    const contentNode = doc.querySelector(".article-content, #article_content, .b_content, #b_content");
-    if (!contentNode) return { title: chapterTitle, content: "" };
+    // Fallback to contentText from extension
+    if (!rawText && contentText) {
+      rawText = contentText
+        .split("\n")
+        .map(line => line.trim())
+        .filter(line => line.length > 0)
+        .filter(line => !/^[A-Za-z0-9]{30,}$/.test(line))
+        .join("\n\n");
+    }
 
-    // Remove hidden/garbage elements
-    const junkSelectors = ["script", "style", "iframe", ".watermark", ".hidden"];
-    junkSelectors.forEach(sel => {
-      contentNode.querySelectorAll(sel).forEach(el => el.remove());
-    });
+    // Find Next Chapter URL
+    let nextChapterUrl = "";
+    const nextLinks = Array.from(doc.querySelectorAll("a[href]"));
+    for (const link of nextLinks) {
+      const text = link.textContent?.trim() || "";
+      if (text.includes("下一章") || text.includes("下一頁") || text.includes("下一篇") || text.includes("next")) {
+         const href = link.getAttribute("href");
+         if (href && !href.startsWith("javascript")) {
+             nextChapterUrl = new URL(href, _url).toString();
+             break;
+         }
+      }
+    }
 
     return {
       title: chapterTitle,
-      content: (contentNode as HTMLElement).innerText.trim(),
+      content: rawText,
+      nextChapterUrl
     };
   },
 };

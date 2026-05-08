@@ -334,7 +334,25 @@ export const useScraperQueueStore = create<ScraperQueueState>()(
             });
           },
           nextJob.delayMs,
-          () => get().jobs[nextJob.id]?.status === "paused"
+          () => get().jobs[nextJob.id]?.status === "paused",
+          (newChapter) => {
+            set((s) => {
+              const j = s.jobs[nextJob.id];
+              if (!j) return s;
+              return {
+                jobs: {
+                  ...s.jobs,
+                  [nextJob.id]: {
+                    ...j,
+                    progress: {
+                      ...j.progress,
+                      total: j.progress.total + 1
+                    }
+                  }
+                }
+              };
+            });
+          }
         );
         } // end isServer else
 

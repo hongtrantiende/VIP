@@ -1,19 +1,26 @@
 {
   "manifest_version": 3,
   "name": "Novel Studio Connector (PC)",
-  "version": "5.0",
-  "description": "Auto-extract chapters while user reads",
+  "version": "6.0",
+  "description": "Stealth novel scraper with proxy rotation & anti-bot",
   "background": {
     "service_worker": "background.js"
   },
   "permissions": [
     "storage",
     "tabs",
-    "scripting"
+    "scripting",
+    "proxy",
+    "webRequest",
+    "webRequestAuthProvider"
   ],
   "host_permissions": [
     "<all_urls>"
   ],
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "Novel Studio Connector"
+  },
   "content_scripts": [
     {
       "matches": [

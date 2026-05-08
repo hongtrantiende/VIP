@@ -10,6 +10,9 @@ import { XTruyenAdapter } from "./XTruyen";
 import { MeTruyenChuAdapter } from "./MeTruyenChu";
 import { ChomeredAdapter } from "./Chomered";
 import { Po18Adapter } from "./Po18";
+import { GuihuaAdapter } from "./Guihua";
+import { TimotxtAdapter } from "./Timotxt";
+import { CzbooksAdapter } from "./Czbooks";
 import { UniversalAdapter } from "./Universal";
 
 const adapters: SiteAdapter[] = [
@@ -24,6 +27,9 @@ const adapters: SiteAdapter[] = [
   MeTruyenChuAdapter,
   ChomeredAdapter,
   Po18Adapter,
+  GuihuaAdapter,
+  TimotxtAdapter,
+  CzbooksAdapter,
   UniversalAdapter,
 ];
 

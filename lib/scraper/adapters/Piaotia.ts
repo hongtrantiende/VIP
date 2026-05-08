@@ -103,21 +103,24 @@ export const PiaotiaAdapter: SiteAdapter = {
     const doc = new DOMParser().parseFromString(html, "text/html");
     const chapterTitle = doc.querySelector("h1")?.textContent?.trim() || "";
 
-    // Prefer contentText from extension (it already handles line breaks)
-    let text = contentText || "";
-    if (!text) {
-      const contentEl = doc.querySelector("#content");
-      if (contentEl) {
-        const clone = contentEl.cloneNode(true) as HTMLElement;
-        
-        // Remove navigation, ads, scripts, and tables
-        clone.querySelectorAll(".toplink, script, style, table, .ads, h1").forEach((el) => el.remove());
-        
-        // Replace <br> with newlines to preserve formatting in textContent
-        clone.querySelectorAll("br").forEach((br) => br.replaceWith("\n"));
-        
-        text = clone.textContent || "";
-      }
+    let text = "";
+    const contentEl = doc.querySelector("#content");
+    
+    if (contentEl) {
+      const clone = contentEl.cloneNode(true) as HTMLElement;
+      clone.querySelectorAll(".toplink, script, style, table, .ads, h1").forEach((el) => el.remove());
+      clone.querySelectorAll("br").forEach((br) => br.replaceWith("\n"));
+      text = clone.textContent || "";
+    } else {
+      // Piaotia often puts text directly in the body
+      const clone = doc.body.cloneNode(true) as HTMLElement;
+      clone.querySelectorAll("div, table, script, style, h1, center, a").forEach(el => el.remove());
+      clone.querySelectorAll("br").forEach((br) => br.replaceWith("\n"));
+      text = clone.textContent || "";
+    }
+
+    if (!text && contentText) {
+      text = contentText;
     }
 
     // Clean up
@@ -126,6 +129,7 @@ export const PiaotiaAdapter: SiteAdapter = {
       .replace(/飘天文学/g, "")
       .replace(/www\.piaotia\.com/g, "")
       .replace(/【[^\]]+】/g, "") // Remove common bracketed ads
+      .replace(/重要声明：小说.*/, "") // Remove footer copyright notice
       .trim();
 
     return { title: chapterTitle, content: text };

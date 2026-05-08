@@ -21,6 +21,24 @@ export const XTruyenAdapter: SiteAdapter = {
     const coverImage = doc.querySelector(".summary_image img")?.getAttribute("src") || "";
     const description = doc.querySelector(".description-summary .summary__content")?.textContent?.trim() || "";
 
+    // Support Next Chapter crawling natively: if user inputs a chapter URL
+    if (url.includes("/chuong-") || url.includes("/chapter-")) {
+      const chapterTitle = doc.querySelector(".breadcrumb li.active")?.textContent?.trim() || "Chương Đầu";
+      const novelTitle = doc.querySelector(".breadcrumb li:nth-last-child(2) a")?.textContent?.trim() || title || "Truyện Crawl";
+      
+      return {
+        title: novelTitle,
+        author: "Đang cập nhật",
+        description: "",
+        coverImage: "",
+        chapters: [{
+          title: chapterTitle,
+          url: url,
+          order: 0
+        }]
+      };
+    }
+
     // 1. Find Manga ID - Robust extraction
     let mangaId = "";
     
