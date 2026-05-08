@@ -175,8 +175,16 @@ chrome.runtime.onMessageExternal.addListener((request, _sender, sendResponse) =>
     downloadAllSequential(request.payload, sendResponse);
     return true;
   }
+  if (request.action === "closePersistentTab") {
+    if (persistentTabId) {
+      try { chrome.tabs.remove(persistentTabId); } catch {}
+      persistentTabId = null;
+    }
+    sendResponse({ success: true });
+    return false;
+  }
   if (request.type === "FETCH") {
-    handleFetch(request.url, request.waitSelector, request.clickSelector, request.timeout || 15000)
+    handleFetch(request.url, request.waitSelector, request.clickSelector, request.timeout || 15000, request.reuseTab || false)
       .then((r) => sendResponse({ ok: true, ...r }))
       .catch((e) => sendResponse({ ok: false, error: e.message }));
     return true;
@@ -237,12 +245,32 @@ async function downloadAllSequential({ chapters, delay: d = 1000 }, sendResponse
 // ══════════════════════════════════════════════════════════════
 // 6. CORE FETCH — Stealth Enhanced + Proxy Rotation
 // ══════════════════════════════════════════════════════════════
-async function handleFetch(url, waitSelector, clickSelector, timeout) {
+let persistentTabId = null;
+
+async function handleFetch(url, waitSelector, clickSelector, timeout, reuseTab = false) {
   // Rotate proxy before this chapter
   await rotateProxyIfNeeded();
 
-  const tab = await chrome.tabs.create({ url, active: false });
-  const tabId = tab.id;
+  let tabId;
+  if (reuseTab) {
+    if (persistentTabId) {
+      try {
+        await chrome.tabs.get(persistentTabId);
+        tabId = persistentTabId;
+        await chrome.tabs.update(tabId, { url });
+      } catch {
+        const tab = await chrome.tabs.create({ url, active: false });
+        tabId = persistentTabId = tab.id;
+      }
+    } else {
+      const tab = await chrome.tabs.create({ url, active: false });
+      tabId = persistentTabId = tab.id;
+    }
+  } else {
+    const tab = await chrome.tabs.create({ url, active: false });
+    tabId = tab.id;
+  }
+
   try {
     await waitForTabLoad(tabId, 30000);
     await injectFullStealth(tabId);
@@ -294,7 +322,9 @@ async function handleFetch(url, waitSelector, clickSelector, timeout) {
     increaseThrottle();
     throw err;
   } finally {
-    try { await chrome.tabs.remove(tabId); } catch {}
+    if (!reuseTab) {
+      try { await chrome.tabs.remove(tabId); } catch {}
+    }
   }
 }
 

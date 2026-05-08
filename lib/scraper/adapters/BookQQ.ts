@@ -1,11 +1,11 @@
 import { cleanGarbageLines } from "../../text-utils";
 import type { SiteAdapter } from "../types";
 
-export const FanqieAdapter: SiteAdapter = {
-  name: "Fanqie Novel",
+export const BookQQAdapter: SiteAdapter = {
+  name: "Book QQ",
   group: "cn",
-  urlPattern: /fanqienovel\.com/i,
-  chapterWaitSelector: ".muye-reader-content",
+  urlPattern: /book\.qq\.com/i,
+  chapterWaitSelector: ".read-content, #content, .chapter-content",
   minDelayMs: 11000,
   useSequentialTab: true,
 
@@ -13,20 +13,27 @@ export const FanqieAdapter: SiteAdapter = {
     let doc = new DOMParser().parseFromString(html, "text/html");
     let currentBase = new URL(url);
 
-    const title = doc.querySelector("h1, .info-name")?.textContent?.trim() || doc.title.split("-")[0].trim();
-    const author = doc.querySelector(".author-name, .info-author")?.textContent?.trim() || "";
-    const description = doc.querySelector(".abstract, .info-desc")?.textContent?.trim() || "";
+    const title = doc.querySelector("h1, .book-title, .info-title")?.textContent?.trim() || doc.title.split("-")[0].trim();
+    const author = doc.querySelector(".author, .book-author")?.textContent?.trim() || "";
+    const description = doc.querySelector(".intro, .book-intro")?.textContent?.trim() || "";
     
-    const coverImg = doc.querySelector(".book-cover-img");
+    const coverImg = doc.querySelector(".book-cover img, .cover img");
     const coverImage = coverImg ? new URL(coverImg.getAttribute("src") || "", currentBase).href : undefined;
 
     const chapters: any[] = [];
-    const chapterLinks = doc.querySelectorAll(".chapter-item a, a.chapter-item-title");
+    const chapterLinks = doc.querySelectorAll(".chapter-list a, .volume-list a, .dir-list a");
     
     Array.from(chapterLinks).forEach((a) => {
-      const absUrl = new URL(a.getAttribute("href") || "", currentBase).href;
+      const href = a.getAttribute("href");
+      if (!href) return;
+      if (href.includes("javascript")) return;
+
+      const absUrl = new URL(href, currentBase).href.split("#")[0];
+      const titleText = a.textContent?.trim() || "";
+      if (titleText.length < 2) return;
+
       chapters.push({
-        title: a.textContent?.trim() || `Chương ${chapters.length + 1}`,
+        title: titleText,
         url: absUrl,
         order: chapters.length,
       });
@@ -37,14 +44,14 @@ export const FanqieAdapter: SiteAdapter = {
 
   getChapterContent(html, _url, contentText) {
     const doc = new DOMParser().parseFromString(html, "text/html");
-    const chapterTitle = doc.querySelector("h1, .title, .reader-header-title")?.textContent?.trim() || "";
+    const chapterTitle = doc.querySelector("h1, .chapter-title, .title")?.textContent?.trim() || "";
 
     let text = "";
-    const contentEl = doc.querySelector(".muye-reader-content, .article-content, #content");
+    const contentEl = doc.querySelector(".read-content, #content, .chapter-content");
     
     if (contentEl) {
       const clone = contentEl.cloneNode(true) as HTMLElement;
-      clone.querySelectorAll("script, style, .bottom-ad, iframe").forEach((el) => el.remove());
+      clone.querySelectorAll("script, style, iframe, .ad, .bottom-nav").forEach((el) => el.remove());
       clone.querySelectorAll("br").forEach((br) => br.replaceWith("\n"));
       clone.querySelectorAll("p").forEach((p) => p.insertAdjacentText("afterend", "\n"));
       text = clone.textContent || "";
@@ -52,23 +59,9 @@ export const FanqieAdapter: SiteAdapter = {
       text = contentText || "";
     }
 
-    // ── FANQIE DECRYPTION LOGIC ──
-    // Mapping placeholders since python original snippet keys were lost in chat
-    const mapping: Record<string, string> = {};
-
-    for (const [oldChar, newChar] of Object.entries(mapping)) {
-      if (oldChar) text = text.split(oldChar).join(newChar);
-    }
-
-    // Remove remaining PUA characters
-    text = text.replace(/[\ue000-\uf8ff]/g, '');
-
     const lines = text.split('\n');
     const cleanedLines = lines.map(line => line.replace(/\s+/g, ' ').trim()).filter(line => line.length > 0);
     text = cleanedLines.join('\n\n');
-
-    text = text.replace(/唐治/g, '唐治').replace(/隆基哥/g, '隆基哥');
-    text = text.replace(/ +/g, ' ');
 
     text = cleanGarbageLines(text);
 

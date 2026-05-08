@@ -55,9 +55,7 @@ export const CzbooksAdapter: SiteAdapter = {
     const doc = new DOMParser().parseFromString(html, "text/html");
     const chapterTitle = doc.querySelector("h1, .chapter-title, .name")?.textContent?.trim() || "";
 
-    if (contentText) {
-        return { title: chapterTitle, content: contentText };
-    }
+    // Always parse HTML to remove junk, fall back to contentText if empty
 
     const contentNode = doc.querySelector(".content, #content, .chapter-detail, .read-content");
     

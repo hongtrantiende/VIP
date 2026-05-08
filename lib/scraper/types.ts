@@ -11,6 +11,10 @@ export interface SiteAdapter {
   chapterWaitSelector?: string;
   /** CSS selector to click after page load to trigger content loading */
   chapterClickSelector?: string;
+  /** Minimum delay (in ms) per chapter fetch. Defaults to 7000ms if not specified. */
+  minDelayMs?: number;
+  /** If true, the extension will reuse a single background tab and update its URL instead of opening/closing tabs. */
+  useSequentialTab?: boolean;
   /** Parse novel page HTML → novel info + chapter list */
   getNovelInfo(html: string, url: string, onProgress?: (count: number) => void): NovelInfo | Promise<NovelInfo>;
   /** Parse chapter page HTML → chapter content. contentText is innerText from live DOM (bypasses font obfuscation). */

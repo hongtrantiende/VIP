@@ -73,60 +73,60 @@ export async function scrapeChapters(
   let consecutiveErrors = 0;
   const MAX_CONSECUTIVE_ERRORS = 3;
 
-  const safeDelayMs = Math.max(delayMs, 100);
+    const safeDelayMs = Math.max(adapter.minDelayMs || delayMs || 7000, 100);
 
-  for (let i = 0; i < chapters.length; i++) {
-    signal?.throwIfAborted();
-
-    // Wait BEFORE starting the next chapter to ensure tab switching is synced with delay
-    if (i > 0) {
-      await delay(safeDelayMs);
-    }
-
-    const chapter = chapters[i];
-    onProgress?.(i + 1, chapters.length, chapter.title);
-
-    // Pause loop
-    while (onPauseCheck?.()) {
-      await delay(1000);
+    for (let i = 0; i < chapters.length; i++) {
       signal?.throwIfAborted();
-    }
 
+      // Wait BEFORE starting the next chapter to ensure tab switching is synced with delay
+      if (i > 0) {
+        await delay(safeDelayMs);
+      }
 
-    let html = "";
-    let contentText: string | undefined = undefined;
-    let timedOut = false;
-    let logs: string[] = [];
-    let extTitle: string | undefined = undefined;
-    let content: ChapterContent = { title: "", content: "" };
+      const chapter = chapters[i];
+      onProgress?.(i + 1, chapters.length, chapter.title);
 
-    let attempts = 0;
-    let success = false;
-    let lastError: any = null;
+      // Pause loop
+      while (onPauseCheck?.()) {
+        await delay(1000);
+        signal?.throwIfAborted();
+      }
 
-    while (attempts < 3 && !success) {
-      try {
-        if (adapter.name === "STV" && chapter.id) {
-          const res = await extensionDownloadSTVChapter(
-            chapter.id,
-            chapter.url,
-            i < chapters.length - 1 && !signal?.aborted,
-          );
-          html = res.data ?? "";
-          contentText = (res as any).contentText ?? res.content ?? undefined;
-          timedOut = (res as any).timedOut ?? false;
-          extTitle = res.title;
-          if (res.stopped) break;
-        } else {
-          const fetchRes = await extensionFetch(chapter.url, {
-            waitSelector: adapter.chapterWaitSelector,
-            clickSelector: adapter.chapterClickSelector,
-          });
-          html = fetchRes.html;
-          contentText = fetchRes.contentText;
-          timedOut = fetchRes.timedOut ?? false;
-          logs = fetchRes.logs ?? [];
-        }
+      let html = "";
+      let contentText: string | undefined = undefined;
+      let timedOut = false;
+      let logs: string[] = [];
+      let extTitle: string | undefined = undefined;
+      let content: ChapterContent = { title: "", content: "" };
+
+      let attempts = 0;
+      let success = false;
+      let lastError: any = null;
+
+      while (attempts < 3 && !success) {
+        try {
+          if (adapter.name === "STV" && chapter.id) {
+            const res = await extensionDownloadSTVChapter(
+              chapter.id,
+              chapter.url,
+              i < chapters.length - 1 && !signal?.aborted,
+            );
+            html = res.data ?? "";
+            contentText = (res as any).contentText ?? res.content ?? undefined;
+            timedOut = (res as any).timedOut ?? false;
+            extTitle = res.title;
+            if (res.stopped) break;
+          } else {
+            const fetchRes = await extensionFetch(chapter.url, {
+              waitSelector: adapter.chapterWaitSelector,
+              clickSelector: adapter.chapterClickSelector,
+              reuseTab: adapter.useSequentialTab,
+            });
+            html = fetchRes.html;
+            contentText = fetchRes.contentText;
+            timedOut = fetchRes.timedOut ?? false;
+            logs = fetchRes.logs ?? [];
+          }
 
         content = sanitizeChapterContent(
           await adapter.getChapterContent(html, chapter.url, contentText),
@@ -215,25 +215,33 @@ export async function scrapeChapters(
     }
 
     // ── Dynamic Next Chapter Crawling ──
-    // If we just processed the last chapter in our list, and it gave us a next link
-    if (i === chapters.length - 1 && content.nextChapterUrl) {
-      // Make sure we haven't seen it yet
-      const alreadyExists = chapters.some((ch) => ch.url === content.nextChapterUrl);
-      if (!alreadyExists && content.nextChapterUrl.startsWith("http")) {
-        const newChapter: ChapterLink = {
-          title: `Chương ${chapters.length + 1} (Đang lấy tiêu đề...)`,
-          url: content.nextChapterUrl,
-          order: chapters.length,
-        };
-        chapters.push(newChapter);
-        onDynamicChapterAdded?.(newChapter);
+      // If we just processed the last chapter in our list, and it gave us a next link
+      if (i === chapters.length - 1 && content.nextChapterUrl) {
+        // Make sure we haven't seen it yet
+        const alreadyExists = chapters.some((ch) => ch.url === content.nextChapterUrl);
+        if (!alreadyExists && content.nextChapterUrl.startsWith("http")) {
+          const newChapter: ChapterLink = {
+            title: `Chương ${chapters.length + 1} (Đang lấy tiêu đề...)`,
+            url: content.nextChapterUrl,
+            order: chapters.length,
+          };
+          chapters.push(newChapter);
+          onDynamicChapterAdded?.(newChapter);
+        }
       }
     }
-  }
 
-  await extensionStopScrape();
-  onProgress?.(chapters.length, chapters.length, "");
-  return results;
+    await extensionStopScrape();
+    // Close any persistent tab created during scraping
+    try {
+      const { extensionId } = await import("./extension-bridge");
+      if (chrome?.runtime) {
+        chrome.runtime.sendMessage(extensionId, { action: "closePersistentTab" });
+      }
+    } catch {}
+
+    onProgress?.(chapters.length, chapters.length, "");
+    return results;
 }
 
 export async function crawlNovel(
