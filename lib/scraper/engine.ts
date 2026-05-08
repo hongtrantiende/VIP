@@ -234,9 +234,10 @@ export async function scrapeChapters(
     await extensionStopScrape();
     // Close any persistent tab created during scraping
     try {
-      const { extensionId } = await import("./extension-bridge");
-      if (chrome?.runtime) {
-        chrome.runtime.sendMessage(extensionId, { action: "closePersistentTab" });
+      const { getExtensionId } = await import("./extension-bridge");
+      const extId = getExtensionId();
+      if (extId && (window as any).chrome?.runtime) {
+        (window as any).chrome.runtime.sendMessage(extId, { action: "closePersistentTab" });
       }
     } catch {}
 
