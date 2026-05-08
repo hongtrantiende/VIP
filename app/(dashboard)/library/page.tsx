@@ -234,7 +234,17 @@ export default function LibraryPage() {
         }
       }
       
-      const blob = await generateEpub(novel.title, novel.author || "Unknown", coverBase64 as string | null, chapters);
+      const scenes = await db.scenes.where("[novelId+isActive]").equals([novel.id, 1]).toArray();
+      const chaptersWithContent = chapters.map(ch => {
+         const chScenes = scenes.filter(s => s.chapterId === ch.id).sort((a, b) => a.order - b.order);
+         const content = chScenes.map(s => s.content).join("\n\n");
+         return {
+            title: ch.title,
+            content: content || "Nội dung chương trống."
+         };
+      });
+      
+      const blob = await generateEpub(novel.title, novel.author || "Unknown", coverBase64 as string | null, chaptersWithContent);
       
       const url = window.URL.createObjectURL(blob);
       const a = document.createElement("a");
