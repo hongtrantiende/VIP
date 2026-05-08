@@ -2,10 +2,18 @@ import { create } from "zustand";
 import { persist } from "zustand/middleware";
 import { db } from "../db";
 import { detectAdapter } from "../scraper/adapters";
-import { scrapeChapters } from "../scraper/engine";
+import { scrapeChapters, serverScrapeChapters } from "../scraper/engine";
 import { stripHtml, countWords } from "../utils";
 import type { ChapterLink, SiteAdapter } from "../scraper/types";
 import { toast } from "sonner";
+
+/** Minimal server-side adapter placeholder */
+const SERVER_ADAPTER: SiteAdapter = {
+  name: "Server",
+  urlPattern: /.*/,
+  getNovelInfo: () => ({ title: "", chapters: [] }),
+  getChapterContent: (html: string) => ({ title: "", content: html }),
+};
 
 export interface ScraperJob {
   id: string; // novelId
@@ -33,7 +41,8 @@ interface ScraperQueueState {
     url: string,
     chapters: ChapterLink[],
     delayMs: number,
-    coverImage?: string
+    coverImage?: string,
+    adapterName?: string
   ) => void;
   removeJob: (id: string) => void;
   pauseJob: (id: string) => void;
@@ -54,11 +63,13 @@ export const useScraperQueueStore = create<ScraperQueueState>()(
 
       setMinimized: (min) => set({ isOverlayMinimized: min }),
 
-  addJob: async (novelId, title, url, chapters, delayMs, coverImage) => {
-    const adapter = detectAdapter(url);
-    if (!adapter) {
-      toast.error("Không tìm thấy adapter cho URL này");
-      return;
+  addJob: async (novelId, title, url, chapters, delayMs, coverImage, adapterName) => {
+    // Determine the adapter to use
+    let adapter;
+    if (adapterName === "Server") {
+      adapter = SERVER_ADAPTER;
+    } else {
+      adapter = detectAdapter(url) || SERVER_ADAPTER;
     }
 
     // Pre-scrape duplicate filtering
@@ -114,7 +125,111 @@ export const useScraperQueueStore = create<ScraperQueueState>()(
     // Start scraping in background
     (async () => {
       try {
-        await scrapeChapters(
+        const isServer = nextJob.adapter.name === "Server";
+        
+        if (isServer) {
+          // Server-side scraping path (no extension needed)
+          await serverScrapeChapters(
+            nextJob.chaptersToScrape,
+            (completed, total, currentTitle) => {
+              set((s) => {
+                const j = s.jobs[nextJob.id];
+                if (!j) return s;
+                return {
+                  jobs: {
+                    ...s.jobs,
+                    [nextJob.id]: {
+                      ...j,
+                      progress: {
+                        ...j.progress,
+                        completed: (j.progress.total - total) + completed,
+                        current: currentTitle,
+                      },
+                    },
+                  },
+                };
+              });
+            },
+            nextJob.abortController?.signal,
+            async (entry) => {
+              if (entry.parsed.warning) {
+                set((s) => {
+                  const j = s.jobs[nextJob.id];
+                  if (!j) return s;
+                  return { jobs: { ...s.jobs, [nextJob.id]: { ...j, warnCount: j.warnCount + 1 } } };
+                });
+              }
+
+              const now = new Date();
+              const normalizedTitle = entry.parsed.title.toLowerCase().trim();
+
+              const existing = await db.chapters
+                .where("novelId")
+                .equals(nextJob.id)
+                .toArray()
+                .then(chs => chs.find(c => c.title.toLowerCase().trim() === normalizedTitle));
+
+              if (existing) {
+                const scenes = await db.scenes.where("chapterId").equals(existing.id).toArray();
+                const activeScene = scenes.find(s => s.isActive === 1);
+                if (activeScene) {
+                  await db.scenes.update(activeScene.id, {
+                    content: entry.parsed.content,
+                    wordCount: countWords(stripHtml(entry.parsed.content)),
+                    updatedAt: now,
+                  });
+                }
+              } else {
+                const chapterId = crypto.randomUUID();
+                const plainText = stripHtml(entry.parsed.content);
+                const currentOrder = await db.chapters.where("novelId").equals(nextJob.id).count();
+
+                await db.chapters.add({
+                  id: chapterId,
+                  novelId: nextJob.id,
+                  title: entry.parsed.title,
+                  order: entry.parsed.order ?? currentOrder,
+                  createdAt: now,
+                  updatedAt: now,
+                });
+
+                await db.scenes.add({
+                  id: crypto.randomUUID(),
+                  chapterId,
+                  novelId: nextJob.id,
+                  title: entry.parsed.title,
+                  content: entry.parsed.content,
+                  order: 0,
+                  wordCount: countWords(plainText),
+                  version: 0,
+                  versionType: "manual",
+                  isActive: 1,
+                  createdAt: now,
+                  updatedAt: now,
+                });
+              }
+
+              // Update remaining chapters
+              set((s) => {
+                const j = s.jobs[nextJob.id];
+                if (!j) return s;
+                return {
+                  jobs: {
+                    ...s.jobs,
+                    [nextJob.id]: {
+                      ...j,
+                      chaptersToScrape: j.chaptersToScrape.slice(1),
+                    }
+                  }
+                };
+              });
+            },
+            nextJob.delayMs,
+            () => get().jobs[nextJob.id]?.status === "paused"
+          );
+        } else {
+          // Extension-based scraping path (existing behavior)
+          await scrapeChapters(
           nextJob.chaptersToScrape,
           nextJob.adapter,
           (completed, total, currentTitle) => {
@@ -221,6 +336,7 @@ export const useScraperQueueStore = create<ScraperQueueState>()(
           nextJob.delayMs,
           () => get().jobs[nextJob.id]?.status === "paused"
         );
+        } // end isServer else
 
         // Done
         set((s) => {
@@ -329,7 +445,7 @@ export const useScraperQueueStore = create<ScraperQueueState>()(
         if (state) {
           const rehydratedJobs: Record<string, ScraperJob> = {};
           for (const [id, job] of Object.entries(state.jobs as Record<string, any>)) {
-            const adapter = detectAdapter(job.url);
+            const adapter = detectAdapter(job.url) || (job.adapter?.name === "Server" ? SERVER_ADAPTER : null);
             if (!adapter) continue; // Skip if adapter is missing or invalid
 
             rehydratedJobs[id] = {

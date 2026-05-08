@@ -16,6 +16,12 @@ import {
   getGeneratorExtensionId, 
   setGeneratorExtensionId 
 } from "@/lib/scraper/extension-bridge";
+import {
+  serverTestFetch,
+  serverAnalyzeNovel,
+  serverAnalyzeChapter,
+  serverGeneratePrompt,
+} from "@/lib/scraper/server-scraper-client";
 import { useApiInferenceProviders, useAIModels } from "@/lib/hooks";
 import { getModel } from "@/lib/ai/provider";
 import { generateText } from "ai";
@@ -23,7 +29,7 @@ import {
   Loader2Icon, CopyIcon, Wand2Icon, GlobeIcon, SparklesIcon, 
   ShieldCheckIcon, ShieldAlertIcon, Settings2Icon, DownloadIcon,
   ChevronRightIcon, BookOpenIcon, ListIcon, FileTextIcon, CheckCircle2Icon,
-  Code2Icon, LayersIcon, ArrowRightCircleIcon
+  Code2Icon, LayersIcon, ArrowRightCircleIcon, ZapIcon, ServerIcon
 } from "lucide-react";
 import { toast } from "sonner";
 
@@ -44,6 +50,10 @@ export default function ScraperGeneratorPage() {
   const [extStatus, setExtStatus] = useState<{ available: boolean; version: string | null }>({ available: false, version: null });
   const [extId, setExtId] = useState("");
   const [showExtConfig, setShowExtConfig] = useState(false);
+  
+  // Server-side mode
+  const [scanMode, setScanMode] = useState<"server" | "extension">("server");
+  const [serverStatus, setServerStatus] = useState<"idle" | "ok" | "blocked">("idle");
 
   // AI Selection state
   const [selectedProviderId, setSelectedProviderId] = useState("");
@@ -60,6 +70,99 @@ export default function ScraperGeneratorPage() {
     };
     check();
   }, []);
+
+  // ── Server-side scan (NO extension needed) ──
+  const serverScanMainPage = async () => {
+    if (!url) return toast.error("Cần nhập URL trước");
+    setLoading(true);
+    setScanMode("server");
+    try {
+      // 1. Quick test if server can reach this URL
+      const test = await serverTestFetch(url);
+      if (!test.success) throw new Error("Server không thể fetch URL: " + (test.error || "Unknown"));
+      if (test.isCloudflareBlocked) {
+        setServerStatus("blocked");
+        toast.warning("Trang này bị Cloudflare chặn — chuyển sang Extension mode.");
+        return;
+      }
+      setServerStatus("ok");
+
+      // 2. Full analysis
+      const info = await serverAnalyzeNovel(url);
+      setNovelData({
+        title: info.title,
+        author: info.author || "Không rõ",
+        cover: info.coverImage || "",
+      });
+      setChapters(info.chapters);
+      setTocInfo({
+        count: info.chapters.length,
+        nextUrl: info.paginationUrls[0] || null,
+        tocUrl: info.tocUrl,
+        candidates: info.paginationUrls.map((u, i) => ({ title: `Trang ${i + 2}`, url: u })),
+        type: info.paginationUrls.length > 0 ? "Nhiều trang (Phân trang)" : "Full (1 trang)",
+        html: `Server-side analysis: ${info.chapters.length} chương tìm thấy`,
+      });
+
+      // Auto-redirect to TOC if few chapters found
+      if (info.tocUrl && info.chapters.length < 5) {
+        toast.info("Đang chuyển đến trang Mục lục...");
+        setUrl(info.tocUrl);
+        // Re-run with TOC URL
+        const tocInfo2 = await serverAnalyzeNovel(info.tocUrl);
+        setChapters(tocInfo2.chapters);
+        setTocInfo((prev: any) => ({
+          ...prev,
+          count: tocInfo2.chapters.length,
+          html: `Server-side analysis (TOC): ${tocInfo2.chapters.length} chương`,
+        }));
+      }
+
+      setActiveTab("toc");
+      toast.success(`⚡ Server scan: Tìm thấy ${info.chapters.length} chương (${test.responseTime}ms)`);
+    } catch (err: any) {
+      toast.error("Server scan lỗi: " + err.message);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  // ── Server-side chapter scan ──
+  const serverScanChapter = async (chapterUrl: string) => {
+    setLoading(true);
+    setActiveTab("chapter");
+    try {
+      const data = await serverAnalyzeChapter(chapterUrl);
+      setSampleChapterData({
+        url: chapterUrl,
+        selector: data.contentSelector,
+        pCount: data.paragraphCount,
+        html: data.content.join("\n\n"),
+        serverContent: data.content,
+        title: data.title,
+      });
+      toast.success(`⚡ Server: Lấy được ${data.content.length} đoạn văn`);
+    } catch (err: any) {
+      toast.error("Server chapter scan lỗi: " + err.message);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  // ── Server-side prompt generation ──
+  const handleServerPrompt = async () => {
+    if (!url) return toast.error("Cần nhập URL");
+    setLoading(true);
+    try {
+      const { prompt } = await serverGeneratePrompt(url);
+      setFinalPrompt(prompt);
+      toast.success("⚡ Đã tạo prompt từ server!");
+    } catch (err: any) {
+      toast.error(err.message);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   const handleUpdateExtId = () => {
     setGeneratorExtensionId(extId);
@@ -358,10 +461,11 @@ export default function ScraperGeneratorPage() {
       <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
         <div>
           <h1 className="text-3xl font-bold tracking-tight">Phân tích Scraper 3 Giai Đoạn</h1>
-          <p className="text-muted-foreground text-sm italic">Hỗ trợ nhận diện Phân trang & Loại bỏ chương mới cập nhật gây nhiễu.</p>
+          <p className="text-muted-foreground text-sm italic">Hỗ trợ Server-side (nhanh, ko cần Extension) & Extension (mạnh, JS render).</p>
         </div>
         <div className="flex items-center gap-2">
-          {extStatus.available ? <Badge className="bg-emerald-500/10 text-emerald-600"><ShieldCheckIcon className="size-3 mr-1" /> Connected</Badge> : <Badge variant="destructive">Offline</Badge>}
+          <Badge className="bg-blue-500/10 text-blue-600"><ServerIcon className="size-3 mr-1" /> Server {serverStatus === "ok" ? "✓" : serverStatus === "blocked" ? "✗" : "—"}</Badge>
+          {extStatus.available ? <Badge className="bg-emerald-500/10 text-emerald-600"><ShieldCheckIcon className="size-3 mr-1" /> Ext</Badge> : <Badge variant="outline" className="text-muted-foreground">Ext Offline</Badge>}
           <Button variant="ghost" size="icon-sm" onClick={() => setShowExtConfig(!showExtConfig)}><Settings2Icon className="size-4" /></Button>
         </div>
       </div>
@@ -388,16 +492,26 @@ export default function ScraperGeneratorPage() {
 
       <div className="grid grid-cols-1 md:grid-cols-12 gap-4 items-end">
         <Card className="md:col-span-8 border-primary/20 shadow-xl shadow-primary/5">
-          <CardContent className="pt-6 flex gap-4">
-            <Input placeholder="Dán link mục lục (Trang 1)..." value={url} onChange={e => setUrl(e.target.value)} className="h-11 flex-1" />
-            <div className="flex gap-2">
-              <Button onClick={() => scanMainPage(url)} disabled={loading} className="h-11 px-6">
-                {loading ? <Loader2Icon className="animate-spin mr-2" /> : <GlobeIcon className="mr-2" />}
-                Quét trang này
+          <CardContent className="pt-6 space-y-3">
+            <div className="flex gap-4">
+              <Input placeholder="Dán link mục lục (Trang 1)..." value={url} onChange={e => setUrl(e.target.value)} className="h-11 flex-1" />
+            </div>
+            <div className="flex gap-2 flex-wrap">
+              <Button onClick={serverScanMainPage} disabled={loading} className="h-11 px-6 bg-blue-600 hover:bg-blue-700">
+                {loading && scanMode === "server" ? <Loader2Icon className="animate-spin mr-2" /> : <ZapIcon className="mr-2" />}
+                ⚡ Server Scan
+              </Button>
+              <Button onClick={() => scanMainPage(url)} disabled={loading} variant="outline" className="h-11 px-6">
+                {loading && scanMode === "extension" ? <Loader2Icon className="animate-spin mr-2" /> : <GlobeIcon className="mr-2" />}
+                Extension Scan
               </Button>
               <Button onClick={autoScanAllPages} disabled={loading} className="h-11 px-6 bg-orange-600 hover:bg-orange-700">
                 <ArrowRightCircleIcon className="mr-2" />
                 Quét Toàn Bộ
+              </Button>
+              <Button onClick={handleServerPrompt} disabled={loading || !url} variant="secondary" className="h-11 px-6">
+                {loading ? <Loader2Icon className="animate-spin mr-2" /> : <Code2Icon className="mr-2" />}
+                Tạo Prompt (Server)
               </Button>
             </div>
           </CardContent>
@@ -484,7 +598,10 @@ export default function ScraperGeneratorPage() {
                   {chapters.map((ch, i) => (
                     <div key={i} className="flex items-center justify-between p-1.5 rounded hover:bg-primary/5 border text-[10px]">
                       <span className="truncate flex-1 mr-2">{ch.title}</span>
-                      <Button size="sm" variant="ghost" className="h-6 px-1.5 text-[9px]" onClick={() => scanSampleChapter(ch.url)} disabled={loading}>Xem</Button>
+                      <div className="flex gap-1">
+                        <Button size="sm" variant="ghost" className="h-6 px-1.5 text-[9px] text-blue-600" onClick={() => serverScanChapter(ch.url)} disabled={loading}>⚡</Button>
+                        <Button size="sm" variant="ghost" className="h-6 px-1.5 text-[9px]" onClick={() => scanSampleChapter(ch.url)} disabled={loading}>Ext</Button>
+                      </div>
                     </div>
                   ))}
                 </div>

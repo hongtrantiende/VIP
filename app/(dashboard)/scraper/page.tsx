@@ -12,8 +12,25 @@ import { toast } from "sonner";
 import { db } from "@/lib/db";
 import { detectAdapter } from "@/lib/scraper/adapters";
 import { extensionFetch, checkExtensionStatus, getExtensionId, setExtensionId } from "@/lib/scraper/extension-bridge";
+import { serverAnalyzeNovel } from "@/lib/scraper/server-scraper-client";
 import { useScraperQueueStore } from "@/lib/stores/scraper-queue";
-import { SettingsIcon, BookIcon, LoaderIcon, PauseIcon, PlayIcon, TrashIcon, DownloadIcon, CheckCircleIcon, GlobeIcon } from "lucide-react";
+import { SettingsIcon, BookIcon, LoaderIcon, PauseIcon, PlayIcon, TrashIcon, DownloadIcon, CheckCircleIcon, GlobeIcon, ZapIcon } from "lucide-react";
+
+/** URLs that can be fetched server-side (no extension needed) */
+const SERVER_FETCH_DOMAINS = [
+  "chomered.com",
+  "welove-gourmet.com",
+  "metruyenchu.com.vn",
+];
+
+function isServerFetchable(url: string): boolean {
+  try {
+    const hostname = new URL(url).hostname.replace(/^www\./, "");
+    return SERVER_FETCH_DOMAINS.some(d => hostname === d || hostname.endsWith("." + d));
+  } catch {
+    return false;
+  }
+}
 
 export default function ScraperLibraryPage() {
   const [url, setUrl] = useState("");
@@ -58,6 +75,36 @@ export default function ScraperLibraryPage() {
     if (!url.trim()) return;
     setIsAdding(true);
     try {
+      // ── Server-side fetch for supported sites (no extension needed) ──
+      if (isServerFetchable(url)) {
+        toast.info("⚡ Đang tải bằng Server (không cần Extension)...");
+        const novelInfo = await serverAnalyzeNovel(url);
+        if (novelInfo.chapters.length === 0) throw new Error("Không tìm thấy chương nào");
+
+        // Convert to adapter-compatible format
+        const adapterInfo = {
+          title: novelInfo.title,
+          author: novelInfo.author,
+          description: novelInfo.description,
+          coverImage: novelInfo.coverImage,
+          chapters: novelInfo.chapters.map((ch, i) => ({
+            title: ch.title,
+            url: ch.url,
+            order: i,
+          })),
+        };
+
+        setScrapedNovelInfo(adapterInfo);
+        // Create a minimal "server" adapter for the queue
+        setCurrentAdapter({ name: "Server", urlPattern: /.*/ });
+        setChapterDelay(2); // Server fetch is faster, less delay needed
+        setIsShowingChapters(false);
+        setIsConfirmOpen(true);
+        toast.success(`⚡ Server: Tìm thấy ${novelInfo.chapters.length} chương!`);
+        return;
+      }
+
+      // ── Extension-based fetch (existing behavior) ──
       const adapter = detectAdapter(url);
       if (!adapter) throw new Error("Không tìm thấy adapter cho URL này");
 
@@ -104,7 +151,15 @@ export default function ScraperLibraryPage() {
         });
       }
 
-      useScraperQueueStore.getState().addJob(novelId, scrapedNovelInfo.title, url, scrapedNovelInfo.chapters, chapterDelay * 1000, scrapedNovelInfo.coverImage);
+      useScraperQueueStore.getState().addJob(
+        novelId, 
+        scrapedNovelInfo.title, 
+        url, 
+        scrapedNovelInfo.chapters, 
+        chapterDelay * 1000, 
+        scrapedNovelInfo.coverImage,
+        currentAdapter?.name
+      );
       setUrl("");
       toast.success("Đã thêm truyện vào thư viện tải!");
     } catch (err: any) {
@@ -129,8 +184,8 @@ export default function ScraperLibraryPage() {
             onKeyDown={e => e.key === "Enter" && handleAdd()}
           />
           <Button onClick={handleAdd} disabled={isAdding || !url.trim()} className="min-w-[140px]">
-            {isAdding ? <LoaderIcon className="w-4 h-4 animate-spin mr-2" /> : <DownloadIcon className="w-4 h-4 mr-2" />}
-            {isAdding ? (scannedCount > 0 ? `Đã quét: ${scannedCount}` : "Đang tìm...") : "Thêm"}
+            {isAdding ? <LoaderIcon className="w-4 h-4 animate-spin mr-2" /> : (isServerFetchable(url) ? <ZapIcon className="w-4 h-4 mr-2" /> : <DownloadIcon className="w-4 h-4 mr-2" />)}
+            {isAdding ? (scannedCount > 0 ? `Đã quét: ${scannedCount}` : "⚡ Đang tải...") : (isServerFetchable(url) ? "⚡ Tải nhanh" : "Thêm")}
           </Button>
           
           <Dialog>
@@ -189,7 +244,19 @@ export default function ScraperLibraryPage() {
 
                 <TabsContent value="guides" className="space-y-4 py-4 max-h-[60vh] overflow-y-auto pr-2">
                   <div className="space-y-3">
-                    <Label className="text-xs font-bold text-muted-foreground uppercase">Truy cập nhanh (Web Việt)</Label>
+                    <Label className="text-xs font-bold text-muted-foreground uppercase">⚡ Tải nhanh (Không cần Extension)</Label>
+                    <div className="flex flex-wrap gap-2">
+                      <Button variant="outline" size="sm" className="border-blue-200 bg-blue-50 dark:bg-blue-950/20" asChild>
+                        <a href="https://chomered.com" target="_blank" rel="noreferrer"><ZapIcon className="mr-1.5 w-3 h-3 text-blue-500"/> Chomered</a>
+                      </Button>
+                      <Button variant="outline" size="sm" className="border-blue-200 bg-blue-50 dark:bg-blue-950/20" asChild>
+                        <a href="https://welove-gourmet.com" target="_blank" rel="noreferrer"><ZapIcon className="mr-1.5 w-3 h-3 text-blue-500"/> Welove-gourmet</a>
+                      </Button>
+                      <Button variant="outline" size="sm" className="border-blue-200 bg-blue-50 dark:bg-blue-950/20" asChild>
+                        <a href="https://metruyenchu.com.vn" target="_blank" rel="noreferrer"><ZapIcon className="mr-1.5 w-3 h-3 text-blue-500"/> MeTruyenChu.vn</a>
+                      </Button>
+                    </div>
+                    <Label className="text-xs font-bold text-muted-foreground uppercase mt-4">Web Việt (Cần Extension)</Label>
                     <div className="flex flex-wrap gap-2">
                       <Button variant="outline" size="sm" asChild>
                         <a href="https://sangtacviet.com" target="_blank" rel="noreferrer"><GlobeIcon className="mr-1.5 w-3 h-3 text-blue-500"/> SangTacViet</a>

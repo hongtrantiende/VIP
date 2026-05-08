@@ -261,6 +261,122 @@ export async function crawlNovel(
   }
 }
 
+/**
+ * Server-side chapter scraping — fetches chapters via /api/scrape (no extension needed).
+ * Compatible with the same callback interface as scrapeChapters.
+ */
+export async function serverScrapeChapters(
+  chapters: ChapterLink[],
+  onProgress?: (completed: number, total: number, currentTitle: string) => void,
+  signal?: AbortSignal,
+  onDebug?: (entry: ScrapeDebugEntry) => void,
+  delayMs: number = 1000,
+  onPauseCheck?: () => boolean,
+): Promise<ChapterContent[]> {
+  const results: ChapterContent[] = [];
+  const contentHashes = new Set<string>();
+  let consecutiveErrors = 0;
+  const MAX_CONSECUTIVE_ERRORS = 5;
+
+  const safeDelayMs = Math.max(delayMs, 300);
+
+  for (let i = 0; i < chapters.length; i++) {
+    signal?.throwIfAborted();
+
+    if (i > 0) {
+      await delay(safeDelayMs);
+    }
+
+    const chapter = chapters[i];
+    onProgress?.(i + 1, chapters.length, chapter.title);
+
+    // Pause loop
+    while (onPauseCheck?.()) {
+      await delay(1000);
+      signal?.throwIfAborted();
+    }
+
+    let content: ChapterContent = { title: "", content: "" };
+    let attempts = 0;
+    let success = false;
+    let lastError: any = null;
+
+    while (attempts < 3 && !success) {
+      try {
+        const res = await fetch("/api/scrape", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ action: "chapter", url: chapter.url }),
+          signal,
+        });
+
+        if (!res.ok) {
+          const err = await res.json().catch(() => ({}));
+          throw new Error(err.error || `HTTP ${res.status}`);
+        }
+
+        const data = await res.json();
+        
+        content = sanitizeChapterContent({
+          title: data.title || chapter.title,
+          content: data.content?.join("\n\n") || "",
+          order: chapter.order,
+        });
+
+        if (content.content.length < 30) {
+          throw new Error(`Nội dung quá ngắn (${content.content.length} ký tự)`);
+        }
+
+        success = true;
+      } catch (err: any) {
+        if (err.name === "AbortError") throw err;
+        lastError = err;
+        attempts++;
+        if (attempts >= 3) break;
+        await delay(2000 * attempts);
+      }
+    }
+
+    if (!success && lastError) {
+      // Don't throw — log warning and continue to next chapter
+      content = sanitizeChapterContent({
+        title: chapter.title,
+        content: `[Lỗi tải chương: ${lastError.message}]`,
+        order: chapter.order,
+        warning: lastError.message,
+      });
+      consecutiveErrors++;
+
+      if (consecutiveErrors >= MAX_CONSECUTIVE_ERRORS) {
+        throw new Error(`Quá nhiều lỗi liên tiếp (${MAX_CONSECUTIVE_ERRORS}). Dừng tải.`);
+      }
+    } else {
+      consecutiveErrors = 0;
+    }
+
+    // Duplicate detection
+    const currentHash = hashContent(content.content);
+    if (contentHashes.has(currentHash) && content.content.length > 100) {
+      content.warning = `⚠️ Nội dung trùng lặp với chương trước.`;
+    }
+    contentHashes.add(currentHash);
+
+    const debugEntry: ScrapeDebugEntry = {
+      chapterTitle: content.title,
+      url: chapter.url,
+      htmlLength: content.content.length,
+      parsed: content,
+      timedOut: false,
+      contentTextLength: content.content.length,
+    };
+
+    onDebug?.(debugEntry);
+    results.push(content);
+  }
+
+  return results;
+}
+
 function delay(ms: number): Promise<void> {
   return new Promise((resolve) => setTimeout(resolve, ms));
 }
