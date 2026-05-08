@@ -54,7 +54,7 @@ import {
   TooltipContent,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
-import { type Novel } from "@/lib/db";
+import { db, type Novel } from "@/lib/db";
 import { deleteNovel, useNovels } from "@/lib/hooks";
 import { downloadNovelJson, exportNovel, importNovel } from "@/lib/novel-io";
 import {
