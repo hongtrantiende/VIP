@@ -5,6 +5,7 @@ export const TimotxtAdapter: SiteAdapter = {
   name: "Timotxt",
   group: "cn",
   urlPattern: /timotxt\.com/,
+  chapterWaitSelector: ".content",
 
   async getNovelInfo(html, url, onProgress) {
     let doc = new DOMParser().parseFromString(html, "text/html");
@@ -87,16 +88,14 @@ export const TimotxtAdapter: SiteAdapter = {
   getChapterContent(html, _url, contentText) {
     const doc = new DOMParser().parseFromString(html, "text/html");
     const chapterTitle = doc.querySelector("h1, h2, h3, .title")?.textContent?.trim() || "";
-
-    if (contentText) {
-        return { title: chapterTitle, content: contentText };
-    }
+    // Don't shortcut with contentText — it includes ad text.
+    // Always parse HTML to remove junk first, fall back to contentText only if empty.
 
     const contentNode = doc.querySelector(".content, #content, #chaptercontent, .read-content");
     
     let rawText = "";
     if (contentNode) {
-      const junkSelectors = ["script", "style", "iframe", ".ad", ".nav", ".footer"];
+      const junkSelectors = ["script", "style", "iframe", ".ad", ".nav", ".footer", ".gadBlock", ".adUnit", "ins"];
       junkSelectors.forEach(sel => {
         contentNode.querySelectorAll(sel).forEach(el => el.remove());
       });
@@ -113,6 +112,10 @@ export const TimotxtAdapter: SiteAdapter = {
     }
 
     rawText = cleanGarbageLines(rawText);
+    // Remove Timotxt site notices
+    rawText = rawText.split("\n")
+      .filter(line => !line.includes("溫馨提示") && !line.includes("閱讀進度") && !line.includes("閱讀記錄") && !line.includes("敬請諒解"))
+      .join("\n");
 
     // Attempt to find Next Chapter URL for dynamic crawling
     let nextChapterUrl = "";

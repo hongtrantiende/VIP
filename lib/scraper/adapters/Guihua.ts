@@ -63,10 +63,7 @@ export const GuihuaAdapter: SiteAdapter = {
   getChapterContent(html, _url, contentText) {
     const doc = new DOMParser().parseFromString(html, "text/html");
     const chapterTitle = doc.querySelector("h1, h2, h3, .title")?.textContent?.trim() || "";
-
-    if (contentText) {
-        return { title: chapterTitle, content: contentText };
-    }
+    // Always parse HTML to remove junk, fall back to contentText if empty
 
     // Attempt to find content
     let contentNode: Element | null = doc.querySelector(".content, #content, .article-content, #article, .text, .read-content");
