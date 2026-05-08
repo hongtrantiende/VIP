@@ -14,7 +14,7 @@ import { detectAdapter } from "@/lib/scraper/adapters";
 import { extensionFetch, checkExtensionStatus, getExtensionId, setExtensionId } from "@/lib/scraper/extension-bridge";
 import { serverAnalyzeNovel } from "@/lib/scraper/server-scraper-client";
 import { useScraperQueueStore } from "@/lib/stores/scraper-queue";
-import { SettingsIcon, BookIcon, PauseIcon, PlayIcon, TrashIcon, DownloadIcon, CheckCircleIcon, GlobeIcon, ZapIcon } from "lucide-react";
+import { SettingsIcon, BookIcon, PauseIcon, PlayIcon, TrashIcon, DownloadIcon, CheckCircleIcon, GlobeIcon, ZapIcon, LoaderIcon } from "lucide-react";
 
 /** URLs that can be fetched server-side (no extension needed) */
 const SERVER_FETCH_DOMAINS = [
