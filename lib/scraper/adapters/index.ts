@@ -8,6 +8,7 @@ import { SixNineShuTwAdapter } from "./SixNineShuTw";
 import { JjwxcAdapter } from "./Jjwxc";
 import { XTruyenAdapter } from "./XTruyen";
 import { MeTruyenChuAdapter } from "./MeTruyenChu";
+import { ChomeredAdapter } from "./Chomered";
 import { UniversalAdapter } from "./Universal";
 
 const adapters: SiteAdapter[] = [
@@ -20,6 +21,7 @@ const adapters: SiteAdapter[] = [
   JjwxcAdapter,
   XTruyenAdapter,
   MeTruyenChuAdapter,
+  ChomeredAdapter,
   UniversalAdapter,
 ];
 
@@ -40,4 +42,4 @@ export function getAdapters(): SiteAdapter[] {
   return adapters;
 }
 
-export { STVAdapter, UukanshuAdapter, PiaotiaAdapter, CuocengAdapter, SixNineShuAdapter, SixNineShuTwAdapter, JjwxcAdapter, XTruyenAdapter, UniversalAdapter };
+export { STVAdapter, UukanshuAdapter, PiaotiaAdapter, CuocengAdapter, SixNineShuAdapter, SixNineShuTwAdapter, JjwxcAdapter, XTruyenAdapter, ChomeredAdapter, UniversalAdapter };
