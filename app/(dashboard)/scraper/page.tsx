@@ -375,7 +375,7 @@ export default function ScraperLibraryPage() {
                       </div>
                       
                       <div className="flex gap-0.5 shrink-0">
-                        {(job.status === "idle" || job.status === "paused" || job.status === "error") && (
+                        {(job.status === "pending" || job.status === "paused" || job.status === "error") && (
                            <Button size="icon" variant="ghost" className="h-7 w-7 rounded-full hover:bg-primary/10 hover:text-primary" onClick={() => resumeJob(job.id)}><PlayIcon className="w-3.5 h-3.5" /></Button>
                         )}
                         {job.status === "scraping" && (
