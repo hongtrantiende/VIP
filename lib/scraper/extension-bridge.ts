@@ -86,6 +86,7 @@ export async function extensionFetch(
     timeout?: number;
     extensionId?: string;
     smartScrape?: string;
+    reuseTab?: boolean;
   } = {}
 ) {
   const id = options.extensionId || getExtensionId();
