@@ -74,7 +74,11 @@ import {
   RefreshCwIcon,
   SearchIcon,
   Trash2Icon,
+  CloudIcon,
+  CloudDownloadIcon,
+  CloudUploadIcon,
 } from "lucide-react";
+import { useGoogleDrive } from "@/lib/hooks/use-google-drive";
 import { useLiveQuery } from "dexie-react-hooks";
 import { useRef, useState } from "react";
 import { toast } from "sonner";
@@ -169,6 +173,7 @@ const DICT_SOURCE_DESC: Record<DictSource, string> = {
 };
 
 export function DictionaryManagement({ compact }: { compact?: boolean }) {
+  const drive = useGoogleDrive();
   const dictMeta = useDictMeta();
   const globalEntries = useGlobalNameEntries();
   const [isReloading, setIsReloading] = useState(false);
@@ -229,6 +234,85 @@ export function DictionaryManagement({ compact }: { compact?: boolean }) {
       await exportDictSource(source);
     } catch {
       toast.error("Lỗi khi xuất file");
+    }
+  };
+
+  const handleUploadToDrive = async (source: DictSource) => {
+    if (!drive.accessToken) {
+      toast.error("Vui lòng kết nối Google Drive trước (Nút trên cùng)");
+      return;
+    }
+    const toastId = toast.loading(`Đang tải ${DICT_SOURCE_LABELS[source]} lên Drive...`);
+    try {
+      const records = await db.dictEntries.where("source").equals(source).toArray();
+      const text = records.map(r => `${r.chinese}=${r.vietnamese}`).join("\n");
+      const filename = `${source}.txt`;
+      await drive.uploadFile(filename, text);
+      toast.success(`Đã tải ${filename} lên Google Drive!`, { id: toastId });
+    } catch (err: any) {
+      toast.error(`Lỗi: ${err.message}`, { id: toastId });
+    }
+  };
+
+  const handleDownloadFromDrive = async (source: DictSource) => {
+    if (!drive.accessToken) {
+      toast.error("Vui lòng kết nối Google Drive trước (Nút trên cùng)");
+      return;
+    }
+    const filename = `${source}.txt`;
+    const toastId = toast.loading(`Đang tải ${filename} từ Drive...`);
+    try {
+      const text = await drive.downloadFile(filename);
+      if (!text) {
+        toast.error(`Không tìm thấy file ${filename} trên Drive (trong thư mục Novel_Studio_Dicts)`, { id: toastId });
+        return;
+      }
+      
+      const file = new File([text], filename, { type: "text/plain" });
+      const count = await importDictFile(file, source);
+      toast.success(`Đã nhập ${count.toLocaleString()} mục từ Drive cho ${DICT_SOURCE_LABELS[source]}`, { id: toastId });
+    } catch (err: any) {
+      toast.error(`Lỗi: ${err.message}`, { id: toastId });
+    }
+  };
+
+  const handleUploadGlobalToDrive = async () => {
+    if (!drive.accessToken) {
+      toast.error("Vui lòng kết nối Google Drive trước (Nút trên cùng)");
+      return;
+    }
+    if (!globalEntries || globalEntries.length === 0) return;
+    const toastId = toast.loading("Đang tải từ điển tên chung lên Drive...");
+    try {
+      const text = globalEntries.map((e) => `${e.chinese}=${e.vietnamese}`).join("\n");
+      await drive.uploadFile("tu-dien-chung.txt", text);
+      toast.success("Đã tải từ điển chung lên Google Drive!", { id: toastId });
+    } catch (err: any) {
+      toast.error(`Lỗi: ${err.message}`, { id: toastId });
+    }
+  };
+
+  const handleDownloadGlobalFromDrive = async () => {
+    if (!drive.accessToken) {
+      toast.error("Vui lòng kết nối Google Drive trước (Nút trên cùng)");
+      return;
+    }
+    const toastId = toast.loading("Đang tải từ điển chung từ Drive...");
+    try {
+      const text = await drive.downloadFile("tu-dien-chung.txt");
+      if (!text) {
+        toast.error("Không tìm thấy file tu-dien-chung.txt trên Drive", { id: toastId });
+        return;
+      }
+      const entries = parseDictLines(text);
+      if (entries.length === 0) {
+        toast.error("File từ điển chung trên Drive trống hoặc không hợp lệ", { id: toastId });
+        return;
+      }
+      toast.dismiss(toastId);
+      openImportDialog(entries, `Drive: tu-dien-chung.txt (${entries.length.toLocaleString()} mục)`);
+    } catch (err: any) {
+      toast.error(`Lỗi: ${err.message}`, { id: toastId });
     }
   };
 
@@ -704,15 +788,39 @@ export function DictionaryManagement({ compact }: { compact?: boolean }) {
                   : "Chưa tải"}
               </CardDescription>
             </div>
-            <Button
-              variant="outline"
-              size="sm"
-              onClick={handleReloadDicts}
-              disabled={isReloading}
-            >
-              <RefreshCwIcon className="mr-2 size-3.5" />
-              {isReloading ? "Đang tải..." : "Tải lại tất cả"}
-            </Button>
+            <div className="flex items-center gap-2">
+              {!drive.accessToken ? (
+                <Button
+                  variant="outline"
+                  size="sm"
+                  onClick={drive.login}
+                  disabled={!drive.isReady}
+                  className="text-blue-600 dark:text-blue-400"
+                >
+                  <CloudIcon className="mr-2 size-3.5" />
+                  Kết nối Drive
+                </Button>
+              ) : (
+                <Button
+                  variant="outline"
+                  size="sm"
+                  onClick={drive.logout}
+                  className="text-emerald-600 dark:text-emerald-400"
+                >
+                  <CloudIcon className="mr-2 size-3.5" />
+                  Đã kết nối Drive
+                </Button>
+              )}
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={handleReloadDicts}
+                disabled={isReloading}
+              >
+                <RefreshCwIcon className="mr-2 size-3.5" />
+                {isReloading ? "Đang tải..." : "Tải lại tất cả"}
+              </Button>
+            </div>
           </div>
         </CardHeader>
         <CardContent>
@@ -756,9 +864,28 @@ export function DictionaryManagement({ compact }: { compact?: boolean }) {
                           <Button
                             variant="ghost"
                             size="icon-sm"
+                            onClick={() => handleDownloadFromDrive(source)}
+                            title={`Nhập ${DICT_SOURCE_LABELS[source]} từ Drive`}
+                            className="text-blue-500 hover:text-blue-600"
+                          >
+                            <CloudDownloadIcon className="size-3.5" />
+                          </Button>
+                          <Button
+                            variant="ghost"
+                            size="icon-sm"
+                            onClick={() => handleUploadToDrive(source)}
+                            disabled={count === 0}
+                            title={`Xuất ${DICT_SOURCE_LABELS[source]} lên Drive`}
+                            className="text-blue-500 hover:text-blue-600"
+                          >
+                            <CloudUploadIcon className="size-3.5" />
+                          </Button>
+                          <Button
+                            variant="ghost"
+                            size="icon-sm"
                             onClick={() => handleDownload(source)}
                             disabled={count === 0}
-                            title={`Tải xuống ${DICT_SOURCE_LABELS[source]}`}
+                            title={`Tải xuống máy ${DICT_SOURCE_LABELS[source]}`}
                           >
                             <DownloadIcon className="size-3.5" />
                           </Button>
@@ -766,7 +893,7 @@ export function DictionaryManagement({ compact }: { compact?: boolean }) {
                             variant="ghost"
                             size="icon-sm"
                             onClick={() => handleReplaceClick(source)}
-                            title={`Thay thế ${DICT_SOURCE_LABELS[source]}`}
+                            title={`Tải lên máy ${DICT_SOURCE_LABELS[source]}`}
                           >
                             <FileUpIcon className="size-3.5" />
                           </Button>
@@ -791,7 +918,25 @@ export function DictionaryManagement({ compact }: { compact?: boolean }) {
                 {(globalEntries ?? []).length.toLocaleString()} mục
               </CardDescription>
             </div>
-            <div className="flex gap-2">
+            <div className="flex flex-wrap gap-2 justify-end">
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={handleDownloadGlobalFromDrive}
+                className="text-blue-500 hover:text-blue-600"
+              >
+                <CloudDownloadIcon className="mr-2 size-3.5" />
+                Nhập từ Drive
+              </Button>
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={handleUploadGlobalToDrive}
+                className="text-blue-500 hover:text-blue-600"
+              >
+                <CloudUploadIcon className="mr-2 size-3.5" />
+                Xuất lên Drive
+              </Button>
               <Button
                 variant="outline"
                 size="sm"
