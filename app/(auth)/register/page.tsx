@@ -22,6 +22,7 @@ export default function RegisterPage() {
   const router = useRouter();
   const supabase = createClient();
   const [email, setEmail] = useState("");
+  const [displayName, setDisplayName] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [loading, setLoading] = useState(false);
@@ -32,12 +33,21 @@ export default function RegisterPage() {
       toast.error("Mật khẩu nhập lại không khớp!");
       return;
     }
+    if (!displayName.trim()) {
+      toast.error("Vui lòng nhập tên hiển thị!");
+      return;
+    }
 
     setLoading(true);
     
     const { error } = await supabase.auth.signUp({
       email,
       password,
+      options: {
+        data: {
+          display_name: displayName.trim(),
+        }
+      }
     });
 
     setLoading(false);
@@ -64,6 +74,17 @@ export default function RegisterPage() {
       </CardHeader>
       <form onSubmit={handleRegister}>
         <CardContent className="grid gap-4">
+          <div className="grid gap-2">
+            <Label htmlFor="displayName">Tên nhân vật (Nickname)</Label>
+            <Input 
+              id="displayName" 
+              type="text" 
+              placeholder="VD: Cổ Chân Nhân" 
+              required 
+              value={displayName}
+              onChange={(e) => setDisplayName(e.target.value)}
+            />
+          </div>
           <div className="grid gap-2">
             <Label htmlFor="email">Email</Label>
             <Input 

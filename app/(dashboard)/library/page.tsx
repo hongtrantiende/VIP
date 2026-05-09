@@ -71,6 +71,8 @@ import {
   BookDownIcon,
   LanguagesIcon,
   LoaderIcon,
+  CloudDownloadIcon,
+  CloudUploadIcon,
 } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useCallback, useMemo, useRef, useState, useEffect } from "react";
@@ -80,6 +82,10 @@ import { generateEpub } from "@/lib/epub-generator";
 import { useApiInferenceProviders, useAIModels } from "@/lib/hooks/use-ai-providers";
 import { generateText } from "ai";
 import { resolveStep } from "@/lib/ai/resolve-step";
+import { useGoogleDrive } from "@/lib/hooks/use-google-drive";
+import { buildExportPayload, importDatabase } from "@/lib/db-io";
+import { ProgressDialog } from "@/components/progress-dialog";
+import type { ProgressInfo } from "@/lib/db-io";
 
 type SortField = "updatedAt" | "createdAt" | "title";
 type SortDirection = "asc" | "desc";
@@ -145,6 +151,92 @@ export default function LibraryPage() {
   const [selectedModel, setSelectedModel] = useState<string>("");
   const [isTranslating, setIsTranslating] = useState(false);
   const models = useAIModels(selectedProvider);
+
+  // Drive sync state
+  const drive = useGoogleDrive();
+  const [progressOpen, setProgressOpen] = useState(false);
+  const [progress, setProgress] = useState<ProgressInfo | null>(null);
+  const [result, setResult] = useState<{ success: boolean; message: string } | null>(null);
+  const abortRef = useRef<AbortController | null>(null);
+
+  const handleBackupToDrive = async () => {
+    if (!drive.accessToken) {
+      toast.error("Vui lòng kết nối Google Drive trước.");
+      drive.login();
+      return;
+    }
+    const ac = new AbortController();
+    abortRef.current = ac;
+    setProgress(null);
+    setResult(null);
+    setProgressOpen(true);
+    const toastId = toast.loading("Đang đóng gói và tải lên Drive...");
+
+    try {
+      const payload = await buildExportPayload({
+        includeAISettings: true,
+        includeConversations: true,
+        includeLargeDictionaryData: false, // Không xuất từ điển vì đã dùng kho chung Supabase
+        signal: ac.signal,
+        onProgress: setProgress,
+      });
+
+      const filename = "novel-studio-library-backup.json";
+      await drive.uploadFile(filename, payload.json);
+      toast.success("Đã sao lưu thư viện lên Google Drive thành công!", { id: toastId });
+      setResult({ success: true, message: "Sao lưu Drive thành công!" });
+    } catch (err: any) {
+      if (err instanceof DOMException && err.name === "AbortError") {
+        setResult({ success: false, message: "Đã huỷ sao lưu." });
+        toast.dismiss(toastId);
+      } else {
+        const msg = err instanceof Error ? err.message : "Lỗi không xác định.";
+        setResult({ success: false, message: msg });
+        toast.error(`Lỗi: ${msg}`, { id: toastId });
+      }
+    }
+  };
+
+  const handleRestoreFromDrive = async () => {
+    if (!drive.accessToken) {
+      toast.error("Vui lòng kết nối Google Drive trước.");
+      drive.login();
+      return;
+    }
+    
+    const toastId = toast.loading("Đang tìm và tải bản sao lưu từ Drive...");
+    try {
+      const text = await drive.downloadFile("novel-studio-library-backup.json");
+      if (!text) {
+        toast.error(`Không tìm thấy bản sao lưu nào trên Drive. Vui lòng sao lưu trước!`, { id: toastId });
+        return;
+      }
+      
+      const file = new File([text], "novel-studio-library-backup.json", { type: "application/json" });
+      toast.success("Đã tải tệp về, chuẩn bị phục hồi...", { id: toastId });
+      
+      const ac = new AbortController();
+      abortRef.current = ac;
+      setProgress(null);
+      setResult(null);
+      setProgressOpen(true);
+
+      await importDatabase(
+        file,
+        { conflictMode: "overwrite", signal: ac.signal, onProgress: setProgress }
+      );
+      setResult({ success: true, message: "Nhập dữ liệu thành công!" });
+      setTimeout(() => window.location.reload(), 1500);
+    } catch (err: any) {
+      if (err instanceof DOMException && err.name === "AbortError") {
+        setResult({ success: false, message: "Đã huỷ nhập dữ liệu." });
+      } else {
+        const msg = err instanceof Error ? err.message : "Lỗi không xác định.";
+        setResult({ success: false, message: msg });
+        toast.error(`Lỗi tải từ Drive: ${msg}`, { id: toastId });
+      }
+    }
+  };
 
   // Auto-select first provider and model
   useEffect(() => {
@@ -375,6 +467,24 @@ export default function LibraryPage() {
           </p>
         </div>
         <div className="flex items-center gap-2">
+          <Button
+            size="sm"
+            variant="outline"
+            className="text-blue-500 hover:text-blue-600 hidden sm:flex"
+            onClick={handleRestoreFromDrive}
+          >
+            <CloudDownloadIcon className="size-4 mr-2" />
+            Nhập từ Drive
+          </Button>
+          <Button
+            size="sm"
+            variant="outline"
+            className="text-blue-500 hover:text-blue-600 hidden sm:flex"
+            onClick={handleBackupToDrive}
+          >
+            <CloudUploadIcon className="size-4 mr-2" />
+            Lưu lên Drive
+          </Button>
           <input
             ref={importInputRef}
             type="file"
@@ -388,11 +498,11 @@ export default function LibraryPage() {
             onClick={() => importInputRef.current?.click()}
           >
             <UploadIcon className="size-4" />
-            Nhập sách
+            <span className="hidden sm:inline ml-2">Nhập sách</span>
           </Button>
           <Button size="sm" onClick={() => setCreateOpen(true)}>
             <PlusIcon className="size-4" />
-            Tạo mới
+            <span className="hidden sm:inline ml-2">Tạo mới</span>
           </Button>
         </div>
       </div>
@@ -814,6 +924,18 @@ export default function LibraryPage() {
           </DialogFooter>
         </DialogContent>
       </Dialog>
+      <ProgressDialog
+        open={progressOpen}
+        onOpenChange={setProgressOpen}
+        progress={progress}
+        result={result}
+        onCancel={() => abortRef.current?.abort()}
+        onClose={() => {
+          setProgressOpen(false);
+          setResult(null);
+          setProgress(null);
+        }}
+      />
     </main>
   );
 }

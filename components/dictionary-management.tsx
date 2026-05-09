@@ -55,6 +55,7 @@ import {
   useDictMeta,
   appendToDictSource,
 } from "@/lib/hooks/use-dict-entries";
+import { createClient } from "@/lib/supabase/client";
 import { cn } from "@/lib/utils";
 import {
   bulkImportNameEntries,
@@ -78,10 +79,12 @@ import {
   CloudIcon,
   CloudDownloadIcon,
   CloudUploadIcon,
+  ServerIcon,
+  SaveIcon,
 } from "lucide-react";
 import { useGoogleDrive } from "@/lib/hooks/use-google-drive";
 import { useLiveQuery } from "dexie-react-hooks";
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import { toast } from "sonner";
 
 const ALL_SOURCES: DictSource[] = [
@@ -178,6 +181,16 @@ export function DictionaryManagement({ compact }: { compact?: boolean }) {
   const dictMeta = useDictMeta();
   const globalEntries = useGlobalNameEntries();
   const [isReloading, setIsReloading] = useState(false);
+  const [isAdmin, setIsAdmin] = useState(false);
+
+  useEffect(() => {
+    const supabase = createClient();
+    supabase.auth.getUser().then(({ data }) => {
+      if (data.user?.email === "nthanhnam2005@gmail.com") {
+        setIsAdmin(true);
+      }
+    });
+  }, []);
   const [replacingSource, setReplacingSource] = useState<DictSource | null>(
     null,
   );
@@ -238,6 +251,27 @@ export function DictionaryManagement({ compact }: { compact?: boolean }) {
     }
   };
 
+  const handleSyncToLocalCode = async (source: DictSource) => {
+    const toastId = toast.loading(`Đang đồng bộ ${DICT_SOURCE_LABELS[source]} vào mã nguồn...`);
+    try {
+      const records = await db.dictEntries.where("source").equals(source).toArray();
+      const text = records.map(r => `${r.chinese}=${r.vietnamese}`).join("\n");
+      
+      const res = await fetch("/api/dev/sync-dict", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ source, text }),
+      });
+      
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.error || "Lỗi đồng bộ");
+      
+      toast.success(`Đã lưu trực tiếp vào public/dict/${source}.txt!`, { id: toastId });
+    } catch (err: any) {
+      toast.error(`Lỗi: ${err.message}`, { id: toastId });
+    }
+  };
+
   const handleUploadToDrive = async (source: DictSource) => {
     if (!drive.accessToken) {
       toast.error("Vui lòng kết nối Google Drive trước (Nút trên cùng)");
@@ -272,6 +306,56 @@ export function DictionaryManagement({ compact }: { compact?: boolean }) {
       const entries = parseDictLines(text);
       const count = await appendToDictSource(source, entries);
       toast.success(`Đã tự động gộp ${count.toLocaleString()} mục mới từ Drive cho ${DICT_SOURCE_LABELS[source]}`, { id: toastId });
+    } catch (err: any) {
+      toast.error(`Lỗi: ${err.message}`, { id: toastId });
+    }
+  };
+
+  const handleUploadToSupabase = async (source: DictSource) => {
+    const supabase = createClient();
+    const { data: { user } } = await supabase.auth.getUser();
+    if (!user) {
+      toast.error("Vui lòng đăng nhập để lưu lên đám mây");
+      return;
+    }
+    const toastId = toast.loading(`Đang tải ${DICT_SOURCE_LABELS[source]} lên Kho chung...`);
+    try {
+      const records = await db.dictEntries.where("source").equals(source).toArray();
+      const text = records.map(r => `${r.chinese}=${r.vietnamese}`).join("\n");
+      const filename = `${source}.txt`;
+      
+      const { error } = await supabase.storage
+        .from("dictionaries")
+        .upload(filename, text, {
+          contentType: 'text/plain;charset=UTF-8',
+          upsert: true,
+        });
+
+      if (error) throw error;
+      toast.success(`Đã lưu ${filename} lên Kho chung!`, { id: toastId });
+    } catch (err: any) {
+      toast.error(`Lỗi: ${err.message}`, { id: toastId });
+    }
+  };
+
+  const handleDownloadFromSupabase = async (source: DictSource) => {
+    const supabase = createClient();
+    const filename = `${source}.txt`;
+    const toastId = toast.loading(`Đang tải ${filename} từ Kho chung...`);
+    try {
+      const { data, error } = await supabase.storage
+        .from("dictionaries")
+        .download(filename);
+
+      if (error) {
+        toast.error(`Từ điển ${filename} chưa có trên Kho chung!`, { id: toastId });
+        return;
+      }
+      
+      const text = await data.text();
+      const entries = parseDictLines(text);
+      const count = await appendToDictSource(source, entries);
+      toast.success(`Đã tự động gộp ${count.toLocaleString()} mục mới từ Kho chung cho ${DICT_SOURCE_LABELS[source]}`, { id: toastId });
     } catch (err: any) {
       toast.error(`Lỗi: ${err.message}`, { id: toastId });
     }
@@ -790,28 +874,6 @@ export function DictionaryManagement({ compact }: { compact?: boolean }) {
               </CardDescription>
             </div>
             <div className="flex items-center gap-2">
-              {!drive.accessToken ? (
-                <Button
-                  variant="outline"
-                  size="sm"
-                  onClick={drive.login}
-                  disabled={!drive.isReady}
-                  className="text-blue-600 dark:text-blue-400"
-                >
-                  <CloudIcon className="mr-2 size-3.5" />
-                  Kết nối Drive
-                </Button>
-              ) : (
-                <Button
-                  variant="outline"
-                  size="sm"
-                  onClick={drive.logout}
-                  className="text-emerald-600 dark:text-emerald-400"
-                >
-                  <CloudIcon className="mr-2 size-3.5" />
-                  Đã kết nối Drive
-                </Button>
-              )}
               <Button
                 variant="outline"
                 size="sm"
@@ -865,22 +927,37 @@ export function DictionaryManagement({ compact }: { compact?: boolean }) {
                           <Button
                             variant="ghost"
                             size="icon-sm"
-                            onClick={() => handleDownloadFromDrive(source)}
-                            title={`Nhập ${DICT_SOURCE_LABELS[source]} từ Drive`}
-                            className="text-blue-500 hover:text-blue-600"
+                            onClick={() => handleDownloadFromSupabase(source)}
+                            title={`Cập nhật từ điển mới nhất`}
+                            className="text-violet-500 hover:text-violet-600"
                           >
-                            <CloudDownloadIcon className="size-3.5" />
+                            <ServerIcon className="size-3.5" />
                           </Button>
-                          <Button
-                            variant="ghost"
-                            size="icon-sm"
-                            onClick={() => handleUploadToDrive(source)}
-                            disabled={count === 0}
-                            title={`Xuất ${DICT_SOURCE_LABELS[source]} lên Drive`}
-                            className="text-blue-500 hover:text-blue-600"
-                          >
-                            <CloudUploadIcon className="size-3.5" />
-                          </Button>
+                          {isAdmin && (
+                            <Button
+                              variant="ghost"
+                              size="icon-sm"
+                              onClick={() => handleUploadToSupabase(source)}
+                              disabled={count === 0}
+                              title={`Tải ${DICT_SOURCE_LABELS[source]} lên Kho chung (Admin)`}
+                              className="text-violet-500 hover:text-violet-600"
+                            >
+                              <ServerIcon className="size-3.5" />
+                            </Button>
+                          )}
+                          <div className="w-px h-4 bg-border my-auto mx-1" />
+                          {isAdmin && (
+                            <Button
+                              variant="ghost"
+                              size="icon-sm"
+                              onClick={() => handleSyncToLocalCode(source)}
+                              disabled={count === 0}
+                              title={`Lưu thẳng vào thư mục public/dict/${source}.txt (Chỉ Admin)`}
+                              className="text-amber-500 hover:text-amber-600"
+                            >
+                              <SaveIcon className="size-3.5" />
+                            </Button>
+                          )}
                           <Button
                             variant="ghost"
                             size="icon-sm"
@@ -920,24 +997,6 @@ export function DictionaryManagement({ compact }: { compact?: boolean }) {
               </CardDescription>
             </div>
             <div className="flex flex-wrap gap-2 justify-end">
-              <Button
-                variant="outline"
-                size="sm"
-                onClick={handleDownloadGlobalFromDrive}
-                className="text-blue-500 hover:text-blue-600"
-              >
-                <CloudDownloadIcon className="mr-2 size-3.5" />
-                Nhập từ Drive
-              </Button>
-              <Button
-                variant="outline"
-                size="sm"
-                onClick={handleUploadGlobalToDrive}
-                className="text-blue-500 hover:text-blue-600"
-              >
-                <CloudUploadIcon className="mr-2 size-3.5" />
-                Xuất lên Drive
-              </Button>
               <Button
                 variant="outline"
                 size="sm"

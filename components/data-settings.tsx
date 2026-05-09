@@ -198,6 +198,7 @@ export function DataSettings() {
         novelIds: selectedNovelIds.length > 0 ? selectedNovelIds : undefined,
         includeAISettings: includeAI,
         includeConversations,
+        includeLargeDictionaryData: false, // Bỏ qua từ điển
         password: exportPassword || undefined,
         signal: ac.signal,
         onProgress: setProgress,

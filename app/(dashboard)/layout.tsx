@@ -34,6 +34,8 @@ import { PageContextSync } from "@/components/chat/page-context-sync";
 import { usePathname, useRouter } from "next/navigation";
 import Link from "next/link";
 import { lazy, Suspense, useCallback, useEffect, useMemo, useState } from "react";
+import { useProfile } from "@/lib/hooks/use-profile";
+import { CrownIcon } from "lucide-react";
 
 
 
@@ -76,6 +78,7 @@ export default function DashboardLayout({
   const nameDictToggle = useNameDictPanel((s) => s.toggle);
   const nameDictSetNovelId = useNameDictPanel((s) => s.setNovelId);
   const toggleNameDict = () => nameDictToggle(currentNovelId);
+  const { isVip, profile, loadProfile } = useProfile();
 
 
   // Keep name dict panel's novelId in sync with URL
@@ -100,33 +103,43 @@ export default function DashboardLayout({
 
   const [dark, setDark] = useState(false);
   useEffect(() => {
-    const stored = localStorage.getItem("theme");
-    const isDark = stored === "dark";
-    document.documentElement.classList.toggle("dark", isDark);
-    setDark(isDark);
+    if (document.documentElement.classList.contains("dark")) setDark(true);
   }, []);
-  const toggleDark = () => {
-    const next = !dark;
-    document.documentElement.classList.toggle("dark", next);
-    localStorage.setItem("theme", next ? "dark" : "light");
-    setDark(next);
-  };
+  const toggleDark = useCallback(() => {
+    const isDark = document.documentElement.classList.toggle("dark");
+    setDark(isDark);
+    if (isDark) localStorage.setItem("theme", "dark");
+    else localStorage.setItem("theme", "light");
+  }, []);
 
   return (
-    <SidebarProvider>
+    <SidebarProvider defaultOpen={true}>
       <AppSidebar />
-      <SidebarInset className="mesh-bg">
-        <header className="sticky top-0 z-10 flex h-12 shrink-0 items-center gap-2 border-b bg-background/80 backdrop-blur-md px-3 sm:px-4">
-          <SidebarTrigger className="-ml-1" />
+      <SidebarInset>
+        <header className="flex h-14 shrink-0 items-center gap-2 border-b bg-background px-4">
+          <SidebarTrigger className="-ml-2" />
           <Breadcrumb>
             <BreadcrumbList>
               <BreadcrumbItem>
-                <BreadcrumbPage>{pageTitle}</BreadcrumbPage>
+                <BreadcrumbPage className="font-semibold">
+                  {pageTitle}
+                </BreadcrumbPage>
               </BreadcrumbItem>
             </BreadcrumbList>
           </Breadcrumb>
-
-          <div className="ml-auto flex items-center gap-1">
+          <div className="ml-auto flex items-center gap-1.5">
+            {profile && (
+              <Button
+                variant="outline"
+                size="sm"
+                className={`hidden sm:flex h-8 text-xs ${isVip ? "text-yellow-600 border-yellow-200 bg-yellow-50 dark:bg-yellow-900/20 dark:border-yellow-900" : "text-muted-foreground"}`}
+                onClick={loadProfile}
+                title="Bấm để tải lại trạng thái VIP"
+              >
+                <CrownIcon className="w-3.5 h-3.5 mr-1.5" />
+                {isVip ? "VIP" : "Thường"}
+              </Button>
+            )}
             <Button
               variant="ghost"
               size="sm"

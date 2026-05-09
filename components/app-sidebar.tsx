@@ -41,6 +41,8 @@ import {
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useProfile } from "@/lib/hooks/use-profile";
+import { UserProfileDialog } from "@/components/user-profile-dialog";
 
 export const navConfig = [
   { title: "Trang chủ", href: "/dashboard", icon: HomeIcon },
@@ -76,10 +78,23 @@ export const miscNav = [
 
 export function AppSidebar() {
   const pathname = usePathname();
-  const isAdmin = false;
+  const { profile, loadProfile } = useProfile();
+  const [isAdmin, setIsAdmin] = useState(false);
+  const [profileDialogOpen, setProfileDialogOpen] = useState(false);
+
+  useEffect(() => {
+    import("@/lib/supabase/client").then(({ createClient }) => {
+      const supabase = createClient();
+      supabase.auth.getUser().then(({ data: { user } }) => {
+        if (user?.email === "nthanhnam2005@gmail.com") {
+          setIsAdmin(true);
+        }
+      });
+    });
+  }, []);
 
   const adminNavItem = {
-    title: "Quản trị",
+    title: "Quản lý VIP",
     href: "/admin",
     icon: ShieldCheckIcon,
   } as const;
@@ -129,6 +144,53 @@ export function AppSidebar() {
             </span>
           </div>
         </Link>
+
+        {profile && (
+          <>
+            <div 
+              className="flex items-center gap-3 px-2 mb-2 pb-2 cursor-pointer hover:bg-accent rounded-md p-1 transition-colors"
+              onClick={() => setProfileDialogOpen(true)}
+              title="Nhấn để đổi ảnh đại diện"
+            >
+              <div className="relative">
+                <div className={`flex size-10 shrink-0 items-center justify-center rounded-full bg-primary text-primary-foreground font-bold text-sm shadow-sm overflow-hidden ${
+                  (profile.vip_until && new Date(profile.vip_until) > new Date()) 
+                    ? "ring-2 ring-yellow-400 ring-offset-2 ring-offset-background" 
+                    : ""
+                }`}>
+                  {profile.avatar_url ? (
+                    <img src={profile.avatar_url} alt="Avatar" className="w-full h-full object-cover" />
+                  ) : (
+                    (profile.display_name || (isAdmin ? "Admin" : "U")).substring(0, 2).toUpperCase()
+                  )}
+                </div>
+                {profile.vip_until && new Date(profile.vip_until) > new Date() && (
+                  <div className="absolute -top-2 -right-2 bg-yellow-400 text-yellow-900 rounded-full p-0.5 shadow-md border border-yellow-200">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m2 4 3 12h14l3-12-6 7-4-7-4 7-6-7zm3 16h14"/></svg>
+                  </div>
+                )}
+              </div>
+              <div className="flex flex-col overflow-hidden">
+                <span className={`text-sm font-semibold truncate ${
+                  (profile.vip_until && new Date(profile.vip_until) > new Date()) ? "text-yellow-600 dark:text-yellow-500" : "text-foreground"
+                }`}>
+                  {profile.display_name || (isAdmin ? "Admin" : "Người dùng")}
+                </span>
+                <span className="text-[10px] text-muted-foreground truncate">
+                  {profile.vip_until && new Date(profile.vip_until) > new Date()
+                    ? `VIP còn ${Math.ceil((new Date(profile.vip_until).getTime() - new Date().getTime()) / (1000 * 60 * 60 * 24))} ngày`
+                    : profile.email}
+                </span>
+              </div>
+            </div>
+            <UserProfileDialog 
+              profile={profile} 
+              open={profileDialogOpen} 
+              onOpenChange={setProfileDialogOpen} 
+              onProfileUpdated={loadProfile} 
+            />
+          </>
+        )}
       </SidebarHeader>
 
       <SidebarSeparator />
