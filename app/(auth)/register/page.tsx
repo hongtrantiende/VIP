@@ -16,6 +16,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { toast } from "sonner";
+import Image from "next/image";
 
 export default function RegisterPage() {
   const router = useRouter();
@@ -52,9 +53,12 @@ export default function RegisterPage() {
 
   return (
     <Card className="w-full max-w-sm">
-      <CardHeader>
-        <CardTitle className="text-2xl">Đăng ký</CardTitle>
-        <CardDescription>
+      <CardHeader className="flex flex-col items-center">
+        <div className="mb-4">
+          <Image src="/logo.png" alt="Logo" width={80} height={80} className="rounded-xl drop-shadow-md" />
+        </div>
+        <CardTitle className="text-2xl text-center">Đăng ký</CardTitle>
+        <CardDescription className="text-center">
           Tạo tài khoản mới để lưu trữ từ điển và truyện lên đám mây.
         </CardDescription>
       </CardHeader>

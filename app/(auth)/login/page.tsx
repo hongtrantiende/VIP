@@ -16,6 +16,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { toast } from "sonner";
+import Image from "next/image";
 
 export default function LoginPage() {
   const router = useRouter();
@@ -46,9 +47,12 @@ export default function LoginPage() {
 
   return (
     <Card className="w-full max-w-sm">
-      <CardHeader>
-        <CardTitle className="text-2xl">Đăng nhập</CardTitle>
-        <CardDescription>
+      <CardHeader className="flex flex-col items-center">
+        <div className="mb-4">
+          <Image src="/logo.png" alt="Logo" width={80} height={80} className="rounded-xl drop-shadow-md" />
+        </div>
+        <CardTitle className="text-2xl text-center">Đăng nhập</CardTitle>
+        <CardDescription className="text-center">
           Nhập email của bạn bên dưới để đăng nhập vào tài khoản.
         </CardDescription>
       </CardHeader>
