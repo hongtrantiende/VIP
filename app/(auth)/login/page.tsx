@@ -29,7 +29,7 @@ export default function LoginPage() {
     e.preventDefault();
     setLoading(true);
     
-    const { error } = await supabase.auth.signInWithPassword({
+    const { data, error } = await supabase.auth.signInWithPassword({
       email,
       password,
     });
@@ -39,6 +39,17 @@ export default function LoginPage() {
     if (error) {
       toast.error(error.message);
     } else {
+      // Generate unique session token for single-session enforcement
+      const sessionToken = crypto.randomUUID();
+      localStorage.setItem("session_token", sessionToken);
+      
+      // Save session token to profiles table
+      if (data.user) {
+        await supabase
+          .from("profiles")
+          .upsert({ id: data.user.id, active_session_id: sessionToken }, { onConflict: "id" });
+      }
+
       toast.success("Đăng nhập thành công!");
       router.push("/dashboard");
       router.refresh();

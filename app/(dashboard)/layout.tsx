@@ -81,6 +81,36 @@ export default function DashboardLayout({
   const toggleNameDict = () => nameDictToggle(currentNovelId);
   const { isVip, profile, loadProfile } = useProfile();
 
+  // Single-session enforcement: check if another device took over
+  useEffect(() => {
+    if (!profile) return;
+    const localToken = localStorage.getItem("session_token");
+    if (!localToken) return; // No token = old login, skip check
+
+    const interval = setInterval(async () => {
+      try {
+        const { createClient } = await import("@/lib/supabase/client");
+        const supabase = createClient();
+        const { data } = await supabase
+          .from("profiles")
+          .select("active_session_id")
+          .eq("id", profile.id)
+          .single();
+
+        if (data?.active_session_id && data.active_session_id !== localToken) {
+          // Another device logged in — force logout
+          clearInterval(interval);
+          localStorage.removeItem("session_token");
+          await supabase.auth.signOut();
+          router.push("/login");
+          // Use alert instead of toast since we're leaving
+          alert("Tài khoản đã đăng nhập ở thiết bị khác. Bạn đã bị đăng xuất.");
+        }
+      } catch {}
+    }, 30000); // Check every 30 seconds
+
+    return () => clearInterval(interval);
+  }, [profile, router]);
 
   // Keep name dict panel's novelId in sync with URL
   useEffect(() => {
