@@ -1,7 +1,6 @@
 "use client";
 
 import { AppSidebar, miscNav, navConfig } from "@/components/app-sidebar";
-import { DictInitializer } from "@/components/dict-initializer";
 import { GlobalSearchDialog } from "@/components/global-search-dialog";
 import {
   Breadcrumb,
@@ -9,7 +8,6 @@ import {
   BreadcrumbList,
   BreadcrumbPage,
 } from "@/components/ui/breadcrumb";
-import { WelcomeModal } from "@/components/welcome-modal";
 import { VipGuard } from "@/components/vip-guard";
 import { Button } from "@/components/ui/button";
 import {
@@ -44,6 +42,8 @@ import { CrownIcon } from "lucide-react";
 const ChatPanel = lazy(() => import("@/components/chat-panel").then(m => ({ default: m.ChatPanel })));
 const NameDictPanel = lazy(() => import("@/components/name-dict/name-dict-panel").then(m => ({ default: m.NameDictPanel })));
 const ReaderPanel = lazy(() => import("@/components/reader/reader-panel").then(m => ({ default: m.ReaderPanel })));
+const DictInitializer = lazy(() => import("@/components/dict-initializer").then(m => ({ default: m.DictInitializer })));
+const WelcomeModal = lazy(() => import("@/components/welcome-modal").then(m => ({ default: m.WelcomeModal })));
 
 const pageTitles: Record<string, string> = Object.fromEntries(
   [...navConfig, ...miscNav].map((item) => [item.href, item.title]),
@@ -211,9 +211,13 @@ export default function DashboardLayout({
       <Suspense fallback={null}>
         <NameDictPanel />
       </Suspense>
-      <DictInitializer />
+      <Suspense fallback={null}>
+        <DictInitializer />
+      </Suspense>
       <GlobalSearchDialog />
-      <WelcomeModal />
+      <Suspense fallback={null}>
+        <WelcomeModal />
+      </Suspense>
 
     </SidebarProvider>
   );

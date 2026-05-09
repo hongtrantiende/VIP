@@ -8,14 +8,22 @@ const nextConfig: NextConfig = {
       "recharts",
       "motion",
       "date-fns",
-
       "cmdk",
     ],
+    // Cache client-side navigations for faster page transitions
+    staleTimes: {
+      dynamic: 60,  // revalidate dynamic pages every 60s
+      static: 300,   // cache static pages for 5min
+    },
   },
   // Optimize images
   images: {
     formats: ["image/avif", "image/webp"],
   },
+  // Enable gzip/brotli compression
+  compress: true,
+  // Reduce powered-by header info leak
+  poweredByHeader: false,
   async redirects() {
     return [{ source: "/landing", destination: "/", permanent: true }];
   },
@@ -27,6 +35,16 @@ const nextConfig: NextConfig = {
           {
             key: "Cache-Control",
             value: "public, max-age=31536000, immutable",
+          },
+        ],
+      },
+      {
+        // Cache dict files aggressively (they change rarely)
+        source: "/dict/:path*",
+        headers: [
+          {
+            key: "Cache-Control",
+            value: "public, max-age=86400, stale-while-revalidate=604800",
           },
         ],
       },
