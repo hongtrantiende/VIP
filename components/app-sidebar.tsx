@@ -37,12 +37,14 @@ import {
   SettingsIcon,
   ChevronRightIcon,
   Wand2Icon,
+  LogOutIcon,
 } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { useProfile } from "@/lib/hooks/use-profile";
 import { UserProfileDialog } from "@/components/user-profile-dialog";
+import { createClient } from "@/lib/supabase/client";
 
 export const navConfig = [
   { title: "Trang chủ", href: "/dashboard", icon: HomeIcon },
@@ -78,9 +80,16 @@ export const miscNav = [
 
 export function AppSidebar() {
   const pathname = usePathname();
+  const router = useRouter();
   const { profile, loadProfile } = useProfile();
   const [isAdmin, setIsAdmin] = useState(false);
   const [profileDialogOpen, setProfileDialogOpen] = useState(false);
+
+  const handleLogout = async () => {
+    const supabase = createClient();
+    await supabase.auth.signOut();
+    router.push("/login");
+  };
 
   useEffect(() => {
     import("@/lib/supabase/client").then(({ createClient }) => {
@@ -181,6 +190,16 @@ export function AppSidebar() {
                     ? `VIP còn ${Math.ceil((new Date(profile.vip_until).getTime() - new Date().getTime()) / (1000 * 60 * 60 * 24))} ngày`
                     : profile.email}
                 </span>
+              </div>
+              <div 
+                className="ml-auto flex size-8 items-center justify-center rounded-md hover:bg-red-500/10 text-muted-foreground hover:text-red-500 transition-colors shrink-0"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  handleLogout();
+                }}
+                title="Đăng xuất"
+              >
+                <LogOutIcon className="size-4" />
               </div>
             </div>
             <UserProfileDialog 
