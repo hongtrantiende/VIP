@@ -926,7 +926,7 @@ export default function LibraryPage() {
       </Dialog>
       <ProgressDialog
         open={progressOpen}
-        onOpenChange={setProgressOpen}
+        title="Đồng bộ Dữ liệu"
         progress={progress}
         result={result}
         onCancel={() => abortRef.current?.abort()}
