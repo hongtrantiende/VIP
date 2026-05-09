@@ -38,6 +38,7 @@ import {
   ChevronRightIcon,
   Wand2Icon,
   LogOutIcon,
+  LockIcon,
 } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
@@ -81,7 +82,7 @@ export const miscNav = [
 export function AppSidebar() {
   const pathname = usePathname();
   const router = useRouter();
-  const { profile, loadProfile } = useProfile();
+  const { profile, loadProfile, isVip } = useProfile();
   const [isAdmin, setIsAdmin] = useState(false);
   const [profileDialogOpen, setProfileDialogOpen] = useState(false);
 
@@ -219,21 +220,33 @@ export function AppSidebar() {
           <SidebarGroupLabel>Điều hướng</SidebarGroupLabel>
           <SidebarGroupContent>
             <SidebarMenu>
-              {sidebarNav.map((item) => (
-                <SidebarMenuItem key={item.href}>
-                  <SidebarMenuButton
-                    asChild
-                    isActive={pathname === item.href}
-                    tooltip={item.title}
-                    className="text-base font-medium py-2.5 h-auto"
-                  >
-                    <Link href={item.href}>
-                      <item.icon className="size-5" />
-                      <span>{item.title}</span>
-                    </Link>
-                  </SidebarMenuButton>
-                </SidebarMenuItem>
-              ))}
+              {sidebarNav.map((item) => {
+                const isRestricted = 
+                  item.href.startsWith("/import") || 
+                  item.href.startsWith("/convert") || 
+                  item.href.startsWith("/scraper") || 
+                  item.href.startsWith("/settings") ||
+                  item.href === "/admin";
+                
+                return (
+                  <SidebarMenuItem key={item.href}>
+                    <SidebarMenuButton
+                      asChild
+                      isActive={pathname === item.href}
+                      tooltip={item.title}
+                      className="text-base font-medium py-2.5 h-auto relative"
+                    >
+                      <Link href={item.href}>
+                        <item.icon className="size-5" />
+                        <span className="flex-1">{item.title}</span>
+                        {isRestricted && !isVip && (
+                          <LockIcon className="size-4 ml-auto text-yellow-600/70" />
+                        )}
+                      </Link>
+                    </SidebarMenuButton>
+                  </SidebarMenuItem>
+                );
+              })}
             </SidebarMenu>
           </SidebarGroupContent>
         </SidebarGroup>
@@ -257,16 +270,22 @@ export function AppSidebar() {
                   </CollapsibleTrigger>
                   <CollapsibleContent>
                     <SidebarMenuSub>
-                      {settingsNav.map((item) => (
-                        <SidebarMenuSubItem key={item.href}>
-                          <SidebarMenuSubButton asChild isActive={pathname === item.href} className="text-sm py-2 h-auto">
-                            <Link href={item.href}>
-                              <item.icon className="size-4" />
-                              <span>{item.title}</span>
-                            </Link>
-                          </SidebarMenuSubButton>
-                        </SidebarMenuSubItem>
-                      ))}
+                      {settingsNav.map((item) => {
+                        const isRestricted = true; // All settings are restricted
+                        return (
+                          <SidebarMenuSubItem key={item.href}>
+                            <SidebarMenuSubButton asChild isActive={pathname === item.href} className="text-sm py-2 h-auto relative">
+                              <Link href={item.href}>
+                                <item.icon className="size-4" />
+                                <span className="flex-1">{item.title}</span>
+                                {isRestricted && !isVip && (
+                                  <LockIcon className="size-3.5 ml-auto text-yellow-600/70" />
+                                )}
+                              </Link>
+                            </SidebarMenuSubButton>
+                          </SidebarMenuSubItem>
+                        );
+                      })}
                     </SidebarMenuSub>
                   </CollapsibleContent>
                 </SidebarMenuItem>

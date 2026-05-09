@@ -10,6 +10,7 @@ import {
   BreadcrumbPage,
 } from "@/components/ui/breadcrumb";
 import { WelcomeModal } from "@/components/welcome-modal";
+import { VipGuard } from "@/components/vip-guard";
 import { Button } from "@/components/ui/button";
 import {
   SidebarInset,
@@ -190,7 +191,11 @@ export default function DashboardLayout({
             </Button>
           </div>
         </header>
-        <div className="min-w-0 flex-1 overflow-auto">{children}</div>
+        <div className="min-w-0 flex-1 overflow-auto">
+          <VipGuard pathname={pathname}>
+            {children}
+          </VipGuard>
+        </div>
       </SidebarInset>
       <PageContextSync
         novelId={currentNovelId}
