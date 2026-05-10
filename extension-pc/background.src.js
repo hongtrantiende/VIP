@@ -241,8 +241,21 @@ async function handleFetch(url, waitSelector, clickSelector, timeout) {
   // Rotate proxy before this chapter
   await rotateProxyIfNeeded();
 
+  // Remember the current active tab so we can refocus it (important for Android)
+  let originalTabId = null;
+  try {
+    const [activeTab] = await chrome.tabs.query({ active: true, currentWindow: true });
+    if (activeTab) originalTabId = activeTab.id;
+  } catch {}
+
   const tab = await chrome.tabs.create({ url, active: false });
   const tabId = tab.id;
+
+  // On Android, active:false doesn't work — immediately refocus original tab
+  if (originalTabId) {
+    try { await chrome.tabs.update(originalTabId, { active: true }); } catch {}
+  }
+
   try {
     await waitForTabLoad(tabId, 30000);
     await injectFullStealth(tabId);
@@ -295,6 +308,10 @@ async function handleFetch(url, waitSelector, clickSelector, timeout) {
     throw err;
   } finally {
     try { await chrome.tabs.remove(tabId); } catch {}
+    // Refocus original tab again after closing scraper tab
+    if (originalTabId) {
+      try { await chrome.tabs.update(originalTabId, { active: true }); } catch {}
+    }
   }
 }
 

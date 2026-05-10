@@ -56,12 +56,18 @@ export function useGoogleDrive() {
 
   const logout = useCallback(() => {
     setAccessToken(null);
+    _cachedFolderId = null;
     toast.success("Đã ngắt kết nối Google Drive.");
   }, []);
 
   // --- API Wrappers ---
 
+  let _cachedFolderId: string | null = null;
+
   const getOrCreateFolder = async (token: string): Promise<string> => {
+    // Return cached folder ID if available
+    if (_cachedFolderId) return _cachedFolderId;
+
     // Search for folder
     const q = encodeURIComponent(`name='${FOLDER_NAME}' and mimeType='application/vnd.google-apps.folder' and trashed=false`);
     const searchRes = await fetch(`https://www.googleapis.com/drive/v3/files?q=${q}&spaces=drive`, {
@@ -69,7 +75,8 @@ export function useGoogleDrive() {
     });
     const searchData = await searchRes.json();
     if (searchData.files && searchData.files.length > 0) {
-      return searchData.files[0].id;
+      _cachedFolderId = searchData.files[0].id;
+      return _cachedFolderId!;
     }
 
     // Create folder
@@ -85,7 +92,8 @@ export function useGoogleDrive() {
       })
     });
     const createData = await createRes.json();
-    return createData.id;
+    _cachedFolderId = createData.id;
+    return _cachedFolderId!;
   };
 
   const uploadFile = async (filename: string, content: string) => {
