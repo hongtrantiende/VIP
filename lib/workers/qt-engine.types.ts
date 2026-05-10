@@ -4,6 +4,8 @@ export type ConvertSource =
   | "qt-name"
   | "auto-name"
   | "vietphrase"
+  | "genre-vietphrase"
+  | "core-vietphrase"
   | "phienam"
   | "luatnhan"
   | "unknown";
