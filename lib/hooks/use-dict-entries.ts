@@ -1,7 +1,7 @@
 "use client";
 
 import { useLiveQuery } from "dexie-react-hooks";
-import { db, type DictSource, type DictMeta } from "@/lib/db";
+import { db, type DictSource, type DictMeta, DICT_GENRES, DICT_TYPES } from "@/lib/db";
 
 // ─── Reads ───────────────────────────────────────────────────
 
@@ -16,61 +16,25 @@ export async function isDictLoaded(): Promise<boolean> {
 
 // ─── Dict File Parsing ───────────────────────────────────────
 
-const DICT_FILES: Record<DictSource, string> = {
-  vietphrase: "/dict/vietphrase.txt",
-  names: "/dict/names.txt",
-  names2: "/dict/names2.txt",
-  phienam: "/dict/phienam.txt",
-  luatnhan: "/dict/luatnhan.txt",
-  luatnhan_tienhiep: "/dict/luatnhan.txt", // Placeholder
-  luatnhan_hiendai: "/dict/luatnhan.txt", // Placeholder
-  ngontinh: "/dict/ngontinh.txt",
-  hiendai: "/dict/hiendai.txt",
-  tienhiep: "/dict/tienhiep.txt",
-  huyenhuyen: "/dict/huyenhuyen.txt",
-  dammi: "/dict/dammi.txt",
-  hocduong: "/dict/hocduong.txt",
-  nsfw: "/dict/nsfw.txt",
-  hentai: "/dict/hentai.txt",
-  dongphuong: "/dict/dongphuong.txt",
-  dothi: "/dict/dothi.txt",
-  vongdu: "/dict/vongdu.txt",
-  khoahuyen: "/dict/khoahuyen.txt",
-  quybi: "/dict/quybi.txt",
-  xuyenkhong: "/dict/xuyenkhong.txt",
-  hethong: "/dict/hethong.txt",
-  trinhtham: "/dict/trinhtham.txt",
-  lichsu: "/dict/lichsu.txt",
-};
+export const ALL_SOURCES: DictSource[] = [];
+export const DICT_FILES: Record<DictSource, string> = {} as Record<DictSource, string>;
+
+for (const genre of DICT_GENRES) {
+  for (const type of DICT_TYPES) {
+    const src = `${genre}_${type}` as DictSource;
+    ALL_SOURCES.push(src);
+    // Determine the URL for the default files
+    if (genre === "core") {
+       if (type === "tuvung") DICT_FILES[src] = `/dict/khac.txt`;
+       else DICT_FILES[src] = `/dict/${type}.txt`;
+    } else {
+       if (type === "tuvung") DICT_FILES[src] = `/dict/${genre}.txt`;
+       else DICT_FILES[src] = `/dict/${genre}_${type}.txt`; 
+    }
+  }
+}
 
 const VIETPHRASE_OVERRIDE_URL = "/dict/vietphrase-override.txt";
-
-const ALL_SOURCES: DictSource[] = [
-  "names",
-  "names2",
-  "phienam",
-  "luatnhan",
-  "luatnhan_tienhiep",
-  "luatnhan_hiendai",
-  "ngontinh",
-  "hiendai",
-  "tienhiep",
-  "huyenhuyen",
-  "dammi",
-  "hocduong",
-  "nsfw",
-  "hentai",
-  "dongphuong",
-  "dothi",
-  "vongdu",
-  "khoahuyen",
-  "quybi",
-  "xuyenkhong",
-  "hethong",
-  "trinhtham",
-  "lichsu",
-  "vietphrase",
-];
 
 function parseDictText(
   text: string,
@@ -105,7 +69,8 @@ async function appendOverrides(
     const text = await resp.text();
     const overrides = parseDictText(text);
     if (overrides.length > 0) {
-      result.vietphrase = [...result.vietphrase, ...overrides];
+      if (!result.core_vietphrase) result.core_vietphrase = [];
+      result.core_vietphrase = [...result.core_vietphrase, ...overrides];
     }
   } catch {
     // Override file is optional — fail silently

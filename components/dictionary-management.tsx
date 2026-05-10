@@ -45,7 +45,6 @@ import {
 } from "@/components/ui/table";
 import {
   NAME_ENTRY_CATEGORIES,
-  type DictSource,
   type NameEntry,
 } from "@/lib/db";
 import {
@@ -89,47 +88,37 @@ import { useLiveQuery } from "dexie-react-hooks";
 import { useRef, useState, useEffect, useMemo } from "react";
 import { toast } from "sonner";
 
-const ALL_SOURCES: DictSource[] = [
-  "vietphrase",
-  "names",
-  "names2",
-  "phienam",
-  "luatnhan",
-  "ngontinh",
-  "hiendai",
-  "tienhiep",
-  "huyenhuyen",
-  "dammi",
-  "hocduong",
-  "nsfw",
-  "hentai",
-];
+import { DICT_GENRES, DICT_TYPES, type DictGenre, type DictType, type DictSource } from "@/lib/db";
+import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 
-const DICT_SOURCE_LABELS: Record<DictSource, string> = {
-  vietphrase: "VietPhrase",
-  names: "Names",
-  names2: "Names2",
-  phienam: "Phiên âm",
-  luatnhan: "Luật nhân",
-  luatnhan_tienhiep: "Luật nhân (Tiên hiệp)",
-  luatnhan_hiendai: "Luật nhân (Hiện đại)",
-  ngontinh: "Ngôn tình",
-  hiendai: "Hiện đại",
-  tienhiep: "Tiên hiệp",
-  huyenhuyen: "Huyền huyễn",
-  dammi: "Đam mỹ",
-  hocduong: "Học đường",
+export const GENRE_LABELS: Record<DictGenre, string> = {
+  core: "Cơ Bản (Core)",
+  ngontinh: "Ngôn Tình",
+  hiendai: "Hiện Đại",
+  tienhiep: "Tiên Hiệp",
+  huyenhuyen: "Huyền Huyễn",
+  dammi: "Đam Mỹ",
+  hocduong: "Học Đường",
   nsfw: "NSFW",
   hentai: "Hentai",
-  dongphuong: "Đông phương",
-  dothi: "Đô thị",
-  vongdu: "Võng du",
-  khoahuyen: "Khoa huyễn",
-  quybi: "Quỷ bí / Linh dị",
-  xuyenkhong: "Xuyên không",
-  hethong: "Hệ thống",
-  trinhtham: "Trinh thám",
-  lichsu: "Lịch sử",
+  dongphuong: "Đông Phương",
+  dothi: "Đô Thị",
+  vongdu: "Võng Du",
+  khoahuyen: "Khoa Huyễn",
+  quybi: "Quỷ Bí",
+  xuyenkhong: "Xuyên Không",
+  hethong: "Hệ Thống",
+  trinhtham: "Trinh Thám",
+  lichsu: "Lịch Sử",
+};
+
+export const TYPE_LABELS: Record<DictType, string> = {
+  vietphrase: "Từ Điển Chính (VietPhrase)",
+  names: "Tên nhân vật, địa danh",
+  names2: "Tên bổ sung",
+  phienam: "Phiên âm ký tự đơn",
+  luatnhan: "Luật nhân xưng",
+  tuvung: "Từ vựng thể loại",
 };
 
 /** Build page numbers with ellipsis: [0, 1, "ellipsis", 8, 9] */
@@ -155,32 +144,15 @@ function getPageRange(current: number, total: number): (number | "ellipsis")[] {
   return pages;
 }
 
-const DICT_SOURCE_DESC: Record<DictSource, string> = {
-  vietphrase: "Từ điển chính Hán-Việt",
-  names: "Tên nhân vật, địa danh",
-  names2: "Tên bổ sung",
-  phienam: "Phiên âm ký tự đơn",
-  luatnhan: "Luật nhân xưng (ta, ngươi, hắn...)",
-  luatnhan_tienhiep: "Luật nhân xưng (ta, ngươi, bổn tọa...)",
-  luatnhan_hiendai: "Luật nhân xưng (tôi, cậu, anh, em...)",
-  ngontinh: "Truyện ngôn tình",
-  hiendai: "Từ vựng hiện đại",
-  tienhiep: "Tu chân, tu tiên",
-  huyenhuyen: "Kỳ ảo, ma pháp",
-  dammi: "Đam mỹ, bách hợp",
-  hocduong: "Vườn trường",
-  nsfw: "Từ ngữ nhạy cảm (18+)",
-  hentai: "Thể loại người lớn",
-  dongphuong: "Tiên hiệp phương Đông",
-  dothi: "Bối cảnh hiện đại đô thị",
-  vongdu: "Game thực tế ảo",
-  khoahuyen: "Khoa học viễn tưởng",
-  quybi: "Tâm linh, kinh dị",
-  xuyenkhong: "Xuyên không, trọng sinh",
-  hethong: "Hệ thống phụ trợ",
-  trinhtham: "Phá án, suy luận",
-  lichsu: "Dã sử, quân sự",
-};
+// Render descriptions dynamically if needed, but we don't strictly need DICT_SOURCE_DESC anymore
+
+const DICT_SOURCE_LABELS: Record<string, string> = new Proxy({}, { get: (_, prop) => String(prop) });
+const ALL_SOURCES: DictSource[] = [];
+for (const g of DICT_GENRES) {
+  for (const t of DICT_TYPES) {
+    ALL_SOURCES.push(`${g}_${t}` as DictSource);
+  }
+}
 
 export function DictionaryManagement({ compact }: { compact?: boolean }) {
   const drive = useGoogleDrive();
@@ -380,6 +352,7 @@ export function DictionaryManagement({ compact }: { compact?: boolean }) {
     try {
       let uploadedCount = 0;
       for (const source of ALL_SOURCES) {
+        if (source === "core_vietphrase") continue;
         const records = await db.dictEntries.where("source").equals(source).toArray();
         if (records.length === 0) continue;
         const text = records.map(r => `${r.chinese}=${r.vietnamese}`).join("\n");
@@ -406,6 +379,7 @@ export function DictionaryManagement({ compact }: { compact?: boolean }) {
       let downloadedCount = 0;
       let newEntriesCount = 0;
       for (const source of ALL_SOURCES) {
+        if (source === "core_vietphrase") continue;
         const filename = `${source}.txt`;
         const { data: publicUrlData } = supabase.storage
           .from("dictionaries")
@@ -994,372 +968,118 @@ export function DictionaryManagement({ compact }: { compact?: boolean }) {
           </div>
         </CardHeader>
         <CardContent>
-          <div className="rounded-md border">
-            <Table>
-              <TableHeader>
-                <TableRow>
-                  <TableHead>Nguồn</TableHead>
-                  <TableHead>Mô tả</TableHead>
-                  <TableHead className="text-right">Số mục</TableHead>
-                  <TableHead className="w-[100px]" />
-                </TableRow>
-              </TableHeader>
-              <TableBody>
-                {ALL_SOURCES.map((source) => {
-                  const count = dictMeta?.sources[source] ?? 0;
-                  return (
-                    <TableRow key={source}>
-                      <TableCell className="font-medium">
-                        {DICT_SOURCE_LABELS[source]}
-                      </TableCell>
-                      <TableCell className="text-muted-foreground text-sm">
-                        {DICT_SOURCE_DESC[source]}
-                      </TableCell>
-                      <TableCell className="text-right">
-                        {count > 0 ? (
-                          <Badge variant="secondary">
-                            {count.toLocaleString()}
-                          </Badge>
-                        ) : (
-                          <Badge
-                            variant="outline"
-                            className="text-muted-foreground"
-                          >
-                            0
-                          </Badge>
-                        )}
-                      </TableCell>
-                      <TableCell>
-                        <div className="flex justify-end gap-1">
-                          <Button
-                            variant="ghost"
-                            size="icon-sm"
-                            onClick={() => handleDownloadFromSupabase(source)}
-                            title={`Cập nhật từ điển mới nhất`}
-                            className="text-violet-500 hover:text-violet-600"
-                          >
-                            <ServerIcon className="size-3.5" />
-                          </Button>
-                          {isAdmin && (
-                            <Button
-                              variant="ghost"
-                              size="icon-sm"
-                              onClick={() => handleUploadToSupabase(source)}
-                              disabled={count === 0}
-                              title={`Tải ${DICT_SOURCE_LABELS[source]} lên Kho chung (Admin)`}
-                              className="text-violet-500 hover:text-violet-600"
-                            >
-                              <ServerIcon className="size-3.5" />
-                            </Button>
-                          )}
-                          <div className="w-px h-4 bg-border my-auto mx-1" />
-                          {isAdmin && (
-                            <Button
-                              variant="ghost"
-                              size="icon-sm"
-                              onClick={() => handleSyncToLocalCode(source)}
-                              disabled={count === 0}
-                              title={`Lưu thẳng vào thư mục public/dict/${source}.txt (Chỉ Admin)`}
-                              className="text-amber-500 hover:text-amber-600"
-                            >
-                              <SaveIcon className="size-3.5" />
-                            </Button>
-                          )}
-                          {isAdmin && (
-                            <Button
-                              variant="ghost"
-                              size="icon-sm"
-                              onClick={() => handleDownload(source)}
-                              disabled={count === 0}
-                              title={`Tải xuống máy ${DICT_SOURCE_LABELS[source]}`}
-                            >
-                              <DownloadIcon className="size-3.5" />
-                            </Button>
-                          )}
-                          <Button
-                            variant="ghost"
-                            size="icon-sm"
-                            onClick={() => handleReplaceClick(source)}
-                            title={`Tải lên máy ${DICT_SOURCE_LABELS[source]}`}
-                          >
-                            <FileUpIcon className="size-3.5" />
-                          </Button>
-                        </div>
-                      </TableCell>
-                    </TableRow>
-                  );
-                })}
-              </TableBody>
-            </Table>
-          </div>
-        </CardContent>
-      </Card>
-
-      {/* Global Name Entries */}
-      <Card>
-        <CardHeader>
-          <div className="flex items-center justify-between">
-            <div>
-              <CardTitle>Từ điển tên chung</CardTitle>
-              <CardDescription>
-                {(globalEntries ?? []).length.toLocaleString()} mục
-              </CardDescription>
+          <Tabs defaultValue="core" className="w-full">
+            <div className="overflow-x-auto pb-2">
+              <TabsList className="inline-flex h-10 items-center justify-start rounded-md bg-muted p-1 text-muted-foreground w-auto flex-nowrap">
+                {DICT_GENRES.map((genre) => (
+                  <TabsTrigger key={genre} value={genre} className="whitespace-nowrap px-3 text-xs">
+                    {GENRE_LABELS[genre]}
+                  </TabsTrigger>
+                ))}
+              </TabsList>
             </div>
-            <div className="flex flex-wrap gap-2 justify-end">
-              {isAdmin && (
-                <Button
-                  variant="outline"
-                  size="sm"
-                  onClick={async () => {
-                    if (!globalEntries || globalEntries.length === 0) return;
-                    const text = globalEntries
-                      .map((e) => `${e.chinese}=${e.vietnamese}`)
-                      .join("\n");
-                    const blob = new Blob([text], { type: "text/plain" });
-                    const url = URL.createObjectURL(blob);
-                    const a = document.createElement("a");
-                    a.href = url;
-                    a.download = `tu-dien-chung-${new Date().toISOString().slice(0, 10)}.txt`;
-                    a.click();
-                    URL.revokeObjectURL(url);
-                  }}
-                >
-                  <DownloadIcon className="mr-2 size-3.5" />
-                  Xuất file .txt
-                </Button>
-              )}
-              <Button variant="outline" size="sm" onClick={handleImportQTNames}>
-                <DownloadIcon className="mr-2 size-3.5" />
-                Nhập QT Names
-              </Button>
-              <Button
-                variant="outline"
-                size="sm"
-                onClick={() => nameFileInputRef.current?.click()}
-              >
-                <FileUpIcon className="mr-2 size-3.5" />
-                Nhập từ file
-              </Button>
-              <Button
-                size="sm"
-                onClick={() => {
-                  setNewChinese("");
-                  setNewVietnamese("");
-                  setNewCategory("nhân vật");
-                  setAddDialogOpen(true);
-                }}
-              >
-                <PlusIcon className="mr-2 size-3.5" />
-                Thêm
-              </Button>
-            </div>
-          </div>
-        </CardHeader>
-        <CardContent className="space-y-3">
-          {/* Search & filter */}
-          <div className="flex flex-col gap-3">
-            <div className="flex gap-2">
-              <div className="relative flex-1">
-                <SearchIcon className="text-muted-foreground absolute top-2.5 left-2.5 size-3.5" />
-                <Input
-                  placeholder="Tìm kiếm..."
-                  value={searchQuery}
-                  onChange={(e) => {
-                    setSearchQuery(e.target.value);
-                    setPage(0);
-                  }}
-                  className="pl-8 h-9"
-                />
-              </div>
-              {(globalEntries ?? []).length > 0 && (
-                <Button
-                  variant="ghost"
-                  size="icon-sm"
-                  onClick={handleClearGlobalNames}
-                  title="Xóa tất cả"
-                  className="h-9 w-9"
-                >
-                  <Trash2Icon className="size-4" />
-                </Button>
-              )}
-            </div>
-
-            {/* Filter Tags as requested in screenshot */}
-            <div className="space-y-3 rounded-md border bg-muted/30 p-3">
-              <div className="space-y-1.5">
-                <p className="text-[10px] font-bold uppercase tracking-wider text-muted-foreground">Phạm vi</p>
-                <div className="flex flex-wrap gap-1.5">
-                  {[
-                    { id: "all", label: "Tất cả" },
-                    { id: "local", label: "Riêng" },
-                    { id: "global", label: "Chung" },
-                  ].map((s) => (
-                    <button
-                      key={s.id}
-                      onClick={() => setScopeFilter(s.id as any)}
-                      className={cn(
-                        "rounded-md px-2.5 py-1 text-[11px] font-medium transition-colors border",
-                        scopeFilter === s.id
-                          ? "bg-primary text-primary-foreground border-primary"
-                          : "bg-background hover:bg-muted border-border"
-                      )}
-                    >
-                      {s.label}
-                    </button>
-                  ))}
-                </div>
-              </div>
-
-              <div className="space-y-1.5">
-                <p className="text-[10px] font-bold uppercase tracking-wider text-muted-foreground">Loại</p>
-                <div className="flex flex-wrap gap-1.5">
-                  <button
-                    onClick={() => setCategoryFilter("all")}
-                    className={cn(
-                      "rounded-md px-2.5 py-1 text-[11px] font-medium transition-colors border",
-                      categoryFilter === "all"
-                        ? "bg-primary text-primary-foreground border-primary"
-                        : "bg-background hover:bg-muted border-border"
-                    )}
-                  >
-                    Tất cả
-                  </button>
-                  {NAME_ENTRY_CATEGORIES.map((cat) => (
-                    <button
-                      key={cat}
-                      onClick={() => setCategoryFilter(cat)}
-                      className={cn(
-                        "rounded-md px-2.5 py-1 text-[11px] font-medium transition-colors border capitalize",
-                        categoryFilter === cat
-                          ? "bg-primary text-primary-foreground border-primary"
-                          : "bg-background hover:bg-muted border-border"
-                      )}
-                    >
-                      {cat}
-                    </button>
-                  ))}
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* Table */}
-          {pagedEntries.length > 0 ? (
-            <>
-              <div className="rounded-md border">
-                <Table>
-                  <TableHeader>
-                    <TableRow>
-                      <TableHead className="w-[30%]">Trung</TableHead>
-                      <TableHead className="w-[35%]">Việt</TableHead>
-                      <TableHead className="w-[20%]">Loại</TableHead>
-                      <TableHead className="w-[15%]" />
-                    </TableRow>
-                  </TableHeader>
-                  <TableBody>
-                    {pagedEntries.map((entry) => (
-                      <TableRow key={entry.id}>
-                        <TableCell className="font-mono text-sm">
-                          {entry.chinese}
-                        </TableCell>
-                        <TableCell>{entry.vietnamese}</TableCell>
-                        <TableCell>
-                          <Badge
-                            variant="outline"
-                            className="text-xs capitalize"
-                          >
-                            {entry.category}
-                          </Badge>
-                        </TableCell>
-                        <TableCell className="text-right">
-                          <div className="flex justify-end gap-1">
-                            <Button
-                              variant="ghost"
-                              size="icon-sm"
-                              onClick={() => openEditDialog(entry)}
-                            >
-                              <Edit3 className="size-3" />
-                            </Button>
-                            <Button
-                              variant="ghost"
-                              size="icon-sm"
-                              onClick={() => handleDeleteEntry(entry.id)}
-                            >
-                              <Trash2Icon className="size-3" />
-                            </Button>
-                          </div>
-                        </TableCell>
+            
+            {DICT_GENRES.map((genre) => (
+              <TabsContent key={genre} value={genre} className="mt-4">
+                <div className="rounded-md border">
+                  <Table>
+                    <TableHeader>
+                      <TableRow>
+                        <TableHead className="w-[200px]">Loại từ điển</TableHead>
+                        <TableHead>Mô tả</TableHead>
+                        <TableHead className="text-right">Số mục</TableHead>
+                        <TableHead className="w-[100px]" />
                       </TableRow>
-                    ))}
-                  </TableBody>
-                </Table>
-              </div>
-              {totalPages > 1 && (
-                <div className="flex items-center justify-between">
-                  <span className="text-muted-foreground text-sm w-[180px]">
-                    Trang {page + 1}/{totalPages} ({filteredEntries.length} mục)
-                  </span>
-                  <Pagination className="flex-1 justify-end">
-                    <PaginationContent>
-                      <PaginationItem>
-                        <PaginationPrevious
-                          text="Trước"
-                          onClick={() => setPage((p) => Math.max(0, p - 1))}
-                          aria-disabled={page === 0}
-                          className={
-                            page === 0
-                              ? "pointer-events-none opacity-50"
-                              : "cursor-pointer"
-                          }
-                        />
-                      </PaginationItem>
-
-                      {getPageRange(page, totalPages).map((p, i) =>
-                        p === "ellipsis" ? (
-                          <PaginationItem key={`e${i}`}>
-                            <PaginationEllipsis />
-                          </PaginationItem>
-                        ) : (
-                          <PaginationItem key={p}>
-                            <PaginationLink
-                              isActive={p === page}
-                              onClick={() => setPage(p)}
-                              className="cursor-pointer"
-                            >
-                              {p + 1}
-                            </PaginationLink>
-                          </PaginationItem>
-                        ),
-                      )}
-
-                      <PaginationItem>
-                        <PaginationNext
-                          text="Sau"
-                          onClick={() =>
-                            setPage((p) => Math.min(totalPages - 1, p + 1))
-                          }
-                          aria-disabled={page >= totalPages - 1}
-                          className={
-                            page >= totalPages - 1
-                              ? "pointer-events-none opacity-50"
-                              : "cursor-pointer"
-                          }
-                        />
-                      </PaginationItem>
-                    </PaginationContent>
-                  </Pagination>
+                    </TableHeader>
+                    <TableBody>
+                      {DICT_TYPES.map((type) => {
+                        const source = `${genre}_${type}` as DictSource;
+                        const count = dictMeta?.sources[source] ?? 0;
+                        return (
+                          <TableRow key={source}>
+                            <TableCell className="font-medium text-xs">
+                              {TYPE_LABELS[type]}
+                            </TableCell>
+                            <TableCell className="text-muted-foreground text-[10px]">
+                              {source}
+                            </TableCell>
+                            <TableCell className="text-right">
+                              {count > 0 ? (
+                                <Badge variant="secondary">{count.toLocaleString()}</Badge>
+                              ) : (
+                                <Badge variant="outline" className="text-muted-foreground">0</Badge>
+                              )}
+                            </TableCell>
+                            <TableCell>
+                              <div className="flex justify-end gap-1">
+                                <Button
+                                  variant="ghost"
+                                  size="icon-sm"
+                                  onClick={() => handleDownloadFromSupabase(source)}
+                                  title="Cập nhật từ điển mới nhất"
+                                  className="text-violet-500 hover:text-violet-600"
+                                >
+                                  <ServerIcon className="size-3.5" />
+                                </Button>
+                                {isAdmin && (
+                                  <Button
+                                    variant="ghost"
+                                    size="icon-sm"
+                                    onClick={() => handleUploadToSupabase(source)}
+                                    disabled={count === 0}
+                                    title="Tải lên Kho chung (Admin)"
+                                    className="text-violet-500 hover:text-violet-600"
+                                  >
+                                    <ServerIcon className="size-3.5" />
+                                  </Button>
+                                )}
+                                <div className="w-px h-4 bg-border my-auto mx-1" />
+                                {isAdmin && (
+                                  <Button
+                                    variant="ghost"
+                                    size="icon-sm"
+                                    onClick={() => handleSyncToLocalCode(source)}
+                                    disabled={count === 0}
+                                    title="Lưu thẳng vào thư mục public/dict (Chỉ Admin)"
+                                    className="text-amber-500 hover:text-amber-600"
+                                  >
+                                    <SaveIcon className="size-3.5" />
+                                  </Button>
+                                )}
+                                {isAdmin && (
+                                  <Button
+                                    variant="ghost"
+                                    size="icon-sm"
+                                    onClick={() => handleDownload(source)}
+                                    disabled={count === 0}
+                                    title="Tải xuống máy"
+                                  >
+                                    <DownloadIcon className="size-3.5" />
+                                  </Button>
+                                )}
+                                <Button
+                                  variant="ghost"
+                                  size="icon-sm"
+                                  onClick={() => handleReplaceClick(source)}
+                                  title="Tải lên máy"
+                                >
+                                  <FileUpIcon className="size-3.5" />
+                                </Button>
+                              </div>
+                            </TableCell>
+                          </TableRow>
+                        );
+                      })}
+                    </TableBody>
+                  </Table>
                 </div>
-              )}
-            </>
-          ) : (
-            <p className="text-muted-foreground py-8 text-center text-sm">
-              {searchQuery || categoryFilter !== "all"
-                ? "Không tìm thấy kết quả"
-                : 'Chưa có mục nào. Nhấn "Thêm mục" hoặc "Nhập từ QT Names" để bắt đầu.'}
-            </p>
-          )}
+              </TabsContent>
+            ))}
+          </Tabs>
         </CardContent>
       </Card>
+
+      {/* Global Name Entries has been removed by request */}
 
       {/* Add/Edit Dialog */}
       <Dialog

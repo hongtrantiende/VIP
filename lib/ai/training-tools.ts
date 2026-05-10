@@ -6,7 +6,7 @@ export interface TrainingSuggestion {
   chinese: string;
   vietnamese: string;
   reason: string;
-  category: string;
+  category: "names" | "names2" | "phienam" | "luatnhan" | "tuvung";
   genre: string;
   context_zh?: string;
   context_vi_before?: string;
@@ -24,7 +24,7 @@ const trainingSchema = jsonSchema<{ suggestions: TrainingSuggestion[] }>({
           chinese: { type: "string" },
           vietnamese: { type: "string" },
           reason: { type: "string" },
-          category: { type: "string" },
+          category: { type: "string", enum: ["names", "names2", "phienam", "luatnhan", "tuvung"] },
           genre: { type: "string" },
           context_zh: { type: "string" },
           context_vi_before: { type: "string" },
@@ -66,8 +66,12 @@ ${opts.aiTranslated.slice(0, 3000)}
 </ai_professional_translation>
 
 <requirements>
-1. Chỉ đề xuất các mục thực sự cải thiện được bản dịch máy (biến nó giống với bản dịch chuyên nghiệp hơn).
-2. Phân loại bắt buộc theo một trong các nhóm sau: "Từ đơn", "Từ đôi", "Cụm hành động", "Cụm cảm xúc", "Trạng từ", "Từ nối", "Trợ từ", "Thuật ngữ tu tiên", "Phiên âm tên", "Pattern câu", "Context mapping", "Âm thanh".
+2. Phân loại bắt buộc vào một trong các loại từ điển sau:
+   - "names": Tên nhân vật, địa danh, tên riêng.
+   - "names2": Tên bổ sung (như tên chiêu thức, tên công pháp, tên vũ khí).
+   - "phienam": Phiên âm cho một Hán tự đơn lẻ đặc biệt.
+   - "luatnhan": Luật nhân xưng (ví dụ: {0} ca ca, đại lão {0}, với {0} là tên nhân vật).
+   - "tuvung": Từ vựng chuyên ngành, ngữ cảnh chung của thể loại.
 3. Chú trọng vào việc sử dụng từ Hán-Việt cho các thuật ngữ tu tiên, chiêu thức và tên riêng để giữ đúng phong cách tiên hiệp/huyền huyễn.
 4. Tránh dịch quá "thuần Việt" (quá hiện đại hoặc bình dân) cho các bối cảnh cổ đại/tu tiên.
 5. Với mỗi đề xuất, hãy trích dẫn câu văn gốc chứa từ đó (context_zh), bản dịch hiện tại của QT cho câu đó (context_vi_before) và bản dịch đề xuất của bạn cho câu đó (context_vi_after) để người dùng đối chiếu.
@@ -116,7 +120,12 @@ ${opts.sourceText.slice(0, 3000)}
 1. Tập trung vào Tên nhân vật, Tên địa danh, Cảnh giới, Môn phái, Chiêu thức, Đồ vật đặc biệt.
 2. Tập trung vào các đại từ nhân xưng, xưng hô đặc thù (VD: vi sư, lão phu, trẫm, thần thiếp...).
 3. Tập trung vào các từ lóng, cụm từ lặp, idiom (thành ngữ).
-4. Phân loại "category" vào: "Tên riêng", "Thuật ngữ", "Xưng hô", "Thành ngữ", "Khác".
+4. Phân loại bắt buộc vào một trong các loại từ điển sau (trường "category"):
+   - "names": Tên riêng (nhân vật, tông môn, bí cảnh, thành phố...).
+   - "names2": Bí danh, danh hiệu, tên khác.
+   - "phienam": Phiên âm tên riêng, danh từ riêng (chỉ 1 chữ Hán).
+   - "luatnhan": Đại từ nhân xưng, xưng hô (VD: ta/ngươi/hắn/nàng, lão phu/bản tọa, tiền bối/hậu bối, sư huynh...).
+   - "tuvung": Từ vựng thể loại (Thuật ngữ tu luyện, kỹ năng, đan dược, công pháp...).
 ${genreInstruction}
 6. Với mỗi mục, phải có context_zh (câu gốc chứa từ đó) và context_vi_before/after (có thể để trống nếu không cần thiết).
 7. BẮT BUỘC: Nghĩa tiếng Việt (vietnamese) PHẢI LÀ MỘT NGHĨA DUY NHẤT, chuẩn xác nhất. Tuyệt đối KHÔNG dùng dấu gạch chéo (/), KHÔNG liệt kê nhiều nghĩa (Ví dụ: Sai: "Tống Cẩu / Tống Chó", Đúng: "Tống Cẩu").

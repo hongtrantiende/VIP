@@ -5,6 +5,8 @@ export interface SplitterWorkerConfig {
   id: number;
   providerId: string;
   modelId: string;
+  sourceDict: string;
+  targetGenre: string;
 }
 
 interface SplitterState {
@@ -16,6 +18,9 @@ interface SplitterState {
   
   chunkSize: number;
   setChunkSize: (size: number) => void;
+  
+  genreSequence: string[];
+  setGenreSequence: (seq: string[]) => void;
 }
 
 export const useSplitterStore = create<SplitterState>()(
@@ -25,16 +30,19 @@ export const useSplitterStore = create<SplitterState>()(
       setSourceDict: (source) => set({ sourceDict: source }),
       
       workerConfigs: [
-        { id: 1, providerId: "", modelId: "" },
-        { id: 2, providerId: "", modelId: "" },
-        { id: 3, providerId: "", modelId: "" },
-        { id: 4, providerId: "", modelId: "" },
-        { id: 5, providerId: "", modelId: "" },
+        { id: 1, providerId: "", modelId: "", sourceDict: "core_names", targetGenre: "tienhiep" },
+        { id: 2, providerId: "", modelId: "", sourceDict: "core_names", targetGenre: "hiendai" },
+        { id: 3, providerId: "", modelId: "", sourceDict: "core_names", targetGenre: "ngontinh" },
+        { id: 4, providerId: "", modelId: "", sourceDict: "core_names", targetGenre: "huyenhuyen" },
+        { id: 5, providerId: "", modelId: "", sourceDict: "core_names", targetGenre: "khoahuyen" },
       ],
       setWorkerConfigs: (configs) => set({ workerConfigs: configs }),
       
       chunkSize: 100,
       setChunkSize: (size) => set({ chunkSize: size }),
+      
+      genreSequence: ["tienhiep", "huyenhuyen", "khoahuyen", "vongdu", "dothi", "hiendai", "ngontinh", "quybi", "xuyenkhong", "hethong", "dongphuong", "dammi", "hocduong", "nsfw", "hentai"],
+      setGenreSequence: (seq) => set({ genreSequence: seq }),
     }),
     {
       name: "splitter-storage",

@@ -28,13 +28,15 @@ export function DictionarySplitter() {
   const availableProviders = useMemo(() => providers?.filter((p) => p.isActive) || [], [providers]);
   
   const dictMeta = useDictMeta();
-  const sources = dictMeta ? Object.keys(dictMeta.sources) : ["vietphrase", "names", "tienhiep", "hiendai"];
+  const sources = dictMeta 
+    ? Object.keys(dictMeta.sources).filter(s => s !== "core_vietphrase" && s !== "vietphrase") 
+    : ["core_names", "core_luatnhan"];
 
   const handleStart = () => {
     configureSplitter({
-      sourceDict: store.sourceDict,
       workers: store.workerConfigs.filter(w => w.providerId && w.modelId),
       chunkSize: store.chunkSize,
+      genreSequence: store.genreSequence || [],
     });
     startSplitter();
   };
@@ -54,20 +56,6 @@ export function DictionarySplitter() {
         </div>
 
         <div className="flex items-center gap-4">
-          <div className="flex-1 space-y-1.5">
-            <Label className="text-xs">Từ điển nguồn (Cần bóc tách)</Label>
-            <Select value={store.sourceDict} onValueChange={store.setSourceDict} disabled={isRunning}>
-              <SelectTrigger>
-                <SelectValue placeholder="Chọn từ điển..." />
-              </SelectTrigger>
-              <SelectContent>
-                {sources.map(s => (
-                  <SelectItem key={s} value={s}>{s}</SelectItem>
-                ))}
-              </SelectContent>
-            </Select>
-          </div>
-          
           <div className="w-[150px] space-y-1.5">
             <Label className="text-xs">Số dòng / model</Label>
             <Select 
@@ -84,6 +72,18 @@ export function DictionarySplitter() {
                 <SelectItem value="200">200 dòng</SelectItem>
               </SelectContent>
             </Select>
+          </div>
+
+          <div className="flex-1 space-y-1.5">
+            <Label className="text-xs">Thứ tự ưu tiên thể loại (khi chọn Tuần tự)</Label>
+            <input 
+              type="text" 
+              className="flex h-9 w-full rounded-md border border-input bg-transparent px-3 py-1 text-xs shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50"
+              value={store.genreSequence?.join(", ")}
+              onChange={e => store.setGenreSequence(e.target.value.split(",").map(s => s.trim()).filter(Boolean))}
+              disabled={isRunning}
+              placeholder="tienhiep, huyenhuyen, hiendai..."
+            />
           </div>
         </div>
 
@@ -103,6 +103,7 @@ export function DictionarySplitter() {
                   store.setWorkerConfigs(newConfigs);
                 }}
                 disabled={isRunning}
+                sources={sources}
               />
             ))}
           </div>
@@ -130,7 +131,8 @@ function WorkerCard({
   availableProviders,
   managerState,
   updateWorker,
-  disabled
+  disabled,
+  sources
 }: {
   worker: any;
   idx: number;
@@ -138,12 +140,13 @@ function WorkerCard({
   managerState?: any;
   updateWorker: (w: any) => void;
   disabled: boolean;
+  sources: string[];
 }) {
   const models = useAIModels(worker.providerId || undefined);
 
   return (
     <Card className="shadow-none">
-      <CardContent className="p-3 space-y-2 relative">
+      <CardContent className="p-3 space-y-2 relative flex flex-col h-full">
         <div className="flex items-center justify-between">
           <span className="text-[10px] font-semibold text-muted-foreground">Worker {idx + 1}</span>
           {managerState?.isProcessing ? (
@@ -154,6 +157,41 @@ function WorkerCard({
             <span className="text-[10px] text-emerald-600 dark:text-emerald-400">Rảnh rỗi</span>
           ) : null}
         </div>
+        
+        <Select 
+          value={worker.sourceDict} 
+          onValueChange={v => updateWorker({ ...worker, sourceDict: v })}
+          disabled={disabled}
+        >
+          <SelectTrigger className="h-7 text-[10px]">
+            <SelectValue placeholder="Từ điển nguồn..." />
+          </SelectTrigger>
+          <SelectContent>
+            {sources.map(s => (
+              <SelectItem key={s} value={s} className="text-[10px]">{s}</SelectItem>
+            ))}
+          </SelectContent>
+        </Select>
+
+        <Select 
+          value={worker.targetGenre} 
+          onValueChange={v => updateWorker({ ...worker, targetGenre: v })}
+          disabled={disabled}
+        >
+          <SelectTrigger className="h-7 text-[10px]">
+            <SelectValue placeholder="Thể loại đích..." />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectItem value="auto_stt" className="text-[10px] font-bold text-blue-600">Tuần tự (Auto STT)</SelectItem>
+            <SelectItem value="tienhiep" className="text-[10px]">Tiên Hiệp</SelectItem>
+            <SelectItem value="hiendai" className="text-[10px]">Hiện Đại</SelectItem>
+            <SelectItem value="ngontinh" className="text-[10px]">Ngôn Tình</SelectItem>
+            <SelectItem value="huyenhuyen" className="text-[10px]">Huyền Huyễn</SelectItem>
+            <SelectItem value="dothi" className="text-[10px]">Đô Thị</SelectItem>
+            <SelectItem value="khoahuyen" className="text-[10px]">Khoa Huyễn</SelectItem>
+            <SelectItem value="khac" className="text-[10px]">Khác</SelectItem>
+          </SelectContent>
+        </Select>
         
         <Select 
           value={worker.providerId} 

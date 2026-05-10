@@ -328,31 +328,39 @@ export interface ExcludedName {
 
 // ─── QT Dictionary ───────────────────────────────────────────
 
-export type DictSource =
-  | "vietphrase"
-  | "names"
-  | "names2"
-  | "phienam"
-  | "luatnhan"
-  | "luatnhan_tienhiep"
-  | "luatnhan_hiendai"
-  | "ngontinh"
-  | "hiendai"
-  | "tienhiep"
-  | "huyenhuyen"
-  | "dammi"
-  | "hocduong"
-  | "nsfw"
-  | "hentai"
-  | "dongphuong"
-  | "dothi"
-  | "vongdu"
-  | "khoahuyen"
-  | "quybi"
-  | "xuyenkhong"
-  | "hethong"
-  | "trinhtham"
-  | "lichsu";
+export const DICT_TYPES = [
+  "vietphrase",
+  "names",
+  "names2",
+  "phienam",
+  "luatnhan",
+  "tuvung",
+] as const;
+export type DictType = typeof DICT_TYPES[number];
+
+export const DICT_GENRES = [
+  "core",
+  "ngontinh",
+  "hiendai",
+  "tienhiep",
+  "huyenhuyen",
+  "dammi",
+  "hocduong",
+  "nsfw",
+  "hentai",
+  "dongphuong",
+  "dothi",
+  "vongdu",
+  "khoahuyen",
+  "quybi",
+  "xuyenkhong",
+  "hethong",
+  "trinhtham",
+  "lichsu",
+] as const;
+export type DictGenre = typeof DICT_GENRES[number];
+
+export type DictSource = `${DictGenre}_${DictType}`;
 
 export interface DictEntry {
   id: string;

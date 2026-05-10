@@ -257,7 +257,8 @@ export default function ConvertPage() {
     const supabase = createClient();
     
     for (const [genre, terms] of Object.entries(grouped)) {
-      const targetSource = genre === "global" ? "names" : (genre as DictSource);
+      let mappedGenre = genre === "global" ? "core" : genre;
+      const targetSource = `${mappedGenre}_names` as DictSource;
       const savedCount = await appendToDictSource(targetSource, terms.map(t => ({ chinese: t.chinese, vietnamese: t.vietnamese })));
       
       if (savedCount > 0) {
@@ -646,15 +647,18 @@ function WorkerCard({
 function GroupedExtractionList({ terms, onRemove, isAdmin }: { terms: TrainingSuggestion[], onRemove: (term: TrainingSuggestion) => void, isAdmin?: boolean }) {
   const grouped = terms.reduce((acc, curr) => {
     const g = curr.genre || "global";
-    if (!acc[g]) acc[g] = [];
-    acc[g].push(curr);
+    const mappedGenre = g === "global" ? "core" : g;
+    const c = curr.category || "tuvung";
+    const mappedCat = ["names", "names2", "phienam", "luatnhan", "tuvung"].includes(c) ? c : "tuvung";
+    const key = `${mappedGenre}_${mappedCat}`;
+    if (!acc[key]) acc[key] = [];
+    acc[key].push(curr);
     return acc;
   }, {} as Record<string, TrainingSuggestion[]>);
 
-  const handleDownloadDict = async (genre: string) => {
+  const handleDownloadDict = async (targetSource: string) => {
     try {
-      const targetSource = genre === "global" ? "names" : (genre as DictSource);
-      await exportDictSource(targetSource);
+      await exportDictSource(targetSource as DictSource);
       toast.success(`Đã tải xuống kho từ điển ${targetSource}.txt`);
     } catch (err) {
       toast.error("Lỗi khi tải từ điển");
@@ -663,16 +667,20 @@ function GroupedExtractionList({ terms, onRemove, isAdmin }: { terms: TrainingSu
 
   return (
     <div className="space-y-6">
-      {Object.entries(grouped).map(([genre, items]) => (
-        <div key={genre} className="space-y-2 bg-background border p-4 rounded-xl shadow-sm">
+      {Object.entries(grouped).map(([targetSource, items]) => {
+        const [g, c] = targetSource.split("_");
+        const catLabel = c === "names" ? "Tên nhân vật, địa danh" : c === "names2" ? "Tên bổ sung" : c === "phienam" ? "Phiên âm" : c === "luatnhan" ? "Luật nhân xưng" : c === "tuvung" ? "Từ vựng thể loại" : "Từ điển chính";
+        const label = `${GENRE_LABELS[g] || g} - ${catLabel} (${targetSource})`;
+        return (
+        <div key={targetSource} className="space-y-2 bg-background border p-4 rounded-xl shadow-sm">
           <h4 className="font-bold text-[13px] text-primary border-b pb-2 uppercase flex justify-between items-center">
             <div className="flex items-center gap-2">
-              <span>{genre === "global" ? "TỪ CHUNG (NAMES)" : (GENRE_LABELS[genre] || genre)}</span>
+              <span>{label}</span>
             </div>
             <div className="flex items-center gap-2">
               <Badge variant="secondary" className="font-mono">{items.length} từ mới</Badge>
               {isAdmin && (
-                <Button size="xs" variant="outline" className="h-5 px-2 text-[10px]" onClick={() => handleDownloadDict(genre)}>
+                <Button size="xs" variant="outline" className="h-5 px-2 text-[10px]" onClick={() => handleDownloadDict(targetSource)}>
                   Tải Kho Từ Điển (.txt)
                 </Button>
               )}
@@ -694,7 +702,8 @@ function GroupedExtractionList({ terms, onRemove, isAdmin }: { terms: TrainingSu
             ))}
           </div>
         </div>
-      ))}
+        );
+      })}
     </div>
   );
 }

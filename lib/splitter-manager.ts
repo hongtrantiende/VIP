@@ -11,17 +11,21 @@ export interface SplitterState {
   id: number;
   providerId: string;
   modelId: string;
+  sourceDict: string;
+  targetGenre: string;
   isProcessing: boolean;
   processedLines: number;
   currentChunk: string;
+  sourceEntries?: Array<{ chinese: string; vietnamese: string }>;
+  currentIndex: number;
 }
 
 let isRunning = false;
 let shouldStop = false;
 let globalConfig: {
-  sourceDict: string;
   workers: SplitterWorkerConfig[];
   chunkSize: number;
+  genreSequence: string[];
 } | null = null;
 
 let workerStates: SplitterState[] = [];
@@ -49,18 +53,22 @@ export function getSplitterWorkerStates() {
 }
 
 export function configureSplitter(config: {
-  sourceDict: string;
   workers: SplitterWorkerConfig[];
   chunkSize: number;
+  genreSequence: string[];
 }) {
   globalConfig = config;
   workerStates = config.workers.map((w) => ({
     id: w.id,
     providerId: w.providerId,
     modelId: w.modelId,
+    sourceDict: w.sourceDict,
+    targetGenre: w.targetGenre,
     isProcessing: false,
     processedLines: 0,
     currentChunk: "",
+    currentIndex: 0,
+    genreIndex: 0, // Used for auto_stt
   }));
   notify();
 }
@@ -89,43 +97,60 @@ export function stopSplitter() {
 async function runLoop() {
   if (!globalConfig) return;
   
-  // 1. Load the entire source dictionary into memory
-  const sourceEntries = await db.dictEntries
-    .where("source")
-    .equals(globalConfig.sourceDict)
-    .toArray();
-    
-  if (sourceEntries.length === 0) {
-    isRunning = false;
-    notify();
-    return;
+  // 1. Load the dictionary into memory for each worker
+  for (const w of workerStates) {
+    if (!w.sourceDict) continue;
+    w.sourceEntries = await db.dictEntries
+      .where("source")
+      .equals(w.sourceDict)
+      .toArray();
+    w.currentIndex = 0;
   }
   
-  // We will consume entries from the end (or we can maintain an index)
-  let currentIndex = 0;
-  
-  // We use a Map to accumulate results before saving to IDB to avoid too many small transactions
-  // Or we can save them immediately after each chunk. Saving immediately is safer.
-  
-  while (currentIndex < sourceEntries.length && !shouldStop) {
-    const idleWorkers = workerStates.filter(w => !w.isProcessing);
-    if (idleWorkers.length === 0) {
+  while (!shouldStop) {
+    const idleWorkers = workerStates.filter(w => !w.isProcessing && w.sourceEntries);
+    
+    // Check if all workers are fully done
+    const allDone = workerStates.every(w => {
+      if (w.isProcessing || !w.sourceEntries) return false;
+      if (w.currentIndex < w.sourceEntries.length) return false;
+      // If auto_stt, it is done when genreIndex >= genreSequence.length
+      if (w.targetGenre === "auto_stt" && w.genreIndex !== undefined && w.genreIndex < globalConfig!.genreSequence.length - 1) return false;
+      return true;
+    });
+    
+    if (allDone) break;
+    
+    // Transition auto_stt workers to next genre if they finished current file
+    for (const w of workerStates) {
+      if (!w.isProcessing && w.sourceEntries && w.currentIndex >= w.sourceEntries.length) {
+        if (w.targetGenre === "auto_stt" && w.genreIndex !== undefined && w.genreIndex < globalConfig!.genreSequence.length - 1) {
+          w.genreIndex++;
+          // We must reload sourceEntries from DB because some were deleted!
+          w.sourceEntries = await db.dictEntries.where("source").equals(w.sourceDict).toArray();
+          w.currentIndex = 0; // Restart from top of the file!
+        }
+      }
+    }
+
+    const readyWorkers = idleWorkers.filter(w => w.currentIndex < w.sourceEntries!.length);
+
+    if (readyWorkers.length === 0) {
       await new Promise(r => setTimeout(r, 500));
       continue;
     }
     
     // Assign chunks to idle workers
-    for (const worker of idleWorkers) {
-      if (currentIndex >= sourceEntries.length || shouldStop) break;
+    for (const worker of readyWorkers) {
+      if (shouldStop) break;
       
-      const chunk = sourceEntries.slice(currentIndex, currentIndex + globalConfig.chunkSize);
-      currentIndex += globalConfig.chunkSize;
+      const chunk = worker.sourceEntries!.slice(worker.currentIndex, worker.currentIndex + globalConfig.chunkSize);
+      worker.currentIndex += globalConfig.chunkSize;
       
       worker.isProcessing = true;
       worker.currentChunk = chunk.slice(0, 5).map(e => `${e.chinese}=${e.vietnamese}`).join("\\n") + (chunk.length > 5 ? "\\n..." : "");
       notify();
       
-      // Fire and forget, they will update their own state when done
       processChunk(worker, chunk).finally(() => {
         worker.isProcessing = false;
         notify();
@@ -149,14 +174,17 @@ async function processChunk(worker: SplitterState, chunk: Array<{ chinese: strin
     const model = await resolveChapterToolModel(
       { providerId: worker.providerId, modelId: worker.modelId },
       undefined,
-      undefined
     );
     if (!model) throw new Error("Model not found");
 
-    const result = await splitDictionaryChunk(model, chunk);
+    const activeTargetGenre = (worker.targetGenre === "auto_stt" 
+      ? globalConfig!.genreSequence[worker.genreIndex || 0] 
+      : worker.targetGenre) || "khac";
+
+    const result = await splitDictionaryChunk(model, activeTargetGenre, chunk);
     
     if (result && result.results) {
-      // Group by category
+      // Group by category (which is just 'target' or 'khac')
       const grouped = result.results.reduce((acc, curr) => {
         const cat = curr.category;
         if (!acc[cat]) acc[cat] = [];
@@ -166,23 +194,21 @@ async function processChunk(worker: SplitterState, chunk: Array<{ chinese: strin
       
       // Save to IDB
       for (const [cat, entries] of Object.entries(grouped)) {
-        // Map category to DictSource
-        let targetSource = cat;
-        if (cat === "core") targetSource = "vietphrase";
-        if (cat === "khac") targetSource = "vietphrase"; // keep unknown in base
+        if (cat === "khac") continue; // Keep them in source dictionary, do nothing
+
+        // Map category to DictSource. E.g. worker.sourceDict is "core_names", targetGenre is "tienhiep",
+        // then the output file should be "tienhiep_names".
+        const sourceSuffix = worker.sourceDict.split("_")[1] || "tuvung";
+        const targetSource = `${activeTargetGenre}_${sourceSuffix}` as DictSource;
         
-        await appendToDictSource(targetSource as DictSource, entries);
+        await appendToDictSource(targetSource, entries);
         
         // Also delete them from the ORIGINAL source dict so we don't process them again!
-        // Wait, if source is vietphrase and target is vietphrase, we don't delete.
-        // If target is tienhiep, we delete from vietphrase.
-        if (globalConfig?.sourceDict && targetSource !== globalConfig.sourceDict) {
-          const chineseKeys = entries.map(e => e.chinese);
-          await db.dictEntries
-            .where("[source+chinese]")
-            .anyOf(chineseKeys.map(c => [globalConfig!.sourceDict, c]))
-            .delete();
-        }
+        const chineseKeys = entries.map(e => e.chinese);
+        await db.dictEntries
+          .where("[source+chinese]")
+          .anyOf(chineseKeys.map(c => [worker.sourceDict, c]))
+          .delete();
       }
     }
     

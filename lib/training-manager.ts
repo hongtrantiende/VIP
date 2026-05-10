@@ -94,17 +94,20 @@ export function stopTraining() {
 async function processAutoSave(suggestions: TrainingSuggestion[]) {
   const grouped = suggestions.reduce((acc, curr) => {
     const g = curr.genre || "global";
-    if (!acc[g]) acc[g] = [];
-    acc[g].push(curr);
+    const mappedGenre = g === "global" ? "core" : g;
+    const c = curr.category || "tuvung";
+    const mappedCat = ["names", "names2", "phienam", "luatnhan", "tuvung"].includes(c) ? c : "tuvung";
+    const key = `${mappedGenre}_${mappedCat}`;
+    if (!acc[key]) acc[key] = [];
+    acc[key].push(curr);
     return acc;
   }, {} as Record<string, TrainingSuggestion[]>);
 
   let totalSaved = 0;
   const supabase = createClient();
 
-  for (const [genre, terms] of Object.entries(grouped)) {
-    const targetSource = genre === "global" ? "names" : (genre as DictSource);
-    const savedCount = await appendToDictSource(targetSource, terms.map(t => ({ chinese: t.chinese, vietnamese: t.vietnamese })));
+  for (const [targetSource, terms] of Object.entries(grouped)) {
+    const savedCount = await appendToDictSource(targetSource as any, terms.map(t => ({ chinese: t.chinese, vietnamese: t.vietnamese })));
     
     if (savedCount > 0) {
       totalSaved += savedCount;

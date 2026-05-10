@@ -93,8 +93,11 @@ function buildIndexedDict(source: Map<string, string>): IndexedDict {
   return indexed;
 }
 
-// ─── State ───────────────────────────────────────────────────
+// Global caches of the raw dict data
+let rawDictData: Record<string, DictPair[]> = {};
 
+// Caches for the currently active genre merge
+let lastActiveSourcesKey = "INITIAL";
 let namesMap: Map<string, string>;
 let vietPhraseMap: Map<string, string>;
 let phienAmMap: Map<string, string>;
@@ -111,58 +114,59 @@ let maxNameLength = 0;
 // ─── Init ────────────────────────────────────────────────────
 
 function initDicts(dictData: Record<string, DictPair[]>): void {
+  rawDictData = dictData;
+  lastActiveSourcesKey = "FORCE_REBUILD"; // Force rebuild on next convert
+}
+
+function ensureActiveDicts(activeSources: string[] = []) {
+  const key = activeSources.join(",");
+  if (key === lastActiveSourcesKey) return;
+  lastActiveSourcesKey = key;
+
+  // Rebuild the maps combining "core" and "activeSources"
+  const genresToLoad = ["core", ...activeSources];
+  
   namesMap = new Map<string, string>();
   vietPhraseMap = new Map<string, string>();
   phienAmMap = new Map<string, string>();
-
-  for (const e of dictData.names ?? [])
-    namesMap.set(e.chinese, capitalizeWords(pickPrimary(e.vietnamese)));
-  for (const e of dictData.names2 ?? [])
-    namesMap.set(e.chinese, capitalizeWords(pickPrimary(e.vietnamese)));
-
-  for (const e of dictData.vietphrase ?? []) {
-    if (e.chinese in FULLWIDTH_PUNCT) {
-      vietPhraseMap.set(e.chinese, FULLWIDTH_PUNCT[e.chinese]);
-    } else {
-      vietPhraseMap.set(e.chinese, pickPrimary(e.vietnamese));
-    }
-  }
-
   genreDictMaps = new Map();
-  const genreSources = [
-    "ngontinh", "hiendai", "tienhiep", "huyenhuyen",
-    "dammi", "hocduong", "nsfw", "hentai",
-    "dongphuong", "dothi", "vongdu", "khoahuyen", 
-    "quybi", "xuyenkhong", "hethong", "trinhtham", "lichsu"
-  ];
-  for (const src of genreSources) {
-    const genreMap = new Map<string, string>();
-    for (const e of dictData[src] ?? []) {
-      genreMap.set(e.chinese, pickPrimary(e.vietnamese));
-    }
-    if (genreMap.size > 0) {
-      genreDictMaps.set(src, genreMap);
-    }
-  }
-
-  for (const e of dictData.phienam ?? []) {
-    if (e.chinese in FULLWIDTH_PUNCT) {
-      phienAmMap.set(e.chinese, FULLWIDTH_PUNCT[e.chinese]);
-    } else {
-      phienAmMap.set(e.chinese, pickPrimary(e.vietnamese));
-    }
-  }
-
   luatNhanPatternsMap = new Map();
   luatNhanPrefixIndexMap = new Map();
-
-  const allLuatNhanSources = ["luatnhan", "luatnhan_tienhiep", "luatnhan_hiendai"];
   
-  for (const src of allLuatNhanSources) {
+  for (const genre of genresToLoad) {
+    for (const e of rawDictData[`${genre}_names`] ?? [])
+      namesMap.set(e.chinese, capitalizeWords(pickPrimary(e.vietnamese)));
+    for (const e of rawDictData[`${genre}_names2`] ?? [])
+      namesMap.set(e.chinese, capitalizeWords(pickPrimary(e.vietnamese)));
+
+    for (const e of rawDictData[`${genre}_vietphrase`] ?? []) {
+      if (e.chinese in FULLWIDTH_PUNCT) {
+        vietPhraseMap.set(e.chinese, FULLWIDTH_PUNCT[e.chinese]);
+      } else {
+        vietPhraseMap.set(e.chinese, pickPrimary(e.vietnamese));
+      }
+    }
+
+    const tuvungMap = new Map<string, string>();
+    for (const e of rawDictData[`${genre}_tuvung`] ?? []) {
+      tuvungMap.set(e.chinese, pickPrimary(e.vietnamese));
+    }
+    if (tuvungMap.size > 0) {
+      genreDictMaps.set(`${genre}_tuvung`, tuvungMap);
+    }
+
+    for (const e of rawDictData[`${genre}_phienam`] ?? []) {
+      if (e.chinese in FULLWIDTH_PUNCT) {
+        phienAmMap.set(e.chinese, FULLWIDTH_PUNCT[e.chinese]);
+      } else {
+        phienAmMap.set(e.chinese, pickPrimary(e.vietnamese));
+      }
+    }
+
     const patterns: Array<{ prefix: string; suffix: string; template: string }> = [];
     const prefixIndex = new Map<string, number[]>();
 
-    for (const e of dictData[src] ?? []) {
+    for (const e of rawDictData[`${genre}_luatnhan`] ?? []) {
       const idx = e.chinese.indexOf("{0}");
       if (idx < 0) continue;
       const prefix = e.chinese.slice(0, idx);
@@ -185,8 +189,8 @@ function initDicts(dictData: Record<string, DictPair[]>): void {
       }
     }
 
-    luatNhanPatternsMap.set(src, patterns);
-    luatNhanPrefixIndexMap.set(src, prefixIndex);
+    luatNhanPatternsMap.set(`${genre}_luatnhan`, patterns);
+    luatNhanPrefixIndexMap.set(`${genre}_luatnhan`, prefixIndex);
   }
 
   maxKeyLength = 0;
@@ -556,6 +560,8 @@ function convert(
 ): ConvertResult {
   const o = { ...DEFAULT_CONVERT_OPTIONS, ...opts } as Required<ConvertOptions>;
 
+  ensureActiveDicts(o.activeDictSources);
+
   const novelNamesMap = novelNames?.length
     ? new Map(
         novelNames.map((e) => [
@@ -607,12 +613,12 @@ function convert(
 
   // Insert genre dicts
   const activeGenreMaps: PriorityEntry[] = [];
-  if (o.activeDictSources?.length) {
-    for (const src of o.activeDictSources) {
-      const gMap = genreDictMaps.get(src);
-      if (gMap) {
-        activeGenreMaps.push([src as ConvertSource, gMap]);
-      }
+  const genresToLoad = ["core", ...(o.activeDictSources || [])];
+  for (const genre of genresToLoad) {
+    const src = `${genre}_tuvung`;
+    const gMap = genreDictMaps.get(src);
+    if (gMap) {
+      activeGenreMaps.push([src as ConvertSource, gMap]);
     }
   }
 
@@ -683,12 +689,7 @@ function convert(
   const activePatterns: Array<{ prefix: string; suffix: string; template: string }> = [];
   const activePrefixIndex = new Map<string, number[]>();
   
-  const sourcesToMerge = ["luatnhan"];
-  if (o.activeDictSources?.length) {
-    for (const src of o.activeDictSources) {
-      sourcesToMerge.push(`luatnhan_${src}`);
-    }
-  }
+  const sourcesToMerge = ["core", ...(o.activeDictSources || [])].map(g => `${g}_luatnhan`);
 
   for (const src of sourcesToMerge) {
     const patterns = luatNhanPatternsMap.get(src);
