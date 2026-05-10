@@ -46,14 +46,9 @@ import {
 import { useCallback, useMemo, useRef, useState } from "react";
 import { toast } from "sonner";
 import { useLiveQuery } from "dexie-react-hooks";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
 import { Label } from "@/components/ui/label";
+import { useDictMeta } from "@/lib/hooks/use-dict-entries";
+import { cn } from "@/lib/utils";
 
 type Phase = "idle" | "dict" | "ai" | "done";
 
@@ -81,14 +76,32 @@ export function QtAiTranslateDialog({
   const [showPrompt, setShowPrompt] = useState(false);
   const [editingPrompt, setEditingPrompt] = useState(false);
   const [promptDraft, setPromptDraft] = useState("");
-  const [qtDictSource, setQtDictSource] = useState("tienhiep.txt");
+  const [qtDictSources, setQtDictSources] = useState<string[]>(["tienhiep"]);
   const abortRef = useRef<AbortController | null>(null);
 
   const GENRE_DICTS = [
-    "ngontinh.txt", "hiendai.txt", "tienhiep.txt", "huyenhuyen.txt", "dammi.txt", "hocduong.txt", 
-    "nsfw.txt", "hentai.txt", "dongphuong.txt", "dothi.txt", "vongdu.txt", "khoahuyen.txt", 
-    "quybi.txt", "xuyenkhong.txt", "hethong.txt", "trinhtham.txt", "lichsu.txt"
+    "ngontinh", "hiendai", "tienhiep", "huyenhuyen", "dammi", "hocduong", 
+    "nsfw", "hentai", "dongphuong", "dothi", "vongdu", "khoahuyen", 
+    "quybi", "xuyenkhong", "hethong", "trinhtham", "lichsu"
   ];
+  
+  const GENRE_LABELS: Record<string, string> = {
+    ngontinh: "Ngôn tình", hiendai: "Hiện đại", tienhiep: "Tiên hiệp",
+    huyenhuyen: "Huyền huyễn", dammi: "Đam mỹ", hocduong: "Học đường",
+    nsfw: "NSFW (18+)", hentai: "Hentai", dongphuong: "Đông phương",
+    dothi: "Đô thị", vongdu: "Võng du", khoahuyen: "Khoa huyễn",
+    quybi: "Quỷ bí", xuyenkhong: "Xuyên không", hethong: "Hệ thống",
+    trinhtham: "Trinh thám", lichsu: "Lịch sử"
+  };
+
+  const dictMeta = useDictMeta();
+  const dynamicSources = dictMeta 
+    ? Object.keys(dictMeta.sources).filter(s => 
+        !["vietphrase", "names", "names2", "phienam", "luatnhan"].includes(s) &&
+        !GENRE_DICTS.includes(s)
+      ) 
+    : [];
+  const allGenreSources = [...GENRE_DICTS, ...dynamicSources];
 
   const settings = useAnalysisSettings();
   const chatSettings = useChatSettings();
@@ -186,7 +199,7 @@ export function QtAiTranslateDialog({
         novelId,
         chapterIds,
         model,
-        qtDictSource,
+        qtDictSources,
         signal: controller.signal,
         delayMs: (settings.translateDelaySeconds ?? 0) * 1000,
 
@@ -253,18 +266,30 @@ export function QtAiTranslateDialog({
             {/* Dict selection */}
             <div className="space-y-2">
               <Label className="text-xs">Từ điển thể loại (Phase 1)</Label>
-              <Select value={qtDictSource} onValueChange={setQtDictSource}>
-                <SelectTrigger>
-                  <SelectValue placeholder="Chọn từ điển..." />
-                </SelectTrigger>
-                <SelectContent>
-                  {GENRE_DICTS.map((d) => (
-                    <SelectItem key={d} value={d}>
-                      {d}
-                    </SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
+              <div className="flex flex-wrap gap-1.5 max-h-[80px] overflow-y-auto">
+                {allGenreSources.map((src) => {
+                  const isActive = qtDictSources.includes(src);
+                  return (
+                    <button
+                      key={src}
+                      type="button"
+                      onClick={() => {
+                        if (isActive) setQtDictSources(qtDictSources.filter(s => s !== src));
+                        else setQtDictSources([...qtDictSources, src]);
+                      }}
+                      className={cn(
+                        "flex items-center gap-1 rounded-md px-2 py-1 text-[10px] font-medium transition-colors border",
+                        isActive 
+                          ? "bg-primary text-primary-foreground border-primary" 
+                          : "bg-background text-muted-foreground hover:bg-muted"
+                      )}
+                    >
+                      {isActive && <CheckCircle2Icon className="size-3" />}
+                      {GENRE_LABELS[src] || src}
+                    </button>
+                  );
+                })}
+              </div>
             </div>
             {/* Architecture explainer */}
             <div className="rounded-lg border border-dashed border-primary/30 bg-primary/5 p-3 space-y-2">
@@ -488,7 +513,7 @@ export function QtAiTranslateDialog({
                 {currentPhase === "dict" && (
                   <span className="flex items-center gap-1.5 text-xs text-emerald-600 dark:text-emerald-400">
                     <BookOpenIcon className="size-3.5 animate-pulse" />
-                    Giai đoạn 1: Dịch từ điển ({qtDictSource})...
+                    Giai đoạn 1: Dịch từ điển ({qtDictSources.join(", ")})...
                   </span>
                 )}
                 {currentPhase === "ai" && (

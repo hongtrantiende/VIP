@@ -87,7 +87,7 @@ export interface QtAiTranslateOptions {
   novelId: string;
   chapterIds: string[];
   model: LanguageModel;
-  qtDictSource: string; // the selected genre dictionary e.g. 'tienhiep.txt'
+  qtDictSources: string[]; // the selected genre dictionaries
   signal?: AbortSignal;
   delayMs?: number;
 
@@ -217,7 +217,7 @@ export async function runQtAiTranslate(opts: QtAiTranslateOptions): Promise<void
     novelId,
     chapterIds,
     model,
-    qtDictSource,
+    qtDictSources,
     signal,
     delayMs,
     onPhase,
@@ -329,7 +329,7 @@ export async function runQtAiTranslate(opts: QtAiTranslateOptions): Promise<void
             activeDictSources: [
               { name: "VietPhrase.txt", enabled: true, type: "vietphrase" },
               { name: "Names.txt", enabled: true, type: "name" },
-              { name: qtDictSource, enabled: true, type: "vietphrase" },
+              ...qtDictSources.map(s => ({ name: s, enabled: true, type: "vietphrase" }))
             ]
           }
         };

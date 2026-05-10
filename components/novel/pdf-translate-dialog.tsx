@@ -44,14 +44,9 @@ import {
 import { useCallback, useMemo, useRef, useState } from "react";
 import { toast } from "sonner";
 import { useLiveQuery } from "dexie-react-hooks";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
 import { Label } from "@/components/ui/label";
+import { useDictMeta } from "@/lib/hooks/use-dict-entries";
+import { cn } from "@/lib/utils";
 
 type Phase = "idle" | "dict" | "ai" | "done";
 
@@ -74,13 +69,32 @@ export function PdfTranslateDialog({
   const [results, setResults] = useState<HybridTranslateResult[]>([]);
   const [currentPhase, setCurrentPhase] = useState<Phase>("idle");
   const [currentChapterTitle, setCurrentChapterTitle] = useState("");
-  const [targetGenre, setTargetGenre] = useState<string>("auto");
+  const [targetGenres, setTargetGenres] = useState<string[]>(["auto"]);
   const abortRef = useRef<AbortController | null>(null);
 
   const GENRE_DICTS = [
-    "tienhiep", "kiemhiep", "ngontinh", "dammy", "quantruong",
-    "vongdu", "khoahuyen", "hethong", "huyenhuyen", "hiendai",
+    "ngontinh", "hiendai", "tienhiep", "huyenhuyen", "dammi", "hocduong", 
+    "nsfw", "hentai", "dongphuong", "dothi", "vongdu", "khoahuyen", 
+    "quybi", "xuyenkhong", "hethong", "trinhtham", "lichsu"
   ];
+  
+  const GENRE_LABELS: Record<string, string> = {
+    ngontinh: "Ngôn tình", hiendai: "Hiện đại", tienhiep: "Tiên hiệp",
+    huyenhuyen: "Huyền huyễn", dammi: "Đam mỹ", hocduong: "Học đường",
+    nsfw: "NSFW (18+)", hentai: "Hentai", dongphuong: "Đông phương",
+    dothi: "Đô thị", vongdu: "Võng du", khoahuyen: "Khoa huyễn",
+    quybi: "Quỷ bí", xuyenkhong: "Xuyên không", hethong: "Hệ thống",
+    trinhtham: "Trinh thám", lichsu: "Lịch sử"
+  };
+
+  const dictMeta = useDictMeta();
+  const dynamicSources = dictMeta 
+    ? Object.keys(dictMeta.sources).filter(s => 
+        !["vietphrase", "names", "names2", "phienam", "luatnhan"].includes(s) &&
+        !GENRE_DICTS.includes(s)
+      ) 
+    : [];
+  const allGenreSources = [...GENRE_DICTS, ...dynamicSources];
 
   const settings = useAnalysisSettings();
   const chatSettings = useChatSettings();
@@ -147,7 +161,7 @@ export function PdfTranslateDialog({
         novelId,
         chapterIds,
         model,
-        targetGenre,
+        targetGenres,
         signal: controller.signal,
         delayMs: (settings.translateDelaySeconds ?? 0) * 1000,
 
@@ -229,21 +243,44 @@ export function PdfTranslateDialog({
             {/* Genre selection for Phase 1 */}
             <div className="space-y-2">
               <Label className="text-xs">Thể loại từ điển áp dụng (cho Giai đoạn 1)</Label>
-              <Select value={targetGenre} onValueChange={setTargetGenre}>
-                <SelectTrigger>
-                  <SelectValue placeholder="Chọn thể loại..." />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="auto">
-                    Tự động (theo thể loại của truyện) {novel?.genre ? `(${novel.genre})` : ""}
-                  </SelectItem>
-                  {GENRE_DICTS.map((g) => (
-                    <SelectItem key={g} value={g}>
-                      {g}
-                    </SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
+              <div className="flex flex-wrap gap-1.5 max-h-[80px] overflow-y-auto">
+                <button
+                  type="button"
+                  onClick={() => setTargetGenres(["auto"])}
+                  className={cn(
+                    "flex items-center gap-1 rounded-md px-2 py-1 text-[10px] font-medium transition-colors border",
+                    targetGenres.includes("auto")
+                      ? "bg-primary text-primary-foreground border-primary" 
+                      : "bg-background text-muted-foreground hover:bg-muted"
+                  )}
+                >
+                  {targetGenres.includes("auto") && <CheckCircle2Icon className="size-3" />}
+                  Tự động {novel?.genre ? `(${novel.genre})` : ""}
+                </button>
+                {allGenreSources.map((src) => {
+                  const isActive = targetGenres.includes(src) && !targetGenres.includes("auto");
+                  return (
+                    <button
+                      key={src}
+                      type="button"
+                      onClick={() => {
+                        const newGenres = targetGenres.filter(g => g !== "auto" && g !== src);
+                        if (!isActive) newGenres.push(src);
+                        setTargetGenres(newGenres.length > 0 ? newGenres : ["auto"]);
+                      }}
+                      className={cn(
+                        "flex items-center gap-1 rounded-md px-2 py-1 text-[10px] font-medium transition-colors border",
+                        isActive 
+                          ? "bg-primary text-primary-foreground border-primary" 
+                          : "bg-background text-muted-foreground hover:bg-muted"
+                      )}
+                    >
+                      {isActive && <CheckCircle2Icon className="size-3" />}
+                      {GENRE_LABELS[src] || src}
+                    </button>
+                  );
+                })}
+              </div>
               <p className="text-[10px] text-muted-foreground">
                 Từ điển `names` (tên nhân vật), `vietphrase` (từ điển chính) và `phienam` sẽ luôn được áp dụng kèm với từ điển thể loại này.
               </p>

@@ -71,7 +71,7 @@ export interface HybridTranslateOptions {
   novelId: string;
   chapterIds: string[];
   model: LanguageModel;
-  targetGenre?: string;
+  targetGenres?: string[];
   signal?: AbortSignal;
   delayMs?: number;
 
@@ -200,7 +200,7 @@ export async function runPdfTranslate(opts: HybridTranslateOptions): Promise<voi
     novelId,
     chapterIds,
     model,
-    targetGenre,
+    targetGenres,
     signal,
     delayMs,
     onPhase,
@@ -306,9 +306,11 @@ export async function runPdfTranslate(opts: HybridTranslateOptions): Promise<voi
       let dictTranslatedContent: string;
 
       try {
-        const finalGenre = targetGenre && targetGenre !== "auto" ? targetGenre : novel?.genre;
+        const finalGenres = targetGenres && targetGenres.length > 0 && !targetGenres.includes("auto") 
+          ? targetGenres 
+          : (novel?.genre ? [novel.genre] : []);
         const activeSources = ["names", "vietphrase", "phienam", "luatnhan"];
-        if (finalGenre) activeSources.push(finalGenre);
+        if (finalGenres.length > 0) activeSources.push(...finalGenres);
         
         const titleRes = await convertText(chapter.title, {
           options: {
