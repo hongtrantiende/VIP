@@ -343,16 +343,18 @@ export function DictionaryManagement({ compact }: { compact?: boolean }) {
     const filename = `${source}.txt`;
     const toastId = toast.loading(`Đang tải ${filename} từ Kho chung...`);
     try {
-      const { data, error } = await supabase.storage
+      const { data: publicUrlData } = supabase.storage
         .from("dictionaries")
-        .download(filename);
+        .getPublicUrl(filename);
+      
+      const res = await fetch(`${publicUrlData.publicUrl}?t=${Date.now()}`, { cache: "no-store" });
 
-      if (error) {
+      if (!res.ok) {
         toast.error(`Từ điển ${filename} chưa có trên Kho chung!`, { id: toastId });
         return;
       }
       
-      const text = await data.text();
+      const text = await res.text();
       const entries = parseDictLines(text);
       const count = await appendToDictSource(source, entries);
       toast.success(`Đã tự động gộp ${count.toLocaleString()} mục mới từ Kho chung cho ${DICT_SOURCE_LABELS[source]}`, { id: toastId });
