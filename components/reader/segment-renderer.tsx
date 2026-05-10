@@ -18,6 +18,8 @@ const SOURCE_COLORS: Record<ConvertSource, string> = {
   "qt-name": "text-purple-600 dark:text-purple-400 font-medium",
   "auto-name": "text-emerald-600 dark:text-emerald-400 italic",
   "vietphrase": "",
+  "genre-vietphrase": "text-teal-600 dark:text-teal-400",
+  "core-vietphrase": "text-cyan-600 dark:text-cyan-400",
   "phienam": "text-muted-foreground",
   "luatnhan": "text-indigo-600 dark:text-indigo-400",
   "unknown": "text-red-500",
