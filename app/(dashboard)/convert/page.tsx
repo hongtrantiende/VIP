@@ -52,6 +52,7 @@ import {
   getWorkerStates,
   type TrainingWorkerConfig,
 } from "@/lib/training-manager";
+import { createClient } from "@/lib/supabase/client";
 
 const GENRE_DICTS = [
   "ngontinh", "hiendai", "tienhiep", "huyenhuyen", "dammi", "hocduong", 
@@ -234,13 +235,34 @@ export default function ConvertPage() {
     }, {} as Record<string, TrainingSuggestion[]>);
 
     let totalSaved = 0;
+    const supabase = createClient();
+    
     for (const [genre, terms] of Object.entries(grouped)) {
-      const targetSource = genre === "global" ? "names" : (GENRE_DICTS.includes(genre) ? genre as DictSource : "names");
+      const targetSource = genre === "global" ? "names" : (genre as DictSource);
       const savedCount = await appendToDictSource(targetSource, terms.map(t => ({ chinese: t.chinese, vietnamese: t.vietnamese })));
-      totalSaved += savedCount;
+      
+      if (savedCount > 0) {
+        totalSaved += savedCount;
+        
+        // Auto-upload to Supabase
+        try {
+          const records = await db.dictEntries.where("source").equals(targetSource).toArray();
+          const text = records.map(r => `${r.chinese}=${r.vietnamese}`).join("\n");
+          const filename = `${targetSource}.txt`;
+          
+          await supabase.storage
+            .from("dictionaries")
+            .upload(filename, text, {
+              contentType: 'text/plain;charset=UTF-8',
+              upsert: true,
+            });
+        } catch (err) {
+          console.error(`Lỗi tải lên ${targetSource}:`, err);
+        }
+      }
     }
     if (totalSaved > 0) {
-      toast.success(`Đã lưu tự động ${totalSaved} từ vào từ điển.`);
+      toast.success(`Đã lưu tự động ${totalSaved} từ vào từ điển và đồng bộ lên server.`);
     }
   };
 
@@ -612,7 +634,7 @@ function GroupedExtractionList({ terms, onRemove }: { terms: TrainingSuggestion[
 
   const handleDownloadDict = async (genre: string) => {
     try {
-      const targetSource = genre === "global" ? "names" : (GENRE_DICTS.includes(genre) ? genre as DictSource : "names");
+      const targetSource = genre === "global" ? "names" : (genre as DictSource);
       await exportDictSource(targetSource);
       toast.success(`Đã tải xuống kho từ điển ${targetSource}.txt`);
     } catch (err) {

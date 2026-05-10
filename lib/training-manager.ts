@@ -12,6 +12,7 @@ import { extractDictionaryEntries, type TrainingSuggestion } from "@/lib/ai/trai
 import { getModel } from "@/lib/ai/provider";
 import { appendToDictSource } from "@/lib/hooks/use-dict-entries";
 import { toast } from "sonner";
+import { createClient } from "@/lib/supabase/client";
 
 const GENRE_DICTS = [
   "ngontinh", "hiendai", "tienhiep", "huyenhuyen", "dammi", "hocduong",
@@ -99,13 +100,33 @@ async function processAutoSave(suggestions: TrainingSuggestion[]) {
   }, {} as Record<string, TrainingSuggestion[]>);
 
   let totalSaved = 0;
+  const supabase = createClient();
+
   for (const [genre, terms] of Object.entries(grouped)) {
-    const targetSource = genre === "global" ? "names" : (GENRE_DICTS.includes(genre) ? genre as DictSource : "names");
+    const targetSource = genre === "global" ? "names" : (genre as DictSource);
     const savedCount = await appendToDictSource(targetSource, terms.map(t => ({ chinese: t.chinese, vietnamese: t.vietnamese })));
-    totalSaved += savedCount;
+    
+    if (savedCount > 0) {
+      totalSaved += savedCount;
+      
+      try {
+        const records = await db.dictEntries.where("source").equals(targetSource).toArray();
+        const text = records.map(r => `${r.chinese}=${r.vietnamese}`).join("\n");
+        const filename = `${targetSource}.txt`;
+        
+        await supabase.storage
+          .from("dictionaries")
+          .upload(filename, text, {
+            contentType: 'text/plain;charset=UTF-8',
+            upsert: true,
+          });
+      } catch (err) {
+        console.error(`Lỗi tải lên ${targetSource}:`, err);
+      }
+    }
   }
   if (totalSaved > 0) {
-    toast.success(`Đã lưu tự động ${totalSaved} từ vào từ điển.`);
+    toast.success(`Đã lưu tự động ${totalSaved} từ vào từ điển và đồng bộ lên server.`);
   }
 }
 

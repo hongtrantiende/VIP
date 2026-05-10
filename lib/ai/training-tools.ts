@@ -96,7 +96,7 @@ export async function extractDictionaryEntries(opts: {
   const genresStr = hasSpecificGenres ? opts.targetGenres!.join('", "') : "";
   const genreInstruction = hasSpecificGenres 
     ? `5. BẮT BUỘC phân loại "genre": Bạn CHỈ ĐƯỢC CHỌN "global" (nếu là tên riêng, danh xưng chung) hoặc một trong các thể loại sau: "${genresStr}". TUYỆT ĐỐI KHÔNG chọn các thể loại khác.`
-    : `5. BẮT BUỘC phân loại "genre" vào MỘT trong các thể loại sau dựa trên bối cảnh của từ vựng đó: "ngontinh", "hiendai", "tienhiep", "huyenhuyen", "dammi", "hocduong", "nsfw", "hentai", "dongphuong", "dothi", "vongdu", "khoahuyen", "quybi", "xuyenkhong", "hethong", "trinhtham", "lichsu", hoặc "global" (nếu là từ dùng chung).`;
+    : `5. BẮT BUỘC phân loại "genre" dựa trên bối cảnh của từ vựng đó. Bạn có thể chọn các thể loại chuẩn như: "ngontinh", "hiendai", "tienhiep", "huyenhuyen", "dammi", "hocduong", "nsfw", "hentai", "dongphuong", "dothi", "vongdu", "khoahuyen", "quybi", "xuyenkhong", "hethong", "trinhtham", "lichsu", hoặc "global" (nếu là từ dùng chung). ĐẶC BIỆT: Nếu từ vựng phù hợp với nhiều thể loại hoặc thuộc một thể loại mới hoàn toàn chưa có trong danh sách, bạn CÓ THỂ tự do tạo và trả về chuỗi thể loại mới đó (ví dụ "hiendai,ngontinh" hoặc "haihuoc"). Vui lòng viết liền không dấu hoặc cách nhau bằng dấu phẩy.`;
 
   const prompt = `
 <role>
