@@ -309,8 +309,7 @@ export async function runPdfTranslate(opts: HybridTranslateOptions): Promise<voi
         const finalGenres = targetGenres && targetGenres.length > 0 && !targetGenres.includes("auto") 
           ? targetGenres 
           : (novel?.genre ? [novel.genre] : []);
-        const activeSources = ["names", "vietphrase", "phienam", "luatnhan"];
-        if (finalGenres.length > 0) activeSources.push(...finalGenres);
+        const activeSources = finalGenres;
         
         const titleRes = await convertText(chapter.title, {
           options: {

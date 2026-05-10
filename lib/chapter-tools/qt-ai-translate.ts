@@ -326,11 +326,7 @@ export async function runQtAiTranslate(opts: QtAiTranslateOptions): Promise<void
       try {
         const dictSettings = {
           options: {
-            activeDictSources: [
-              { name: "VietPhrase.txt", enabled: true, type: "vietphrase" },
-              { name: "Names.txt", enabled: true, type: "name" },
-              ...qtDictSources.map(s => ({ name: s, enabled: true, type: "vietphrase" }))
-            ]
+            activeDictSources: qtDictSources
           }
         };
         const [titleRes, contentRes] = await Promise.all([
