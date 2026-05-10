@@ -182,6 +182,31 @@ async function takeNextChunk(): Promise<string | null> {
             toast.info(`Tự động chuyển sang chương tiếp theo: ${nextCh.title}`);
             notifyListeners();
             currentInput = text;
+          } else {
+            // Finished current novel! Try to find the next novel in the library
+            const allNovels = await db.novels.orderBy("updatedAt").reverse().toArray();
+            const currIdx = allNovels.findIndex(n => n.id === currCh.novelId);
+            if (currIdx !== -1 && currIdx < allNovels.length - 1) {
+              const nextNovel = allNovels[currIdx + 1];
+              const firstCh = await db.chapters.where("novelId").equals(nextNovel.id).sortBy("order").then(arr => arr[0]);
+              if (firstCh) {
+                const scenes = await db.scenes.where("[chapterId+isActive]").equals([firstCh.id, 1]).sortBy("order");
+                const text = scenes.map(s => s.content).join("\n");
+                useTrainingStore.getState().setInput(text);
+                _selectedChapterId = firstCh.id;
+                useTrainingStore.getState().setSelectedNovelId(nextNovel.id);
+                useTrainingStore.getState().setSelectedChapterId(firstCh.id);
+                toast.success(`Đã học xong truyện cũ. Tự động chuyển sang truyện tiếp theo: ${nextNovel.title}`);
+                notifyListeners();
+                currentInput = text;
+              } else {
+                toast.info(`Truyện tiếp theo (${nextNovel.title}) chưa có chương nào.`);
+              }
+            } else {
+              if (currIdx === allNovels.length - 1) {
+                toast.success("Đã hoàn thành phân tích toàn bộ thư viện truyện!");
+              }
+            }
           }
         }
       }
