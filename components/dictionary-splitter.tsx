@@ -69,6 +69,9 @@ export function DictionarySplitter() {
                 <SelectValue />
               </SelectTrigger>
               <SelectContent>
+                <SelectItem value="5">5 dòng</SelectItem>
+                <SelectItem value="10">10 dòng</SelectItem>
+                <SelectItem value="20">20 dòng</SelectItem>
                 <SelectItem value="50">50 dòng</SelectItem>
                 <SelectItem value="100">100 dòng</SelectItem>
                 <SelectItem value="200">200 dòng</SelectItem>

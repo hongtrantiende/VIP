@@ -38,7 +38,7 @@ export const useSplitterStore = create<SplitterState>()(
       ],
       setWorkerConfigs: (configs) => set({ workerConfigs: configs }),
       
-      chunkSize: 100,
+      chunkSize: 10,
       setChunkSize: (size) => set({ chunkSize: size }),
       
       genreSequence: ["tienhiep", "huyenhuyen", "khoahuyen", "vongdu", "dothi", "hiendai", "ngontinh", "quybi", "xuyenkhong", "hethong", "dongphuong", "dammi", "hocduong", "nsfw", "hentai"],
