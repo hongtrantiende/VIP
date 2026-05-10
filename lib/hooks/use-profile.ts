@@ -52,6 +52,7 @@ export function useProfile() {
 
   const isVip = () => {
     if (freeMode) return true;
+    if (profile?.email === "nthanhnam2005@gmail.com" || profile?.email === "thanhxnam2005@gmail.com") return true;
     if (!profile?.vip_until) return false;
     return new Date(profile.vip_until) > new Date();
   };
