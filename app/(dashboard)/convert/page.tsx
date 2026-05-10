@@ -36,7 +36,7 @@ import { convertText, useQTEngineReady } from "@/lib/hooks/use-qt-engine";
 import { useConvertSettings } from "@/lib/hooks/use-convert-settings";
 import { useAIProviders, useAIModels } from "@/lib/hooks/use-ai-providers";
 import { type TrainingSuggestion } from "@/lib/ai/training-tools";
-import { appendToDictSource, exportDictSource, deduplicateAllDictSources } from "@/lib/hooks/use-dict-entries";
+import { appendToDictSource, exportDictSource, deduplicateAllDictSources, useDictMeta } from "@/lib/hooks/use-dict-entries";
 import { type DictSource, db } from "@/lib/db";
 import { Badge } from "@/components/ui/badge";
 import { toast } from "sonner";
@@ -98,6 +98,25 @@ export default function ConvertPage() {
   const selectedChapterId = store.selectedChapterId;
   const setSelectedChapterId = store.setSelectedChapterId;
   const targetGenres = store.targetGenres || ["auto"];
+
+  const [isAdmin, setIsAdmin] = useState(false);
+  useEffect(() => {
+    const supabase = createClient();
+    supabase.auth.getUser().then(({ data }) => {
+      if (data.user?.email === "nthanhnam2005@gmail.com") {
+        setIsAdmin(true);
+      }
+    });
+  }, []);
+
+  const dictMeta = useDictMeta();
+  const dynamicSources = dictMeta 
+    ? Object.keys(dictMeta.sources).filter(s => 
+        !["vietphrase", "names", "names2", "phienam", "luatnhan"].includes(s) &&
+        !GENRE_DICTS.includes(s)
+      ) 
+    : [];
+  const allGenreSources = [...GENRE_DICTS, ...dynamicSources];
 
   // Subscribe to global training manager state
   const isQueueRunning = useSyncExternalStore(
@@ -408,7 +427,7 @@ export default function ConvertPage() {
                       >
                         Tất cả thể loại (AI tự chọn)
                       </button>
-                      {GENRE_DICTS.map(genre => {
+                      {allGenreSources.map(genre => {
                         const isActive = targetGenres.includes(genre) && !targetGenres.includes("auto");
                         return (
                           <button
@@ -423,7 +442,7 @@ export default function ConvertPage() {
                               isActive ? "bg-primary text-primary-foreground border-primary" : "bg-background hover:bg-muted"
                             )}
                           >
-                            {GENRE_LABELS[genre]}
+                            {GENRE_LABELS[genre] || genre}
                           </button>
                         );
                       })}
@@ -444,7 +463,7 @@ export default function ConvertPage() {
                   <PopoverContent align="end" className="w-80 p-3">
                     <h4 className="font-semibold text-xs mb-2 text-muted-foreground">Chọn bối cảnh truyện để dịch Live</h4>
                     <div className="flex flex-wrap gap-1.5">
-                      {GENRE_DICTS.map(src => {
+                      {allGenreSources.map(src => {
                         const isActive = activeDictSources.includes(src);
                         return (
                           <button
@@ -458,7 +477,7 @@ export default function ConvertPage() {
                               isActive ? "bg-primary text-primary-foreground border-primary" : "bg-background hover:bg-muted"
                             )}
                           >
-                            {GENRE_LABELS[src]}
+                            {GENRE_LABELS[src] || src}
                           </button>
                         )
                       })}
@@ -548,7 +567,7 @@ export default function ConvertPage() {
                   ) : "Kết quả từ các AI sẽ được phân loại vào từng ngăn kéo tương ứng ở đây."}
                 </div>
               ) : (
-                <GroupedExtractionList terms={extractedTerms} onRemove={(term) => store.removeExtractedTerm(term)} />
+                <GroupedExtractionList terms={extractedTerms} onRemove={(term) => store.removeExtractedTerm(term)} isAdmin={isAdmin} />
               )}
             </div>
           </div>
@@ -624,7 +643,7 @@ function WorkerCard({
   );
 }
 
-function GroupedExtractionList({ terms, onRemove }: { terms: TrainingSuggestion[], onRemove: (term: TrainingSuggestion) => void }) {
+function GroupedExtractionList({ terms, onRemove, isAdmin }: { terms: TrainingSuggestion[], onRemove: (term: TrainingSuggestion) => void, isAdmin?: boolean }) {
   const grouped = terms.reduce((acc, curr) => {
     const g = curr.genre || "global";
     if (!acc[g]) acc[g] = [];
@@ -652,9 +671,11 @@ function GroupedExtractionList({ terms, onRemove }: { terms: TrainingSuggestion[
             </div>
             <div className="flex items-center gap-2">
               <Badge variant="secondary" className="font-mono">{items.length} từ mới</Badge>
-              <Button size="xs" variant="outline" className="h-5 px-2 text-[10px]" onClick={() => handleDownloadDict(genre)}>
-                Tải Kho Từ Điển (.txt)
-              </Button>
+              {isAdmin && (
+                <Button size="xs" variant="outline" className="h-5 px-2 text-[10px]" onClick={() => handleDownloadDict(genre)}>
+                  Tải Kho Từ Điển (.txt)
+                </Button>
+              )}
             </div>
           </h4>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2 max-h-[400px] overflow-y-auto pr-1">

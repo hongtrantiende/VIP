@@ -17,6 +17,7 @@ import {
 import { toast } from "sonner";
 import { updateNovel } from "@/lib/hooks";
 import { type Novel } from "@/lib/db";
+import { useDictMeta } from "@/lib/hooks/use-dict-entries";
 import { cn } from "@/lib/utils";
 import { ImagePicker } from "@/components/ui/image-picker";
 import { PlusIcon, XIcon, CheckIcon } from "lucide-react";
@@ -67,6 +68,15 @@ export function EditNovelDialog({
   const [activeDictSources, setActiveDictSources] = useState<string[]>(novel.activeDictSources ?? []);
   const [coverImage, setCoverImage] = useState<string | undefined>(novel.coverImage);
   const [saving, setSaving] = useState(false);
+
+  const dictMeta = useDictMeta();
+  const dynamicSources = dictMeta 
+    ? Object.keys(dictMeta.sources).filter(s => 
+        !["vietphrase", "names", "names2", "phienam", "luatnhan"].includes(s) &&
+        !GENRE_DICTS.includes(s)
+      ) 
+    : [];
+  const allGenreSources = [...GENRE_DICTS, ...dynamicSources];
 
   // Sync state when dialog opens
   useEffect(() => {
@@ -214,7 +224,7 @@ export function EditNovelDialog({
                 Các từ điển này sẽ được ưu tiên đè lên VietPhrase chung để xưng hô và thuật ngữ chuẩn theo thể loại.
               </p>
               <div className="flex flex-wrap gap-1.5">
-                {GENRE_DICTS.map((src) => {
+                {allGenreSources.map((src) => {
                   const isActive = activeDictSources.includes(src);
                   return (
                     <button
@@ -235,7 +245,7 @@ export function EditNovelDialog({
                       )}
                     >
                       {isActive && <CheckIcon className="size-3" />}
-                      {GENRE_LABELS[src]}
+                      {GENRE_LABELS[src] || src}
                     </button>
                   );
                 })}
