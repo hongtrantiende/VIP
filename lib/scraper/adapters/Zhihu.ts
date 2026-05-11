@@ -104,9 +104,28 @@ export const ZhihuAdapter: SiteAdapter = {
     
     let textContent = "";
 
-    if (contentEl) {
+    let targetEl = contentEl;
+
+    if (!targetEl) {
+      // Fallback: Tìm thẻ div có nhiều thẻ p nhất
+      const allDivs = doc.querySelectorAll("div");
+      let maxPCount = 0;
+      let bestDiv: Element | null = null;
+      for (const div of Array.from(allDivs)) {
+        const pCount = div.querySelectorAll("p").length;
+        if (pCount > maxPCount) {
+          maxPCount = pCount;
+          bestDiv = div;
+        }
+      }
+      if (bestDiv && maxPCount > 0) {
+        targetEl = bestDiv;
+      }
+    }
+
+    if (targetEl) {
       // Create a clone to avoid mutating the document
-      const clone = contentEl.cloneNode(true) as Element;
+      const clone = targetEl.cloneNode(true) as Element;
       
       // Replace <br> with newlines
       const brs = clone.querySelectorAll("br");
