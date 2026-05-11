@@ -138,7 +138,9 @@ export default function ScraperLibraryPage() {
       const adapter = detectAdapter(url);
       if (!adapter) throw new Error("Không tìm thấy adapter cho URL này");
 
-      const { html, timedOut } = await extensionFetch(url);
+      const { html, timedOut } = await extensionFetch(url, {
+        waitSelector: adapter.novelWaitSelector,
+      });
       if (timedOut) throw new Error("Timeout khi lấy thông tin truyện");
 
       setScannedCount(0);

@@ -9,6 +9,8 @@ export interface SiteAdapter {
   urlPattern: RegExp;
   /** CSS selector to wait for before extracting chapter HTML (AJAX content) */
   chapterWaitSelector?: string;
+  /** CSS selector to wait for before extracting novel index HTML (AJAX chapter lists) */
+  novelWaitSelector?: string;
   /** CSS selector to click after page load to trigger content loading */
   chapterClickSelector?: string;
   /** Minimum delay (in ms) per chapter fetch. Defaults to 7000ms if not specified. */

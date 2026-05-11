@@ -17,6 +17,7 @@ export const STVAdapter: SiteAdapter = {
   name: "STV",
   group: "vn",
   urlPattern: /sangtacviet\.\w+/,
+  novelWaitSelector: "a.listchapitem",
   chapterWaitSelector: "#content-container .contentbox",
   chapterClickSelector: "#content-container .contentbox",
 
