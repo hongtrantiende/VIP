@@ -83,7 +83,7 @@ export default function ConvertPage() {
   const store = useTrainingStore();
   const qtReady = useQTEngineReady();
   const convertSettings = useConvertSettings();
-  
+
   const { input = "", setInput } = store;
   const [qtOut, setQtOut] = useState("");
   const activeTab = store.activeTab;
@@ -91,7 +91,7 @@ export default function ConvertPage() {
   const [activeDictSources, setActiveDictSources] = useState<string[]>([]);
   const [editMode, setEditMode] = useState(false);
   const [isConvertingQT, setIsConvertingQT] = useState(false);
-  
+
   // Library selection state — persisted in store
   const novels = useNovels();
   const selectedNovelId = store.selectedNovelId;
@@ -151,7 +151,7 @@ export default function ConvertPage() {
   // AI Training state
   const aiProviders = useAIProviders();
   const availableProviders = useMemo(() => aiProviders?.filter(p => p.isActive && p.providerType !== "webgpu") || [], [aiProviders]);
-  
+
   // Use persisted extractedTerms from store
   const extractedTerms = store.extractedTerms;
   const totalSyncedWords = store.totalSyncedWords;
@@ -161,13 +161,13 @@ export default function ConvertPage() {
   const workerConfigs = store.workerConfigs;
 
   // Build WorkerState[] for UI from persisted configs
-  const workers: WorkerState[] = useMemo(() => 
+  const workers: WorkerState[] = useMemo(() =>
     workerConfigs.map(wc => ({
       ...wc,
       isProcessing: false,
       currentChunk: "",
     }))
-  , [workerConfigs]);
+    , [workerConfigs]);
 
   const setWorkers = useCallback((updater: (prev: WorkerState[]) => WorkerState[]) => {
     // Apply updater to get new state, then extract just config fields to store
@@ -209,7 +209,7 @@ export default function ConvertPage() {
       setQtOut("");
       return;
     }
-    
+
     let isMounted = true;
     setIsConvertingQT(true);
     convertText(debouncedInput, {
@@ -259,8 +259,8 @@ export default function ConvertPage() {
       const genres = (curr.genre || "global").split(",").map(s => s.trim().toLowerCase()).filter(Boolean);
       const c = curr.category || "tuvung";
       const mappedCat = ["names", "names2", "phienam", "luatnhan", "tuvung", "ngucanh", "vietphrase"].includes(c) ? c : "tuvung";
-      
-      const effectiveGenres = mappedCat === "vietphrase" ? ["global"] : genres;
+
+      const effectiveGenres = genres;
 
       for (const g of effectiveGenres) {
         let mappedGenre = g === "global" ? "core" : g;
@@ -274,13 +274,13 @@ export default function ConvertPage() {
     let totalSaved = 0;
     const supabase = createClient();
     const { data: { user } } = await supabase.auth.getUser();
-    
+
     for (const [targetSource, terms] of Object.entries(grouped)) {
       const savedCount = await appendToDictSource(targetSource as DictSource, terms.map(t => ({ chinese: t.chinese, vietnamese: t.vietnamese })));
-      
+
       if (savedCount > 0) {
         totalSaved += savedCount;
-        
+
         // Auto-upload to Supabase — read from dictCache (fast) instead of dictEntries (slow)
         if (user) {
           try {
@@ -301,6 +301,53 @@ export default function ConvertPage() {
         }
       }
     }
+    // ─── LƯU DATASET (JSONL) THEO THỂ LOẠI ───
+    const datasetByGenre: Record<string, string[]> = {};
+    
+    for (const t of suggestions) {
+      if (!t.context_zh || (!t.context_vi_after && !t.vietnamese)) continue;
+      
+      const genres = (t.genre || "global").split(",").map(s => s.trim().toLowerCase()).filter(Boolean);
+      
+      const line = JSON.stringify({
+        messages: [
+          { role: "system", content: "Bạn là hệ thống dịch thuật tiếng Trung sang tiếng Việt chuyên nghiệp." },
+          { role: "user", content: t.context_zh },
+          { role: "assistant", content: t.context_vi_after || t.context_zh.replace(t.chinese, t.vietnamese) }
+        ]
+      });
+
+      for (const g of genres) {
+        let mappedGenre = g === "global" ? "core" : g;
+        const dsKey = `${mappedGenre}_dataset`;
+        if (!datasetByGenre[dsKey]) datasetByGenre[dsKey] = [];
+        datasetByGenre[dsKey].push(line);
+      }
+    }
+
+    for (const [dsKey, lines] of Object.entries(datasetByGenre)) {
+      const cached = await db.dictCache.get(dsKey as any);
+      const oldText = cached?.rawText ? cached.rawText.trimEnd() + "\n" : "";
+      const newText = oldText + lines.join("\n") + "\n";
+      
+      const uniqueLines = Array.from(new Set(newText.split("\n").filter(Boolean))).join("\n") + "\n";
+      await db.dictCache.put({ source: dsKey as any, rawText: uniqueLines });
+      
+      if (user) {
+        try {
+          const { error } = await supabase.storage
+            .from("dictionaries")
+            .upload(`datasets/${dsKey}.jsonl`, uniqueLines, {
+              contentType: 'application/jsonl',
+              upsert: true,
+            });
+          if (error) throw error;
+        } catch (err: any) {
+          console.error(`Lỗi tải lên dataset ${dsKey}:`, err.message || err);
+        }
+      }
+    }
+
     if (totalSaved > 0) {
       store.addSyncedWords(totalSaved);
       toast.success(`Đã lưu tự động ${totalSaved} từ vào từ điển và đồng bộ lên server.`);
@@ -313,7 +360,7 @@ export default function ConvertPage() {
     const workerConfigs: TrainingWorkerConfig[] = workers
       .filter(w => w.providerId && w.modelId)
       .map(w => ({ id: w.id, providerId: w.providerId, modelId: w.modelId }));
-    
+
     configureTraining({
       workers: workerConfigs,
       autoSave,
@@ -370,7 +417,7 @@ export default function ConvertPage() {
                   Bắt đầu Cuốn chiếu Song song (15 dòng/Worker)
                 </Button>
               )}
-              
+
               <div className="flex items-center gap-2 border-l pl-2 ml-2">
                 <Switch id="auto-save" checked={autoSave} onCheckedChange={setAutoSave} />
                 <Label htmlFor="auto-save" className="text-xs">Tự động Lưu</Label>
@@ -382,7 +429,7 @@ export default function ConvertPage() {
             {isConvertingQT && activeTab === "qt" && (
               <LoaderIcon className="size-4 animate-spin text-muted-foreground mr-2" />
             )}
-            
+
             <Button variant="outline" size="sm" onClick={() => fileInputRef.current?.click()}>
               <FileUpIcon className="mr-1.5 size-3.5" /> Nhập File txt
             </Button>
@@ -403,7 +450,7 @@ export default function ConvertPage() {
                 </>
               )}
             </TabsList>
-            
+
             {activeTab === "train" && (
               <div className="flex items-center gap-2 mr-2 flex-wrap">
                 <LibraryIcon className="size-3.5 text-muted-foreground shrink-0" />
@@ -417,7 +464,7 @@ export default function ConvertPage() {
                     ))}
                   </SelectContent>
                 </Select>
-                
+
                 {selectedNovelId && (
                   <Select value={selectedChapterId} onValueChange={setSelectedChapterId} disabled={isQueueRunning}>
                     <SelectTrigger className="h-7 text-xs w-[120px]">
@@ -432,7 +479,7 @@ export default function ConvertPage() {
                 )}
 
                 <div className="h-4 w-px bg-border mx-1 hidden sm:block" />
-                
+
                 <Popover>
                   <PopoverTrigger asChild>
                     <Button variant="outline" size="xs" disabled={isQueueRunning} className="h-7 text-xs bg-emerald-500/5 border-emerald-500/20 text-emerald-700">
@@ -477,7 +524,7 @@ export default function ConvertPage() {
                 </Popover>
               </div>
             )}
-            
+
             <div className="text-[10px] text-muted-foreground mr-2 flex items-center gap-2">
               {activeTab === "qt" && (
                 <Popover>
@@ -511,7 +558,7 @@ export default function ConvertPage() {
                   </PopoverContent>
                 </Popover>
               )}
-              
+
               {activeTab === "qt" && (
                 <Popover>
                   <PopoverTrigger asChild>
@@ -540,7 +587,7 @@ export default function ConvertPage() {
             rightLabel="Từ điển QT (Tự động cập nhật)"
           />
         )}
-        
+
         {activeTab === "train" && (
           <div className="flex flex-col gap-4 h-[calc(100vh-200px)] min-h-[500px] overflow-y-auto pr-2 pb-10">
             <div className="flex flex-col rounded-xl border bg-background shadow-sm overflow-hidden shrink-0">
@@ -563,18 +610,18 @@ export default function ConvertPage() {
               <div className="flex items-center justify-between">
                 <h3 className="font-semibold text-sm text-muted-foreground pl-1">Công nhân AI (Workers)</h3>
                 <div className="flex items-center gap-2">
-                  <Button 
-                    variant="outline" 
-                    size="xs" 
+                  <Button
+                    variant="outline"
+                    size="xs"
                     className="h-6 text-[10px]"
                     disabled={isQueueRunning || workerConfigs.length >= 5}
                     onClick={() => store.setWorkerConfigs([...workerConfigs, { id: workerConfigs.length + 1, providerId: workerConfigs[0]?.providerId || "", modelId: workerConfigs[0]?.modelId || "" }])}
                   >
                     + Thêm luồng
                   </Button>
-                  <Button 
-                    variant="outline" 
-                    size="xs" 
+                  <Button
+                    variant="outline"
+                    size="xs"
                     className="h-6 text-[10px]"
                     disabled={isQueueRunning || workerConfigs.length <= 1}
                     onClick={() => store.setWorkerConfigs(workerConfigs.slice(0, -1))}
@@ -586,9 +633,9 @@ export default function ConvertPage() {
               </div>
               <div className="flex flex-col gap-2">
                 {displayWorkers.map((worker) => (
-                  <WorkerCard 
-                    key={worker.id} 
-                    worker={worker} 
+                  <WorkerCard
+                    key={worker.id}
+                    worker={worker}
                     availableProviders={availableProviders}
                     onUpdate={(updates) => setWorkers(prev => prev.map(w => w.id === worker.id ? { ...w, ...updates } : w))}
                   />
@@ -607,6 +654,75 @@ export default function ConvertPage() {
                   <Button size="xs" variant="secondary" onClick={() => processAutoSave(extractedTerms)}>Lưu toàn bộ</Button>
                 )}
                 {extractedTerms.length > 0 && (
+                  <Button size="xs" variant="outline" className="border-blue-200 bg-blue-50 text-blue-700 hover:bg-blue-100" onClick={async () => {
+                    const datasetByGenre: Record<string, string[]> = {};
+                    
+                    for (const t of extractedTerms) {
+                      if (!t.context_zh || (!t.context_vi_after && !t.vietnamese)) continue;
+                      
+                      const genres = (t.genre || "global").split(",").map(s => s.trim().toLowerCase()).filter(Boolean);
+                      
+                      const line = JSON.stringify({
+                        messages: [
+                          { role: "system", content: "Bạn là hệ thống dịch thuật tiếng Trung sang tiếng Việt chuyên nghiệp." },
+                          { role: "user", content: t.context_zh },
+                          { role: "assistant", content: t.context_vi_after || t.context_zh.replace(t.chinese, t.vietnamese) }
+                        ]
+                      });
+
+                      for (const g of genres) {
+                        let mappedGenre = g === "global" ? "core" : g;
+                        const dsKey = `${mappedGenre}_dataset`;
+                        if (!datasetByGenre[dsKey]) datasetByGenre[dsKey] = [];
+                        datasetByGenre[dsKey].push(line);
+                      }
+                    }
+
+                    if (Object.keys(datasetByGenre).length === 0) {
+                      toast.error("Không có đủ câu ngữ cảnh để tạo dataset");
+                      return;
+                    }
+                    
+                    const supabase = createClient();
+                    const { data: { user } } = await supabase.auth.getUser();
+
+                    for (const [dsKey, lines] of Object.entries(datasetByGenre)) {
+                      const textLines = Array.from(new Set(lines)).join("\n");
+                      
+                      // 1. Tải về máy
+                      const blob = new Blob([textLines], { type: "application/jsonl" });
+                      const url = URL.createObjectURL(blob);
+                      const a = document.createElement("a");
+                      a.href = url;
+                      const filename = `${dsKey}-${Date.now()}.jsonl`;
+                      a.download = filename;
+                      a.click();
+                      
+                      // 2. Upload lên Supabase
+                      if (user) {
+                        try {
+                          const { error } = await supabase.storage
+                            .from("dictionaries")
+                            .upload(`datasets/${dsKey}.jsonl`, blob, {
+                              contentType: 'application/jsonl',
+                              upsert: true,
+                            });
+                          if (error) throw error;
+                        } catch (err: any) {
+                          console.error(err);
+                          toast.error(`Lỗi khi tải lên Supabase (${dsKey}): ` + (err.message || ""));
+                        }
+                      }
+                    }
+                    
+                    if (user) {
+                      toast.success("Đã tải Dataset và sao lưu lên Supabase Cloud!");
+                    } else {
+                      toast.success("Đã tải Dataset về máy (Chưa đăng nhập nên không lưu Cloud)");
+                    }
+                  }}>Tải & Lưu Dataset (JSONL)</Button>
+                )}
+                {extractedTerms.length > 0 && (
                   <Button size="xs" variant="outline" onClick={() => {
                     const seen = new Set<string>();
                     const deduped = extractedTerms.filter(t => {
@@ -620,7 +736,7 @@ export default function ConvertPage() {
                   }}>Lọc trùng ({extractedTerms.length - new Set(extractedTerms.map(t => t.chinese)).size})</Button>
                 )}
                 {extractedTerms.length > 0 && (
-                  <Button size="xs" variant="ghost" className="text-destructive hover:text-destructive" onClick={() => { if(confirm('Xóa toàn bộ kết quả đã train?')) store.setExtractedTerms([]); }}>Xóa tất cả</Button>
+                  <Button size="xs" variant="ghost" className="text-destructive hover:text-destructive" onClick={() => { if (confirm('Xóa toàn bộ kết quả đã train?')) store.setExtractedTerms([]); }}>Xóa tất cả</Button>
                 )}
               </div>
             </div>
@@ -644,17 +760,17 @@ export default function ConvertPage() {
 
 // ─── Subcomponents ─────────────────────────────────────────────────────────────
 
-function WorkerCard({ 
-  worker, 
-  availableProviders, 
-  onUpdate 
-}: { 
-  worker: WorkerState, 
+function WorkerCard({
+  worker,
+  availableProviders,
+  onUpdate
+}: {
+  worker: WorkerState,
   availableProviders: ReturnType<typeof useAIProviders>,
-  onUpdate: (u: Partial<WorkerState>) => void 
+  onUpdate: (u: Partial<WorkerState>) => void
 }) {
   const models = useAIModels(worker.providerId);
-  
+
   useEffect(() => {
     if (models && models.length > 0 && !worker.modelId) {
       onUpdate({ modelId: models[0].modelId });
@@ -668,7 +784,7 @@ function WorkerCard({
         W{worker.id}
         {worker.isProcessing && <LoaderIcon className="size-3 animate-spin mt-1" />}
       </div>
-      
+
       <div className="p-3 border-r bg-background flex flex-col justify-center gap-2 w-[220px] shrink-0">
         <Select value={worker.providerId} onValueChange={v => onUpdate({ providerId: v, modelId: "" })} disabled={worker.isProcessing}>
           <SelectTrigger className="h-7 px-2 text-[11px]">
@@ -680,7 +796,7 @@ function WorkerCard({
             ))}
           </SelectContent>
         </Select>
-        
+
         <Select value={worker.modelId} onValueChange={v => onUpdate({ modelId: v })} disabled={!models?.length || worker.isProcessing}>
           <SelectTrigger className="h-7 px-2 text-[11px]">
             <SelectValue placeholder="Model" />
@@ -712,19 +828,19 @@ const ITEMS_PER_PAGE = 20;
 
 function GroupedExtractionList({ terms, onRemove, isAdmin }: { terms: TrainingSuggestion[], onRemove: (term: TrainingSuggestion) => void, isAdmin?: boolean }) {
   const [expandedGroups, setExpandedGroups] = useState<Set<string>>(new Set());
-  
+
   const grouped = useMemo(() => terms.reduce((acc, curr) => {
     const genres = (curr.genre || "global").split(",").map(s => s.trim().toLowerCase()).filter(Boolean);
     const c = curr.category || "tuvung";
     const mappedCat = ["names", "names2", "phienam", "luatnhan", "tuvung", "ngucanh", "vietphrase"].includes(c) ? c : "tuvung";
-    
-    const effectiveGenres = mappedCat === "vietphrase" ? ["global"] : genres;
+
+    const effectiveGenres = genres;
 
     for (const g of effectiveGenres) {
       const mappedGenre = g === "global" ? "core" : g;
       const key = `${mappedGenre}_${mappedCat}`;
       if (!acc[key]) acc[key] = [];
-      acc[key].push({...curr, genre: g});
+      acc[key].push({ ...curr, genre: g });
     }
     return acc;
   }, {} as Record<string, TrainingSuggestion[]>), [terms]);
@@ -747,46 +863,46 @@ function GroupedExtractionList({ terms, onRemove, isAdmin }: { terms: TrainingSu
         const isExpanded = expandedGroups.has(targetSource);
         const visibleItems = isExpanded ? items : items.slice(0, ITEMS_PER_PAGE);
         const hasMore = items.length > ITEMS_PER_PAGE && !isExpanded;
-        
+
         return (
-        <div key={targetSource} className="space-y-2 bg-background border p-4 rounded-xl shadow-sm">
-          <h4 className="font-bold text-[13px] text-primary border-b pb-2 uppercase flex justify-between items-center flex-wrap gap-1">
-            <div className="flex items-center gap-2">
-              <span>{label}</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <Badge variant="secondary" className="font-mono">{items.length} từ mới</Badge>
-              {isAdmin && (
-                <Button size="xs" variant="outline" className="h-5 px-2 text-[10px]" onClick={() => handleDownloadDict(targetSource)}>
-                  Tải Kho Từ Điển (.txt)
-                </Button>
+          <div key={targetSource} className="space-y-2 bg-background border p-4 rounded-xl shadow-sm">
+            <h4 className="font-bold text-[13px] text-primary border-b pb-2 uppercase flex justify-between items-center flex-wrap gap-1">
+              <div className="flex items-center gap-2">
+                <span>{label}</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <Badge variant="secondary" className="font-mono">{items.length} từ mới</Badge>
+                {isAdmin && (
+                  <Button size="xs" variant="outline" className="h-5 px-2 text-[10px]" onClick={() => handleDownloadDict(targetSource)}>
+                    Tải Kho Từ Điển (.txt)
+                  </Button>
+                )}
+              </div>
+            </h4>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2 max-h-[400px] overflow-y-auto pr-1">
+              {visibleItems.map((term, idx) => (
+                <div key={`${term.chinese}-${idx}`} className="flex flex-col gap-1.5 p-2 bg-muted/20 rounded-md border hover:border-emerald-500/50 transition-colors">
+                  <div className="flex items-center justify-between">
+                    <Badge variant="outline" className="text-[9px] px-1.5 py-0 h-4 bg-background">{term.category}</Badge>
+                    <span className="text-[9px] text-muted-foreground italic truncate max-w-[120px]">{term.context_zh}</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <span className="font-mono font-bold text-sm text-foreground/90">{term.chinese}</span>
+                    <ArrowRightLeftIcon className="size-3 text-muted-foreground/50 shrink-0" />
+                    <span className="font-medium text-emerald-600 text-sm truncate">{term.vietnamese}</span>
+                  </div>
+                </div>
+              ))}
+              {hasMore && (
+                <button
+                  onClick={() => setExpandedGroups(prev => { const n = new Set(prev); n.add(targetSource); return n; })}
+                  className="col-span-full text-xs text-primary hover:text-primary/80 py-2 border border-dashed rounded-md hover:bg-primary/5 transition-colors"
+                >
+                  Xem thêm {items.length - ITEMS_PER_PAGE} từ nữa...
+                </button>
               )}
             </div>
-          </h4>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2 max-h-[400px] overflow-y-auto pr-1">
-            {visibleItems.map((term, idx) => (
-               <div key={`${term.chinese}-${idx}`} className="flex flex-col gap-1.5 p-2 bg-muted/20 rounded-md border hover:border-emerald-500/50 transition-colors">
-                 <div className="flex items-center justify-between">
-                   <Badge variant="outline" className="text-[9px] px-1.5 py-0 h-4 bg-background">{term.category}</Badge>
-                   <span className="text-[9px] text-muted-foreground italic truncate max-w-[120px]">{term.context_zh}</span>
-                 </div>
-                 <div className="flex items-center gap-2">
-                   <span className="font-mono font-bold text-sm text-foreground/90">{term.chinese}</span>
-                   <ArrowRightLeftIcon className="size-3 text-muted-foreground/50 shrink-0" />
-                   <span className="font-medium text-emerald-600 text-sm truncate">{term.vietnamese}</span>
-                 </div>
-               </div>
-            ))}
-            {hasMore && (
-              <button
-                onClick={() => setExpandedGroups(prev => { const n = new Set(prev); n.add(targetSource); return n; })}
-                className="col-span-full text-xs text-primary hover:text-primary/80 py-2 border border-dashed rounded-md hover:bg-primary/5 transition-colors"
-              >
-                Xem thêm {items.length - ITEMS_PER_PAGE} từ nữa...
-              </button>
-            )}
           </div>
-        </div>
         );
       })}
     </div>

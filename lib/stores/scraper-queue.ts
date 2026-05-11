@@ -7,6 +7,8 @@ import { stripHtml, countWords } from "../utils";
 import type { ChapterLink, SiteAdapter } from "../scraper/types";
 import { toast } from "sonner";
 
+import { createCustomAdapter, type CustomScraperConfig } from "../scraper/adapters/Universal";
+
 /** Minimal server-side adapter placeholder */
 const SERVER_ADAPTER: SiteAdapter = {
   name: "Server",
@@ -21,6 +23,7 @@ export interface ScraperJob {
   url: string;
   coverImage?: string;
   adapter: SiteAdapter;
+  customConfig?: CustomScraperConfig;
   chaptersToScrape: ChapterLink[];
   progress: { completed: number; total: number; current: string };
   status: "pending" | "scraping" | "paused" | "done" | "error";
@@ -44,7 +47,8 @@ interface ScraperQueueState {
     chapters: ChapterLink[],
     delayMs: number,
     coverImage?: string,
-    adapterName?: string
+    adapterName?: string,
+    customConfig?: CustomScraperConfig
   ) => void;
   removeJob: (id: string) => void;
   pauseJob: (id: string) => void;
@@ -69,10 +73,12 @@ export const useScraperQueueStore = create<ScraperQueueState>()(
       setFetchingInfo: (info) => set({ fetchingInfo: info }),
       setMinimized: (min) => set({ isOverlayMinimized: min }),
 
-  addJob: async (novelId, title, url, chapters, delayMs, coverImage, adapterName) => {
+  addJob: async (novelId, title, url, chapters, delayMs, coverImage, adapterName, customConfig) => {
     // Determine the adapter to use
     let adapter;
-    if (adapterName === "Server") {
+    if (customConfig) {
+      adapter = createCustomAdapter(customConfig);
+    } else if (adapterName === "Server") {
       adapter = SERVER_ADAPTER;
     } else {
       adapter = detectAdapter(url) || SERVER_ADAPTER;
@@ -98,6 +104,7 @@ export const useScraperQueueStore = create<ScraperQueueState>()(
       url,
       coverImage,
       adapter,
+      customConfig,
       chaptersToScrape: newChapters,
       progress: { completed: 0, total: newChapters.length, current: "Đang đợi..." },
       status: "pending",
@@ -511,7 +518,7 @@ export const useScraperQueueStore = create<ScraperQueueState>()(
         if (state) {
           const rehydratedJobs: Record<string, ScraperJob> = {};
           for (const [id, job] of Object.entries(state.jobs as Record<string, any>)) {
-            const adapter = detectAdapter(job.url) || (job.adapter?.name === "Server" ? SERVER_ADAPTER : null);
+            const adapter = job.customConfig ? createCustomAdapter(job.customConfig) : (detectAdapter(job.url) || (job.adapter?.name === "Server" ? SERVER_ADAPTER : null));
             if (!adapter) continue; // Skip if adapter is missing or invalid
 
             rehydratedJobs[id] = {

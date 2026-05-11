@@ -189,6 +189,20 @@ export function DictionaryManagement({ compact }: { compact?: boolean }) {
 
   const [scopeFilter, setScopeFilter] = useState<"all" | "global" | "local">("all");
 
+  const datasetMeta = useLiveQuery(async () => {
+    const meta: Record<string, number> = {};
+    for (const g of DICT_GENRES) {
+      const source = `${g}_dataset`;
+      const cached = await db.dictCache.get(source as any);
+      if (cached?.rawText) {
+        meta[source] = cached.rawText.split("\n").filter(Boolean).length;
+      } else {
+        meta[source] = 0;
+      }
+    }
+    return meta;
+  }, []);
+
   // Filter entries
   const filteredEntries = (globalEntries ?? [])
     .filter((e) => {
@@ -1162,6 +1176,110 @@ export function DictionaryManagement({ compact }: { compact?: boolean }) {
               </TabsContent>
             ))}
           </Tabs>
+        </CardContent>
+      </Card>
+
+      {/* Dataset Management */}
+      <Card>
+        <CardHeader>
+          <div className="flex items-center justify-between">
+            <div>
+              <CardTitle className="flex items-center gap-2">
+                <BotIcon className="size-4" />
+                Datasets huấn luyện AI (JSONL)
+              </CardTitle>
+              <CardDescription>
+                Tập dữ liệu câu văn mẫu chất lượng cao phân theo thể loại (được sinh tự động khi train)
+              </CardDescription>
+            </div>
+          </div>
+        </CardHeader>
+        <CardContent>
+           <div className="rounded-md border">
+              <Table>
+                <TableHeader>
+                  <TableRow>
+                    <TableHead className="w-[200px]">Thể loại</TableHead>
+                    <TableHead>Tên file</TableHead>
+                    <TableHead className="text-right">Số câu (dòng)</TableHead>
+                    <TableHead className="w-[100px]" />
+                  </TableRow>
+                </TableHeader>
+                <TableBody>
+                  {DICT_GENRES.map((genre) => {
+                     const source = `${genre}_dataset`;
+                     const count = datasetMeta?.[source] || 0;
+                     if (count === 0) return null;
+                     return (
+                        <TableRow key={source}>
+                          <TableCell className="font-medium text-xs">
+                             {GENRE_LABELS[genre]}
+                          </TableCell>
+                          <TableCell className="text-muted-foreground text-[10px]">
+                             datasets/{source}.jsonl
+                          </TableCell>
+                          <TableCell className="text-right">
+                             <Badge variant="secondary">{count.toLocaleString()}</Badge>
+                          </TableCell>
+                          <TableCell>
+                             <div className="flex justify-end gap-1">
+                                <Button
+                                  variant="ghost"
+                                  size="icon-sm"
+                                  onClick={async () => {
+                                     const cached = await db.dictCache.get(source as any);
+                                     if (!cached?.rawText) return;
+                                     const blob = new Blob([cached.rawText], { type: "application/jsonl" });
+                                     const url = URL.createObjectURL(blob);
+                                     const a = document.createElement("a");
+                                     a.href = url;
+                                     a.download = `${source}.jsonl`;
+                                     a.click();
+                                  }}
+                                  title="Tải xuống máy"
+                                >
+                                  <DownloadIcon className="size-3.5" />
+                                </Button>
+                                <Button
+                                  variant="ghost"
+                                  size="icon-sm"
+                                  onClick={async () => {
+                                     const cached = await db.dictCache.get(source as any);
+                                     if (!cached?.rawText) return;
+                                     const supabase = createClient();
+                                     const { data: { user } } = await supabase.auth.getUser();
+                                     if (!user) {
+                                       toast.error("Vui lòng đăng nhập");
+                                       return;
+                                     }
+                                     const toastId = toast.loading(`Đang tải lên Supabase...`);
+                                     const { error } = await supabase.storage.from("dictionaries").upload(`datasets/${source}.jsonl`, cached.rawText, { contentType: 'application/jsonl', upsert: true });
+                                     if (error) {
+                                       toast.error(`Lỗi: ${error.message}`, { id: toastId });
+                                     } else {
+                                       toast.success(`Đã tải Dataset lên Supabase!`, { id: toastId });
+                                     }
+                                  }}
+                                  title="Tải lên Kho chung"
+                                  className="text-violet-500 hover:text-violet-600"
+                                >
+                                  <CloudUploadIcon className="size-3.5" />
+                                </Button>
+                             </div>
+                          </TableCell>
+                        </TableRow>
+                     );
+                  })}
+                  {!datasetMeta || Object.values(datasetMeta).every(c => c === 0) ? (
+                     <TableRow>
+                        <TableCell colSpan={4} className="text-center text-muted-foreground text-xs py-4">
+                           Chưa có dataset nào được lưu trên máy này.
+                        </TableCell>
+                     </TableRow>
+                  ) : null}
+                </TableBody>
+              </Table>
+           </div>
         </CardContent>
       </Card>
 

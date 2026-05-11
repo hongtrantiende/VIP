@@ -8,20 +8,25 @@ const delay = (ms) => new Promise((r) => setTimeout(r, ms));
 let hiddenTabId = null;
 
 async function getOrCreateHiddenTab() {
-  if (hiddenTabId !== null) {
+  const data = await chrome.storage.local.get("hiddenTabId");
+  let hTabId = data.hiddenTabId;
+  
+  if (hTabId) {
     try {
-      const tab = await chrome.tabs.get(hiddenTabId);
+      const tab = await chrome.tabs.get(hTabId);
       if (tab) return tab.id;
     } catch {
-      hiddenTabId = null;
+      hTabId = null;
     }
   }
+  
   // Create a background tab (active: false) instead of a window for Kiwi Browser
   const tab = await chrome.tabs.create({
     url: "about:blank",
     active: false,
   });
-  hiddenTabId = tab.id;
+  
+  await chrome.storage.local.set({ hiddenTabId: tab.id });
   return tab.id;
 }
 

@@ -13,8 +13,9 @@ import { db } from "@/lib/db";
 import { detectAdapter } from "@/lib/scraper/adapters";
 import { extensionFetch, checkExtensionStatus, getExtensionId, setExtensionId } from "@/lib/scraper/extension-bridge";
 import { serverAnalyzeNovel } from "@/lib/scraper/server-scraper-client";
+import { createCustomAdapter, type CustomScraperConfig } from "@/lib/scraper/adapters/Universal";
 import { useScraperQueueStore } from "@/lib/stores/scraper-queue";
-import { SettingsIcon, BookIcon, PauseIcon, PlayIcon, TrashIcon, DownloadIcon, CheckCircleIcon, GlobeIcon, ZapIcon, LoaderIcon } from "lucide-react";
+import { SettingsIcon, BookIcon, PauseIcon, PlayIcon, TrashIcon, DownloadIcon, CheckCircleIcon, GlobeIcon, ZapIcon, LoaderIcon, SlidersHorizontalIcon } from "lucide-react";
 
 /** URLs that can be fetched server-side (no extension needed) */
 const SERVER_FETCH_DOMAINS = [
@@ -59,6 +60,10 @@ export default function ScraperLibraryPage() {
   const [allNovels, setAllNovels] = useState<any[]>([]);
   const [selectedNovelId, setSelectedNovelId] = useState<string>("new");
   const [existingChaptersCount, setExistingChaptersCount] = useState<number>(0);
+
+  // Custom Scraper Config
+  const [showCustomConfig, setShowCustomConfig] = useState(false);
+  const [customConfig, setCustomConfig] = useState<CustomScraperConfig>({});
 
   // Check if running on localhost
   const isLocalhost = typeof window !== "undefined" && (window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1");
@@ -135,19 +140,33 @@ export default function ScraperLibraryPage() {
       }
 
       // ── Extension-based fetch (existing behavior) ──
-      const adapter = detectAdapter(url);
-      if (!adapter) throw new Error("Không tìm thấy adapter cho URL này");
+      let adapter;
+      let novelInfo;
+      let html = "";
+      
+      if (showCustomConfig) {
+        adapter = createCustomAdapter(customConfig);
+        const res = await extensionFetch(url, { waitSelector: customConfig.waitSelector });
+        if (res.timedOut) throw new Error("Timeout khi lấy thông tin truyện (Custom)");
+        html = res.html;
+        novelInfo = await adapter.getNovelInfo(html, url, (count) => {
+          setScannedCount(count);
+          useScraperQueueStore.getState().setFetchingInfo({ visible: true, url, count });
+        });
+      } else {
+        adapter = detectAdapter(url);
+        if (!adapter) throw new Error("Không tìm thấy adapter cho URL này");
 
-      const { html, timedOut } = await extensionFetch(url, {
-        waitSelector: adapter.novelWaitSelector,
-      });
-      if (timedOut) throw new Error("Timeout khi lấy thông tin truyện");
+        const res = await extensionFetch(url, { waitSelector: adapter.novelWaitSelector });
+        if (res.timedOut) throw new Error("Timeout khi lấy thông tin truyện");
+        html = res.html;
+        novelInfo = await adapter.getNovelInfo(html, url, (count) => {
+          setScannedCount(count);
+          useScraperQueueStore.getState().setFetchingInfo({ visible: true, url, count });
+        });
+      }
 
       setScannedCount(0);
-      const novelInfo = await adapter.getNovelInfo(html, url, (count) => {
-        setScannedCount(count);
-        useScraperQueueStore.getState().setFetchingInfo({ visible: true, url, count });
-      });
       if (novelInfo.chapters.length === 0) throw new Error("Không tìm thấy chương nào");
 
       setScrapedNovelInfo(novelInfo);
@@ -225,7 +244,8 @@ export default function ScraperLibraryPage() {
         selectedChapters, 
         chapterDelay * 1000, 
         scrapedNovelInfo.coverImage,
-        currentAdapter?.name
+        currentAdapter?.name,
+        showCustomConfig ? customConfig : undefined
       );
       setUrl("");
       toast.success(`Đã thêm ${selectedChapters.length} chương (từ ${chapterFrom} đến ${toIdx}) vào thư viện tải!`);
@@ -250,9 +270,12 @@ export default function ScraperLibraryPage() {
             onChange={e => setUrl(e.target.value)}
             onKeyDown={e => e.key === "Enter" && handleAdd()}
           />
+          <Button variant="outline" size="icon" onClick={() => setShowCustomConfig(!showCustomConfig)} title="Tùy chỉnh Universal Scraper">
+            <SlidersHorizontalIcon className="h-4 w-4" />
+          </Button>
           <Button onClick={handleAdd} disabled={isAdding || !url.trim()} className="min-w-[140px]">
-            {isAdding ? <LoaderIcon className="w-4 h-4 animate-spin mr-2" /> : (isServerFetchable(url) ? <ZapIcon className="w-4 h-4 mr-2" /> : <DownloadIcon className="w-4 h-4 mr-2" />)}
-            {isAdding ? (scannedCount > 0 ? `Đã quét: ${scannedCount}` : "⚡ Đang tải...") : (isServerFetchable(url) ? "⚡ Tải nhanh" : "Thêm")}
+            {isAdding ? <LoaderIcon className="w-4 h-4 animate-spin mr-2" /> : (isServerFetchable(url) && !showCustomConfig ? <ZapIcon className="w-4 h-4 mr-2" /> : <DownloadIcon className="w-4 h-4 mr-2" />)}
+            {isAdding ? (scannedCount > 0 ? `Đã quét: ${scannedCount}` : "⚡ Đang tải...") : (isServerFetchable(url) && !showCustomConfig ? "⚡ Tải nhanh" : "Thêm")}
           </Button>
           
           <Dialog>
@@ -396,6 +419,41 @@ export default function ScraperLibraryPage() {
           </Dialog>
         </div>
       </div>
+
+      {showCustomConfig && (
+        <div className="mb-8 p-4 bg-muted/30 border rounded-lg grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="col-span-1 md:col-span-2 mb-2">
+            <h3 className="font-semibold flex items-center">
+              <SlidersHorizontalIcon className="w-4 h-4 mr-2" /> Tùy chỉnh Universal Scraper (CSS Selectors)
+            </h3>
+            <p className="text-xs text-muted-foreground mt-1">Để trống các trường nếu bạn muốn hệ thống tự động nhận dạng. Nhập CSS Selector để lấy dữ liệu chính xác nhất.</p>
+          </div>
+          <div>
+            <Label className="text-xs">Chờ phần tử (Wait Selector)</Label>
+            <Input className="mt-1 h-8 text-sm" placeholder="VD: .list-chapter" value={customConfig.waitSelector || ""} onChange={e => setCustomConfig({...customConfig, waitSelector: e.target.value})} />
+          </div>
+          <div>
+            <Label className="text-xs">Danh sách chương (Link &lt;a&gt;)</Label>
+            <Input className="mt-1 h-8 text-sm" placeholder="VD: .list-chapter li a" value={customConfig.chapterListSelector || ""} onChange={e => setCustomConfig({...customConfig, chapterListSelector: e.target.value})} />
+          </div>
+          <div>
+            <Label className="text-xs">Tiêu đề Truyện</Label>
+            <Input className="mt-1 h-8 text-sm" placeholder="VD: h1.title" value={customConfig.titleSelector || ""} onChange={e => setCustomConfig({...customConfig, titleSelector: e.target.value})} />
+          </div>
+          <div>
+            <Label className="text-xs">Ảnh bìa (Thẻ &lt;img&gt;)</Label>
+            <Input className="mt-1 h-8 text-sm" placeholder="VD: .book-info img" value={customConfig.coverSelector || ""} onChange={e => setCustomConfig({...customConfig, coverSelector: e.target.value})} />
+          </div>
+          <div>
+            <Label className="text-xs">Tiêu đề Chương</Label>
+            <Input className="mt-1 h-8 text-sm" placeholder="VD: h2.chapter-title" value={customConfig.chapterTitleSelector || ""} onChange={e => setCustomConfig({...customConfig, chapterTitleSelector: e.target.value})} />
+          </div>
+          <div>
+            <Label className="text-xs">Nội dung Chương</Label>
+            <Input className="mt-1 h-8 text-sm" placeholder="VD: #chapter-content" value={customConfig.contentSelector || ""} onChange={e => setCustomConfig({...customConfig, contentSelector: e.target.value})} />
+          </div>
+        </div>
+      )}
 
       <div className="flex justify-between items-center mb-4 mt-8">
          <h2 className="text-xl font-semibold">Đang tải & Hoàn thành</h2>
