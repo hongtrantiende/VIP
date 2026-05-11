@@ -380,7 +380,7 @@ export async function exportDictSource(source: DictSource): Promise<void> {
       return;
     }
   }
-  downloadTextFile(`${source}.txt`, text);
+  throw new Error(`Could not export dict source: ${source}`);
 }
 
 function downloadTextFile(filename: string, content: string) {
