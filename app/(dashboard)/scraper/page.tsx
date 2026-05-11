@@ -55,6 +55,11 @@ export default function ScraperLibraryPage() {
   const [chapterFrom, setChapterFrom] = useState(1);
   const [chapterTo, setChapterTo] = useState(0);
 
+  // Novel merge selection
+  const [allNovels, setAllNovels] = useState<any[]>([]);
+  const [selectedNovelId, setSelectedNovelId] = useState<string>("new");
+  const [existingChaptersCount, setExistingChaptersCount] = useState<number>(0);
+
   // Check if running on localhost
   const isLocalhost = typeof window !== "undefined" && (window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1");
 
@@ -109,6 +114,21 @@ export default function ScraperLibraryPage() {
         setChapterFrom(1);
         setChapterTo(adapterInfo.chapters.length);
         setIsShowingChapters(false);
+
+        // Fetch all novels and check existing
+        const novels = await db.novels.toArray();
+        setAllNovels(novels);
+        let existingNovel = await db.novels.where("sourceUrl").equals(url).first();
+        if (!existingNovel) existingNovel = await db.novels.where("title").equals(novelInfo.title).first();
+        if (existingNovel) {
+          setSelectedNovelId(existingNovel.id);
+          const count = await db.chapters.where("novelId").equals(existingNovel.id).count();
+          setExistingChaptersCount(count);
+        } else {
+          setSelectedNovelId("new");
+          setExistingChaptersCount(0);
+        }
+
         setIsConfirmOpen(true);
         toast.success(`⚡ Server: Tìm thấy ${novelInfo.chapters.length} chương!`);
         return;
@@ -134,6 +154,21 @@ export default function ScraperLibraryPage() {
       setChapterFrom(1);
       setChapterTo(novelInfo.chapters.length);
       setIsShowingChapters(false);
+
+      // Fetch all novels and check existing
+      const novels = await db.novels.toArray();
+      setAllNovels(novels);
+      let existingNovel = await db.novels.where("sourceUrl").equals(url).first();
+      if (!existingNovel) existingNovel = await db.novels.where("title").equals(novelInfo.title).first();
+      if (existingNovel) {
+        setSelectedNovelId(existingNovel.id);
+        const count = await db.chapters.where("novelId").equals(existingNovel.id).count();
+        setExistingChaptersCount(count);
+      } else {
+        setSelectedNovelId("new");
+        setExistingChaptersCount(0);
+      }
+
       setIsConfirmOpen(true);
     } catch (error: any) {
       toast.error(error.message || "Có lỗi xảy ra");
@@ -160,18 +195,9 @@ export default function ScraperLibraryPage() {
         return;
       }
 
-      let novelId;
-      // Check if novel already exists in library (by sourceUrl OR title)
-      let existingNovel = await db.novels.where("sourceUrl").equals(url).first();
-      if (!existingNovel) {
-        // Also try matching by title
-        existingNovel = await db.novels.where("title").equals(scrapedNovelInfo.title).first();
-      }
-
-      if (existingNovel) {
-        novelId = existingNovel.id;
-        toast.info(`📚 Truyện "${existingNovel.title}" đã có trong thư viện — sẽ thêm chương mới vào.`);
-      } else {
+      let novelId = selectedNovelId;
+      
+      if (selectedNovelId === "new") {
         novelId = crypto.randomUUID();
         const now = new Date();
         await db.novels.add({
@@ -183,6 +209,11 @@ export default function ScraperLibraryPage() {
           createdAt: now,
           updatedAt: now,
         });
+      } else {
+        const target = await db.novels.get(selectedNovelId);
+        if (target) {
+           toast.info(`📚 Đang thêm chương vào truyện "${target.title}"`);
+        }
       }
 
       useScraperQueueStore.getState().addJob(
@@ -497,7 +528,38 @@ export default function ScraperLibraryPage() {
                     <p className="text-xs text-muted-foreground">Tổng: <strong>{Math.max(0, chapterTo - chapterFrom + 1)}</strong> chương sẽ được tải (trong {scrapedNovelInfo?.chapters?.length || 0} chương)</p>
                  </div>
 
-                 <div className="space-y-2 mt-2">
+                 <div className="space-y-3 mt-4">
+                    <Label className="font-semibold">📚 Gộp vào thư viện</Label>
+                    <div className="flex flex-col gap-2">
+                       <select 
+                         className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+                         value={selectedNovelId}
+                         onChange={async (e) => {
+                           const val = e.target.value;
+                           setSelectedNovelId(val);
+                           if (val !== "new") {
+                             const count = await db.chapters.where("novelId").equals(val).count();
+                             setExistingChaptersCount(count);
+                           } else {
+                             setExistingChaptersCount(0);
+                           }
+                         }}
+                       >
+                         <option value="new">➕ Tạo bộ truyện mới</option>
+                         {allNovels.map(n => (
+                           <option key={n.id} value={n.id}>{n.title}</option>
+                         ))}
+                       </select>
+                       {selectedNovelId !== "new" && (
+                         <div className="bg-blue-50/50 dark:bg-blue-950/20 text-blue-700 dark:text-blue-300 p-2.5 rounded border border-blue-100 dark:border-blue-900/30 text-xs">
+                           Truyện này đã có <strong>{existingChaptersCount}</strong> chương trong thư viện. 
+                           <br/>Các chương trùng tên sẽ được tự động bỏ qua khi tải để tránh bị lặp.
+                         </div>
+                       )}
+                    </div>
+                 </div>
+
+                 <div className="space-y-2 mt-4 pt-2 border-t">
                     <Label>Thời gian chờ mỗi chương (giây)</Label>
                     <Input type="number" min={0} value={chapterDelay} onChange={e => setChapterDelay(Number(e.target.value))} />
                     <p className="text-xs text-muted-foreground">Mặc định là 7 giây để tránh bị website chặn IP.</p>
