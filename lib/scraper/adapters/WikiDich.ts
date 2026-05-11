@@ -8,7 +8,7 @@ export const WikiDichAdapter: SiteAdapter = {
   chapterWaitSelector: "#bookContentBody",
   minDelayMs: 5000,
 
-  getNovelInfo(html, url) {
+  async getNovelInfo(html, url) {
     const doc = new DOMParser().parseFromString(html, "text/html");
     const base = new URL(url);
 
@@ -40,19 +40,62 @@ export const WikiDichAdapter: SiteAdapter = {
     }
 
     // ── Chapters ──
-    // <li class="chapter-name"><a class="truncate" href="...">Chương X ...</a></li>
-    const chapterLinks = Array.from(doc.querySelectorAll("li.chapter-name a.truncate, li.chapter-name a"));
-    
-    const chapters = chapterLinks.map((el, index) => {
-      const title = el.textContent?.trim() || `Chương ${index + 1}`;
-      const href = el.getAttribute("href");
-      return {
-        id: href || `chapter-${index}`,
-        title,
-        url: href ? new URL(href, base).toString() : url,
-        order: index,
-      };
-    }).filter(c => c.url !== url); // Filter out non-chapter links
+    const chapters: any[] = [];
+    const extractChapters = (document: Document) => {
+      const chapterLinks = Array.from(document.querySelectorAll("li.chapter-name a.truncate, li.chapter-name a"));
+      chapterLinks.forEach((el) => {
+        const title = el.textContent?.trim() || `Chương ${chapters.length + 1}`;
+        const href = el.getAttribute("href");
+        if (href) {
+          const absUrl = new URL(href, base).toString();
+          if (absUrl !== url && !chapters.some(c => c.url === absUrl)) {
+            chapters.push({
+              id: href,
+              title,
+              url: absUrl,
+              order: chapters.length,
+            });
+          }
+        }
+      });
+    };
+
+    extractChapters(doc);
+
+    // ── Pagination ──
+    // WikiDich pagination looks like: <ul class="pagination"> <li><a href="?start=50">2</a></li> ...
+    const paginationLinks = Array.from(doc.querySelectorAll(".pagination li a, ul.pagination li a"));
+    const pageUrls = new Set<string>();
+    paginationLinks.forEach(a => {
+      const href = a.getAttribute("href");
+      if (href && !href.startsWith("javascript")) {
+        pageUrls.add(new URL(href, base).toString());
+      }
+    });
+
+    if (pageUrls.size > 0) {
+      console.log(`[WikiDich] Found ${pageUrls.size} pagination links. Fetching...`);
+      try {
+        const { extensionFetch } = await import("../extension-bridge");
+        for (const pageUrl of Array.from(pageUrls)) {
+          // Skip if we already fetched this URL or it's the current URL
+          if (pageUrl === url) continue;
+          
+          try {
+            console.log(`[WikiDich] Fetching chapter list page: ${pageUrl}`);
+            const res = await extensionFetch(pageUrl, { timeout: 10000 });
+            if (res.html) {
+              const pDoc = new DOMParser().parseFromString(res.html, "text/html");
+              extractChapters(pDoc);
+            }
+          } catch (e) {
+            console.warn(`[WikiDich] Failed to fetch page ${pageUrl}:`, e);
+          }
+        }
+      } catch (e) {
+        console.warn("[WikiDich] Could not import extensionFetch for pagination", e);
+      }
+    }
 
     return { title, author, description, chapters, coverImage };
   },
