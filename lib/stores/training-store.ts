@@ -27,6 +27,7 @@ interface TrainingState {
   selectedNovelId: string;
   selectedChapterId: string;
   targetGenres: string[];
+  totalSyncedWords: number;
   
   // Actions
   setInput: (input: string) => void;
@@ -47,6 +48,7 @@ interface TrainingState {
   setSelectedNovelId: (id: string) => void;
   setSelectedChapterId: (id: string) => void;
   setTargetGenres: (genres: string[]) => void;
+  addSyncedWords: (count: number) => void;
   resetTraining: () => void;
 }
 
@@ -72,6 +74,7 @@ export const useTrainingStore = create<TrainingState>()(
       selectedNovelId: "",
       selectedChapterId: "",
       targetGenres: ["auto"],
+      totalSyncedWords: 0,
 
       setInput: (input) => set({ input }),
       setOutput: (output) => set({ output }),
@@ -102,6 +105,7 @@ export const useTrainingStore = create<TrainingState>()(
       setSelectedNovelId: (id) => set({ selectedNovelId: id }),
       setSelectedChapterId: (id) => set({ selectedChapterId: id }),
       setTargetGenres: (genres) => set({ targetGenres: genres }),
+      addSyncedWords: (count) => set((state) => ({ totalSyncedWords: (state.totalSyncedWords || 0) + count })),
       resetTraining: () => set({
         isTraining: false,
         lastProcessedIndex: 0,
@@ -126,6 +130,7 @@ export const useTrainingStore = create<TrainingState>()(
         selectedNovelId: state.selectedNovelId,
         selectedChapterId: state.selectedChapterId,
         targetGenres: state.targetGenres,
+        totalSyncedWords: state.totalSyncedWords,
       }),
       migrate: (persistedState: any, version: number) => {
         const defaultWorkers = Array.from({ length: 5 }).map((_, i) => ({

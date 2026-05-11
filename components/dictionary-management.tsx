@@ -1006,7 +1006,7 @@ export function DictionaryManagement({ compact }: { compact?: boolean }) {
               </CardTitle>
               <CardDescription>
                 {dictMeta
-                  ? `Cập nhật ${formatRelativeTime(new Date(dictMeta.loadedAt))}`
+                  ? `Cập nhật ${formatRelativeTime(new Date(dictMeta.loadedAt))} - Tổng cộng: ${Object.values(dictMeta.sources).reduce((a, b) => a + b, 0).toLocaleString()} từ`
                   : "Chưa tải"}
               </CardDescription>
             </div>

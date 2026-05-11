@@ -150,6 +150,7 @@ async function processAutoSaveLocal(suggestions: TrainingSuggestion[]) {
   
   if (totalSaved > 0) {
     toast.success(`Đã lưu ${totalSaved} từ vào từ điển.`);
+    useTrainingStore.getState().addSyncedWords(totalSaved);
     // Schedule deferred cloud upload
     scheduleSupabaseUpload();
   }

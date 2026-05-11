@@ -154,6 +154,7 @@ export default function ConvertPage() {
   
   // Use persisted extractedTerms from store
   const extractedTerms = store.extractedTerms;
+  const totalSyncedWords = store.totalSyncedWords;
   const [autoSave, setAutoSave] = useState(true);
 
   // Worker configs are persisted in the store
@@ -301,6 +302,7 @@ export default function ConvertPage() {
       }
     }
     if (totalSaved > 0) {
+      store.addSyncedWords(totalSaved);
       toast.success(`Đã lưu tự động ${totalSaved} từ vào từ điển và đồng bộ lên server.`);
     }
   };
@@ -397,7 +399,7 @@ export default function ConvertPage() {
               {isAdmin && (
                 <>
                   <TabsTrigger value="train" className="text-xs data-[state=active]:bg-primary/10 data-[state=active]:text-primary">Train từ điển (Đa luồng)</TabsTrigger>
-                  <TabsTrigger value="results" className="text-xs data-[state=active]:bg-primary/10 data-[state=active]:text-primary">Kết quả Từ điển Đã Lưu</TabsTrigger>
+                  <TabsTrigger value="results" className="text-xs data-[state=active]:bg-primary/10 data-[state=active]:text-primary">Kết quả ({totalSyncedWords} đã lưu)</TabsTrigger>
                 </>
               )}
             </TabsList>
@@ -599,7 +601,7 @@ export default function ConvertPage() {
         {activeTab === "results" && (
           <div className="flex flex-col rounded-xl border bg-background shadow-sm overflow-hidden h-[calc(100vh-200px)] min-h-[500px]">
             <div className="bg-muted px-4 py-2 font-semibold text-sm border-b shrink-0 flex justify-between items-center">
-              <span>Các Thể Loại Từ Điển Đã Train ({extractedTerms.length} từ)</span>
+              <span>Hàng đợi chờ lưu ({extractedTerms.length} từ) | Đã lưu & đồng bộ: {totalSyncedWords} từ</span>
               <div className="flex items-center gap-2">
                 {extractedTerms.length > 0 && !autoSave && (
                   <Button size="xs" variant="secondary" onClick={() => processAutoSave(extractedTerms)}>Lưu toàn bộ</Button>
