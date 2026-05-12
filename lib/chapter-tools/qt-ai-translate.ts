@@ -357,6 +357,69 @@ export async function runQtAiTranslate(opts: QtAiTranslateOptions): Promise<void
   // Fetch initial name dictionary
   let nameDict = await getMergedNameDict(novelId);
 
+  // ── Auto Initial Dictionary Scan (Khởi động từ điển) ──
+  if (nameDict.length === 0) {
+    try {
+      console.log("[Cold Start] Từ điển trống, tiến hành quét 2 chương đầu...");
+      const first2Chapters = allChapters.slice(0, 2);
+      if (first2Chapters.length > 0) {
+        let combinedText = "";
+        for (const c of first2Chapters) {
+          const chapSc = allScenes.filter(s => s.chapterId === c.id).sort((a,b)=>a.order-b.order);
+          const contents = await Promise.all(chapSc.map(s => getOriginalContent(s.id)));
+          combinedText += contents.join("\n\n") + "\n\n";
+        }
+        
+        // Cắt khoảng 4000 ký tự đầu để tránh tốn quá nhiều token
+        const cleaned = cleanGarbageLines(combinedText).slice(0, 4000); 
+
+        if (cleaned.trim()) {
+          const prompt = `Trích xuất toàn bộ tên riêng (nhân vật chính/phụ, địa danh, môn phái) từ văn bản tiếng Trung sau. 
+BẮT BUỘC trả về đúng định dạng JSON Array: [{"chinese": "tên tiếng Trung", "vietnamese": "Hán Việt", "dictType": "names"}]. 
+CẤM DỊCH NỘI DUNG. CHỈ TRẢ VỀ JSON, KHÔNG GIẢI THÍCH GÌ THÊM.
+
+[VĂN BẢN]
+${cleaned}`;
+          
+          const result = await generateText({
+            model,
+            system: "Bạn là chuyên gia trích xuất thực thể tiếng Trung. Luôn trả về mảng JSON hợp lệ.",
+            prompt,
+            abortSignal: signal,
+          });
+
+          // Parse JSON
+          const rawText = result.text.replace(/```json/gi, "").replace(/```/g, "").trim();
+          try {
+            // Find JSON array in the text
+            const match = rawText.match(/\[\s*\{[\s\S]*\}\s*\]/);
+            if (match) {
+              const arr = JSON.parse(match[0]);
+              if (Array.isArray(arr) && arr.length > 0) {
+                const entriesWithCategory = arr.map((entry: any) => ({
+                  chinese: entry.chinese || "",
+                  vietnamese: entry.vietnamese || "",
+                  category: entry.dictType === "names" ? "nhân vật" : "khác",
+                  dictType: entry.dictType || "names"
+                })).filter(e => e.chinese && e.vietnamese);
+                
+                if (entriesWithCategory.length > 0) {
+                  await bulkImportNameEntries(novelId, entriesWithCategory, "khác", "skip");
+                  nameDict = await getMergedNameDict(novelId);
+                  console.log(`[Cold Start] Đã trích xuất ${entriesWithCategory.length} tên vào từ điển.`);
+                }
+              }
+            }
+          } catch(e) {
+            console.warn("[Cold Start] Parse JSON thất bại:", rawText);
+          }
+        }
+      }
+    } catch(e) {
+      console.error("[Cold Start] Lỗi quét từ điển tự động:", e);
+    }
+  }
+
   // Fetch novel's custom translate prompt (from genre scan)
   const novel = await db.novels.get(novelId);
   const novelCustomPrompt = novel?.customTranslatePrompt;
