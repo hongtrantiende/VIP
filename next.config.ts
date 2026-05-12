@@ -19,6 +19,7 @@ const nextConfig: NextConfig = {
   // Optimize images
   images: {
     formats: ["image/avif", "image/webp"],
+    unoptimized: true,
   },
   // Enable gzip/brotli compression
   compress: true,

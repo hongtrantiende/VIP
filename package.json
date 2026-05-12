@@ -6,6 +6,8 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
+    "pages:build": "npx @cloudflare/next-on-pages",
+    "pages:preview": "npm run pages:build && wrangler pages dev .vercel/output/static",
     "start": "next start",
     "lint": "eslint",
     "zip:android": "powershell -Command \"Compress-Archive -Path extension\\* -DestinationPath public\\novel-studio-connector-android.zip -Force\"",
@@ -77,6 +79,7 @@
     "zustand": "^5.0.12"
   },
   "devDependencies": {
+    "@cloudflare/next-on-pages": "^1.13.16",
     "@commitlint/cli": "^20.5.0",
     "@commitlint/config-conventional": "^20.5.0",
     "@tailwindcss/postcss": "^4",
@@ -90,6 +93,7 @@
     "eslint-config-next": "16.2.1",
     "husky": "^9.1.7",
     "tailwindcss": "^4",
-    "typescript": "^5"
+    "typescript": "^5",
+    "wrangler": "^4.90.1"
   }
 }
