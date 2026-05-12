@@ -97,6 +97,7 @@ export default function AdminPage() {
   const toggleFreeMode = async () => {
     const newValue = !freeMode ? "true" : "false";
     const toastId = toast.loading("Đang cập nhật chế độ Free Test...");
+    const supabase = createClient();
     const { error } = await supabase
       .from("app_settings")
       .upsert({ key: "free_mode", value: newValue });
@@ -124,6 +125,7 @@ export default function AdminPage() {
     const newDate = new Date();
     newDate.setDate(newDate.getDate() + days);
 
+    const supabase = createClient();
     const { error } = await supabase
       .from("profiles")
       .update({ vip_until: newDate.toISOString() })
@@ -149,6 +151,7 @@ export default function AdminPage() {
 
     const currentVnDate = new Date(new Date().toLocaleString("en-US", {timeZone: "Asia/Ho_Chi_Minh"})).toDateString();
 
+    const supabase = createClient();
     const { error } = await supabase
       .from("profiles")
       .update({ 
@@ -168,6 +171,7 @@ export default function AdminPage() {
   };
 
   const handleRevokeVip = async (userId: string) => {
+    const supabase = createClient();
     const { error } = await supabase
       .from("profiles")
       .update({ vip_until: null })
