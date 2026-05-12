@@ -20,8 +20,7 @@ import { SettingsIcon, BookIcon, PauseIcon, PlayIcon, TrashIcon, DownloadIcon, C
 /** URLs that can be fetched server-side (no extension needed) */
 const SERVER_FETCH_DOMAINS = [
   "chomered.com",
-  "welove-gourmet.com",
-  "metruyenchu.com.vn"
+  "welove-gourmet.com"
 ];
 
 function isServerFetchable(url: string): boolean {
