@@ -11,12 +11,9 @@ import {
 import { Progress } from "@/components/ui/progress";
 import { Textarea } from "@/components/ui/textarea";
 import { db, type Chapter } from "@/lib/db";
-import {
-  runQtAiTranslate,
-  type HybridTranslateResult,
-  type HybridTranslateError,
-  type PromptType
-} from "@/lib/chapter-tools/qt-ai-translate";
+import { runQtAiTranslate, type PromptType } from "@/lib/chapter-tools/qt-ai-translate";
+import { runHybridTranslate } from "@/lib/chapter-tools/hybrid-translate";
+import type { HybridTranslateResult, HybridTranslateError } from "@/lib/chapter-tools/hybrid-translate";
 import { PromptTunerDialog } from "@/components/novel/prompt-tuner-dialog";
 import { scanNovelStyle } from "@/lib/chapter-tools/scan-novel-style";
 import { useAnalysisSettings } from "@/lib/hooks/use-analysis-settings";
@@ -251,36 +248,66 @@ export function TranslateWorkspaceDialog({
     abortRef.current = controller;
 
     try {
-      await runQtAiTranslate({
-        novelId,
-        chapterIds,
-        model,
-        qtDictSources,
-        promptType,
-        extractDict,
-        signal: controller.signal,
-        delayMs: (settings.translateDelaySeconds ?? 0) * 1000,
+      if (activeTab === "stv-hybrid") {
+        await runHybridTranslate({
+          novelId,
+          chapterIds,
+          model,
+          extractDict,
+          signal: controller.signal,
+          delayMs: (settings.translateDelaySeconds ?? 0) * 1000,
+          onPhase: (_chapterId, phase) => {
+            setCurrentPhase(phase as Phase);
+          },
+          onChapterStart: (_chapterId, title) => {
+            setCurrentChapterTitle(title);
+          },
+          onChapterComplete: (result) => {
+            setResults((prev) => [...prev, result as any]);
+            setProcessedCount((c) => c + 1);
+          },
+          onChapterError: (error) => {
+            setErrors((prev) => [...prev, error as any]);
+            setProcessedCount((c) => c + 1);
+          },
+          onAllComplete: () => {
+            if (!controller.signal.aborted) {
+              setStep("done");
+            }
+          },
+        });
+      } else {
+        await runQtAiTranslate({
+          novelId,
+          chapterIds,
+          model,
+          qtDictSources,
+          promptType,
+          extractDict,
+          signal: controller.signal,
+          delayMs: (settings.translateDelaySeconds ?? 0) * 1000,
 
-        onPhase: (_chapterId, phase) => {
-          setCurrentPhase(phase as Phase);
-        },
-        onChapterStart: (_chapterId, title) => {
-          setCurrentChapterTitle(title);
-        },
-        onChapterComplete: (result) => {
-          setResults((prev) => [...prev, result]);
-          setProcessedCount((c) => c + 1);
-        },
-        onChapterError: (error) => {
-          setErrors((prev) => [...prev, error]);
-          setProcessedCount((c) => c + 1);
-        },
-        onAllComplete: () => {
-          if (!controller.signal.aborted) {
-            setStep("done");
-          }
-        },
-      });
+          onPhase: (_chapterId, phase) => {
+            setCurrentPhase(phase as Phase);
+          },
+          onChapterStart: (_chapterId, title) => {
+            setCurrentChapterTitle(title);
+          },
+          onChapterComplete: (result) => {
+            setResults((prev) => [...prev, result as any]);
+            setProcessedCount((c) => c + 1);
+          },
+          onChapterError: (error) => {
+            setErrors((prev) => [...prev, error as any]);
+            setProcessedCount((c) => c + 1);
+          },
+          onAllComplete: () => {
+            if (!controller.signal.aborted) {
+              setStep("done");
+            }
+          },
+        });
+      }
     } catch (err: any) {
       if (err.name !== "AbortError") {
         toast.error("Lỗi hệ thống: " + err.message);
@@ -322,10 +349,33 @@ export function TranslateWorkspaceDialog({
         {step === "config" && (
           <div className="space-y-4 py-2">
             <Tabs value={activeTab} onValueChange={(val) => { setActiveTab(val); setConfirmMode(null); }} className="w-full">
-              <TabsList className="grid w-full grid-cols-2">
+              <TabsList className="grid w-full grid-cols-3">
                 <TabsTrigger value="hybrid">Gốc + Thô + AI</TabsTrigger>
+                <TabsTrigger value="stv-hybrid">Converter AI</TabsTrigger>
                 <TabsTrigger value="pure-ai">Dịch thuần AI</TabsTrigger>
               </TabsList>
+
+              <TabsContent value="stv-hybrid" className="space-y-4 mt-4">
+                <div className="rounded-lg border border-dashed border-primary/30 bg-primary/5 p-3 space-y-2">
+                  <p className="text-xs font-medium text-primary">Quy trình Converter AI (Dùng dữ liệu từ SangTacViet)</p>
+                  <div className="flex items-center gap-2 text-[11px] text-muted-foreground">
+                    <span className="flex items-center gap-1 rounded bg-emerald-500/10 px-2 py-1 text-emerald-700 dark:text-emerald-400 font-medium">
+                      <BookOpenIcon className="size-3" />
+                      Từ điển STV
+                    </span>
+                    <ArrowRightIcon className="size-3" />
+                    <span className="flex items-center gap-1 rounded bg-blue-500/10 px-2 py-1 text-blue-700 dark:text-blue-400 font-medium">
+                      <SparklesIcon className="size-3" />
+                      AI sửa lỗi
+                    </span>
+                    <ArrowRightIcon className="size-3" />
+                    <span className="text-[10px]">Bản dịch hoàn thiện</span>
+                  </div>
+                  <p className="text-[10px] text-muted-foreground">
+                    Phương pháp này sử dụng API từ điển của SangTacViet để tạo bản dịch thô, sau đó AI sẽ làm mịn và chuẩn hóa lại. Thích hợp cho các truyện chưa có từ điển cục bộ.
+                  </p>
+                </div>
+              </TabsContent>
 
               <TabsContent value="hybrid" className="space-y-4 mt-4">
                 {/* Dict selection */}
@@ -511,7 +561,7 @@ export function TranslateWorkspaceDialog({
             </div>
 
             {/* Action buttons pinned at the bottom depending on active tab */}
-            {activeTab === "hybrid" && (
+            {(activeTab === "hybrid" || activeTab === "stv-hybrid") && (
               <div className="space-y-2 mt-2">
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
                   <Button
@@ -541,9 +591,8 @@ export function TranslateWorkspaceDialog({
               </div>
             )}
 
-            {/* Càng dịch càng hay toggle — visible on both hybrid and pure-ai tabs */}
-            {(activeTab === "hybrid" || activeTab === "pure-ai") && (
-              <label className="flex items-start gap-2 rounded-lg border border-emerald-500/30 bg-emerald-500/5 p-3 cursor-pointer transition-colors hover:bg-emerald-500/10">
+            {/* Càng dịch càng hay toggle — visible on all tabs */}
+            <label className="flex items-start gap-2 rounded-lg border border-emerald-500/30 bg-emerald-500/5 p-3 cursor-pointer transition-colors hover:bg-emerald-500/10">
                 <Checkbox
                   checked={extractDict}
                   onCheckedChange={(checked) => setExtractDict(!!checked)}
@@ -559,7 +608,6 @@ export function TranslateWorkspaceDialog({
                   </p>
                 </div>
               </label>
-            )}
 
             {activeTab === "pure-ai" && (
               <Button

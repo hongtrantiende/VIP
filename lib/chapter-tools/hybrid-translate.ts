@@ -8,7 +8,7 @@
  * AI nhận bản dịch dictionary + bản gốc → chỉ refine, không dịch lại.
  * Tiết kiệm 70-90% token so với full AI translate.
  */
-import { generateText } from "ai";
+import { generateText, streamText } from "ai";
 import type { LanguageModel } from "ai";
 import { db } from "@/lib/db";
 import type { AnalysisSettings, Scene } from "@/lib/db";
@@ -87,6 +87,7 @@ export interface HybridTranslateOptions {
   novelId: string;
   chapterIds: string[];
   model: LanguageModel;
+  extractDict?: boolean;
   signal?: AbortSignal;
   delayMs?: number;
 
@@ -216,6 +217,7 @@ export async function runHybridTranslate(opts: HybridTranslateOptions): Promise<
     novelId,
     chapterIds,
     model,
+    extractDict,
     signal,
     delayMs,
     onPhase,
@@ -260,6 +262,63 @@ export async function runHybridTranslate(opts: HybridTranslateOptions): Promise<
   const novelCustomPrompt = novel?.customTranslatePrompt;
 
   let isFirst = true;
+
+  // ── Auto Initial Dictionary Scan (Khởi động từ điển) ──
+  if (extractDict && nameDict.length === 0 && chapters.length > 0 && !signal?.aborted) {
+    try {
+      console.log("[Cold Start Hybrid] Từ điển trống, tiến hành quét 1 chương đầu...");
+      const firstChapter = chapters[0];
+      const chapSc = scenesByChapter.get(firstChapter.id) ?? [];
+      const contents = await Promise.all(chapSc.map(s => getOriginalContent(s.id)));
+      let combinedText = contents.join("\n\n") + "\n\n";
+      
+      // Cắt khoảng 2500 ký tự đầu để quét cực nhanh
+      const cleaned = cleanGarbageLines(combinedText).slice(0, 2500); 
+
+      if (cleaned.trim()) {
+        const prompt = `Trích xuất toàn bộ tên riêng (nhân vật chính/phụ, địa danh, môn phái) từ văn bản tiếng Trung sau. 
+BẮT BUỘC trả về đúng định dạng JSON Array: [{"chinese": "tên tiếng Trung", "vietnamese": "Hán Việt", "dictType": "names"}]. 
+CẤM DỊCH NỘI DUNG. CHỈ TRẢ VỀ JSON, KHÔNG GIẢI THÍCH GÌ THÊM.
+
+[VĂN BẢN]
+${cleaned}`;
+        
+        onPhase?.(firstChapter.id, "dict"); // Tận dụng UI báo hiệu đang quét từ điển
+        const result = await streamText({
+          model,
+          system: "Bạn là chuyên gia trích xuất thực thể tiếng Trung. Luôn trả về mảng chuỗi dạng JSON (ví dụ: [\"Tên 1\", \"Tên 2\"]). Trích xuất toàn bộ tên riêng, môn phái, địa danh, công pháp xuất hiện trong đoạn văn. KHÔNG trích xuất đại từ nhân xưng, từ thông dụng.",
+          prompt,
+          abortSignal: signal,
+        });
+
+        // Tiêu thụ luồng thay vì dùng generateText (do một số API Proxy không hỗ trợ non-streaming)
+        let rawText = "";
+        for await (const chunk of result.textStream) {
+          rawText += chunk;
+        }
+        
+        rawText = rawText.replace(/```json/gi, "").replace(/```/g, "").trim();
+        try {
+          const match = rawText.match(/\[\s*\{[\s\S]*\}\s*\]/);
+          if (match) {
+            const arr = JSON.parse(match[0]);
+            if (Array.isArray(arr) && arr.length > 0) {
+              const validNames = arr.filter((n: any) => n.chinese && n.vietnamese && typeof n.chinese === "string");
+              if (validNames.length > 0) {
+                console.log(`[Cold Start Hybrid] Quét được ${validNames.length} từ. Cập nhật vào từ điển truyện...`);
+                await bulkImportNameEntries(novelId, validNames, "khác", "skip");
+                nameDict = await getMergedNameDict(novelId);
+              }
+            }
+          }
+        } catch (e) {
+          console.warn("[Cold Start Hybrid] Lỗi parse JSON từ AI:", e);
+        }
+      }
+    } catch (e) {
+      console.warn("[Cold Start Hybrid] Bỏ qua lỗi quét từ điển ban đầu:", e);
+    }
+  }
 
   for (const chapter of chapters) {
     if (signal?.aborted) break;
@@ -411,7 +470,7 @@ export async function runHybridTranslate(opts: HybridTranslateOptions): Promise<
         parsedTitle = parsed.title;
         
         // Save extracted names to novel dictionary dynamically
-        if (parsed.extractedNames.length > 0) {
+        if (extractDict && parsed.extractedNames.length > 0) {
           try {
             await bulkImportNameEntries(novelId, parsed.extractedNames, "khác", "skip");
             extractedNamesCount = parsed.extractedNames.length;
