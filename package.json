@@ -96,5 +96,8 @@
     "tailwindcss": "^4",
     "typescript": "^5",
     "wrangler": "^4.90.1"
+  },
+  "overrides": {
+    "onnxruntime-node": "npm:empty-npm-package@1.0.0"
   }
 }
