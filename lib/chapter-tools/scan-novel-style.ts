@@ -2,7 +2,7 @@
  * Scan first N chapters to detect genre, style, and translation rules.
  * Simple & focused: only genre + style + banned words. No name extraction.
  */
-import { generateText } from "ai";
+import { streamText } from "ai";
 import type { LanguageModel } from "ai";
 import { db } from "@/lib/db";
 import type { Scene } from "@/lib/db";
@@ -82,14 +82,17 @@ export async function scanNovelStyle(
 
   onProgress?.(`Đang phân tích ${chapterCount} chương...`);
 
-  const result = await generateText({
+  const result = await streamText({
     model,
     system: SCAN_SYSTEM_PROMPT,
     prompt: sampleText,
     abortSignal: signal,
   });
 
-  const text = result.text;
+  let text = "";
+  for await (const chunk of result.textStream) {
+    text += chunk;
+  }
 
   // Parse result
   const startIdx = text.indexOf("---BEGIN---");

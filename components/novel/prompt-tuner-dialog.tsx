@@ -26,7 +26,7 @@ import {
   resolveChapterToolModel,
   getChapterToolModelMissingMessage,
 } from "@/lib/chapter-tools/stream-runner";
-import { generateText } from "ai";
+import { streamText } from "ai";
 import { Loader2Icon, SparklesIcon, SaveIcon, RefreshCwIcon, CheckIcon } from "lucide-react";
 import { useCallback, useState, useEffect, useMemo } from "react";
 import { toast } from "sonner";
@@ -198,13 +198,18 @@ export function PromptTunerDialog({
       const sampleText = parts.join("\n---\n");
 
       // 2. Run AI
-      const result = await generateText({
+      const result = await streamText({
         model,
         system: INITIAL_PROMPT,
         prompt: "MẪU VĂN BẢN TỪ TRUYỆN:\n" + sampleText,
       });
 
-      setGeneratedPrompt(result.text);
+      let fullText = "";
+      for await (const chunk of result.textStream) {
+        fullText += chunk;
+      }
+
+      setGeneratedPrompt(fullText);
       toast.success("Đã phân tích xong!");
     } catch (err: any) {
       toast.error("Lỗi khi tạo prompt: " + err.message);
@@ -229,12 +234,17 @@ Người dùng có góp ý sau để điều chỉnh:
 
 Vui lòng cập nhật lại kết quả phân tích và System Prompt dựa trên góp ý này. Đảm bảo System Prompt vẫn được đặt trong khối code markdown \`\`\`.`;
 
-      const result = await generateText({
+      const result = await streamText({
         model,
         prompt: refinePrompt,
       });
 
-      setGeneratedPrompt(result.text);
+      let fullText = "";
+      for await (const chunk of result.textStream) {
+        fullText += chunk;
+      }
+
+      setGeneratedPrompt(fullText);
       setFeedback("");
       toast.success("Đã cập nhật prompt!");
     } catch (err: any) {

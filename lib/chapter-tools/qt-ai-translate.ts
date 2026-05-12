@@ -8,7 +8,7 @@
  * AI nhận bản dịch dictionary + bản gốc → chỉ refine, không dịch lại.
  * Tiết kiệm 70-90% token so với full AI translate.
  */
-import { generateText } from "ai";
+import { streamText } from "ai";
 import type { LanguageModel } from "ai";
 import { db } from "@/lib/db";
 import type { AnalysisSettings, Scene, DictSource } from "@/lib/db";
@@ -381,15 +381,20 @@ CẤM DỊCH NỘI DUNG. CHỈ TRẢ VỀ JSON, KHÔNG GIẢI THÍCH GÌ THÊM.
 [VĂN BẢN]
 ${cleaned}`;
           
-          const result = await generateText({
+          const result = await streamText({
             model,
-            system: "Bạn là chuyên gia trích xuất thực thể tiếng Trung. Luôn trả về mảng JSON hợp lệ.",
+            system: "Bạn là chuyên gia trích xuất thực thể tiếng Trung. Luôn trả về mảng chuỗi dạng JSON (ví dụ: [\"Tên 1\", \"Tên 2\"]). Trích xuất toàn bộ tên riêng, môn phái, địa danh, công pháp xuất hiện trong đoạn văn. KHÔNG trích xuất đại từ nhân xưng, từ thông dụng.",
             prompt,
             abortSignal: signal,
           });
 
-          // Parse JSON
-          const rawText = result.text.replace(/```json/gi, "").replace(/```/g, "").trim();
+          // Tiêu thụ luồng thay vì dùng generateText (do một số API Proxy không hỗ trợ non-streaming)
+          let rawText = "";
+          for await (const chunk of result.textStream) {
+            rawText += chunk;
+          }
+          
+          rawText = rawText.replace(/```json/gi, "").replace(/```/g, "").trim();
           try {
             // Find JSON array in the text
             const match = rawText.match(/\[\s*\{[\s\S]*\}\s*\]/);
@@ -556,14 +561,18 @@ ${cleaned}`;
         if (signal?.aborted) break;
 
         try {
-          const result = await generateText({
+          const result = await streamText({
             model,
             system: systemPrompt,
             prompt: userPrompt,
             abortSignal: signal,
           });
 
-          accumulated = result.text ?? "";
+          let fullText = "";
+          for await (const chunk of result.textStream) {
+            fullText += chunk;
+          }
+          accumulated = fullText;
           lastError = null;
           break;
         } catch (err) {
