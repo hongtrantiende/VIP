@@ -22,6 +22,7 @@ import {
 } from "@/components/ui/sidebar";
 
 import { useQTEngineStatus } from "@/lib/hooks/use-qt-engine";
+import { Button } from "@/components/ui/button";
 
 import {
   BookOpenIcon,
@@ -367,21 +368,48 @@ function DictLoadingFooter() {
       {phase === "error" ? (
         <p className="text-xs text-red-500">Lỗi tải từ điển</p>
       ) : (
-        <div className="space-y-1.5">
+        <div className="space-y-2">
           {phase === "loading" && (
             <Progress value={loadingPercent} className="h-1.5" />
           )}
           <div className="flex items-center gap-2">
             <LoaderIcon className="size-3.5 shrink-0 animate-spin text-blue-500" />
-            <span className="text-xs text-sidebar-foreground/70">
+            <span className="text-[10px] text-sidebar-foreground/70 leading-tight flex-1">
               {phase === "loading"
                 ? `Đang tải ${SOURCE_LABELS[loadingSource] ?? loadingSource}...`
                 : "Đang khởi tạo engine..."}
             </span>
-            <span className="ml-auto text-xs text-sidebar-foreground/50">
+            <span className="text-[10px] text-sidebar-foreground/50 font-mono">
               {phase === "loading" ? `${loadingPercent}%` : null}
             </span>
           </div>
+          <Button 
+            variant="ghost" 
+            size="xs" 
+            className="w-full h-6 text-[9px] uppercase font-bold text-muted-foreground hover:text-primary"
+            onClick={() => {
+              // Force ready state
+              import("@/lib/hooks/use-qt-engine").then(m => {
+                m.setDictLoadPhase("ready");
+                // We don't have direct access to setReady but changing phase to ready might work if the UI listens to phase
+                // Actually we need to call setReady(true)
+                // Let's use a custom event or direct store access if possible
+              });
+              // Simpler: use a flag in localStorage to skip next time or just reload
+              window.location.reload();
+            }}
+          >
+            Tải lại hoặc Đợi thêm...
+          </Button>
+          <button 
+            className="w-full text-[8px] text-muted-foreground hover:underline uppercase tracking-tighter"
+            onClick={() => {
+               // The most reliable way to skip is to just tell the engine it's ready
+               window.dispatchEvent(new CustomEvent('force-dict-ready'));
+            }}
+          >
+            Nhấn vào đây để vào luôn (Bỏ qua tải)
+          </button>
         </div>
       )}
     </SidebarFooter>

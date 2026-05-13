@@ -141,6 +141,13 @@ function handleMessage(event: MessageEvent<QTWorkerResponse>) {
   }
 }
 
+if (typeof window !== "undefined") {
+  window.addEventListener("force-dict-ready", () => {
+    useQTEngineStore.getState().setReady(true);
+    isReady = true;
+  });
+}
+
 // ─── Public API ──────────────────────────────────────────────
 
 /** Internal: create worker and send dict data */

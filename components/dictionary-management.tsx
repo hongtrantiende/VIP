@@ -356,75 +356,74 @@ export function DictionaryManagement({ compact }: { compact?: boolean }) {
     }
   };
 
-  const handleUploadToCloudPersonal = async (source: DictSource) => {
-    const toastId = toast.loading(`Đang lưu ${DICT_SOURCE_LABELS[source]} vào Kho cá nhân (Admin Drive)...`);
+  const handleSyncToWarehouse = async (source: DictSource) => {
+    const toastId = toast.loading(`Đang hòa nhập ${DICT_SOURCE_LABELS[source]} vào Kho chung...`);
     try {
       const cached = await db.dictCache.get(source);
-      const text = cached?.rawText || "";
+      const localText = cached?.rawText || "";
       const filename = `${source}.txt`;
 
-      const res = await fetch('/api/dict/cloud-storage', {
+      // 1. Tải bản hiện tại trên Kho về để gộp (Sử dụng action mới)
+      const dlParams = new URLSearchParams({ action: 'download-dict', filename });
+      const dlRes = await fetch(`/api/dict/cloud-storage?${dlParams.toString()}`, { method: 'POST' });
+      
+      let finalContent = localText;
+      if (dlRes.ok) {
+        const cloudText = await dlRes.text();
+        const localEntries = parseDictLines(localText);
+        const cloudEntries = parseDictLines(cloudText);
+        
+        const map = new Map<string, Set<string>>();
+        
+        const addToMap = (e: { chinese: string; vietnamese: string }) => {
+          const key = e.chinese.trim();
+          const meanings = e.vietnamese.split("/").map(m => m.trim()).filter(Boolean);
+          if (!map.has(key)) map.set(key, new Set());
+          meanings.forEach(m => map.get(key)!.add(m));
+        };
+
+        cloudEntries.forEach(addToMap);
+        localEntries.forEach(addToMap);
+        
+        finalContent = Array.from(map.entries())
+          .map(([k, vs]) => `${k}=${Array.from(vs).join("/")}`)
+          .join("\n");
+      }
+
+      // 2. Đẩy bản đã gộp lên lại (Sử dụng action mới)
+      const upParams = new URLSearchParams({ action: 'upload-dict', filename });
+      const upRes = await fetch(`/api/dict/cloud-storage?${upParams.toString()}`, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          action: 'upload',
-          novelId: selectedNovelId,
-          filename,
-          content: text
-        })
+        body: finalContent,
       });
 
-      const data = await res.json();
-      if (!res.ok) throw new Error(data.error || "Lỗi lưu kho");
-      toast.success(`Đã sao lưu ${filename} vào Kho cá nhân an toàn!`, { id: toastId });
+      if (!upRes.ok) {
+        const errText = await upRes.text().catch(() => "");
+        throw new Error(`Upload thất bại (${upRes.status}): ${errText}`);
+      }
+      toast.success(`Đã hòa nhập và cập nhật ${filename} lên Kho chung!`, { id: toastId });
     } catch (err: any) {
       toast.error(`Lỗi: ${err.message}`, { id: toastId });
     }
   };
 
-  const handleDownloadFromCloudPersonal = async (source: DictSource) => {
-    const toastId = toast.loading(`Đang lấy ${DICT_SOURCE_LABELS[source]} từ Kho cá nhân...`);
+  const handleDownloadFromWarehouse = async (source: DictSource) => {
+    const toastId = toast.loading(`Đang lấy ${DICT_SOURCE_LABELS[source]} từ Kho chung...`);
     try {
       const filename = `${source}.txt`;
-      const res = await fetch('/api/dict/cloud-storage', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          action: 'download',
-          novelId: selectedNovelId,
-          filename
-        })
-      });
-
-      const data = await res.json();
-      if (!res.ok) throw new Error(data.error || "Không tìm thấy bản lưu");
+      const params = new URLSearchParams({ action: 'download-dict', filename });
+      const res = await fetch(`/api/dict/cloud-storage?${params.toString()}`, { method: 'POST' });
+      if (!res.ok) throw new Error("Không tìm thấy dữ liệu trên Kho");
       
-      const entries = parseDictLines(data.content);
+      const content = await res.text();
+      const entries = parseDictLines(content);
       const count = await appendToDictSource(source, entries);
-      toast.success(`Đã khôi phục ${count.toLocaleString()} mục từ Kho cá nhân!`, { id: toastId });
+      toast.success(`Đã cập nhật ${count.toLocaleString()} mục mới từ Kho chung!`, { id: toastId });
     } catch (err: any) {
       toast.error(`Lỗi: ${err.message}`, { id: toastId });
     }
   };
 
-  const handleSyncToLocalCode = async (source: DictSource) => {
-    const toastId = toast.loading(`Đang lưu ${source}.txt vào local...`);
-    try {
-      const cached = await db.dictCache.get(source as any);
-      if (!cached?.rawText) throw new Error("Không có dữ liệu trong cache");
-      
-      const res = await fetch("/api/dev/sync-dict", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ source, text: cached.rawText }),
-      });
-      
-      if (!res.ok) throw new Error("Lỗi Server");
-      toast.success("Đã lưu vào mã nguồn thành công!", { id: toastId });
-    } catch (err: any) {
-      toast.error(`Lỗi: ${err.message}`, { id: toastId });
-    }
-  };
 
   const handleUploadAllToSupabase = async () => {
     const supabase = createClient();
@@ -447,7 +446,6 @@ export function DictionaryManagement({ compact }: { compact?: boolean }) {
         
         await Promise.allSettled(
           batch.map(async (source) => {
-            // Read from dictCache (fast) instead of dictEntries (slow)
             const cached = await db.dictCache.get(source);
             if (!cached?.rawText) return;
             const filename = `${source}.txt`;
@@ -461,7 +459,6 @@ export function DictionaryManagement({ compact }: { compact?: boolean }) {
           })
         );
         
-        // Yield to main thread and update progress
         const done = Math.min(i + CONCURRENCY, total);
         const percent = Math.round((done / total) * 100);
         toast.loading(`Đang tải từ điển lên Kho chung (${percent}%)...`, { id: toastId });
@@ -474,70 +471,149 @@ export function DictionaryManagement({ compact }: { compact?: boolean }) {
     }
   };
 
-  const handleDownloadAllFromSupabase = async () => {
-    const toastId = toast.loading("Đang tải từ điển từ Kho chung (0%)...");
+  const handleSyncAllToWarehouse = async () => {
+    if (!isAdmin) return;
+    const toastId = toast.loading("Đang tối ưu và hòa nhập toàn bộ vào Tổng kho 1TB...");
     try {
-      const supabase = createClient();
-      let downloadedCount = 0;
-      let newEntriesCount = 0;
-      
-      // Filter out core_vietphrase
       const sources = ALL_SOURCES;
       const total = sources.length;
-      
-      // Process in parallel batches of 5 to speed up while not overwhelming mobile
+      let successCount = 0;
+      let processedCount = 0;
+
+      // Chạy song song 5 bộ cùng lúc để tăng tốc
       const CONCURRENCY = 5;
+      for (let i = 0; i < total; i += CONCURRENCY) {
+        const batch = sources.slice(i, i + CONCURRENCY);
+        
+        await Promise.allSettled(
+          batch.map(async (source) => {
+            const cached = await db.dictCache.get(source);
+            processedCount++;
+            
+            // Nếu không có dữ liệu local, bỏ qua để tiết kiệm thời gian
+            if (!cached?.rawText || cached.rawText.trim().length === 0) return;
+
+            const filename = `${source}.txt`;
+            const dlParams = new URLSearchParams({ action: 'download-dict', filename });
+            const dlRes = await fetch(`/api/dict/cloud-storage?${dlParams.toString()}`, { method: 'POST' });
+            
+            let finalContent = cached.rawText;
+            if (dlRes.ok) {
+              const cloudText = await dlRes.text();
+              const localEntries = parseDictLines(cached.rawText);
+              const cloudEntries = parseDictLines(cloudText);
+              
+              const map = new Map<string, Set<string>>();
+              const addToMap = (e: { chinese: string; vietnamese: string }) => {
+                const key = e.chinese;
+                const meanings = e.vietnamese.split("/").map(m => m.trim()).filter(Boolean);
+                if (!map.has(key)) map.set(key, new Set());
+                meanings.forEach(m => map.get(key)!.add(m));
+              };
+              cloudEntries.forEach(addToMap);
+              localEntries.forEach(addToMap);
+              
+              finalContent = Array.from(map.entries())
+                .map(([k, vs]) => `${k}=${Array.from(vs).join("/")}`)
+                .join("\n");
+            }
+
+            const upParams = new URLSearchParams({ action: 'upload-dict', filename });
+            const upRes = await fetch(`/api/dict/cloud-storage?${upParams.toString()}`, {
+              method: 'POST',
+              body: finalContent,
+            });
+
+            if (upRes.ok) successCount++;
+          })
+        );
+        
+        toast.loading(`Đang xử lý: ${Math.round((processedCount / total) * 100)}%...`, { id: toastId });
+      }
       
+      toast.success(`Đã hòa nhập xong ${successCount} bộ từ điển lên Tổng kho!`, { id: toastId });
+    } catch (err: any) {
+      toast.error(`Lỗi: ${err.message}`, { id: toastId });
+    }
+  };
+
+  const handleDownloadAllFromWarehouse = async () => {
+    const toastId = toast.loading("Đang tải toàn bộ từ Tổng kho (Siêu tốc)...");
+    try {
+      const sources = ALL_SOURCES;
+      const total = sources.length;
+      let newEntriesCount = 0;
+      let processedCount = 0;
+
+      const CONCURRENCY = 10; // Tải về có thể nhanh hơn nữa
       for (let i = 0; i < total; i += CONCURRENCY) {
         const batch = sources.slice(i, i + CONCURRENCY);
         
         const results = await Promise.allSettled(
           batch.map(async (source) => {
+            processedCount++;
             const filename = `${source}.txt`;
-            const { data: publicUrlData } = supabase.storage
-              .from("dictionaries")
-              .getPublicUrl(filename);
+            const params = new URLSearchParams({ action: 'download-dict', filename });
+            const res = await fetch(`/api/dict/cloud-storage?${params.toString()}`, { method: 'POST' });
+            if (!res.ok) return 0;
             
-            // Dùng CDN cache để tải nhanh hơn
+            const content = await res.text();
+            const entries = parseDictLines(content);
+            return await appendToDictSource(source, entries);
+          })
+        );
+
+        results.forEach(r => {
+          if (r.status === "fulfilled") newEntriesCount += r.value;
+        });
+
+        toast.loading(`Đang tải: ${Math.round((processedCount / total) * 100)}%...`, { id: toastId });
+      }
+      
+      toast.success(`Đã cập nhật ${newEntriesCount.toLocaleString()} mục mới từ Tổng kho!`, { id: toastId });
+    } catch (err: any) {
+      toast.error(`Lỗi: ${err.message}`, { id: toastId });
+    }
+  };
+
+  const handleDownloadAllFromSupabase = async () => {
+    const toastId = toast.loading("Đang tải từ điển từ Kho Cloud (0%)...");
+    try {
+      const supabase = createClient();
+      let downloadedCount = 0;
+      let newEntriesCount = 0;
+      const sources = ALL_SOURCES;
+      const total = sources.length;
+      const CONCURRENCY = 5;
+      
+      for (let i = 0; i < total; i += CONCURRENCY) {
+        const batch = sources.slice(i, i + CONCURRENCY);
+        const results = await Promise.allSettled(
+          batch.map(async (source) => {
+            const filename = `${source}.txt`;
+            const { data: publicUrlData } = supabase.storage.from("dictionaries").getPublicUrl(filename);
             const res = await fetch(publicUrlData.publicUrl);
-            if (!res.ok) return { source, entries: [] as { chinese: string; vietnamese: string }[] };
-            
+            if (!res.ok) return { source, entries: [] };
             const text = await res.text();
-            const entries = parseDictLines(text);
-            return { source, entries };
+            return { source, entries: parseDictLines(text) };
           })
         );
         
-        // Process successful results
         for (const result of results) {
           if (result.status === "fulfilled" && result.value.entries.length > 0) {
             const count = await appendToDictSource(result.value.source, result.value.entries);
             newEntriesCount += count;
             if (count > 0) downloadedCount++;
-
-            if (isAdmin) {
-              const cached = await db.dictCache.get(result.value.source as any);
-              if (cached?.rawText) {
-                await fetch("/api/dev/sync-dict", {
-                  method: "POST",
-                  headers: { "Content-Type": "application/json" },
-                  body: JSON.stringify({ source: result.value.source, text: cached.rawText }),
-                }).catch(() => {});
-              }
-            }
           }
         }
         
-        // Yield to main thread and update progress
         const done = Math.min(i + CONCURRENCY, total);
-        const percent = Math.round((done / total) * 100);
-        toast.loading(`Đang tải từ điển từ Kho chung (${percent}%)...`, { id: toastId });
+        toast.loading(`Đang tải: ${Math.round((done / total) * 100)}%...`, { id: toastId });
         await new Promise(r => setTimeout(r, 0));
       }
-      
-      toast.success(`Đã gộp ${newEntriesCount.toLocaleString()} mục từ ${downloadedCount} bộ từ điển!`, { id: toastId });
+      toast.success(`Đã gộp ${newEntriesCount.toLocaleString()} mục mới!`, { id: toastId });
     } catch (err: any) {
-      toast.error(`Lỗi tải xuống toàn bộ: ${err.message}`, { id: toastId });
+      toast.error(`Lỗi: ${err.message}`, { id: toastId });
     }
   };
 
@@ -578,6 +654,121 @@ export function DictionaryManagement({ compact }: { compact?: boolean }) {
       openImportDialog(entries, `Drive: tu-dien-chung.txt (${entries.length.toLocaleString()} mục)`);
     } catch (err: any) {
       toast.error(`Lỗi: ${err.message}`, { id: toastId });
+    }
+  };
+
+  const handleCleanJunk = async (source: DictSource) => {
+    const cached = await db.dictCache.get(source);
+    if (!cached?.rawText) return;
+
+    const entries = parseDictLines(cached.rawText);
+    const originalCount = entries.length;
+
+    // Bộ lọc rác
+    const cleaned = entries.filter(e => {
+      const cn = e.chinese.trim();
+      const vi = e.vietnamese.trim();
+      if (cn.length <= 1) return false; // Quá ngắn
+      if (cn.toLowerCase() === vi.toLowerCase()) return false; // Giống hệt
+      if (cn.length > 15) return false; // Quá dài
+      if (!/[\u4e00-\u9fa5]/.test(cn)) return false; // Không có chữ Trung
+      return true;
+    });
+
+    const removedCount = originalCount - cleaned.length;
+    if (removedCount === 0) {
+      toast.info("Từ điển này đã rất sạch sẽ rồi!");
+      return;
+    }
+
+    if (!confirm(`Hệ thống tìm thấy ${removedCount} mục rác (quá ngắn, quá dài hoặc dịch lỗi). Bạn có muốn xóa chúng không?`)) return;
+
+    const text = cleaned.map(e => `${e.chinese}=${e.vietnamese}`).join("\n");
+    await db.dictCache.put({ source, rawText: text });
+    await db.dictEntries.where("source").equals(source).delete();
+    
+    // Tạo ID duy nhất cho mỗi mục để tránh lỗi IDBObjectStore DataError
+    const entriesWithIds = cleaned.map(e => ({ 
+      id: crypto.randomUUID(),
+      source,
+      chinese: e.chinese,
+      vietnamese: e.vietnamese
+    }));
+    
+    await db.dictEntries.bulkAdd(entriesWithIds);
+    
+    // Refresh meta bằng cách cập nhật trực tiếp vào DB (useLiveQuery sẽ tự động nhận diện)
+    let meta = await db.dictMeta.get("dict-meta");
+    if (!meta) {
+      meta = { id: "dict-meta", loadedAt: new Date(), sources: {} as Record<DictSource, number> };
+    }
+    meta.sources[source] = cleaned.length;
+    meta.loadedAt = new Date();
+    await db.dictMeta.put(meta);
+
+    toast.success(`Đã dọn dẹp xong! Loại bỏ ${removedCount} mục rác.`);
+  };
+
+  const handleCleanAllJunk = async () => {
+    if (!confirm("Hệ thống sẽ quét TOÀN BỘ các bộ từ điển và xóa bỏ các mục rác (quá ngắn, quá dài, dịch lỗi). Bạn có chắc chắn muốn tổng vệ sinh không?")) return;
+    
+    const toastId = toast.loading("Đang tổng vệ sinh kho từ điển (0%)...");
+    try {
+      const sources = ALL_SOURCES;
+      const total = sources.length;
+      let totalRemoved = 0;
+      let processed = 0;
+
+      const CONCURRENCY = 10;
+      for (let i = 0; i < total; i += CONCURRENCY) {
+        const batch = sources.slice(i, i + CONCURRENCY);
+        
+        await Promise.all(batch.map(async (source) => {
+          const cached = await db.dictCache.get(source);
+          if (!cached?.rawText) return;
+
+          const entries = parseDictLines(cached.rawText);
+          const cleaned = entries.filter(e => {
+            const cn = e.chinese.trim();
+            const vi = e.vietnamese.trim();
+            if (cn.length <= 1) return false;
+            if (cn.toLowerCase() === vi.toLowerCase()) return false;
+            if (cn.length > 15) return false;
+            if (!/[\u4e00-\u9fa5]/.test(cn)) return false;
+            return true;
+          });
+
+          const removed = entries.length - cleaned.length;
+          if (removed > 0) {
+            totalRemoved += removed;
+            const text = cleaned.map(e => `${e.chinese}=${e.vietnamese}`).join("\n");
+            await db.dictCache.put({ source, rawText: text });
+            await db.dictEntries.where("source").equals(source).delete();
+            const entriesWithIds = cleaned.map(e => ({ 
+              id: crypto.randomUUID(),
+              source,
+              chinese: e.chinese,
+              vietnamese: e.vietnamese
+            }));
+            await db.dictEntries.bulkAdd(entriesWithIds);
+
+            // Update meta in DB
+            let meta = await db.dictMeta.get("dict-meta");
+            if (meta) {
+              meta.sources[source] = cleaned.length;
+              meta.loadedAt = new Date();
+              await db.dictMeta.put(meta);
+            }
+          }
+          processed++;
+        }));
+
+        toast.loading(`Đang vệ sinh: ${Math.round((processed / total) * 100)}%...`, { id: toastId });
+      }
+
+      toast.success(`Tổng vệ sinh hoàn tất! Đã loại bỏ tổng cộng ${totalRemoved.toLocaleString()} mục rác.`, { id: toastId });
+    } catch (err: any) {
+      toast.error(`Lỗi tổng vệ sinh: ${err.message}`, { id: toastId });
     }
   };
 
@@ -1077,30 +1268,38 @@ export function DictionaryManagement({ compact }: { compact?: boolean }) {
                 </CardDescription>
               </div>
               <div className="flex flex-col sm:flex-row items-start sm:items-center gap-3">
-                <div className="flex flex-col gap-1.5 w-full sm:w-48">
-                   <Label className="text-[10px] font-medium text-muted-foreground uppercase ml-1">Bộ truyện đang lưu</Label>
-                   <Select value={selectedNovelId} onValueChange={setSelectedNovelId}>
-                      <SelectTrigger className="h-8 text-xs bg-muted/50 border-dashed">
-                        <SelectValue placeholder="Chọn truyện..." />
-                      </SelectTrigger>
-                      <SelectContent>
-                        <SelectItem value="global">Chung (Global)</SelectItem>
-                        {novels?.map(n => (
-                          <SelectItem key={n.id} value={n.id}>{n.title}</SelectItem>
-                        ))}
-                      </SelectContent>
-                   </Select>
-                </div>
-                <div className="flex gap-2">
+                <div className="flex flex-wrap gap-2">
                   <Button
                     variant="outline"
                     size="sm"
-                    onClick={handleDownloadAllFromSupabase}
-                    className="h-8 text-[11px] font-medium border-violet-200 hover:bg-violet-50 text-violet-600 dark:border-violet-900/50 dark:hover:bg-violet-950/30"
+                    onClick={handleDownloadAllFromWarehouse}
+                    className="h-8 text-[11px] font-medium border-emerald-500/30 text-emerald-600 hover:bg-emerald-500/10 dark:border-emerald-500/20"
                   >
                     <CloudDownloadIcon className="mr-1.5 size-3.5" />
-                    Tải về tất cả (Kho chung)
+                    Cập nhật tất cả (Kho 1TB)
                   </Button>
+                  {isAdmin && (
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      onClick={handleCleanAllJunk}
+                      className="h-8 text-[11px] font-medium border-orange-500/30 text-orange-600 hover:bg-orange-500/10 dark:border-orange-500/20"
+                    >
+                      <Trash2Icon className="mr-1.5 size-3.5" />
+                      Tổng vệ sinh rác
+                    </Button>
+                  )}
+                  {isAdmin && (
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      onClick={handleSyncAllToWarehouse}
+                      className="h-8 text-[11px] font-medium border-emerald-500/30 text-emerald-600 hover:bg-emerald-500/10 dark:border-emerald-500/20"
+                    >
+                      <CloudUploadIcon className="mr-1.5 size-3.5" />
+                      Đóng góp tất cả (Admin)
+                    </Button>
+                  )}
                 </div>
               </div>
             </div>
@@ -1181,19 +1380,19 @@ export function DictionaryManagement({ compact }: { compact?: boolean }) {
                                     <Button
                                       variant="ghost"
                                       size="icon-sm"
-                                      onClick={() => handleDownloadFromCloudPersonal(source)}
-                                      title="Tải về từ Kho cá nhân (Drive Admin)"
-                                      className="text-blue-500 hover:text-blue-600"
+                                      onClick={() => handleDownloadFromWarehouse(source)}
+                                      title="Cập nhật từ Kho chung (Tổng kho 1TB)"
+                                      className="text-emerald-500 hover:text-emerald-600 hover:bg-emerald-500/10"
                                     >
                                       <CloudDownloadIcon className="size-3.5" />
                                     </Button>
                                     <Button
                                       variant="ghost"
                                       size="icon-sm"
-                                      onClick={() => handleUploadToCloudPersonal(source)}
+                                      onClick={() => handleSyncToWarehouse(source)}
                                       disabled={count === 0}
-                                      title="Lưu vào Kho cá nhân (Drive Admin)"
-                                      className="text-blue-500 hover:text-blue-600"
+                                      title="Đóng góp vào Kho chung (Hòa nhập thông minh)"
+                                      className="text-emerald-500 hover:text-emerald-600 hover:bg-emerald-500/10"
                                     >
                                       <CloudUploadIcon className="size-3.5" />
                                     </Button>
@@ -1212,6 +1411,15 @@ export function DictionaryManagement({ compact }: { compact?: boolean }) {
                                     <SaveIcon className="size-3.5" />
                                   </Button>
                                 )}
+                                <Button
+                                  variant="ghost"
+                                  size="icon-sm"
+                                  onClick={() => handleCleanJunk(source)}
+                                  title="Dọn rác (Xóa từ lỗi, từ quá ngắn/dài)"
+                                  className="text-orange-500 hover:text-orange-600 hover:bg-orange-500/10"
+                                >
+                                  <Trash2Icon className="size-3.5" />
+                                </Button>
                                 <Button
                                   variant="ghost"
                                   size="icon-sm"

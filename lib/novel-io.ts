@@ -200,7 +200,7 @@ export async function downloadNovelTxt(
 
 // ─── Import ─────────────────────────────────────────────────
 
-export async function importNovel(file: File): Promise<string> {
+export async function importNovel(file: File, options?: { preserveId?: boolean }): Promise<string> {
   const text = await file.text();
   let data: NovelExportData;
 
@@ -214,14 +214,18 @@ export async function importNovel(file: File): Promise<string> {
     throw new Error("Định dạng tệp không đúng.");
   }
 
-  // Generate new IDs to avoid collisions
-  const novelId = crypto.randomUUID();
+  const preserveId = options?.preserveId ?? false;
+  // Generate new IDs or use existing ones
+  const novelId = preserveId ? data.novel.id : crypto.randomUUID();
   const now = new Date();
 
   // Map old IDs → new IDs
   const chapterIdMap = new Map<string, string>();
   const characterIdMap = new Map<string, string>();
   const sceneIdMap = new Map<string, string>();
+
+  // Helper for DB operation
+  const dbOp = preserveId ? "put" : "add";
 
   // Novel — merge v1 analysis data if present
   const novelData = { ...data.novel };
@@ -246,19 +250,19 @@ export async function importNovel(file: File): Promise<string> {
     }
   }
 
-  await db.novels.add({
+  await db.novels[dbOp]({
     ...novelData,
     id: novelId,
-    createdAt: now,
+    createdAt: preserveId ? new Date(novelData.createdAt) : now,
     updatedAt: now,
   });
 
   // Chapters
   if (data.chapters?.length) {
     for (const ch of data.chapters) {
-      const newId = crypto.randomUUID();
+      const newId = preserveId ? ch.id : crypto.randomUUID();
       chapterIdMap.set(ch.id, newId);
-      await db.chapters.add({
+      await db.chapters[dbOp]({
         ...ch,
         id: newId,
         novelId,
@@ -272,9 +276,9 @@ export async function importNovel(file: File): Promise<string> {
   // Scenes (active + inactive versions)
   if (data.scenes?.length) {
     for (const sc of data.scenes) {
-      const newId = crypto.randomUUID();
+      const newId = preserveId ? sc.id : crypto.randomUUID();
       sceneIdMap.set(sc.id, newId);
-      await db.scenes.add({
+      await db.scenes[dbOp]({
         ...sc,
         id: newId,
         novelId,
@@ -307,9 +311,9 @@ export async function importNovel(file: File): Promise<string> {
   // Characters
   if (data.characters?.length) {
     for (const char of data.characters) {
-      const newId = crypto.randomUUID();
+      const newId = preserveId ? char.id : crypto.randomUUID();
       characterIdMap.set(char.id, newId);
-      await db.characters.add({
+      await db.characters[dbOp]({
         ...char,
         id: newId,
         novelId,
@@ -338,9 +342,9 @@ export async function importNovel(file: File): Promise<string> {
   // Notes
   if (data.notes?.length) {
     for (const note of data.notes) {
-      await db.notes.add({
+      await db.notes[dbOp]({
         ...note,
-        id: crypto.randomUUID(),
+        id: preserveId ? note.id : crypto.randomUUID(),
         novelId,
         createdAt: new Date(note.createdAt),
         updatedAt: new Date(note.updatedAt),
@@ -349,13 +353,13 @@ export async function importNovel(file: File): Promise<string> {
   }
 
   // Name Entries (scope remaps from old novelId to new novelId)
-  // Backward compat: old exports may have replace rules / excludes in nameEntries
   if (data.nameEntries?.length) {
     for (const entry of data.nameEntries) {
       const raw = entry as NameEntry & { category?: string; isRegex?: boolean; caseSensitive?: boolean; enabled?: boolean; order?: number };
+      const entryId = preserveId ? entry.id : crypto.randomUUID();
       if (raw.category === "thay thế") {
-        await db.replaceRules.add({
-          id: crypto.randomUUID(),
+        await db.replaceRules[dbOp]({
+          id: entryId,
           scope: novelId,
           pattern: raw.chinese,
           replacement: raw.vietnamese,
@@ -367,17 +371,17 @@ export async function importNovel(file: File): Promise<string> {
           updatedAt: new Date(raw.updatedAt),
         });
       } else if (raw.category === "loại trừ") {
-        await db.excludedNames.add({
-          id: crypto.randomUUID(),
-          scope: novelId,
+        await db.excludedNames[dbOp]({
+          id: entryId,
           chinese: raw.chinese,
+          scope: novelId,
           createdAt: new Date(raw.createdAt),
           updatedAt: new Date(raw.updatedAt),
         });
       } else {
-        await db.nameEntries.add({
+        await db.nameEntries[dbOp]({
           ...entry,
-          id: crypto.randomUUID(),
+          id: entryId,
           scope: novelId,
           createdAt: new Date(entry.createdAt),
           updatedAt: new Date(entry.updatedAt),
@@ -389,9 +393,9 @@ export async function importNovel(file: File): Promise<string> {
   // Replace Rules
   if (data.replaceRules?.length) {
     for (const rule of data.replaceRules) {
-      await db.replaceRules.add({
+      await db.replaceRules[dbOp]({
         ...rule,
-        id: crypto.randomUUID(),
+        id: preserveId ? rule.id : crypto.randomUUID(),
         scope: novelId,
         createdAt: new Date(rule.createdAt),
         updatedAt: new Date(rule.updatedAt),
@@ -402,9 +406,9 @@ export async function importNovel(file: File): Promise<string> {
   // Excluded Names
   if (data.excludedNames?.length) {
     for (const entry of data.excludedNames) {
-      await db.excludedNames.add({
+      await db.excludedNames[dbOp]({
         ...entry,
-        id: crypto.randomUUID(),
+        id: preserveId ? entry.id : crypto.randomUUID(),
         scope: novelId,
         createdAt: new Date(entry.createdAt),
         updatedAt: new Date(entry.updatedAt),

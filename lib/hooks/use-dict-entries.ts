@@ -92,106 +92,100 @@ async function appendOverrides(
 export async function loadDictDataForWorker(
   onProgress?: (source: string, percent: number) => void,
 ): Promise<Record<DictSource, Array<{ chinese: string; vietnamese: string }>>> {
+  const t0 = performance.now();
   const result = {} as Record<
     DictSource,
     Array<{ chinese: string; vietnamese: string }>
   >;
   const sourceCounts: Record<string, number> = {};
 
-  // Try reading from dictCache first (5 rows vs 728k rows)
+  // ── Fast path: read from IndexedDB cache ──
   const cached = await db.dictCache.toArray();
-  if (cached.length === ALL_SOURCES.length) {
-    // Fast path: parse from cached raw text
+  if (cached.length > 0) {
     const counts: Record<string, number> = {};
-    for (const entry of cached) {
-      onProgress?.(entry.source, 0);
+    for (let ci = 0; ci < cached.length; ci++) {
+      const entry = cached[ci];
+      // Báo tiến trình cho UI + nhả main thread để tránh đóng băng
+      const pct = Math.round((ci / cached.length) * 100);
+      onProgress?.(entry.source, pct);
+      // Yield giữa các file lớn để UI không bị treo
+      if (ci % 3 === 0) await new Promise(r => setTimeout(r, 0));
+      
       result[entry.source] = parseDictText(entry.rawText);
       counts[entry.source] = result[entry.source].length;
-      onProgress?.(entry.source, 100);
     }
 
-    // Ensure dictMeta exists (non-blocking)
     void db.dictMeta.put({
       id: "dict-meta",
       loadedAt: new Date(),
       sources: counts as DictMeta["sources"],
     });
 
-    // Append override entries (higher priority, overwrites base entries via Map.set)
     await appendOverrides(result);
-    return result;
+
+    // Nếu đã nạp đủ từ cache thì return ngay
+    if (cached.length >= ALL_SOURCES.length) {
+      onProgress?.("all", 100);
+      console.log(`[DictLoader] Loaded from cache in ${Math.round(performance.now() - t0)}ms (${cached.length} sources)`);
+      return result;
+    }
   }
 
-  // Slow path: fetch all files in parallel
+  // ── Slow path: fetch ONLY missing files ──
+  const missingSources = ALL_SOURCES.filter(s => !result[s] || result[s].length === 0);
+  console.log(`[DictLoader] Fetching ${missingSources.length} missing sources...`);
   onProgress?.("all", 0);
 
-  const fetchResults = await Promise.all(
-    ALL_SOURCES.map(async (source) => {
-      if (source === "core_vietphrase") {
-        // Try fetching vietphrase_1 and vietphrase_2 if vietphrase.txt fails
-        const resp = await fetch(DICT_FILES[source]);
-        if (resp.ok) {
-          return { source, text: await resp.text(), ok: true };
-        }
-        
-        // Fallback to parts
+  const BATCH_SIZE = 20; // Tải 20 file cùng lúc
+  const fetchResults: Array<{ source: DictSource; text: string; ok: boolean }> = [];
+
+  for (let i = 0; i < missingSources.length; i += BATCH_SIZE) {
+    const batch = missingSources.slice(i, i + BATCH_SIZE);
+
+    const batchResults = await Promise.allSettled(
+      batch.map(async (source) => {
+        const url = DICT_FILES[source];
         try {
-          const [r1, r2] = await Promise.all([
-            fetch("/dict/vietphrase_1.txt"),
-            fetch("/dict/vietphrase_2.txt")
-          ]);
-          if (r1.ok && r2.ok) {
-            const t1 = await r1.text();
-            const t2 = await r2.text();
-            return { source, text: t1 + "\n" + t2, ok: true };
-          }
-        } catch (err) {
-          console.warn("Failed to fetch split vietphrase files:", err);
+          const resp = await fetch(url, { signal: AbortSignal.timeout(3000) });
+          if (!resp.ok) return { source, text: "", ok: false };
+          const text = await resp.text();
+          return { source, text, ok: true };
+        } catch {
+          return { source, text: "", ok: false };
         }
-        
-        return { source, text: "", ok: false };
-      }
+      })
+    );
 
-      const url = DICT_FILES[source];
-      const resp = await fetch(url);
-      if (!resp.ok) {
-        console.warn(`Failed to fetch dict file: ${url}`);
-        return { source, text: "", ok: false };
+    for (const res of batchResults) {
+      if (res.status === "fulfilled") {
+        fetchResults.push(res.value);
       }
-      const text = await resp.text();
-      return { source, text, ok: true };
-    }),
-  );
-
-  // Parse all and report progress
-  let done = 0;
-  for (const { source, text, ok } of fetchResults) {
-    if (!ok) {
-      result[source] = [];
-      sourceCounts[source] = 0;
-    } else {
-      onProgress?.(source, 0);
-      result[source] = parseDictText(text);
-      sourceCounts[source] = result[source].length;
     }
-    done++;
-    const overallPercent = Math.round((done / ALL_SOURCES.length) * 100);
-    onProgress?.(source, overallPercent);
+
+    const overallPercent = Math.round(Math.min(i + batch.length, missingSources.length) / missingSources.length * 100);
+    onProgress?.("all", overallPercent);
   }
 
-  // Cache raw texts for fast future loads (5 rows, non-blocking)
+  // Parse results
+  for (const { source, text, ok } of fetchResults) {
+    if (ok && text) {
+      result[source] = parseDictText(text);
+      sourceCounts[source] = result[source].length;
+    } else if (!result[source]) {
+      result[source] = [];
+      sourceCounts[source] = 0;
+    }
+  }
+
+  // Cache raw texts for next load (non-blocking)
   void (async () => {
     try {
-      await db.dictCache.clear();
-      await db.dictCache.bulkPut(
-        fetchResults
-          .filter((r) => r.ok)
-          .map((r) => ({ source: r.source, rawText: r.text })),
-      );
-
-      // Removed dictEntries writes to save memory and make it instant
-
-      // Write meta
+      const toCache = fetchResults
+        .filter(r => r.ok && r.text)
+        .map(r => ({ source: r.source, rawText: r.text }));
+      if (toCache.length > 0) {
+        await db.dictCache.bulkPut(toCache);
+      }
       await db.dictMeta.put({
         id: "dict-meta",
         loadedAt: new Date(),
@@ -202,8 +196,8 @@ export async function loadDictDataForWorker(
     }
   })();
 
-  // Append override entries (higher priority)
   await appendOverrides(result);
+  console.log(`[DictLoader] Full load done in ${Math.round(performance.now() - t0)}ms`);
   return result;
 }
 

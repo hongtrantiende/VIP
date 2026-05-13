@@ -86,10 +86,12 @@ function notifyListenersImmediate() {
 }
 
 // ─── Batched Auto-Save ───────────────────────────────────────
+// ─── Batched Auto-Save ───────────────────────────────────────
 let _pendingSuggestions: TrainingSuggestion[] = [];
 let _autoSaveTimer: ReturnType<typeof setTimeout> | null = null;
 let _supabaseUploadTimer: ReturnType<typeof setTimeout> | null = null;
 let _dirtySourcesForUpload: Set<string> = new Set();
+let _wordsSinceLastWarehouseSync = 0; // Bộ đếm từ mới để đồng bộ kho 1TB
 
 function queueAutoSave(suggestions: TrainingSuggestion[]) {
   _pendingSuggestions.push(...suggestions);
@@ -111,28 +113,20 @@ async function flushAutoSave() {
     await processAutoSaveLocal(toSave);
   } catch (err) {
     console.error("Auto-save failed:", err);
-    // Re-queue failed items for retry
     _pendingSuggestions.push(...toSave);
   }
 }
 
-/** Save to local IndexedDB only; cloud upload is deferred */
+/** Save to local IndexedDB and track word count for warehouse sync */
 async function processAutoSaveLocal(suggestions: TrainingSuggestion[]) {
   const grouped = suggestions.reduce((acc, curr) => {
     const genres = (curr.genre || "global").split(",").map(s => s.trim().toLowerCase()).filter(Boolean);
     const c = curr.category || "tuvung";
     const mappedCat = ["names", "names2", "phienam", "luatnhan", "tuvung", "ngucanh", "vietphrase"].includes(c) ? c : "tuvung";
     
-    const effectiveGenres = genres;
-
-    for (const g of effectiveGenres) {
+    for (const g of genres) {
       let mappedGenre = g === "global" ? "core" : g;
-      
-      // Validate genre to prevent creating junk files
-      if (!DICT_GENRES.includes(mappedGenre as any)) {
-        console.warn(`[Training Manager] Bỏ qua genre không hợp lệ từ AI: ${mappedGenre}`);
-        mappedGenre = "core"; // Fallback to core instead of creating junk
-      }
+      if (!DICT_GENRES.includes(mappedGenre as any)) mappedGenre = "core";
       
       const targetSource = `${mappedGenre}_${mappedCat}`;
       if (!acc[targetSource]) acc[targetSource] = [];
@@ -144,33 +138,36 @@ async function processAutoSaveLocal(suggestions: TrainingSuggestion[]) {
   let totalSaved = 0;
 
   for (const [targetSource, terms] of Object.entries(grouped)) {
-    // Yield to main thread between saves to prevent UI freeze
     await yieldToMain();
-    
     const savedCount = await appendToDictSource(targetSource as any, terms.map(t => ({ chinese: t.chinese, vietnamese: t.vietnamese })));
-    
     if (savedCount > 0) {
       totalSaved += savedCount;
       _dirtySourcesForUpload.add(targetSource);
     }
   }
 
-
-  
   if (totalSaved > 0) {
     toast.success(`Đã lưu ${totalSaved} từ vào từ điển.`);
     useTrainingStore.getState().addSyncedWords(totalSaved);
-    // Schedule deferred cloud upload
-    scheduleSupabaseUpload();
+    _wordsSinceLastWarehouseSync += totalSaved;
+    
+    // Nếu đạt mốc 200 từ thì ưu tiên đẩy lên kho ngay
+    if (_wordsSinceLastWarehouseSync >= 200) {
+      scheduleSupabaseUpload(true); // true = force fast upload
+    } else {
+      scheduleSupabaseUpload();
+    }
   }
 }
 
-function scheduleSupabaseUpload() {
-  if (_supabaseUploadTimer) return; // Already scheduled
+function scheduleSupabaseUpload(force = false) {
+  if (_supabaseUploadTimer && !force) return;
+  if (_supabaseUploadTimer) clearTimeout(_supabaseUploadTimer);
+
   _supabaseUploadTimer = setTimeout(async () => {
     _supabaseUploadTimer = null;
     await flushSupabaseUpload();
-  }, SUPABASE_UPLOAD_DEBOUNCE_MS);
+  }, force ? 1000 : SUPABASE_UPLOAD_DEBOUNCE_MS);
 }
 
 async function flushSupabaseUpload() {
@@ -181,44 +178,88 @@ async function flushSupabaseUpload() {
   
   const supabase = createClient();
   const { data: { user } } = await supabase.auth.getUser();
-  if (!user) return; // Ignore if not logged in
+  if (!user) return;
 
-  let uploadedCount = 0;
-  
+  // 1. Đồng bộ lên Supabase (Bản dự phòng cá nhân)
   for (const targetSource of sources) {
     try {
-      // Yield to main thread
       await yieldToMain();
-      
-      // Read from dictCache (1 row) instead of dictEntries (50k+ rows) — MUCH faster
       const cached = await db.dictCache.get(targetSource as any);
       if (!cached?.rawText) continue;
       
       const filename = `${targetSource}.txt`;
-      const contentType = 'text/plain;charset=UTF-8';
-      
-      const { error } = await supabase.storage
-        .from("dictionaries")
-        .upload(filename, cached.rawText, {
-          contentType,
-          upsert: true,
-        });
-      if (error) throw error;
-      uploadedCount++;
-    } catch (err: any) {
-      console.error(`Lỗi tải lên ${targetSource}:`, err.message || err);
-      // Re-mark as dirty for next upload cycle
+      await supabase.storage.from("dictionaries").upload(filename, cached.rawText, {
+        contentType: 'text/plain;charset=UTF-8',
+        upsert: true,
+      });
+    } catch (err) {
+      console.error(`Supabase upload error:`, err);
       _dirtySourcesForUpload.add(targetSource);
     }
   }
-  
-  if (uploadedCount > 0) {
-    toast.success(`Đã đồng bộ ${uploadedCount} từ điển lên server.`);
-  }
-  
-  // If there are still dirty sources, schedule another upload
-  if (_dirtySourcesForUpload.size > 0) {
-    scheduleSupabaseUpload();
+
+  // 2. Đồng bộ "Siêu tốc" vào Tổng kho 1TB (Cứ 200 từ)
+  if (_wordsSinceLastWarehouseSync >= 200) {
+    try {
+      let warehouseCount = 0;
+      for (const targetSource of sources) {
+        await yieldToMain();
+        const cached = await db.dictCache.get(targetSource as any);
+        if (!cached?.rawText) continue;
+        
+        const filename = `${targetSource}.txt`;
+
+        // Lấy bản cũ trên kho để hòa nhập (Merge)
+        const dlParams = new URLSearchParams({ action: 'download-dict', filename });
+        const dlRes = await fetch(`/api/dict/cloud-storage?${dlParams.toString()}`, { method: 'POST' });
+        
+        let finalContent = cached.rawText;
+        if (dlRes.ok) {
+          const cloudText = await dlRes.text();
+          const localEntries = cached.rawText.split("\n").filter(l => l.includes("="));
+          const cloudEntries = cloudText.split("\n").filter(l => l.includes("="));
+          
+          const map = new Map<string, Set<string>>();
+          
+          // Hàm hỗ trợ nạp vào map và tách các nghĩa bằng dấu /
+          const addToMap = (line: string) => {
+            const idx = line.indexOf("=");
+            if (idx < 1) return;
+            const key = line.slice(0, idx).trim();
+            const val = line.slice(idx + 1).trim();
+            if (!key || !val) return;
+            const meanings = val.split("/").map(m => m.trim()).filter(Boolean);
+            if (!map.has(key)) map.set(key, new Set());
+            meanings.forEach(m => map.get(key)!.add(m));
+          };
+
+          cloudEntries.forEach(addToMap);
+          localEntries.forEach(addToMap);
+          
+          finalContent = Array.from(map.entries())
+            .map(([k, vs]) => `${k}=${Array.from(vs).join("/")}`)
+            .join("\n");
+        }
+
+        const upParams = new URLSearchParams({ action: 'upload-dict', filename });
+        const upRes = await fetch(`/api/dict/cloud-storage?${upParams.toString()}`, {
+          method: 'POST',
+          body: finalContent,
+        });
+
+        if (upRes.ok) {
+          warehouseCount++;
+          console.log(`[WarehouseSync] Updated ${filename}. Size: ${finalContent.length} chars.`);
+        }
+      }
+      
+      if (warehouseCount > 0) {
+        toast.success(`Đã tự động hòa nhập ${_wordsSinceLastWarehouseSync} từ mới (Gộp nghĩa) vào Tổng kho 1TB!`);
+        _wordsSinceLastWarehouseSync = 0; 
+      }
+    } catch (err) {
+      console.error("Warehouse auto-sync failed:", err);
+    }
   }
 }
 
@@ -468,10 +509,33 @@ async function processChunk(worker: TrainingWorkerConfig, chunkText: string) {
     }
     const model = await getModel(provider, worker.modelId);
 
-    const suggestions = await extractDictionaryEntries({
+    let suggestions = await extractDictionaryEntries({
       model,
       sourceText: chunkText,
       targetGenres: _targetGenres,
+    });
+
+    // ─── Junk Filter ──────────────────────────────────────────
+    suggestions = suggestions.filter(s => {
+      const cn = s.chinese.trim();
+      const vi = s.vietnamese.trim();
+      
+      // 1. Loại bỏ từ quá ngắn (<= 1 ký tự Trung)
+      if (cn.length <= 1) return false;
+      
+      // 2. Loại bỏ từ mà bản dịch giống hệt bản gốc
+      if (cn.toLowerCase() === vi.toLowerCase()) return false;
+      
+      // 3. Loại bỏ từ quá dài (thường là cả câu, > 15 ký tự)
+      if (cn.length > 15) return false;
+      
+      // 4. Loại bỏ từ chỉ toàn số hoặc ký tự đặc biệt
+      if (/^[\d\s\W]+$/.test(cn)) return false;
+      
+      // 5. Loại bỏ nếu không có chữ Trung Quốc (đối với phím Trung)
+      if (!/[\u4e00-\u9fa5]/.test(cn)) return false;
+
+      return true;
     });
 
     if (suggestions.length > 0) {

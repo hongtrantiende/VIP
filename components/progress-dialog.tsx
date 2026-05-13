@@ -74,9 +74,14 @@ export function ProgressDialog({
 
         <DialogFooter>
           {isInProgress ? (
-            <Button variant="outline" onClick={onCancel}>
-              Huỷ
-            </Button>
+            <>
+              <Button variant="ghost" onClick={onClose}>
+                Ẩn
+              </Button>
+              <Button variant="outline" onClick={onCancel}>
+                Huỷ
+              </Button>
+            </>
           ) : (
             <Button onClick={onClose}>Đóng</Button>
           )}

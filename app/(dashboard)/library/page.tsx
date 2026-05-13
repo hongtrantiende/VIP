@@ -199,6 +199,194 @@ export default function LibraryPage() {
     }
   };
 
+  const handleUploadNovelToCloud = async (novel: Novel) => {
+    const toastId = toast.loading(`Đang lưu "${novel.title}" lên Tổng kho...`);
+    try {
+      const data = await exportNovel(novel.id, { includeVersions: true });
+      const json = JSON.stringify(data);
+      const filename = `novel_data.json`;
+      const params = new URLSearchParams({ action: 'upload', novelId: novel.id, filename });
+      const res = await fetch(`/api/dict/cloud-storage?${params.toString()}`, { method: 'POST', body: json });
+      if (!res.ok) throw new Error(await res.text());
+      toast.success(`Đã sao lưu "${novel.title}" thành công!`, { id: toastId });
+    } catch (err: any) {
+      toast.error(`Lỗi: ${err.message}`, { id: toastId });
+    }
+  };
+
+  const handleDownloadNovelFromCloud = async (novel: Novel) => {
+    const toastId = toast.loading(`Đang nhập "${novel.title}" từ Tổng kho...`);
+    try {
+      const filename = `novel_data.json`;
+      const params = new URLSearchParams({ action: 'download', novelId: novel.id, filename });
+      const res = await fetch(`/api/dict/cloud-storage?${params.toString()}`, { method: 'POST' });
+      if (!res.ok) {
+        if (res.status === 404) throw new Error("Không tìm thấy bản sao lưu.");
+        throw new Error(await res.text());
+      }
+      const json = await res.text();
+      const file = new File([json], "novel_data.json", { type: "application/json" });
+      await importNovel(file);
+      toast.success(`Đã nhập "${novel.title}" thành công!`, { id: toastId });
+      setTimeout(() => window.location.reload(), 1000);
+    } catch (err: any) {
+      toast.error(`Lỗi: ${err.message}`, { id: toastId });
+    }
+  };
+
+  const handleUploadAllToCloud = async () => {
+    if (!novels || novels.length === 0) {
+      toast.error("Không có truyện nào để tải lên.");
+      return;
+    }
+
+    const toastId = toast.loading(`Đang chuẩn bị tải lên ${novels.length} truyện...`);
+    try {
+      let processed = 0;
+      const total = novels.length;
+      const CONCURRENCY = 3; // Giảm xuống 3 vì mỗi truyện giờ tải lên 3 file (JSON, Trung, Việt)
+
+      for (let i = 0; i < total; i += CONCURRENCY) {
+        const batch = novels.slice(i, i + CONCURRENCY);
+        
+        await Promise.allSettled(
+          batch.map(async (novel) => {
+            try {
+              // 1. Xuất dữ liệu JSON (Metadata & Chapters)
+              const data = await exportNovel(novel.id, { includeVersions: true });
+              
+              // 2. Trích xuất Text Trung & Việt từ các chương
+              const chapters = data.chapters || [];
+              const scenes = data.scenes || [];
+              
+              // Sắp xếp chương theo order
+              const sortedChapters = [...chapters].sort((a, b) => a.order - b.order);
+              
+              let fullChinese = "";
+              let fullVietnamese = "";
+              let hasTranslation = false;
+              
+              for (const ch of sortedChapters) {
+                const chScenes = scenes
+                  .filter(s => s.chapterId === ch.id && s.isActive)
+                  .sort((a, b) => a.order - b.order);
+                
+                const chTitle = ch.title || "Không tiêu đề";
+                const chChinese = chScenes.map(s => s.content || "").join("\n\n");
+                const chVietnamese = chScenes.map(s => s.contentVi || "").join("\n\n");
+
+                if (chChinese.trim()) {
+                  fullChinese += `\n\n=== ${chTitle} ===\n\n${chChinese}`;
+                }
+                
+                if (chVietnamese.trim()) {
+                  fullVietnamese += `\n\n=== ${chTitle} ===\n\n${chVietnamese}`;
+                  hasTranslation = true;
+                }
+              }
+
+              const json = JSON.stringify(data);
+              const jsonParams = new URLSearchParams({ action: 'upload', novelId: novel.id, filename: 'novel_data.json' });
+              const txtParams = new URLSearchParams({ action: 'upload-txt', novelId: novel.id });
+
+              // Tải lên 3 file song song vào 2 kho khác nhau
+              await Promise.all([
+                fetch(`/api/dict/cloud-storage?${jsonParams.toString()}`, { 
+                  method: 'POST', body: json 
+                }),
+                fullChinese.trim() && fetch(`/api/dict/cloud-storage?${txtParams.toString()}&filename=chinese.txt`, { 
+                  method: 'POST', body: fullChinese 
+                }),
+                hasTranslation && fetch(`/api/dict/cloud-storage?${txtParams.toString()}&filename=vietnamese.txt`, { 
+                  method: 'POST', body: fullVietnamese 
+                })
+              ]);
+
+              processed++;
+            } catch (err) {
+              console.error(`Failed to upload novel ${novel.title}:`, err);
+            }
+          })
+        );
+        
+        toast.loading(`Đang tải lên: ${Math.round((i + batch.length) / total * 100)}%...`, { id: toastId });
+      }
+
+      toast.success(`Đã tải lên xong ${processed}/${total} truyện (Kèm file TXT Trung/Việt)!`, { id: toastId });
+    } catch (err: any) {
+      toast.error(`Lỗi đồng bộ: ${err.message}`, { id: toastId });
+    }
+  };
+
+  const handleDownloadAllFromCloud = async () => {
+    const toastId = toast.loading("Đang quét danh sách truyện trên Tổng kho (Khu vực riêng)...");
+    try {
+      // 1. Lấy danh sách novelId từ kho của riêng user này
+      const listParams = new URLSearchParams({ action: 'list-novels' });
+      const listRes = await fetch(`/api/dict/cloud-storage?${listParams.toString()}`, { method: 'POST' });
+      if (!listRes.ok) throw new Error("Không thể kết nối tới Tổng kho.");
+      
+      const listData = await listRes.json();
+      const warehouseNovelIds = listData.novels || [];
+
+      if (warehouseNovelIds.length === 0) {
+        toast.error("Kho của bạn đang trống. Hãy 'Lưu lên Kho' trước nhé!", { id: toastId });
+        return;
+      }
+
+      toast.loading(`Tìm thấy ${warehouseNovelIds.length} truyện. Đang bắt đầu tải về...`, { id: toastId });
+
+      let processed = 0;
+      let failedIds: string[] = [];
+      const total = warehouseNovelIds.length;
+      const CONCURRENCY = 3; // Hạ xuống 3 để cực kỳ ổn định
+
+      for (let i = 0; i < total; i += CONCURRENCY) {
+        const batch = warehouseNovelIds.slice(i, i + CONCURRENCY);
+        
+        await Promise.allSettled(
+          batch.map(async (novelId) => {
+            try {
+              const filename = `novel_data.json`;
+              const params = new URLSearchParams({ action: 'download', novelId, filename });
+              const res = await fetch(`/api/dict/cloud-storage?${params.toString()}`, { method: 'POST' });
+              
+              if (res.ok) {
+                const json = await res.text();
+                JSON.parse(json); 
+                const file = new File([json], "novel_data.json", { type: "application/json" });
+                await importNovel(file, { preserveId: true });
+                processed++;
+              } else {
+                failedIds.push(novelId);
+              }
+            } catch (err) {
+              failedIds.push(novelId);
+              console.error(`Failed to download/import novel ${novelId}:`, err);
+            }
+          })
+        );
+        
+        // Nghỉ một chút giữa các đợt để tránh bị Google chặn
+        if (i + CONCURRENCY < total) {
+          await new Promise(r => setTimeout(r, 300));
+        }
+
+        toast.loading(`Đang tải về: ${Math.round(Math.min(i + batch.length, total) / total * 100)}% (${processed} xong)...`, { id: toastId });
+      }
+
+      if (processed > 0) {
+        const failMsg = failedIds.length > 0 ? ` (Thất bại ${failedIds.length}: ${failedIds.slice(0, 2).join(", ")}...)` : "";
+        toast.success(`Đồng bộ thành công ${processed} truyện!${failMsg}`, { id: toastId, duration: 5000 });
+        setTimeout(() => window.location.reload(), 2000);
+      } else {
+        toast.error(`Không có truyện nào được tải về. Thất bại: ${failedIds.join(", ")}`, { id: toastId });
+      }
+    } catch (err: any) {
+      toast.error(`Lỗi cập nhật: ${err.message}`, { id: toastId });
+    }
+  };
+
   const handleRestoreFromDrive = async () => {
     if (!drive.accessToken) {
       toast.error("Vui lòng kết nối Google Drive trước.");
@@ -239,8 +427,6 @@ export default function LibraryPage() {
       }
     }
   };
-
-  // Auto-select first provider and model
   useEffect(() => {
     if (providers && providers.length > 0 && !selectedProvider) {
       setSelectedProvider(providers[0].id);
@@ -458,6 +644,24 @@ export default function LibraryPage() {
           </p>
         </div>
         <div className="flex items-center gap-2">
+          <Button
+            size="sm"
+            variant="outline"
+            className="text-emerald-500 border-emerald-500/30 hover:text-emerald-600 hover:bg-emerald-500/10 hidden sm:flex"
+            onClick={handleDownloadAllFromCloud}
+          >
+            <CloudDownloadIcon className="size-4 mr-2" />
+            Nhập từ Kho
+          </Button>
+          <Button
+            size="sm"
+            variant="outline"
+            className="text-emerald-500 border-emerald-500/30 hover:text-emerald-600 hover:bg-emerald-500/10 hidden sm:flex"
+            onClick={handleUploadAllToCloud}
+          >
+            <CloudUploadIcon className="size-4 mr-2" />
+            Lưu lên Kho
+          </Button>
           <Button
             size="sm"
             variant="outline"
@@ -759,6 +963,8 @@ export default function LibraryPage() {
                         onExportEpub={handleExportEpub}
                         onDelete={setDeleteTarget}
                         onTranslate={setTranslateTarget}
+                        onCloudUpload={handleUploadNovelToCloud}
+                        onCloudDownload={handleDownloadNovelFromCloud}
                       />
                     </div>
                   </CardContent>
@@ -941,6 +1147,8 @@ function NovelActions({
   onExportEpub: (novel: Novel) => void;
   onDelete: (novel: Novel) => void;
   onTranslate: (novel: Novel) => void;
+  onCloudUpload: (novel: Novel) => void;
+  onCloudDownload: (novel: Novel) => void;
 }) {
   return (
     <div
@@ -972,6 +1180,32 @@ function NovelActions({
           </Button>
         </TooltipTrigger>
         <TooltipContent>Dịch tên truyện</TooltipContent>
+      </Tooltip>
+      <Tooltip>
+        <TooltipTrigger asChild>
+          <Button
+            variant="ghost"
+            size="icon"
+            className="size-7 text-emerald-500 hover:text-emerald-600 hover:bg-emerald-500/10"
+            onClick={() => onCloudUpload(novel)}
+          >
+            <CloudUploadIcon className="size-3.5" />
+          </Button>
+        </TooltipTrigger>
+        <TooltipContent>Lưu lên Tổng kho</TooltipContent>
+      </Tooltip>
+      <Tooltip>
+        <TooltipTrigger asChild>
+          <Button
+            variant="ghost"
+            size="icon"
+            className="size-7 text-emerald-500 hover:text-emerald-600 hover:bg-emerald-500/10"
+            onClick={() => onCloudDownload(novel)}
+          >
+            <CloudDownloadIcon className="size-3.5" />
+          </Button>
+        </TooltipTrigger>
+        <TooltipContent>Nhập từ Tổng kho</TooltipContent>
       </Tooltip>
       <Tooltip>
         <TooltipTrigger asChild>
