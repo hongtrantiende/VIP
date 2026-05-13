@@ -14,6 +14,7 @@ import {
 } from "./prompts";
 import { cleanGarbageLines } from "@/lib/text-utils";
 import { useBulkTranslateStore, type TranslateChapterResult, type TranslateError } from "@/lib/stores/bulk-translate";
+import { scanNewNames, autoAddNames } from "./name-scanner";
 
 // ── Retry & Error Handling ──
 
@@ -204,8 +205,10 @@ export async function runBulkTranslate(opts: BulkTranslateOptions): Promise<void
     || customPrompt?.trim() 
     || resolveChapterToolPrompts(settings).translate;
 
-  // Fetch name dictionary once for dynamic filtering per chapter
-  const nameDict = await getMergedNameDict(novelId);
+  // Fetch name dictionary once — use a mutable Map so new names discovered
+  // during pre-scan can be added and used by subsequent chapters
+  const initialDict = await getMergedNameDict(novelId);
+  const nameDictMap = new Map(initialDict.map((e) => [e.chinese, e.vietnamese]));
 
   const concurrency = settings.translateConcurrency && settings.translateConcurrency > 0 ? settings.translateConcurrency : 1;
   let currentIndex = 0;
@@ -234,9 +237,36 @@ export async function runBulkTranslate(opts: BulkTranslateOptions): Promise<void
         ? originalContents.join(`\n\n${SCENE_BREAK}\n\n`)
         : originalContents[0];
 
+      // ⚡ Pre-scan: detect NEW character names not yet in dictionary
+      // Auto-add them before translating so this chapter + all future chapters use them
+      try {
+        const newNames = await scanNewNames({
+          model,
+          sourceText: joinedContent,
+          novelId,
+          existingDict: nameDictMap,
+          signal,
+        });
+        if (newNames.length > 0) {
+          const added = await autoAddNames(novelId, newNames);
+          if (added > 0) {
+            // Update the shared mutable dict so subsequent chapters see these names
+            for (const n of newNames) {
+              nameDictMap.set(n.chinese, n.vietnamese);
+            }
+            console.log(`[NameScan] Chương "${chapter.title}": phát hiện ${added} tên mới`);
+          }
+        }
+      } catch {
+        // Non-critical — continue translating even if name scan fails
+      }
+
+      // Convert current dict Map back to array for context builder
+      const currentNameDict = Array.from(nameDictMap, ([chinese, vietnamese]) => ({ chinese, vietnamese }));
+
       // Build context with dynamic dictionary filtering
       const context = await buildTranslateContext(
-        novelId, chapter.order, depth, nameDict, joinedContent,
+        novelId, chapter.order, depth, currentNameDict, joinedContent,
       );
 
       // Build system prompt

@@ -110,6 +110,21 @@ export async function buildTranslateContext(
   const parts: string[] = [];
   parts.push(`## Thông tin chương đang dịch\nThứ tự chương: ${currentChapterOrder}`);
 
+  // ⚡ Name Dictionary FIRST (highest priority — character names are most error-prone)
+  if (nameDict && nameDict.length > 0) {
+    const filteredDict = sourceText
+      ? filterDictBySourceText(nameDict, sourceText)
+      : nameDict;
+
+    if (filteredDict.length > 0) {
+      const nameParts = filteredDict
+        .map((e) => `${e.chinese} → ${e.vietnamese}`)
+        .join("\n");
+      const section = `## ⚠️ BẢNG TÊN RIÊNG — ƯU TIÊN CAO NHẤT (${filteredDict.length} mục)\nĐây là danh sách tên nhân vật, địa danh, thuật ngữ đã được xác nhận. BẮT BUỘC dùng ĐÚNG tên dịch dưới đây, KHÔNG được tự ý đổi hay phiên âm lại:\n${nameParts}`;
+      parts.push(section);
+    }
+  }
+
   // Novel-level metadata (names for consistency)
   const metaParts: string[] = [];
   if (novel?.title) {
@@ -149,21 +164,6 @@ export async function buildTranslateContext(
   // Trailing context: last lines of previous chapter for narrative continuity
   if (trailing) {
     parts.push(`## Đoạn cuối chương trước (để nối mạch văn)\n${trailing}`);
-  }
-
-  // Dynamic Dictionary Injection: filter to only relevant entries
-  if (nameDict && nameDict.length > 0) {
-    const filteredDict = sourceText
-      ? filterDictBySourceText(nameDict, sourceText)
-      : nameDict;
-
-    if (filteredDict.length > 0) {
-      const nameParts = filteredDict
-        .map((e) => `${e.chinese} → ${e.vietnamese}`)
-        .join("\n");
-      const section = `## Bảng tên riêng (${filteredDict.length} mục liên quan)\nBẮT BUỘC sử dụng đúng tên dịch trong bảng sau:\n${nameParts}`;
-      parts.push(section);
-    }
   }
 
   return parts.length > 0 ? parts.join("\n\n") : null;
