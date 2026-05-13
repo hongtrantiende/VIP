@@ -39,7 +39,7 @@ import { useConvertSettings } from "@/lib/hooks/use-convert-settings";
 import { useAIProviders, useAIModels } from "@/lib/hooks/use-ai-providers";
 import { type TrainingSuggestion } from "@/lib/ai/training-tools";
 import { appendToDictSource, exportDictSource, deduplicateAllDictSources, useDictMeta } from "@/lib/hooks/use-dict-entries";
-import { type DictSource, db } from "@/lib/db";
+import { type DictSource, db, DICT_GENRES } from "@/lib/db";
 import { Badge } from "@/components/ui/badge";
 import { toast } from "sonner";
 import { useNovels } from "@/lib/hooks/use-novels";
@@ -264,6 +264,10 @@ export default function ConvertPage() {
 
       for (const g of effectiveGenres) {
         let mappedGenre = g === "global" ? "core" : g;
+        if (!DICT_GENRES.includes(mappedGenre as any)) {
+          console.warn(`[Convert AutoSave] Bỏ qua genre không hợp lệ từ AI: ${mappedGenre}`);
+          mappedGenre = "core"; // Fallback to core
+        }
         const targetSource = `${mappedGenre}_${mappedCat}`;
         if (!acc[targetSource]) acc[targetSource] = [];
         acc[targetSource].push(curr);

@@ -12,7 +12,7 @@
  * - Limited extractedTerms accumulation (cap at 300)
  */
 
-import { db, type DictSource, type AIProvider } from "@/lib/db";
+import { db, type DictSource, type AIProvider, DICT_GENRES } from "@/lib/db";
 import { useTrainingStore } from "@/lib/stores/training-store";
 import { extractDictionaryEntries, type TrainingSuggestion } from "@/lib/ai/training-tools";
 import { getModel } from "@/lib/ai/provider";
@@ -127,6 +127,13 @@ async function processAutoSaveLocal(suggestions: TrainingSuggestion[]) {
 
     for (const g of effectiveGenres) {
       let mappedGenre = g === "global" ? "core" : g;
+      
+      // Validate genre to prevent creating junk files
+      if (!DICT_GENRES.includes(mappedGenre as any)) {
+        console.warn(`[Training Manager] Bỏ qua genre không hợp lệ từ AI: ${mappedGenre}`);
+        mappedGenre = "core"; // Fallback to core instead of creating junk
+      }
+      
       const targetSource = `${mappedGenre}_${mappedCat}`;
       if (!acc[targetSource]) acc[targetSource] = [];
       acc[targetSource].push(curr);
