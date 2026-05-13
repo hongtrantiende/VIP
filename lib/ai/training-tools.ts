@@ -9,6 +9,7 @@ export interface TrainingSuggestion {
   category: "names" | "names2" | "phienam" | "luatnhan" | "tuvung" | "ngucanh" | "vietphrase";
   genre: string;
   context_zh?: string;
+  context_vi_after?: string;
 }
 
 const trainingSchema = jsonSchema<{ suggestions: TrainingSuggestion[] }>({
