@@ -33,8 +33,8 @@
   ],
   "externally_connectable": {
     "matches": [
-      "https://thi-n-th-vip.vercel.app/*",
-      "https://*.vercel.app/*",
+      "https://thienthu.vipg.workers.dev/*",
+      "https://*.workers.dev/*",
       "http://localhost/*",
       "https://localhost/*"
     ]
