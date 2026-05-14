@@ -335,7 +335,10 @@ export default function LibraryPage() {
     try {
       const listParams = new URLSearchParams({ action: 'download-all' });
       const listRes = await fetch(`/api/dict/cloud-storage?${listParams.toString()}`, { method: 'POST' });
-      if (!listRes.ok) throw new Error("Không thể kết nối tới Tổng kho.");
+      if (!listRes.ok) {
+        const errorData = await listRes.json().catch(() => ({ error: 'Không thể parse JSON lỗi' }));
+        throw new Error(errorData.error || `Lỗi kết nối: ${listRes.status}`);
+      }
       
       const listData = await listRes.json();
       const novelsToImport = listData.novels || []; // Mảng chứa {name, content}
