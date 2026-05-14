@@ -1,12 +1,24 @@
 import { createServerClient } from "@supabase/ssr";
 import { cookies } from "next/headers";
+import { getCloudflareContext } from "@opennextjs/cloudflare";
 
 export async function createClient() {
   const cookieStore = await cookies();
 
+  let supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || "";
+  let supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || "";
+
+  try {
+    const ctx = getCloudflareContext();
+    if (ctx && ctx.env) {
+      supabaseUrl = supabaseUrl || (ctx.env.NEXT_PUBLIC_SUPABASE_URL as string) || "";
+      supabaseKey = supabaseKey || (ctx.env.NEXT_PUBLIC_SUPABASE_ANON_KEY as string) || "";
+    }
+  } catch (err) {}
+
   return createServerClient(
-    process.env.NEXT_PUBLIC_SUPABASE_URL || "https://dummy.supabase.co",
-    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || "dummy-anon-key",
+    supabaseUrl || "https://dummy.supabase.co",
+    supabaseKey || "dummy-anon-key",
     {
       cookies: {
         getAll() {
