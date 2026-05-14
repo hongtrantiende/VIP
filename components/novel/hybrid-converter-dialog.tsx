@@ -28,6 +28,11 @@ import {
   resolveChapterToolModel,
   getChapterToolModelMissingMessage,
 } from "@/lib/chapter-tools/stream-runner";
+import { getWarehouseNovelDataAction } from "@/app/actions/novel-warehouse";
+import { extractNamesAI } from "@/lib/chapter-tools/name-extract";
+import { useProfile } from "@/lib/hooks/use-profile";
+import { bulkImportNameEntries } from "@/lib/hooks/use-name-entries";
+import type { NovelExportData } from "@/lib/novel-io";
 import type { StepModelConfig } from "@/lib/db";
 import {
   CheckCircle2Icon,
@@ -40,9 +45,19 @@ import {
   ScanSearchIcon,
   ChevronDownIcon,
   ChevronUpIcon,
-  FileTextIcon,
   TagIcon,
+  CloudDownloadIcon,
+  FileTextIcon,
 } from "lucide-react";
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@/components/ui/table";
+import { Badge } from "@/components/ui/badge";
 import { useCallback, useMemo, useRef, useState } from "react";
 import { toast } from "sonner";
 import { useLiveQuery } from "dexie-react-hooks";
@@ -54,6 +69,8 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Label } from "@/components/ui/label";
+
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 type Phase = "idle" | "dict" | "ai" | "done";
 
@@ -82,6 +99,12 @@ export function HybridConverterDialog({
   const [editingPrompt, setEditingPrompt] = useState(false);
   const [promptDraft, setPromptDraft] = useState("");
   const abortRef = useRef<AbortController | null>(null);
+
+  const { isAdmin } = useProfile();
+  const [warehouseData, setWarehouseData] = useState<NovelExportData | null>(null);
+  const [loadingWarehouse, setLoadingWarehouse] = useState(false);
+  const [extractedNames, setExtractedNames] = useState<any[]>([]);
+  const [isExtracting, setIsExtracting] = useState(false);
 
   const settings = useAnalysisSettings();
   const chatSettings = useChatSettings();
@@ -209,6 +232,60 @@ export function HybridConverterDialog({
       }
     }
   }, [novelId, chapterIds, settings, resolveModel]);
+
+  const handleFetchWarehouse = async () => {
+    if (!novel?.title) return;
+    setLoadingWarehouse(true);
+    const res = await getWarehouseNovelDataAction(novel.title);
+    if (res.success && res.data) {
+      setWarehouseData(res.data);
+      toast.success(`Đã tải ${res.data.chapters.length} chương từ Kho!`);
+    } else {
+      toast.error(res.error || "Không thể tải dữ liệu từ Kho.");
+    }
+    setLoadingWarehouse(false);
+  };
+
+  const handleExtractFromWarehouse = async (chapterTitle: string, chineseText: string) => {
+    const model = await resolveModel();
+    if (!model) return;
+    setIsExtracting(true);
+    const toastId = toast.loading(`Đang trích xuất từ "${chapterTitle}"...`);
+    try {
+      // Use empty translated text for pure Chinese extraction if needed, 
+      // but extractNamesAI prefers bilingual. Let's send empty for now or use rule-based?
+      // Actually, let's use the first 5000 chars of Chinese.
+      const names = await extractNamesAI({
+        model,
+        sourceText: chineseText,
+        translatedText: "", // Only Chinese available in warehouse text_trung usually
+        signal: abortRef.current?.signal
+      });
+      setExtractedNames(names);
+      toast.success(`Đã trích xuất ${names.length} từ!`, { id: toastId });
+    } catch (err: any) {
+      toast.error("Trích xuất thất bại: " + err.message, { id: toastId });
+    } finally {
+      setIsExtracting(false);
+    }
+  };
+
+  const handleAddAllExtracted = async () => {
+    if (extractedNames.length === 0) return;
+    const toastId = toast.loading("Đang lưu vào từ điển...");
+    try {
+      await bulkImportNameEntries(
+        novelId,
+        extractedNames.map(n => ({ chinese: n.chinese, vietnamese: n.vietnamese })),
+        "nhân vật",
+        "skip"
+      );
+      toast.success(`Đã thêm ${extractedNames.length} từ vào từ điển truyện!`, { id: toastId });
+      setExtractedNames([]);
+    } catch (err: any) {
+      toast.error("Lỗi khi lưu: " + err.message, { id: toastId });
+    }
+  };
 
   const handleClose = () => {
     if (step === "processing") {
@@ -429,14 +506,102 @@ export function HybridConverterDialog({
               </p>
             </div>
 
-            <Button
-              onClick={handleStart}
-              className="w-full gap-2"
-              disabled={!selectedProviderId || !currentModel?.modelId}
-            >
-              <ZapIcon className="size-4" />
-              Bắt đầu Converter AI
-            </Button>
+            <Tabs defaultValue="standard" className="w-full">
+              <TabsList className="grid w-full grid-cols-2">
+                <TabsTrigger value="standard">Tiêu chuẩn</TabsTrigger>
+                <TabsTrigger value="warehouse" disabled={!isAdmin}>Kho Admin</TabsTrigger>
+              </TabsList>
+              
+              <TabsContent value="standard" className="space-y-4 py-4">
+                <Button
+                  onClick={handleStart}
+                  className="w-full gap-2"
+                  disabled={!selectedProviderId || !currentModel?.modelId}
+                >
+                  <ZapIcon className="size-4" />
+                  Bắt đầu Converter AI
+                </Button>
+              </TabsContent>
+
+              <TabsContent value="warehouse" className="space-y-4 py-4">
+                <div className="rounded-lg border border-dashed p-4 text-center space-y-3">
+                  <p className="text-xs text-muted-foreground">
+                    Admin có thể tải văn bản gốc trực tiếp từ Google Drive Warehouse để chạy từ điển mà không cần tải truyện về máy.
+                  </p>
+                  <Button 
+                    variant="outline" 
+                    size="sm" 
+                    onClick={handleFetchWarehouse}
+                    disabled={loadingWarehouse}
+                  >
+                    {loadingWarehouse ? <Loader2Icon className="mr-2 size-4 animate-spin" /> : <CloudDownloadIcon className="mr-2 size-4" />}
+                    Tải dữ liệu từ Kho Tổng
+                  </Button>
+                </div>
+
+                {warehouseData && (
+                  <div className="space-y-3">
+                    <div className="max-h-[300px] overflow-y-auto rounded-md border">
+                      <Table>
+                        <TableHeader>
+                          <TableRow>
+                            <TableHead>Chương</TableHead>
+                            <TableHead className="text-right">Thao tác</TableHead>
+                          </TableRow>
+                        </TableHeader>
+                        <TableBody>
+                          {warehouseData.chapters.slice(0, 50).map((ch) => {
+                            // Find scene for this chapter
+                            const scene = warehouseData.scenes.find(s => s.chapterId === ch.id);
+                            return (
+                              <TableRow key={ch.id}>
+                                <TableCell className="text-xs font-medium">{ch.title}</TableCell>
+                                <TableCell className="text-right">
+                                  <Button 
+                                    size="xs" 
+                                    variant="ghost" 
+                                    className="h-7 text-[10px]"
+                                    onClick={() => handleExtractFromWarehouse(ch.title, scene?.content || "")}
+                                    disabled={isExtracting}
+                                  >
+                                    Trích xuất
+                                  </Button>
+                                </TableCell>
+                              </TableRow>
+                            );
+                          })}
+                        </TableBody>
+                      </Table>
+                    </div>
+                    {warehouseData.chapters.length > 50 && (
+                      <p className="text-[10px] text-center text-muted-foreground italic">Hiển thị tối đa 50 chương gần nhất.</p>
+                    )}
+                  </div>
+                )}
+
+                {extractedNames.length > 0 && (
+                  <div className="rounded-md border bg-emerald-500/5 p-3 space-y-3 border-emerald-500/20">
+                    <div className="flex items-center justify-between">
+                      <p className="text-xs font-bold flex items-center gap-2 text-emerald-700 dark:text-emerald-400">
+                        <TagIcon className="size-3" />
+                        Từ điển trích xuất ({extractedNames.length})
+                      </p>
+                      <Button size="xs" onClick={handleAddAllExtracted} className="h-7 px-3 bg-emerald-600 hover:bg-emerald-700 text-white">
+                        Thêm tất cả vào truyện
+                      </Button>
+                    </div>
+                    <div className="max-h-[200px] overflow-y-auto space-y-1 pr-1">
+                      {extractedNames.map((n, i) => (
+                        <div key={i} className="flex items-center justify-between text-[11px] bg-background p-1.5 rounded border border-emerald-500/10">
+                          <span className="truncate mr-2"><strong className="text-emerald-600">{n.chinese}</strong>: {n.vietnamese}</span>
+                          <Badge variant="secondary" className="text-[9px] shrink-0">{n.category}</Badge>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
+              </TabsContent>
+            </Tabs>
           </div>
         )}
 

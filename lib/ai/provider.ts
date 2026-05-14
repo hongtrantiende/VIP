@@ -38,6 +38,27 @@ export async function getModel(
   provider: AIProvider,
   modelId: string,
 ): Promise<LanguageModel> {
+  // 0. Special case for Admin-provided models
+  if (provider.id === "admin-provider") {
+    return withJsonExtraction(
+      createOpenAICompatible({
+        name: "Admin Model",
+        baseURL: "/api/ai/admin-proxy",
+        apiKey: "proxy", // not used by proxy route but required by SDK
+        supportsStructuredOutputs: false,
+        fetch: async (url, options) => {
+          // Route through the dedicated admin proxy
+          return fetch("/api/ai/admin-proxy", {
+            ...options,
+            headers: {
+              ...options?.headers,
+            },
+          });
+        },
+      }).chatModel(modelId),
+    );
+  }
+
   const type: ProviderType = provider.providerType ?? "openai-compatible";
 
   switch (type) {

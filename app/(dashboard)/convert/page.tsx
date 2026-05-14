@@ -21,7 +21,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Input } from "@/components/ui/input";
 import { useDebouncedValue } from "@/lib/hooks/use-debounce";
 import { useTrainingStore, type ConvertTab } from "@/lib/stores/training-store";
-import { cn } from "@/lib/utils";
+import { cn, isMostlyChinese } from "@/lib/utils";
 import {
   FileUpIcon,
   LoaderIcon,
@@ -91,6 +91,9 @@ export default function ConvertPage() {
   const [activeDictSources, setActiveDictSources] = useState<string[]>([]);
   const [editMode, setEditMode] = useState(false);
   const [isConvertingQT, setIsConvertingQT] = useState(false);
+  const [autoNext, setAutoNext] = useState(false);
+  const [wasQueueRunning, setWasQueueRunning] = useState(false);
+  const [pendingAutoStart, setPendingAutoStart] = useState(false);
 
   // Library selection state — persisted in store
   const novels = useNovels();
@@ -100,6 +103,11 @@ export default function ConvertPage() {
   const selectedChapterId = store.selectedChapterId;
   const setSelectedChapterId = store.setSelectedChapterId;
   const targetGenres = store.targetGenres || ["auto"];
+
+  // TXT Drive state
+  const [txtFiles, setTxtFiles] = useState<{id: string, name: string}[]>([]);
+  const [selectedTxtFileId, setSelectedTxtFileId] = useState<string>("");
+  const [isFetchingTxt, setIsFetchingTxt] = useState(false);
 
   const [isAdmin, setIsAdmin] = useState(false);
   useEffect(() => {
@@ -148,6 +156,90 @@ export default function ConvertPage() {
     }
   }, [selectedChapterId, setInput]);
 
+  // Load TXT files list
+  useEffect(() => {
+    if (activeTab === "train" && isAdmin && txtFiles.length === 0) {
+      fetch("/api/dict/cloud-storage?action=list-txt&type=text_trung", { method: 'POST' })
+        .then(res => res.json())
+        .then(data => {
+          if (data.success && data.files) {
+            setTxtFiles(data.files);
+          }
+        }).catch(console.error);
+    }
+  }, [activeTab, isAdmin, txtFiles.length]);
+
+  // Load TXT file content when selected
+  useEffect(() => {
+    if (selectedTxtFileId && !isQueueRunning) {
+      setIsFetchingTxt(true);
+      fetch(`/api/dict/cloud-storage?action=download-txt&fileId=${selectedTxtFileId}`, { method: 'POST' })
+        .then(res => res.text())
+        .then(text => {
+          setInput(text);
+        })
+        .catch(err => toast.error("Lỗi tải file TXT"))
+        .finally(() => setIsFetchingTxt(false));
+    }
+  }, [selectedTxtFileId, setInput]);
+
+  useEffect(() => {
+    if (pendingAutoStart && input.trim() && !isQueueRunning) {
+      setPendingAutoStart(false);
+      // Wait a tiny bit for UI to settle
+      const t = setTimeout(() => {
+        handleStartQueue();
+      }, 500);
+      return () => clearTimeout(t);
+    }
+  }, [input, pendingAutoStart, isQueueRunning]);
+
+  useEffect(() => {
+    if (wasQueueRunning && !isQueueRunning && autoNext) {
+      if (selectedTxtFileId && txtFiles.length > 0) {
+        const tIdx = txtFiles.findIndex(t => t.id === selectedTxtFileId);
+        if (tIdx >= 0 && tIdx < txtFiles.length - 1) {
+           setSelectedTxtFileId(txtFiles[tIdx + 1].id);
+           setPendingAutoStart(true);
+           toast.info(`Tự động chuyển sang file: ${txtFiles[tIdx + 1].name}`);
+        } else {
+           toast.success("Đã hoàn thành toàn bộ danh sách TXT!");
+           setAutoNext(false);
+        }
+      } else if (selectedNovelId && selectedChapterId && chapters && chapters.length > 0) {
+        const cIdx = chapters.findIndex(c => c.id === selectedChapterId);
+        if (cIdx >= 0 && cIdx < chapters.length - 1) {
+          // Next chapter
+          setSelectedChapterId(chapters[cIdx + 1].id);
+          setPendingAutoStart(true);
+          toast.info("Tự động chuyển sang chương tiếp theo...");
+        } else if (cIdx === chapters.length - 1) {
+          // Next novel
+          const nIdx = novels?.findIndex(n => n.id === selectedNovelId) ?? -1;
+          if (novels && nIdx >= 0 && nIdx < novels.length - 1) {
+            const nextNovel = novels[nIdx + 1];
+            setSelectedNovelId(nextNovel.id);
+            // Fetch its first chapter
+            db.scenes.where("novelId").equals(nextNovel.id).sortBy("order").then(scenes => {
+              if (scenes.length > 0) {
+                setSelectedChapterId(scenes[0].chapterId);
+                setPendingAutoStart(true);
+                toast.info(`Tự động chuyển sang truyện: ${nextNovel.title}`);
+              } else {
+                toast.error("Truyện tiếp theo không có nội dung, đã dừng Auto.");
+                setAutoNext(false);
+              }
+            });
+          } else {
+            toast.success("Đã hoàn thành toàn bộ danh sách truyện!");
+            setAutoNext(false);
+          }
+        }
+      }
+    }
+    setWasQueueRunning(isQueueRunning);
+  }, [isQueueRunning, autoNext, wasQueueRunning, selectedChapterId, chapters, novels, selectedNovelId, setSelectedChapterId, setSelectedNovelId]);
+
   // AI Training state
   const aiProviders = useAIProviders();
   const availableProviders = useMemo(() => aiProviders?.filter(p => p.isActive && p.providerType !== "webgpu") || [], [aiProviders]);
@@ -194,7 +286,7 @@ export default function ConvertPage() {
     return workers.map(w => {
       const ms = managerWorkerStates.find(m => m.id === w.id);
       if (ms) {
-        return { ...w, isProcessing: ms.isProcessing, currentChunk: ms.currentChunk };
+        return { ...w, isProcessing: ms.isProcessing, currentChunk: ms.currentChunk, error: (ms as any).error };
       }
       return w;
     });
@@ -276,33 +368,13 @@ export default function ConvertPage() {
     }, {} as Record<string, TrainingSuggestion[]>);
 
     let totalSaved = 0;
-    const supabase = createClient();
-    const { data: { user } } = await supabase.auth.getUser();
 
     for (const [targetSource, terms] of Object.entries(grouped)) {
-      const savedCount = await appendToDictSource(targetSource as DictSource, terms.map(t => ({ chinese: t.chinese, vietnamese: t.vietnamese })));
+      const result = await appendToDictSource(targetSource as DictSource, terms.map(t => ({ chinese: t.chinese, vietnamese: t.vietnamese })));
+      const savedCount = typeof result === "number" ? result : result.added;
 
       if (savedCount > 0) {
         totalSaved += savedCount;
-
-        // Auto-upload to Supabase — read from dictCache (fast) instead of dictEntries (slow)
-        if (user) {
-          try {
-            const cached = await db.dictCache.get(targetSource as DictSource);
-            if (cached?.rawText) {
-              const filename = `${targetSource}.txt`;
-              const { error } = await supabase.storage
-                .from("dictionaries")
-                .upload(filename, cached.rawText, {
-                  contentType: 'text/plain;charset=UTF-8',
-                  upsert: true,
-                });
-              if (error) throw error;
-            }
-          } catch (err: any) {
-            console.error(`Lỗi tải lên ${targetSource}:`, err.message || err);
-          }
-        }
       }
     }
     // ─── LƯU DATASET (JSONL) THEO THỂ LOẠI ───
@@ -336,20 +408,6 @@ export default function ConvertPage() {
       
       const uniqueLines = Array.from(new Set(newText.split("\n").filter(Boolean))).join("\n") + "\n";
       await db.dictCache.put({ source: dsKey as any, rawText: uniqueLines });
-      
-      if (user) {
-        try {
-          const { error } = await supabase.storage
-            .from("dictionaries")
-            .upload(`datasets/${dsKey}.jsonl`, uniqueLines, {
-              contentType: 'application/jsonl',
-              upsert: true,
-            });
-          if (error) throw error;
-        } catch (err: any) {
-          console.error(`Lỗi tải lên dataset ${dsKey}:`, err.message || err);
-        }
-      }
     }
 
     if (totalSaved > 0) {
@@ -360,6 +418,14 @@ export default function ConvertPage() {
 
   const handleStartQueue = () => {
     if (!input.trim()) return;
+    
+    // Kiểm duyệt tiếng Trung
+    if (!isMostlyChinese(input)) {
+      toast.error("Văn bản không hợp lệ! Vui lòng chỉ nhập văn bản tiếng Trung (chưa dịch) để tránh làm hỏng từ điển.", { duration: 5000 });
+      setAutoNext(false); // Tắt auto nếu dính lỗi
+      return;
+    }
+
     // Configure and start the global training manager
     const workerConfigs: TrainingWorkerConfig[] = workers
       .filter(w => w.providerId && w.modelId)
@@ -426,6 +492,13 @@ export default function ConvertPage() {
                 <Switch id="auto-save" checked={autoSave} onCheckedChange={setAutoSave} />
                 <Label htmlFor="auto-save" className="text-xs">Tự động Lưu</Label>
               </div>
+
+              <div className="flex items-center gap-2 border-l pl-2 ml-2">
+                <Switch id="auto-next" checked={autoNext} onCheckedChange={setAutoNext} />
+                <Label htmlFor="auto-next" className="text-xs text-amber-600 font-semibold" title="Tự động chuyển sang chương/truyện tiếp theo khi train xong">
+                  Auto-Next
+                </Label>
+              </div>
             </>
           )}
 
@@ -457,8 +530,36 @@ export default function ConvertPage() {
 
             {activeTab === "train" && (
               <div className="flex items-center gap-2 mr-2 flex-wrap">
-                <LibraryIcon className="size-3.5 text-muted-foreground shrink-0" />
-                <Select value={selectedNovelId} onValueChange={setSelectedNovelId} disabled={isQueueRunning}>
+                {isAdmin && txtFiles.length > 0 && (
+                  <Select 
+                    value={selectedTxtFileId} 
+                    onValueChange={(val) => {
+                      setSelectedTxtFileId(val);
+                      setSelectedNovelId("");
+                      setSelectedChapterId("");
+                    }} 
+                    disabled={isQueueRunning || isFetchingTxt}
+                  >
+                    <SelectTrigger className="h-7 text-xs w-[180px] bg-amber-500/10 border-amber-500/30">
+                      <SelectValue placeholder="Kho Truyện TXT..." />
+                    </SelectTrigger>
+                    <SelectContent>
+                      {txtFiles.map(f => (
+                        <SelectItem key={f.id} value={f.id} className="text-xs">{f.name}</SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                )}
+
+                <LibraryIcon className="size-3.5 text-muted-foreground shrink-0 ml-1" />
+                <Select 
+                  value={selectedNovelId} 
+                  onValueChange={(val) => {
+                    setSelectedNovelId(val);
+                    setSelectedTxtFileId("");
+                  }} 
+                  disabled={isQueueRunning}
+                >
                   <SelectTrigger className="h-7 text-xs w-[160px]">
                     <SelectValue placeholder="Chọn truyện..." />
                   </SelectTrigger>
@@ -686,10 +787,6 @@ export default function ConvertPage() {
                       toast.error("Không có đủ câu ngữ cảnh để tạo dataset");
                       return;
                     }
-                    
-                    const supabase = createClient();
-                    const { data: { user } } = await supabase.auth.getUser();
-
                     for (const [dsKey, lines] of Object.entries(datasetByGenre)) {
                       const textLines = Array.from(new Set(lines)).join("\n");
                       
@@ -702,28 +799,9 @@ export default function ConvertPage() {
                       a.download = filename;
                       a.click();
                       
-                      // 2. Upload lên Supabase
-                      if (user) {
-                        try {
-                          const { error } = await supabase.storage
-                            .from("dictionaries")
-                            .upload(`datasets/${dsKey}.jsonl`, blob, {
-                              contentType: 'application/jsonl',
-                              upsert: true,
-                            });
-                          if (error) throw error;
-                        } catch (err: any) {
-                          console.error(err);
-                          toast.error(`Lỗi khi tải lên Supabase (${dsKey}): ` + (err.message || ""));
-                        }
-                      }
                     }
                     
-                    if (user) {
-                      toast.success("Đã tải Dataset và sao lưu lên Supabase Cloud!");
-                    } else {
-                      toast.success("Đã tải Dataset về máy (Chưa đăng nhập nên không lưu Cloud)");
-                    }
+                    toast.success("Đã tải Dataset về máy thành công!");
                   }}>Tải & Lưu Dataset (JSONL)</Button>
                 )}
                 {extractedTerms.length > 0 && (
@@ -821,6 +899,15 @@ function WorkerCard({
         ) : (
           <div className="h-full flex items-center justify-center">
             <span className="text-[10px] text-muted-foreground/50 italic">Đang chờ việc...</span>
+          </div>
+        )}
+        
+        {(worker as any).error && (
+          <div className="absolute inset-0 bg-background/80 backdrop-blur-[1px] flex flex-col justify-center items-center p-2 text-center animate-in fade-in z-10">
+            <span className="font-bold text-red-500 text-[10px] border border-red-500/50 bg-red-500/10 px-2 py-1 rounded shadow-sm max-w-full truncate">
+              {(worker as any).error}
+            </span>
+            <span className="text-[9px] text-muted-foreground mt-1">Lỗi kết nối API. Đang tự động thử lại...</span>
           </div>
         )}
       </div>

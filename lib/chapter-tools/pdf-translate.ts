@@ -457,9 +457,9 @@ export async function runPdfTranslate(opts: HybridTranslateOptions): Promise<voi
 
             // Upload to community dictionary
             const novel = await db.novels.get(novelId);
-            const genre = novel?.genres?.[0] || "tienhiep";
+            const rawGenre = novel?.genre || (novel?.genres && novel.genres[0]) || "tienhiep";
             const { uploadToCommunityDict } = await import("@/lib/hooks/use-dict-entries");
-            await uploadToCommunityDict(entriesWithCategory, genre);
+            await uploadToCommunityDict(entriesWithCategory, rawGenre);
           } catch (err) {
             console.error("Lỗi lưu tên mới vào từ điển:", err);
           }

@@ -1,12 +1,15 @@
 import { createClient } from '@/lib/supabase/server';
 import { 
   uploadToAdminDrive, 
-  downloadFromAdminDrive, 
-  listFilesFromAdminDrive,
-  listFoldersFromAdminDrive,
+  downloadFromAdminDrive,
+  downloadAllUserNovelsFromAdminDrive,
+  listUserNovelsFromAdminDrive,
   uploadDictToAdminDrive,
   downloadDictFromAdminDrive,
-  uploadTxtToAdminDrive
+  downloadAllDictsFromAdminDrive,
+  uploadTxtToAdminDrive,
+  listTxtFromAdminDrive,
+  getDriveFileContent
 } from '@/lib/google-drive-admin-v2';
 import { NextResponse } from 'next/server';
 
@@ -23,9 +26,22 @@ export async function POST(req: Request) {
     // ── Dict actions: dùng service account, không cần user auth ──
     if (action === 'upload-dict') {
       if (!filename) return NextResponse.json({ error: 'Missing filename' }, { status: 400 });
-      const content = await req.text();
+      let content = "";
+      if (req.body) {
+        const reader = req.body.getReader();
+        const decoder = new TextDecoder();
+        while (true) {
+          const { done, value } = await reader.read();
+          if (done) break;
+          content += decoder.decode(value, { stream: true });
+        }
+        content += decoder.decode();
+      } else {
+        content = await req.text();
+      }
+      console.log('UPLOAD-DICT RECEIVED SIZE:', content.length);
       await uploadDictToAdminDrive(filename, content);
-      return NextResponse.json({ success: true });
+      return NextResponse.json({ success: true, sizeReceived: content.length });
     }
 
     if (action === 'download-dict') {
@@ -33,6 +49,25 @@ export async function POST(req: Request) {
       const text = await downloadDictFromAdminDrive(filename);
       if (text === null) return new Response('File not found', { status: 404 });
       return new Response(text, { headers: { 'Content-Type': 'text/plain; charset=utf-8' } });
+    }
+
+    if (action === 'download-all-dicts') {
+      const allDicts = await downloadAllDictsFromAdminDrive();
+      return NextResponse.json({ success: true, dicts: allDicts });
+    }
+
+    if (action === 'list-txt') {
+      const type = searchParams.get('type') as 'text_trung' | 'text_dich';
+      if (!type) return NextResponse.json({ error: 'Missing type parameter' }, { status: 400 });
+      const files = await listTxtFromAdminDrive(type);
+      return NextResponse.json({ success: true, files });
+    }
+
+    if (action === 'download-txt') {
+      const fileId = searchParams.get('fileId');
+      if (!fileId) return NextResponse.json({ error: 'Missing fileId parameter' }, { status: 400 });
+      const content = await getDriveFileContent(fileId);
+      return new Response(content, { headers: { 'Content-Type': 'text/plain; charset=utf-8' } });
     }
 
     // ── User-specific actions: cần auth ──
@@ -43,43 +78,59 @@ export async function POST(req: Request) {
     const userIdentifier = user.email?.replace(/[@.]/g, '_') || user.id;
 
     if (action === 'list-novels') {
-      const folders = await listFoldersFromAdminDrive(userIdentifier);
-      return NextResponse.json({ success: true, novels: folders.map(f => f.name) });
+      const novels = await listUserNovelsFromAdminDrive(userIdentifier);
+      return NextResponse.json({ success: true, novels });
     }
 
     if (action === 'upload-txt') {
-      if (!novelId || !filename) return NextResponse.json({ error: 'Missing parameters' }, { status: 400 });
+      // type: 'text_trung' | 'text_dich', novelName, content
+      const type = searchParams.get('type') as 'text_trung' | 'text_dich';
+      const novelName = searchParams.get('novelName');
+      if (!type || !novelName) return NextResponse.json({ error: 'Missing parameters' }, { status: 400 });
       const content = await req.text();
-      await uploadTxtToAdminDrive(userIdentifier, novelId, filename, content);
-      return NextResponse.json({ success: true });
+      const result = await uploadTxtToAdminDrive(type, novelName, content);
+      return NextResponse.json({ success: true, result });
     }
 
     if (action === 'upload') {
-      if (!novelId || !filename) {
-        return NextResponse.json({ error: 'Missing parameters' }, { status: 400 });
+      const novelName = searchParams.get('novelName');
+      if (!novelName) {
+        return NextResponse.json({ error: 'Missing novelName' }, { status: 400 });
       }
-      const content = await req.text(); // Đọc trực tiếp toàn bộ body là nội dung file
-      const fileId = await uploadToAdminDrive(userIdentifier, novelId, filename, content);
+      let content = "";
+      if (req.body) {
+        const reader = req.body.getReader();
+        const decoder = new TextDecoder();
+        while (true) {
+          const { done, value } = await reader.read();
+          if (done) break;
+          content += decoder.decode(value, { stream: true });
+        }
+        content += decoder.decode();
+      } else {
+        content = await req.text();
+      }
+      const fileId = await uploadToAdminDrive(userIdentifier, novelName, content);
       return NextResponse.json({ success: true, fileId });
     }
 
     if (action === 'download') {
-      if (!novelId || !filename) {
-        return NextResponse.json({ error: 'Missing parameters' }, { status: 400 });
+      const novelName = searchParams.get('novelName');
+      if (!novelName) {
+        return NextResponse.json({ error: 'Missing novelName' }, { status: 400 });
       }
-      const text = await downloadFromAdminDrive(userIdentifier, novelId, filename);
+      const text = await downloadFromAdminDrive(userIdentifier, novelName);
       if (text === null) return new Response('File not found', { status: 404 });
       
       // Trả về Raw Text để xử lý file lớn cực nhanh
       return new Response(text, {
-        headers: { 'Content-Type': 'text/plain; charset=utf-8' }
+        headers: { 'Content-Type': 'application/json; charset=utf-8' }
       });
     }
 
-    if (action === 'list') {
-      if (!novelId) return NextResponse.json({ error: 'Missing parameters' }, { status: 400 });
-      const files = await listFilesFromAdminDrive(userIdentifier, novelId);
-      return NextResponse.json({ success: true, files });
+    if (action === 'download-all') {
+      const novels = await downloadAllUserNovelsFromAdminDrive(userIdentifier);
+      return NextResponse.json({ success: true, novels });
     }
 
     return NextResponse.json({ error: 'Invalid action' }, { status: 400 });

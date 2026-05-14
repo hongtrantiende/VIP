@@ -52,7 +52,7 @@ import {
 } from "@/components/ui/tooltip";
 import { WebGPUModelManagerDialog } from "@/components/webgpu-model-status";
 import { PROVIDER_PRESETS, getPreset } from "@/lib/ai/presets";
-import type { AIProvider, AIModel, ProviderType } from "@/lib/db";
+import { db, type AIProvider, type AIModel, type ProviderType } from "@/lib/db";
 import {
   createAIModelManual,
   createAIProvider,
@@ -77,6 +77,7 @@ import {
   RefreshCwIcon,
   ServerIcon,
   TrashIcon,
+  CrownIcon,
 } from "lucide-react";
 import { useState } from "react";
 import { toast } from "sonner";
@@ -125,6 +126,16 @@ function ProviderFormDialog({
 
     setSaving(true);
     try {
+      if (!isEditing) {
+        // Check 2-provider limit (excluding WebGPU system provider)
+        const currentCount = await db.aiProviders.count();
+        if (currentCount >= 2) {
+          toast.error("Mỗi tài khoản chỉ được phép thêm tối đa 2 model (Key AI) riêng. Hãy xóa bớt để thêm mới.");
+          setSaving(false);
+          return;
+        }
+      }
+
       const data = {
         name: name.trim(),
         baseUrl: baseUrl.trim() || preset?.defaultBaseUrl || "",
@@ -549,8 +560,8 @@ function ProviderCard({ provider }: { provider: AIProvider }) {
         </CardHeader>
 
         <CardContent className="space-y-3">
-          {/* API key display — hidden for WebGPU */}
-          {!isWebGPU && (
+          {/* API key display — hidden for WebGPU and Admin models */}
+          {!isWebGPU && provider.id !== "admin-provider" && (
             <div className="flex items-center gap-2 text-xs text-muted-foreground">
               <span className="font-medium">Khóa API:</span>
               <code className="flex-1 truncate">
@@ -565,6 +576,13 @@ function ProviderCard({ provider }: { provider: AIProvider }) {
                   {showKey ? <EyeOffIcon /> : <EyeIcon />}
                 </Button>
               )}
+            </div>
+          )}
+          
+          {provider.id === "admin-provider" && (
+            <div className="flex items-center gap-2 text-xs text-emerald-600 font-medium">
+              <CrownIcon className="size-3" />
+              <span>Cấp bởi Admin</span>
             </div>
           )}
 

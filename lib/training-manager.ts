@@ -18,7 +18,6 @@ import { extractDictionaryEntries, type TrainingSuggestion } from "@/lib/ai/trai
 import { getModel } from "@/lib/ai/provider";
 import { appendToDictSource } from "@/lib/hooks/use-dict-entries";
 import { toast } from "sonner";
-import { createClient } from "@/lib/supabase/client";
 
 const GENRE_DICTS = [
   "hiendai", "tienhiep", "huyenhuyen", "dammi", "hocduong",
@@ -41,6 +40,7 @@ interface RunningWorkerState {
   id: number;
   isProcessing: boolean;
   currentChunk: string;
+  error?: string;
 }
 
 // ─── Singleton State ─────────────────────────────────────────
@@ -53,6 +53,7 @@ let _targetGenres: string[] = ["auto"];
 let _selectedChapterId = "";
 let _listeners: Set<() => void> = new Set();
 let _activeWorkerCount = 0;
+let _pendingInput = ""; // Hàng đợi ảo để không trừ chữ trên UI cho đến khi làm xong
 
 // Mutex-like lock for taking chunks from input (prevents two workers grabbing same lines)
 let _chunkLock = false;
@@ -89,7 +90,7 @@ function notifyListenersImmediate() {
 // ─── Batched Auto-Save ───────────────────────────────────────
 let _pendingSuggestions: TrainingSuggestion[] = [];
 let _autoSaveTimer: ReturnType<typeof setTimeout> | null = null;
-let _supabaseUploadTimer: ReturnType<typeof setTimeout> | null = null;
+let _cloudUploadTimer: ReturnType<typeof setTimeout> | null = null;
 let _dirtySourcesForUpload: Set<string> = new Set();
 let _wordsSinceLastWarehouseSync = 0; // Bộ đếm từ mới để đồng bộ kho 1TB
 
@@ -139,7 +140,8 @@ async function processAutoSaveLocal(suggestions: TrainingSuggestion[]) {
 
   for (const [targetSource, terms] of Object.entries(grouped)) {
     await yieldToMain();
-    const savedCount = await appendToDictSource(targetSource as any, terms.map(t => ({ chinese: t.chinese, vietnamese: t.vietnamese })));
+    const result = await appendToDictSource(targetSource as any, terms.map(t => ({ chinese: t.chinese, vietnamese: t.vietnamese })));
+    const savedCount = typeof result === "number" ? result : result.added;
     if (savedCount > 0) {
       totalSaved += savedCount;
       _dirtySourcesForUpload.add(targetSource);
@@ -153,53 +155,32 @@ async function processAutoSaveLocal(suggestions: TrainingSuggestion[]) {
     
     // Nếu đạt mốc 200 từ thì ưu tiên đẩy lên kho ngay
     if (_wordsSinceLastWarehouseSync >= 200) {
-      scheduleSupabaseUpload(true); // true = force fast upload
+      scheduleCloudUpload(true); // true = force fast upload
     } else {
-      scheduleSupabaseUpload();
+      scheduleCloudUpload();
     }
   }
 }
 
-function scheduleSupabaseUpload(force = false) {
-  if (_supabaseUploadTimer && !force) return;
-  if (_supabaseUploadTimer) clearTimeout(_supabaseUploadTimer);
+function scheduleCloudUpload(force = false) {
+  if (_cloudUploadTimer && !force) return;
+  if (_cloudUploadTimer) clearTimeout(_cloudUploadTimer);
 
-  _supabaseUploadTimer = setTimeout(async () => {
-    _supabaseUploadTimer = null;
-    await flushSupabaseUpload();
+  _cloudUploadTimer = setTimeout(async () => {
+    _cloudUploadTimer = null;
+    await flushCloudUpload(force);
   }, force ? 1000 : SUPABASE_UPLOAD_DEBOUNCE_MS);
 }
 
-async function flushSupabaseUpload() {
+async function flushCloudUpload(force = false) {
   if (_dirtySourcesForUpload.size === 0) return;
   
   const sources = Array.from(_dirtySourcesForUpload);
-  _dirtySourcesForUpload.clear();
-  
-  const supabase = createClient();
-  const { data: { user } } = await supabase.auth.getUser();
-  if (!user) return;
 
-  // 1. Đồng bộ lên Supabase (Bản dự phòng cá nhân)
-  for (const targetSource of sources) {
-    try {
-      await yieldToMain();
-      const cached = await db.dictCache.get(targetSource as any);
-      if (!cached?.rawText) continue;
-      
-      const filename = `${targetSource}.txt`;
-      await supabase.storage.from("dictionaries").upload(filename, cached.rawText, {
-        contentType: 'text/plain;charset=UTF-8',
-        upsert: true,
-      });
-    } catch (err) {
-      console.error(`Supabase upload error:`, err);
-      _dirtySourcesForUpload.add(targetSource);
-    }
-  }
-
-  // 2. Đồng bộ "Siêu tốc" vào Tổng kho 1TB (Cứ 200 từ)
-  if (_wordsSinceLastWarehouseSync >= 200) {
+  // Đồng bộ vào Tổng kho 1TB (Google Drive)
+  // Chỉ đồng bộ nếu đạt 200 từ, hoặc bị ép buộc (force = true) khi stop/hoàn thành chapter
+  if (force || _wordsSinceLastWarehouseSync >= 200) {
+    _dirtySourcesForUpload.clear();
     try {
       let warehouseCount = 0;
       for (const targetSource of sources) {
@@ -320,11 +301,11 @@ export function stopTraining() {
   flushAutoSave();
   
   // Also flush cloud upload
-  if (_supabaseUploadTimer) {
-    clearTimeout(_supabaseUploadTimer);
-    _supabaseUploadTimer = null;
+  if (_cloudUploadTimer) {
+    clearTimeout(_cloudUploadTimer);
+    _cloudUploadTimer = null;
   }
-  flushSupabaseUpload();
+  flushCloudUpload(true); // Force upload whatever is left
   
   notifyListenersImmediate();
 }
@@ -336,9 +317,7 @@ async function getProviderById(id: string): Promise<AIProvider | undefined> {
 }
 
 function requeueChunk(chunkText: string) {
-  const currentInput = useTrainingStore.getState().input;
-  const newInput = chunkText + (currentInput ? "\n" + currentInput : "");
-  useTrainingStore.getState().setInput(newInput);
+  _pendingInput = chunkText + (_pendingInput ? "\n" + _pendingInput : "");
 }
 
 /**
@@ -357,68 +336,17 @@ async function takeNextChunk(): Promise<string | null> {
   _chunkLock = true;
 
   try {
-    let currentInput = useTrainingStore.getState().input;
-
-    if (!currentInput.trim()) {
-      // Input empty — try to advance to next chapter
-      if (_selectedChapterId) {
-        const currCh = await db.chapters.get(_selectedChapterId);
-        if (currCh) {
-          const nextCh = await db.chapters.where("novelId").equals(currCh.novelId)
-            .filter(c => c.order > currCh.order)
-            .sortBy("order")
-            .then(arr => arr[0]);
-
-          if (nextCh) {
-            const scenes = await db.scenes.where("[chapterId+isActive]").equals([nextCh.id, 1]).sortBy("order");
-            const text = scenes.map(s => s.content).join("\n");
-            useTrainingStore.getState().setInput(text);
-            _selectedChapterId = nextCh.id;
-            // Also update the store so UI reflects
-            useTrainingStore.getState().setSelectedChapterId(nextCh.id);
-            toast.info(`Tự động chuyển sang chương tiếp theo: ${nextCh.title}`);
-            notifyListeners();
-            currentInput = text;
-          } else {
-            // Finished current novel! Try to find the next novel in the library
-            const allNovels = await db.novels.orderBy("updatedAt").reverse().toArray();
-            const currIdx = allNovels.findIndex(n => n.id === currCh.novelId);
-            if (currIdx !== -1 && currIdx < allNovels.length - 1) {
-              const nextNovel = allNovels[currIdx + 1];
-              const firstCh = await db.chapters.where("novelId").equals(nextNovel.id).sortBy("order").then(arr => arr[0]);
-              if (firstCh) {
-                const scenes = await db.scenes.where("[chapterId+isActive]").equals([firstCh.id, 1]).sortBy("order");
-                const text = scenes.map(s => s.content).join("\n");
-                useTrainingStore.getState().setInput(text);
-                _selectedChapterId = firstCh.id;
-                useTrainingStore.getState().setSelectedNovelId(nextNovel.id);
-                useTrainingStore.getState().setSelectedChapterId(firstCh.id);
-                toast.success(`Đã học xong truyện cũ. Tự động chuyển sang truyện tiếp theo: ${nextNovel.title}`);
-                notifyListeners();
-                currentInput = text;
-              } else {
-                toast.info(`Truyện tiếp theo (${nextNovel.title}) chưa có chương nào.`);
-              }
-            } else {
-              if (currIdx === allNovels.length - 1) {
-                toast.success("Đã hoàn thành phân tích toàn bộ thư viện truyện!");
-              }
-            }
-          }
-        }
-      }
-    }
-
-    if (!currentInput.trim()) {
+    if (!_pendingInput.trim()) {
       return null; // Truly nothing left
     }
 
-    // Take 15 lines
-    const lines = currentInput.split('\n');
-    const chunkLines = lines.slice(0, 15);
-    const remainingLines = lines.slice(15);
+    // Take 50 lines
+    const lines = _pendingInput.split('\n');
+    const chunkLines = lines.slice(0, 50);
+    const remainingLines = lines.slice(50);
     const chunkText = chunkLines.join('\n');
-    useTrainingStore.getState().setInput(remainingLines.join('\n'));
+    
+    _pendingInput = remainingLines.join('\n');
 
     if (!chunkText.trim()) return null;
     return chunkText;
@@ -439,16 +367,22 @@ export async function startTraining() {
   _activeWorkerCount = 0;
   _chunkLock = false;
   _pendingSuggestions = [];
+  _pendingInput = store.input; // Bắt đầu với toàn bộ văn bản
   _dirtySourcesForUpload.clear();
-  _workerStates = _workers.map(w => ({ id: w.id, isProcessing: false, currentChunk: "" }));
+  _workerStates = _workers.map(w => ({ id: w.id, isProcessing: false, currentChunk: "", error: undefined }));
   notifyListenersImmediate();
 
-  // Launch all workers concurrently — each one self-dispatches
-  for (const worker of _workers) {
+  // Launch all workers concurrently, but staggered to avoid burst rate limits on APIs
+  _workers.forEach((worker, index) => {
     if (worker.providerId && worker.modelId) {
-      workerLoop(worker);
+      // Delay each worker by 1.5 seconds to prevent rate limit spikes
+      setTimeout(() => {
+        if (_isRunning) {
+          workerLoop(worker);
+        }
+      }, index * 1500);
     }
-  }
+  });
 }
 
 /**
@@ -497,7 +431,7 @@ async function workerLoop(worker: TrainingWorkerConfig) {
 async function processChunk(worker: TrainingWorkerConfig, chunkText: string) {
   // Update UI state (throttled)
   _workerStates = _workerStates.map(w =>
-    w.id === worker.id ? { ...w, isProcessing: true, currentChunk: chunkText } : w
+    w.id === worker.id ? { ...w, isProcessing: true, currentChunk: chunkText, error: undefined } : w
   );
   notifyListeners();
 
@@ -553,10 +487,35 @@ async function processChunk(worker: TrainingWorkerConfig, chunkText: string) {
       if (_autoSave) {
         queueAutoSave(suggestions);
       }
+    } else {
+      // Báo mờ mờ cho user biết là luồng này không có từ mới
+      toast.info(`Luồng ${worker.id} xử lý xong (Không có từ mới)`, { duration: 1500, style: { fontSize: '12px' } });
+    }
+
+    // AI phân tích xong, TIẾN HÀNH XÓA CHỮ TRÊN UI
+    const store = useTrainingStore.getState();
+    const currentInput = store.input;
+    
+    // Chuẩn hoá để tránh lỗi Windows (\r\n) vs Linux (\n) khiến không xóa được
+    let normFull = currentInput.replace(/\r\n/g, '\n');
+    const normChunk = chunkText.replace(/\r\n/g, '\n');
+    
+    if (normFull.indexOf(normChunk) !== -1) {
+      normFull = normFull.replace(normChunk, "");
+      normFull = normFull.replace(/^[\r\n]+/, ""); // Xoá dấu xuống dòng dư thừa
+      store.setInput(normFull);
+    } else {
+      // Fallback
+      console.warn("Không tìm thấy đoạn text để trừ trên UI.");
     }
   } catch (err) {
     const errMsg = err instanceof Error ? err.message : String(err);
     console.error(`Worker ${worker.id} error:`, err);
+
+    _workerStates = _workerStates.map(w =>
+      w.id === worker.id ? { ...w, error: errMsg } : w
+    );
+    notifyListenersImmediate();
 
     if (_isRunning) {
       requeueChunk(chunkText);

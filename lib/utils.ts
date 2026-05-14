@@ -15,6 +15,26 @@ export function countWords(text: string): number {
   return (cjk?.length ?? 0) + latin.length;
 }
 
+/**
+ * Kiểm tra xem văn bản có chứa chủ yếu là tiếng Trung hay không.
+ * Ngăn chặn việc người dùng ném nguyên một cục tiếng Việt vào để train.
+ */
+export function isMostlyChinese(text: string): boolean {
+  if (!text || text.trim().length === 0) return false;
+  
+  // Lọc bỏ khoảng trắng và dấu câu
+  const cleanText = text.replace(/[\s\p{P}]/gu, '');
+  if (cleanText.length === 0) return false;
+
+  const chineseChars = cleanText.match(/[\u4e00-\u9fff\u3400-\u4dbf]/g);
+  const chineseCount = chineseChars ? chineseChars.length : 0;
+  
+  // Nếu tỷ lệ ký tự tiếng Trung / tổng số ký tự (sau khi bỏ dấu) >= 15%, thì coi là hợp lệ
+  // 15% là mức an toàn cho các đoạn hội thoại có nhiều tên riêng/từ mượn Latin,
+  // nhưng đủ để chặn một đoạn văn bản thuần Việt 100%.
+  return (chineseCount / cleanText.length) >= 0.15;
+}
+
 export function stripHtml(html: string): string {
   if (typeof window === "undefined") return html.replace(/<[^>]+>/g, "");
   const doc = new DOMParser().parseFromString(html, "text/html");
@@ -108,4 +128,13 @@ export function isLocalhost(): boolean {
     window.location.hostname === "127.0.0.1" ||
     window.location.hostname.startsWith("192.168.")
   );
+}
+
+export function isAdmin(email: string | null | undefined): boolean {
+  if (!email) return false;
+  const adminEmails = [
+    "nthanhnam2005@gmail.com",
+    "thanhxnam2005@gmail.com"
+  ];
+  return adminEmails.includes(email.toLowerCase());
 }

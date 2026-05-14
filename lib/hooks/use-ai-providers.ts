@@ -4,8 +4,9 @@ import {
   WEBGPU_SYSTEM_PROVIDER_ID,
   filterApiInferenceProviders,
 } from "@/lib/ai/api-inference";
-import { db, type AIProvider } from "@/lib/db";
+import { db, type AIProvider, type AIModel } from "@/lib/db";
 import { useLiveQuery } from "dexie-react-hooks";
+import { useProfile } from "./use-profile";
 
 // ─── System Provider (always available, no CRUD) ────────────
 
@@ -24,7 +25,7 @@ export function isSystemProvider(id: string | undefined): boolean {
   return id === WEBGPU_SYSTEM_PROVIDER_ID;
 }
 
-import { useMemo } from "react";
+import { useMemo, useState, useEffect } from "react";
 
 // ─── Provider Queries ───────────────────────────────────────
 
@@ -32,11 +33,29 @@ export function useAIProviders() {
   const dbProviders = useLiveQuery(() =>
     db.aiProviders.orderBy("createdAt").reverse().toArray(),
   );
+  const { profile, isVip, isAdmin } = useProfile();
   
   return useMemo(() => {
     if (!dbProviders) return undefined;
-    return [...dbProviders, WEBGPU_SYSTEM_PROVIDER];
-  }, [dbProviders]);
+    const all = [...dbProviders, WEBGPU_SYSTEM_PROVIDER];
+    
+    // Show admin provider for VIPs or if they have some quota left (or are Admin)
+    if (isVip || isAdmin || (profile?.admin_model_quota && profile.admin_model_quota > 0)) {
+      const adminProvider: AIProvider = {
+        id: "admin-provider",
+        name: "Admin (Shared Pool)",
+        baseUrl: "",
+        apiKey: "",
+        isActive: true,
+        providerType: "openai-compatible",
+        createdAt: new Date(),
+        updatedAt: new Date(),
+      };
+      all.unshift(adminProvider);
+    }
+    
+    return all;
+  }, [dbProviders, profile?.admin_model_quota, isVip, isAdmin]);
 }
 
 /** Providers allowed for analysis, chapter tools, writing pipeline (excludes WebGPU). */
@@ -120,14 +139,45 @@ function sortModels<T extends { modelId: string; name?: string }>(
 }
 
 export function useAIModels(providerId: string | undefined) {
+  const { profile } = useProfile();
+  const [adminModels, setAdminModels] = useState<AIModel[]>([]);
+
   const dbModels = useLiveQuery(
     () =>
-      providerId && !isSystemProvider(providerId)
+      providerId && !isSystemProvider(providerId) && providerId !== "admin-provider"
         ? db.aiModels.where("providerId").equals(providerId).toArray()
         : [],
     [providerId],
   );
+
+  useEffect(() => {
+    if (providerId === "admin-provider") {
+      fetch("/api/admin/models")
+        .then(res => res.json())
+        .then(data => {
+          if (data && data.data) {
+            const models = data.data.map((m: any) => ({
+              id: m.id,
+              providerId: "admin-provider",
+              modelId: m.id,
+              name: m.id.replace("gcli-", ""),
+              createdAt: new Date()
+            }));
+            setAdminModels(models);
+          }
+        })
+        .catch(err => console.error("Failed to fetch admin models", err));
+    } else {
+      setAdminModels([]);
+    }
+  }, [providerId]);
+
   if (isSystemProvider(providerId)) return WEBGPU_SYSTEM_MODELS;
+  
+  if (providerId === "admin-provider") {
+    return adminModels;
+  }
+
   return dbModels ? sortModels(dbModels) : dbModels;
 }
 

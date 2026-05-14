@@ -42,6 +42,7 @@ import {
   FileTextIcon,
   TagIcon,
   TrendingUpIcon,
+  CrownIcon,
 } from "lucide-react";
 import { useCallback, useMemo, useRef, useState, useEffect } from "react";
 import { toast } from "sonner";
@@ -59,6 +60,8 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useDictMeta } from "@/lib/hooks/use-dict-entries";
 import { useProfile } from "@/lib/hooks/use-profile";
 import { cn } from "@/lib/utils";
+import { Switch } from "@/components/ui/switch";
+import { useBulkTranslateStore } from "@/lib/stores/bulk-translate";
 
 type Phase = "idle" | "dict" | "ai" | "done";
 
@@ -75,7 +78,104 @@ export function TranslateWorkspaceDialog({
   chapterIds: string[];
   chapters: Chapter[];
 }) {
-  const { profile } = useProfile();
+  const providers = useApiInferenceProviders();
+  const { profile, isAdmin } = useProfile();
+
+  // Selected state
+  const [selectedProviderId, setSelectedProviderId] = useState<string | undefined>();
+  const [selectedModelId, setSelectedModelId] = useState<string | undefined>();
+
+  // Fetch models for selected provider
+  const models = useAIModels(selectedProviderId);
+
+  const currentModel = models?.find(m => m.modelId === selectedModelId);
+
+  // Initialize selection
+  useEffect(() => {
+    if (providers && providers.length > 0 && !selectedProviderId) {
+      // Default to admin model if available, but don't force a modelId
+      const adminP = providers.find(p => p.id === "admin-provider");
+      if (adminP) {
+        setSelectedProviderId("admin-provider");
+      } else {
+        setSelectedProviderId(providers[0].id);
+      }
+    }
+  }, [providers, selectedProviderId]);
+
+  const handleProviderChange = async (val: string) => {
+    setSelectedProviderId(val);
+    setSelectedModelId(undefined); // reset model when provider changes
+    await db.novels.update(novelId, {
+      customTranslateProviderId: val,
+      customTranslateModelId: "",
+    });
+  };
+
+  const handleModelChange = async (val: string) => {
+    if (selectedProviderId === "admin-provider") {
+      // Try to acquire lease
+      const res = await fetch("/api/ai/admin-lease", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ modelId: val, action: "acquire" })
+      });
+      const data = await res.json();
+      if (!data.success) {
+        toast.error(data.message || "Model này đang có người khác sử dụng!");
+        return;
+      }
+    }
+    
+    setSelectedModelId(val);
+    await db.novels.update(novelId, {
+      customTranslateModelId: val,
+    });
+  };
+
+  // Heartbeat for admin model lease
+  useEffect(() => {
+    if (selectedProviderId === "admin-provider" && selectedModelId) {
+      const interval = setInterval(async () => {
+        const res = await fetch(`/api/ai/admin-lease?modelId=${selectedModelId}`);
+        const data = await res.json();
+        if (data.status === "locked") {
+          toast.warning(`Model của bạn đã bị giải phóng hoặc bị chiếm bởi ${data.owner}.`);
+          setSelectedModelId(undefined);
+        }
+      }, 60000); // every 1 minute
+      
+      return () => {
+        clearInterval(interval);
+        // Optional: auto-release on unmount
+        // fetch("/api/ai/admin-lease", { method: "POST", body: JSON.stringify({ modelId: selectedModelId, action: "release" }) });
+      };
+    }
+  }, [selectedProviderId, selectedModelId]);
+
+  const handleChapterComplete = useCallback(async (res: any) => {
+    setProcessedCount((prev) => prev + 1);
+    setResults((prev) => [...prev, res]);
+    
+    // Decrement quota if admin model used (Skip for Admins)
+    if (selectedProviderId === "admin-provider" && !isAdmin) {
+      try {
+        await fetch("/api/ai/decrement-quota", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ amount: 1 })
+        });
+      } catch (err) {
+        console.error("Failed to decrement admin quota", err);
+      }
+    }
+  }, [selectedProviderId]);
+
+  const handleChapterError = useCallback((err: HybridTranslateError) => {
+    setErrors((prev) => [...prev, err]);
+    setProcessedCount((prev) => prev + 1);
+  }, []);
+
   const [step, setStep] = useState<"config" | "processing" | "done">("config");
   const [processedCount, setProcessedCount] = useState(0);
   const [errors, setErrors] = useState<HybridTranslateError[]>([]);
@@ -92,6 +192,7 @@ export function TranslateWorkspaceDialog({
   const [confirmMode, setConfirmMode] = useState<"khuyen_nghi" | "cuc_ngan" | "custom" | null>(null);
   const [activeTab, setActiveTab] = useState<string>("hybrid");
   const [extractDict, setExtractDict] = useState(false);
+  const [skipTranslated, setSkipTranslated] = useState(true);
   const abortRef = useRef<AbortController | null>(null);
 
   const GENRE_DICTS = [
@@ -119,13 +220,11 @@ export function TranslateWorkspaceDialog({
   }, [dictMeta]);
   const allGenreSources = [...GENRE_DICTS, ...dynamicGenres];
 
+  const novel = useLiveQuery(() => db.novels.get(novelId), [novelId]);
   const settings = useAnalysisSettings();
   const chatSettings = useChatSettings();
-  const providers = useApiInferenceProviders();
   const defaultProvider = useAIProvider(chatSettings?.providerId);
 
-  // Per-novel model settings
-  const novel = useLiveQuery(() => db.novels.get(novelId), [novelId]);
   
   // Auto-detect genre and set as default dictionary
   useEffect(() => {
@@ -141,46 +240,22 @@ export function TranslateWorkspaceDialog({
       setQtDictSources([matchedKey]);
     }
   }, [novel?.genre]);
-  const currentModel = useMemo(() => {
-    if (novel?.customTranslateProviderId) {
-      return {
-        providerId: novel.customTranslateProviderId,
-        modelId: novel.customTranslateModelId || "",
-      };
-    }
-    return settings.translateModel as StepModelConfig | undefined;
-  }, [novel?.customTranslateProviderId, novel?.customTranslateModelId, settings.translateModel]);
-
-  const selectedProviderId = currentModel?.providerId ?? "";
-  const models = useAIModels(selectedProviderId || undefined);
 
   const currentVnDate = new Date(new Date().toLocaleString("en-US", {timeZone: "Asia/Ho_Chi_Minh"})).toDateString();
-  const rawQuota = (profile as any)?.admin_model_quota || 0;
-  const dailyLimit = (profile as any)?.admin_daily_quota_limit || 0;
-  const lastReset = (profile as any)?.admin_quota_last_reset || "";
-  const displayQuota = (lastReset !== currentVnDate && dailyLimit > 0) ? dailyLimit : rawQuota;
+  const rawQuota = profile?.admin_model_quota || 0;
+  const displayQuota = rawQuota; // Simplified: just use the raw quota from profile
 
-  const handleProviderChange = async (providerId: string) => {
-    await db.novels.update(novelId, {
-      customTranslateProviderId: providerId,
-      customTranslateModelId: "",
-    });
-  };
-  const handleModelChange = async (modelId: string) => {
-    if (!selectedProviderId) return;
-    await db.novels.update(novelId, {
-      customTranslateModelId: modelId,
-    });
-  };
+
+
 
   const resolveModel = useCallback(async () => {
     let activeModel = novel?.customTranslateProviderId
       ? { providerId: novel.customTranslateProviderId, modelId: novel.customTranslateModelId || "" }
       : settings.translateModel;
 
-    // Ưu tiên tuyệt đối dùng Admin Model nếu còn lượt (Không cần quan tâm họ có chọn AI hay không)
-    if (displayQuota > 0) {
-      activeModel = { providerId: "admin-provider", modelId: "admin-model" };
+    // If admin-provider is selected, use the currently selected model from the UI
+    if (selectedProviderId === "admin-provider" && selectedModelId) {
+      activeModel = { providerId: "admin-provider", modelId: selectedModelId };
     }
 
     const model = await resolveChapterToolModel(
@@ -188,21 +263,12 @@ export function TranslateWorkspaceDialog({
       defaultProvider,
       chatSettings,
     );
-    
-    // Nếu giải quyết model lỗi, nhưng user vẫn còn lượt, thì ép dùng Admin Model
-    if (!model && displayQuota > 0) {
-      return await resolveChapterToolModel(
-        { providerId: "admin-provider", modelId: "admin-model" },
-        defaultProvider,
-        chatSettings
-      );
-    }
 
     if (!model) {
       toast.error(getChapterToolModelMissingMessage(defaultProvider));
     }
     return model;
-  }, [novel?.customTranslateProviderId, novel?.customTranslateModelId, settings.translateModel, defaultProvider, chatSettings, profile]);
+  }, [novel?.customTranslateProviderId, novel?.customTranslateModelId, settings.translateModel, defaultProvider, chatSettings, selectedProviderId, selectedModelId]);
 
   // ── Scan novel style ──
   const handleScan = useCallback(async () => {
@@ -235,9 +301,11 @@ export function TranslateWorkspaceDialog({
     toast.success("Đã lưu prompt!");
   };
 
-  const handleStart = useCallback(async (promptType: PromptType = "legacy") => {
+  const handleStart = useCallback(async (promptType: PromptType = "legacy", target: "selected" | "all_untranslated" = "selected") => {
     const model = await resolveModel();
     if (!model) return;
+
+    const targetChapterIds = target === "selected" ? chapterIds : chapters.map(c => c.id);
 
     setStep("processing");
     setProcessedCount(0);
@@ -251,9 +319,11 @@ export function TranslateWorkspaceDialog({
       if (activeTab === "stv-hybrid") {
         await runHybridTranslate({
           novelId,
-          chapterIds,
+          chapterIds: targetChapterIds,
           model,
           extractDict,
+          skipTranslated,
+          continuousMode: target === "all_untranslated",
           signal: controller.signal,
           delayMs: (settings.translateDelaySeconds ?? 0) * 1000,
           onPhase: (_chapterId, phase) => {
@@ -279,11 +349,13 @@ export function TranslateWorkspaceDialog({
       } else {
         await runQtAiTranslate({
           novelId,
-          chapterIds,
+          chapterIds: targetChapterIds,
           model,
           qtDictSources,
           promptType,
           extractDict,
+          skipTranslated,
+          continuousMode: target === "all_untranslated",
           signal: controller.signal,
           delayMs: (settings.translateDelaySeconds ?? 0) * 1000,
 
@@ -314,11 +386,13 @@ export function TranslateWorkspaceDialog({
         setStep("config");
       }
     }
-  }, [novelId, chapterIds, settings, resolveModel]);
+  }, [novelId, chapterIds, chapters, settings, resolveModel, activeTab, extractDict, skipTranslated, qtDictSources]);
 
   const handleClose = () => {
     if (step === "processing") {
+      // Bấm nút Hủy bỏ thì mới hủy thật
       abortRef.current?.abort();
+      useBulkTranslateStore.getState().cancel(novelId);
     }
     setStep("config");
     setProcessedCount(0);
@@ -329,12 +403,25 @@ export function TranslateWorkspaceDialog({
     onOpenChange(false);
   };
 
+  const handleOpenChange = (isOpen: boolean) => {
+    if (!isOpen) {
+      if (step === "processing") {
+        // Chỉ ẩn xuống nền, không hủy
+        onOpenChange(false);
+      } else {
+        handleClose();
+      }
+    } else {
+      onOpenChange(true);
+    }
+  };
+
   const progress = chapterIds.length > 0 ? (processedCount / chapterIds.length) * 100 : 0;
   const hasCustomPrompt = !!novel?.customTranslatePrompt?.trim();
   const hasScanned = !!novel?.styleScannedAt;
 
   return (
-    <Dialog open={open} onOpenChange={handleClose}>
+    <Dialog open={open} onOpenChange={handleOpenChange}>
       <DialogContent className="sm:max-w-lg max-h-[90vh] overflow-y-auto">
         <DialogHeader>
           <DialogTitle className="flex items-center gap-2">
@@ -554,10 +641,16 @@ export function TranslateWorkspaceDialog({
               </div>
             </div>
 
-            <div className="rounded-md bg-muted/50 p-2.5">
+            <div className="rounded-md bg-muted/50 p-2.5 space-y-1">
               <p className="text-sm">
                 Sẽ dịch <strong>{chapterIds.length}</strong> chương đã chọn.
               </p>
+              {selectedProviderId === "admin-provider" && (
+                <p className="text-[10px] text-blue-600 dark:text-blue-400 font-medium flex items-center gap-1">
+                  <CrownIcon className="size-3" />
+                  Bạn đang sử dụng Model Admin {isAdmin ? "(Không giới hạn)" : `(Còn ${displayQuota} lượt)`}.
+                </p>
+              )}
             </div>
 
             {/* Action buttons pinned at the bottom depending on active tab */}
@@ -565,27 +658,21 @@ export function TranslateWorkspaceDialog({
               <div className="space-y-2 mt-2">
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
                   <Button
-                    onClick={() => {
-                      if (confirmMode === "khuyen_nghi") handleStart("khuyen_nghi");
-                      else setConfirmMode("khuyen_nghi");
-                    }}
-                    className={cn("w-full gap-2 transition-all", confirmMode === "khuyen_nghi" && "bg-amber-600 hover:bg-amber-700 text-white")}
-                    disabled={!(displayQuota > 0 || (selectedProviderId && currentModel?.modelId))}
+                    onClick={() => handleStart("khuyen_nghi", "selected")}
+                    className="w-full gap-2 bg-amber-600 hover:bg-amber-700 text-white"
+                    disabled={selectedProviderId === "admin-provider" ? (!isAdmin && displayQuota <= 0) : !currentModel}
                   >
                     <ZapIcon className="size-4" />
-                    {confirmMode === "khuyen_nghi" ? "Xác nhận dịch bằng chế độ này" : "Prompt Khuyến Nghị"}
+                    Dịch {chapterIds.length} chương ĐÃ CHỌN
                   </Button>
                   <Button
-                    variant={confirmMode === "cuc_ngan" ? "default" : "secondary"}
-                    onClick={() => {
-                      if (confirmMode === "cuc_ngan") handleStart("cuc_ngan");
-                      else setConfirmMode("cuc_ngan");
-                    }}
-                    className={cn("w-full gap-2 transition-all", confirmMode === "cuc_ngan" && "bg-amber-600 hover:bg-amber-700 text-white")}
-                    disabled={!(displayQuota > 0 || (selectedProviderId && currentModel?.modelId))}
+                    onClick={() => handleStart("khuyen_nghi", "all_untranslated")}
+                    variant="outline"
+                    className="w-full gap-2 border-amber-500 text-amber-600 hover:bg-amber-500/10"
+                    disabled={selectedProviderId === "admin-provider" ? (!isAdmin && displayQuota <= 0) : !currentModel}
                   >
                     <ZapIcon className="size-4" />
-                    {confirmMode === "cuc_ngan" ? "Xác nhận dịch bằng chế độ này" : "Prompt Cực Ngắn"}
+                    Tự động dịch đến hết truyện
                   </Button>
                 </div>
               </div>
@@ -609,19 +696,44 @@ export function TranslateWorkspaceDialog({
                 </div>
               </label>
 
-            {activeTab === "pure-ai" && (
-              <Button
-                onClick={() => {
-                  if (confirmMode === "custom") handleStart("custom");
-                  else setConfirmMode("custom");
-                }}
-                className={cn("w-full gap-2 mt-2 transition-all", confirmMode === "custom" ? "bg-amber-600 hover:bg-amber-700 text-white" : "bg-blue-600 hover:bg-blue-700 text-white")}
-                disabled={(!(displayQuota > 0 || (selectedProviderId && currentModel?.modelId))) || !hasCustomPrompt}
-                title={!hasCustomPrompt ? "Cần tạo System Prompt ở phần Cấu hình Prompt Dịch trước" : ""}
+            <div className="flex items-center gap-2 mt-3">
+              <Switch
+                id="workspace-skip-translated"
+                checked={skipTranslated}
+                onCheckedChange={setSkipTranslated}
+              />
+              <Label
+                htmlFor="workspace-skip-translated"
+                className="cursor-pointer text-xs"
               >
-                <SparklesIcon className="size-4" />
-                {confirmMode === "custom" ? "Xác nhận dịch bằng chế độ này" : "Dịch bằng Prompt này"}
-              </Button>
+                Bỏ qua các chương đã dịch (Tránh dịch lại)
+              </Label>
+            </div>
+
+            {activeTab === "pure-ai" && (
+              <div className="space-y-2 mt-2">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                  <Button 
+                    onClick={() => handleStart("custom", "selected")} 
+                    className="w-full gap-2 bg-blue-600 hover:bg-blue-700 text-white"
+                    disabled={(!(displayQuota > 0 || (selectedProviderId && currentModel?.modelId))) || !hasCustomPrompt}
+                    title={!hasCustomPrompt ? "Cần tạo System Prompt ở phần Cấu hình Prompt Dịch trước" : ""}
+                  >
+                    <SparklesIcon className="size-4" />
+                    Dịch {chapterIds.length} chương ĐÃ CHỌN
+                  </Button>
+                  <Button 
+                    onClick={() => handleStart("custom", "all_untranslated")} 
+                    variant="outline" 
+                    className="w-full gap-2 border-blue-500 text-blue-600 hover:bg-blue-500/10"
+                    disabled={(!(displayQuota > 0 || (selectedProviderId && currentModel?.modelId))) || !hasCustomPrompt}
+                    title={!hasCustomPrompt ? "Cần tạo System Prompt ở phần Cấu hình Prompt Dịch trước" : ""}
+                  >
+                    <SparklesIcon className="size-4" />
+                    Tự động dịch đến hết truyện
+                  </Button>
+                </div>
+              </div>
             )}
 
             {/* Hiển thị số lượt miễn phí */}

@@ -1,4 +1,11 @@
 import { google } from 'googleapis';
+import { PassThrough } from 'stream';
+
+function stringToStream(content: string) {
+  const stream = new PassThrough();
+  stream.end(Buffer.from(content, 'utf-8'));
+  return stream;
+}
 
 function getDriveClient() {
   const oauth2Client = new google.auth.OAuth2(
@@ -18,6 +25,7 @@ const MASTER_FOLDER_NAME = 'Kho_chua_du_lieu_App';
 const DICT_FOLDER_NAME = 'Tu_dien';
 const NOVEL_ROOT_FOLDER_NAME = 'Truyen_nguoi_dung';
 const TXT_ROOT_FOLDER_NAME = 'Kho_van_ban_TXT';
+const COMMUNITY_DICT_FOLDER_NAME = 'Tu_dien_cong_dong';
 
 // Bộ nhớ đệm để tránh tạo trùng thư mục khi chạy song song
 const folderCache: Record<string, Promise<string>> = {};
@@ -26,7 +34,7 @@ const folderCache: Record<string, Promise<string>> = {};
 async function findOrCreateFolder(name: string, parentId?: string): Promise<string> {
   const cacheKey = `${parentId || 'root'}_${name}`;
   
-  if (folderCache[cacheKey]) {
+  if (cacheKey in folderCache) {
     return folderCache[cacheKey];
   }
 
@@ -83,65 +91,105 @@ async function getUserNovelFolder(userIdentifier: string): Promise<string> {
   return await findOrCreateFolder(userIdentifier, novelRootId);
 }
 
-/** Get the private TXT folder for a specific user under the master structure */
-async function getUserTxtFolder(userIdentifier: string): Promise<string> {
+/** Get the private TXT folder under the master structure */
+async function getTxtFolder(type: 'text_trung' | 'text_dich'): Promise<string> {
   const masterId = await findOrCreateFolder(MASTER_FOLDER_NAME);
   const txtRootId = await findOrCreateFolder(TXT_ROOT_FOLDER_NAME, masterId);
-  return await findOrCreateFolder(userIdentifier, txtRootId);
+  return await findOrCreateFolder(type, txtRootId);
 }
 
-export async function uploadToAdminDrive(userIdentifier: string, novelId: string, filename: string, content: string) {
+export async function uploadToAdminDrive(userIdentifier: string, novelName: string, content: string) {
   const googleDriveClient = getDriveClient();
   const userFolderId = await getUserNovelFolder(userIdentifier);
-  const novelFolderId = await findOrCreateFolder(novelId, userFolderId);
 
-  const q = `name = '${filename}' and '${novelFolderId}' in parents and trashed = false`;
+  const filename = `${novelName}.json`;
+  const q = `name = '${filename}' and '${userFolderId}' in parents and trashed = false`;
   const listRes = await googleDriveClient.files.list({ q, fields: 'files(id)' });
 
   if (listRes.data.files && listRes.data.files.length > 0) {
     const fileId = listRes.data.files[0].id!;
+    
+    // Nếu có nhiều file trùng tên, xóa các file thừa
+    if (listRes.data.files.length > 1) {
+      for (let i = 1; i < listRes.data.files.length; i++) {
+        await googleDriveClient.files.delete({ fileId: listRes.data.files[i].id! });
+      }
+    }
+
     await googleDriveClient.files.update({
       fileId,
-      media: { mimeType: 'text/plain', body: content },
+      media: { mimeType: 'application/json', body: stringToStream(content) },
     });
     return fileId;
   } else {
     const createRes = await googleDriveClient.files.create({
-      requestBody: { name: filename, parents: [novelFolderId], mimeType: 'text/plain' },
-      media: { mimeType: 'text/plain', body: content },
+      requestBody: { name: filename, parents: [userFolderId], mimeType: 'application/json' },
+      media: { mimeType: 'application/json', body: stringToStream(content) },
       fields: 'id',
     });
     return createRes.data.id;
   }
 }
 
-export async function uploadTxtToAdminDrive(userIdentifier: string, novelId: string, filename: string, content: string) {
+export async function uploadTxtToAdminDrive(type: 'text_trung' | 'text_dich', novelName: string, content: string) {
   const googleDriveClient = getDriveClient();
-  const userFolderId = await getUserTxtFolder(userIdentifier);
-  const novelFolderId = await findOrCreateFolder(novelId, userFolderId);
+  const folderId = await getTxtFolder(type);
 
-  const q = `name = '${filename}' and '${novelFolderId}' in parents and trashed = false`;
-  const listRes = await googleDriveClient.files.list({ q, fields: 'files(id)' });
+  const filename = `${novelName}.txt`;
+  const q = `name = '${filename}' and '${folderId}' in parents and trashed = false`;
+  const listRes = await googleDriveClient.files.list({ q, fields: 'files(id, size)' });
+
+  const newSize = Buffer.byteLength(content, 'utf8');
 
   if (listRes.data.files && listRes.data.files.length > 0) {
+    const file = listRes.data.files[0];
+    
+    // Xóa các file thừa nếu có tình trạng trùng tên
+    if (listRes.data.files.length > 1) {
+      for (let i = 1; i < listRes.data.files.length; i++) {
+        await googleDriveClient.files.delete({ fileId: listRes.data.files[i].id! });
+      }
+    }
+
+    // Luôn luôn ghi đè file cũ bằng file mới nhất
     await googleDriveClient.files.update({
-      fileId: listRes.data.files[0].id!,
-      media: { mimeType: 'text/plain', body: content },
+      fileId: file.id!,
+      media: { mimeType: 'text/plain', body: stringToStream(content) },
     });
+    return { action: 'updated', newSize };
   } else {
     await googleDriveClient.files.create({
-      requestBody: { name: filename, parents: [novelFolderId], mimeType: 'text/plain' },
-      media: { mimeType: 'text/plain', body: content },
+      requestBody: { name: filename, parents: [folderId], mimeType: 'text/plain' },
+      media: { mimeType: 'text/plain', body: stringToStream(content) },
     });
+    return { action: 'created', newSize };
   }
 }
 
-export async function downloadFromAdminDrive(userIdentifier: string, novelId: string, filename: string): Promise<string | null> {
+export async function listTxtFromAdminDrive(type: 'text_trung' | 'text_dich') {
+  const googleDriveClient = getDriveClient();
+  const folderId = await getTxtFolder(type);
+
+  const res = await googleDriveClient.files.list({
+    q: `'${folderId}' in parents and mimeType != 'application/vnd.google-apps.folder' and trashed = false`,
+    fields: 'files(id, name, modifiedTime, size)',
+  });
+
+  const files = res.data.files || [];
+  return files.map(f => ({
+    id: f.id!,
+    name: f.name!,
+    modifiedTime: f.modifiedTime,
+    size: f.size
+  }));
+}
+
+export async function downloadFromAdminDrive(userIdentifier: string, novelName: string): Promise<string | null> {
   const googleDriveClient = getDriveClient();
   const userFolderId = await getUserNovelFolder(userIdentifier);
-  const novelFolderId = await findOrCreateFolder(novelId, userFolderId);
 
-  const q = `name = '${filename}' and '${novelFolderId}' in parents and trashed = false`;
+  const filename = `${novelName}.json`;
+  const q = `name = '${filename}' and '${userFolderId}' in parents and trashed = false`;
   const listRes = await googleDriveClient.files.list({ q, fields: 'files(id)' });
 
   if (!listRes.data.files || listRes.data.files.length === 0) return null;
@@ -155,35 +203,61 @@ export async function downloadFromAdminDrive(userIdentifier: string, novelId: st
   return res.data as string;
 }
 
-export async function listFilesFromAdminDrive(userIdentifier: string, novelId: string) {
+export async function downloadAllUserNovelsFromAdminDrive(userIdentifier: string): Promise<{ name: string, content: string }[]> {
+  const googleDriveClient = getDriveClient();
+  const userFolderId = await getUserNovelFolder(userIdentifier);
+
+  const q = `'${userFolderId}' in parents and mimeType != 'application/vnd.google-apps.folder' and trashed = false`;
+  const listRes = await googleDriveClient.files.list({ q, fields: 'files(id, name)' });
+
+  if (!listRes.data.files || listRes.data.files.length === 0) return [];
+
+  const results: { name: string, content: string }[] = [];
+  
+  // Tải về tất cả file JSON (có thể chạy song song hoặc tuần tự, ở đây chạy tuần tự để tránh rate limit)
+  for (const file of listRes.data.files) {
+    try {
+      const res = await googleDriveClient.files.get({
+        fileId: file.id!,
+        alt: 'media',
+      });
+      // Bỏ đi đuôi .json để lấy tên truyện gốc nếu muốn, hoặc trả về nguyên name
+      let name = file.name!;
+      if (name.endsWith('.json')) name = name.slice(0, -5);
+      
+      // Xử lý cả dạng string lẫn object trả về từ google api
+      const contentStr = typeof res.data === 'string' ? res.data : JSON.stringify(res.data);
+      results.push({ name, content: contentStr });
+    } catch (err) {
+      console.error(`Lỗi khi tải file ${file.name}:`, err);
+    }
+  }
+
+  return results;
+}
+
+export async function listUserNovelsFromAdminDrive(userIdentifier: string) {
     const googleDriveClient = getDriveClient();
     const userFolderId = await getUserNovelFolder(userIdentifier);
-    const novelFolderId = await findOrCreateFolder(novelId, userFolderId);
   
     const res = await googleDriveClient.files.list({
-      q: `'${novelFolderId}' in parents and trashed = false`,
+      q: `'${userFolderId}' in parents and mimeType != 'application/vnd.google-apps.folder' and trashed = false`,
       fields: 'files(id, name, modifiedTime, size)',
     });
   
-    return res.data.files || [];
-}
-
-export async function listFoldersFromAdminDrive(userIdentifier: string) {
-    const googleDriveClient = getDriveClient();
-    const userFolderId = await getUserNovelFolder(userIdentifier);
-  
-    const res = await googleDriveClient.files.list({
-      q: `'${userFolderId}' in parents and mimeType = 'application/vnd.google-apps.folder' and trashed = false`,
-      fields: 'files(id, name)',
-    });
-  
     const files = res.data.files || [];
-    // Lọc trùng tên thư mục (novelId) để tránh tải lặp lại nếu có rác cũ
-    const uniqueNames = Array.from(new Set(files.map(f => f.name)));
-    return uniqueNames.map(name => ({ name }));
+    // Convert .json files to novel names
+    return files.map(f => {
+      let name = f.name!;
+      if (name.endsWith('.json')) name = name.slice(0, -5);
+      return { name, modifiedTime: f.modifiedTime, size: f.size };
+    });
 }
 
 // ─── Dictionary Functions ────────────────────────────────────
+
+let _dictCache: { timestamp: number, data: Record<string, string> } | null = null;
+const CACHE_TTL = 30 * 60 * 1000; // 30 minutes
 
 export async function uploadDictToAdminDrive(filename: string, content: string) {
     const googleDriveClient = getDriveClient();
@@ -196,13 +270,20 @@ export async function uploadDictToAdminDrive(filename: string, content: string) 
     if (listRes.data.files && listRes.data.files.length > 0) {
         await googleDriveClient.files.update({
             fileId: listRes.data.files[0].id!,
-            media: { mimeType: 'text/plain', body: content },
+            media: { mimeType: 'text/plain', body: stringToStream(content) },
         });
     } else {
         await googleDriveClient.files.create({
             requestBody: { name: filename, parents: [dictFolderId], mimeType: 'text/plain' },
-            media: { mimeType: 'text/plain', body: content },
+            media: { mimeType: 'text/plain', body: stringToStream(content) },
         });
+    }
+
+    if (_dictCache) {
+        let sourceName = filename;
+        if (sourceName.endsWith('.txt')) sourceName = sourceName.slice(0, -4);
+        _dictCache.data[sourceName] = content;
+        _dictCache.timestamp = Date.now();
     }
 }
 
@@ -221,4 +302,114 @@ export async function downloadDictFromAdminDrive(filename: string) {
         alt: 'media',
     });
     return res.data as string;
+}
+
+export async function downloadAllDictsFromAdminDrive(): Promise<Record<string, string>> {
+    if (_dictCache && Date.now() - _dictCache.timestamp < CACHE_TTL) {
+        return _dictCache.data;
+    }
+
+    const googleDriveClient = getDriveClient();
+    const masterId = await findOrCreateFolder(MASTER_FOLDER_NAME);
+    const dictFolderId = await findOrCreateFolder(DICT_FOLDER_NAME, masterId);
+
+    const q = `'${dictFolderId}' in parents and trashed = false and mimeType != 'application/vnd.google-apps.folder'`;
+    const listRes = await googleDriveClient.files.list({ q, fields: 'files(id, name)' });
+
+    const files = listRes.data.files || [];
+    if (files.length === 0) return {};
+
+    const results: Record<string, string> = {};
+    
+    // Concurrency limit to prevent rate limits
+    const CONCURRENCY = 5;
+    for (let i = 0; i < files.length; i += CONCURRENCY) {
+      const batch = files.slice(i, i + CONCURRENCY);
+      await Promise.all(batch.map(async (file) => {
+        try {
+          const res = await googleDriveClient.files.get({
+              fileId: file.id!,
+              alt: 'media',
+          }, { responseType: 'text' });
+          const contentStr = typeof res.data === 'string' ? res.data : JSON.stringify(res.data);
+          let sourceName = file.name!;
+          if (sourceName.endsWith('.txt')) sourceName = sourceName.slice(0, -4);
+          results[sourceName] = contentStr;
+        } catch (err) {
+          console.error(`Error downloading dict ${file.name}:`, err);
+        }
+      }));
+    }
+
+    _dictCache = { timestamp: Date.now(), data: results };
+    return results;
+}
+
+// ─── Community Dictionary Functions ────────────────────────
+
+export async function uploadCommunityDictToAdminDrive(genre: string, filename: string, content: string) {
+    const googleDriveClient = getDriveClient();
+    const masterId = await findOrCreateFolder(MASTER_FOLDER_NAME);
+    const commDictFolderId = await findOrCreateFolder(COMMUNITY_DICT_FOLDER_NAME, masterId);
+    const genreFolderId = await findOrCreateFolder(genre, commDictFolderId);
+
+    // Dùng Unix Timestamp để không bị đè file nếu nhiều người cùng upload
+    const uniqueFilename = `${filename}_${Date.now()}.txt`;
+
+    await googleDriveClient.files.create({
+        requestBody: { name: uniqueFilename, parents: [genreFolderId], mimeType: 'text/plain' },
+        media: { mimeType: 'text/plain', body: stringToStream(content) },
+    });
+}
+
+export async function listCommunityDictsFromAdminDrive() {
+    const googleDriveClient = getDriveClient();
+    const masterId = await findOrCreateFolder(MASTER_FOLDER_NAME);
+    const commDictFolderId = await findOrCreateFolder(COMMUNITY_DICT_FOLDER_NAME, masterId);
+
+    // Lấy danh sách các thư mục thể loại
+    const genreRes = await googleDriveClient.files.list({
+        q: `'${commDictFolderId}' in parents and mimeType = 'application/vnd.google-apps.folder' and trashed = false`,
+        fields: 'files(id, name)',
+    });
+
+    const genres = genreRes.data.files || [];
+    const results: { id: string, name: string, genre: string, createdTime: string }[] = [];
+
+    // Duyệt qua từng thư mục thể loại để lấy file
+    for (const genreFolder of genres) {
+        const fileRes = await googleDriveClient.files.list({
+            q: `'${genreFolder.id}' in parents and mimeType != 'application/vnd.google-apps.folder' and trashed = false`,
+            fields: 'files(id, name, createdTime)',
+            orderBy: 'createdTime desc',
+        });
+        
+        const files = fileRes.data.files || [];
+        for (const file of files) {
+            results.push({
+                id: file.id!,
+                name: file.name!,
+                genre: genreFolder.name!,
+                createdTime: file.createdTime!,
+            });
+        }
+    }
+
+    // Sắp xếp giảm dần theo thời gian tạo
+    results.sort((a, b) => new Date(b.createdTime).getTime() - new Date(a.createdTime).getTime());
+    return results;
+}
+
+export async function getDriveFileContent(fileId: string) {
+    const googleDriveClient = getDriveClient();
+    const res = await googleDriveClient.files.get({
+        fileId,
+        alt: 'media',
+    });
+    return typeof res.data === 'string' ? res.data : JSON.stringify(res.data);
+}
+
+export async function deleteDriveFile(fileId: string) {
+    const googleDriveClient = getDriveClient();
+    await googleDriveClient.files.delete({ fileId });
 }

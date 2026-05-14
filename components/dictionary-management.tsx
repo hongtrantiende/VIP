@@ -65,6 +65,7 @@ import {
   useGlobalNameEntries,
   type DuplicateMode,
 } from "@/lib/hooks/use-name-entries";
+import { uploadDictServerAction } from "@/app/actions/dict-upload";
 import { useNovels } from "@/lib/hooks/use-novels";
 import { formatRelativeTime } from "@/lib/scene-version-utils";
 import {
@@ -304,57 +305,7 @@ export function DictionaryManagement({ compact }: { compact?: boolean }) {
     }
   };
 
-  const handleUploadToSupabase = async (source: DictSource) => {
-    const supabase = createClient();
-    const { data: { user } } = await supabase.auth.getUser();
-    if (!user) {
-      toast.error("Vui lòng đăng nhập để lưu lên đám mây");
-      return;
-    }
-    const toastId = toast.loading(`Đang tải ${DICT_SOURCE_LABELS[source]} lên Kho chung...`);
-    try {
-      // Read from dictCache (fast) instead of dictEntries (slow)
-      const cached = await db.dictCache.get(source);
-      const text = cached?.rawText || "";
-      const filename = `${source}.txt`;
-      
-      const { error } = await supabase.storage
-        .from("dictionaries")
-        .upload(filename, text, {
-          contentType: 'text/plain;charset=UTF-8',
-          upsert: true,
-        });
 
-      if (error) throw error;
-      toast.success(`Đã lưu ${filename} lên Kho chung!`, { id: toastId });
-    } catch (err: any) {
-      toast.error(`Lỗi: ${err.message}`, { id: toastId });
-    }
-  };
-
-  const handleDownloadFromSupabase = async (source: DictSource) => {
-    const supabase = createClient();
-    const filename = `${source}.txt`;
-    const toastId = toast.loading(`Đang tải ${filename} từ Kho chung...`);
-    try {
-      const { data: publicUrlData } = supabase.storage
-        .from("dictionaries")
-        .getPublicUrl(filename);
-      
-      const res = await fetch(publicUrlData.publicUrl);
-      if (!res.ok) {
-        toast.error(`Từ điển ${filename} chưa có trên Kho chung!`, { id: toastId });
-        return;
-      }
-      
-      const text = await res.text();
-      const entries = parseDictLines(text);
-      const count = await appendToDictSource(source, entries);
-      toast.success(`Đã tự động gộp ${count.toLocaleString()} mục mới từ Kho chung!`, { id: toastId });
-    } catch (err: any) {
-      toast.error(`Lỗi: ${err.message}`, { id: toastId });
-    }
-  };
 
   const handleSyncToWarehouse = async (source: DictSource) => {
     const toastId = toast.loading(`Đang hòa nhập ${DICT_SOURCE_LABELS[source]} vào Kho chung...`);
@@ -390,17 +341,33 @@ export function DictionaryManagement({ compact }: { compact?: boolean }) {
           .join("\n");
       }
 
-      // 2. Đẩy bản đã gộp lên lại (Sử dụng action mới)
-      const upParams = new URLSearchParams({ action: 'upload-dict', filename });
-      const upRes = await fetch(`/api/dict/cloud-storage?${upParams.toString()}`, {
-        method: 'POST',
-        body: finalContent,
-      });
-
-      if (!upRes.ok) {
-        const errText = await upRes.text().catch(() => "");
-        throw new Error(`Upload thất bại (${upRes.status}): ${errText}`);
+      // 2. Chia nhỏ và tải lên (Chunked Upload) để vượt giới hạn 10MB của Next.js
+      const lines = finalContent.split("\n");
+      const CHUNK_LINES = 50000; // Khoảng 1-2MB mỗi chunk
+      const chunks = [];
+      for (let i = 0; i < lines.length; i += CHUNK_LINES) {
+        const isLastChunk = i + CHUNK_LINES >= lines.length;
+        chunks.push(lines.slice(i, i + CHUNK_LINES).join("\n") + (isLastChunk ? "" : "\n"));
       }
+
+      for (let i = 0; i < chunks.length; i++) {
+        const res = await fetch("/api/dict/chunk-upload", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            filename,
+            chunk: chunks[i],
+            index: i,
+            total: chunks.length
+          })
+        });
+
+        if (!res.ok) {
+          const errData = await res.json().catch(() => ({ error: "Unknown error" }));
+          throw new Error(`Upload phần ${i + 1}/${chunks.length} thất bại: ${errData.error}`);
+        }
+      }
+
       toast.success(`Đã hòa nhập và cập nhật ${filename} lên Kho chung!`, { id: toastId });
     } catch (err: any) {
       toast.error(`Lỗi: ${err.message}`, { id: toastId });
@@ -425,51 +392,6 @@ export function DictionaryManagement({ compact }: { compact?: boolean }) {
   };
 
 
-  const handleUploadAllToSupabase = async () => {
-    const supabase = createClient();
-    const { data: { user } } = await supabase.auth.getUser();
-    if (!user) {
-      toast.error("Vui lòng đăng nhập để lưu lên đám mây");
-      return;
-    }
-    const toastId = toast.loading("Đang tải từ điển lên Kho chung (0%)...");
-    try {
-      let uploadedCount = 0;
-      const sources = ALL_SOURCES;
-      const total = sources.length;
-      
-      // Process in batches of 3 (upload is heavier than download)
-      const CONCURRENCY = 3;
-      
-      for (let i = 0; i < total; i += CONCURRENCY) {
-        const batch = sources.slice(i, i + CONCURRENCY);
-        
-        await Promise.allSettled(
-          batch.map(async (source) => {
-            const cached = await db.dictCache.get(source);
-            if (!cached?.rawText) return;
-            const filename = `${source}.txt`;
-            const { error } = await supabase.storage
-              .from("dictionaries")
-              .upload(filename, cached.rawText, {
-                contentType: 'text/plain;charset=UTF-8',
-                upsert: true,
-              });
-            if (!error) uploadedCount++;
-          })
-        );
-        
-        const done = Math.min(i + CONCURRENCY, total);
-        const percent = Math.round((done / total) * 100);
-        toast.loading(`Đang tải từ điển lên Kho chung (${percent}%)...`, { id: toastId });
-        await new Promise(r => setTimeout(r, 0));
-      }
-      
-      toast.success(`Đã tải lên ${uploadedCount} bộ từ điển thành công!`, { id: toastId });
-    } catch (err: any) {
-      toast.error(`Lỗi tải lên toàn bộ: ${err.message}`, { id: toastId });
-    }
-  };
 
   const handleSyncAllToWarehouse = async () => {
     if (!isAdmin) return;
@@ -518,13 +440,33 @@ export function DictionaryManagement({ compact }: { compact?: boolean }) {
                 .join("\n");
             }
 
-            const upParams = new URLSearchParams({ action: 'upload-dict', filename });
-            const upRes = await fetch(`/api/dict/cloud-storage?${upParams.toString()}`, {
-              method: 'POST',
-              body: finalContent,
-            });
+            const lines = finalContent.split("\n");
+            const CHUNK_LINES = 50000;
+            const chunks = [];
+            for (let i = 0; i < lines.length; i += CHUNK_LINES) {
+              const isLastChunk = i + CHUNK_LINES >= lines.length;
+              chunks.push(lines.slice(i, i + CHUNK_LINES).join("\n") + (isLastChunk ? "" : "\n"));
+            }
 
-            if (upRes.ok) successCount++;
+            let chunkSuccess = true;
+            for (let i = 0; i < chunks.length; i++) {
+              const res = await fetch("/api/dict/chunk-upload", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                  filename,
+                  chunk: chunks[i],
+                  index: i,
+                  total: chunks.length
+                })
+              });
+              if (!res.ok) {
+                chunkSuccess = false;
+                break;
+              }
+            }
+
+            if (chunkSuccess) successCount++;
           })
         );
         
@@ -540,34 +482,29 @@ export function DictionaryManagement({ compact }: { compact?: boolean }) {
   const handleDownloadAllFromWarehouse = async () => {
     const toastId = toast.loading("Đang tải toàn bộ từ Tổng kho (Siêu tốc)...");
     try {
-      const sources = ALL_SOURCES;
-      const total = sources.length;
+      const params = new URLSearchParams({ action: 'download-all-dicts' });
+      const res = await fetch(`/api/dict/cloud-storage?${params.toString()}`, { method: 'POST' });
+      if (!res.ok) throw new Error("Không thể kết nối đến Tổng kho");
+      
+      const data = await res.json();
+      if (!data.success || !data.dicts) throw new Error("Dữ liệu trả về không hợp lệ");
+
+      const allDicts: Record<string, string> = data.dicts;
+      const total = Object.keys(allDicts).length;
       let newEntriesCount = 0;
       let processedCount = 0;
 
-      const CONCURRENCY = 10; // Tải về có thể nhanh hơn nữa
-      for (let i = 0; i < total; i += CONCURRENCY) {
-        const batch = sources.slice(i, i + CONCURRENCY);
-        
-        const results = await Promise.allSettled(
-          batch.map(async (source) => {
-            processedCount++;
-            const filename = `${source}.txt`;
-            const params = new URLSearchParams({ action: 'download-dict', filename });
-            const res = await fetch(`/api/dict/cloud-storage?${params.toString()}`, { method: 'POST' });
-            if (!res.ok) return 0;
-            
-            const content = await res.text();
-            const entries = parseDictLines(content);
-            return await appendToDictSource(source, entries);
-          })
-        );
-
-        results.forEach(r => {
-          if (r.status === "fulfilled") newEntriesCount += r.value;
-        });
-
-        toast.loading(`Đang tải: ${Math.round((processedCount / total) * 100)}%...`, { id: toastId });
+      for (const [source, content] of Object.entries(allDicts)) {
+        processedCount++;
+        const entries = parseDictLines(content);
+        if (entries.length > 0) {
+          const result = await appendToDictSource(source as any, entries);
+          if (typeof result === "object") {
+            newEntriesCount += result.added || 0;
+          }
+        }
+        toast.loading(`Đang xử lý dữ liệu: ${Math.round((processedCount / total) * 100)}%...`, { id: toastId });
+        await new Promise(r => setTimeout(r, 50)); // Yield
       }
       
       toast.success(`Đã cập nhật ${newEntriesCount.toLocaleString()} mục mới từ Tổng kho!`, { id: toastId });
@@ -576,46 +513,6 @@ export function DictionaryManagement({ compact }: { compact?: boolean }) {
     }
   };
 
-  const handleDownloadAllFromSupabase = async () => {
-    const toastId = toast.loading("Đang tải từ điển từ Kho Cloud (0%)...");
-    try {
-      const supabase = createClient();
-      let downloadedCount = 0;
-      let newEntriesCount = 0;
-      const sources = ALL_SOURCES;
-      const total = sources.length;
-      const CONCURRENCY = 5;
-      
-      for (let i = 0; i < total; i += CONCURRENCY) {
-        const batch = sources.slice(i, i + CONCURRENCY);
-        const results = await Promise.allSettled(
-          batch.map(async (source) => {
-            const filename = `${source}.txt`;
-            const { data: publicUrlData } = supabase.storage.from("dictionaries").getPublicUrl(filename);
-            const res = await fetch(publicUrlData.publicUrl);
-            if (!res.ok) return { source, entries: [] };
-            const text = await res.text();
-            return { source, entries: parseDictLines(text) };
-          })
-        );
-        
-        for (const result of results) {
-          if (result.status === "fulfilled" && result.value.entries.length > 0) {
-            const count = await appendToDictSource(result.value.source, result.value.entries);
-            newEntriesCount += count;
-            if (count > 0) downloadedCount++;
-          }
-        }
-        
-        const done = Math.min(i + CONCURRENCY, total);
-        toast.loading(`Đang tải: ${Math.round((done / total) * 100)}%...`, { id: toastId });
-        await new Promise(r => setTimeout(r, 0));
-      }
-      toast.success(`Đã gộp ${newEntriesCount.toLocaleString()} mục mới!`, { id: toastId });
-    } catch (err: any) {
-      toast.error(`Lỗi: ${err.message}`, { id: toastId });
-    }
-  };
 
   const handleUploadGlobalToDrive = async () => {
     if (!drive.accessToken) {
@@ -776,6 +673,29 @@ export function DictionaryManagement({ compact }: { compact?: boolean }) {
     setReplacingSource(source);
     // Trigger file input after state update
     setTimeout(() => replaceInputRef.current?.click(), 0);
+  };
+
+  const handleUploadCommunity = async (source: DictSource) => {
+    const cached = await db.dictCache.get(source);
+    if (!cached?.rawText) {
+      toast.error("Từ điển này chưa có dữ liệu hoặc chưa được tải.");
+      return;
+    }
+    const genre = source.split("_")[0];
+    const filename = `user_dict_${source}`;
+    
+    const toastId = toast.loading("Đang gửi đóng góp cho cộng đồng...");
+    try {
+      const { submitCommunityDictAction } = await import("@/app/actions/dict-upload");
+      const res = await submitCommunityDictAction(genre, filename, cached.rawText);
+      if (res.success) {
+        toast.success("Đã gửi thành công! Cảm ơn bạn đã đóng góp.", { id: toastId });
+      } else {
+        toast.error(`Lỗi: ${res.error}`, { id: toastId });
+      }
+    } catch (err: any) {
+      toast.error(`Lỗi: ${err.message}`, { id: toastId });
+    }
   };
 
   const handleReplaceFile = async (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -1239,6 +1159,11 @@ export function DictionaryManagement({ compact }: { compact?: boolean }) {
   }
 
 
+  const totalDictWords = useMemo(() => {
+    if (!dictMeta) return 0;
+    return Object.values(dictMeta.sources).reduce((acc, curr) => acc + curr, 0);
+  }, [dictMeta]);
+
   return (
     <div className="space-y-4">
       {/* Hidden file inputs */}
@@ -1262,7 +1187,14 @@ export function DictionaryManagement({ compact }: { compact?: boolean }) {
         <CardHeader className="pb-4">
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
               <div>
-                <CardTitle className="text-lg">Danh sách từ điển</CardTitle>
+                <CardTitle className="text-lg flex items-center gap-2">
+                  Danh sách từ điển
+                  {totalDictWords > 0 && (
+                    <Badge variant="secondary" className="text-[10px] bg-primary/10 text-primary hover:bg-primary/20">
+                      Tổng: {totalDictWords.toLocaleString()} mục
+                    </Badge>
+                  )}
+                </CardTitle>
                 <CardDescription>
                   Quản lý và đồng bộ các bộ từ điển cá nhân và cộng đồng.
                 </CardDescription>
@@ -1357,29 +1289,6 @@ export function DictionaryManagement({ compact }: { compact?: boolean }) {
                                     <Button
                                       variant="ghost"
                                       size="icon-sm"
-                                      onClick={() => handleDownloadFromSupabase(source)}
-                                      title="Cập nhật từ điển mới nhất"
-                                      className="text-violet-500 hover:text-violet-600"
-                                    >
-                                      <ServerIcon className="size-3.5" />
-                                    </Button>
-                                    {isAdmin && (
-                                      <Button
-                                        variant="ghost"
-                                        size="icon-sm"
-                                        onClick={() => handleUploadToSupabase(source)}
-                                        disabled={count === 0}
-                                        title="Tải lên Kho chung (Admin)"
-                                        className="text-violet-500 hover:text-violet-600"
-                                      >
-                                        <ServerIcon className="size-3.5" />
-                                      </Button>
-                                    )}
-                                    <div className="w-px h-4 bg-border my-auto mx-1" />
-
-                                    <Button
-                                      variant="ghost"
-                                      size="icon-sm"
                                       onClick={() => handleDownloadFromWarehouse(source)}
                                       title="Cập nhật từ Kho chung (Tổng kho 1TB)"
                                       className="text-emerald-500 hover:text-emerald-600 hover:bg-emerald-500/10"
@@ -1436,6 +1345,15 @@ export function DictionaryManagement({ compact }: { compact?: boolean }) {
                                   title="Tải lên từ máy"
                                 >
                                   <FileUpIcon className="size-3.5" />
+                                </Button>
+                                <Button
+                                  variant="ghost"
+                                  size="icon-sm"
+                                  onClick={() => handleUploadCommunity(source)}
+                                  disabled={count === 0}
+                                  title="Đóng góp cho Từ điển Cộng Đồng"
+                                >
+                                  <CloudUploadIcon className="size-3.5 text-blue-500" />
                                 </Button>
                               </div>
                             </TableCell>

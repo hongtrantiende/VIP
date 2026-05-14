@@ -112,8 +112,9 @@ Bạn là chuyên gia dịch thuật Trung-Việt và là người biên soạn 
 </role>
 
 <task>
-Hãy đọc đoạn văn bản tiếng Trung dưới đây và trích xuất ra các Tên riêng, Thuật ngữ chuyên môn, Danh xưng, và Cụm từ khó dịch.
-Sau đó đề xuất nghĩa tiếng Việt chuẩn xác nhất cho từng từ đó để người dùng có thể thêm vào từ điển cá nhân.
+Hãy đọc đoạn văn bản tiếng Trung dưới đây và TRÍCH XUẤT CÀNG NHIỀU TỪ VỰNG CÀNG TỐT (từ dễ đến khó).
+Bao gồm: Tên riêng, Thuật ngữ, Danh xưng, Động từ, Tính từ, Từ lóng, Cụm từ thông dụng trong văn án, và bất cứ cụm từ nào có thể tạo thành mục từ điển.
+Sau đó đề xuất nghĩa tiếng Việt chuẩn xác nhất cho từng từ đó.
 </task>
 
 <source_text lang="zh">
@@ -121,9 +122,10 @@ ${opts.sourceText.slice(0, 3000)}
 </source_text>
 
 <requirements>
-1. Tập trung vào Tên nhân vật, Tên địa danh, Cảnh giới, Môn phái, Chiêu thức, Đồ vật đặc biệt.
-2. Tập trung vào các đại từ nhân xưng, xưng hô đặc thù (VD: vi sư, lão phu, trẫm, thần thiếp...).
-3. Tập trung vào các từ lóng, cụm từ lặp, idiom (thành ngữ).
+1. BẮT BUỘC trích xuất TẤT CẢ các từ/cụm từ có nghĩa (Từ dễ đến khó, từ thông dụng đến thuật ngữ chuyên sâu). Càng nhiều càng tốt.
+2. Trích xuất đầy đủ Tên riêng: Tên nhân vật, Tên địa danh, Cảnh giới, Môn phái, Chiêu thức, Đồ vật đặc biệt.
+3. Trích xuất đầy đủ Danh xưng: Đại từ nhân xưng, xưng hô đặc thù (VD: vi sư, lão phu, trẫm, thần thiếp...).
+4. Trích xuất đầy đủ Từ vựng chung: Từ lóng, cụm từ lặp, thành ngữ, cụm động từ, cụm tính từ đặc trưng của tiếng Trung.
 4. Phân loại bắt buộc vào một trong các loại từ điển sau (trường "category"):
    - "names": Tên riêng (nhân vật, tông môn, bí cảnh, thành phố...).
    - "names2": Bí danh, danh hiệu, tên khác.

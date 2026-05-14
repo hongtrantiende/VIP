@@ -3,6 +3,9 @@ import type { NextConfig } from "next";
 const nextConfig: NextConfig = {
   // Performance: tree-shake large icon/component libraries
   experimental: {
+    serverActions: {
+      bodySizeLimit: "100mb",
+    },
     optimizePackageImports: [
       "lucide-react",
       "recharts",

@@ -55,6 +55,7 @@ interface BulkTranslateState {
   resume: (novelId: string) => void;
   cancel: (novelId: string) => void;
   reset: (novelId: string) => void;
+  updateTotalChapters: (novelId: string, total: number) => void;
 }
 
 const defaultJobState: NovelJobState = {
@@ -214,4 +215,11 @@ export const useBulkTranslateStore = create<BulkTranslateState>((set, get) => ({
     set((s) => ({
       jobs: { ...s.jobs, [novelId]: { ...defaultJobState } },
     })),
+
+  updateTotalChapters: (novelId, total) =>
+    set((s) => {
+      const job = s.jobs[novelId];
+      if (!job) return s;
+      return { jobs: { ...s.jobs, [novelId]: { ...job, totalChapters: total } } };
+    }),
 }));

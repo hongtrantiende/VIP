@@ -59,6 +59,7 @@ interface ScraperQueueState {
   updateJobTitle: (id: string, newTitle: string) => void;
   setMinimized: (min: boolean) => void;
   processQueue: () => Promise<void>;
+  restoreJobFromDB: (novelId: string, title: string, url: string, coverImage?: string) => Promise<void>;
 }
 
 const MAX_CONCURRENCY = 999;
@@ -86,8 +87,8 @@ export const useScraperQueueStore = create<ScraperQueueState>()(
 
     // Pre-scrape duplicate filtering
     const existingChapters = await db.chapters.where("novelId").equals(novelId).toArray();
-    const existingTitles = new Set(existingChapters.map(c => c.title.toLowerCase().trim()));
-    const newChapters = chapters.filter(ch => !existingTitles.has(ch.title.toLowerCase().trim()));
+    const existingOrders = new Set(existingChapters.map(c => c.order));
+    const newChapters = chapters.filter(ch => !existingOrders.has(ch.order));
 
     if (newChapters.length === 0) {
       toast.success(`Tất cả chương của '${title}' đã có sẵn!`);
@@ -106,7 +107,7 @@ export const useScraperQueueStore = create<ScraperQueueState>()(
       adapter,
       customConfig,
       chaptersToScrape: newChapters,
-      progress: { completed: 0, total: newChapters.length, current: "Đang đợi..." },
+      progress: { completed: existingChapters.length, total: existingChapters.length + newChapters.length, current: "Đang đợi..." },
       status: "pending",
       warnCount: 0,
       delayMs,
@@ -118,6 +119,33 @@ export const useScraperQueueStore = create<ScraperQueueState>()(
     
     // Trigger queue processing
     get().processQueue();
+  },
+
+  restoreJobFromDB: async (novelId, title, url, coverImage) => {
+    // Only restore if it doesn't exist
+    if (get().jobs[novelId]) return;
+
+    const existingChapters = await db.chapters.where("novelId").equals(novelId).toArray();
+    const count = existingChapters.length;
+
+    const adapter = detectAdapter(url) || SERVER_ADAPTER;
+
+    const job: ScraperJob = {
+      id: novelId,
+      title,
+      url,
+      coverImage,
+      adapter,
+      chaptersToScrape: [],
+      progress: { completed: count, total: count, current: "Đã khôi phục" },
+      status: "done",
+      warnCount: 0,
+      delayMs: 10000,
+      abortController: null,
+      createdAt: new Date(),
+    };
+
+    set((state) => ({ jobs: { ...state.jobs, [novelId]: job } }));
   },
 
   processQueue: async () => {
@@ -155,7 +183,7 @@ export const useScraperQueueStore = create<ScraperQueueState>()(
                       ...j,
                       progress: {
                         ...j.progress,
-                        completed: (j.progress.total - total) + completed,
+                        completed: j.progress.total - j.chaptersToScrape.length,
                         current: currentTitle,
                       },
                     },
@@ -232,6 +260,10 @@ export const useScraperQueueStore = create<ScraperQueueState>()(
                     [nextJob.id]: {
                       ...j,
                       chaptersToScrape: j.chaptersToScrape.slice(1),
+                      progress: {
+                        ...j.progress,
+                        completed: j.progress.total - (j.chaptersToScrape.length - 1),
+                      }
                     }
                   }
                 };
@@ -262,8 +294,7 @@ export const useScraperQueueStore = create<ScraperQueueState>()(
                     ...j,
                     progress: { 
                       ...j.progress,
-                      // Calculate overall completed based on total minus what this specific loop started with
-                      completed: (j.progress.total - total) + completed,
+                      completed: j.progress.total - j.chaptersToScrape.length,
                       current: currentTitle 
                     },
                   },
@@ -341,6 +372,10 @@ export const useScraperQueueStore = create<ScraperQueueState>()(
                   [nextJob.id]: {
                     ...j,
                     chaptersToScrape: j.chaptersToScrape.slice(1),
+                    progress: {
+                      ...j.progress,
+                      completed: j.progress.total - (j.chaptersToScrape.length - 1),
+                    }
                   }
                 }
               };

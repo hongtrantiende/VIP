@@ -15,6 +15,7 @@ import {
 import { cleanGarbageLines } from "@/lib/text-utils";
 import { useBulkTranslateStore, type TranslateChapterResult, type TranslateError } from "@/lib/stores/bulk-translate";
 import { scanNewNames, autoAddNames } from "./name-scanner";
+import { isSceneTranslated } from "@/lib/novel-io";
 
 // ── Retry & Error Handling ──
 
@@ -146,6 +147,7 @@ export interface BulkTranslateOptions {
   translateTitle: boolean;
   autoSave: boolean;
   settings: AnalysisSettings;
+  skipTranslated?: boolean;
   /** Overrides the translate prompt from settings when provided. */
   customPrompt?: string;
   signal?: AbortSignal;
@@ -167,6 +169,7 @@ export async function runBulkTranslate(opts: BulkTranslateOptions): Promise<void
     translateTitle,
     autoSave,
     settings,
+    skipTranslated,
     customPrompt,
     signal,
     delayMs,
@@ -224,6 +227,20 @@ export async function runBulkTranslate(opts: BulkTranslateOptions): Promise<void
           chapterId: chapter.id,
           chapterTitle: chapter.title,
           message: "Chương không có nội dung (scene)",
+        });
+        return;
+      }
+
+      // Check if we should skip already translated chapters
+      if (skipTranslated && scenes.some(isSceneTranslated)) {
+        console.log(`[BulkTranslate] Bỏ qua chương đã dịch: ${chapter.title}`);
+        onChapterComplete({
+          chapterId: chapter.id,
+          chapterTitle: chapter.title,
+          originalTitle: chapter.title,
+          originalLineCount: 0,
+          translatedLineCount: 0,
+          scenes: [] // Not touching DB since we skip
         });
         return;
       }

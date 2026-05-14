@@ -276,7 +276,8 @@ export function BulkTranslateDialog({
 
   // Other config
   const [translateTitle, setTranslateTitle] = useState(true);
-  const [autoSave, setAutoSave] = useState(false);
+  const [autoSave, setAutoSave] = useState(true); // <== Changed default to true
+  const [skipTranslated, setSkipTranslated] = useState(true); // <== Added skipTranslated
   const [delaySeconds, setDelaySeconds] = useState(settings.translateDelaySeconds ?? 0);
   const [concurrency, setConcurrency] = useState(settings.translateConcurrency ?? 1);
 
@@ -319,6 +320,7 @@ export function BulkTranslateDialog({
         translateTitle,
         autoSave,
         settings,
+        skipTranslated,
         customPrompt: promptText,
         signal,
         delayMs: delaySeconds * 1000,
@@ -553,7 +555,20 @@ export function BulkTranslateDialog({
                       htmlFor="bulk-auto-save"
                       className="cursor-pointer text-xs"
                     >
-                      Tự động lưu sau mỗi chương
+                      Tự động lưu sau mỗi chương (Khuyên dùng)
+                    </Label>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <Switch
+                      id="bulk-skip-translated"
+                      checked={skipTranslated}
+                      onCheckedChange={setSkipTranslated}
+                    />
+                    <Label
+                      htmlFor="bulk-skip-translated"
+                      className="cursor-pointer text-xs"
+                    >
+                      Bỏ qua các chương đã dịch (Tránh dịch lại)
                     </Label>
                   </div>
                   

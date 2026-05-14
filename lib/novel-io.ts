@@ -81,6 +81,16 @@ export function downloadNovelJson(data: NovelExportData) {
   URL.revokeObjectURL(url);
 }
 
+export function isSceneTranslated(s: Scene): boolean {
+  if (s.version > 1) return true;
+  if (s.activeSceneId) return true;
+  if (s.versionType !== "manual") return true;
+  if (s.content.includes("Bạn đang xem văn bản gốc chưa dịch")) return false;
+  const hanziMatch = s.content.match(/[\u4E00-\u9FA5]/g);
+  if (hanziMatch && hanziMatch.length > s.content.length * 0.1) return false;
+  return true;
+}
+
 export async function downloadNovelChaptersZip(
   novelId: string,
   mode: "translated" | "original" = "translated",
@@ -121,6 +131,11 @@ export async function downloadNovelChaptersZip(
     const chapterScenes = scenes
       .filter((s) => s.chapterId === chapter.id)
       .sort((a, b) => a.order - b.order);
+
+    if (mode === "translated") {
+      const hasTranslatedContent = chapterScenes.some(isSceneTranslated);
+      if (!hasTranslatedContent) continue;
+    }
 
     const UNWANTED_TEXT =
       "Bạn đang xem văn bản gốc chưa dịch, có thể kéo xuống cuối trang để chọn bản dịch.";
@@ -180,6 +195,11 @@ export async function downloadNovelTxt(
     const chapterScenes = scenes
       .filter((s) => s.chapterId === chapter.id)
       .sort((a, b) => a.order - b.order);
+
+    if (mode === "translated") {
+      const hasTranslatedContent = chapterScenes.some(isSceneTranslated);
+      if (!hasTranslatedContent) continue;
+    }
 
     const chapterContent = chapterScenes
       .map((s) => s.content.replace(UNWANTED_TEXT, "").trim())

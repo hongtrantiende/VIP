@@ -602,3 +602,22 @@ export class NovelStudioDB extends Dexie {
 }
 
 export const db = new NovelStudioDB();
+export const GENRE_LABELS: Record<string, string> = {
+  ngontinh: "Ngôn tình",
+  hiendai: "Hiện đại",
+  tienhiep: "Tiên hiệp",
+  huyenhuyen: "Huyền huyễn",
+  dammi: "Đam mỹ",
+  hocduong: "Học đường",
+  nsfw: "NSFW (18+)",
+  hentai: "Hentai",
+  dongphuong: "Đông phương",
+  dothi: "Đô thị",
+  vongdu: "Võng du",
+  khoahuyen: "Khoa huyễn",
+  quybi: "Quỷ bí",
+  xuyenkhong: "Xuyên không",
+  hethong: "Hệ thống",
+  trinhtham: "Trinh thám",
+  lichsu: "Lịch sử"
+};

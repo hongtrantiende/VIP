@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { createClient } from "@/lib/supabase/client";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { Badge } from "@/components/ui/badge";
 import {
   Table,
   TableBody,
@@ -13,7 +14,8 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { toast } from "sonner";
-import { CrownIcon, RefreshCwIcon } from "lucide-react";
+import { CrownIcon, RefreshCwIcon, Trash2Icon } from "lucide-react";
+import { revokeAllModelAssignmentsAction } from "@/app/actions/admin-models";
 
 interface Profile {
   id: string;
@@ -22,8 +24,16 @@ interface Profile {
   vip_until: string | null;
 }
 
+interface Lease {
+  id: string;
+  user_id: string;
+  email: string;
+  last_active_at: string;
+}
+
 export default function AdminPage() {
   const [profiles, setProfiles] = useState<Profile[]>([]);
+  const [leases, setLeases] = useState<Lease[]>([]);
   const [loading, setLoading] = useState(true);
   const [isAdmin, setIsAdmin] = useState(false);
   const [freeMode, setFreeMode] = useState(false);
@@ -34,6 +44,10 @@ export default function AdminPage() {
   const [modelInputs, setModelInputs] = useState<Record<string, string>>({});
   const [availableModels, setAvailableModels] = useState<{id: string, name: string}[]>([]);
 
+  // Admin Proxy Settings
+  const [adminProxyUrl, setAdminProxyUrl] = useState("");
+  const [adminProxyKey, setAdminProxyKey] = useState("");
+
   const loadData = async () => {
     setLoading(true);
     const supabase = createClient();
@@ -43,7 +57,11 @@ export default function AdminPage() {
     const { data: { session } } = await supabase.auth.getSession();
     
     const email = user?.email?.toLowerCase();
-    if (email !== "nthanhnam2005@gmail.com" && email !== "thanhxnam2005@gmail.com") {
+    const admins = [
+      "nthanhnam2005@gmail.com",
+      "thanhxnam2005@gmail.com"
+    ];
+    if (!admins.includes(email || "")) {
       setIsAdmin(false);
       setLoading(false);
       return;
@@ -62,35 +80,48 @@ export default function AdminPage() {
           setAvailableModels(models);
         }
       } else {
-        console.error("Fetch models failed:", res.status);
+        console.warn("Fetch models failed:", res.status);
       }
     } catch (err) {
-      console.error("Failed to load admin models", err);
+      console.warn("Failed to load admin models", err);
     }
 
-    // Load free mode setting
-    const { data: settingsData } = await supabase
+    // Load app settings
+    const { data: allSettingsData } = await supabase
       .from("app_settings")
-      .select("value")
-      .eq("key", "free_mode")
-      .single();
-    
-    if (settingsData && settingsData.value === "true") {
-      setFreeMode(true);
-    } else {
-      setFreeMode(false);
+      .select("key, value")
+      .in("key", ["free_mode", "admin_proxy_url", "admin_proxy_key"]);
+
+    if (allSettingsData) {
+      const freeModeSetting = allSettingsData.find(s => s.key === "free_mode");
+      setFreeMode(freeModeSetting?.value === "true");
+
+      const urlSetting = allSettingsData.find(s => s.key === "admin_proxy_url");
+      if (urlSetting) setAdminProxyUrl(urlSetting.value);
+
+      const keySetting = allSettingsData.find(s => s.key === "admin_proxy_key");
+      if (keySetting) setAdminProxyKey(keySetting.value);
     }
 
-    const { data, error } = await supabase
+    const { data: profilesData, error: profilesError } = await supabase
       .from("profiles")
       .select("*")
       .order("email");
 
-    if (error) {
-      toast.error(error.message);
+    if (profilesError) {
+      toast.error(profilesError.message);
     } else {
-      setProfiles(data as Profile[]);
+      setProfiles(profilesData as Profile[]);
     }
+
+    // Load active leases
+    const { data: leasesData } = await supabase
+      .from("model_leases")
+      .select("*")
+      .order("last_active_at", { ascending: false });
+    
+    setLeases(leasesData || []);
+
     setLoading(false);
   };
 
@@ -113,6 +144,18 @@ export default function AdminPage() {
   useEffect(() => {
     loadData();
   }, []);
+
+  const handleRevokeAllModels = async () => {
+    if (!confirm("Bạn có chắc chắn muốn thu hồi tất cả model đã cấp cho người dùng không?")) return;
+    const toastId = toast.loading("Đang thu hồi...");
+    const res = await revokeAllModelAssignmentsAction();
+    if (res.success) {
+      toast.success("Đã thu hồi tất cả model!", { id: toastId });
+      loadData();
+    } else {
+      toast.error(res.error || "Lỗi khi thu hồi", { id: toastId });
+    }
+  };
 
   const handleGrantVip = async (userId: string) => {
     const daysStr = vipDays[userId];
@@ -140,12 +183,8 @@ export default function AdminPage() {
   };
 
   const handleGrantQuota = async (userId: string) => {
-    // Find the profile we are updating to use its assigned model if none selected
-    const userProfile = profiles.find(p => p.id === userId) as any;
-    
     const quotaStr = quotaInputs[userId];
     const quota = parseInt(quotaStr, 10);
-    const model = modelInputs[userId] || userProfile?.admin_assigned_model || "gcli-gemini-3-pro-preview";
 
     if (isNaN(quota) || quota < 0) {
       toast.error("Vui lòng nhập số lượt dịch hợp lệ");
@@ -156,34 +195,19 @@ export default function AdminPage() {
 
     const supabase = createClient();
 
-    // KIỂM TRA TRÙNG MODEL:
-    if (model && model !== "gcli-gemini-3-pro-preview") {
-      const { data: existingUsers } = await supabase
-        .from("profiles")
-        .select("id, email")
-        .eq("admin_assigned_model", model)
-        .neq("id", userId);
-
-      if (existingUsers && existingUsers.length > 0) {
-        toast.error(`Model này đã được cấp cho người dùng khác (${existingUsers[0].email})!`);
-        return;
-      }
-    }
-
     const { error } = await supabase
       .from("profiles")
       .update({ 
         admin_model_quota: quota,
         admin_daily_quota_limit: quota,
         admin_quota_last_reset: currentVnDate,
-        admin_assigned_model: model 
       })
       .eq("id", userId);
 
     if (error) {
       toast.error(error.message);
     } else {
-      toast.success(`Đã cập nhật lượt dịch thành ${quota} lượt với model ${model}!`);
+      toast.success(`Đã cập nhật lượt dịch thành ${quota} lượt!`);
       loadData();
     }
   };
@@ -200,6 +224,21 @@ export default function AdminPage() {
     } else {
       toast.success("Đã thu hồi VIP");
       loadData();
+    }
+  };
+
+  const handleSaveAdminSettings = async () => {
+    try {
+      const { saveAdminSettingsAction } = await import("@/app/actions/admin-settings");
+      const result = await saveAdminSettingsAction(adminProxyUrl, adminProxyKey);
+      
+      if (result.success) {
+        toast.success("Đã lưu cấu hình Admin Proxy thành công!");
+      } else {
+        toast.error("Lỗi khi lưu cấu hình: " + result.error);
+      }
+    } catch (err: any) {
+      toast.error(err.message || "Đã xảy ra lỗi");
     }
   };
 
@@ -229,11 +268,41 @@ export default function AdminPage() {
           >
             {freeMode ? "ĐANG BẬT FREE TEST TOÀN SERVER" : "Bật Free Test Toàn Server"}
           </Button>
-          <Button variant="outline" onClick={loadData}>
-            <RefreshCwIcon className="w-4 h-4 mr-2" />
-            Tải lại danh sách
-          </Button>
+            <div className="flex items-center gap-2">
+              <Button onClick={loadData} variant="outline" size="sm">
+                <RefreshCwIcon className={`mr-2 size-4 ${loading ? "animate-spin" : ""}`} />
+                Làm mới
+              </Button>
+              <Button onClick={handleRevokeAllModels} variant="destructive" size="sm">
+                <Trash2Icon className="mr-2 size-4" />
+                Thu hồi tất cả Model
+              </Button>
+            </div>
         </div>
+      </div>
+
+      <div className="bg-muted/30 border border-border p-6 rounded-lg space-y-4 mb-8">
+        <h2 className="text-lg font-bold text-foreground">Cấu hình API Proxy Server (Dùng chung cho toàn hệ thống)</h2>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="space-y-2">
+            <label className="text-sm font-medium">Base URL (API Endpoint)</label>
+            <Input 
+              value={adminProxyUrl} 
+              onChange={e => setAdminProxyUrl(e.target.value)} 
+              placeholder="VD: https://catiecli.sukaka.top/v1/chat/completions"
+            />
+          </div>
+          <div className="space-y-2">
+            <label className="text-sm font-medium">API Key (Bearer Token)</label>
+            <Input 
+              value={adminProxyKey} 
+              onChange={e => setAdminProxyKey(e.target.value)} 
+              placeholder="Nhập API Key..."
+              type="password"
+            />
+          </div>
+        </div>
+        <Button onClick={handleSaveAdminSettings} variant="default">Lưu cấu hình Server</Button>
       </div>
 
       <div className="border rounded-lg overflow-hidden bg-card">
@@ -267,11 +336,6 @@ export default function AdminPage() {
                   <TableCell className="font-semibold text-blue-600 dark:text-blue-400">
                     <div className="flex flex-col">
                       <span>{(p as any).admin_model_quota || 0} lượt</span>
-                      {(p as any).admin_assigned_model && (
-                        <span className="text-[10px] text-muted-foreground font-normal break-all max-w-[120px]">
-                          {(p as any).admin_assigned_model}
-                        </span>
-                      )}
                     </div>
                   </TableCell>
                   <TableCell>
@@ -292,22 +356,7 @@ export default function AdminPage() {
                           Cấp VIP
                         </Button>
                       </div>
-                      <div className="flex flex-col gap-1 border-t pt-2 mt-1">
-                        <select
-                          className="h-8 text-xs border rounded-md px-2 bg-background w-full"
-                          value={modelInputs[p.id] || (p as any).admin_assigned_model || "gcli-gemini-3-pro-preview"}
-                          onChange={(e) => setModelInputs({ ...modelInputs, [p.id]: e.target.value })}
-                        >
-                          {availableModels.length > 0 ? (
-                            availableModels.map((m) => (
-                              <option key={m.id} value={m.id}>
-                                {m.name}
-                              </option>
-                            ))
-                          ) : (
-                            <option value="gcli-gemini-3-pro-preview">Đang tải models...</option>
-                          )}
-                        </select>
+
                         <div className="flex items-center gap-1">
                           <Input
                             type="number"
@@ -325,8 +374,7 @@ export default function AdminPage() {
                           </Button>
                         </div>
                       </div>
-                    </div>
-                  </TableCell>
+                    </TableCell>
                   <TableCell className="text-right">
                     <div className="flex items-center justify-end gap-2">
                       <Button
@@ -352,6 +400,48 @@ export default function AdminPage() {
             )}
           </TableBody>
         </Table>
+      </div>
+
+      <div className="space-y-4">
+        <h2 className="text-xl font-semibold flex items-center gap-2">
+          <RefreshCwIcon className="w-5 h-5 text-blue-500" />
+          Model đang được sử dụng ({leases.length})
+        </h2>
+        <div className="border rounded-lg overflow-hidden bg-card">
+          <Table>
+            <TableHeader>
+              <TableRow>
+                <TableHead>Model ID</TableHead>
+                <TableHead>Người dùng</TableHead>
+                <TableHead>Hoạt động cuối</TableHead>
+                <TableHead className="text-right">Trạng thái</TableHead>
+              </TableRow>
+            </TableHeader>
+            <TableBody>
+              {leases.map((l) => (
+                <TableRow key={l.id}>
+                  <TableCell className="font-mono text-xs">{l.id}</TableCell>
+                  <TableCell>{l.email}</TableCell>
+                  <TableCell className="text-xs text-muted-foreground">
+                    {new Date(l.last_active_at).toLocaleTimeString("vi-VN")}
+                  </TableCell>
+                  <TableCell className="text-right">
+                    <Badge variant="outline" className="text-green-600 bg-green-50 border-green-200">
+                      Đang dùng
+                    </Badge>
+                  </TableCell>
+                </TableRow>
+              ))}
+              {leases.length === 0 && (
+                <TableRow>
+                  <TableCell colSpan={4} className="text-center py-6 text-muted-foreground">
+                    Không có model nào đang được sử dụng.
+                  </TableCell>
+                </TableRow>
+              )}
+            </TableBody>
+          </Table>
+        </div>
       </div>
     </div>
   );

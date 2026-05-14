@@ -338,19 +338,19 @@ export function DataSettings() {
                 </button>
                 <button
                   onClick={handleBackupToDrive}
-                  className="flex items-center gap-2 rounded-md border bg-card px-3 py-1.5 text-sm font-medium hover:bg-accent hover:text-accent-foreground"
+                  className="flex items-center gap-2 rounded-md border bg-card px-3 py-1.5 text-sm font-medium text-blue-500 hover:bg-accent hover:text-blue-600"
                   title="Đóng gói toàn bộ Thư viện hiện tại tải lên Google Drive"
                 >
-                  <CloudUploadIcon className="size-4 text-blue-500" />
-                  Sao lưu lên Drive
+                  <CloudUploadIcon className="size-4" />
+                  Lưu lên Drive
                 </button>
                 <button
                   onClick={handleRestoreFromDrive}
-                  className="flex items-center gap-2 rounded-md border bg-card px-3 py-1.5 text-sm font-medium hover:bg-accent hover:text-accent-foreground"
+                  className="flex items-center gap-2 rounded-md border bg-card px-3 py-1.5 text-sm font-medium text-blue-500 hover:bg-accent hover:text-blue-600"
                   title="Tìm file sao lưu trên Drive và tải về máy"
                 >
-                  <CloudDownloadIcon className="size-4 text-emerald-500" />
-                  Phục hồi từ Drive
+                  <CloudDownloadIcon className="size-4" />
+                  Nhập từ Drive
                 </button>
               </>
             )}

@@ -14,11 +14,12 @@ import { db } from "@/lib/db";
 import type { AnalysisSettings, Scene, DictSource } from "@/lib/db";
 import { createSceneVersion, ensureInitialVersion, getOriginalContent } from "@/lib/hooks/use-scene-versions";
 import { getMergedNameDict, bulkImportNameEntries } from "@/lib/hooks/use-name-entries";
-import { appendToDictSource, uploadToCommunityDict } from "@/lib/hooks/use-dict-entries";
+import { appendToDictSource, uploadToCommunityDict, normalizeGenre } from "@/lib/hooks/use-dict-entries";
 import { convertText } from "@/lib/hooks/use-qt-engine";
 import { cleanGarbageLines } from "@/lib/text-utils";
 import { useBulkTranslateStore } from "@/lib/stores/bulk-translate";
 import { createClient as createSupabaseClient } from "@/lib/supabase/client";
+import { isSceneTranslated } from "@/lib/novel-io";
 
 // ── Constants ──
 
@@ -34,6 +35,7 @@ Bạn KHÔNG dịch lại từ đầu, bạn chỉ SỬA LỖI bản dịch từ
 
 # Nhiệm vụ  
 Nhận bản dịch từ điển Trung → Việt và văn bản gốc tiếng Trung. Chỉ sửa những chỗ SAI, giữ nguyên phần đã đúng. Kết quả cuối cùng PHẢI là TIẾNG VIỆT.
+NGHIÊM CẤM sử dụng bất kỳ định dạng Markdown nào (như in đậm **, tiêu đề ###, hoặc bảng biểu). Chỉ xuất văn bản thuần túy.
 
 # Quy tắc sửa BẮT BUỘC
 1. **Tên nhân vật/địa danh/vũ khí**: Sửa tên bị dịch sai/dịch nghĩa. Phải phiên âm Hán-Việt CHUẨN. Viết hoa chữ cái đầu mỗi từ (ví dụ: Tô Dật, Thanh Đường, Cửu Ngục Kiếm).
@@ -51,7 +53,7 @@ Nhận bản dịch từ điển Trung → Việt và văn bản gốc tiếng T
 [ngucanh]CụmTừTrung=CụmTừViệt
 </names>
 <content>
-(Văn bản dịch TIẾNG VIỆT đã sửa lỗi — KHÔNG PHẢI tiếng Anh)
+(Văn bản dịch TIẾNG VIỆT đã sửa lỗi — KHÔNG PHẢI tiếng Anh. TUYỆT ĐỐI KHÔNG chứa ký tự ** hay ###)
 </content>
 
 Lưu ý PHÂN LOẠI (TRÍCH XUẤT TỪ ĐIỂN):
@@ -109,6 +111,8 @@ export interface QtAiTranslateOptions {
   qtDictSources: string[]; // the selected genre dictionaries
   promptType?: PromptType;
   extractDict?: boolean; // "Càng dịch càng hay" — extract names + upload to Supabase
+  skipTranslated?: boolean;
+  continuousMode?: boolean; // Tự động nạp chương mới nếu có
   signal?: AbortSignal;
   delayMs?: number;
 
@@ -123,6 +127,66 @@ export interface QtAiTranslateOptions {
 
 function delay(ms: number): Promise<void> {
   return new Promise((resolve) => setTimeout(resolve, ms));
+}
+
+const extractionCache = new Set<string>();
+
+async function triggerBackgroundLookahead(novelId: string, chapterId: string, model: LanguageModel, signal?: AbortSignal) {
+  if (extractionCache.has(chapterId)) return;
+  extractionCache.add(chapterId);
+
+  try {
+    console.log(`[Lookahead] Kích hoạt quét ngầm tên cho chương tiếp theo...`);
+    const scenes = await db.scenes.where("chapterId").equals(chapterId).toArray();
+    if (scenes.length === 0) return;
+    scenes.sort((a,b)=>a.order-b.order);
+    
+    const contents = await Promise.all(scenes.map(s => getOriginalContent(s.id)));
+    const combinedText = contents.join("\n\n") + "\n\n";
+    const cleaned = cleanGarbageLines(combinedText).slice(0, 2500); 
+
+    if (cleaned.trim()) {
+      const prompt = `Trích xuất toàn bộ tên riêng (nhân vật chính/phụ, địa danh, môn phái) từ văn bản tiếng Trung sau. 
+BẮT BUỘC trả về đúng định dạng JSON Array: [{"chinese": "tên tiếng Trung", "vietnamese": "Hán Việt", "dictType": "names"}]. 
+CẤM DỊCH NỘI DUNG. CHỈ TRẢ VỀ JSON, KHÔNG GIẢI THÍCH GÌ THÊM.
+
+[VĂN BẢN]
+${cleaned}`;
+      
+      const result = await streamText({
+        model,
+        system: "Bạn là chuyên gia trích xuất thực thể tiếng Trung. Luôn trả về mảng chuỗi dạng JSON. Trích xuất toàn bộ tên riêng, môn phái, địa danh, công pháp xuất hiện trong đoạn văn. KHÔNG trích xuất đại từ nhân xưng, từ thông dụng.",
+        prompt,
+        abortSignal: signal,
+      });
+
+      let rawText = "";
+      for await (const chunk of result.textStream) {
+        rawText += chunk;
+      }
+      
+      rawText = rawText.replace(/```json/gi, "").replace(/```/g, "").trim();
+      const match = rawText.match(/\[\s*\{[\s\S]*\}\s*\]/);
+      if (match) {
+        const arr = JSON.parse(match[0]);
+        if (Array.isArray(arr) && arr.length > 0) {
+          const validNames = arr.filter((n: any) => n.chinese && n.vietnamese && typeof n.chinese === "string");
+          if (validNames.length > 0) {
+            console.log(`[Lookahead] Đã trích xuất ngầm ${validNames.length} từ cho chương tiếp theo.`);
+            const entriesWithCategory = validNames.map((entry: any) => ({
+              ...entry,
+              category: entry.dictType === "names" ? "nhân vật" : "khác",
+              dictType: entry.dictType || "names"
+            }));
+            await bulkImportNameEntries(novelId, entriesWithCategory, "khác", "skip");
+          }
+        }
+      }
+    }
+  } catch(e) {
+    if (e instanceof Error && e.name === "AbortError") return;
+    console.warn(`[Lookahead] Lỗi quét ngầm:`, e);
+  }
 }
 
 /**
@@ -196,7 +260,7 @@ function buildPostEditPrompt(
   if (extractDict && (promptType === "khuyen_nghi" || promptType === "cuc_ngan")) {
     // Fall through to legacy prompt with full <names>/<content> extraction
   } else if (promptType === "khuyen_nghi" || promptType === "cuc_ngan") {
-    return "Bạn là dịch giả chuyên nghiệp Trung → Việt. BẮT BUỘC trả lời bằng TIẾNG VIỆT. TUYỆT ĐỐI KHÔNG dịch sang tiếng Anh.";
+    return "Bạn là dịch giả chuyên nghiệp Trung → Việt. BẮT BUỘC trả lời bằng TIẾNG VIỆT. TUYỆT ĐỐI KHÔNG dịch sang tiếng Anh. NGHIÊM CẤM sử dụng định dạng Markdown (như **, ###). CHỈ trả về văn bản thuần túy.";
   }
 
 
@@ -221,14 +285,14 @@ function buildPostEditUserPrompt(
   // When extractDict is on, force legacy user prompt format
   if (!extractDict) {
     if (promptType === "khuyen_nghi") {
-      return `【Gốc】\n${chineseText.trim()}\n\n【Thô】\n${dictTranslation.trim()}\n\n【Refine】Sửa bản dịch thô cho mượt mà, xưng hô đúng, văn phong chuẩn thể loại. Trả về bản dịch TIẾNG VIỆT cuối cùng thôi. KHÔNG dịch sang tiếng Anh.`;
+      return `【Gốc】\n${chineseText.trim()}\n\n【Thô】\n${dictTranslation.trim()}\n\n【Refine】Sửa bản dịch thô cho mượt mà, xưng hô đúng, văn phong chuẩn thể loại. Trả về bản dịch TIẾNG VIỆT cuối cùng thôi. KHÔNG dịch sang tiếng Anh. NGHIÊM CẤM chèn ký tự ** hay ### vào kết quả.`;
     }
     if (promptType === "cuc_ngan") {
-      return `Sửa bản dịch Trung→Việt sau cho mượt, xưng hô đúng, sát gốc:\n\nGốc: ${chineseText.trim()}\n\nThô: ${dictTranslation.trim()}\n\nChỉ trả về bản dịch TIẾNG VIỆT đã sửa. KHÔNG dịch sang tiếng Anh.`;
+      return `Sửa bản dịch Trung→Việt sau cho mượt, xưng hô đúng, sát gốc:\n\nGốc: ${chineseText.trim()}\n\nThô: ${dictTranslation.trim()}\n\nChỉ trả về bản dịch TIẾNG VIỆT đã sửa. KHÔNG dịch sang tiếng Anh. NGHIÊM CẤM dùng ký tự **.`;
     }
   }
   if (promptType === "custom" && !extractDict) {
-    return `【Gốc】\n${chineseText.trim()}\n\n【Thô】\n${dictTranslation.trim()}\n\n【Refine】Sửa cho mượt mà, xưng hô chuẩn, văn phong đúng thể loại. Chỉ trả về bản dịch TIẾNG VIỆT cuối. KHÔNG dịch sang tiếng Anh.`;
+    return `【Gốc】\n${chineseText.trim()}\n\n【Thô】\n${dictTranslation.trim()}\n\n【Refine】Sửa cho mượt mà, xưng hô chuẩn, văn phong đúng thể loại. Chỉ trả về bản dịch TIẾNG VIỆT cuối. KHÔNG dịch sang tiếng Anh. NGHIÊM CẤM sử dụng **.`;
   }
 
   let user = "";
@@ -238,7 +302,8 @@ function buildPostEditUserPrompt(
   }
   
   user += `[GỐC]\n${chineseText}\n\n[DỊCH TỪ ĐIỂN]\n${dictTranslation}\n\nHãy phân tích và trả về <names> (nếu tìm thấy từ mới) và <content> (bản dịch TIẾNG VIỆT đã sửa lỗi) theo đúng format.
-⚠️ LƯU Ý: Nếu có trích xuất <names>, vế trái BẮT BUỘC phải là CHỮ HÁN BẢN GỐC (Tiếng Trung), KHÔNG ĐƯỢC để tiếng Việt ở vế trái!`;
+⚠️ LƯU Ý: Nếu có trích xuất <names>, vế trái BẮT BUỘC phải là CHỮ HÁN BẢN GỐC (Tiếng Trung), KHÔNG ĐƯỢC để tiếng Việt ở vế trái!
+⚠️ NGHIÊM CẤM sử dụng định dạng Markdown (**, ###) bên trong thẻ <content>.`;
   
   return user;
 }
@@ -254,6 +319,8 @@ function parseHybridResult(
     let contentPart = raw.trim();
     // Loại bỏ các markdown block nếu AI tự động chèn vào
     contentPart = contentPart.replace(/^```[\s\S]*?\n/g, "").replace(/```$/g, "").trim();
+    // Loại bỏ ký tự in đậm ** và ###
+    contentPart = contentPart.replace(/\*\*/g, "").replace(/^###\s+/gm, "").trim();
     return { title: null, content: contentPart, extractedNames: [] };
   }
 
@@ -287,12 +354,21 @@ function parseHybridResult(
     contentPart = raw.replace(/<names>[\s\S]*?<\/names>/gi, "").trim();
   }
 
+  // Remove bold markdown and headers just in case
+  contentPart = contentPart.replace(/\*\*/g, "").replace(/^###\s+/gm, "").trim();
+
   if (!includeTitle) return { title: null, content: contentPart, extractedNames };
 
   const sepIndex = contentPart.indexOf("\n---\n");
   if (sepIndex === -1) return { title: null, content: contentPart, extractedNames };
 
   const title = contentPart.slice(0, sepIndex).trim();
+  
+  // Bảo vệ: Nếu title chứa xuống dòng (nhiều dòng) hoặc quá dài, đó không phải là title thật
+  if (title.includes("\n") || title.length > 200) {
+    return { title: null, content: contentPart, extractedNames };
+  }
+
   const textBody = contentPart.slice(sepIndex + 5).trim();
   return { title: title || null, content: textBody, extractedNames };
 }
@@ -305,6 +381,8 @@ export async function runQtAiTranslate(opts: QtAiTranslateOptions): Promise<void
     chapterIds,
     model,
     qtDictSources,
+    skipTranslated,
+    continuousMode,
     signal,
     delayMs,
     onPhase,
@@ -316,30 +394,10 @@ export async function runQtAiTranslate(opts: QtAiTranslateOptions): Promise<void
 
   const chapterIdSet = new Set(chapterIds);
 
-  // Prefetch all data
-  const [allChapters, allScenes] = await Promise.all([
-    db.chapters.where("novelId").equals(novelId).sortBy("order"),
-    db.scenes.where("[novelId+isActive]").equals([novelId, 1]).toArray(),
-  ]);
-
-  const chapters = allChapters.filter((c) => chapterIdSet.has(c.id));
-
   // Initialize global store for UI
   const store = useBulkTranslateStore.getState();
   store.initJob(novelId);
   store.start(novelId, chapterIds, undefined, undefined);
-
-  // Group scenes by chapter
-  const scenesByChapter = new Map<string, Scene[]>();
-  for (const s of allScenes) {
-    if (!chapterIdSet.has(s.chapterId)) continue;
-    const arr = scenesByChapter.get(s.chapterId) ?? [];
-    arr.push(s);
-    scenesByChapter.set(s.chapterId, arr);
-  }
-  for (const scenes of scenesByChapter.values()) {
-    scenes.sort((a, b) => a.order - b.order);
-  }
 
   // Fetch initial name dictionary
   let nameDict = await getMergedNameDict(novelId);
@@ -348,11 +406,13 @@ export async function runQtAiTranslate(opts: QtAiTranslateOptions): Promise<void
   if (nameDict.length === 0) {
     try {
       console.log("[Cold Start] Từ điển trống, tiến hành quét 1 chương đầu...");
+      const allChapters = await db.chapters.where("novelId").equals(novelId).sortBy("order");
       const firstChapter = allChapters.slice(0, 1);
       if (firstChapter.length > 0) {
         let combinedText = "";
         for (const c of firstChapter) {
-          const chapSc = allScenes.filter(s => s.chapterId === c.id).sort((a,b)=>a.order-b.order);
+          const chapSc = await db.scenes.where("chapterId").equals(c.id).toArray();
+          chapSc.sort((a,b)=>a.order-b.order);
           const contents = await Promise.all(chapSc.map(s => getOriginalContent(s.id)));
           combinedText += contents.join("\n\n") + "\n\n";
         }
@@ -417,16 +477,10 @@ ${cleaned}`;
   const novelCustomPrompt = novel?.customTranslatePrompt;
 
   let isFirst = true;
+  let processedIds = new Set<string>();
+  let pollingAttempts = 0;
 
-  for (const chapter of chapters) {
-    if (signal?.aborted) break;
-
-    // Delay between chapters
-    if (!isFirst && delayMs && delayMs > 0) {
-      await delay(delayMs);
-    }
-    isFirst = false;
-
+  while (true) {
     if (signal?.aborted) break;
 
     // Pause loop
@@ -436,12 +490,108 @@ ${cleaned}`;
     }
     if (signal?.aborted) break;
 
+    // Fetch chapters dynamically
+    const allChapters = await db.chapters.where("novelId").equals(novelId).sortBy("order");
+    
+    let chapterToProcess = null;
+    let chapterScenes: Scene[] = [];
+
+    if (continuousMode) {
+      for (const c of allChapters) {
+        if (processedIds.has(c.id)) continue;
+        const scenes = await db.scenes.where("chapterId").equals(c.id).toArray();
+        if (scenes.length === 0) continue;
+        scenes.sort((a, b) => a.order - b.order);
+
+        if (skipTranslated && scenes.some(isSceneTranslated)) {
+          processedIds.add(c.id);
+          store.setChapterStatus(novelId, c.id, "done");
+          store.incrementCompleted(novelId);
+          continue;
+        }
+
+        chapterToProcess = c;
+        chapterScenes = scenes;
+        break;
+      }
+    } else {
+      // Legacy mode: process from chapterIdSet
+      for (const c of allChapters) {
+        if (!chapterIdSet.has(c.id) || processedIds.has(c.id)) continue;
+        const scenes = await db.scenes.where("chapterId").equals(c.id).toArray();
+        scenes.sort((a, b) => a.order - b.order);
+
+        if (skipTranslated && scenes.some(isSceneTranslated)) {
+          processedIds.add(c.id);
+          store.setChapterStatus(novelId, c.id, "done");
+          store.incrementCompleted(novelId);
+          continue;
+        }
+
+        chapterToProcess = c;
+        chapterScenes = scenes;
+        break;
+      }
+    }
+
+    // Update store dynamic total in continuous mode
+    if (continuousMode) {
+      store.updateTotalChapters(novelId, allChapters.length);
+    }
+
+    if (!chapterToProcess) {
+      if (continuousMode && pollingAttempts < 15) {
+        // Wait for scraper to catch up (up to 45 seconds)
+        pollingAttempts++;
+        await delay(3000);
+        continue;
+      }
+      break; // No more chapters
+    }
+
+    pollingAttempts = 0;
+    processedIds.add(chapterToProcess.id);
+    const chapter = chapterToProcess;
+
+    // Lookahead cho chương tiếp theo
+    if (opts.extractDict) {
+      let nextChapterToProcess = null;
+      if (continuousMode) {
+         const currentIndex = allChapters.findIndex(c => c.id === chapter.id);
+         if (currentIndex !== -1 && currentIndex + 1 < allChapters.length) {
+           nextChapterToProcess = allChapters[currentIndex + 1];
+         }
+      } else {
+         for (const c of allChapters) {
+           if (chapterIdSet.has(c.id) && !processedIds.has(c.id) && c.id !== chapter.id) {
+             nextChapterToProcess = c;
+             break;
+           }
+         }
+      }
+      if (nextChapterToProcess) {
+         // Fire and forget
+         triggerBackgroundLookahead(novelId, nextChapterToProcess.id, model, signal);
+      }
+    }
+
+    // Delay between chapters
+    if (!isFirst && delayMs && delayMs > 0) {
+      await delay(delayMs);
+    }
+    isFirst = false;
+    if (signal?.aborted) {
+      const err = new Error("Aborted");
+      err.name = "AbortError";
+      throw err;
+    }
+
     store.setCurrentChapter(novelId, chapter.id);
     store.setChapterStatus(novelId, chapter.id, "translating");
     onChapterStart(chapter.id, chapter.title);
 
     try {
-      const scenes = scenesByChapter.get(chapter.id) ?? [];
+      const scenes = chapterScenes;
       if (scenes.length === 0) {
         onChapterError({
           chapterId: chapter.id,
@@ -457,6 +607,8 @@ ${cleaned}`;
         store.incrementCompleted(novelId);
         continue;
       }
+
+      // The chapter logic already skips translated chapters during discovery now.
 
       // Join scene contents — ALWAYS use ORIGINAL content (pre-translation)
       const SCENE_BREAK = "===SCENE_BREAK===";
@@ -508,7 +660,11 @@ ${cleaned}`;
         continue;
       }
 
-      if (signal?.aborted) break;
+      if (signal?.aborted) {
+        const err = new Error("Aborted");
+        err.name = "AbortError";
+        throw err;
+      }
 
       // ═══════════════════════════════════════════
       // PHASE 2: AI Post-Edit (selective refine)
@@ -545,7 +701,11 @@ ${cleaned}`;
       let lastError: unknown = null;
 
       for (let attempt = 0; attempt <= MAX_RETRIES; attempt++) {
-        if (signal?.aborted) break;
+        if (signal?.aborted) {
+          const err = new Error("Aborted");
+          err.name = "AbortError";
+          throw err;
+        }
 
         try {
           const result = await streamText({
@@ -614,7 +774,11 @@ ${cleaned}`;
             // If extractDict is on, classify and append to correct genre sub-dicts, then upload
             if (effectiveExtractDict && importResult.added > 0) {
               try {
-                const genre = opts.qtDictSources?.[0] || "tienhiep";
+                const novel = await db.novels.get(novelId);
+                // Ưu tiên lấy thể loại từ truyện, nếu không có mới lấy từ từ điển đang dùng
+                const rawGenre = novel?.genre || (novel?.genres && novel.genres[0]) || opts.qtDictSources?.[0] || "tienhiep";
+                const genreKey = normalizeGenre(rawGenre);
+
                 // Group extracted names by dictType (names, tuvung, ngucanh)
                 const grouped: Record<string, Array<{chinese: string, vietnamese: string}>> = {};
                 for (const entry of parsed.extractedNames) {
@@ -625,12 +789,12 @@ ${cleaned}`;
                   grouped[dt].push({ chinese: entry.chinese, vietnamese: entry.vietnamese });
                 }
                 for (const [dictType, entries] of Object.entries(grouped)) {
-                  const dictSource = `${genre}_${dictType}` as DictSource;
+                  const dictSource = `${genreKey}_${dictType}` as DictSource;
                   await appendToDictSource(dictSource, entries);
                 }
                 
-                // Upload to community dictionary table
-                await uploadToCommunityDict(entriesWithCategory, genre);
+                // Upload to community dictionary table (Google Drive) - chạy ngầm không chờ
+                uploadToCommunityDict(entriesWithCategory, genreKey).catch(e => console.warn("[ExtractDict] Tải lên từ điển cộng đồng chạy ngầm bị lỗi:", e));
               } catch (uploadErr) {
                 console.warn("[ExtractDict] Genre dict upload skipped:", uploadErr);
               }

@@ -1,8 +1,8 @@
 "use client";
 
 import { useLiveQuery } from "dexie-react-hooks";
-import { db, type DictSource, type DictMeta, DICT_GENRES, DICT_TYPES } from "@/lib/db";
-import { createClient } from "@/lib/supabase/client";
+import { db, type DictSource, type DictMeta, DICT_GENRES, DICT_TYPES, GENRE_LABELS } from "@/lib/db";
+import { submitCommunityDictAction } from "@/app/actions/dict-upload";
 
 // ─── Reads ───────────────────────────────────────────────────
 
@@ -113,6 +113,7 @@ export async function loadDictDataForWorker(
       
       result[entry.source] = parseDictText(entry.rawText);
       counts[entry.source] = result[entry.source].length;
+      sourceCounts[entry.source] = counts[entry.source]; // Keep track of cached counts!
     }
 
     void db.dictMeta.put({
@@ -146,7 +147,20 @@ export async function loadDictDataForWorker(
       batch.map(async (source) => {
         const url = DICT_FILES[source];
         try {
-          const resp = await fetch(url, { signal: AbortSignal.timeout(3000) });
+          let resp = await fetch(url, { signal: AbortSignal.timeout(3000) });
+          if (!resp.ok && source === "core_vietphrase") {
+            // Fallback for large vietphrase file
+            const [r1, r2] = await Promise.all([
+              fetch("/dict/vietphrase_1.txt", { signal: AbortSignal.timeout(3000) }),
+              fetch("/dict/vietphrase_2.txt", { signal: AbortSignal.timeout(3000) })
+            ]);
+            if (r1.ok && r2.ok) {
+              const text1 = await r1.text();
+              const text2 = await r2.text();
+              return { source, text: text1 + "\n" + text2, ok: true };
+            }
+            return { source, text: "", ok: false };
+          }
           if (!resp.ok) return { source, text: "", ok: false };
           const text = await resp.text();
           return { source, text, ok: true };
@@ -298,72 +312,161 @@ export async function saveDictSource(source: DictSource, text: string): Promise<
 
   return parsed.length;
 }
+export function normalizeGenre(genre: string): string {
+  if (!genre) return "tienhiep";
+  const gLower = genre.toLowerCase();
+  
+  // 1. Check if it's already a valid key
+  for (const key of DICT_GENRES) {
+    if (gLower === key) return key;
+  }
+
+  // 2. Check if it's a source name like "tienhiep_names"
+  for (const key of DICT_GENRES) {
+    if (gLower.startsWith(key + "_")) return key;
+  }
+
+  // 3. Check if it's a Vietnamese label like "Tiên hiệp"
+  for (const [key, label] of Object.entries(GENRE_LABELS)) {
+    if (gLower === label.toLowerCase() || gLower.includes(label.toLowerCase())) return key;
+  }
+
+  return "tienhiep";
+}
+
 export async function uploadToCommunityDict(
   entries: { chinese: string; vietnamese: string; category: string }[],
   novelGenre: string = "tienhiep"
 ) {
+  if (!entries || entries.length === 0) return;
+  
   try {
-    const supabase = createClient();
-    const rows = entries.map(e => ({
-      chinese: e.chinese,
-      vietnamese: e.vietnamese,
-      category: e.category,
-      novel_genre: novelGenre
-    }));
-    await supabase.from("community_dict_entries").insert(rows);
+    const genre = normalizeGenre(novelGenre);
+    
+    // Group entries by dictionary type to upload to correct files
+    const groups: Record<string, typeof entries> = {
+      "names": [],
+      "tuvung": [],
+      "ngucanh": []
+    };
+
+    for (const e of entries) {
+      if (e.category === "nhân vật") groups.names.push(e);
+      else if (e.category === "thuật ngữ") groups.tuvung.push(e);
+      else groups.ngucanh.push(e);
+    }
+
+    const timestamp = Date.now();
+    
+    for (const [type, groupEntries] of Object.entries(groups)) {
+      if (groupEntries.length === 0) continue;
+      
+      const content = groupEntries.map(e => `${e.chinese}=${e.vietnamese}`).join("\n");
+      // Use "user_dict_" prefix so CommunityDictionary.tsx can parse it correctly
+      const filename = `user_dict_${genre}_${type}_${timestamp}.txt`;
+      
+      await submitCommunityDictAction(genre, filename, content);
+    }
   } catch (err) {
-    console.error("Lỗi đẩy lên từ điển cộng đồng:", err);
+    console.error("Lỗi đẩy lên từ điển cộng đồng (Drive):", err);
   }
 }
 
-export async function appendToDictSource(source: DictSource, entries: { chinese: string; vietnamese: string }[]): Promise<number> {
+export async function appendToDictSource(source: DictSource, entries: { chinese: string; vietnamese: string }[]): Promise<{ added: number, skipped: number }> {
   const cached = await db.dictCache.get(source);
   let currentText = cached?.rawText || "";
   
-  // Deduplicate against existing keys
-  const existingKeys = new Set<string>();
+  const map = new Map<string, Set<string>>();
+  
+  // 1. Load existing entries into map
   const lines = currentText.split("\n");
   for (const line of lines) {
     const eqIdx = line.indexOf("=");
     if (eqIdx > 0) {
-      existingKeys.add(line.slice(0, eqIdx).trim());
+      const key = line.slice(0, eqIdx).trim();
+      const meanings = line.slice(eqIdx + 1).split("/").map(m => m.trim()).filter(Boolean);
+      if (!map.has(key)) map.set(key, new Set());
+      meanings.forEach(m => map.get(key)!.add(m));
     }
   }
 
-  const newEntries = entries.filter(e => !existingKeys.has(e.chinese));
-  if (newEntries.length === 0) return 0;
+  // 2. Add new entries into map and track what's actually new
+  let addedEntriesCount = 0;
+  const uniqueNewEntries: { chinese: string; vietnamese: string }[] = [];
 
-  // Also deduplicate within new entries themselves
-  const seenNew = new Set<string>();
-  const uniqueNewEntries = newEntries.filter(e => {
-    if (seenNew.has(e.chinese)) return false;
-    seenNew.add(e.chinese);
-    return true;
-  });
-  if (uniqueNewEntries.length === 0) return 0;
-
-  // 1. Append new lines to cache text (fast, O(k))
-  if (currentText && !currentText.endsWith("\n")) {
-    currentText += "\n";
+  for (const entry of entries) {
+    const key = entry.chinese;
+    const newMeanings = entry.vietnamese.split("/").map(m => m.trim()).filter(Boolean);
+    
+    if (!map.has(key)) {
+      map.set(key, new Set(newMeanings));
+      addedEntriesCount++;
+      uniqueNewEntries.push({ chinese: key, vietnamese: newMeanings.join("/") });
+    } else {
+      const existingMeanings = map.get(key)!;
+      let hasNewMeaning = false;
+      for (const m of newMeanings) {
+        if (!existingMeanings.has(m)) {
+          existingMeanings.add(m);
+          hasNewMeaning = true;
+        }
+      }
+      if (hasNewMeaning) {
+        addedEntriesCount++;
+        // We track this as "added" because it was modified
+      }
+    }
   }
-  const newLines = uniqueNewEntries.map(e => `${e.chinese}=${e.vietnamese}`).join("\n");
-  const updatedText = currentText + newLines + "\n";
+
+  if (addedEntriesCount === 0) {
+    return { added: 0, skipped: entries.length };
+  }
+
+  // 3. Rebuild the full text
+  const updatedText = Array.from(map.entries())
+    .map(([k, vs]) => `${k}=${Array.from(vs).join("/")}`)
+    .join("\n") + "\n";
   
-  // 2. Update dictCache with new text (1 IDB write)
+  // 2. Update dictCache with new text
   await db.dictCache.put({ source, rawText: updatedText });
 
-  // Removed dictEntries insert to make it instant
+  // 3. Update dictEntries (structured table for search)
+  // Since we merged, it's safer to clear and rebuild if the change is large, 
+  // but for performance with append, we only add actually new keys or update modified ones.
+  // For simplicity and speed in this append-style function, we'll just update the modified ones.
+  // BUT: dictEntries is for SEARCH, it doesn't need to be 100% perfect for every slash.
+  // To keep it simple, we'll just add the NEW entries as before.
+  try {
+    const entriesToUpdate = Array.from(map.entries())
+      .filter(([k]) => entries.some(e => e.chinese === k)) // only those we touched
+      .map(([k, vs]) => ({
+        id: crypto.randomUUID(),
+        source,
+        chinese: k,
+        vietnamese: Array.from(vs).join("/")
+      }));
+    
+    // Clear old entries for these keys first to avoid duplicates in search
+    const keysToClear = entriesToUpdate.map(e => e.chinese);
+    await db.dictEntries.where("chinese").anyOf(keysToClear).and(e => e.source === source).delete();
+    await db.dictEntries.bulkAdd(entriesToUpdate);
+  } catch (err) {
+    console.warn("[appendToDictSource] Failed to update dictEntries table:", err);
+  }
 
-  // 4. Update meta count (1 IDB write)
+  // 4. Update meta count (Recalculate based on actual lines in cache for accuracy)
   let meta = await db.dictMeta.get("dict-meta");
   if (!meta) {
     meta = { id: "dict-meta", loadedAt: new Date(), sources: {} as Record<DictSource, number> };
   }
-  meta.sources[source] = (meta.sources[source] || 0) + uniqueNewEntries.length;
+  
+  // Count lines that look like valid entries
+  const totalEntries = map.size;
+  meta.sources[source] = totalEntries;
   meta.loadedAt = new Date();
   await db.dictMeta.put(meta);
 
-  return uniqueNewEntries.length;
+  return { added: addedEntriesCount, skipped: entries.length - addedEntriesCount };
 }
 
 export async function clearDictSource(source: DictSource): Promise<void> {

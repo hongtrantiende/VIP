@@ -60,7 +60,6 @@ export const navConfig = [
   { title: "Nhập sách", href: "/import", icon: UploadIcon },
   { title: "Convert nhanh", href: "/convert", icon: Wand2Icon },
   { title: "Import Truyện", href: "/scraper", icon: GlobeIcon },
-  { title: "Tạo Prompt Scraper", href: "/scraper/generator", icon: GitCompareArrowsIcon },
   { title: "Quản lý từ điển", href: "/dictionary", icon: BookOpenIcon },
   { title: "Nhà cung cấp AI", href: "/settings/providers", icon: ServerIcon },
   {
@@ -114,11 +113,6 @@ export function AppSidebar() {
   const settingsNav = navConfig.filter((item) =>
     item.href.startsWith("/settings"),
   );
-
-  // Hide Scraper Generator in production
-  if (process.env.NODE_ENV !== "development") {
-    mainNav = mainNav.filter((item) => item.href !== "/scraper/generator");
-  }
 
   const [logoError, setLogoError] = useState(false);
   const sidebarNav = isAdmin ? [...mainNav, adminNavItem] : mainNav;

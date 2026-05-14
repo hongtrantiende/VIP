@@ -245,7 +245,9 @@ export default function DashboardLayout({
       <Suspense fallback={null}>
         <DictInitializer />
       </Suspense>
-      <AutoDictSync />
+      <Suspense fallback={null}>
+        <AutoDictSync />
+      </Suspense>
       <GlobalSearchDialog />
       <Suspense fallback={null}>
         <WelcomeModal />

@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect } from "react";
-import { createClient } from "@/lib/supabase/client";
 import { DICT_GENRES, DICT_TYPES, type DictSource } from "@/lib/db";
 import { appendToDictSource } from "@/lib/hooks/use-dict-entries";
 
@@ -30,58 +29,42 @@ export function AutoDictSync() {
           }
         }
 
-        const supabase = createClient();
-        const { data: { session } } = await supabase.auth.getSession();
+        // Không bắt buộc đăng nhập để nhận từ điển chung
         
-        // Không bắt buộc đăng nhập để nhận từ điển chung, nhưng nếu có user thì tốt
+        const params = new URLSearchParams({ action: 'download-all-dicts' });
+        const res = await fetch(`/api/dict/cloud-storage?${params.toString()}`, { method: 'POST' });
+        if (!res.ok) return;
         
-        const sources = ALL_SOURCES.filter(s => s !== "core_vietphrase");
-        const total = sources.length;
-        const CONCURRENCY = 3; // Nhẹ nhàng hơn để không làm lag UI khi load trang
+        const data = await res.json();
+        if (!data.success || !data.dicts) return;
 
-        for (let i = 0; i < total; i += CONCURRENCY) {
+        const allDicts: Record<string, string> = data.dicts;
+        const total = Object.keys(allDicts).length;
+        let processedCount = 0;
+
+        for (const [source, text] of Object.entries(allDicts)) {
           if (!mounted) return;
-          const batch = sources.slice(i, i + CONCURRENCY);
-          
-          const results = await Promise.allSettled(
-            batch.map(async (source) => {
-              const filename = `${source}.txt`;
-              const { data: publicUrlData } = supabase.storage
-                .from("dictionaries")
-                .getPublicUrl(filename);
-              
-              const res = await fetch(publicUrlData.publicUrl);
-              if (!res.ok) return { source, entries: [] };
-              
-              const text = await res.text();
-              const clean = text.startsWith("\uFEFF") ? text.slice(1) : text;
-              const entries = clean
-                .split(/\r?\n/)
-                .map((line) => {
-                  const idx = line.indexOf("=");
-                  if (idx < 1) return null;
-                  return {
-                    chinese: line.slice(0, idx).trim(),
-                    vietnamese: line.slice(idx + 1).trim(),
-                  };
-                })
-                .filter(
-                  (e): e is { chinese: string; vietnamese: string } =>
-                    !!e && !!e.chinese && !!e.vietnamese,
-                );
-              
-              return { source, entries };
+          if (source === "core_vietphrase") continue;
+
+          const clean = text.startsWith("\uFEFF") ? text.slice(1) : text;
+          const entries = clean
+            .split(/\r?\n/)
+            .map((line) => {
+              const idx = line.indexOf("=");
+              if (idx < 1) return null;
+              return {
+                chinese: line.slice(0, idx).trim(),
+                vietnamese: line.slice(idx + 1).trim(),
+              };
             })
-          );
-          
-          for (const result of results) {
-            if (result.status === "fulfilled" && result.value.entries.length > 0) {
-              await appendToDictSource(result.value.source, result.value.entries);
-            }
+            .filter((e) => e !== null);
+
+          if (entries.length > 0) {
+            await appendToDictSource(source as any, entries);
           }
           
-          // Nghỉ một chút để nhường CPU cho UI
-          await new Promise(r => setTimeout(r, 1000));
+          processedCount++;
+          await new Promise((resolve) => setTimeout(resolve, 50)); // Yield to main thread
         }
 
         // Đánh dấu đã sync

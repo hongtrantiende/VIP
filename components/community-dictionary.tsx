@@ -1,40 +1,36 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { createClient } from "@/lib/supabase/client";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Badge } from "@/components/ui/badge";
 import { toast } from "sonner";
-import { BotIcon, CheckIcon, TrashIcon, RefreshCwIcon } from "lucide-react";
+import { BotIcon, CheckIcon, TrashIcon, RefreshCwIcon, FileTextIcon } from "lucide-react";
 import { appendToDictSource } from "@/lib/hooks/use-dict-entries";
 import type { DictSource } from "@/lib/db";
+import { getPendingCommunityDictsAction, getCommunityDictContentAction, deleteCommunityDictAction } from "@/app/actions/dict-upload";
 
-interface CommunityEntry {
+interface CommunityDictFile {
   id: string;
-  chinese: string;
-  vietnamese: string;
-  category: string;
-  novel_genre: string;
-  created_at: string;
+  name: string;
+  genre: string;
+  createdTime: string;
 }
 
 export function CommunityDictionary({ isAdmin }: { isAdmin: boolean }) {
-  const [entries, setEntries] = useState<CommunityEntry[]>([]);
+  const [files, setFiles] = useState<CommunityDictFile[]>([]);
   const [loading, setLoading] = useState(false);
-  const supabase = createClient();
 
-  const fetchEntries = async () => {
+  const fetchFiles = async () => {
     setLoading(true);
     try {
-      const { data, error } = await supabase
-        .from("community_dict_entries")
-        .select("*")
-        .order("created_at", { ascending: false });
-
-      if (error) throw error;
-      setEntries(data || []);
+      const res = await getPendingCommunityDictsAction();
+      if (res.success && res.files) {
+        setFiles(res.files);
+      } else {
+        throw new Error(res.error || "Không thể tải danh sách");
+      }
     } catch (err: any) {
       toast.error(`Lỗi tải từ điển cộng đồng: ${err.message}`);
     } finally {
@@ -43,51 +39,67 @@ export function CommunityDictionary({ isAdmin }: { isAdmin: boolean }) {
   };
 
   useEffect(() => {
-    fetchEntries();
+    fetchFiles();
   }, []);
 
-  const handleMergeAll = async () => {
-    if (entries.length === 0) return;
-    const toastId = toast.loading("Đang gộp từ mới vào từ điển hệ thống...");
+  const handleApprove = async (file: CommunityDictFile) => {
+    const toastId = toast.loading(`Đang duyệt file ${file.name}...`);
     try {
-      const grouped: Record<string, { chinese: string; vietnamese: string }[]> = {};
+      // 1. Tải nội dung
+      const res = await getCommunityDictContentAction(file.id);
+      if (!res.success || !res.content) throw new Error(res.error || "Không thể tải nội dung file");
       
-      for (const entry of entries) {
-        let dictType = "names";
-        if (entry.category === "thuật ngữ") dictType = "tuvung";
-        if (entry.category === "context mapping") dictType = "ngucanh";
-        
-        const source = `${entry.novel_genre || "tienhiep"}_${dictType}` as DictSource;
-        if (!grouped[source]) grouped[source] = [];
-        grouped[source].push({ chinese: entry.chinese, vietnamese: entry.vietnamese });
-      }
+      const content = res.content;
+      
+      // 2. Parse dữ liệu
+      const clean = content.startsWith("\uFEFF") ? content.slice(1) : content;
+      const entries = clean
+        .split(/\r?\n/)
+        .map((line: string) => {
+          const idx = line.indexOf("=");
+          if (idx < 1) return null;
+          return {
+            chinese: line.slice(0, idx).trim(),
+            vietnamese: line.slice(idx + 1).trim(),
+          };
+        })
+        .filter((e: any): e is { chinese: string; vietnamese: string } => !!e && !!e.chinese && !!e.vietnamese);
 
-      let totalAdded = 0;
-      for (const [source, list] of Object.entries(grouped)) {
-        const added = await appendToDictSource(source as DictSource, list);
-        totalAdded += added;
-      }
+      if (entries.length === 0) throw new Error("File rỗng hoặc không đúng định dạng (chinese=vietnamese)");
 
-      // Xóa các mục đã duyệt
-      const ids = entries.map(e => e.id);
-      const { error } = await supabase.from("community_dict_entries").delete().in("id", ids);
-      if (error) throw error;
+      // 3. Gộp vào source
+      let sourceName = file.name.replace("user_dict_", "");
+      const extIdx = sourceName.lastIndexOf("_"); // Loại bỏ Unix timestamp
+      if (extIdx !== -1) sourceName = sourceName.slice(0, extIdx);
+      if (sourceName.endsWith(".txt")) sourceName = sourceName.slice(0, -4);
+      
+      const source = sourceName as DictSource;
+      const result = await appendToDictSource(source, entries);
 
-      toast.success(`Đã gộp ${totalAdded} từ mới và xóa khỏi hàng chờ!`, { id: toastId });
-      setEntries([]);
+      // 4. Xóa file trên Drive
+      const delRes = await deleteCommunityDictAction(file.id);
+      if (!delRes.success) throw new Error(delRes.error || "Lỗi xóa file trên Drive");
+
+      let msg = `Đã duyệt thành công!`;
+      if (result.added > 0) msg += ` +${result.added} từ mới.`;
+      if (result.skipped > 0) msg += ` (Bỏ qua ${result.skipped} từ đã có trong [${source}])`;
+      
+      toast.success(msg, { id: toastId, duration: 5000 });
+      setFiles(prev => prev.filter(f => f.id !== file.id));
     } catch (err: any) {
-      toast.error(`Lỗi gộp từ điển: ${err.message}`, { id: toastId });
+      toast.error(`Lỗi duyệt: ${err.message}`, { id: toastId });
     }
   };
 
   const handleDelete = async (id: string) => {
+    const toastId = toast.loading("Đang xóa...");
     try {
-      const { error } = await supabase.from("community_dict_entries").delete().eq("id", id);
-      if (error) throw error;
-      setEntries(prev => prev.filter(e => e.id !== id));
-      toast.success("Đã xóa từ vựng");
+      const res = await deleteCommunityDictAction(id);
+      if (!res.success) throw new Error(res.error || "Lỗi xóa file");
+      setFiles(prev => prev.filter(f => f.id !== id));
+      toast.success("Đã từ chối và xóa file đóng góp", { id: toastId });
     } catch (err: any) {
-      toast.error("Lỗi xóa từ vựng");
+      toast.error(err.message, { id: toastId });
     }
   };
 
@@ -98,23 +110,17 @@ export function CommunityDictionary({ isAdmin }: { isAdmin: boolean }) {
           <div>
             <CardTitle className="flex items-center gap-2">
               <BotIcon className="size-4" />
-              Từ Điển Cộng Đồng (Chờ duyệt)
+              Từ Điển Cộng Đồng (Chờ duyệt trên Google Drive)
             </CardTitle>
             <CardDescription>
-              Các từ vựng mới do người dùng AI trích xuất đóng góp (Tính năng "Càng dịch càng hay")
+              Các bộ từ điển do người dùng tải lên, được phân loại tự động theo Thể Loại truyện
             </CardDescription>
           </div>
           <div className="flex gap-2">
-            <Button variant="outline" size="sm" onClick={fetchEntries} disabled={loading}>
+            <Button variant="outline" size="sm" onClick={fetchFiles} disabled={loading}>
               <RefreshCwIcon className={`size-4 mr-2 ${loading ? "animate-spin" : ""}`} />
               Làm mới
             </Button>
-            {isAdmin && (
-              <Button size="sm" onClick={handleMergeAll} disabled={entries.length === 0}>
-                <CheckIcon className="size-4 mr-2" />
-                Duyệt & Gộp tất cả ({entries.length})
-              </Button>
-            )}
           </div>
         </div>
       </CardHeader>
@@ -123,37 +129,43 @@ export function CommunityDictionary({ isAdmin }: { isAdmin: boolean }) {
           <Table>
             <TableHeader>
               <TableRow>
-                <TableHead>Tiếng Trung</TableHead>
-                <TableHead>Tiếng Việt</TableHead>
-                <TableHead>Phân loại</TableHead>
-                <TableHead>Thể loại truyện</TableHead>
-                <TableHead className="w-[100px]" />
+                <TableHead>Tên File</TableHead>
+                <TableHead>Thể Loại</TableHead>
+                <TableHead>Ngày gửi</TableHead>
+                <TableHead className="w-[150px]" />
               </TableRow>
             </TableHeader>
             <TableBody>
-              {entries.map((entry) => (
-                <TableRow key={entry.id}>
-                  <TableCell className="font-medium">{entry.chinese}</TableCell>
-                  <TableCell>{entry.vietnamese}</TableCell>
-                  <TableCell>
-                    <Badge variant="outline" className="capitalize">{entry.category}</Badge>
+              {files.map((file) => (
+                <TableRow key={file.id}>
+                  <TableCell className="font-medium flex items-center gap-2">
+                    <FileTextIcon className="size-4 text-muted-foreground" />
+                    {file.name}
                   </TableCell>
                   <TableCell>
-                    <Badge variant="secondary" className="capitalize">{entry.novel_genre || "tienhiep"}</Badge>
+                    <Badge variant="outline" className="capitalize">{file.genre}</Badge>
+                  </TableCell>
+                  <TableCell className="text-muted-foreground text-xs">
+                    {new Date(file.createdTime).toLocaleString("vi-VN")}
                   </TableCell>
                   <TableCell>
                     {isAdmin && (
-                      <Button variant="ghost" size="icon-sm" onClick={() => handleDelete(entry.id)} className="text-destructive">
-                        <TrashIcon className="size-4" />
-                      </Button>
+                      <div className="flex gap-2 justify-end">
+                        <Button variant="outline" size="sm" onClick={() => handleApprove(file)} className="text-emerald-500 hover:text-emerald-600 hover:bg-emerald-50">
+                          <CheckIcon className="size-4 mr-1" /> Duyệt
+                        </Button>
+                        <Button variant="ghost" size="icon-sm" onClick={() => handleDelete(file.id)} className="text-destructive">
+                          <TrashIcon className="size-4" />
+                        </Button>
+                      </div>
                     )}
                   </TableCell>
                 </TableRow>
               ))}
-              {entries.length === 0 && (
+              {files.length === 0 && (
                 <TableRow>
-                  <TableCell colSpan={5} className="text-center text-muted-foreground py-4">
-                    Không có từ vựng nào đang chờ duyệt.
+                  <TableCell colSpan={4} className="text-center text-muted-foreground py-8">
+                    Không có từ điển nào đang chờ duyệt trên Google Drive.
                   </TableCell>
                 </TableRow>
               )}

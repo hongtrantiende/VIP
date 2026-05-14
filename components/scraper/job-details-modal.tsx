@@ -107,17 +107,48 @@ export function JobDetailsModal({ jobId, onClose }: JobDetailsModalProps) {
 
       if (novelInfo.chapters.length === 0) throw new Error("Không tìm thấy chương nào trên trang web.");
 
-      // Check against existing downloaded chapters and pending chapters
-      const existingTitles = new Set(chapters.map(c => c.title.toLowerCase().trim()));
+      // Lấy danh sách tên gốc của các chương đã tải từ db.scenes (version 0 là bản gốc chưa dịch)
+      const existingScenes = await db.scenes.where("novelId").equals(job.id).filter(s => s.version === 0).toArray();
+      // Bỏ qua các cảnh rác (orphaned scenes) không còn nằm trong db.chapters
+      const validChapterIds = new Set(chapters.map(c => c.id));
+      const validExistingScenes = existingScenes.filter(s => validChapterIds.has(s.chapterId));
+      
+      // Sắp xếp các cảnh theo thứ tự chương
+      const chapterOrderMap = new Map(chapters.map(c => [c.id, c.order]));
+      validExistingScenes.sort((a, b) => (chapterOrderMap.get(a.chapterId) || 0) - (chapterOrderMap.get(b.chapterId) || 0));
+
+      // Tìm điểm neo (anchor) trong danh sách chương trên web
+      let anchorIndex = -1;
+      // Tìm ngược từ 20 chương tải gần nhất để đề phòng web đổi tên chương cuối
+      for (let i = validExistingScenes.length - 1; i >= Math.max(0, validExistingScenes.length - 20); i--) {
+        const sceneTitle = validExistingScenes[i].title.toLowerCase().trim();
+        // Tìm vị trí của chương này trên web
+        // Tìm ngược từ dưới lên để lấy vị trí mới nhất (tránh trùng lặp tên)
+        for (let j = novelInfo.chapters.length - 1; j >= 0; j--) {
+          if (novelInfo.chapters[j].title.toLowerCase().trim() === sceneTitle) {
+            anchorIndex = j;
+            break;
+          }
+        }
+        if (anchorIndex !== -1) break;
+      }
+
+      // Nếu không tìm thấy điểm neo nào, lùi về dùng số lượng đếm
+      if (anchorIndex === -1) {
+         anchorIndex = chapters.length - 1;
+      }
+
+      // Cắt lấy toàn bộ các chương SAU điểm neo
+      let rawNewChapters = novelInfo.chapters.slice(anchorIndex + 1);
+
       const pendingTitles = new Set(job.chaptersToScrape.map(c => c.title.toLowerCase().trim()));
       
-      const newChapters = novelInfo.chapters.filter((ch: any) => 
-        !existingTitles.has(ch.title.toLowerCase().trim()) && 
+      const newChapters = rawNewChapters.filter((ch: any) => 
         !pendingTitles.has(ch.title.toLowerCase().trim())
       ).map((ch: any, i: number) => ({
         title: ch.title as string,
         url: ch.url as string,
-        order: job.chaptersToScrape.length + i,
+        order: chapters.length + job.chaptersToScrape.length + i,
       }));
 
       if (newChapters.length === 0) {
