@@ -34,6 +34,7 @@ interface QueueJob {
   started_at: string | null;
   completed_at: string | null;
   error_message: string | null;
+  worker_name: string | null;
 }
 
 const STATUS_MAP: Record<string, { label: string; color: string; icon: React.ReactNode }> = {
@@ -376,9 +377,20 @@ export function BotQueueSubmit({
       <div className="space-y-2">
         <div className="flex items-center justify-between">
           <p className="text-xs font-semibold">Các yêu cầu dịch của bạn</p>
-          <Button variant="ghost" size="icon-sm" onClick={loadJobs} title="Làm mới">
-            <RefreshCwIcon className={`size-3.5 ${loading ? "animate-spin" : ""}`} />
-          </Button>
+          <div className="flex items-center gap-2">
+             {myJobs.filter(j => j.status === 'translating').length > 0 && (
+               <div className="flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-blue-500/10 text-[10px] text-blue-500 font-medium border border-blue-500/20">
+                  <span className="relative flex h-1.5 w-1.5">
+                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
+                    <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-blue-500"></span>
+                  </span>
+                  Đang chạy: {Array.from(new Set(myJobs.filter(j => j.status === 'translating').map(j => j.worker_name).filter(Boolean))).length} AI
+               </div>
+             )}
+            <Button variant="ghost" size="icon-sm" onClick={loadJobs} title="Làm mới">
+              <RefreshCwIcon className={`size-3.5 ${loading ? "animate-spin" : ""}`} />
+            </Button>
+          </div>
         </div>
 
         {loading && myJobs.length === 0 ? (
@@ -405,6 +417,7 @@ export function BotQueueSubmit({
                         {job.chapter_count} chương • {MODE_LABELS[job.translate_mode] || job.translate_mode}
                         {job.prompt_type === "custom" || job.custom_prompt ? " • Có Prompt riêng" : ""}
                         {job.extract_dict ? " • Học từ vựng (Bật)" : ""}
+                        {job.worker_name && <span className="text-blue-500 font-medium"> • AI: {job.worker_name}</span>}
                         {" • "}{new Date(job.created_at).toLocaleString("vi-VN")}
                       </p>
                     </div>

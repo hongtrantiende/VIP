@@ -54,7 +54,7 @@ export async function GET(req: NextRequest) {
     // List jobs
     let query = supabase
       .from("translation_queue")
-      .select("id, user_email, novel_name, novel_genre, chapter_count, status, current_chapter, translate_mode, created_at, started_at, completed_at, error_message, custom_prompt, prompt_type, extract_dict, dict_sources")
+      .select("id, user_email, novel_name, novel_genre, chapter_count, status, current_chapter, translate_mode, created_at, started_at, completed_at, error_message, custom_prompt, prompt_type, extract_dict, dict_sources, worker_name")
       .order("created_at", { ascending: false });
 
     if (!isAdmin(user.email) || !all) {
@@ -93,7 +93,7 @@ export async function PATCH(req: NextRequest) {
     }
 
     const body = await req.json();
-    const { jobId, status, currentChapter, errorMessage } = body;
+    const { jobId, status, currentChapter, errorMessage, workerName } = body;
 
     if (!jobId) {
       return NextResponse.json({ error: "Missing jobId" }, { status: 400 });
@@ -125,6 +125,7 @@ export async function PATCH(req: NextRequest) {
     if (status) updates.status = status;
     if (currentChapter !== undefined) updates.current_chapter = currentChapter;
     if (errorMessage !== undefined) updates.error_message = errorMessage;
+    if (workerName !== undefined) updates.worker_name = workerName;
     if (status === "translating" && !updates.started_at) updates.started_at = new Date().toISOString();
     if (status === "completed" || status === "failed") updates.completed_at = new Date().toISOString();
 

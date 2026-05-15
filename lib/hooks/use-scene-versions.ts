@@ -75,7 +75,7 @@ export async function ensureInitialVersion(
   novelId: string,
   content: string,
 ): Promise<void> {
-  if (!content.trim()) return;
+  if (!content || !content.trim()) return;
   // Atomic check-then-create to prevent duplicate v1 under concurrency
   await db.transaction("rw", db.scenes, async () => {
     const count = await db.scenes
