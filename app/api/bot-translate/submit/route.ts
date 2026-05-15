@@ -34,7 +34,7 @@ export async function POST(req: NextRequest) {
     }
 
     // ── Smart Distribution Logic ──
-    const workers = ["AI-1", "AI-2", "AI-3"];
+    const workers = ["AI-1", "AI-2", "AI-3", "AI-4", "AI-5"];
     
     // 1. Get current load for each worker
     const { data: activeJobs } = await supabase

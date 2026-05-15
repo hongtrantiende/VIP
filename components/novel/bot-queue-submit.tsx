@@ -438,18 +438,29 @@ export function BotQueueSubmit({
           </div>
         ) : (
           <Tabs defaultValue="AI-1" className="w-full">
-            <TabsList className="grid w-full grid-cols-3 h-8">
-              {["AI-1", "AI-2", "AI-3"].map(name => {
-                const count = myJobs.filter(j => j.assigned_worker === name && (j.status === 'pending' || j.status === 'translating')).length;
+            <TabsList className="grid w-full grid-cols-5 h-9 bg-muted/50 p-1">
+              {["AI-1", "AI-2", "AI-3", "AI-4", "AI-5"].map(name => {
+                const activeJobs = myJobs.filter(j => j.assigned_worker === name && (j.status === 'pending' || j.status === 'translating'));
+                const isRunning = activeJobs.some(j => j.status === 'translating');
+                const count = activeJobs.length;
+                
                 return (
-                  <TabsTrigger key={name} value={name} className="text-[10px] py-1">
-                    {name} {count > 0 && <span className="ml-1 px-1 rounded-full bg-blue-500 text-white">{count}</span>}
+                  <TabsTrigger key={name} value={name} className="text-[9px] py-1 px-0 flex flex-col gap-0.5 relative">
+                    <span className="flex items-center gap-1">
+                      <span className={`size-1.5 rounded-full ${isRunning ? "bg-emerald-500 animate-pulse" : "bg-slate-300"}`} />
+                      {name}
+                    </span>
+                    {count > 0 && (
+                      <span className="absolute -top-1 -right-1 flex h-3.5 w-3.5 items-center justify-center rounded-full bg-blue-600 text-[8px] font-bold text-white shadow-sm">
+                        {count}
+                      </span>
+                    )}
                   </TabsTrigger>
                 );
               })}
             </TabsList>
             
-            {["AI-1", "AI-2", "AI-3"].map(name => (
+            {["AI-1", "AI-2", "AI-3", "AI-4", "AI-5"].map(name => (
               <TabsContent key={name} value={name} className="space-y-2 mt-2 max-h-[250px] overflow-y-auto pr-1">
                 {myJobs.filter(j => j.assigned_worker === name || (!j.assigned_worker && name === "AI-1")).length === 0 ? (
                   <div className="text-center py-4 text-[10px] text-muted-foreground italic border border-dashed rounded-lg">
