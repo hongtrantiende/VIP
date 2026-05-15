@@ -187,6 +187,10 @@ export function BotQueueSubmit({
           chapterCount: chaptersData.length,
           inputFileUrl: fileId,
           translateMode: selectedMode,
+          customPrompt: currentNovel.customTranslatePrompt || null,
+          dictSources,
+          promptType: selectedMode === "pure-ai" ? "custom" : "khuyen_nghi",
+          extractDict: true,
         }),
       });
 
