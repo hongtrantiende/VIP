@@ -252,6 +252,14 @@ export function BotQueueSubmit({
 
           await ensureInitialVersion(localScene.id, novelId, localScene.content);
           await createSceneVersion(localScene.id, novelId, "ai", translatedScene.content);
+          
+          // Cập nhật trực tiếp nội dung chính để hiển thị ngay trong trình đọc
+          await db.scenes.update(localScene.id, {
+            content: translatedScene.content,
+            versionType: "ai",
+            updatedAt: new Date(),
+            wordCount: (translatedScene.content || "").split(/\s+/).filter(Boolean).length
+          });
         }
 
         if (queueChapter.translated_title) {
