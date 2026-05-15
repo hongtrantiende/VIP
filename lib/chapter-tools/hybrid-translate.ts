@@ -131,7 +131,7 @@ function classifyError(err: unknown): { retryable: boolean; message: string } {
 }
 
 const PERSISTENT_RETRY_DELAY = 30000; // 30 giây
-const MAX_PERSISTENT_ATTEMPTS = 100; // Thử lại tối đa 100 lần
+const MAX_PERSISTENT_ATTEMPTS = 10; // Thử lại tối đa 10 lần
 
 function countWords(content: string): number {
   return content.split(/\s+/).filter(Boolean).length;
@@ -634,7 +634,7 @@ ${cleaned}`;
           const classified = classifyError(err);
 
           if (attempt >= MAX_PERSISTENT_ATTEMPTS) {
-            throw new Error(`AI thất bại sau nhiều lần thử: ${classified.message}`);
+            throw new Error(`Hết Token hoặc lỗi AI kéo dài (Thử lại 10 lần thất bại): ${classified.message}`);
           }
 
           console.warn(`[Hybrid Retry] Chapter ${chapter.id} failed (attempt ${attempt}): ${classified.message}`);
