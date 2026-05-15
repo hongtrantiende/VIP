@@ -109,7 +109,6 @@ export function BotQueueSubmit({
     return () => clearInterval(interval);
   }, [loadJobs, mounted]);
 
-  if (!mounted) return null;
 
   // Submit novel to queue
   const handleSubmit = async () => {
@@ -333,6 +332,8 @@ export function BotQueueSubmit({
       setImportingJobId(null);
     }
   };
+
+  if (!mounted) return null;
 
   return (
     <div className="space-y-4">

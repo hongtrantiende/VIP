@@ -83,7 +83,6 @@ export default function BotTranslatePage() {
     return () => clearInterval(i);
   }, [loadJobs, mounted]);
 
-  if (!mounted) return null;
 
   const addLog = (slotIdx: number, msg: string) => {
     setSlotLogs(prev => ({ ...prev, [slotIdx]: [...(prev[slotIdx] || []).slice(-50), `[${new Date().toLocaleTimeString("vi-VN")}] ${msg}`] }));
@@ -502,6 +501,8 @@ export default function BotTranslatePage() {
       </div>
     );
   };
+
+  if (!mounted) return null;
 
   return (
     <div className="p-6 max-w-5xl mx-auto space-y-6">
