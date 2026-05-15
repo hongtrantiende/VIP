@@ -33,7 +33,27 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: "Thiếu dữ liệu truyện hoặc file đầu vào" }, { status: 400 });
     }
 
-    // 1. Create queue entry
+    // ── Smart Distribution Logic ──
+    const workers = ["AI-1", "AI-2", "AI-3"];
+    
+    // 1. Get current load for each worker
+    const { data: activeJobs } = await supabase
+      .from("translation_queue")
+      .select("assigned_worker, chapter_count, current_chapter, status")
+      .in("status", ["pending", "translating"]);
+
+    // 2. Calculate remaining work (chapters) for each potential worker
+    const workerLoads = workers.map(name => {
+      const load = (activeJobs || [])
+        .filter(j => j.assigned_worker === name)
+        .reduce((sum, j) => sum + (j.chapter_count - (j.current_chapter || 0)), 0);
+      return { name, load };
+    });
+
+    // 3. Pick the worker with the minimum load
+    const bestWorker = workerLoads.sort((a, b) => a.load - b.load)[0].name;
+
+    // 1. Create queue entry with pre-assigned worker
     const { data: job, error: jobError } = await supabase
       .from("translation_queue")
       .insert({
@@ -49,6 +69,7 @@ export async function POST(req: NextRequest) {
         prompt_type: promptType || "khuyen_nghi",
         extract_dict: extractDict || false,
         name_dict: nameDict || [],
+        assigned_worker: bestWorker, // Giao việc cho AI này
       })
       .select("id")
       .single();

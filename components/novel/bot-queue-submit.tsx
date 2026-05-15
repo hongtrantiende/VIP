@@ -13,6 +13,7 @@ import {
 import { Badge } from "@/components/ui/badge";
 import { Progress } from "@/components/ui/progress";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Label } from "@/components/ui/label";
 import { createSceneVersion, ensureInitialVersion } from "@/lib/hooks/use-scene-versions";
 import { useLiveQuery } from "dexie-react-hooks";
@@ -35,6 +36,7 @@ interface QueueJob {
   completed_at: string | null;
   error_message: string | null;
   worker_name: string | null;
+  assigned_worker: string | null;
 }
 
 const STATUS_MAP: Record<string, { label: string; color: string; icon: React.ReactNode }> = {
@@ -238,13 +240,30 @@ export function BotQueueSubmit({
       const localChapters = await db.chapters.where("novelId").equals(novelId).sortBy("order");
       let importedCount = 0;
 
-      for (const queueChapter of data.chapters) {
+      const sortedQueueChapters = [...data.chapters].sort((a, b) => (a.order || 0) - (b.order || 0));
+
+      for (let i = 0; i < sortedQueueChapters.length; i++) {
+        const queueChapter = sortedQueueChapters[i];
         if (!queueChapter.translated_scenes) continue;
 
-        // Tìm chương khớp theo order (số thứ tự)
-        const localChapter = localChapters.find(c => c.order === queueChapter.order);
+        // Chiến lược khớp chương thông minh:
+        // 1. Thử khớp chính xác theo order
+        // 2. Nếu không được, thử khớp theo vị trí tương đối trong danh sách (nếu số lượng khớp)
+        // 3. Nếu vẫn không được, dùng index hiện tại làm gợi ý
+        let localChapter = localChapters.find(c => c.order === queueChapter.order);
+        
         if (!localChapter) {
-          console.warn(`[import] Không tìm thấy chương cục bộ cho order: ${queueChapter.order}`);
+          // Thử khớp theo kiểu lệch 1 đơn vị (0-indexed vs 1-indexed)
+          localChapter = localChapters.find(c => c.order === (queueChapter.order - 1));
+        }
+
+        if (!localChapter && localChapters.length === sortedQueueChapters.length) {
+          // Nếu số lượng chương bằng nhau, khớp theo vị trí thứ tự trong mảng
+          localChapter = localChapters[i];
+        }
+
+        if (!localChapter) {
+          console.warn(`[import] Không thể khớp chương cho order: ${queueChapter.order}`);
           continue;
         }
 
@@ -418,82 +437,103 @@ export function BotQueueSubmit({
             Chưa có yêu cầu dịch nào. Gửi truyện lên để bắt đầu!
           </div>
         ) : (
-          <div className="space-y-2 max-h-[250px] overflow-y-auto">
-            {myJobs.map((job) => {
-              const statusInfo = STATUS_MAP[job.status] || STATUS_MAP.pending;
-              const progress = job.chapter_count > 0 ? (job.current_chapter / job.chapter_count) * 100 : 0;
+          <Tabs defaultValue="AI-1" className="w-full">
+            <TabsList className="grid w-full grid-cols-3 h-8">
+              {["AI-1", "AI-2", "AI-3"].map(name => {
+                const count = myJobs.filter(j => j.assigned_worker === name && (j.status === 'pending' || j.status === 'translating')).length;
+                return (
+                  <TabsTrigger key={name} value={name} className="text-[10px] py-1">
+                    {name} {count > 0 && <span className="ml-1 px-1 rounded-full bg-blue-500 text-white">{count}</span>}
+                  </TabsTrigger>
+                );
+              })}
+            </TabsList>
+            
+            {["AI-1", "AI-2", "AI-3"].map(name => (
+              <TabsContent key={name} value={name} className="space-y-2 mt-2 max-h-[250px] overflow-y-auto pr-1">
+                {myJobs.filter(j => j.assigned_worker === name || (!j.assigned_worker && name === "AI-1")).length === 0 ? (
+                  <div className="text-center py-4 text-[10px] text-muted-foreground italic border border-dashed rounded-lg">
+                    Slot này đang trống
+                  </div>
+                ) : (
+                  myJobs.filter(j => j.assigned_worker === name || (!j.assigned_worker && name === "AI-1")).map((job) => {
+                    const statusInfo = STATUS_MAP[job.status] || STATUS_MAP.pending;
+                    const progress = job.chapter_count > 0 ? (job.current_chapter / job.chapter_count) * 100 : 0;
 
-              return (
-                <div key={job.id} className="rounded-lg border bg-card p-3 space-y-2">
-                  <div className="flex items-start justify-between gap-2">
-                    <div className="min-w-0 flex-1">
-                      <p className="text-xs font-semibold truncate">{job.novel_name}</p>
-                      <p className="text-[10px] text-muted-foreground">
-                        {job.chapter_count} chương • {MODE_LABELS[job.translate_mode] || job.translate_mode}
-                        {job.prompt_type === "custom" || job.custom_prompt ? " • Có Prompt riêng" : ""}
-                        {job.extract_dict ? " • Học từ vựng (Bật)" : ""}
-                        {" • "}{new Date(job.created_at).toLocaleString("vi-VN")}
-                      </p>
-                      {job.status === "translating" && (
-                        <div className="mt-1 flex items-center gap-1.5">
-                          <Badge variant="outline" className="text-[9px] border-blue-500/30 text-blue-600 bg-blue-50/50">
-                             AI: {job.worker_name || "Chưa xác định"}
+                    return (
+                      <div key={job.id} className="rounded-lg border bg-card p-3 space-y-2">
+                        <div className="flex items-start justify-between gap-2">
+                          <div className="min-w-0 flex-1">
+                            <p className="text-xs font-semibold truncate">{job.novel_name}</p>
+                            <p className="text-[10px] text-muted-foreground">
+                              {job.chapter_count} chương • {MODE_LABELS[job.translate_mode] || job.translate_mode}
+                              {job.prompt_type === "custom" || job.custom_prompt ? " • Có Prompt riêng" : ""}
+                              {job.extract_dict ? " • Học từ vựng (Bật)" : ""}
+                              {" • "}{new Date(job.created_at).toLocaleString("vi-VN")}
+                            </p>
+                            {job.status === "translating" && (
+                              <div className="mt-1 flex items-center gap-1.5">
+                                <Badge variant="outline" className="text-[9px] border-blue-500/30 text-blue-600 bg-blue-50/50">
+                                   AI: {job.worker_name || "Chưa xác định"}
+                                </Badge>
+                              </div>
+                            )}
+                          </div>
+                          <Badge className={`text-[10px] gap-1 shrink-0 ${statusInfo.color}`}>
+                            {statusInfo.icon}
+                            {statusInfo.label}
                           </Badge>
                         </div>
-                      )}
-                    </div>
-                    <Badge className={`text-[10px] gap-1 shrink-0 ${statusInfo.color}`}>
-                      {statusInfo.icon}
-                      {statusInfo.label}
-                    </Badge>
-                  </div>
 
-                  {job.status === "translating" && (
-                    <div className="space-y-1">
-                      <Progress value={progress} className="h-1.5" />
-                      <p className="text-[10px] text-muted-foreground text-right">
-                        <span>{job.current_chapter}</span>/<span>{job.chapter_count}</span> chương
-                      </p>
-                    </div>
-                  )}
+                        {job.status === "translating" && (
+                          <div className="space-y-1">
+                            <Progress value={progress} className="h-1.5" />
+                            <p className="text-[10px] text-muted-foreground text-right">
+                              <span>{job.current_chapter}</span>/<span>{job.chapter_count}</span> chương
+                            </p>
+                          </div>
+                        )}
 
-                  {job.error_message && (
-                    <p className="text-[10px] text-destructive bg-destructive/10 rounded p-1.5">{job.error_message}</p>
-                  )}
+                        {job.error_message && (
+                          <p className="text-[10px] text-destructive bg-destructive/10 rounded p-1.5">{job.error_message}</p>
+                        )}
 
-                  <div className="flex gap-1.5">
-                    {job.status === "completed" && (
-                      <Button
-                        size="sm" variant="default"
-                        className="flex-1 h-7 text-[10px] gap-1 bg-green-600 hover:bg-green-700 text-white"
-                        onClick={() => {
-                          let url = "";
-                          if (job.error_message?.includes("output_drive_id:")) {
-                             url = job.error_message.split("output_drive_id:")[1];
-                          }
-                          handleImportResult(job.id, url);
-                        }}
-                        disabled={importingJobId === job.id}
-                      >
-                        {importingJobId === job.id ? <Loader2Icon className="size-3 animate-spin" /> : <DownloadIcon className="size-3" />}
-                        <span>Nạp thủ công</span>
-                      </Button>
-                    )}
-                    {job.status === "pending" && (
-                      <Button size="sm" variant="destructive" className="flex-1 h-7 text-[10px] gap-1" onClick={() => handleCancel(job.id)}>
-                        <TrashIcon className="size-3" /> <span>Hủy yêu cầu</span>
-                      </Button>
-                    )}
-                    {job.status !== "pending" && job.status !== "translating" && (
-                      <Button size="sm" variant="outline" className="flex-1 h-7 text-[10px] gap-1 text-destructive hover:text-destructive hover:bg-destructive/10" onClick={() => handleDeleteJob(job.id)}>
-                        <TrashIcon className="size-3" /> <span>Xóa khỏi danh sách</span>
-                      </Button>
-                    )}
-                  </div>
-                </div>
-              );
-            })}
-          </div>
+                        <div className="flex gap-1.5">
+                          {job.status === "completed" && (
+                            <Button
+                              size="sm" variant="default"
+                              className="flex-1 h-7 text-[10px] gap-1 bg-green-600 hover:bg-green-700 text-white"
+                              onClick={() => {
+                                let url = "";
+                                if (job.error_message?.includes("output_drive_id:")) {
+                                   url = job.error_message.split("output_drive_id:")[1];
+                                }
+                                handleImportResult(job.id, url);
+                              }}
+                              disabled={importingJobId === job.id}
+                            >
+                              {importingJobId === job.id ? <Loader2Icon className="size-3 animate-spin" /> : <DownloadIcon className="size-3" />}
+                              <span>Nạp thủ công</span>
+                            </Button>
+                          )}
+                          {job.status === "pending" && (
+                            <Button size="sm" variant="destructive" className="flex-1 h-7 text-[10px] gap-1" onClick={() => handleCancel(job.id)}>
+                              <TrashIcon className="size-3" /> <span>Hủy yêu cầu</span>
+                            </Button>
+                          )}
+                          {job.status !== "pending" && job.status !== "translating" && (
+                            <Button size="sm" variant="outline" className="flex-1 h-7 text-[10px] gap-1 text-destructive hover:text-destructive hover:bg-destructive/10" onClick={() => handleDeleteJob(job.id)}>
+                              <TrashIcon className="size-3" /> <span>Xóa khỏi danh sách</span>
+                            </Button>
+                          )}
+                        </div>
+                      </div>
+                    );
+                  })
+                )}
+              </TabsContent>
+            ))}
+          </Tabs>
         )}
       </div>
     </div>

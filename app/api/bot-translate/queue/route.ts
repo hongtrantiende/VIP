@@ -54,7 +54,7 @@ export async function GET(req: NextRequest) {
     // List jobs
     let query = supabase
       .from("translation_queue")
-      .select("id, user_email, novel_name, novel_genre, chapter_count, status, current_chapter, translate_mode, created_at, started_at, completed_at, error_message, custom_prompt, prompt_type, extract_dict, dict_sources, worker_name")
+      .select("id, user_email, novel_name, novel_genre, chapter_count, status, current_chapter, translate_mode, created_at, started_at, completed_at, error_message, custom_prompt, prompt_type, extract_dict, dict_sources, worker_name, assigned_worker")
       .order("created_at", { ascending: false });
 
     if (!isAdmin(user.email) || !all) {

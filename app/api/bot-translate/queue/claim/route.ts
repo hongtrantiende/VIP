@@ -42,11 +42,12 @@ export async function POST(req: NextRequest) {
       }, { status: 400 });
     }
 
-    // 1. Find the oldest pending job
+    // 1. Find the oldest pending job assigned to THIS worker
     const { data: pendingJobs, error: fetchError } = await supabase
       .from("translation_queue")
       .select("id")
       .eq("status", "pending")
+      .eq("assigned_worker", workerName) // Chỉ lấy truyện được giao cho mình
       .order("created_at", { ascending: true })
       .limit(1);
 
