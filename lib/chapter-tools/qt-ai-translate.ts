@@ -197,23 +197,20 @@ ${cleaned}`;
 function classifyError(err: unknown): { retryable: boolean; message: string } {
   const msg = err instanceof Error ? err.message : String(err);
   const lower = msg.toLowerCase();
-  if (lower.includes('rate limit') || lower.includes('429') || lower.includes('too many requests')) {
-    return { retryable: true, message: `Rate limit — retry... (${msg})` };
-  }
-  if (lower.includes('500') || lower.includes('502') || lower.includes('503') || lower.includes('server error')) {
-    return { retryable: true, message: `Server lỗi tạm — retry... (${msg})` };
-  }
-  if (lower.includes('timeout') || lower.includes('timed out') || lower.includes('econnreset')) {
-    return { retryable: true, message: `Timeout — retry... (${msg})` };
-  }
+  
+  // Mọi lỗi đều cho phép thử lại để đảm bảo không mất chương
   if (lower.includes('401') || lower.includes('403') || lower.includes('unauthorized')) {
-    return { retryable: false, message: `Lỗi xác thực API key. (${msg})` };
+    return { retryable: true, message: `Lỗi xác thực/API Key - Thử lại...` };
   }
   if (lower.includes('quota') || lower.includes('insufficient') || lower.includes('billing')) {
-    return { retryable: false, message: `Hết quota API. (${msg})` };
+    return { retryable: true, message: `Hết tiền/Quota - Đợi để thử lại...` };
   }
+
   return { retryable: true, message: msg };
 }
+
+const PERSISTENT_RETRY_DELAY = 30000; // 30 giây theo yêu cầu người dùng
+const MAX_PERSISTENT_ATTEMPTS = 100; // Thử lại tối đa 100 lần (gần như vô hạn)
 
 function countWords(content: string): number {
   return content.split(/\s+/).filter(Boolean).length;
@@ -702,7 +699,7 @@ ${cleaned}`;
       let accumulated = "";
       let lastError: unknown = null;
 
-      for (let attempt = 0; attempt <= MAX_RETRIES; attempt++) {
+      for (let attempt = 0; attempt <= MAX_PERSISTENT_ATTEMPTS; attempt++) {
         if (signal?.aborted) {
           const err = new Error("Aborted");
           err.name = "AbortError";
@@ -710,6 +707,14 @@ ${cleaned}`;
         }
 
         try {
+          if (attempt > 0) {
+            onChapterError({
+              chapterId: chapter.id,
+              chapterTitle: chapter.title,
+              message: `Thử lại lần ${attempt} sau 30s...`,
+            });
+          }
+
           const result = await streamText({
             model,
             system: systemPrompt,
@@ -730,13 +735,12 @@ ${cleaned}`;
           lastError = err;
           const classified = classifyError(err);
 
-          if (!classified.retryable || attempt >= MAX_RETRIES) {
-            // AI failed → Do not fall back to dictionary, throw error to keep original content
-            throw new Error(`AI thất bại: ${classified.message}`);
+          if (attempt >= MAX_PERSISTENT_ATTEMPTS) {
+            throw new Error(`AI thất bại sau nhiều lần thử: ${classified.message}`);
           }
 
-          const backoffMs = RETRY_BASE_DELAY * Math.pow(2, attempt);
-          await delay(backoffMs);
+          console.warn(`[AI Retry] Chapter ${chapter.id} failed (attempt ${attempt}): ${classified.message}`);
+          await delay(PERSISTENT_RETRY_DELAY);
         }
       }
 
