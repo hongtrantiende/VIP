@@ -141,9 +141,9 @@ export function BotQueueSubmit({
         const sceneData = [];
         for (const scene of scenes) {
           const originalContent = await getOriginalContent(scene.id);
-          sceneData.push({ order: scene.order, content: originalContent });
+          sceneData.push({ id: scene.id, order: scene.order, content: originalContent });
         }
-        chaptersData.push({ title: chapter.title, order: chapter.order, scenes: sceneData });
+        chaptersData.push({ id: chapter.id, title: chapter.title, order: chapter.order, scenes: sceneData });
       }
 
       const nameDict = await getMergedNameDict(novelId);
@@ -259,10 +259,14 @@ export function BotQueueSubmit({
         if (!queueChapter.translated_scenes) continue;
 
         // Chiến lược khớp chương thông minh:
-        // 1. Thử khớp chính xác theo order
-        // 2. Nếu không được, thử khớp theo vị trí tương đối trong danh sách (nếu số lượng khớp)
-        // 3. Nếu vẫn không được, dùng index hiện tại làm gợi ý
-        let localChapter = localChapters.find(c => c.order === queueChapter.order);
+        // 1. Thử khớp chính xác theo ID (Tốt nhất)
+        // 2. Thử khớp chính xác theo order
+        // 3. Thử khớp theo kiểu lệch 1 đơn vị
+        let localChapter = queueChapter.id ? localChapters.find(c => c.id === queueChapter.id) : undefined;
+        
+        if (!localChapter) {
+          localChapter = localChapters.find(c => c.order === queueChapter.order);
+        }
         
         if (!localChapter) {
           // Thử khớp theo kiểu lệch 1 đơn vị (0-indexed vs 1-indexed)
@@ -282,7 +286,8 @@ export function BotQueueSubmit({
         const localScenes = await db.scenes.where("chapterId").equals(localChapter.id).sortBy("order");
 
         for (const translatedScene of queueChapter.translated_scenes) {
-          const localScene = localScenes.find(s => s.order === translatedScene.order);
+          let localScene = translatedScene.id ? localScenes.find(s => s.id === translatedScene.id) : undefined;
+          if (!localScene) localScene = localScenes.find(s => s.order === translatedScene.order);
           if (!localScene) continue;
 
           // 1. Lưu bản gốc vào lịch sử nếu chưa có (để có Tab Gốc/Dịch)

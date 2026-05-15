@@ -268,9 +268,9 @@ const ICON_MAPPING: Record<string, string> = {
 };
 
 export const ChomeredAdapter: SiteAdapter = {
-  name: "Chomered (糯米書棧)",
+  name: "Chomered / Welove (糯米書棧)",
   group: "cn",
-  urlPattern: /chomered\.com/i,
+  urlPattern: /chomered\.com|welove-gourmet\.com/i,
   chapterWaitSelector: ".novelcontent, .chapterlist",
 
   getNovelInfo(html, url) {
@@ -326,6 +326,8 @@ export const ChomeredAdapter: SiteAdapter = {
     text = text
       .replace(/糯米書棧/g, "")
       .replace(/www\.chomered\.com/g, "")
+      .replace(/welove-gourmet\.com/g, "")
+      .replace(/腐看天地/g, "")
       .trim();
 
     return { title: chapterTitle, content: text };

@@ -158,17 +158,6 @@ export function DictionaryManagement({ compact }: { compact?: boolean }) {
   const [selectedNovelId, setSelectedNovelId] = useState<string>("global");
   const globalEntries = useGlobalNameEntries();
   const [isReloading, setIsReloading] = useState(false);
-  const [isAdmin, setIsAdmin] = useState(false);
-
-  useEffect(() => {
-    const supabase = createClient();
-    supabase.auth.getUser().then(({ data }) => {
-      const email = data.user?.email?.toLowerCase();
-      if (email === "nthanhnam2005@gmail.com" || email === "thanhxnam2005@gmail.com") {
-        setIsAdmin(true);
-      }
-    });
-  }, []);
   const [replacingSource, setReplacingSource] = useState<DictSource | null>(
     null,
   );
@@ -394,7 +383,6 @@ export function DictionaryManagement({ compact }: { compact?: boolean }) {
 
 
   const handleSyncAllToWarehouse = async () => {
-    if (!isAdmin) return;
     const toastId = toast.loading("Đang tối ưu và hòa nhập toàn bộ vào Tổng kho 1TB...");
     try {
       const sources = ALL_SOURCES;
@@ -1189,28 +1177,24 @@ export function DictionaryManagement({ compact }: { compact?: boolean }) {
                     <CloudDownloadIcon className="mr-1.5 size-3.5" />
                     Cập nhật tất cả (Kho 1TB)
                   </Button>
-                  {isAdmin && (
-                    <Button
-                      variant="outline"
-                      size="sm"
-                      onClick={handleCleanAllJunk}
-                      className="h-8 text-[11px] font-medium border-orange-500/30 text-orange-600 hover:bg-orange-500/10 dark:border-orange-500/20"
-                    >
-                      <Trash2Icon className="mr-1.5 size-3.5" />
-                      Tổng vệ sinh rác
-                    </Button>
-                  )}
-                  {isAdmin && (
-                    <Button
-                      variant="outline"
-                      size="sm"
-                      onClick={handleSyncAllToWarehouse}
-                      className="h-8 text-[11px] font-medium border-emerald-500/30 text-emerald-600 hover:bg-emerald-500/10 dark:border-emerald-500/20"
-                    >
-                      <CloudUploadIcon className="mr-1.5 size-3.5" />
-                      Đóng góp tất cả (Admin)
-                    </Button>
-                  )}
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    onClick={handleCleanAllJunk}
+                    className="h-8 text-[11px] font-medium border-orange-500/30 text-orange-600 hover:bg-orange-500/10 dark:border-orange-500/20"
+                  >
+                    <Trash2Icon className="mr-1.5 size-3.5" />
+                    Tổng vệ sinh rác
+                  </Button>
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    onClick={handleSyncAllToWarehouse}
+                    className="h-8 text-[11px] font-medium border-emerald-500/30 text-emerald-600 hover:bg-emerald-500/10 dark:border-emerald-500/20"
+                  >
+                    <CloudUploadIcon className="mr-1.5 size-3.5" />
+                    Đóng góp tất cả
+                  </Button>
                 </div>
               </div>
             </div>
@@ -1287,18 +1271,16 @@ export function DictionaryManagement({ compact }: { compact?: boolean }) {
                                     <div className="w-px h-4 bg-border my-auto mx-1" />
                                   </>
 
-                                {isAdmin && (
-                                  <Button
-                                    variant="ghost"
-                                    size="icon-sm"
-                                    onClick={() => handleSyncToLocalCode(source)}
-                                    disabled={count === 0}
-                                    title="Lưu thẳng vào thư mục public/dict (Chỉ Admin)"
-                                    className="text-amber-500 hover:text-amber-600"
-                                  >
-                                    <SaveIcon className="size-3.5" />
-                                  </Button>
-                                )}
+                                <Button
+                                  variant="ghost"
+                                  size="icon-sm"
+                                  onClick={() => handleSyncToLocalCode(source)}
+                                  disabled={count === 0}
+                                  title="Lưu thẳng vào thư mục public/dict"
+                                  className="text-amber-500 hover:text-amber-600"
+                                >
+                                  <SaveIcon className="size-3.5" />
+                                </Button>
                                 <Button
                                   variant="ghost"
                                   size="icon-sm"

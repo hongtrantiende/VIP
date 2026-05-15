@@ -1,10 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { createClient } from "@/lib/supabase/server";
 
-const ADMIN_EMAILS = ["nthanhnam2005@gmail.com", "thanhxnam2005@gmail.com"];
-function isAdmin(email?: string | null) {
-  return !!email && ADMIN_EMAILS.includes(email.toLowerCase());
-}
+
 
 /**
  * POST /api/bot-translate/queue/claim
@@ -16,8 +13,8 @@ export async function POST(req: NextRequest) {
     const supabase = await createClient();
     const { data: { user } } = await supabase.auth.getUser();
 
-    // Check if user is admin (only admins can run bots usually)
-    if (!user || !isAdmin(user.email)) {
+    // Check if user is authenticated
+    if (!user) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
 

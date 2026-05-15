@@ -1,6 +1,8 @@
 import { NextRequest, NextResponse } from "next/server";
 import { createClient } from "@/lib/supabase/server";
 
+export const dynamic = "force-dynamic";
+
 const ADMIN_EMAILS = ["nthanhnam2005@gmail.com", "thanhxnam2005@gmail.com"];
 function isAdmin(email?: string | null) {
   return !!email && ADMIN_EMAILS.includes(email.toLowerCase());
@@ -98,7 +100,7 @@ export async function PATCH(req: NextRequest) {
     }
 
     const body = await req.json();
-    const { jobId, status, currentChapter, errorMessage, workerName } = body;
+    const { jobId, status, currentChapter, errorMessage, workerName, assignedWorker } = body;
 
     if (!jobId) {
       return NextResponse.json({ error: "Missing jobId" }, { status: 400 });
@@ -131,6 +133,7 @@ export async function PATCH(req: NextRequest) {
     if (currentChapter !== undefined) updates.current_chapter = currentChapter;
     if (errorMessage !== undefined) updates.error_message = errorMessage;
     if (workerName !== undefined) updates.worker_name = workerName;
+    if (assignedWorker !== undefined) updates.assigned_worker = assignedWorker;
     if (status === "translating" && !updates.started_at) updates.started_at = new Date().toISOString();
     if (status === "completed" || status === "failed") updates.completed_at = new Date().toISOString();
 

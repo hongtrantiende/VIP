@@ -12,13 +12,9 @@ export const Novel543Adapter: SiteAdapter = {
     const doc = new DOMParser().parseFromString(html, "text/html");
     let currentBase = new URL(url);
 
-    // If we are on the main page, user should provide the /dir page or we try to extract what we can
-    // The user mentioned cover image is on the main page:
-    // <img src="https://i2.novel543.com/thumb/120x160/20260508/091259111977.jpg" alt="HP：布萊克夫人的世紀救贖">
     let title = "Unknown Title";
     let coverImgStr = "";
 
-    // Try to get title from the cover image alt or h1
     const coverImgEl = doc.querySelector("img[src*='thumb'], .cover img, .book-img img, .novel-cover img") || doc.querySelector("img[alt]");
     if (coverImgEl && coverImgEl.getAttribute("alt")) {
       title = coverImgEl.getAttribute("alt") || title;
@@ -35,8 +31,6 @@ export const Novel543Adapter: SiteAdapter = {
     const parseChapters = (targetDoc: Document, targetUrl: string) => {
       const urlMap = new Map<string, { title: string; url: string }>();
 
-      // "danh sách chương chúng ta lấy ở dòng này <ul class="flex one two-700 three-900 all"><li><a rel="nofollow" href="/0401691119/8096_1.html">第1章 畫像的尖叫與初逢異世</a></li>"
-      // Loại bỏ bộ chọn chung `a[href*='.html']` vì nó sẽ bắt luôn cả link quảng cáo!
       const links = Array.from(targetDoc.querySelectorAll("ul.flex a[href*='.html'], .chapter-list a, .dir-list a"));
 
       links.forEach((link) => {
@@ -46,8 +40,6 @@ export const Novel543Adapter: SiteAdapter = {
         const titleText = link.textContent?.trim() || "";
         if (titleText.length < 2) return;
 
-        // BỘ LỌC NGHIÊM NGẶT: Phải chứa chữ "Chương" hoặc "第" hoặc ít nhất là có số.
-        // Tránh tình trạng bắt nhầm link quảng cáo / truyện đề cử.
         if (!titleText.includes("章") && !titleText.includes("第") && !titleText.match(/\d/)) {
           return;
         }
@@ -55,38 +47,64 @@ export const Novel543Adapter: SiteAdapter = {
         const fullUrl = new URL(href, targetUrl).toString();
         const cleanUrl = fullUrl.split("#")[0].split("?")[0];
 
-        // Chỉ lấy những link cùng domain novel543.com để tránh click vào web ngoài
         if (!cleanUrl.includes("novel543.com")) return;
 
-        // Delete first to preserve the LAST insertion order (so "Latest updates" dupes are moved to their correct position at the end)
         urlMap.delete(cleanUrl);
         urlMap.set(cleanUrl, { title: titleText, url: cleanUrl });
       });
 
       const chs = Array.from(urlMap.values());
       
-      // Sắp xếp lại dựa trên số chương (nếu có) để đảm bảo chính xác tuyệt đối
+      // Sort by chapter number first, then by part number (1/2 before 2/2)
       chs.sort((a, b) => {
         const matchA = a.title.match(/第(\d+)章/);
         const matchB = b.title.match(/第(\d+)章/);
-        
-        if (matchA && matchB) {
-          return parseInt(matchA[1], 10) - parseInt(matchB[1], 10);
-        }
-        // Đẩy các link không có số chương xuống cuối cùng (đề phòng sót quảng cáo)
-        if (matchA && !matchB) return -1;
-        if (!matchA && matchB) return 1;
-        
-        return 0; // Giữ nguyên thứ tự
+        const chA = matchA ? parseInt(matchA[1], 10) : Infinity;
+        const chB = matchB ? parseInt(matchB[1], 10) : Infinity;
+        if (chA !== chB) return chA - chB;
+
+        // Same chapter number — sort by part (1/2 before 2/2)
+        const partA = a.title.match(/\((\d+)\/\d+\)/);
+        const partB = b.title.match(/\((\d+)\/\d+\)/);
+        const pA = partA ? parseInt(partA[1], 10) : 1;
+        const pB = partB ? parseInt(partB[1], 10) : 1;
+        return pA - pB;
       });
 
-      return chs.map((ch, idx) => ({ ...ch, order: idx }));
+      // ── MERGE SPLIT PARTS ──
+      // Chapters split into (1/2), (2/2), etc. → keep only (1/N) URL (first page).
+      // The adapter's getChapterContent will follow 下一頁 links to fetch remaining parts.
+      const merged: { title: string; url: string; order: number }[] = [];
+      const seenChapterNums = new Set<number>();
+
+      for (const ch of chs) {
+        const chNumMatch = ch.title.match(/第(\d+)章/);
+        const chNum = chNumMatch ? parseInt(chNumMatch[1], 10) : null;
+        const partMatch = ch.title.match(/\((\d+)\/(\d+)\)/);
+
+        if (partMatch) {
+          const partNum = parseInt(partMatch[1], 10);
+          // Only keep the first part — subsequent parts will be fetched automatically
+          if (partNum === 1) {
+            const cleanTitle = ch.title.replace(/\s*\(\d+\/\d+\)/, "").trim();
+            merged.push({ title: cleanTitle, url: ch.url, order: merged.length });
+            if (chNum !== null) seenChapterNums.add(chNum);
+          }
+          // Skip parts 2, 3, etc. — they will be fetched by getChapterContent
+        } else {
+          // No split marker — check we haven't already added this chapter number
+          if (chNum === null || !seenChapterNums.has(chNum)) {
+            merged.push({ title: ch.title, url: ch.url, order: merged.length });
+            if (chNum !== null) seenChapterNums.add(chNum);
+          }
+        }
+      }
+
+      return merged;
     };
 
     let chapters = parseChapters(doc, url);
 
-    // Trang chính có thể chứa vài chương mới nhất (Latest Updates).
-    // Phải luôn ưu tiên vào trang mục lục (/dir) để lấy danh sách đầy đủ nếu có nút Mục Lục.
     const tocLink = doc.querySelector("a[href$='/dir'], a[href*='dir']");
     if (tocLink && !url.endsWith("dir") && !url.endsWith("dir/")) {
       const href = tocLink.getAttribute("href")!;
@@ -114,57 +132,129 @@ export const Novel543Adapter: SiteAdapter = {
     };
   },
 
-  getChapterContent(html, _url, contentText) {
+  async getChapterContent(html, _url, contentText) {
     const doc = new DOMParser().parseFromString(html, "text/html");
     
-    // <div class="chapter-content px-3"><h1> 第1章 畫像的尖叫與初逢異世 (1/2) </h1><div class="content py-5" ...>
-    let chapterTitle = doc.querySelector(".chapter-content h1, h1")?.textContent?.trim() || "";
+    // Hàm làm sạch tiêu đề để so sánh chính xác (loại bỏ mọi định dạng đánh số trang)
+    const cleanTitleText = (t: string) => {
+      if (!t) return "";
+      return t.replace(/\s*[\(（\[【]\s*\d+\s*\/\s*\d+\s*[\)）\]】]/g, "").trim();
+    };
 
-    // Clean up pagination in title like (1/2)
-    chapterTitle = chapterTitle.replace(/\(\d+\/\d+\)/g, "").trim();
+    // Lấy tiêu đề thô từ các nguồn có thể có
+    const getRawTitle = (d: Document) => {
+      return d.querySelector("h1")?.textContent?.trim() || 
+             d.querySelector(".chapter-title")?.textContent?.trim() || 
+             d.title.split("-")[0].trim() || 
+             "";
+    };
 
-    let rawText = "";
+    const chapterTitle = cleanTitleText(getRawTitle(doc));
 
-    // Extract from DOM
-    const contentNode = doc.querySelector(".content, .chapter-content .content");
-    if (contentNode) {
-      const junkSelectors = ["script", "style", "iframe", ".ad", ".nav", ".footer", "ins", ".gadBlock", ".clickforceads", ".adBlock"];
-      junkSelectors.forEach(sel => {
-        contentNode.querySelectorAll(sel).forEach(el => el.remove());
-      });
-      
-      let htmlContent = contentNode.innerHTML;
-      htmlContent = htmlContent.replace(/<br\s*\/?>/gi, '\n');
-      htmlContent = htmlContent.replace(/<p[^>]*>/gi, '\n');
-      htmlContent = htmlContent.replace(/<\/p>/gi, '\n');
-      
-      const tempDiv = doc.createElement("div");
-      tempDiv.innerHTML = htmlContent;
-      rawText = tempDiv.textContent?.trim() || "";
-    }
+    const extractText = (d: Document): string => {
+      const contentNode = d.querySelector(".content.py-5") || 
+                          d.querySelector(".content") || 
+                          d.querySelector(".chapter-content .content") ||
+                          d.querySelector("#content");
+                          
+      if (!contentNode) return "";
 
-    if (!rawText && contentText) {
-      rawText = contentText;
-    }
+      const junk = [".gadBlock", "ins", "[data-ad]", "iframe", "script", ".adBlock", ".float-wrap", ".foot-nav", "footer", ".modal"];
+      junk.forEach(sel => contentNode.querySelectorAll(sel).forEach(el => el.remove()));
 
-    // Attempt to find Next Chapter URL for pagination
+      let h = contentNode.innerHTML
+        .replace(/<br\s*\/?>/gi, "\n")
+        .replace(/<p[^>]*>/gi, "\n")
+        .replace(/<\/p>/gi, "\n")
+        .replace(/&nbsp;/g, " ");
+
+      const tmp = d.createElement("div");
+      tmp.innerHTML = h;
+      return tmp.textContent?.trim() || "";
+    };
+
+    let rawText = extractText(doc) || contentText || "";
     let nextChapterUrl = "";
-    const nextLinks = Array.from(doc.querySelectorAll("a[href]"));
-    for (const link of nextLinks) {
-      const text = link.textContent?.toLowerCase() || "";
-      if (text.includes("下一頁") || text.includes("下一页") || text.includes("下一章")) {
-         const href = link.getAttribute("href");
-         if (href && !href.startsWith("javascript")) {
-             nextChapterUrl = new URL(href, _url).toString();
-             break;
-         }
+
+    // ==================== TỰ ĐỘNG CRAWL VÀ GỘP PHẦN ====================
+    let currentDoc = doc;
+    let currentUrl = _url;
+    let safety = 0;
+
+    while (safety < 12) {
+      safety++;
+
+      // Tìm bất kỳ link nào có vẻ là "Tiếp theo"
+      const potentialNextUrl = getAnyNextUrl(currentDoc, currentUrl);
+      if (!potentialNextUrl || potentialNextUrl === currentUrl) break;
+
+      try {
+        const res = await extensionFetch(potentialNextUrl);
+        const nextDoc = new DOMParser().parseFromString(res.html, "text/html");
+        
+        // Lấy tiêu đề của trang vừa tải và làm sạch
+        const nextTitle = cleanTitleText(getRawTitle(nextDoc));
+        
+        // NẾU TIÊU ĐỀ GIỐNG NHAU -> Đây là phần tiếp theo của CÙNG MỘT CHƯƠNG
+        if (nextTitle === chapterTitle || !chapterTitle || !nextTitle) {
+          const nextText = extractText(nextDoc);
+          if (nextText.length > 50) {
+            rawText += "\n\n" + nextText;
+          }
+          currentDoc = nextDoc;
+          currentUrl = potentialNextUrl;
+        } 
+        // NẾU TIÊU ĐỀ KHÁC NHAU -> Đây thực sự là CHƯƠNG MỚI
+        else {
+          nextChapterUrl = potentialNextUrl;
+          break; // Dừng vòng lặp gộp
+        }
+      } catch (e) {
+        console.warn("[Novel543] Loop merge error:", e);
+        break;
       }
     }
 
+    // Nếu thoát vòng lặp mà chưa xác định được nextChapterUrl (chưa bấm sang trang có tiêu đề mới)
+    if (!nextChapterUrl) {
+      nextChapterUrl = getAnyNextUrl(currentDoc, currentUrl, true); // true để ưu tiên "下一章"
+    }
+
     return {
-      title: chapterTitle,
+      title: chapterTitle || "Chương không tên",
       content: cleanGarbageLines(rawText),
       nextChapterUrl
     };
   },
 };
+
+// ==================== HELPERS ====================
+const getAnyNextUrl = (d: Document, base: string, preferChapter = false): string => {
+  const links = Array.from(d.querySelectorAll("a[href]"));
+  
+  // Các text thường dùng cho nút "Tiếp theo"
+  const markers = ["下一頁", "下一页", "下頁", "下页", "下一章"];
+  
+  for (const marker of markers) {
+    if (preferChapter && marker !== "下一章") continue;
+    
+    for (const a of links) {
+      const text = a.textContent?.trim() || "";
+      if (text.includes(marker)) {
+        const href = a.getAttribute("href");
+        // Bỏ qua link javascript hoặc link về trang danh sách
+        if (href && !href.startsWith("javascript") && !href.includes("dir")) {
+          return new URL(href, base).toString();
+        }
+      }
+    }
+  }
+  return "";
+};
+
+
+
+
+
+
+

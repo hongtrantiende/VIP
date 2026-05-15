@@ -105,7 +105,9 @@ export default function ScraperLibraryPage() {
     useScraperQueueStore.getState().setFetchingInfo({ visible: true, url: finalUrl, count: 0 });
     try {
       // ── Server-side fetch for supported sites (no extension needed) ──
-      if (isServerFetchable(finalUrl)) {
+      // Chỉ dùng server fetch khi KHÔNG có extension — nếu có extension thì dùng adapter trực tiếp
+      // để tránh bị Cloudflare block IP khi fetch từng chương qua /api/scrape
+      if (isServerFetchable(finalUrl) && !extVersion) {
         toast.info("⚡ Đang tải bằng Server (không cần Extension)...");
         const novelInfo = await serverAnalyzeNovel(finalUrl);
         if (novelInfo.chapters.length === 0) throw new Error("Không tìm thấy chương nào");
@@ -288,7 +290,7 @@ export default function ScraperLibraryPage() {
           </Button>
           <Button onClick={handleAdd} disabled={isAdding || !url.trim()} className="min-w-[140px]">
             {isAdding ? <LoaderIcon className="w-4 h-4 animate-spin mr-2" /> : (isServerFetchable(url) && !showCustomConfig ? <ZapIcon className="w-4 h-4 mr-2" /> : <DownloadIcon className="w-4 h-4 mr-2" />)}
-            {isAdding ? (scannedCount > 0 ? `Đã quét: ${scannedCount}` : "⚡ Đang tải...") : (isServerFetchable(url) && !showCustomConfig ? "⚡ Tải nhanh" : "Thêm")}
+            {isAdding ? (scannedCount > 0 ? `Đã quét: ${scannedCount}` : "⚡ Đang tải...") : (isServerFetchable(url) && !showCustomConfig ? (extVersion ? "⚡ Tải (Extension)" : "⚡ Tải nhanh") : "Thêm")}
           </Button>
           
           <Dialog>
@@ -347,7 +349,7 @@ export default function ScraperLibraryPage() {
 
                 <TabsContent value="guides" className="space-y-4 py-4 max-h-[60vh] overflow-y-auto pr-2">
                   <div className="space-y-3">
-                    <Label className="text-xs font-bold text-muted-foreground uppercase">⚡ Tải nhanh (Không cần Extension)</Label>
+                    <Label className="text-xs font-bold text-muted-foreground uppercase">⚡ Tải nhanh (Extension ưu tiên, Server làm dự phòng)</Label>
                     <div className="flex flex-wrap gap-2">
                       <Button variant="outline" size="sm" className="border-blue-200 bg-blue-50 dark:bg-blue-950/20" asChild>
                         <a href="https://chomered.com" target="_blank" rel="noreferrer"><ZapIcon className="mr-1.5 w-3 h-3 text-blue-500"/> Chomered</a>

@@ -53,13 +53,6 @@ export default function BotTranslatePage() {
   const [slotLogs, setSlotLogs] = useState<Record<number, string[]>>({});
   const abortRefs = useRef<Record<number, AbortController | null>>({});
 
-  // Load saved slot configs from localStorage
-  useEffect(() => {
-    try {
-      const saved = localStorage.getItem("bot_slot_configs");
-      if (saved) setSlots(JSON.parse(saved));
-    } catch {}
-  }, []);
 
   const saveSlots = (newSlots: SlotConfig[]) => {
     setSlots(newSlots);
@@ -68,7 +61,7 @@ export default function BotTranslatePage() {
 
   const loadJobs = useCallback(async () => {
     try {
-      const res = await fetch("/api/bot-translate/queue?all=true");
+      const res = await fetch("/api/bot-translate/queue?all=true", { cache: "no-store" });
       const data = await res.json();
       if (data.jobs) setJobs(data.jobs);
     } catch { }
@@ -228,42 +221,160 @@ export default function BotTranslatePage() {
         }
       }
 
-      // 3. Collect Results
+      // 3. Collect Results — dùng temp scene ID đã biết trước, chỉ lấy scene isActive=1
+      //    để tránh lấy nhầm scene version do engine tạo ra trong quá trình dịch
       for (let i = 0; i < queueChapters.length; i++) {
         const qCh = queueChapters[i];
         const tempChapterId = allTempChapterIds[i];
         const dbChapter = await db.chapters.get(tempChapterId);
-        
+
+        // Chỉ lấy scene gốc (isActive=1), không lấy scene version
+        const dbScenes = await db.scenes
+          .where("[chapterId+isActive]")
+          .equals([tempChapterId, 1])
+          .sortBy("order");
+
+        const inputScenes: any[] = qCh.scenes || [];
         const translatedScenes = [];
-        const dbScenes = await db.scenes.where("chapterId").equals(tempChapterId).sortBy("order");
-        
         let hasTranslated = false;
-        for (const s of dbScenes) {
-          const origScene = qCh.scenes.find((sc: any) => sc.order === s.order);
-          if (origScene && origScene.content !== s.content) {
-            hasTranslated = true;
-          }
-          translatedScenes.push({ order: s.order, content: s.content });
+
+        for (let si = 0; si < inputScenes.length; si++) {
+          const inputScene = inputScenes[si];
+          // Khớp theo order để tìm scene đã được dịch trong DB
+          const dbScene = dbScenes.find((s: any) => s.order === inputScene.order)
+            ?? dbScenes[si]; // fallback theo vị trí nếu order không khớp
+
+          const translatedContent = dbScene?.content ?? inputScene.content;
+
+          // Kiểm tra thực sự đã dịch: nội dung thay đổi VÀ có chữ Việt
+          const isChanged = translatedContent && translatedContent !== inputScene.content;
+          if (isChanged) hasTranslated = true;
+
+          translatedScenes.push({
+            id: inputScene.id,       // giữ ID gốc để import đúng
+            order: inputScene.order,
+            content: translatedContent,
+          });
         }
 
         if (hasTranslated) {
           translatedChaptersData.push({
-            order: qCh.order || (i + 1),
+            id: qCh.id,
+            order: qCh.order ?? (i + 1),
             translated_title: dbChapter?.title || qCh.title,
             translated_scenes: translatedScenes,
             status: "completed"
           });
         } else {
           translatedChaptersData.push({
-            order: qCh.order || (i + 1),
+            id: qCh.id,
+            order: qCh.order ?? (i + 1),
+            title: qCh.title,
+            scenes: inputScenes, // giữ nguyên để retry
             status: "failed",
-            error_message: "Chưa dịch thành công"
+            error_message: "Chưa dịch thành công — sẽ thử lại"
           });
         }
 
         // Cleanup temp chapter data
         await db.scenes.where("chapterId").equals(tempChapterId).delete();
         await db.chapters.delete(tempChapterId);
+      }
+
+      // 3b. RETRY PASS — dịch lại các chương bị lỗi lần 1
+      const failedChapters = translatedChaptersData.filter(c => c.status === "failed");
+      if (failedChapters.length > 0 && !controller.signal.aborted) {
+        addLog(slotIdx, `🔄 Thử lại ${failedChapters.length} chương bị lỗi...`);
+
+        const retryChapterIds: string[] = [];
+        for (const fc of failedChapters) {
+          const idx = translatedChaptersData.indexOf(fc);
+          const tempChapterId = `bot_retry_ch_${idx}`;
+          retryChapterIds.push(tempChapterId);
+
+          await db.chapters.put({
+            id: tempChapterId, novelId: tempNovelId, title: fc.title || `Chương ${idx + 1}`,
+            order: fc.order ?? (idx + 1), createdAt: new Date(), updatedAt: new Date(),
+          });
+
+          for (const sc of (fc.scenes || [])) {
+            const tempSceneId = `bot_retry_sc_${idx}_${sc.order}`;
+            await db.scenes.put({
+              id: tempSceneId, chapterId: tempChapterId, novelId: tempNovelId,
+              title: `Scene ${sc.order}`, content: sc.content,
+              order: sc.order, wordCount: typeof sc.content === "string" ? sc.content.split(/\s+/).length : 0,
+              version: 1, versionType: "manual", isActive: 1,
+              createdAt: new Date(), updatedAt: new Date(),
+            });
+          }
+        }
+
+        const retryOpts = {
+          ...translateOpts,
+          chapterIds: retryChapterIds,
+          onChapterStart: async (chapterId: string, chapterTitle: string) => {
+            addLog(slotIdx, `🔁 Retry: ${chapterTitle}`);
+          },
+          onChapterComplete: (res: any) => {
+            addLog(slotIdx, `✅ Retry xong: ${res?.chapterTitle || 'Chương'}`);
+          },
+          onChapterError: (err: any) => {
+            addLog(slotIdx, `⚠️ Retry vẫn lỗi: ${err.message}`);
+          },
+        };
+
+        try {
+          if (job.translate_mode === "stv-hybrid") {
+            await runHybridTranslate(retryOpts);
+          } else {
+            await runQtAiTranslate(retryOpts);
+          }
+        } catch (retryErr: any) {
+          if (retryErr.name !== "AbortError") {
+            addLog(slotIdx, `⚠️ Retry pass lỗi: ${retryErr.message}`);
+          }
+        }
+
+        // Thu thập kết quả retry
+        for (let ri = 0; ri < failedChapters.length; ri++) {
+          const fc = failedChapters[ri];
+          const origIdx = translatedChaptersData.indexOf(fc);
+          const tempChapterId = retryChapterIds[ri];
+          const dbChapter = await db.chapters.get(tempChapterId);
+
+          const dbScenes = await db.scenes
+            .where("[chapterId+isActive]")
+            .equals([tempChapterId, 1])
+            .sortBy("order");
+
+          const inputScenes: any[] = fc.scenes || [];
+          const translatedScenes = [];
+          let hasTranslated = false;
+
+          for (let si = 0; si < inputScenes.length; si++) {
+            const inputScene = inputScenes[si];
+            const dbScene = dbScenes.find((s: any) => s.order === inputScene.order) ?? dbScenes[si];
+            const translatedContent = dbScene?.content ?? inputScene.content;
+            if (translatedContent !== inputScene.content) hasTranslated = true;
+            translatedScenes.push({ id: inputScene.id, order: inputScene.order, content: translatedContent });
+          }
+
+          translatedChaptersData[origIdx] = hasTranslated ? {
+            id: fc.id,
+            order: fc.order,
+            translated_title: dbChapter?.title || fc.title,
+            translated_scenes: translatedScenes,
+            status: "completed"
+          } : {
+            id: fc.id,
+            order: fc.order,
+            status: "failed",
+            error_message: "Retry vẫn thất bại"
+          };
+
+          await db.scenes.where("chapterId").equals(tempChapterId).delete();
+          await db.chapters.delete(tempChapterId);
+        }
       }
 
       // Cleanup temp novel
@@ -394,10 +505,30 @@ export default function BotTranslatePage() {
 
       try {
         const workerName = `AI-${slotIdx + 1}`;
-        const res = await fetch(`/api/bot-translate/queue?all=true&status=pending&assignedWorker=${workerName}`);
+        let res = await fetch(`/api/bot-translate/queue?all=true&status=pending&assignedWorker=${workerName}`, { cache: "no-store" });
         if (!res.ok) throw new Error("Lỗi fetch queue");
-        const data = await res.json();
-        const pendingJobs = (data.jobs || []).filter((j: QueueJob) => j.status === "pending");
+        let data = await res.json();
+        let pendingJobs = (data.jobs || []).filter((j: QueueJob) => j.status === "pending");
+
+        // Work Stealing Logic: If no jobs assigned to me, steal from any other slot!
+        if (pendingJobs.length === 0) {
+          const stealRes = await fetch(`/api/bot-translate/queue?all=true&status=pending`, { cache: "no-store" });
+          if (stealRes.ok) {
+            const stealData = await stealRes.json();
+            const allPending = (stealData.jobs || []).filter((j: QueueJob) => j.status === "pending" && j.assigned_worker !== workerName);
+            if (allPending.length > 0) {
+              const jobToSteal = allPending[0];
+              // Reassign the job to me
+              await fetch("/api/bot-translate/queue", {
+                method: "PATCH",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ jobId: jobToSteal.id, assignedWorker: workerName }),
+              });
+              pendingJobs = [jobToSteal];
+              addLog(slotIdx, `🔄 Đã gánh hộ truyện "${jobToSteal.novel_name}" từ slot khác!`);
+            }
+          }
+        }
 
         if (pendingJobs.length === 0) {
           addLog(slotIdx, "⏳ Không có truyện ở hàng đợi. Chờ 15s...");
@@ -412,6 +543,23 @@ export default function BotTranslatePage() {
       await new Promise(r => setTimeout(r, 3000));
     }
   }, []);
+
+  // Load saved slot configs from localStorage — placed after runSlotLoop is defined
+  useEffect(() => {
+    try {
+      const saved = localStorage.getItem("bot_slot_configs");
+      if (saved) {
+        const parsed = JSON.parse(saved);
+        setSlots(parsed);
+        // Auto-restart any slots that were running before page reload
+        parsed.forEach((slot: any, idx: number) => {
+          if (slot.running) {
+            setTimeout(() => runSlotLoop(idx), 1000 + idx * 200);
+          }
+        });
+      }
+    } catch {}
+  }, [runSlotLoop]);
 
   const toggleSlot = (slotIdx: number) => {
     const newSlots = [...slots];
