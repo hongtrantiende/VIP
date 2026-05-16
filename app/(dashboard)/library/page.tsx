@@ -1306,14 +1306,24 @@ function paginationRange(current: number, total: number): (number | "...")[] {
 
 function NovelTranslateProgress({ novelId }: { novelId: string }) {
   const job = useBulkTranslateStore((s) => s.jobs[novelId]);
+  const models = useAIModels(job?.providerId || "");
+
   if (!job || (!job.isRunning && job.step !== "progress")) return null;
 
   const percent = job.totalChapters > 0 ? Math.round((job.chaptersCompleted / job.totalChapters) * 100) : 0;
+  const modelName = models?.find(m => m.id === job.modelId || m.modelId === job.modelId)?.name || job.modelId;
 
   return (
-    <div className="flex w-full items-center justify-between text-[10px] font-medium text-emerald-600 dark:text-emerald-500 mt-0.5">
-      <span className="truncate pr-2">Đang dịch {job.chaptersCompleted}/{job.totalChapters}</span>
-      <span>{percent}%</span>
+    <div className="flex flex-col w-full text-[10px] font-medium mt-0.5">
+      <div className="flex w-full items-center justify-between text-emerald-600 dark:text-emerald-500">
+        <span className="truncate pr-2">Đang dịch {job.chaptersCompleted}/{job.totalChapters}</span>
+        <span>{percent}%</span>
+      </div>
+      {modelName && (
+        <span className="text-muted-foreground/80 truncate text-[9px] mt-0.5">
+          {modelName}
+        </span>
+      )}
     </div>
   );
 }
