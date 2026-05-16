@@ -19,6 +19,7 @@ import {
 import { useIsMobile } from "@/hooks/use-mobile";
 import { buildErrorTrace, storeErrorTrace } from "@/lib/ai/error-trace";
 import { getModel } from "@/lib/ai/provider";
+import { useProfile } from "@/lib/hooks/use-profile";
 import { withGlobalInstruction } from "@/lib/ai/system-prompt";
 import {
   FILE_INPUT_ACCEPT,
@@ -48,6 +49,7 @@ import { APICallError, stepCountIs, streamText } from "ai";
 import {
   ArrowUpIcon,
   BotIcon,
+  CrownIcon,
   HistoryIcon,
   LoaderIcon,
   PlusIcon,
@@ -128,10 +130,21 @@ export function ChatPanel() {
   const toolActive = chapterToolActive || readerToolsOpen;
   const isMobile = useIsMobile();
 
+  // Admin model detection
+  const { profile, adminModelEnabled } = useProfile();
+  const useAdminModel = !!(adminModelEnabled && profile?.admin_assigned_model && (profile.admin_model_quota ?? 0) > 0);
+  const adminProvider = useAdminModel ? {
+    id: "admin-provider",
+    name: "Model Admin",
+    baseUrl: "https://dummy.local/api/ai-proxy",
+    apiKey: "admin-model-key",
+    providerType: "openai-compatible" as const,
+  } : null;
+
   const providers = useAIProviders();
   const chatSettings = useChatSettings();
-  const selectedProviderId = chatSettings.providerId;
-  const selectedModelId = chatSettings.modelId;
+  const selectedProviderId = useAdminModel ? "admin-provider" : chatSettings.providerId;
+  const selectedModelId = useAdminModel ? "admin-model" : chatSettings.modelId;
   const systemPrompt =
     withGlobalInstruction(
       chatSettings.systemPrompt,
@@ -139,8 +152,8 @@ export function ChatPanel() {
     ) ?? "";
   const temperature = chatSettings.temperature;
   const maxToolSteps = chatSettings.maxToolSteps ?? 10;
-  const selectedProvider = providers?.find((p) => p.id === selectedProviderId);
-  const models = useAIModels(selectedProviderId || undefined);
+  const selectedProvider = useAdminModel ? (adminProvider as any) : providers?.find((p) => p.id === selectedProviderId);
+  const models = useAIModels(useAdminModel ? undefined : (selectedProviderId || undefined));
 
   const conversations = useConversations();
   const dbMessages = useConversationMessages(activeConversationId ?? undefined);
@@ -915,8 +928,8 @@ export function ChatPanel() {
     }
   }
 
-  const hasProvider = providers && providers.length > 0;
-  const hasModels = models && models.length > 0;
+  const hasProvider = useAdminModel || (providers && providers.length > 0);
+  const hasModels = useAdminModel || (models && models.length > 0);
   const canSend =
     (!!input.trim() || pendingImages.length > 0 || pendingFiles.length > 0) &&
     hasProvider &&
@@ -1048,12 +1061,14 @@ export function ChatPanel() {
             <Empty className="my-8">
               <EmptyHeader>
                 <EmptyMedia variant="icon">
-                  <BotIcon />
+                  {useAdminModel ? <CrownIcon className="text-yellow-500" /> : <BotIcon />}
                 </EmptyMedia>
-                <EmptyTitle>Trợ lý sáng tác</EmptyTitle>
+                <EmptyTitle>{useAdminModel ? "Trợ lý AI — Model Admin" : "Trợ lý sáng tác"}</EmptyTitle>
                 <EmptyDescription>
-                  Đặt câu hỏi, brainstorm ý tưởng, hoặc nhận trợ giúp với bài
-                  viết của bạn.
+                  {useAdminModel
+                    ? `Bạn đang sử dụng model admin. Còn ${profile?.admin_model_quota ?? 0} lượt. Hãy đặt câu hỏi hoặc nhờ hỗ trợ sáng tác.`
+                    : "Đặt câu hỏi, brainstorm ý tưởng, hoặc nhận trợ giúp với bài viết của bạn."
+                  }
                 </EmptyDescription>
               </EmptyHeader>
             </Empty>
@@ -1240,28 +1255,37 @@ export function ChatPanel() {
                 onFileClick={() => fileInputRef.current?.click()}
                 disabled={!hasProvider || !hasModels || isStreaming}
               />
-              <ModelSelectorButton
-                providers={providers ?? []}
-                models={models}
-                selectedProviderId={selectedProviderId}
-                selectedModelId={selectedModelId}
-                onProviderChange={(id) => {
-                  updateChatSettings({ providerId: id, modelId: "" });
-                  if (activeConversationId) {
-                    updateConversation(activeConversationId, {
-                      providerId: id,
-                      modelId: "",
-                    });
-                  }
-                }}
-                onModelChange={(id) => {
-                  updateChatSettings({ modelId: id });
-                  if (activeConversationId) {
-                    updateConversation(activeConversationId, { modelId: id });
-                  }
-                }}
-                disabled={isStreaming}
-              />
+              {useAdminModel ? (
+                <div className="flex items-center gap-1.5 rounded-full bg-yellow-500/10 border border-yellow-500/20 px-2.5 py-1">
+                  <CrownIcon className="size-3 text-yellow-500" />
+                  <span className="text-[11px] font-medium text-yellow-600 dark:text-yellow-400">
+                    Model Admin ({profile?.admin_model_quota ?? 0} lượt)
+                  </span>
+                </div>
+              ) : (
+                <ModelSelectorButton
+                  providers={providers ?? []}
+                  models={models}
+                  selectedProviderId={selectedProviderId}
+                  selectedModelId={selectedModelId}
+                  onProviderChange={(id) => {
+                    updateChatSettings({ providerId: id, modelId: "" });
+                    if (activeConversationId) {
+                      updateConversation(activeConversationId, {
+                        providerId: id,
+                        modelId: "",
+                      });
+                    }
+                  }}
+                  onModelChange={(id) => {
+                    updateChatSettings({ modelId: id });
+                    if (activeConversationId) {
+                      updateConversation(activeConversationId, { modelId: id });
+                    }
+                  }}
+                  disabled={isStreaming}
+                />
+              )}
             </div>
 
             {/* Right: send / stop */}
