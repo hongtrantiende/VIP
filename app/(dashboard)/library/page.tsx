@@ -100,13 +100,13 @@ const SORT_OPTIONS: {
   value: `${SortField}-${SortDirection}`;
   label: string;
 }[] = [
-  { value: "updatedAt-desc", label: "Cập nhật gần nhất" },
-  { value: "updatedAt-asc", label: "Cập nhật cũ nhất" },
-  { value: "createdAt-desc", label: "Mới tạo nhất" },
-  { value: "createdAt-asc", label: "Cũ nhất" },
-  { value: "title-asc", label: "Tên A → Z" },
-  { value: "title-desc", label: "Tên Z → A" },
-];
+    { value: "updatedAt-desc", label: "Cập nhật gần nhất" },
+    { value: "updatedAt-asc", label: "Cập nhật cũ nhất" },
+    { value: "createdAt-desc", label: "Mới tạo nhất" },
+    { value: "createdAt-asc", label: "Cũ nhất" },
+    { value: "title-asc", label: "Tên A → Z" },
+    { value: "title-desc", label: "Tên Z → A" },
+  ];
 
 function sortNovels(
   novels: Novel[],
@@ -248,49 +248,49 @@ export default function LibraryPage() {
 
       for (let i = 0; i < total; i += CONCURRENCY) {
         const batch = novels.slice(i, i + CONCURRENCY);
-        
+
         await Promise.allSettled(
           batch.map(async (novel) => {
             try {
               // 1. Xuất dữ liệu JSON (Metadata & Chapters)
               const data = await exportNovel(novel.id, { includeVersions: true });
               const json = JSON.stringify(data);
-              
+
               // 2. Trích xuất Text Trung & Việt từ các chương
               const chapters = data.chapters || [];
               const scenes = data.scenes || [];
-              
+
               // Sắp xếp chương theo order
               const sortedChapters = [...chapters].sort((a, b) => a.order - b.order);
-              
+
               let fullChinese = "";
               let fullVietnamese = "";
               let hasTranslation = false;
-              
+
               for (const ch of sortedChapters) {
                 const chScenes = scenes
                   .filter(s => s.chapterId === ch.id && s.isActive)
                   .sort((a, b) => a.order - b.order);
-                
+
                 const chTitle = ch.title || "Không tiêu đề";
-                
+
                 // Trích xuất bản gốc (Original version = 1)
                 const originalScenes = chScenes.map(a => {
-                    const orig = scenes.find(s => s.activeSceneId === a.id && s.version === 1);
-                    return orig || a;
+                  const orig = scenes.find(s => s.activeSceneId === a.id && s.version === 1);
+                  return orig || a;
                 });
                 const chChinese = originalScenes.map(s => s.content || "").join("\n\n");
-                
+
                 // Trích xuất bản dịch
                 const isChapterTranslated = chScenes.some(isSceneTranslated);
-                const chVietnamese = isChapterTranslated 
-                  ? chScenes.map(s => s.content.replace("Bạn đang xem văn bản gốc chưa dịch, có thể kéo xuống cuối trang để chọn bản dịch.", "").trim()).join("\n\n") 
+                const chVietnamese = isChapterTranslated
+                  ? chScenes.map(s => s.content.replace("Bạn đang xem văn bản gốc chưa dịch, có thể kéo xuống cuối trang để chọn bản dịch.", "").trim()).join("\n\n")
                   : "";
 
                 if (chChinese.trim()) {
                   fullChinese += `\n\n=== ${chTitle} ===\n\n${chChinese}`;
                 }
-                
+
                 if (chVietnamese.trim()) {
                   fullVietnamese += `\n\n=== ${chTitle} ===\n\n${chVietnamese}`;
                   hasTranslation = true;
@@ -303,14 +303,14 @@ export default function LibraryPage() {
 
               // Tải lên 3 file song song vào 2 kho khác nhau
               await Promise.all([
-                fetch(`/api/dict/cloud-storage?${jsonParams.toString()}`, { 
-                  method: 'POST', body: json 
+                fetch(`/api/dict/cloud-storage?${jsonParams.toString()}`, {
+                  method: 'POST', body: json
                 }),
-                fullChinese.trim() && fetch(`/api/dict/cloud-storage?${txtTrungParams.toString()}`, { 
-                  method: 'POST', body: fullChinese 
+                fullChinese.trim() && fetch(`/api/dict/cloud-storage?${txtTrungParams.toString()}`, {
+                  method: 'POST', body: fullChinese
                 }),
-                hasTranslation && fetch(`/api/dict/cloud-storage?${txtDichParams.toString()}`, { 
-                  method: 'POST', body: fullVietnamese 
+                hasTranslation && fetch(`/api/dict/cloud-storage?${txtDichParams.toString()}`, {
+                  method: 'POST', body: fullVietnamese
                 })
               ]);
 
@@ -320,7 +320,7 @@ export default function LibraryPage() {
             }
           })
         );
-        
+
         toast.loading(`Đang tải lên: ${Math.round((i + batch.length) / total * 100)}%...`, { id: toastId });
       }
 
@@ -339,7 +339,7 @@ export default function LibraryPage() {
         const errorData = await listRes.json().catch(() => ({ error: 'Không thể parse JSON lỗi' }));
         throw new Error(errorData.error || `Lỗi kết nối: ${listRes.status}`);
       }
-      
+
       const listData = await listRes.json();
       const novelsToImport = listData.novels || []; // Mảng chứa {name, content}
 
@@ -357,15 +357,15 @@ export default function LibraryPage() {
 
       for (let i = 0; i < total; i += CONCURRENCY) {
         const batch = novelsToImport.slice(i, i + CONCURRENCY);
-        
+
         await Promise.allSettled(
           batch.map(async (novelData: { name: string, content: string }) => {
             try {
               // Ensure we have json syntax checked
-              const data = JSON.parse(novelData.content); 
+              const data = JSON.parse(novelData.content);
               const file = new File([novelData.content], `${novelData.name}.json`, { type: "application/json" });
               const newNovelId = await importNovel(file, { preserveId: true });
-              
+
               if (data.novel?.sourceUrl) {
                 await useScraperQueueStore.getState().restoreJobFromDB(
                   newNovelId,
@@ -381,7 +381,7 @@ export default function LibraryPage() {
             }
           })
         );
-        
+
         if (i + CONCURRENCY < total) {
           await new Promise(r => setTimeout(r, 100));
         }
@@ -407,7 +407,7 @@ export default function LibraryPage() {
       drive.login();
       return;
     }
-    
+
     const toastId = toast.loading("Đang tìm và tải bản sao lưu từ Drive...");
     try {
       const text = await drive.downloadFile("novel-studio-library-backup.json");
@@ -415,10 +415,10 @@ export default function LibraryPage() {
         toast.error(`Không tìm thấy bản sao lưu nào trên Drive. Vui lòng sao lưu trước!`, { id: toastId });
         return;
       }
-      
+
       const file = new File([text], "novel-studio-library-backup.json", { type: "application/json" });
       toast.success("Đã tải tệp về, chuẩn bị phục hồi...", { id: toastId });
-      
+
       const ac = new AbortController();
       abortRef.current = ac;
       setProgress(null);
@@ -446,7 +446,7 @@ export default function LibraryPage() {
       setSelectedProvider(providers[0].id);
     }
   }, [providers, selectedProvider]);
-  
+
   useEffect(() => {
     if (models && models.length > 0 && !selectedModel) {
       setSelectedModel(models[0].id);
@@ -499,11 +499,11 @@ export default function LibraryPage() {
     try {
       toast.info("Đang tạo file EPUB, vui lòng đợi...");
       const chapters = await db.chapters.where("novelId").equals(novel.id).sortBy("order");
-      
+
       if (!chapters || chapters.length === 0) {
         throw new Error("Không có chương nào để xuất!");
       }
-      
+
       let coverBase64 = null;
       if (novel.coverImage) {
         try {
@@ -518,19 +518,19 @@ export default function LibraryPage() {
           // Ignore cover fetch error
         }
       }
-      
+
       const scenes = await db.scenes.where("[novelId+isActive]").equals([novel.id, 1]).toArray();
       const chaptersWithContent = chapters.map(ch => {
-         const chScenes = scenes.filter(s => s.chapterId === ch.id).sort((a, b) => a.order - b.order);
-         const content = chScenes.map(s => s.content).join("\n\n");
-         return {
-            title: ch.title,
-            content: content || "Nội dung chương trống."
-         };
+        const chScenes = scenes.filter(s => s.chapterId === ch.id).sort((a, b) => a.order - b.order);
+        const content = chScenes.map(s => s.content).join("\n\n");
+        return {
+          title: ch.title,
+          content: content || "Nội dung chương trống."
+        };
       });
-      
+
       const blob = await generateEpub(novel.title, novel.author || "Unknown", coverBase64 as string | null, chaptersWithContent);
-      
+
       const url = window.URL.createObjectURL(blob);
       const a = document.createElement("a");
       a.href = url;
@@ -539,7 +539,7 @@ export default function LibraryPage() {
       a.click();
       window.URL.revokeObjectURL(url);
       document.body.removeChild(a);
-      
+
       toast.success("Xuất EPUB thành công!");
     } catch (e: any) {
       toast.error(e.message || "Lỗi khi xuất EPUB");
@@ -548,27 +548,46 @@ export default function LibraryPage() {
 
   const handleTranslateTitle = async () => {
     if (!translateTarget || !selectedProvider || !selectedModel) return;
-    
+
     try {
       setIsTranslating(true);
 
       const model = await resolveStep({ providerId: selectedProvider, modelId: selectedModel });
       if (!model) throw new Error("Không thể tải model AI");
 
-      const sysMsg = "Bạn là biên dịch viên truyện chữ chuyên nghiệp. Chỉ trả về kết quả dịch tiếng Việt của tên truyện, không thêm bất kỳ câu chữ nào khác, không dùng ngoặc kép.";
-      const usrMsg = `Dịch tên truyện này sang tiếng Việt: ${translateTarget.title}`;
+      const sysMsgTitle = "Bạn là biên dịch viên truyện chữ chuyên nghiệp. Chỉ trả về kết quả dịch tiếng Việt của tên truyện, không thêm bất kỳ câu chữ nào khác, không dùng ngoặc kép.";
+      const usrMsgTitle = `Dịch tên truyện này sang tiếng Việt: ${translateTarget.title}`;
 
-      const { text } = await generateText({
+      const titlePromise = generateText({
         model,
-        system: sysMsg,
-        prompt: usrMsg,
+        system: sysMsgTitle,
+        prompt: usrMsgTitle,
       });
 
-      const translated = text.trim();
-      if (!translated) throw new Error("Không nhận được kết quả dịch");
-      
-      await db.novels.update(translateTarget.id, { title: translated });
-      toast.success("Đã dịch tên truyện thành công!");
+      let descPromise = Promise.resolve({ text: "" });
+      if (translateTarget.description) {
+        const sysMsgDesc = "Bạn là biên dịch viên truyện chữ chuyên nghiệp. Dịch đoạn tóm tắt truyện sau sang tiếng Việt chuyên nghiệp, đúng ngữ cảnh kiếm hiệp/tiên hiệp/đô thị. Chỉ trả về bản dịch, không thêm giải thích.";
+        const usrMsgDesc = `Dịch mô tả truyện này sang tiếng Việt:\n\n${translateTarget.description}`;
+        descPromise = generateText({
+          model,
+          system: sysMsgDesc,
+          prompt: usrMsgDesc,
+        });
+      }
+
+      toast.info("Đang xử lý dịch thuật...");
+      const [titleRes, descRes] = await Promise.all([titlePromise, descPromise]);
+
+      const translatedTitle = titleRes.text.trim();
+      const translatedDesc = descRes.text.trim();
+
+      if (!translatedTitle) throw new Error("Không nhận được kết quả dịch tên truyện");
+
+      const updateData: any = { title: translatedTitle };
+      if (translatedDesc) updateData.description = translatedDesc;
+
+      await db.novels.update(translateTarget.id, updateData);
+      toast.success("Đã dịch tên truyện và mô tả thành công!");
       setTranslateTarget(null);
     } catch (e: any) {
       toast.error(e.message || "Không thể dịch tên truyện");
@@ -608,11 +627,11 @@ export default function LibraryPage() {
       try {
         const text = await file.text();
         const data = JSON.parse(text);
-        
+
         // Use a new File object with the same content since we already read it
         const newFile = new File([text], file.name, { type: file.type });
         const newNovelId = await importNovel(newFile);
-        
+
         if (data.novel?.sourceUrl) {
           await useScraperQueueStore.getState().restoreJobFromDB(
             newNovelId,
@@ -621,7 +640,7 @@ export default function LibraryPage() {
             data.novel.coverImage
           );
         }
-        
+
         toast.success("Đã nhập tiểu thuyết thành công!");
       } catch (err) {
         toast.error(
@@ -714,10 +733,10 @@ export default function LibraryPage() {
         </div>
       </div>
 
-      <CollectionManager 
-        novels={novels} 
-        activeGenre={genreFilter} 
-        onSelectGenre={(val) => { setGenreFilter(val); setPage(1); }} 
+      <CollectionManager
+        novels={novels}
+        activeGenre={genreFilter}
+        onSelectGenre={(val) => { setGenreFilter(val); setPage(1); }}
       />
 
       {/* Toolbar */}
@@ -1089,7 +1108,7 @@ export default function LibraryPage() {
               Tên gốc: <strong className="text-foreground">{translateTarget?.title}</strong>
             </DialogDescription>
           </DialogHeader>
-          
+
           <div className="space-y-4 py-2">
             <div className="space-y-2">
               <label className="text-sm font-medium">Nhà cung cấp (Provider)</label>
@@ -1104,7 +1123,7 @@ export default function LibraryPage() {
                 </SelectContent>
               </Select>
             </div>
-            
+
             <div className="space-y-2">
               <label className="text-sm font-medium">Mô hình AI (Model)</label>
               <Select value={selectedModel} onValueChange={setSelectedModel} disabled={isTranslating || !models || models.length === 0}>
@@ -1119,7 +1138,7 @@ export default function LibraryPage() {
               </Select>
             </div>
           </div>
-          
+
           <DialogFooter>
             <Button variant="outline" onClick={() => setTranslateTarget(null)} disabled={isTranslating}>Hủy</Button>
             <Button onClick={handleTranslateTitle} disabled={isTranslating || !selectedModel}>
@@ -1288,9 +1307,9 @@ function paginationRange(current: number, total: number): (number | "...")[] {
 function NovelTranslateProgress({ novelId }: { novelId: string }) {
   const job = useBulkTranslateStore((s) => s.jobs[novelId]);
   if (!job || (!job.isRunning && job.step !== "progress")) return null;
-  
+
   const percent = job.totalChapters > 0 ? Math.round((job.chaptersCompleted / job.totalChapters) * 100) : 0;
-  
+
   return (
     <div className="flex w-full items-center justify-between text-[10px] font-medium text-emerald-600 dark:text-emerald-500 mt-0.5">
       <span className="truncate pr-2">Đang dịch {job.chaptersCompleted}/{job.totalChapters}</span>

@@ -133,7 +133,7 @@ export default function NovelDetailPage() {
       setSelectedProvider(providers[0].id);
     }
   }, [providers, selectedProvider]);
-  
+
   useEffect(() => {
     if (models && models.length > 0 && !selectedModel) {
       setSelectedModel(models[0].id);
@@ -178,11 +178,11 @@ export default function NovelDetailPage() {
     try {
       toast.info("Đang tạo file EPUB, vui lòng đợi...");
       const dbChapters = await db.chapters.where("novelId").equals(novel.id).sortBy("order");
-      
+
       if (!dbChapters || dbChapters.length === 0) {
         throw new Error("Không có chương nào để xuất!");
       }
-      
+
       let coverBase64 = null;
       if (novel.coverImage) {
         try {
@@ -197,19 +197,19 @@ export default function NovelDetailPage() {
           // Ignore cover fetch error
         }
       }
-      
+
       const scenes = await db.scenes.where("[novelId+isActive]").equals([novel.id, 1]).toArray();
       const chaptersWithContent = dbChapters.map(ch => {
-         const chScenes = scenes.filter(s => s.chapterId === ch.id).sort((a, b) => a.order - b.order);
-         const content = chScenes.map(s => s.content).join("\n\n");
-         return {
-            title: ch.title,
-            content: content || "Nội dung chương trống."
-         };
+        const chScenes = scenes.filter(s => s.chapterId === ch.id).sort((a, b) => a.order - b.order);
+        const content = chScenes.map(s => s.content).join("\n\n");
+        return {
+          title: ch.title,
+          content: content || "Nội dung chương trống."
+        };
       });
-      
+
       const blob = await generateEpub(novel.title, novel.author || "Unknown", coverBase64 as string | null, chaptersWithContent);
-      
+
       const url = window.URL.createObjectURL(blob);
       const a = document.createElement("a");
       a.href = url;
@@ -218,7 +218,7 @@ export default function NovelDetailPage() {
       a.click();
       window.URL.revokeObjectURL(url);
       document.body.removeChild(a);
-      
+
       toast.success("Xuất EPUB thành công!");
     } catch (e: any) {
       toast.error(e.message || "Lỗi khi xuất EPUB");
@@ -227,27 +227,46 @@ export default function NovelDetailPage() {
 
   const handleTranslateTitle = async () => {
     if (!novel || !selectedProvider || !selectedModel) return;
-    
+
     try {
       setIsTranslatingTitle(true);
-      
+
       const model = await resolveStep({ providerId: selectedProvider, modelId: selectedModel });
       if (!model) throw new Error("Không thể tải model AI");
 
-      const sysMsg = "Bạn là biên dịch viên truyện chữ chuyên nghiệp. Chỉ trả về kết quả dịch tiếng Việt của tên truyện, không thêm bất kỳ câu chữ nào khác, không dùng ngoặc kép.";
-      const usrMsg = `Dịch tên truyện này sang tiếng Việt: ${novel.title}`;
+      const sysMsgTitle = "Bạn là biên dịch viên truyện chữ chuyên nghiệp. Chỉ trả về kết quả dịch tiếng Việt của tên truyện, không thêm bất kỳ câu chữ nào khác, không dùng ngoặc kép.";
+      const usrMsgTitle = `Dịch tên truyện này sang tiếng Việt: ${novel.title}`;
 
-      const { text } = await generateText({
+      const titlePromise = generateText({
         model,
-        system: sysMsg,
-        prompt: usrMsg,
+        system: sysMsgTitle,
+        prompt: usrMsgTitle,
       });
 
-      const translated = text.trim();
-      if (!translated) throw new Error("Không nhận được kết quả dịch");
-      
-      await db.novels.update(novel.id, { title: translated });
-      toast.success("Đã dịch tên truyện thành công!");
+      let descPromise = Promise.resolve({ text: "" });
+      if (novel.description) {
+        const sysMsgDesc = "Bạn là biên dịch viên truyện chữ chuyên nghiệp. Dịch đoạn tóm tắt truyện sau sang tiếng Việt chuyên nghiệp, đúng ngữ cảnh kiếm hiệp/tiên hiệp/đô thị. Chỉ trả về bản dịch, không thêm giải thích.";
+        const usrMsgDesc = `Dịch mô tả truyện này sang tiếng Việt:\n\n${novel.description}`;
+        descPromise = generateText({
+          model,
+          system: sysMsgDesc,
+          prompt: usrMsgDesc,
+        });
+      }
+
+      toast.info("Đang xử lý dịch thuật...");
+      const [titleRes, descRes] = await Promise.all([titlePromise, descPromise]);
+
+      const translatedTitle = titleRes.text.trim();
+      const translatedDesc = descRes.text.trim();
+
+      if (!translatedTitle) throw new Error("Không nhận được kết quả dịch tên truyện");
+
+      const updateData: any = { title: translatedTitle };
+      if (translatedDesc) updateData.description = translatedDesc;
+
+      await db.novels.update(novel.id, updateData);
+      toast.success("Đã dịch tên truyện và mô tả thành công!");
       setTranslateTitleOpen(false);
     } catch (e: any) {
       toast.error(e.message || "Không thể dịch tên truyện");
@@ -662,7 +681,7 @@ export default function NovelDetailPage() {
               Tên gốc: <strong className="text-foreground">{novel.title}</strong>
             </DialogDescription>
           </DialogHeader>
-          
+
           <div className="space-y-4 py-2">
             <div className="space-y-2">
               <label className="text-sm font-medium">Nhà cung cấp (Provider)</label>
@@ -677,7 +696,7 @@ export default function NovelDetailPage() {
                 </SelectContent>
               </Select>
             </div>
-            
+
             <div className="space-y-2">
               <label className="text-sm font-medium">Mô hình AI (Model)</label>
               <Select value={selectedModel} onValueChange={setSelectedModel} disabled={isTranslatingTitle || !models || models.length === 0}>
@@ -692,7 +711,7 @@ export default function NovelDetailPage() {
               </Select>
             </div>
           </div>
-          
+
           <DialogFooter>
             <Button variant="outline" onClick={() => setTranslateTitleOpen(false)} disabled={isTranslatingTitle}>Hủy</Button>
             <Button onClick={handleTranslateTitle} disabled={isTranslatingTitle || !selectedModel}>
