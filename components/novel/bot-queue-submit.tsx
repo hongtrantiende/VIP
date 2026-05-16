@@ -64,6 +64,7 @@ export function BotQueueSubmit({
   const [loading, setLoading] = useState(true);
   const [importingJobId, setImportingJobId] = useState<string | null>(null);
   const [selectedMode, setSelectedMode] = useState<string>("hybrid");
+  const [selectedWorker, setSelectedWorker] = useState<string>("any");
 
   useEffect(() => {
     setMounted(true);
@@ -191,6 +192,7 @@ export function BotQueueSubmit({
           dictSources,
           promptType: selectedMode === "pure-ai" ? "custom" : "khuyen_nghi",
           extractDict: true,
+          assignedWorker: selectedWorker,
         }),
       });
 
@@ -320,17 +322,12 @@ export function BotQueueSubmit({
         })), "khác", "skip");
       }
 
-      // Xóa job khỏi hàng đợi sau khi import xong
-      await fetch(`/api/bot-translate/queue?jobId=${jobId}`, { method: "DELETE" });
-      
-      // Xóa file output khỏi Drive để dọn dẹp
-      if (finalOutputFileUrl) {
-        await fetch(`/api/bot-translate/queue/upload`, { 
-          method: "DELETE", 
-          body: JSON.stringify({ fileId: finalOutputFileUrl }),
-          headers: { "Content-Type": "application/json" }
-        }).catch(() => {});
-      }
+      // Đánh dấu là đã nạp thay vì xóa để lưu lịch sử
+      await fetch("/api/bot-translate/queue", {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ jobId, status: "completed" }), // Ensure it stays completed
+      });
 
       loadJobs();
 
@@ -369,6 +366,24 @@ export function BotQueueSubmit({
               <SelectItem value="hybrid">Gốc + Thô + AI (Khuyến nghị)</SelectItem>
               <SelectItem value="stv-hybrid">Converter AI (Dùng STV)</SelectItem>
               <SelectItem value="pure-ai">Dịch thuần AI (Cần quét Prompt)</SelectItem>
+            </SelectContent>
+          </Select>
+        </div>
+
+        {/* Bot selector */}
+        <div className="space-y-1.5">
+          <Label className="text-[11px]">Chọn Bot xử lý (Tuỳ chọn)</Label>
+          <Select value={selectedWorker} onValueChange={setSelectedWorker}>
+            <SelectTrigger className="h-8 text-xs">
+              <SelectValue />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="any">Bất kỳ Bot nào rảnh</SelectItem>
+              <SelectItem value="AI-1">Slot 1 (AI-1)</SelectItem>
+              <SelectItem value="AI-2">Slot 2 (AI-2)</SelectItem>
+              <SelectItem value="AI-3">Slot 3 (AI-3)</SelectItem>
+              <SelectItem value="AI-4">Slot 4 (AI-4)</SelectItem>
+              <SelectItem value="AI-5">Slot 5 (AI-5)</SelectItem>
             </SelectContent>
           </Select>
         </div>

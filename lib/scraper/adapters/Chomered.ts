@@ -277,30 +277,83 @@ export const ChomeredAdapter: SiteAdapter = {
     const doc = new DOMParser().parseFromString(html, "text/html");
     const base = new URL(url);
 
-    const title = doc.querySelector("h1")?.textContent?.trim() || "";
-    // Author is often near title or in meta
-    const author = doc.querySelector(".bookinfo .bookdetail dd a")?.textContent?.trim() || undefined;
-    const description = doc.querySelector(".bookinfo .intro")?.textContent?.trim() || undefined;
+    const title = doc.querySelector(".bookbox .title .name")?.textContent?.trim() || doc.querySelector("h1")?.textContent?.trim() || "";
     
-    const coverImg = doc.querySelector(".bookinfo .bookcover img");
-    const coverImage = coverImg ? new URL(coverImg.getAttribute("src") || "", base).href : undefined;
+    // Author is often near title or in meta
+    let author = doc.querySelector(".bookbox .author span, .bookinfo .bookdetail dd a")?.textContent?.trim() || undefined;
+    if (author && author.includes("作者 :")) {
+      author = author.split("作者 :")[1].trim();
+    }
+
+    const description = doc.querySelector(".bookbox .desc .overdesc, .bookinfo .intro")?.textContent?.trim() || undefined;
+    
+    const coverImg = doc.querySelector(".bookbox .cover img, .bookinfo .bookcover img");
+    let coverImage = coverImg ? coverImg.getAttribute("src") : undefined;
+    if (coverImage) {
+      if (coverImage.startsWith("//")) {
+        coverImage = "https:" + coverImage;
+      } else if (coverImage.startsWith("/")) {
+        coverImage = new URL(coverImage, base).href;
+      }
+    }
 
     const chapterLinks = doc.querySelectorAll("#chapterlist a, .chapterlist a");
-    const chapters = Array.from(chapterLinks).map((a, i) => {
-      const chTitle = a.querySelector("h3")?.textContent?.trim() || a.textContent?.trim() || `Chương ${i + 1}`;
-      return {
-        title: chTitle,
-        url: new URL(a.getAttribute("href") || "", base).href,
-        order: i,
-      };
-    });
+    const chapters = Array.from(chapterLinks)
+      .filter((a) => {
+        const href = a.getAttribute("href");
+        return href && href !== "#" && !href.startsWith("javascript:");
+      })
+      .map((a, i) => {
+        const h3 = a.querySelector("h3");
+        let chTitle = "";
+        if (h3) {
+          chTitle = h3.textContent?.replace(/\s+/g, " ").trim() || "";
+        }
+        if (!chTitle) {
+          chTitle = a.textContent?.replace(/\s+/g, " ").trim() || `Chương ${i + 1}`;
+        }
+        return {
+          title: chTitle,
+          url: new URL(a.getAttribute("href") || "", base).href,
+          order: i,
+        };
+      });
 
     return { title, author, description, coverImage, chapters };
   },
 
   getChapterContent(html, _url, contentText) {
     const doc = new DOMParser().parseFromString(html, "text/html");
-    const chapterTitle = doc.querySelector("h1, h2")?.textContent?.trim() || "";
+    
+    let chapterTitle = "";
+    
+    // First try <title> tag as it's the most reliable on welove-gourmet
+    const titleTag = doc.querySelector("title");
+    if (titleTag && titleTag.textContent) {
+      // Format usually: 《Book Title》... - 第1章
+      const parts = titleTag.textContent.split("-");
+      if (parts.length > 1) {
+        chapterTitle = parts[parts.length - 1].trim();
+      }
+    }
+
+    // Fallback to h2 if title tag failed or didn't contain a dash
+    if (!chapterTitle) {
+      const h2 = doc.querySelector("h2");
+      if (h2 && h2.textContent?.trim() && !h2.textContent.includes("熱門")) {
+        chapterTitle = h2.textContent.replace(/《.*?》/g, "").trim();
+      }
+    }
+    
+    // Fallback to h1 and try to extract just the chapter part (e.g. "第1章")
+    if (!chapterTitle) {
+      const h1 = doc.querySelector("h1");
+      if (h1 && h1.textContent?.trim() && !h1.textContent.includes("熱門")) {
+        const text = h1.textContent.trim();
+        const match = text.match(/(第.*?章.*)/);
+        chapterTitle = match ? match[1].trim() : text;
+      }
+    }
 
     const contentEl = doc.querySelector(".novelcontent");
     if (!contentEl) return { title: chapterTitle, content: contentText || "" };
@@ -320,7 +373,22 @@ export const ChomeredAdapter: SiteAdapter = {
     // Clean up
     contentEl.querySelectorAll("script, style, .ad_splify, ins, .novel_share_container").forEach((el) => el.remove());
 
-    let text = contentEl.textContent || "";
+    // Extract text from <p> tags to preserve formatting
+    const paragraphs = Array.from(contentEl.querySelectorAll("p"));
+    let text = "";
+    if (paragraphs.length > 0) {
+      text = paragraphs
+        .map(p => p.textContent?.trim() || "")
+        .filter(t => t.length > 0)
+        .join("\n\n");
+    } else {
+      // Fallback: handle <br> tags if there are no <p> tags
+      let htmlContent = contentEl.innerHTML;
+      htmlContent = htmlContent.replace(/<br\s*\/?>/gi, '\n');
+      const tempDiv = doc.createElement("div");
+      tempDiv.innerHTML = htmlContent;
+      text = tempDiv.textContent?.trim() || "";
+    }
     
     // Final cleanup
     text = text

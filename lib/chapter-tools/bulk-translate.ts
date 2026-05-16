@@ -19,8 +19,8 @@ import { isSceneTranslated } from "@/lib/novel-io";
 
 // ── Retry & Error Handling ──
 
-const MAX_RETRIES = 3;
-const RETRY_BASE_DELAY = 2000; // 2s, 4s, 8s exponential backoff
+const MAX_RETRIES = 9999;
+const RETRY_BASE_DELAY = 30000; // 30s
 
 /** Classify API errors and decide if they are retryable */
 function classifyError(err: unknown): { retryable: boolean; message: string } {
@@ -339,12 +339,12 @@ export async function runBulkTranslate(opts: BulkTranslateOptions): Promise<void
           lastError = err;
           const classified = classifyError(err);
 
-          if (!classified.retryable || attempt >= MAX_RETRIES) {
+          if (!classified.retryable) {
             throw new Error(classified.message);
           }
 
-          const backoffMs = RETRY_BASE_DELAY * Math.pow(2, attempt);
-          console.warn(`[Translate] Retry ${attempt + 1}/${MAX_RETRIES} for "${chapter.title}" in ${backoffMs}ms: ${classified.message}`);
+          const backoffMs = RETRY_BASE_DELAY; // Cố định 30 giây
+          console.warn(`[Translate] Lỗi: ${classified.message}. Chờ 30s để thử lại lần ${attempt + 1}...`);
           await delay(backoffMs);
         }
       }

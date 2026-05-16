@@ -131,7 +131,7 @@ function classifyError(err: unknown): { retryable: boolean; message: string } {
 }
 
 const PERSISTENT_RETRY_DELAY = 30000; // 30 giây
-const MAX_PERSISTENT_ATTEMPTS = 10; // Thử lại tối đa 10 lần
+const MAX_PERSISTENT_ATTEMPTS = 9999; // Thử lại vô hạn lần
 
 function countWords(content: string): number {
   return content.split(/\s+/).filter(Boolean).length;

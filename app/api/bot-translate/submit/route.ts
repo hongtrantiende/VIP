@@ -27,6 +27,7 @@ export async function POST(req: NextRequest) {
       nameDict,
       chapterCount,
       inputFileUrl,
+      assignedWorker,
     } = body;
 
     if (!novelName || !inputFileUrl) {
@@ -34,24 +35,27 @@ export async function POST(req: NextRequest) {
     }
 
     // ── Smart Distribution Logic ──
-    const workers = ["AI-1", "AI-2", "AI-3", "AI-4", "AI-5"];
-    
-    // 1. Get current load for each worker
-    const { data: activeJobs } = await supabase
-      .from("translation_queue")
-      .select("assigned_worker, chapter_count, current_chapter, status")
-      .in("status", ["pending", "translating"]);
+    let bestWorker = assignedWorker;
+    if (!bestWorker || bestWorker === "any") {
+      const workers = ["AI-1", "AI-2", "AI-3", "AI-4", "AI-5"];
+      
+      // 1. Get current load for each worker
+      const { data: activeJobs } = await supabase
+        .from("translation_queue")
+        .select("assigned_worker, chapter_count, current_chapter, status")
+        .in("status", ["pending", "translating"]);
 
-    // 2. Calculate remaining work (chapters) for each potential worker
-    const workerLoads = workers.map(name => {
-      const load = (activeJobs || [])
-        .filter(j => j.assigned_worker === name)
-        .reduce((sum, j) => sum + (j.chapter_count - (j.current_chapter || 0)), 0);
-      return { name, load };
-    });
+      // 2. Calculate remaining work (chapters) for each potential worker
+      const workerLoads = workers.map(name => {
+        const load = (activeJobs || [])
+          .filter(j => j.assigned_worker === name)
+          .reduce((sum, j) => sum + (j.chapter_count - (j.current_chapter || 0)), 0);
+        return { name, load };
+      });
 
-    // 3. Pick the worker with the minimum load
-    const bestWorker = workerLoads.sort((a, b) => a.load - b.load)[0].name;
+      // 3. Pick the worker with the minimum load
+      bestWorker = workerLoads.sort((a, b) => a.load - b.load)[0].name;
+    }
 
     // 1. Create queue entry with pre-assigned worker
     const { data: job, error: jobError } = await supabase

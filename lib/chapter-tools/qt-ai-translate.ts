@@ -209,8 +209,8 @@ function classifyError(err: unknown): { retryable: boolean; message: string } {
   return { retryable: true, message: msg };
 }
 
-const PERSISTENT_RETRY_DELAY = 30000; // 30 giây theo yêu cầu người dùng
-const MAX_PERSISTENT_ATTEMPTS = 10; // Thử lại tối đa 10 lần theo yêu cầu người dùng
+const PERSISTENT_RETRY_DELAY = 30000; // 30s
+const MAX_PERSISTENT_ATTEMPTS = 9999; // Thử lại vô hạn lần theo yêu cầu người dùng
 
 function countWords(content: string): number {
   return content.split(/\s+/).filter(Boolean).length;
