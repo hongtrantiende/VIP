@@ -139,8 +139,8 @@ export const TruyenFullVisionAdapter: SiteAdapter = {
 
         const contentHtml = contentEl.innerHTML;
         let text = contentHtml
-            .replace(/<br\s*\/?>/gi, "\n")
-            .replace(/<\/p>/gi, "\n\n")
+            .replace(/<(br|hr)\s*\/?>/gi, "\n")
+            .replace(/<\/(p|div|section|article|li)>/gi, "\n\n")
             .replace(/<[^>]+>/g, "");
 
         const textarea = doc.createElement("textarea");
