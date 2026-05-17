@@ -129,7 +129,13 @@ export function AppSidebar() {
     icon: BotMessageSquareIcon,
   } as const;
 
-  const sidebarNav = isAdmin ? [...mainNav, adminNavItem, botNavItem] : mainNav;
+  const bulkScraperNavItem = {
+    title: "Quét Website",
+    href: "/bulk-scraper",
+    icon: DatabaseIcon,
+  } as const;
+
+  const sidebarNav = isAdmin ? [...mainNav, adminNavItem, botNavItem, bulkScraperNavItem] : mainNav;
 
   return (
     <Sidebar collapsible="offcanvas" variant="sidebar">

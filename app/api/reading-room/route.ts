@@ -5,6 +5,15 @@ import fs from 'fs';
 import path from 'path';
 import os from 'os';
 
+const CACHE_DIR = path.join(os.tmpdir(), 'novel-studio-reading-room');
+
+/** Ensure cache directory exists before any write */
+function ensureCacheDir() {
+    if (!fs.existsSync(CACHE_DIR)) {
+        fs.mkdirSync(CACHE_DIR, { recursive: true });
+    }
+}
+
 export const maxDuration = 60; // seconds
 
 export async function GET(req: Request) {
@@ -22,12 +31,8 @@ export async function GET(req: Request) {
             if (!novelId) return NextResponse.json({ error: 'Missing novel ID' }, { status: 400 });
 
             // Cache folder
-            const cacheDir = path.join(os.tmpdir(), 'novel-studio-reading-room');
-            if (!fs.existsSync(cacheDir)) {
-                fs.mkdirSync(cacheDir, { recursive: true });
-            }
-
-            const cacheFile = path.join(cacheDir, `${novelId}.json`);
+            ensureCacheDir();
+            const cacheFile = path.join(CACHE_DIR, `${novelId}.json`);
 
             // If we don't have it cached or need to force refresh
             if (!fs.existsSync(cacheFile)) {
@@ -70,8 +75,8 @@ export async function GET(req: Request) {
                 return NextResponse.json({ error: 'Missing ID or Index' }, { status: 400 });
             }
 
-            const cacheDir = path.join(os.tmpdir(), 'novel-studio-reading-room');
-            const cacheFile = path.join(cacheDir, `${novelId}.json`);
+            ensureCacheDir();
+            const cacheFile = path.join(CACHE_DIR, `${novelId}.json`);
 
             let dataStr = '';
             if (!fs.existsSync(cacheFile)) {

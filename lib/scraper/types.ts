@@ -57,3 +57,13 @@ export interface ScrapeProgress {
   total: number;
   currentTitle: string;
 }
+
+/** A novel discovered from a site's browse/catalog page */
+export interface CatalogNovel {
+  title: string;
+  url: string;
+  coverImage?: string;
+  author?: string;
+  genre?: string;
+  chapterCount?: number;
+}
