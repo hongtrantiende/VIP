@@ -14,6 +14,7 @@ import {
 } from "lucide-react";
 import { useProfile } from "@/lib/hooks/use-profile";
 import { useBulkScraperStore } from "@/lib/stores/bulk-scraper-queue";
+import { db } from "@/lib/db";
 import { toast } from "sonner";
 import { redirect } from "next/navigation";
 
@@ -169,6 +170,10 @@ export default function BulkScraperPage() {
                 )}
             </Card>
 
+            {/* Mottruyen Scanner */}
+            <MottruyenScannerCard />
+
+
             {/* Active Jobs */}
             {activeJobs.length > 0 && (
                 <Card>
@@ -265,5 +270,256 @@ function JobRow({ job, onCancel, compact }: { job: any; onCancel?: () => void; c
                 </Button>
             )}
         </div>
+    );
+}
+
+function MottruyenScannerCard() {
+    const [startId, setStartId] = useState(800);
+    const [endId, setEndId] = useState(1000000);
+    const [batchSize, setBatchSize] = useState(100);
+    const [currentId, setCurrentId] = useState(800);
+    const [status, setStatus] = useState<"idle" | "running" | "paused" | "finished">("idle");
+    const [successCount, setSuccessCount] = useState(0);
+    const [totalProcessed, setTotalProcessed] = useState(0);
+    const [progressData, setProgressData] = useState<Record<string, {name: string, downloaded: number, total: number, status: string}>>({});
+
+    // Use a ref to keep track of running state to break the loop instantly
+    const runningRef = React.useRef(false);
+
+    React.useEffect(() => {
+        let interval: NodeJS.Timeout;
+        if (status === "running") {
+            interval = setInterval(async () => {
+                try {
+                    const res = await fetch("/api/mottruyen-scanner/progress");
+                    if (res.ok) {
+                        const data = await res.json();
+                        setProgressData(data);
+
+                        // Tự động import và tải lên Phòng Đọc khi hoàn tất
+                        Object.entries(data).forEach(async ([id, p]: [string, any]) => {
+                            if (p.status === "done" && !p.savedToDb) {
+                                // Đánh dấu đã xử lý để không gọi lại nhiều lần
+                                data[id].savedToDb = true;
+                                setProgressData({ ...data });
+
+                                try {
+                                    const dlRes = await fetch(`/api/mottruyen-scanner/download?id=${id}`);
+                                    if (dlRes.ok) {
+                                        const novelData = await dlRes.json();
+                                        const now = new Date();
+
+                                        // 1. Lưu vào Thư viện cá nhân (IndexedDB)
+                                        await db.novels.put({
+                                            id: novelData.id,
+                                            title: novelData.title,
+                                            author: novelData.author,
+                                            coverImage: novelData.coverUrl,
+                                            description: novelData.description,
+                                            sourceUrl: novelData.sourceUrl,
+                                            createdAt: now,
+                                            updatedAt: now,
+                                        });
+
+                                        const chapterPuts = novelData.chapters.map((ch: any) => ({
+                                            id: ch.id,
+                                            novelId: novelData.id,
+                                            title: ch.title,
+                                            order: ch.orderIndex,
+                                            createdAt: now,
+                                            updatedAt: now,
+                                        }));
+
+                                        const scenePuts = novelData.chapters.map((ch: any) => ({
+                                            id: `scene-${ch.id}`,
+                                            novelId: novelData.id,
+                                            chapterId: ch.id,
+                                            content: ch.content,
+                                            order: 0,
+                                            version: 1,
+                                            versionType: "manual" as any,
+                                            isActive: 1,
+                                            createdAt: now,
+                                            updatedAt: now,
+                                        }));
+
+                                        await db.chapters.bulkPut(chapterPuts);
+                                        await db.scenes.bulkPut(scenePuts);
+
+                                        // 2. Tự động tải lên Reading Room
+                                        const exportData = {
+                                            novel: await db.novels.get(novelData.id),
+                                            chapters: await db.chapters.where("novelId").equals(novelData.id).toArray(),
+                                            scenes: await db.scenes.where("novelId").equals(novelData.id).toArray()
+                                        };
+
+                                        const uploadRes = await fetch(`/api/reading-room?action=upload&novelId=${novelData.id}`, {
+                                            method: "POST",
+                                            headers: { "Content-Type": "application/json" },
+                                            body: JSON.stringify(exportData),
+                                        });
+
+                                        if (uploadRes.ok) {
+                                            toast.success(`Đã tự động tải lên phòng đọc: ${novelData.title}`);
+                                        }
+                                    }
+                                } catch(err) {
+                                    console.error("Lỗi khi lưu/đăng truyện", err);
+                                }
+                            }
+                        });
+                    }
+                } catch (e) {
+                    // Ignore errors during polling
+                }
+            }, 1500);
+        }
+        return () => clearInterval(interval);
+    }, [status]);
+
+    const startScan = async () => {
+        if (currentId >= endId) return;
+        setStatus("running");
+        runningRef.current = true;
+        
+        let cid = currentId;
+        while (runningRef.current && cid <= endId) {
+            try {
+                const res = await fetch("/api/mottruyen-scanner", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ startId: cid, batchSize: Math.min(batchSize, endId - cid + 1) })
+                });
+                
+                if (res.ok) {
+                    const data = await res.json();
+                    setSuccessCount(prev => prev + data.successCount);
+                    setTotalProcessed(prev => prev + data.total);
+                }
+            } catch (err) {
+                console.error(err);
+            }
+
+            cid += batchSize;
+            setCurrentId(cid);
+
+            if (cid <= endId && runningRef.current) {
+                // Sleep 0.5s
+                await new Promise(r => setTimeout(r, 500));
+            }
+        }
+
+        if (cid > endId) {
+            setStatus("finished");
+            runningRef.current = false;
+        }
+    };
+
+    const pauseScan = () => {
+        setStatus("paused");
+        runningRef.current = false;
+    };
+
+    const resetScan = () => {
+        setStatus("idle");
+        setCurrentId(startId);
+        setSuccessCount(0);
+        setTotalProcessed(0);
+    };
+
+    return (
+        <Card>
+            <CardHeader className="pb-3">
+                <div className="flex items-center justify-between">
+                    <div>
+                        <CardTitle className="text-sm">Quét API Mottruyen</CardTitle>
+                        <CardDescription className="text-xs mt-1">
+                            {status === "idle" && <>Lưu tự động vào thư mục <strong>downloads/mottruyen</strong> dưới dạng định dạng <strong>JSON chuẩn</strong> (giống y hệt tool quét web).</>}
+                            {status === "running" && `Đang quét từ ID ${currentId} • Tải thành công: ${successCount} / Đã duyệt: ${totalProcessed}`}
+                            {status === "paused" && `Tạm dừng ở ID ${currentId} • Thành công: ${successCount}`}
+                            {status === "finished" && `Hoàn tất! Đã duyệt đến ${endId} • Thành công: ${successCount}`}
+                        </CardDescription>
+                    </div>
+                    <div className="flex gap-2 items-center">
+                        {status === "idle" && (
+                            <>
+                                <Input type="number" value={startId} onChange={e => {setStartId(Number(e.target.value)); setCurrentId(Number(e.target.value));}} className="w-24 h-9" title="Từ ID" />
+                                <span className="text-xs text-muted-foreground">-</span>
+                                <Input type="number" value={endId} onChange={e => setEndId(Number(e.target.value))} className="w-28 h-9" title="Đến ID" />
+                                <span className="text-xs text-muted-foreground ml-2">Batch:</span>
+                                <Input type="number" value={batchSize} onChange={e => setBatchSize(Number(e.target.value))} className="w-20 h-9" title="Số luồng song song" />
+                                
+                                <Button onClick={startScan} className="bg-gradient-to-r from-blue-600 to-cyan-600 text-white ml-2">
+                                    <PlayIcon className="size-4 mr-1.5" />
+                                    Bắt đầu
+                                </Button>
+                            </>
+                        )}
+                        {status === "running" && (
+                            <Button variant="outline" size="sm" onClick={pauseScan}>
+                                <PauseIcon className="size-3.5 mr-1" />
+                                Tạm dừng
+                            </Button>
+                        )}
+                        {status === "paused" && (
+                            <>
+                                <Button size="sm" onClick={startScan} className="bg-gradient-to-r from-blue-600 to-cyan-600 text-white">
+                                    <PlayIcon className="size-3.5 mr-1" />
+                                    Tiếp tục
+                                </Button>
+                                <Button variant="outline" size="sm" onClick={resetScan}>
+                                    Reset
+                                </Button>
+                            </>
+                        )}
+                        {status === "finished" && (
+                            <Button variant="outline" size="sm" onClick={resetScan}>
+                                <RefreshCwIcon className="size-3.5 mr-1" />
+                                Đặt lại
+                            </Button>
+                        )}
+                    </div>
+                </div>
+            </CardHeader>
+            {status !== "idle" && (
+                 <CardContent className="pt-0">
+                     <div className="space-y-4">
+                         <div className="space-y-2">
+                             <div className="flex justify-between text-xs text-muted-foreground">
+                                 <span>Tiến độ tổng: {Math.min(100, Math.round(((currentId - startId) / (endId - startId)) * 100))}%</span>
+                                 <span>ID hiện tại: {currentId} / {endId}</span>
+                             </div>
+                             <Progress value={Math.min(100, ((currentId - startId) / (endId - startId)) * 100)} className="h-2" />
+                         </div>
+                         
+                         {/* Chi tiết từng truyện đang tải */}
+                         {Object.keys(progressData).length > 0 && (
+                             <div className="space-y-2 max-h-[300px] overflow-y-auto pr-2">
+                                 {Object.entries(progressData)
+                                     .filter(([id, p]) => p.status === "fetching" || p.status === "done")
+                                     // Sắp xếp ID lớn hơn lên trên để dễ xem
+                                     .sort((a, b) => Number(b[0]) - Number(a[0]))
+                                     .map(([id, p]) => {
+                                     const pct = p.total > 0 ? Math.round((p.downloaded / p.total) * 100) : 0;
+                                     return (
+                                         <div key={id} className={`p-2 border rounded-lg text-xs flex flex-col gap-1.5 ${p.status === "done" ? "bg-green-500/10 border-green-500/20" : "bg-blue-500/5 border-blue-500/20"}`}>
+                                             <div className="flex justify-between font-medium">
+                                                 <span className="truncate pr-4" title={p.name}>[ID {id}] {p.name}</span>
+                                                 <span className="shrink-0">{pct}%</span>
+                                             </div>
+                                             <div className="flex justify-between text-muted-foreground">
+                                                 <span>Đã tải: {p.downloaded} / {p.total} chương</span>
+                                                 <span>{p.status === "done" ? "Hoàn tất" : "Đang tải..."}</span>
+                                             </div>
+                                             {p.status === "fetching" && <Progress value={pct} className="h-1.5" />}
+                                         </div>
+                                     );
+                                 })}
+                             </div>
+                         )}
+                     </div>
+                 </CardContent>
+            )}
+        </Card>
     );
 }
