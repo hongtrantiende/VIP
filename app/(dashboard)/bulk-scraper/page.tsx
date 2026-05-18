@@ -362,10 +362,12 @@ function MottruyenScannerCard() {
                 } catch (e) { console.error(e); }
             }
 
+            let lastUiUpdate = Date.now();
+
             setProgressData(prev => ({ ...prev, [id]: { ...prev[id], downloaded: chapCount } }));
 
             while (currentChapId && runningRef.current) {
-                await new Promise(r => setTimeout(r, 50)); // Delay nhẹ để tải nhanh hơn
+                // Removed the 50ms artificial delay to speed up download
                 const proxyUrl = encodeURIComponent(`http://api.mottruyen.com/chapter/?chapter_id=${currentChapId}`);
                 const chapRes = await fetch(`/api/mottruyen-proxy?url=${proxyUrl}`);
                 if (!chapRes.ok) break;
@@ -388,41 +390,49 @@ function MottruyenScannerCard() {
                     const chapterId = `chap-${currentChapId}`;
                     const now = new Date();
 
-                    // Thêm thẳng vào DB
-                    await db.chapters.put({
-                        id: chapterId,
-                        novelId: novelObj.id,
-                        title: chapName,
-                        order: chapCount,
-                        createdAt: now,
-                        updatedAt: now,
-                    });
-
-                    await db.scenes.put({
-                        id: `scene-${chapterId}`,
-                        novelId: novelObj.id,
-                        chapterId: chapterId,
-                        title: "",
-                        content: chapContent.trim(),
-                        wordCount: chapContent.trim().split(/\s+/).length,
-                        order: 0,
-                        version: 1,
-                        versionType: "manual" as any,
-                        isActive: 1,
-                        createdAt: now,
-                        updatedAt: now,
-                    });
+                    // Đẩy dữ liệu vào DB (không chờ tuần tự để tối ưu tốc độ)
+                    const dbPromises = [
+                        db.chapters.put({
+                            id: chapterId,
+                            novelId: novelObj.id,
+                            title: chapName,
+                            order: chapCount,
+                            createdAt: now,
+                            updatedAt: now,
+                        }),
+                        db.scenes.put({
+                            id: `scene-${chapterId}`,
+                            novelId: novelObj.id,
+                            chapterId: chapterId,
+                            title: "",
+                            content: chapContent.trim(),
+                            wordCount: chapContent.trim().split(/\s+/).length,
+                            order: 0,
+                            version: 1,
+                            versionType: "manual" as any,
+                            isActive: 1,
+                            createdAt: now,
+                            updatedAt: now,
+                        })
+                    ];
 
                     chapCount++;
                     currentChapId = chapData.data.NEXT;
-                    setProgressData(prev => ({ ...prev, [id]: { ...prev[id], downloaded: chapCount } }));
+
+                    // Giảm thiểu re-render UI: chỉ cập nhật state mỗi 500ms hoặc 20 chương
+                    if (Date.now() - lastUiUpdate > 500 || chapCount % 20 === 0) {
+                        setProgressData(prev => ({ ...prev, [id]: { ...prev[id], downloaded: chapCount } }));
+                        lastUiUpdate = Date.now();
+                    }
+
+                    await Promise.all(dbPromises);
                 } else {
                     break;
                 }
             }
 
             if (!runningRef.current) {
-                setProgressData(prev => ({ ...prev, [id]: { ...prev[id], status: "paused" } }));
+                setProgressData(prev => ({ ...prev, [id]: { ...prev[id], downloaded: chapCount, status: "paused" } }));
                 return;
             }
 
