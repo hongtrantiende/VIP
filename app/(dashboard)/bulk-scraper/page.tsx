@@ -282,104 +282,134 @@ function MottruyenScannerCard() {
     const [successCount, setSuccessCount] = useState(0);
     const [totalProcessed, setTotalProcessed] = useState(0);
     const [progressData, setProgressData] = useState<Record<string, {name: string, downloaded: number, total: number, status: string}>>({});
-
+    
     // Use a ref to keep track of running state to break the loop instantly
     const runningRef = React.useRef(false);
 
-    React.useEffect(() => {
-        let interval: NodeJS.Timeout;
-        if (status === "running") {
-            interval = setInterval(async () => {
+    const downloadNovelInFrontend = async (novelInfo: any) => {
+        try {
+            const { id, novelData, existingInRR } = novelInfo;
+            const totalChap = parseInt(novelData.TOTALCHAPTER || "0");
+            
+            setProgressData(prev => ({ ...prev, [id]: { name: novelData.NAME, downloaded: 0, total: totalChap, status: "fetching" } }));
+
+            let novelObj = {
+                id: `mottruyen-${id}`,
+                title: novelData.NAME,
+                author: novelData.AUTHOR || "Unknown",
+                coverImage: novelData.IMG || "",
+                description: novelData.DESC || "",
+                sourceUrl: `http://api.mottruyen.com/story/?story_id=${id}`,
+                createdAt: new Date(),
+                updatedAt: new Date(),
+            };
+            
+            // Lưu ngay metadata để tránh mất mát nếu bị ngắt giữa chừng
+            await db.novels.put(novelObj);
+
+            let currentChapId = novelData.CHAPTER[0]?.id;
+            let chapCount = 0;
+
+            if (existingInRR) {
                 try {
-                    const res = await fetch("/api/mottruyen-scanner/progress");
-                    if (res.ok) {
-                        const data = await res.json();
-                        setProgressData(data);
-
-                        // Tự động import và tải lên Phòng Đọc khi hoàn tất
-                        Object.entries(data).forEach(async ([id, p]: [string, any]) => {
-                            if (p.status === "done" && !p.savedToDb) {
-                                // Đánh dấu đã xử lý để không gọi lại nhiều lần
-                                data[id].savedToDb = true;
-                                setProgressData({ ...data });
-
-                                try {
-                                    const dlRes = await fetch(`/api/mottruyen-scanner/download?id=${id}`);
-                                    if (dlRes.ok) {
-                                        const parsedData = await dlRes.json();
-                                        // Hỗ trợ cả định dạng cũ (phẳng) và mới (nested)
-                                        const novelObj = parsedData.novel || parsedData;
-                                        const chaptersArr = parsedData.chapters || [];
-                                        
-                                        const now = new Date();
-
-                                        // 1. Lưu vào Thư viện cá nhân (IndexedDB)
-                                        await db.novels.put({
-                                            id: novelObj.id,
-                                            title: novelObj.title,
-                                            author: novelObj.author,
-                                            coverImage: novelObj.coverUrl || novelObj.coverImage,
-                                            description: novelObj.description,
-                                            sourceUrl: novelObj.sourceUrl,
-                                            createdAt: now,
-                                            updatedAt: now,
-                                        });
-
-                                        const chapterPuts = chaptersArr.map((ch: any) => ({
-                                            id: ch.id,
-                                            novelId: novelObj.id,
-                                            title: ch.title,
-                                            order: ch.orderIndex || ch.order,
-                                            createdAt: now,
-                                            updatedAt: now,
-                                        }));
-
-                                        const scenePuts = chaptersArr.map((ch: any) => ({
-                                            id: `scene-${ch.id}`,
-                                            novelId: novelObj.id,
-                                            chapterId: ch.id,
-                                            content: ch.content,
-                                            order: 0,
-                                            version: 1,
-                                            versionType: "manual" as any,
-                                            isActive: 1,
-                                            createdAt: now,
-                                            updatedAt: now,
-                                        }));
-
-                                        await db.chapters.bulkPut(chapterPuts);
-                                        await db.scenes.bulkPut(scenePuts);
-
-                                        // 2. Tự động tải lên Reading Room
-                                        const exportData = {
-                                            novel: await db.novels.get(novelObj.id),
-                                            chapters: await db.chapters.where("novelId").equals(novelObj.id).toArray(),
-                                            scenes: await db.scenes.where("novelId").equals(novelObj.id).toArray()
-                                        };
-
-                                        const uploadRes = await fetch(`/api/reading-room?action=upload&novelId=${novelObj.id}`, {
-                                            method: "POST",
-                                            headers: { "Content-Type": "application/json" },
-                                            body: JSON.stringify(exportData),
-                                        });
-
-                                        if (uploadRes.ok) {
-                                            toast.success(`Đã tự động tải lên phòng đọc: ${novelData.title}`);
-                                        }
-                                    }
-                                } catch(err) {
-                                    console.error("Lỗi khi lưu/đăng truyện", err);
+                    const rrRes = await fetch(`/api/reading-room?action=novel_data&id=${existingInRR.id}`);
+                    if (rrRes.ok) {
+                        const rrData = await rrRes.json();
+                        if (rrData.chapters && rrData.chapters.length > 0) {
+                            rrData.chapters.sort((a: any, b: any) => a.order - b.order);
+                            const lastChap = rrData.chapters[rrData.chapters.length - 1];
+                            chapCount = rrData.chapters.length;
+                            const lastChapOriginalId = lastChap.id.replace("chap-", "");
+                            
+                            const proxyUrl = encodeURIComponent(`http://api.mottruyen.com/chapter/?chapter_id=${lastChapOriginalId}`);
+                            const lastChapRes = await fetch(`/api/mottruyen-proxy?url=${proxyUrl}`);
+                            if (lastChapRes.ok) {
+                                const lastChapData = await lastChapRes.json();
+                                if (lastChapData.data?.NEXT) {
+                                    currentChapId = lastChapData.data.NEXT;
+                                } else {
+                                    currentChapId = null; // Đã xong
                                 }
                             }
-                        });
+                        }
                     }
-                } catch (e) {
-                    // Ignore errors during polling
+                } catch (e) { console.error(e); }
+            }
+
+            setProgressData(prev => ({ ...prev, [id]: { ...prev[id], downloaded: chapCount } }));
+
+            while (currentChapId && runningRef.current) {
+                const proxyUrl = encodeURIComponent(`http://api.mottruyen.com/chapter/?chapter_id=${currentChapId}`);
+                const chapRes = await fetch(`/api/mottruyen-proxy?url=${proxyUrl}`);
+                if (!chapRes.ok) break;
+                
+                const chapData = await chapRes.json();
+                if (chapData?.success === 1 && chapData.data) {
+                    const chapName = chapData.data.ENAME || `Chương ${chapCount + 1}`;
+                    let chapContent = chapData.data.CONTENT || "";
+                    chapContent = chapContent.replace(/<p>/g, "").replace(/<\/p>/g, "\n\n").replace(/&nbsp;/g, " ").replace(/<br\s*\/?>/g, "\n");
+                    
+                    const chapterId = `chap-${currentChapId}`;
+                    const now = new Date();
+                    
+                    // Thêm thẳng vào DB
+                    await db.chapters.put({
+                        id: chapterId,
+                        novelId: novelObj.id,
+                        title: chapName,
+                        order: chapCount,
+                        createdAt: now,
+                        updatedAt: now,
+                    });
+                    
+                    await db.scenes.put({
+                        id: `scene-${chapterId}`,
+                        novelId: novelObj.id,
+                        chapterId: chapterId,
+                        content: chapContent.trim(),
+                        order: 0,
+                        version: 1,
+                        versionType: "manual" as any,
+                        isActive: 1,
+                        createdAt: now,
+                        updatedAt: now,
+                    });
+                    
+                    chapCount++;
+                    currentChapId = chapData.data.NEXT;
+                    setProgressData(prev => ({ ...prev, [id]: { ...prev[id], downloaded: chapCount } }));
+                } else {
+                    break;
                 }
-            }, 1500);
+            }
+
+            if (!runningRef.current) {
+                setProgressData(prev => ({ ...prev, [id]: { ...prev[id], status: "paused" } }));
+                return;
+            }
+
+            // Upload to Reading Room
+            const exportData = {
+                novel: await db.novels.get(novelObj.id),
+                chapters: await db.chapters.where("novelId").equals(novelObj.id).toArray(),
+                scenes: await db.scenes.where("novelId").equals(novelObj.id).toArray()
+            };
+
+            const uploadRes = await fetch(`/api/reading-room?action=upload&novelId=${novelObj.id}`, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(exportData),
+            });
+
+            if (uploadRes.ok) {
+                setProgressData(prev => ({ ...prev, [id]: { ...prev[id], status: "done" } }));
+                toast.success(`Đã tự động tải lên phòng đọc: ${novelObj.title}`);
+            }
+
+        } catch (err) {
+            setProgressData(prev => ({ ...prev, [novelInfo.id]: { ...prev[novelInfo.id], status: "error" } }));
         }
-        return () => clearInterval(interval);
-    }, [status]);
+    };
 
     const startScan = async () => {
         if (currentId >= endId) return;
@@ -397,20 +427,28 @@ function MottruyenScannerCard() {
                 
                 if (res.ok) {
                     const data = await res.json();
-                    setSuccessCount(prev => prev + data.successCount);
-                    setTotalProcessed(prev => prev + data.total);
+                    
+                    // Tải song song 5 bộ truyện cùng lúc
+                    if (data.validNovels && data.validNovels.length > 0) {
+                        const PARALLEL = 5;
+                        for (let i = 0; i < data.validNovels.length; i += PARALLEL) {
+                            if (!runningRef.current) break;
+                            const batch = data.validNovels.slice(i, i + PARALLEL);
+                            await Promise.all(batch.map((novel: any) => 
+                                downloadNovelInFrontend(novel).then(() => setSuccessCount(prev => prev + 1))
+                            ));
+                        }
+                    }
+                    
+                    setTotalProcessed(prev => prev + data.totalScanned);
                 }
             } catch (err) {
                 console.error(err);
             }
 
+            if (!runningRef.current) break;
             cid += batchSize;
             setCurrentId(cid);
-
-            if (cid <= endId && runningRef.current) {
-                // Sleep 0.5s
-                await new Promise(r => setTimeout(r, 500));
-            }
         }
 
         if (cid > endId) {
@@ -438,7 +476,7 @@ function MottruyenScannerCard() {
                     <div>
                         <CardTitle className="text-sm">Quét API Mottruyen</CardTitle>
                         <CardDescription className="text-xs mt-1">
-                            {status === "idle" && <>Lưu tự động vào thư mục <strong>downloads/mottruyen</strong> dưới dạng định dạng <strong>JSON chuẩn</strong> (giống y hệt tool quét web).</>}
+                            {status === "idle" && <>Tự động lưu vào <strong>Thư viện</strong> & <strong>Phòng Đọc</strong>. Chống tải trùng & tự nối chương thiếu.</>}
                             {status === "running" && `Đang quét từ ID ${currentId} • Tải thành công: ${successCount} / Đã duyệt: ${totalProcessed}`}
                             {status === "paused" && `Tạm dừng ở ID ${currentId} • Thành công: ${successCount}`}
                             {status === "finished" && `Hoàn tất! Đã duyệt đến ${endId} • Thành công: ${successCount}`}
