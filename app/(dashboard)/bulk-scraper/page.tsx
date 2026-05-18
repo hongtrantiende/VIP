@@ -453,12 +453,6 @@ function MottruyenScannerCard() {
         let cid = currentId;
         while (runningRef.current && cid <= endId) {
             try {
-                // Nếu hàng đợi tải quá dài (giữ > 500 bộ chưa tải), tạm dừng quét để chờ tải bớt
-                if (downloadQueueRef.current.length > 500) {
-                    await new Promise(r => setTimeout(r, 2000));
-                    continue;
-                }
-
                 const res = await fetch("/api/mottruyen-scanner", {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
