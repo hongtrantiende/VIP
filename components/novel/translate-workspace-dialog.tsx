@@ -467,7 +467,7 @@ export function TranslateWorkspaceDialog({
         {step === "config" && (
           <div className="space-y-4 py-2">
             <Tabs value={activeTab} onValueChange={(val) => { setActiveTab(val); setConfirmMode(null); }} className="w-full">
-              <TabsList className="grid w-full grid-cols-3">
+              <TabsList className="flex flex-col sm:grid w-full sm:grid-cols-3 h-auto p-1 gap-1">
                 <TabsTrigger value="hybrid" className="hidden">Gốc + Thô + AI</TabsTrigger>
                 <TabsTrigger value="stv-hybrid">Dịch Converter AI</TabsTrigger>
                 <TabsTrigger value="pure-ai">Dịch Converter Prompt</TabsTrigger>

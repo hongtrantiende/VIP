@@ -6,18 +6,22 @@ export interface ChapterPreset {
 export const CHAPTER_PRESETS: Record<string, ChapterPreset> = {
   vietnamese: {
     label: "Chương xx: ...",
-    pattern: /^Chương\s+\d+\s*[:\-\s].*/gm,
+    pattern: /^[ \t]*Chương\s+\d+(?:.*)?$/gim,
   },
   english: {
     label: "Chapter xx: ...",
-    pattern: /^Chapter\s+\d+\s*[:\-\s].*/gim,
+    pattern: /^[ \t]*Chapter\s+\d+(?:.*)?$/gim,
   },
   chinese: {
-    label: "第xx章...",
-    pattern: /^第[\d一二三四五六七八九十百千万]+章.*/gm,
+    label: "第xx[章回节卷]...",
+    pattern: /^[ \t]*第[\d零一二三四五六七八九十百千万]+[章回节卷折](?:.*)?$/gm,
   },
-  numbered: {
-    label: "1. Title / 1: Title",
-    pattern: /^\d+\s*[.:\-]\s*.+/gm,
+  chinese_brackets: {
+    label: "【Title】 / (Title)",
+    pattern: /^[ \t]*[【\(\[（](第?[\d零一二三四五六七八九十百千万]+[章回节卷折]?)[)\]】）]\s*.*/gm,
+  },
+  numbered_strict: {
+    label: "01. Title / 一、Title",
+    pattern: /^[ \t]*[\d零一二三四五六七八九十百千万]+[、.\s\-]+[^\n]+/gm,
   },
 };

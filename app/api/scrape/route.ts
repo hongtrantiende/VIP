@@ -2,7 +2,7 @@
  * API Route: Server-side HTML fetch & analysis
  * 
  * POST /api/scrape
- * Body: { action: "fetch" | "analyze" | "chapter" | "prompt" | "test", url: string }
+ * Body: { action: "fetch" | "analyze" | "chapter" | "chapter-parse" | "prompt" | "test", url: string, html?: string }
  *
  * This bypasses CORS and fetches HTML directly from the server,
  * eliminating the need for a browser extension for simple HTML pages.
@@ -12,6 +12,7 @@ import { NextRequest, NextResponse } from "next/server";
 import {
   analyzeNovelPage,
   analyzeChapterPage,
+  parseChapterHtml,
   analyzeSelectors,
   generateScrapingPrompt,
   fetchHtml,
@@ -55,6 +56,16 @@ export async function POST(req: NextRequest) {
       case "chapter": {
         const chapterData = await analyzeChapterPage(url);
         return NextResponse.json(chapterData);
+      }
+
+      case "chapter-parse": {
+        // Parse pre-fetched HTML (e.g. from CloakBrowser) without re-fetching
+        const { html: preHtml } = body;
+        if (!preHtml || typeof preHtml !== "string") {
+          return NextResponse.json({ error: "'html' field is required for chapter-parse" }, { status: 400 });
+        }
+        const parsedData = parseChapterHtml(preHtml, url);
+        return NextResponse.json(parsedData);
       }
 
       case "selectors": {

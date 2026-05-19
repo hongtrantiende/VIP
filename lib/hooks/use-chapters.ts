@@ -57,7 +57,7 @@ export function useChapterAnalysisStatus(novelId: string | undefined) {
         .where("novelId")
         .equals(novelId)
         .sortBy("order");
-        
+
       const latestEditByChapter = new Map<string, number>();
       await db.scenes
         .where("[novelId+isActive]")
@@ -86,7 +86,7 @@ export function useChapterAnalysisStatus(novelId: string | undefined) {
 export function useNovelDetailStats(novelId: string | undefined) {
   // Trì hoãn việc chạy query nặng lúc mới mount để không chặn (block) thread khi chuyển trang.
   const [shouldLoad, setShouldLoad] = useState(false);
-  
+
   useEffect(() => {
     // Đợi 150ms sau khi chuyển trang xong mới bắt đầu load
     const timer = setTimeout(() => setShouldLoad(true), 150);
@@ -105,35 +105,24 @@ export function useNovelDetailStats(novelId: string | undefined) {
         .equals(novelId)
         .sortBy("order");
 
-      // Chunking to prevent blocking the main UI thread when scanning thousands of scenes
-      const CHUNK_SIZE = 500;
-      let offset = 0;
-      
-      while (true) {
-        const batch = await db.scenes
-          .where("[novelId+isActive]")
-          .equals([novelId, 1])
-          .offset(offset)
-          .limit(CHUNK_SIZE)
-          .toArray();
+      // Fetch ALL active scenes at once to avoid O(N^2) .offset() performance penalty.
+      // In IndexedDb, reading 3000-5000 small records is extremely fast (~50ms), 
+      // whereas looping with .offset(500) will constantly restart the cursor, causing O(N^2) lag.
+      const allActiveScenes = await db.scenes
+        .where("[novelId+isActive]")
+        .equals([novelId, 1])
+        .toArray();
 
-        if (batch.length === 0) break;
-
-        for (const s of batch) {
-          chapterWordCounts.set(s.chapterId, (chapterWordCounts.get(s.chapterId) ?? 0) + s.wordCount);
-          const t = s.updatedAt.getTime();
-          const current = latestEditByChapter.get(s.chapterId) || 0;
-          if (t > current) {
-            latestEditByChapter.set(s.chapterId, t);
-          }
-          if (s.versionType && s.versionType !== "manual") {
-            translatedChapterIds.add(s.chapterId);
-          }
+      for (const s of allActiveScenes) {
+        chapterWordCounts.set(s.chapterId, (chapterWordCounts.get(s.chapterId) ?? 0) + s.wordCount);
+        const t = s.updatedAt.getTime();
+        const current = latestEditByChapter.get(s.chapterId) || 0;
+        if (t > current) {
+          latestEditByChapter.set(s.chapterId, t);
         }
-
-        offset += CHUNK_SIZE;
-        // Nhường quyền cho event loop để UI không bị giật lag
-        await new Promise((resolve) => setTimeout(resolve, 0));
+        if (s.versionType && s.versionType !== "manual") {
+          translatedChapterIds.add(s.chapterId);
+        }
       }
 
       const analysisStatuses = chapters.map((ch) => {

@@ -14,160 +14,6 @@ function ensureCacheDir() {
     }
 }
 
-export const maxDuration = 60; // seconds
-
-export async function GET(req: Request) {
-    try {
-        const { searchParams } = new URL(req.url);
-        const action = searchParams.get('action');
-
-        if (action === 'list') {
-            const index = await getReadingRoomIndex();
-            return NextResponse.json({ success: true, novels: index });
-        }
-
-        if (action === 'novel_data') {
-            const novelId = searchParams.get('id');
-            if (!novelId) return NextResponse.json({ error: 'Missing novel ID' }, { status: 400 });
-
-            // Cache folder
-            ensureCacheDir();
-            const cacheFile = path.join(CACHE_DIR, `${novelId}.json`);
-
-            // If we don't have it cached or need to force refresh
-            if (!fs.existsSync(cacheFile)) {
-                const fullDataStr = await downloadNovelFromReadingRoom(novelId);
-                if (!fullDataStr) {
-                    return NextResponse.json({ error: 'Novel not found in Reading Room' }, { status: 404 });
-                }
-                fs.writeFileSync(cacheFile, fullDataStr, 'utf-8');
-            }
-
-            // Read from cache to get metadata (exclude full chapters)
-            const dataStr = fs.readFileSync(cacheFile, 'utf-8');
-            const data = JSON.parse(dataStr);
-
-            // Return metadata + list of chapters but NOT the scenes content for speed
-            const chaptersList = data.chapters?.sort((a: any, b: any) => a.order - b.order).map((ch: any) => ({
-                id: ch.id,
-                novelId: ch.novelId,
-                title: ch.title,
-                order: ch.order,
-                isLocked: ch.isLocked || false,
-            })) || [];
-
-            // Add uploaderId from index
-            const index = await getReadingRoomIndex();
-            const indexMeta = index.find(n => n.id === novelId);
-            const returnedNovel = { ...data.novel, uploaderId: indexMeta?.uploaderId };
-
-            return NextResponse.json({
-                success: true,
-                novel: returnedNovel,
-                chapters: chaptersList
-            });
-        }
-
-        if (action === 'chapter') {
-            const novelId = searchParams.get('id');
-            const chapterIdx = searchParams.get('idx');
-            if (!novelId || !chapterIdx) {
-                return NextResponse.json({ error: 'Missing ID or Index' }, { status: 400 });
-            }
-
-            ensureCacheDir();
-            const cacheFile = path.join(CACHE_DIR, `${novelId}.json`);
-
-            let dataStr = '';
-            if (!fs.existsSync(cacheFile)) {
-                const fullDataStr = await downloadNovelFromReadingRoom(novelId);
-                if (!fullDataStr) {
-                    return NextResponse.json({ error: 'Novel not found' }, { status: 404 });
-                }
-                fs.writeFileSync(cacheFile, fullDataStr, 'utf-8');
-                dataStr = fullDataStr;
-            } else {
-                dataStr = fs.readFileSync(cacheFile, 'utf-8');
-            }
-
-            const data = JSON.parse(dataStr);
-            const sortedChapters = data.chapters?.sort((a: any, b: any) => a.order - b.order) || [];
-            const idx = Number(chapterIdx);
-
-            if (idx < 0 || idx >= sortedChapters.length) {
-                return NextResponse.json({ error: 'Chapter not found' }, { status: 404 });
-            }
-
-            const targetChapter = sortedChapters[idx];
-
-            if (targetChapter.isLocked) {
-                // Determine if user is uploader
-                const { createClient } = await import('@/lib/supabase/server');
-                const supabase = await createClient();
-                const { data: { user } } = await supabase.auth.getUser();
-
-                const index = await getReadingRoomIndex();
-                const indexMeta = index.find(n => n.id === novelId);
-                if (!user || user.id !== indexMeta?.uploaderId) {
-                    return NextResponse.json({ error: 'Chương này đã bị khóa bởi người tải lên' }, { status: 403 });
-                }
-            }
-
-            // Lấy danh sách scenes thuộc chapterId (chỉ lấy scene đang active)
-            const targetScenes = data.scenes?.filter((s: any) => s.chapterId === targetChapter.id && (s.isActive === 1 || s.isActive === undefined))?.sort((a: any, b: any) => a.order - b.order) || [];
-
-            return NextResponse.json({
-                success: true,
-                chapter: targetChapter,
-                scenes: targetScenes,
-            });
-        }
-
-        if (action === 'download_full') {
-            const novelId = searchParams.get('id');
-            if (!novelId) return NextResponse.json({ error: 'Missing novel ID' }, { status: 400 });
-
-            ensureCacheDir();
-            const cacheFile = path.join(CACHE_DIR, `${novelId}.json`);
-
-            if (!fs.existsSync(cacheFile)) {
-                const fullDataStr = await downloadNovelFromReadingRoom(novelId);
-                if (!fullDataStr) {
-                    return NextResponse.json({ error: 'Novel not found in Reading Room' }, { status: 404 });
-                }
-                fs.writeFileSync(cacheFile, fullDataStr, 'utf-8');
-            }
-
-            const dataStr = fs.readFileSync(cacheFile, 'utf-8');
-            return new NextResponse(dataStr, {
-                headers: { 'Content-Type': 'application/json' }
-            });
-        }
-
-        return NextResponse.json({ error: 'Invalid action' }, { status: 400 });
-    } catch (error: any) {
-        console.error('Reading Room GET Error:', error);
-        return NextResponse.json({ error: error.message }, { status: 500 });
-    }
-}
-
-export async function POST(req: Request) {
-    try {
-        const { searchParams } = new URL(req.url);
-        const action = searchParams.get('action');
-
-        const supabase = await createClient();
-        const { data: { user } } = await supabase.auth.getUser();
-        if (!user) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
-
-        let uploaderName = 'Ẩn danh';
-        const { data: profile } = await supabase.from('profiles').select('display_name').eq('id', user.id).single();
-        if (profile?.display_name) {
-            uploaderName = profile.display_name;
-        } else if (user.user_metadata?.custom_name) {
-            uploaderName = user.user_metadata.custom_name;
-        }
-
 /** Helper to split a large novel into smaller chapter-scenes chunks on disk */
 function splitNovelToChunks(novelId: string, data: any) {
     const novelDir = path.join(CACHE_DIR, novelId);
@@ -189,17 +35,19 @@ function splitNovelToChunks(novelId: string, data: any) {
         const chunkChapters = chapters.slice(i, i + CHUNK_SIZE);
         const chunkChapterIds = new Set(chunkChapters.map((c: any) => c.id));
         const chunkScenes = data.scenes?.filter((s: any) => chunkChapterIds.has(s.chapterId)) || [];
-        
+
         fs.writeFileSync(
-            path.join(novelDir, `chunk_${Math.floor(i / CHUNK_SIZE)}.json`), 
-            JSON.stringify(chunkScenes), 
+            path.join(novelDir, `chunk_${Math.floor(i / CHUNK_SIZE)}.json`),
+            JSON.stringify(chunkScenes),
             'utf-8'
         );
     }
-    
+
     // Mark as split
     fs.writeFileSync(path.join(novelDir, '.split'), Date.now().toString());
 }
+
+export const maxDuration = 60; // seconds
 
 export async function GET(req: Request) {
     try {
@@ -251,7 +99,7 @@ export async function GET(req: Request) {
             ensureCacheDir();
             const novelDir = path.join(CACHE_DIR, novelId);
             const metaFile = path.join(novelDir, 'meta.json');
-            
+
             // Ensure we have split cache
             if (!fs.existsSync(metaFile)) {
                 const fullDataStr = await downloadNovelFromReadingRoom(novelId);
@@ -284,11 +132,11 @@ export async function GET(req: Request) {
             const chunkIdx = Math.floor(idx / 20);
             const chunkFile = path.join(novelDir, `chunk_${chunkIdx}.json`);
             if (!fs.existsSync(chunkFile)) {
-                 return NextResponse.json({ error: 'Chunk data missing' }, { status: 500 });
+                return NextResponse.json({ error: 'Chunk data missing' }, { status: 500 });
             }
 
             const chunkScenes = JSON.parse(fs.readFileSync(chunkFile, 'utf-8'));
-            const targetScenes = chunkScenes.filter((s: any) => 
+            const targetScenes = chunkScenes.filter((s: any) =>
                 s.chapterId === targetChapter.id && (s.isActive === 1 || s.isActive === undefined)
             ).sort((a: any, b: any) => a.order - b.order);
 
@@ -346,7 +194,7 @@ export async function POST(req: Request) {
             const novelId = searchParams.get('novelId');
             if (!novelId) return NextResponse.json({ error: 'Missing novelId' }, { status: 400 });
 
-            let content = await req.text();
+            const content = await req.text();
             let parseData;
             try {
                 parseData = JSON.parse(content);
@@ -446,7 +294,7 @@ export async function POST(req: Request) {
             const novelId = searchParams.get('novelId');
             if (!novelId) return NextResponse.json({ error: 'Missing novelId' }, { status: 400 });
 
-            let content = await req.text();
+            const content = await req.text();
             let newTitle: string | undefined = undefined;
             let newDescription: string | undefined = undefined;
             try {

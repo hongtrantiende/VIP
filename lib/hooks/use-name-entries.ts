@@ -184,10 +184,9 @@ export async function importQTNamesToGlobal(
   return bulkImportNameEntries("global", entries, category, duplicateMode);
 }
 
-/** Get merged name entries as simple key-value pairs for QT engine / AI context */
 export async function getMergedNameDict(
   novelId?: string,
-): Promise<Array<{ chinese: string; vietnamese: string }>> {
+): Promise<Array<{ chinese: string; vietnamese: string; category: string }>> {
   const globalEntries = await db.nameEntries
     .where("scope")
     .equals("global")
@@ -195,11 +194,13 @@ export async function getMergedNameDict(
   const novelEntries = novelId
     ? await db.nameEntries.where("scope").equals(novelId).toArray()
     : [];
-  const merged = new Map<string, string>();
-  for (const e of globalEntries) merged.set(e.chinese, e.vietnamese);
-  for (const e of novelEntries) merged.set(e.chinese, e.vietnamese);
-  return Array.from(merged, ([chinese, vietnamese]) => ({
+  const merged = new Map<string, { vietnamese: string; category: string }>();
+  // Default to "nhân vật" if an entry somehow misses a category, to be safe.
+  for (const e of globalEntries) merged.set(e.chinese, { vietnamese: e.vietnamese, category: e.category || "nhân vật" });
+  for (const e of novelEntries) merged.set(e.chinese, { vietnamese: e.vietnamese, category: e.category || "nhân vật" });
+  return Array.from(merged, ([chinese, data]) => ({
     chinese,
-    vietnamese,
+    vietnamese: data.vietnamese,
+    category: data.category,
   }));
 }

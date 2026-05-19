@@ -1,9 +1,10 @@
+"use client";
+
 import { useEffect, useState, useMemo, useRef, useCallback } from "react";
-import { Card, CardContent } from "@/components/ui/card";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
-import { BookOpenIcon, UserIcon, ClockIcon, SearchIcon, XIcon, Loader2Icon } from "lucide-react";
+import { BookOpenIcon, SearchIcon, XIcon, Loader2Icon } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { type ReadingRoomMetadata } from "@/lib/google-drive-admin-v2";
 
@@ -79,7 +80,6 @@ export default function ReadingRoomPage() {
         return res;
     }, [novels, searchQuery, activeGenre]);
 
-    // Slice based on visibleCount
     const displayedNovels = useMemo(() => {
         if (!filteredNovels) return [];
         return filteredNovels.slice(0, visibleCount);
@@ -99,13 +99,13 @@ export default function ReadingRoomPage() {
                     <Skeleton className="h-8 w-48" />
                     <Skeleton className="mt-2 h-4 w-72" />
                 </div>
-                <div className="grid gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
-                    {Array.from({ length: 9 }).map((_, i) => (
-                        <div key={i} className="animate-pulse space-y-4">
-                            <div className="aspect-[16/9] w-full rounded-xl bg-muted" />
-                            <div className="space-y-2">
-                                <div className="h-4 w-4/5 rounded bg-muted" />
-                                <div className="h-3 w-2/5 rounded bg-muted" />
+                <div className="grid gap-3 grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
+                    {Array.from({ length: 10 }).map((_, i) => (
+                        <div key={i} className="animate-pulse">
+                            <div className="aspect-3/4 w-full rounded-lg bg-muted" />
+                            <div className="mt-2 space-y-1.5 px-0.5">
+                                <div className="h-3 w-4/5 rounded bg-muted" />
+                                <div className="h-2.5 w-3/5 rounded bg-muted" />
                             </div>
                         </div>
                     ))}
@@ -129,30 +129,29 @@ export default function ReadingRoomPage() {
             </div>
 
             {novels.length > 0 && (
-                <div className="mb-8 space-y-6">
-                    <div className="relative max-w-md">
-                        <SearchIcon className="absolute left-3 top-1/2 -translate-y-1/2 w-4.5 h-4.5 text-muted-foreground" />
+                <div className="mb-6 flex flex-wrap gap-3 items-center">
+                    <div className="relative w-full sm:w-72">
+                        <SearchIcon className="pointer-events-none absolute left-2.5 top-1/2 size-4 -translate-y-1/2 text-muted-foreground" />
                         <Input
                             placeholder="Tìm kiếm truyện trong Phòng Đọc..."
                             value={searchQuery}
                             onChange={(e) => setSearchQuery(e.target.value)}
-                            className="pl-10 pr-10 h-11 rounded-xl"
+                            className="pl-8 pr-8"
                         />
                         {searchQuery && (
                             <button
                                 onClick={() => setSearchQuery("")}
-                                className="absolute right-3 top-1/2 -translate-y-1/2 rounded-full p-1 text-muted-foreground hover:bg-muted"
+                                className="absolute right-2 top-1/2 -translate-y-1/2 rounded-sm p-0.5 text-muted-foreground hover:text-foreground"
                             >
-                                <XIcon className="w-4 h-4" />
+                                <XIcon className="w-3.5 h-3.5" />
                             </button>
                         )}
                     </div>
-
                     {allGenres.length > 0 && (
                         <div className="flex flex-wrap gap-2">
                             <Badge
                                 variant={activeGenre === "all" ? "default" : "outline"}
-                                className={`cursor-pointer px-4 py-1.5 rounded-full transition-all ${activeGenre === "all" ? "shadow-md shadow-primary/20" : "hover:bg-primary/5"}`}
+                                className="cursor-pointer px-3 py-1 rounded-full transition-all"
                                 onClick={() => setActiveGenre("all")}
                             >
                                 Tất Cả
@@ -161,7 +160,7 @@ export default function ReadingRoomPage() {
                                 <Badge
                                     key={genre}
                                     variant={activeGenre === genre ? "default" : "outline"}
-                                    className={`cursor-pointer px-4 py-1.5 rounded-full transition-all ${activeGenre === genre ? "shadow-md shadow-primary/20" : "hover:bg-primary/5"}`}
+                                    className="cursor-pointer px-3 py-1 rounded-full transition-all"
                                     onClick={() => setActiveGenre(genre)}
                                 >
                                     {genre}
@@ -175,67 +174,63 @@ export default function ReadingRoomPage() {
             {filteredNovels.length === 0 ? (
                 <div className="text-center py-20 bg-muted/20 rounded-2xl border-2 border-dashed">
                     <BookOpenIcon className="mx-auto h-16 w-16 text-muted-foreground/30 mb-4" />
-                    <h3 className="text-xl font-semibold text-foreground/80">{novels.length === 0 ? "Chưa có bộ truyện nào" : "Không tìm thấy bộ truyện nào"}</h3>
-                    <p className="text-muted-foreground text-sm mt-2 max-w-sm mx-auto">{novels.length === 0 ? "Hãy là người đầu tiên chia sẻ truyện từ Thư viện cá nhân của bạn lên Phòng Đọc!" : "Chúng tôi không tìm thấy kết quả nào phù hợp. Hãy thử thay đổi từ khoá hoặc bộ lọc."}</p>
+                    <h3 className="text-xl font-semibold text-foreground/80">
+                        {novels.length === 0 ? "Chưa có bộ truyện nào" : "Không tìm thấy bộ truyện nào"}
+                    </h3>
+                    <p className="text-muted-foreground text-sm mt-2 max-w-sm mx-auto">
+                        {novels.length === 0
+                            ? "Hãy là người đầu tiên chia sẻ truyện từ Thư viện cá nhân lên Phòng Đọc!"
+                            : "Không tìm thấy kết quả phù hợp. Hãy thử thay đổi từ khoá hoặc bộ lọc."}
+                    </p>
                 </div>
             ) : (
-                <div className="grid gap-8 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
+                <div className="grid gap-3 grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
                     {displayedNovels.map((novel, index) => (
                         <div
                             key={novel.id}
-                            className="group cursor-pointer flex flex-col"
+                            className="group cursor-pointer"
                             onClick={() => router.push(`/reading-room/${novel.id}`)}
                         >
-                            <div className="relative aspect-[16/10] w-full overflow-hidden rounded-2xl bg-muted shadow-sm transition-all duration-300 group-hover:shadow-xl group-hover:-translate-y-1 ring-1 ring-border/50">
+                            {/* Book cover — portrait 3:4 ratio */}
+                            <div className="relative aspect-3/4 w-full overflow-hidden rounded-lg bg-muted shadow-sm transition-shadow group-hover:shadow-md">
                                 {novel.coverImage ? (
                                     <img
                                         src={novel.coverImage}
                                         alt={novel.title}
                                         referrerPolicy="no-referrer"
-                                        className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                                        className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-[1.03]"
                                     />
                                 ) : (
-                                    <div className="flex h-full flex-col justify-center items-center p-6 font-serif bg-gradient-to-br from-primary/10 to-primary/5">
-                                        <p className="line-clamp-3 text-lg font-bold leading-tight text-center text-foreground/80">
+                                    <div className="flex h-full flex-col justify-center items-center p-3 font-serif bg-gradient-to-br from-primary/10 to-primary/5">
+                                        <p className="line-clamp-3 text-sm font-semibold leading-snug text-center text-foreground/80">
                                             {novel.title}
                                         </p>
                                     </div>
                                 )}
-                                <div className="absolute bottom-4 left-4 flex gap-2">
-                                    <Badge className="bg-black/60 hover:bg-black/70 text-white backdrop-blur-md border-0 px-3 py-1 text-[11px] font-bold">
-                                        {novel.chapterCount} chương
-                                    </Badge>
+                                {/* Genre + chapter count overlay */}
+                                <div className="absolute inset-x-0 bottom-0 flex flex-wrap gap-1 bg-linear-to-t from-black/60 to-transparent p-2 pt-4">
+                                    <span className="rounded-sm bg-black/50 px-1.5 py-0.5 text-[10px] font-bold leading-none text-white/90 backdrop-blur-sm">
+                                        {novel.chapterCount} ch
+                                    </span>
                                     {novel.genres && novel.genres[0] && (
-                                        <Badge className="bg-primary/80 hover:bg-primary/90 text-primary-foreground backdrop-blur-md border-0 px-3 py-1 text-[11px] font-bold">
+                                        <span className="rounded-sm bg-primary/70 px-1.5 py-0.5 text-[10px] font-medium leading-none text-white/90 backdrop-blur-sm">
                                             {novel.genres[0]}
-                                        </Badge>
+                                        </span>
                                     )}
                                 </div>
                             </div>
 
-                            <div className="mt-4 flex-1">
-                                <h3 className="line-clamp-2 text-lg font-bold leading-tight group-hover:text-primary transition-colors duration-300">
+                            {/* Info below cover */}
+                            <div className="mt-2 px-0.5">
+                                <p className="line-clamp-2 text-sm font-semibold leading-snug group-hover:text-primary transition-colors">
                                     {novel.title}
-                                </h3>
-                                <p className="mt-2 line-clamp-2 text-xs text-muted-foreground leading-relaxed italic">
-                                    {novel.description || "Chưa có mô tả cho bộ truyện này..."}
                                 </p>
-
-                                <div className="mt-4 flex items-center justify-between border-t pt-4">
-                                    <div className="flex items-center gap-2">
-                                        <div className="w-7 h-7 rounded-full bg-primary/10 flex items-center justify-center text-[10px] font-bold text-primary">
-                                            {novel.uploaderName.charAt(0).toUpperCase()}
-                                        </div>
-                                        <div className="flex flex-col">
-                                            <span className="text-[11px] font-bold leading-none">{novel.uploaderName}</span>
-                                            <span className="text-[10px] text-muted-foreground mt-1">Người đăng</span>
-                                        </div>
-                                    </div>
-                                    <div className="flex flex-col items-end">
-                                        <span className="text-[11px] font-medium leading-none">{formatDate(novel.updatedAt)}</span>
-                                        <span className="text-[10px] text-muted-foreground mt-1">Cập nhật</span>
-                                    </div>
-                                </div>
+                                <p className="mt-0.5 truncate text-[11px] text-muted-foreground font-medium">
+                                    {novel.uploaderName}
+                                </p>
+                                <p className="text-[10px] text-muted-foreground/60">
+                                    {formatDate(novel.updatedAt)}
+                                </p>
                             </div>
                         </div>
                     ))}
@@ -257,4 +252,3 @@ export default function ReadingRoomPage() {
         </main>
     );
 }
-

@@ -34,7 +34,18 @@ import {
   TrashIcon,
   UploadIcon,
   XIcon,
+  SparklesIcon,
+  Loader2Icon,
+  ChevronDownIcon,
 } from "lucide-react";
+import { useAIProviders, useAIModels } from "@/lib/hooks/use-ai-providers";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import { useRouter } from "next/navigation";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { toast } from "sonner";
@@ -56,6 +67,29 @@ const STEPS: { key: Step; label: string; icon: React.ElementType }[] = [
 export function NovelImportWizard() {
   const router = useRouter();
   const fileInputRef = useRef<HTMLInputElement>(null);
+  const providers = useAIProviders();
+  const [selectedProviderId, setSelectedProviderId] = useState<string | undefined>();
+  const [selectedModelId, setSelectedModelId] = useState<string | undefined>();
+
+  const models = useAIModels(selectedProviderId);
+
+  useEffect(() => {
+    if (!selectedProviderId && providers && providers.length > 0) {
+      setSelectedProviderId(providers[0].id);
+    }
+  }, [providers, selectedProviderId]);
+
+  useEffect(() => {
+    if (models && models.length > 0) {
+      if (!selectedModelId || !models.some((m: any) => m.id === selectedModelId)) {
+        setSelectedModelId(models[0].modelId || models[0].id);
+      }
+    } else {
+      setSelectedModelId(undefined);
+    }
+  }, [models, selectedProviderId]);
+
+  const targetProvider = providers?.find((p) => p.id === selectedProviderId);
 
   // Wizard state
 
@@ -84,6 +118,35 @@ export function NovelImportWizard() {
   const [novelTitle, setNovelTitle] = useState("");
   const [novelDescription, setNovelDescription] = useState("");
   const [isImporting, setIsImporting] = useState(false);
+  const [isDetectingRegex, setIsDetectingRegex] = useState(false);
+
+  const autoDetectRegex = async () => {
+    setIsDetectingRegex(true);
+    setMatchCount(null);
+    try {
+      const res = await fetch("/api/import/detect-regex", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          sampleText: fullTextRef.current.substring(0, 3000),
+          provider: targetProvider,
+          modelId: selectedModelId
+        }),
+      });
+      const data = await res.json();
+      if (data.success && data.regex) {
+        setCustomRegex(data.regex);
+        setUseCustom(true);
+        toast.success("AI đã tìm thấy mẫu chương phù hợp!");
+      } else {
+        toast.error(data.error || "Không thể phân tích định dạng chương");
+      }
+    } catch (err: any) {
+      toast.error("Lỗi kết nối AI: " + err.message);
+    } finally {
+      setIsDetectingRegex(false);
+    }
+  };
 
   const stepIndex = STEPS.findIndex((s) => s.key === step);
 
@@ -272,7 +335,7 @@ export function NovelImportWizard() {
       // Insert in batches to avoid blocking mobile main thread
       const BATCH = 50;
       const toastId = toast.loading(`Đang nhập 0/${chapters.length} chương...`);
-      
+
       await db.novels.add({
         id: novelId,
         title: novelTitle.trim(),
@@ -284,7 +347,7 @@ export function NovelImportWizard() {
       for (let i = 0; i < chapterRecords.length; i += BATCH) {
         const chBatch = chapterRecords.slice(i, i + BATCH);
         const scBatch = sceneRecords.slice(i, i + BATCH);
-        
+
         await db.transaction("rw", [db.chapters, db.scenes], async () => {
           await db.chapters.bulkAdd(chBatch);
           await db.scenes.bulkAdd(scBatch);
@@ -293,7 +356,7 @@ export function NovelImportWizard() {
         // Update progress and yield to main thread
         const done = Math.min(i + BATCH, chapterRecords.length);
         toast.loading(`Đang nhập ${done}/${chapters.length} chương...`, { id: toastId });
-        
+
         // Yield to main thread to keep UI responsive
         await new Promise(r => setTimeout(r, 0));
       }
@@ -329,13 +392,12 @@ export function NovelImportWizard() {
                 if (i < stepIndex) setStep(s.key);
               }}
               disabled={i > stepIndex}
-              className={`flex items-center gap-1.5 rounded-full px-2 py-1 text-xs font-medium transition-colors sm:px-3 ${
-                i === stepIndex
-                  ? "bg-primary text-primary-foreground"
-                  : i < stepIndex
-                    ? "bg-primary/10 text-primary hover:bg-primary/20"
-                    : "bg-muted text-muted-foreground"
-              }`}
+              className={`flex items-center gap-1.5 rounded-full px-2 py-1 text-xs font-medium transition-colors sm:px-3 ${i === stepIndex
+                ? "bg-primary text-primary-foreground"
+                : i < stepIndex
+                  ? "bg-primary/10 text-primary hover:bg-primary/20"
+                  : "bg-muted text-muted-foreground"
+                }`}
             >
               <s.icon className="size-3.5 shrink-0" />
               <span className={i === stepIndex ? "sm:inline" : "hidden sm:inline"}>
@@ -464,18 +526,16 @@ export function NovelImportWizard() {
               <div className="flex gap-4">
                 <button
                   onClick={() => setSplitMode("regex")}
-                  className={`flex-1 rounded-lg border p-3 text-left transition-colors ${
-                    splitMode === "regex" ? "border-primary bg-primary/5" : "hover:bg-muted/50"
-                  }`}
+                  className={`flex-1 rounded-lg border p-3 text-left transition-colors ${splitMode === "regex" ? "border-primary bg-primary/5" : "hover:bg-muted/50"
+                    }`}
                 >
                   <p className="text-sm font-bold">Theo chương (Regex)</p>
                   <p className="text-xs text-muted-foreground mt-1">Dùng mẫu để tìm tên chương</p>
                 </button>
                 <button
                   onClick={() => setSplitMode("length")}
-                  className={`flex-1 rounded-lg border p-3 text-left transition-colors ${
-                    splitMode === "length" ? "border-primary bg-primary/5" : "hover:bg-muted/50"
-                  }`}
+                  className={`flex-1 rounded-lg border p-3 text-left transition-colors ${splitMode === "length" ? "border-primary bg-primary/5" : "hover:bg-muted/50"
+                    }`}
                 >
                   <p className="text-sm font-bold">Theo ký tự</p>
                   <p className="text-xs text-muted-foreground mt-1">Chia nhỏ văn bản thành các phần bằng nhau</p>
@@ -498,11 +558,10 @@ export function NovelImportWizard() {
                           setUseCustom(false);
                           setMatchCount(null);
                         }}
-                        className={`rounded-lg border p-3 text-left text-sm transition-colors ${
-                          !useCustom && selectedPreset === key
-                            ? "border-primary bg-primary/5"
-                            : "hover:bg-muted/50"
-                        }`}
+                        className={`rounded-lg border p-3 text-left text-sm transition-colors ${!useCustom && selectedPreset === key
+                          ? "border-primary bg-primary/5"
+                          : "hover:bg-muted/50"
+                          }`}
                       >
                         <span className="font-medium">{preset.label}</span>
                         <span className="mt-0.5 block text-xs text-muted-foreground">
@@ -514,29 +573,82 @@ export function NovelImportWizard() {
                 </div>
 
                 <div className="space-y-2">
-                  <div className="flex items-center gap-2">
-                    <input
-                      type="checkbox"
-                      id="use-custom"
-                      checked={useCustom}
-                      onChange={(e) => {
-                        setUseCustom(e.target.checked);
-                        setMatchCount(null);
-                      }}
-                      className="size-4 rounded border-border"
-                    />
-                    <Label htmlFor="use-custom">Sử dụng regex tùy chỉnh</Label>
+                  <div className="flex flex-col gap-3">
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center gap-2">
+                        <input
+                          type="checkbox"
+                          id="use-custom"
+                          checked={useCustom}
+                          onChange={(e) => {
+                            setUseCustom(e.target.checked);
+                            setMatchCount(null);
+                          }}
+                          className="size-4 rounded border-border"
+                        />
+                        <Label htmlFor="use-custom">Sử dụng regex tùy chỉnh</Label>
+                      </div>
+
+                      <div className="flex items-center gap-2 flex-wrap justify-end">
+                        <Select
+                          value={selectedProviderId}
+                          onValueChange={(val) => setSelectedProviderId(val)}
+                        >
+                          <SelectTrigger className="h-8 w-[140px] text-xs">
+                            <SelectValue placeholder="Chọn Provider AI" />
+                          </SelectTrigger>
+                          <SelectContent>
+                            {providers?.map((p) => (
+                              <SelectItem key={p.id} value={p.id}>
+                                {p.name}
+                              </SelectItem>
+                            ))}
+                          </SelectContent>
+                        </Select>
+
+                        <Select
+                          value={selectedModelId}
+                          onValueChange={setSelectedModelId}
+                          disabled={!models || models.length === 0}
+                        >
+                          <SelectTrigger className="h-8 w-[140px] text-xs">
+                            <SelectValue placeholder="Chọn Model AI" />
+                          </SelectTrigger>
+                          <SelectContent>
+                            {models?.map((m: any) => (
+                              <SelectItem key={m.modelId || m.id} value={m.modelId || m.id}>
+                                {m.name}
+                              </SelectItem>
+                            ))}
+                          </SelectContent>
+                        </Select>
+
+                        <Button
+                          variant="outline"
+                          size="sm"
+                          className="h-8 text-xs font-semibold text-amber-600 bg-amber-500/10 hover:bg-amber-500/20 hover:text-amber-700 border-amber-500/20"
+                          onClick={autoDetectRegex}
+                          disabled={isDetectingRegex || !targetProvider || !selectedModelId}
+                        >
+                          {isDetectingRegex ? (
+                            <><Loader2Icon className="size-3.5 mr-1.5 animate-spin" /> Đang phân tích...</>
+                          ) : (
+                            <><SparklesIcon className="size-3.5 mr-1.5" /> AI Phân tích định dạng</>
+                          )}
+                        </Button>
+                      </div>
+                    </div>
+                    {useCustom && (
+                      <Input
+                        placeholder="e.g. /^Phần \d+/gm or ^VOLUME \d+"
+                        value={customRegex}
+                        onChange={(e) => {
+                          setCustomRegex(e.target.value);
+                          setMatchCount(null);
+                        }}
+                      />
+                    )}
                   </div>
-                  {useCustom && (
-                    <Input
-                      placeholder="e.g. /^Phần \d+/gm or ^VOLUME \d+"
-                      value={customRegex}
-                      onChange={(e) => {
-                        setCustomRegex(e.target.value);
-                        setMatchCount(null);
-                      }}
-                    />
-                  )}
                 </div>
 
                 <div className="flex items-center gap-3">
@@ -566,7 +678,7 @@ export function NovelImportWizard() {
                     Gợi ý: 9,000 ký tự là kích thước tối ưu cho việc dịch STV.
                   </p>
                 </div>
-                
+
                 <Badge variant="secondary" className="py-1">
                   Dự kiến: {Math.ceil(fullTextRef.current.length / chunkSize)} chương
                 </Badge>
@@ -750,12 +862,12 @@ export function NovelImportWizard() {
  */
 async function readFileWithEncoding(file: File): Promise<string> {
   const utf8Text = await file.text();
-  
+
   const replacementCount = (utf8Text.match(/\uFFFD/g) || []).length;
   const hasGarbled = replacementCount > 5;
-  
+
   if (!hasGarbled) return utf8Text;
-  
+
   // Try GBK/GB18030
   try {
     const buffer = await file.arrayBuffer();
@@ -764,8 +876,8 @@ async function readFileWithEncoding(file: File): Promise<string> {
     if (/[\u4e00-\u9fff]/.test(gbkText) && gbkReplacements < replacementCount) {
       return gbkText;
     }
-  } catch {}
-  
+  } catch { }
+
   // Try Big5
   try {
     const buffer = await file.arrayBuffer();
@@ -774,7 +886,7 @@ async function readFileWithEncoding(file: File): Promise<string> {
     if (/[\u4e00-\u9fff]/.test(big5Text) && big5Replacements < replacementCount) {
       return big5Text;
     }
-  } catch {}
-  
+  } catch { }
+
   return utf8Text;
 }

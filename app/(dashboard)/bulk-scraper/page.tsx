@@ -64,25 +64,27 @@ export default function BulkScraperPage() {
     return (
         <div className="flex-1 p-6 space-y-6 animate-page-enter">
             {/* Header */}
-            <div className="flex items-center gap-3">
-                <div className="p-2 rounded-lg bg-gradient-to-br from-violet-500/20 to-purple-500/20">
-                    <GlobeIcon className="size-5 text-violet-500" />
+            <div className="flex flex-col sm:flex-row sm:items-center gap-3">
+                <div className="flex items-center gap-3 w-full">
+                    <div className="p-2 rounded-lg bg-gradient-to-br from-violet-500/20 to-purple-500/20 shrink-0">
+                        <GlobeIcon className="size-5 text-violet-500" />
+                    </div>
+                    <div className="flex-1">
+                        <h1 className="text-lg sm:text-xl font-bold">Quét Website Tự Động</h1>
+                        <p className="text-[10px] sm:text-xs text-muted-foreground break-words truncate max-w-[200px] sm:max-w-none">
+                            Tự động quét & tải song song 5 bộ từ {DEFAULT_URL}
+                        </p>
+                    </div>
+                    <Badge variant="secondary" className="ml-auto text-[10px] uppercase font-bold shrink-0">
+                        Admin Only
+                    </Badge>
                 </div>
-                <div>
-                    <h1 className="text-xl font-bold">Quét Website Tự Động</h1>
-                    <p className="text-xs text-muted-foreground">
-                        Tự động quét & tải song song 5 bộ từ {DEFAULT_URL}
-                    </p>
-                </div>
-                <Badge variant="secondary" className="ml-auto text-[10px] uppercase font-bold">
-                    Admin Only
-                </Badge>
             </div>
 
             {/* Control Panel */}
             <Card>
                 <CardHeader className="pb-3">
-                    <div className="flex items-center justify-between">
+                    <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4">
                         <div>
                             <CardTitle className="text-sm">Quét Tự Động</CardTitle>
                             <CardDescription className="text-xs">
@@ -104,18 +106,18 @@ export default function BulkScraperPage() {
                                 )}
                             </CardDescription>
                         </div>
-                        <div className="flex gap-2">
+                        <div className="flex flex-wrap gap-2 w-full lg:w-auto">
                             {store.phase === "idle" && (
-                                <div className="flex items-center gap-2">
+                                <div className="flex sm:items-center gap-2 flex-col sm:flex-row w-full lg:w-auto">
                                     <Input
                                         value={targetUrl}
                                         onChange={(e) => setTargetUrl(e.target.value)}
                                         placeholder="Nhập URL (hoặc wikicv.net...)"
-                                        className="w-56 h-9"
+                                        className="w-full sm:w-56 h-9"
                                     />
                                     <Button
                                         onClick={handleStart}
-                                        className="bg-gradient-to-r from-violet-600 to-purple-600 text-white"
+                                        className="bg-gradient-to-r from-violet-600 to-purple-600 text-white w-full sm:w-auto mt-2 sm:mt-0"
                                     >
                                         <ZapIcon className="size-4 mr-1.5" />
                                         Bắt đầu quét
@@ -160,7 +162,7 @@ export default function BulkScraperPage() {
                 {/* Progress overview */}
                 {store.phase !== "idle" && (
                     <CardContent className="pt-0">
-                        <div className="grid grid-cols-4 gap-3 mb-4">
+                        <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 mb-4">
                             <StatCard label="Đang tải" value={activeJobs.length} color="text-blue-500" />
                             <StatCard label="Hoàn tất" value={store.completedCount} color="text-green-500" />
                             <StatCard label="Lỗi" value={store.failedCount} color="text-red-500" />
@@ -175,43 +177,47 @@ export default function BulkScraperPage() {
 
 
             {/* Active Jobs */}
-            {activeJobs.length > 0 && (
-                <Card>
-                    <CardHeader className="pb-2">
-                        <CardTitle className="text-sm flex items-center gap-2">
-                            <Loader2Icon className="size-3.5 animate-spin text-blue-500" />
-                            Đang tải ({activeJobs.length} luồng)
-                        </CardTitle>
-                    </CardHeader>
-                    <CardContent>
-                        <div className="space-y-2">
-                            {activeJobs.map((job) => (
-                                <JobRow key={job.id} job={job} onCancel={() => store.cancelJob(job.id)} />
-                            ))}
-                        </div>
-                    </CardContent>
-                </Card>
-            )}
+            {
+                activeJobs.length > 0 && (
+                    <Card>
+                        <CardHeader className="pb-2">
+                            <CardTitle className="text-sm flex items-center gap-2">
+                                <Loader2Icon className="size-3.5 animate-spin text-blue-500" />
+                                Đang tải ({activeJobs.length} luồng)
+                            </CardTitle>
+                        </CardHeader>
+                        <CardContent>
+                            <div className="space-y-2">
+                                {activeJobs.map((job) => (
+                                    <JobRow key={job.id} job={job} onCancel={() => store.cancelJob(job.id)} />
+                                ))}
+                            </div>
+                        </CardContent>
+                    </Card>
+                )
+            }
 
             {/* Completed Jobs */}
-            {finishedJobs.length > 0 && (
-                <Card>
-                    <CardHeader className="pb-2">
-                        <CardTitle className="text-sm flex items-center gap-2">
-                            <CheckCircle2Icon className="size-3.5 text-green-500" />
-                            Đã hoàn tất ({finishedJobs.length})
-                        </CardTitle>
-                    </CardHeader>
-                    <CardContent>
-                        <div className="space-y-1 max-h-[400px] overflow-y-auto">
-                            {finishedJobs.map((job) => (
-                                <JobRow key={job.id} job={job} compact />
-                            ))}
-                        </div>
-                    </CardContent>
-                </Card>
-            )}
-        </div>
+            {
+                finishedJobs.length > 0 && (
+                    <Card>
+                        <CardHeader className="pb-2">
+                            <CardTitle className="text-sm flex items-center gap-2">
+                                <CheckCircle2Icon className="size-3.5 text-green-500" />
+                                Đã hoàn tất ({finishedJobs.length})
+                            </CardTitle>
+                        </CardHeader>
+                        <CardContent>
+                            <div className="space-y-1 max-h-[400px] overflow-y-auto">
+                                {finishedJobs.map((job) => (
+                                    <JobRow key={job.id} job={job} compact />
+                                ))}
+                            </div>
+                        </CardContent>
+                    </Card>
+                )
+            }
+        </div >
     );
 }
 
@@ -273,26 +279,89 @@ function JobRow({ job, onCancel, compact }: { job: any; onCancel?: () => void; c
     );
 }
 
+import { useMottruyenStore, mottruyenGlobalRefs } from "@/lib/stores/mottruyen-scraper";
+
 function MottruyenScannerCard() {
-    const [startId, setStartId] = useState(800);
-    const [endId, setEndId] = useState(1000000);
-    const [batchSize, setBatchSize] = useState(100);
-    const [categoryFilter, setCategoryFilter] = useState("");
-    const [currentId, setCurrentId] = useState(800);
-    const [status, setStatus] = useState<"idle" | "running" | "paused" | "finished">("idle");
-    const [successCount, setSuccessCount] = useState(0);
-    const [totalProcessed, setTotalProcessed] = useState(0);
-    const [progressData, setProgressData] = useState<Record<string, { name: string, downloaded: number, total: number, status: string }>>({});
+    // 1. Lấy state từ Zustand thay vì useState cục bộ
+    const {
+        status, setStatus,
+        currentId, setCurrentId,
+        endId, setEndId,
+        batchSize, setBatchSize,
+        categoryFilter, setCategoryFilter,
+        progressData, setProgressData,
+        successCount, setSuccessCount,
+        totalProcessed, setTotalProcessed,
+        reset
+    } = useMottruyenStore();
 
-    // Use a ref to keep track of running state to break the loop instantly
-    const runningRef = React.useRef(false);
+    // startId chỉ dùng UI tạm thời để input
+    const [startId, setStartId] = useState(currentId === 800 ? 800 : currentId);
 
-    // Hàng đợi tải truyện độc lập với quá trình quét
-    const downloadQueueRef = React.useRef<any[]>([]);
-    const activeDownloadsCountRef = React.useRef(0);
+    // Dùng global refs thay vì React.useRef để sống sót khi Component Unmount
+    const downloadQueueRef = {
+        get current() { return mottruyenGlobalRefs.downloadQueue; },
+        set current(val) { mottruyenGlobalRefs.downloadQueue = val; }
+    };
+    const activeDownloadsCountRef = {
+        get current() { return mottruyenGlobalRefs.activeDownloadsCount; },
+        set current(val) { mottruyenGlobalRefs.activeDownloadsCount = val; }
+    };
+    const readingRoomIndexRef = {
+        get current() { return mottruyenGlobalRefs.readingRoomIndex; },
+        set current(val) { mottruyenGlobalRefs.readingRoomIndex = val; }
+    };
+
+    // Gắn liền cờ runningRef vào status `running` từ cache toàn cục (store.getState) để tránh "stale closure"
+    const runningRef = {
+        get current() { return useMottruyenStore.getState().status === "running"; }
+    };
+
+    // Live counters in refs -> link tới global refs
+    const successCountRef = {
+        get current() { return mottruyenGlobalRefs.successCount; },
+        set current(val) { mottruyenGlobalRefs.successCount = val; }
+    };
+    const totalProcessedRef = {
+        get current() { return mottruyenGlobalRefs.totalProcessed; },
+        set current(val) { mottruyenGlobalRefs.totalProcessed = val; }
+    };
+    const currentIdRef = {
+        get current() { return mottruyenGlobalRefs.currentId; },
+        set current(val) { mottruyenGlobalRefs.currentId = val; }
+    };
+
+    // Nạp danh sách truyện trong phòng đọc khi mở component (Chỉ tải 1 lần)
+    React.useEffect(() => {
+        if (mottruyenGlobalRefs.readingRoomIndex.size > 0) return;
+        fetch('/api/reading-room?action=list')
+            .then(res => res.json())
+            .then(data => {
+                if (data.success && data.novels) {
+                    const ids = data.novels.map((n: any) => n.id);
+                    readingRoomIndexRef.current = new Set(ids);
+                }
+            })
+            .catch(console.error);
+    }, []);
+
+    // Đồng bộ DOM khi quay lại Tab
+    React.useEffect(() => {
+        const onVisibilityChange = () => {
+            if (document.visibilityState === 'visible' && runningRef.current) {
+                // Ép component cập nhật lại giá trị mới nhất
+                setSuccessCount(successCountRef.current);
+                setTotalProcessed(totalProcessedRef.current);
+                setCurrentId(currentIdRef.current);
+            }
+        };
+        document.addEventListener('visibilitychange', onVisibilityChange);
+        return () => document.removeEventListener('visibilitychange', onVisibilityChange);
+    }, []);
 
     const processDownloadQueue = async () => {
-        if (!runningRef.current || downloadQueueRef.current.length === 0 || activeDownloadsCountRef.current >= batchSize) {
+        // Cố định số luồng tải truyện song song tối đa là 10
+        if (!runningRef.current || downloadQueueRef.current.length === 0 || activeDownloadsCountRef.current >= 10) {
             return;
         }
 
@@ -302,7 +371,8 @@ function MottruyenScannerCard() {
         activeDownloadsCountRef.current++;
         try {
             await downloadNovelInFrontend(novelInfo);
-            setSuccessCount(prev => prev + 1);
+            successCountRef.current++;
+            setSuccessCount(successCountRef.current);
         } catch (e) {
             console.error("Lỗi tải truyện:", e);
         } finally {
@@ -317,35 +387,75 @@ function MottruyenScannerCard() {
         const novelIdStr = `mottruyen-${id}`;
 
         try {
-            // 1. Kiểm tra tồn tại
-            const existingInDb = await db.novels.get(novelIdStr);
-            if (existingInDb) {
-                // Nếu đã có, kiểm tra xem có đủ chương không (tùy chọn)
-                // Ở đây ta tạm thời bỏ qua nếu đã có novel record
-                console.log(`[ID ${id}] Đã có trong Thư viện, bỏ qua.`);
+            // 1. Kiểm tra Phòng Đọc trước — nếu đã upload đủ rồi thì bỏ qua
+            if (readingRoomIndexRef.current.has(novelIdStr)) {
+                console.log(`[ID ${id}] Đã có trong Phòng Đọc, bỏ qua.`);
                 return;
             }
 
             const totalChap = parseInt(novelData.TOTALCHAPTER || "0");
-            setProgressData(prev => ({ 
-                ...prev, 
-                [id]: { name: novelData.NAME, downloaded: 0, total: totalChap, status: "fetching" } 
+
+            // 2. Kiểm tra Thư viện cục bộ — nếu đang tải dở thì tiếp tục
+            const existingInDb = await db.novels.get(novelIdStr);
+            const existingChapters = existingInDb
+                ? await db.chapters.where("novelId").equals(novelIdStr).toArray()
+                : [];
+
+            let resumeMode = existingInDb && existingChapters.length > 0;
+            let downloadedCount = existingChapters.length;
+
+            setProgressData(prev => ({
+                ...prev,
+                [id]: { name: novelData.NAME, downloaded: downloadedCount, total: totalChap, status: "fetching" }
             }));
 
-            let novelObj = {
+            let extractedGenres: string[] = [];
+            if (typeof novelData.KIND === 'string' && novelData.KIND.trim() !== '') {
+                extractedGenres = novelData.KIND.split(/[,;\-]/).map((k: string) => k.trim()).filter(Boolean);
+            }
+            const resolvedGenres = extractedGenres.length > 0 ? extractedGenres : (existingInDb?.genres || []);
+
+            // Xoá console log, hiển thị thẳng lên màn hình để User Test
+            if (id === "899" || id === 899) {
+                toast(`Thể loại gốc: "${novelData.KIND}" => Mảng: ${JSON.stringify(resolvedGenres)}`);
+            }
+
+            let cleanedTitle = novelData.NAME || "";
+            let cleanedDesc = (novelData.DESC || "").replace(/<[^>]*>?/gm, '').trim();
+            try {
+                const parser = new DOMParser();
+                cleanedTitle = parser.parseFromString(cleanedTitle, "text/html").documentElement.textContent || cleanedTitle;
+                cleanedDesc = parser.parseFromString(cleanedDesc, "text/html").documentElement.textContent || cleanedDesc;
+            } catch (e) { }
+
+            let novelObj = existingInDb ? {
+                ...existingInDb,
+                title: cleanedTitle,
+                description: cleanedDesc,
+                genres: resolvedGenres,
+                genre: novelData.KIND || existingInDb.genre || "",
+            } : {
                 id: novelIdStr,
-                title: novelData.NAME,
+                title: cleanedTitle,
                 author: novelData.AUTHOR || "Unknown",
                 coverImage: novelData.IMG || "",
-                description: (novelData.DESC || "").replace(/<[^>]*>?/gm, '').trim(),
+                description: cleanedDesc,
+                genres: resolvedGenres,
+                genre: novelData.KIND || "", // Lưu thêm chuỗi gốc để hỗ trợ text hiển thị
                 sourceUrl: `http://api.mottruyen.com/story/?story_id=${id}`,
                 createdAt: new Date(),
                 updatedAt: new Date(),
             };
 
+            // Luôn cập nhật lại vào DB để đảm bảo (vd: bộ tải dở chưa có thể loại sẽ được gán lại)
             await db.novels.put(novelObj);
 
-            // 2. Crawl toàn bộ chương (Bi-directional)
+            // Tập hợp chapter IDs đã tải (để bỏ qua)
+            const alreadyFetchedChapterIds = new Set(
+                existingChapters.map(ch => ch.id.replace("chap-", ""))
+            );
+
+            // 3. Crawl toàn bộ chương (Bi-directional)
             let initialChapterIds: string[] = Array.isArray(novelData.CHAPTER)
                 ? novelData.CHAPTER
                     .map((ch: any) => String(ch?.id ?? "").trim())
@@ -353,16 +463,16 @@ function MottruyenScannerCard() {
                 : [];
 
             if (initialChapterIds.length === 0) {
-                 setProgressData(prev => ({ ...prev, [id]: { ...prev[id], status: "done" } }));
-                 return;
+                setProgressData(prev => ({ ...prev, [id]: { ...prev[id], status: "done" } }));
+                return;
             }
 
-            const queue: string[] = [...initialChapterIds];
-            const processed = new Set<string>();
+            // Chỉ queue các chương chưa tải
+            const queue: string[] = initialChapterIds.filter(cId => !alreadyFetchedChapterIds.has(cId));
+            const processed = new Set<string>([...alreadyFetchedChapterIds]);
             let activeCount = 0;
-            let downloadedCount = 0;
-            const CONCURRENCY = 15; // Tăng lên 15 luồng để tải cực nhanh
-            
+            const CONCURRENCY = 15;
+
             let lastUiUpdate = Date.now();
 
             const fetchAndStore = async (cId: string) => {
@@ -378,26 +488,35 @@ function MottruyenScannerCard() {
                     const chapData = await chapRes.json();
                     if (chapData?.success === 1 && chapData.data) {
                         const data = chapData.data;
-                        
-                        // Xử lý nội dung
+
+                        // Xử lý nội dung (Dùng DOMParser để giải mã toàn bộ HTML Entities &aacute;, &nbsp;, v.v.)
                         let chapName = data.ENAME || `Chương ${data.ORDER || "?"}`;
-                        chapName = chapName.replace(/&#039;/g, "'").replace(/&quot;/g, '"').replace(/&amp;/g, '&').replace(/&lt;/g, '<').replace(/&gt;/g, '>');
+                        try {
+                            chapName = new DOMParser().parseFromString(chapName, "text/html").documentElement.textContent || chapName;
+                        } catch (e) { }
 
                         let chapContent = data.CONTENT || "";
-                        chapContent = chapContent.replace(/<p>/g, "").replace(/<\/p>/g, "\n\n").replace(/&nbsp;/g, " ").replace(/<br\s*\/?>/g, "\n");
-                        chapContent = chapContent.replace(/&#039;/g, "'").replace(/&quot;/g, '"').replace(/&amp;/g, '&').replace(/&lt;/g, '<').replace(/&gt;/g, '>');
+                        // Thay thế thẻ ngắt đoạn bằng newline trước khi decode để không bị dính liền
+                        chapContent = chapContent.replace(/<p[^>]*>/gi, "").replace(/<\/p>/gi, "\n").replace(/<br\s*\/?>/gi, "\n");
 
-                        chapContent = chapContent.split('\n').filter((line: string) => {
-                            const lower = line.toLowerCase();
-                            const blacklist = ["người đăng", "thời gian đổi mới", "thời gian cập nhật", "cầu nguyệt phiếu", "nhóm dịch", "mời đọc giả", "mottruyen.com"];
-                            return !blacklist.some(b => lower.includes(b));
-                        }).join('\n').trim();
+                        try {
+                            chapContent = new DOMParser().parseFromString(chapContent, "text/html").documentElement.textContent || chapContent;
+                        } catch (e) { }
+
+                        // Lọc dòng rỗng, quảng cáo, và nối lại bằng \n\n để tạo ĐÚNG 1 KHOẢNG TRỐNG (gap)
+                        chapContent = chapContent.split('\n')
+                            .map((l: string) => l.trim())
+                            .filter((line: string) => {
+                                if (!line) return false;
+                                const lower = line.toLowerCase();
+                                const blacklist = ["người đăng", "thời gian đổi mới", "thời gian cập nhật", "cầu nguyệt phiếu", "nhóm dịch", "mời đọc giả", "mottruyen.com"];
+                                return !blacklist.some(b => lower.includes(b));
+                            }).join('\n\n').trim();
 
                         const order = parseInt(data.ORDER || "0");
                         const dbId = `chap-${cId}`;
                         const now = new Date();
 
-                        // Lưu vào DB
                         await Promise.all([
                             db.chapters.put({
                                 id: dbId,
@@ -424,7 +543,7 @@ function MottruyenScannerCard() {
                         ]);
 
                         downloadedCount++;
-                        
+
                         // Thêm NEXT và PREV vào hàng đợi nếu chưa có
                         if (data.NEXT && data.NEXT !== "0" && !processed.has(data.NEXT)) {
                             queue.push(data.NEXT);
@@ -446,30 +565,38 @@ function MottruyenScannerCard() {
                 }
             };
 
-            // Loop chính của Crawler
-            while ((queue.length > 0 || activeCount > 0) && runningRef.current) {
-                if (queue.length > 0 && activeCount < CONCURRENCY) {
-                    const cId = queue.shift()!;
-                    fetchAndStore(cId);
-                } else {
-                    await new Promise(r => setTimeout(r, 50));
+            // Loop chính của Crawler bằng Promise worker (không dùng setTimeout polling liên tục để tránh browser throttle)
+            const workers = Array.from({ length: CONCURRENCY }, async () => {
+                while (runningRef.current) {
+                    const cId = queue.shift();
+                    if (cId) {
+                        await fetchAndStore(cId);
+                    } else if (activeCount > 0) {
+                        // Hàng đợi rỗng nhưng có luồng khác đang fetch (có thể sẽ đẩy thêm NEXT vào queue)
+                        await new Promise(r => setTimeout(r, 100));
+                    } else {
+                        // Hoàn toàn kết thúc
+                        break;
+                    }
                 }
-            }
+            });
+            await Promise.all(workers);
 
             if (!runningRef.current) {
                 setProgressData(prev => ({ ...prev, [id]: { ...prev[id], status: "paused" } }));
+                // Trả lại bộ truyện về đầu hàng đợi để khi resume sẽ tiếp tục tải bộ này
+                downloadQueueRef.current.unshift(novelInfo);
                 return;
             }
 
             setProgressData(prev => ({ ...prev, [id]: { ...prev[id], downloaded: downloadedCount, status: "done" } }));
 
-            // 3. Upload to Reading Room
+            // 4. Upload to Reading Room
             const [chapters, scenes] = await Promise.all([
                 db.chapters.where("novelId").equals(novelObj.id).toArray(),
                 db.scenes.where("novelId").equals(novelObj.id).toArray()
             ]);
 
-            // Sắp xếp lại theo ORDER từ API
             const sortedChapters = chapters.sort((a, b) => a.order - b.order);
 
             const exportData = {
@@ -479,16 +606,15 @@ function MottruyenScannerCard() {
             };
 
             const jsonString = JSON.stringify(exportData);
-            const CHUNK_SIZE = 2 * 1024 * 1024; // 2MB
+            const CHUNK_SIZE = 2 * 1024 * 1024;
             const totalChunks = Math.ceil(jsonString.length / CHUNK_SIZE);
             const uploadId = crypto.randomUUID();
 
-            let uploadRes;
             let uploadSuccess = true;
 
             for (let i = 0; i < totalChunks; i++) {
                 const chunk = jsonString.slice(i * CHUNK_SIZE, (i + 1) * CHUNK_SIZE);
-                uploadRes = await fetch(`/api/reading-room?action=upload_chunk&novelId=${novelObj.id}&uploadId=${uploadId}&chunkIndex=${i}&totalChunks=${totalChunks}`, {
+                const uploadRes = await fetch(`/api/reading-room?action=upload_chunk&novelId=${novelObj.id}&uploadId=${uploadId}&chunkIndex=${i}&totalChunks=${totalChunks}`, {
                     method: "POST",
                     body: chunk,
                 });
@@ -499,8 +625,10 @@ function MottruyenScannerCard() {
             }
 
             if (uploadSuccess) {
+                // Đánh dấu đã có trong Reading Room cache
+                readingRoomIndexRef.current.add(novelIdStr);
                 toast.success(`Đã lưu phòng đọc: ${novelObj.title} (${downloadedCount} ch)`);
-                // Xóa cục bộ sau khi đã upload thành công trọn bộ
+                // Xóa cục bộ sau khi upload thành công
                 await Promise.all([
                     db.scenes.where("novelId").equals(novelObj.id).delete(),
                     db.chapters.where("novelId").equals(novelObj.id).delete(),
@@ -519,15 +647,17 @@ function MottruyenScannerCard() {
             console.error("Lỗi downloadNovelInFrontend:", err);
             setProgressData(prev => ({ ...prev, [id]: { ...prev[id], status: "error" } }));
         }
+
+
     };
 
     const startScan = async () => {
+        if (useMottruyenStore.getState().status === "running") return;
         if (currentId >= endId) return;
         setStatus("running");
-        runningRef.current = true;
 
         let cid = currentId;
-        while (runningRef.current && cid <= endId) {
+        while (useMottruyenStore.getState().status === "running" && cid <= endId) {
             // Ngăn chặn quét quá nhanh làm tràn bộ nhớ
             if (downloadQueueRef.current.length >= batchSize * 2) {
                 await new Promise(r => setTimeout(r, 1000));
@@ -548,20 +678,22 @@ function MottruyenScannerCard() {
                     if (data.validNovels && data.validNovels.length > 0) {
                         downloadQueueRef.current.push(...data.validNovels);
 
-                        // Kích hoạt các luồng tải song song (tối đa bằng batchSize)
-                        for (let i = activeDownloadsCountRef.current; i < batchSize; i++) {
+                        // Kích hoạt các luồng tải song song (tối đa bằng 10 bộ truyện)
+                        for (let i = activeDownloadsCountRef.current; i < 10; i++) {
                             processDownloadQueue();
                         }
                     }
 
-                    setTotalProcessed(prev => prev + data.totalScanned);
+                    totalProcessedRef.current += data.totalScanned;
+                    setTotalProcessed(totalProcessedRef.current);
                 }
             } catch (err) {
                 console.error(err);
             }
 
-            if (!runningRef.current) break;
+            if (useMottruyenStore.getState().status !== "running") break;
             cid += batchSize;
+            currentIdRef.current = cid;
             setCurrentId(cid);
         }
 
@@ -571,7 +703,6 @@ function MottruyenScannerCard() {
                 if (activeDownloadsCountRef.current === 0 && downloadQueueRef.current.length === 0) {
                     clearInterval(waitFinish);
                     setStatus("finished");
-                    runningRef.current = false;
                 }
             }, 1000);
         }
@@ -579,20 +710,100 @@ function MottruyenScannerCard() {
 
     const pauseScan = () => {
         setStatus("paused");
-        runningRef.current = false;
     };
 
     const resetScan = () => {
-        setStatus("idle");
+        reset();
         setCurrentId(startId);
-        setSuccessCount(0);
-        setTotalProcessed(0);
+    };
+
+    // ── Kiểm tra cập nhật chương mới ──
+    const [updateStatus, setUpdateStatus] = useState<"idle" | "checking" | "done">("idle");
+    const [updatableNovels, setUpdatableNovels] = useState<Array<{
+        localId: string; mottruyenId: number; title: string;
+        localChapterCount: number; remoteChapterCount: number;
+        newChapters: number; chapterIds: string[]; coverImage: string;
+    }>>([]);
+    const [updatingIds, setUpdatingIds] = useState<Set<number>>(new Set());
+
+    const checkForUpdates = async () => {
+        setUpdateStatus("checking");
+        setUpdatableNovels([]);
+        try {
+            // 1. Load Reading Room index
+            const rrRes = await fetch("/api/reading-room?action=list");
+            const rrData = await rrRes.json();
+            const rrNovels: any[] = rrData.novels || [];
+
+            // 2. Filter mottruyen novels and extract IDs + chapter counts
+            const mottruyenNovels = rrNovels
+                .filter((n: any) => n.id?.startsWith("mottruyen-"))
+                .map((n: any) => ({
+                    localId: n.id,
+                    mottruyenId: parseInt(n.id.replace("mottruyen-", "")),
+                    localChapterCount: n.chapterCount || 0,
+                }))
+                .filter((n) => !isNaN(n.mottruyenId));
+
+            if (mottruyenNovels.length === 0) {
+                toast("Chưa có truyện Mottruyen nào trong Phòng Đọc.");
+                setUpdateStatus("done");
+                return;
+            }
+
+            toast(`Đang kiểm tra ${mottruyenNovels.length} truyện Mottruyen...`);
+
+            // 3. Call check-updates API
+            const res = await fetch("/api/mottruyen-scanner/check-updates", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ novelIds: mottruyenNovels }),
+            });
+
+            const data = await res.json();
+            if (data.success) {
+                setUpdatableNovels(data.updatable || []);
+                if (data.totalWithUpdates === 0) {
+                    toast.success("Tất cả truyện đã cập nhật đầy đủ! ✅");
+                } else {
+                    toast.success(`Có ${data.totalWithUpdates} truyện cần cập nhật!`);
+                }
+            }
+        } catch (err: any) {
+            toast.error("Lỗi kiểm tra: " + err.message);
+        } finally {
+            setUpdateStatus("done");
+        }
+    };
+
+    const updateNovel = async (novel: typeof updatableNovels[0]) => {
+        setUpdatingIds(prev => new Set(prev).add(novel.mottruyenId));
+        try {
+            // Gọi lại hàm downloadNovelInFrontend bằng cách fetch story info
+            const storyRes = await fetch(`/api/mottruyen-proxy?url=${encodeURIComponent(`http://api.mottruyen.com/story/?story_id=${novel.mottruyenId}`)}`);
+            const storyData = await storyRes.json();
+            if (storyData?.success === 1 && storyData.data) {
+                // Push to download queue
+                downloadQueueRef.current.push({ id: novel.mottruyenId, novelData: storyData.data });
+                processDownloadQueue();
+                toast.success(`Đang tải thêm ${novel.newChapters} chương mới: ${novel.title}`);
+
+                // Xóa khỏi danh sách updatable
+                setUpdatableNovels(prev => prev.filter(n => n.mottruyenId !== novel.mottruyenId));
+            } else {
+                toast.error(`Không tải được thông tin truyện ID ${novel.mottruyenId}`);
+            }
+        } catch (err: any) {
+            toast.error(`Lỗi: ${err.message}`);
+        } finally {
+            setUpdatingIds(prev => { const s = new Set(prev); s.delete(novel.mottruyenId); return s; });
+        }
     };
 
     return (
         <Card>
             <CardHeader className="pb-3">
-                <div className="flex items-center justify-between">
+                <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
                     <div>
                         <CardTitle className="text-sm">Quét API Mottruyen</CardTitle>
                         <CardDescription className="text-xs mt-1">
@@ -602,7 +813,21 @@ function MottruyenScannerCard() {
                             {status === "finished" && `Hoàn tất! Đã duyệt đến ${endId} • Thành công: ${successCount}`}
                         </CardDescription>
                     </div>
-                    <div className="flex gap-2 items-center">
+                    <div className="flex flex-wrap gap-2 items-center">
+                        {/* Nút Kiểm tra cập nhật — luôn hiển thị */}
+                        <Button
+                            variant="outline" size="sm"
+                            onClick={checkForUpdates}
+                            disabled={updateStatus === "checking" || status === "running"}
+                            className="shrink-0"
+                        >
+                            {updateStatus === "checking" ? (
+                                <><Loader2Icon className="size-3.5 mr-1 animate-spin" />Đang kiểm tra...</>
+                            ) : (
+                                <><RefreshCwIcon className="size-3.5 mr-1" />Kiểm tra cập nhật</>
+                            )}
+                        </Button>
+
                         {status === "idle" && (
                             <>
                                 <Input type="number" value={startId} onChange={e => { setStartId(Number(e.target.value)); setCurrentId(Number(e.target.value)); }} className="w-24 h-9" title="Từ ID" />
@@ -660,7 +885,7 @@ function MottruyenScannerCard() {
                         {Object.keys(progressData).length > 0 && (
                             <div className="space-y-2 max-h-[300px] overflow-y-auto pr-2">
                                 {Object.entries(progressData)
-                                    .filter(([id, p]) => p.status === "fetching" || p.status === "done")
+                                    .filter(([id, p]) => p.status === "fetching" || p.status === "done" || p.status === "paused")
                                     // Sắp xếp ID lớn hơn lên trên để dễ xem
                                     .sort((a, b) => Number(b[0]) - Number(a[0]))
                                     .map(([id, p]) => {
@@ -679,6 +904,57 @@ function MottruyenScannerCard() {
                                             </div>
                                         );
                                     })}
+                            </div>
+                        )}
+
+                        {/* Danh sách cập nhật chương mới */}
+                        {updatableNovels.length > 0 && (
+                            <div className="pt-4 mt-4 border-t border-border/50">
+                                <h3 className="text-sm font-semibold text-emerald-500 mb-3 ml-1 flex items-center gap-1.5">
+                                    <ZapIcon className="size-4" />
+                                    Có {updatableNovels.length} truyện có chương mới:
+                                </h3>
+                                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 max-h-[600px] overflow-y-auto pr-2 pb-2">
+                                    {updatableNovels.map((novel) => {
+                                        const isUp = updatingIds.has(novel.mottruyenId);
+                                        return (
+                                            <div key={novel.localId} className="flex flex-col border rounded-lg p-3 relative bg-card shadow-sm hover:border-emerald-500/50 transition-colors">
+                                                <div className="flex gap-3 mb-3">
+                                                    {novel.coverImage ? (
+                                                        <img src={novel.coverImage} alt={novel.title} className="w-12 h-16 object-cover rounded-md shadow-sm shrink-0" />
+                                                    ) : (
+                                                        <div className="w-12 h-16 bg-muted rounded-md flex items-center justify-center shrink-0">
+                                                            <GlobeIcon className="size-5 text-muted-foreground" />
+                                                        </div>
+                                                    )}
+                                                    <div className="flex flex-col justify-between overflow-hidden">
+                                                        <div className="font-semibold text-sm line-clamp-2" title={novel.title}>{novel.title}</div>
+                                                        <div className="text-xs text-muted-foreground">ID: {novel.mottruyenId}</div>
+                                                    </div>
+                                                </div>
+
+                                                <div className="flex items-center justify-between mt-auto pt-2 border-t text-xs">
+                                                    <div className="flex flex-col gap-0.5">
+                                                        <span className="text-muted-foreground line-through decoration-muted-foreground/30">{novel.localChapterCount} ch</span>
+                                                        <span className="font-bold text-emerald-500">{novel.remoteChapterCount} ch ↑</span>
+                                                    </div>
+                                                    <Button
+                                                        size="sm"
+                                                        onClick={() => updateNovel(novel)}
+                                                        disabled={isUp}
+                                                        className="h-7 text-xs bg-emerald-500/10 text-emerald-600 hover:bg-emerald-500 hover:text-white"
+                                                    >
+                                                        {isUp ? (
+                                                            <><Loader2Icon className="size-3 mr-1 animate-spin" />Đang thêm</>
+                                                        ) : (
+                                                            <><DownloadIcon className="size-3 mr-1" />Tải +{novel.newChapters}</>
+                                                        )}
+                                                    </Button>
+                                                </div>
+                                            </div>
+                                        );
+                                    })}
+                                </div>
                             </div>
                         )}
                     </div>

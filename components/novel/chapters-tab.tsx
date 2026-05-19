@@ -128,8 +128,8 @@ export function ChaptersTab({
   novelId: string;
   chapters: Chapter[];
   analysisStatuses:
-    | { chapterId: string; status: ChapterAnalysisStatus }[]
-    | undefined;
+  | { chapterId: string; status: ChapterAnalysisStatus }[]
+  | undefined;
   wordCounts: Map<string, number>;
   translatedChapterIds?: Set<string>;
   onAnalyze: (
@@ -206,9 +206,9 @@ export function ChaptersTab({
   const lastItemRef = useCallback((node: HTMLDivElement | null) => {
     if (observer.current) observer.current.disconnect();
     observer.current = new IntersectionObserver(entries => {
-        if (entries[0].isIntersecting && visibleCount < filteredChapters.length) {
-            setVisibleCount(prev => prev + CHAPTER_PAGE_SIZE);
-        }
+      if (entries[0].isIntersecting && visibleCount < filteredChapters.length) {
+        setVisibleCount(prev => prev + CHAPTER_PAGE_SIZE);
+      }
     });
     if (node) observer.current.observe(node);
   }, [visibleCount, filteredChapters.length]);
@@ -291,7 +291,7 @@ export function ChaptersTab({
       for (const ch of chaptersByOrder) {
         const scene = sceneMap.get(ch.id);
         if (!scene || !scene.content) continue;
-        
+
         // Chuẩn hóa: xóa toàn bộ khoảng trắng để so sánh chính xác dù có khác biệt về dòng/dấu cách
         const normalized = scene.content.replace(/\s+/g, "").trim();
         if (normalized.length < 50) continue; // Bỏ qua các chương quá ngắn (thường là lỗi hoặc thông báo)
@@ -311,6 +311,27 @@ export function ChaptersTab({
       }
     } catch {
       toast.error("Lỗi khi quét chương trùng lặp", { id: toastId });
+    }
+  };
+
+  const selectTranslationErrors = () => {
+    if (!translateJob) {
+      toast.info("Chưa có phiên dịch nào gần đây.");
+      return;
+    }
+
+    const errorIds = new Set<string>();
+    translateJob.statuses.forEach((status, chId) => {
+      if (status === "error") {
+        errorIds.add(chId);
+      }
+    });
+
+    if (errorIds.size > 0) {
+      setSelected((prev) => new Set([...prev, ...errorIds]));
+      toast.success(`Đã chọn ${errorIds.size} chương bị lỗi.`);
+    } else {
+      toast.info("Không có chương nào bị lỗi.");
     }
   };
 
@@ -356,14 +377,18 @@ export function ChaptersTab({
           <CopyXIcon className="size-3.5 sm:mr-1.5" />
           <span className="hidden sm:inline">Chọn trùng lặp</span>
         </Button>
+        <Button size="sm" variant="outline" className="text-red-600 dark:text-red-400 border-red-500/30" onClick={selectTranslationErrors}>
+          <XCircleIcon className="size-3.5 sm:mr-1.5" />
+          <span className="hidden sm:inline">Chọn lỗi dịch</span>
+        </Button>
         <Button size="sm" variant="outline" className="text-blue-600 dark:text-blue-400" onClick={() => setWorkspaceOpen(true)}>
           <ZapIcon className="size-3.5 sm:mr-1.5" />
           <span className="hidden sm:inline">Khu Vực Dịch Truyện</span>
         </Button>
-        <Button 
-          size="sm" 
-          variant="outline" 
-          className="sm:hidden" 
+        <Button
+          size="sm"
+          variant="outline"
+          className="sm:hidden"
           onClick={toggleAll}
         >
           {isAllValidSelected ? "Bỏ chọn tất cả" : "Chọn tất cả"}
@@ -421,7 +446,7 @@ export function ChaptersTab({
               )}
             </PopoverContent>
           </Popover>
-          
+
           {translateJob && (translateJob.isRunning || translateJob.step === "progress") && (
             <Button
               variant="outline"
@@ -719,12 +744,12 @@ export function ChaptersTab({
                 })}
               </div>
             )}
-            
+
             {visibleCount < filteredChapters.length && (
-                <div className="p-8 text-center flex flex-col items-center gap-2">
-                    <LoaderIcon className="w-5 h-5 animate-spin text-primary/50" />
-                    <span className="text-[10px] text-muted-foreground uppercase tracking-widest font-bold">Đang tải thêm...</span>
-                </div>
+              <div className="p-8 text-center flex flex-col items-center gap-2">
+                <LoaderIcon className="w-5 h-5 animate-spin text-primary/50" />
+                <span className="text-[10px] text-muted-foreground uppercase tracking-widest font-bold">Đang tải thêm...</span>
+              </div>
             )}
           </div>
         </>
@@ -816,9 +841,9 @@ export function ChaptersTab({
               <span>{Math.round((translateJob.chaptersCompleted / Math.max(1, translateJob.totalChapters)) * 100)}%</span>
             </div>
             <div className="h-1.5 w-full bg-secondary rounded-full overflow-hidden">
-              <div 
-                className={`h-full ${translateJob.isPaused ? "bg-amber-500" : "bg-primary"} transition-all duration-300`} 
-                style={{ width: `${Math.round((translateJob.chaptersCompleted / Math.max(1, translateJob.totalChapters)) * 100)}%` }} 
+              <div
+                className={`h-full ${translateJob.isPaused ? "bg-amber-500" : "bg-primary"} transition-all duration-300`}
+                style={{ width: `${Math.round((translateJob.chaptersCompleted / Math.max(1, translateJob.totalChapters)) * 100)}%` }}
               />
             </div>
             {translateJob.currentChapterId && !translateJob.isPaused && (

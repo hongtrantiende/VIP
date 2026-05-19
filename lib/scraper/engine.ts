@@ -1,6 +1,19 @@
 import { sanitizeText } from "../utils";
 import { extensionFetch, extensionDownloadSTVChapter, extensionStopScrape } from "./extension-bridge";
+import { cloakFetch } from "./cloak-client";
 import type { ChapterContent, ChapterLink, SiteAdapter } from "./types";
+
+/** Detect if HTML is a Cloudflare/anti-bot challenge page instead of real content */
+function isAntiBot(html: string): boolean {
+  return (
+    html.includes("cf-browser-verification") ||
+    html.includes("__cf_chl") ||
+    (html.includes("cloudflare") && html.includes("challenge")) ||
+    html.includes("cf-challenge-running") ||
+    html.includes("datadome") ||
+    (html.length < 5000 && html.includes("Just a moment"))
+  );
+}
 
 /** Simple content hash for duplicate detection */
 function hashContent(text: string): string {
@@ -73,68 +86,68 @@ export async function scrapeChapters(
   let consecutiveErrors = 0;
   const MAX_CONSECUTIVE_ERRORS = 3;
 
-    const defaultMin = adapter.minDelayMs ?? 0;
-    const userDelay = delayMs ?? 7000;
-    const safeDelayMs = Math.max(defaultMin, userDelay, 100);
+  const defaultMin = adapter.minDelayMs ?? 0;
+  const userDelay = delayMs ?? 7000;
+  const safeDelayMs = Math.max(defaultMin, userDelay, 100);
 
-    for (let i = 0; i < chapters.length; i++) {
+  for (let i = 0; i < chapters.length; i++) {
+    signal?.throwIfAborted();
+
+    // Wait BEFORE starting the next chapter to ensure tab switching is synced with delay
+    // Only do this for standard fetch. STV/Fanqie extension handles its own delay now.
+    const isTabBased = adapter.name === "STV" || adapter.name === "Fanqie Novel";
+    if (i > 0 && !isTabBased) {
+      await delay(safeDelayMs);
+    }
+
+    const chapter = chapters[i];
+    onProgress?.(i + 1, chapters.length, chapter.title);
+
+    // Pause loop
+    while (onPauseCheck?.()) {
+      await delay(1000);
       signal?.throwIfAborted();
+    }
 
-      // Wait BEFORE starting the next chapter to ensure tab switching is synced with delay
-      // Only do this for standard fetch. STV/Fanqie extension handles its own delay now.
-      const isTabBased = adapter.name === "STV" || adapter.name === "Fanqie Novel";
-      if (i > 0 && !isTabBased) {
-        await delay(safeDelayMs);
-      }
+    let html = "";
+    let contentText: string | undefined = undefined;
+    let timedOut = false;
+    let logs: string[] = [];
+    let extTitle: string | undefined = undefined;
+    let content: ChapterContent = { title: "", content: "" };
 
-      const chapter = chapters[i];
-      onProgress?.(i + 1, chapters.length, chapter.title);
+    let attempts = 0;
+    let success = false;
+    let lastError: any = null;
 
-      // Pause loop
-      while (onPauseCheck?.()) {
-        await delay(1000);
-        signal?.throwIfAborted();
-      }
-
-      let html = "";
-      let contentText: string | undefined = undefined;
-      let timedOut = false;
-      let logs: string[] = [];
-      let extTitle: string | undefined = undefined;
-      let content: ChapterContent = { title: "", content: "" };
-
-      let attempts = 0;
-      let success = false;
-      let lastError: any = null;
-
-      while (attempts < 3 && !success) {
-        try {
-          if ((adapter.name === "STV" || adapter.name === "Fanqie Novel") && chapter.id) {
-            const isFanqieRealUrl = adapter.name === "Fanqie Novel" && !chapter.url.startsWith('fanqie-dynamic');
-            const res = await extensionDownloadSTVChapter(
-              chapter.id,
-              chapter.url,
-              // For Fanqie real URLs: don't send allowNext (we navigate directly)
-              isFanqieRealUrl ? false : (i < chapters.length - 1 && !signal?.aborted),
-              false,
-              safeDelayMs
-            );
-            html = res.data ?? "";
-            contentText = (res as any).contentText ?? res.content ?? undefined;
-            timedOut = (res as any).timedOut ?? false;
-            extTitle = res.title;
-            if (res.stopped) break;
-          } else {
-            const fetchRes = await extensionFetch(chapter.url, {
-              waitSelector: adapter.chapterWaitSelector,
-              clickSelector: adapter.chapterClickSelector,
-              reuseTab: adapter.useSequentialTab,
-            });
-            html = fetchRes.html;
-            contentText = fetchRes.contentText;
-            timedOut = fetchRes.timedOut ?? false;
-            logs = fetchRes.logs ?? [];
-          }
+    while (attempts < 3 && !success) {
+      try {
+        if ((adapter.name === "STV" || adapter.name === "Fanqie Novel") && chapter.id) {
+          const isFanqieRealUrl = adapter.name === "Fanqie Novel" && !chapter.url.startsWith('fanqie-dynamic');
+          const res = await extensionDownloadSTVChapter(
+            chapter.id,
+            chapter.url,
+            // For Fanqie real URLs: don't send allowNext (we navigate directly)
+            isFanqieRealUrl ? false : (i < chapters.length - 1 && !signal?.aborted),
+            false,
+            safeDelayMs
+          );
+          html = res.data ?? "";
+          contentText = (res as any).contentText ?? res.content ?? undefined;
+          timedOut = (res as any).timedOut ?? false;
+          extTitle = res.title;
+          if (res.stopped) break;
+        } else {
+          const fetchRes = await extensionFetch(chapter.url, {
+            waitSelector: adapter.chapterWaitSelector,
+            clickSelector: adapter.chapterClickSelector,
+            reuseTab: adapter.useSequentialTab,
+          });
+          html = fetchRes.html;
+          contentText = fetchRes.contentText;
+          timedOut = fetchRes.timedOut ?? false;
+          logs = fetchRes.logs ?? [];
+        }
 
         content = sanitizeChapterContent(
           await adapter.getChapterContent(html, chapter.url, contentText),
@@ -228,47 +241,47 @@ export async function scrapeChapters(
     }
 
     // ── Dynamic Next Chapter Crawling ──
-      // If we just processed the last chapter in our list, and we didn't stop or error out
-      if (i === chapters.length - 1 && !signal?.aborted && adapter.name === "Fanqie Novel" && success && !timedOut && content.content.length > 200) {
-        // For Fanqie, we simulate the next chapter since the extension ALREADY clicked "Next".
-        // The URL in the browser changed, but our `chapter.url` is outdated. That's fine for STV mode.
-        // We just append a dummy chapter to keep the loop going!
-        const nextIdx = chapters.length;
+    // If we just processed the last chapter in our list, and we didn't stop or error out
+    if (i === chapters.length - 1 && !signal?.aborted && adapter.name === "Fanqie Novel" && success && !timedOut && content.content.length > 200) {
+      // For Fanqie, we simulate the next chapter since the extension ALREADY clicked "Next".
+      // The URL in the browser changed, but our `chapter.url` is outdated. That's fine for STV mode.
+      // We just append a dummy chapter to keep the loop going!
+      const nextIdx = chapters.length;
+      const newChapter: ChapterLink = {
+        title: `Chương ${nextIdx + 1}`,
+        url: content.nextChapterUrl || `fanqie-dynamic-next-${nextIdx}`, // placeholder
+        order: nextIdx,
+        id: `fanqie-dynamic-${nextIdx}` // Need an ID for STV mode to trigger
+      };
+      chapters.push(newChapter);
+      onDynamicChapterAdded?.(newChapter);
+    } else if (i === chapters.length - 1 && content.nextChapterUrl) {
+      // Existing logic for other adapters
+      const alreadyExists = chapters.some((ch) => ch.url === content.nextChapterUrl);
+      if (!alreadyExists && content.nextChapterUrl.startsWith("http")) {
         const newChapter: ChapterLink = {
-          title: `Chương ${nextIdx + 1}`,
-          url: content.nextChapterUrl || `fanqie-dynamic-next-${nextIdx}`, // placeholder
-          order: nextIdx,
-          id: `fanqie-dynamic-${nextIdx}` // Need an ID for STV mode to trigger
+          title: `Chương ${chapters.length + 1} (Đang lấy tiêu đề...)`,
+          url: content.nextChapterUrl,
+          order: chapters.length,
         };
         chapters.push(newChapter);
         onDynamicChapterAdded?.(newChapter);
-      } else if (i === chapters.length - 1 && content.nextChapterUrl) {
-        // Existing logic for other adapters
-        const alreadyExists = chapters.some((ch) => ch.url === content.nextChapterUrl);
-        if (!alreadyExists && content.nextChapterUrl.startsWith("http")) {
-          const newChapter: ChapterLink = {
-            title: `Chương ${chapters.length + 1} (Đang lấy tiêu đề...)`,
-            url: content.nextChapterUrl,
-            order: chapters.length,
-          };
-          chapters.push(newChapter);
-          onDynamicChapterAdded?.(newChapter);
-        }
       }
     }
+  }
 
-    await extensionStopScrape();
-    // Close any persistent tab created during scraping
-    try {
-      const { getExtensionId } = await import("./extension-bridge");
-      const extId = getExtensionId();
-      if (extId && (window as any).chrome?.runtime) {
-        (window as any).chrome.runtime.sendMessage(extId, { action: "closePersistentTab" });
-      }
-    } catch {}
+  await extensionStopScrape();
+  // Close any persistent tab created during scraping
+  try {
+    const { getExtensionId } = await import("./extension-bridge");
+    const extId = getExtensionId();
+    if (extId && (window as any).chrome?.runtime) {
+      (window as any).chrome.runtime.sendMessage(extId, { action: "closePersistentTab" });
+    }
+  } catch { }
 
-    onProgress?.(chapters.length, chapters.length, "");
-    return results;
+  onProgress?.(chapters.length, chapters.length, "");
+  return results;
 }
 
 export async function crawlNovel(
@@ -302,11 +315,11 @@ export async function crawlNovel(
     );
 
     onProgress?.(++completed, content.title || "Chương không rõ");
-    
+
     await onChapterScraped(content, currentUrl);
 
     currentUrl = content.nextChapterUrl || "";
-    
+
     if (currentUrl) {
       await delay(delayMs);
     }
@@ -369,7 +382,7 @@ export async function serverScrapeChapters(
         }
 
         const data = await res.json();
-        
+
         content = sanitizeChapterContent({
           title: data.title || chapter.title,
           content: data.content?.join("\n\n") || "",
@@ -387,6 +400,44 @@ export async function serverScrapeChapters(
         attempts++;
         if (attempts >= 3) break;
         await delay(2000 * attempts);
+      }
+    }
+
+    if (!success && lastError) {
+      // ── CloakBrowser Fallback ──
+      // If the normal server fetch failed (likely anti-bot), try CloakBrowser
+      try {
+        const cloakResult = await cloakFetch(chapter.url, {
+          timeout: 30000,
+          signal,
+        });
+
+        if (cloakResult.html && !isAntiBot(cloakResult.html) && cloakResult.html.length > 500) {
+          // Parse the HTML using a simple extraction (same as /api/scrape would do)
+          const cloakRes = await fetch("/api/scrape", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ action: "chapter-parse", html: cloakResult.html, url: chapter.url }),
+            signal,
+          });
+
+          if (cloakRes.ok) {
+            const cloakData = await cloakRes.json();
+            content = sanitizeChapterContent({
+              title: cloakData.title || chapter.title,
+              content: cloakData.content?.join("\n\n") || "",
+              order: chapter.order,
+            });
+
+            if (content.content.length >= 30) {
+              success = true;
+              content.warning = "🛡️ Tải qua CloakBrowser (anti-bot bypass)";
+            }
+          }
+        }
+      } catch (cloakErr: any) {
+        // CloakBrowser also failed — fall through to error handling below
+        console.warn("[CloakBrowser fallback] Failed:", cloakErr.message);
       }
     }
 

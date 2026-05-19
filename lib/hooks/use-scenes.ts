@@ -8,9 +8,9 @@ export function useScenes(chapterId: string | undefined) {
     () =>
       chapterId
         ? db.scenes
-            .where("[chapterId+isActive]")
-            .equals([chapterId, 1])
-            .sortBy("order")
+          .where("[chapterId+isActive]")
+          .equals([chapterId, 1])
+          .sortBy("order")
         : [],
     [chapterId],
   );
@@ -22,7 +22,7 @@ export function useOriginalScenes(chapterId: string | undefined) {
   const originalScenes = useLiveQuery(
     async () => {
       if (!chapterId) return [];
-      // 1. Get all active scenes for this chapter to know the orders
+      // 1. Get all active scenes for this chapter
       const activeScenes = await db.scenes
         .where("[chapterId+isActive]")
         .equals([chapterId, 1])
@@ -30,20 +30,23 @@ export function useOriginalScenes(chapterId: string | undefined) {
 
       if (activeScenes.length === 0) return [];
 
-      // 2. For each active scene, find its version 1 (manual)
-      const results = await Promise.all(
-        activeScenes.map(async (active) => {
-          const original = await db.scenes
-            .where("activeSceneId")
-            .equals(active.id)
-            .filter((s) => s.version === 1 && s.versionType === "manual")
-            .first();
-          
-          // If no version 1 found, it means the active content is still the original
-          return original || active;
-        })
-      );
-      return results;
+      // 2. Bulk-fetch ALL inactive versions for these active scene IDs at once
+      //    This avoids the N+1 query pattern that caused slowdowns.
+      const activeIds = activeScenes.map((s) => s.id);
+      const allVersions = await db.scenes
+        .where("activeSceneId")
+        .anyOf(activeIds)
+        .filter((s) => s.version === 1 && s.versionType === "manual")
+        .toArray();
+
+      // Build a lookup map: activeSceneId → original version
+      const originalMap = new Map<string, typeof allVersions[0]>();
+      for (const v of allVersions) {
+        if (v.activeSceneId) originalMap.set(v.activeSceneId, v);
+      }
+
+      // 3. For each active scene, use the original or fall back to itself
+      return activeScenes.map((active) => originalMap.get(active.id) || active);
     },
     [chapterId],
   );
@@ -55,9 +58,9 @@ export function useNovelScenes(novelId: string | undefined) {
     () =>
       novelId
         ? db.scenes
-            .where("[novelId+isActive]")
-            .equals([novelId, 1])
-            .sortBy("order")
+          .where("[novelId+isActive]")
+          .equals([novelId, 1])
+          .sortBy("order")
         : [],
     [novelId],
   );

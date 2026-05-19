@@ -76,7 +76,7 @@ export async function fetchHtml(url: string): Promise<string> {
 
     const arrayBuffer = await response.arrayBuffer();
     const buffer = Buffer.from(arrayBuffer);
-    
+
     // Decode GBK if necessary
     const hostname = new URL(url).hostname;
     if (hostname.includes("piaotia.com") || hostname.includes("jjwxc.net")) {
@@ -122,7 +122,7 @@ export async function analyzeNovelPage(url: string): Promise<ServerNovelInfo> {
     $("h1").first().text().trim() ||
     $("title").text().trim() ||
     "Không rõ tên truyện";
-  
+
   // Clean common suffixes: 【xxx】,最新章节,免費閱讀 - SiteName
   const title = rawTitle
     .replace(/[,，]\s*最新章[节節].*$/i, "")
@@ -176,12 +176,12 @@ export async function analyzeNovelPage(url: string): Promise<ServerNovelInfo> {
       // Skip obvious navigation links
       const navWords = /^(首[頁页]|專題|書庫|排行|我的|瀏覽|訂閱|登[录錄]|熱門|library|rank|topic|user|privacy|contact|more|首页)$/i;
       if (navWords.test(text.trim())) return;
-      
+
       if (!seenUrls.has(absoluteUrl) && text.length > 0) {
         chapters.push({ title: text.replace(/\s+/g, " ").trim(), url: absoluteUrl });
         seenUrls.add(absoluteUrl);
       }
-    } catch {}
+    } catch { }
   };
 
   // ── Site-specific: chomered.com / welove-gourmet.com ──
@@ -193,46 +193,46 @@ export async function analyzeNovelPage(url: string): Promise<ServerNovelInfo> {
     $("a").each((_i, el) => {
       const href = $(el).attr("href") || "";
       if (href.includes("/book/chapter/")) {
-        try { chapterUrlSet.add(new URL(href, url).toString()); } catch {}
+        try { chapterUrlSet.add(new URL(href, url).toString()); } catch { }
       }
     });
-    
+
     // Second pass: pick the cleanest text for each URL (from the list section, not nav buttons)
     const chapterMap = new Map<string, string>();
     $("a").each((_i, el) => {
       const href = $(el).attr("href") || "";
       if (!href.includes("/book/chapter/")) return;
-      
+
       let absUrl: string;
       try { absUrl = new URL(href, url).toString(); } catch { return; }
-      
+
       const rawText = $(el).text().trim();
       // Skip nav-like texts: 繼續閱讀 (continue reading), 最新 (latest), etc.
       if (/繼續閱[讀读]|最新|免[费費]|閱讀/i.test(rawText) && !/第\d+章/.test(rawText)) return;
-      
+
       // Clean text: "1 第1章 免费" → "第1章", "10-28 最新 第6章" → "第6章"
       let cleanText = rawText
         .replace(/免[费費]/g, "")
         .replace(/\d+-\d+\s*最新\s*/g, "")
         .replace(/^\d+\s+/, "")
         .trim();
-      
+
       if (!cleanText) return;
-      
+
       // Prefer text that looks like a chapter title (第X章)
       const existing = chapterMap.get(absUrl);
       if (!existing || (/第\d+章/.test(cleanText) && !/第\d+章/.test(existing))) {
         chapterMap.set(absUrl, cleanText);
       }
     });
-    
+
     // Sort by chapter ID (numeric part of URL) and add
     const sortedEntries = [...chapterMap.entries()].sort((a, b) => {
       const idA = parseInt(a[0].split("/").pop() || "0");
       const idB = parseInt(b[0].split("/").pop() || "0");
       return idA - idB;
     });
-    
+
     for (const [chUrl, chTitle] of sortedEntries) {
       addChapter(chTitle, chUrl);
     }
@@ -295,7 +295,7 @@ export async function analyzeNovelPage(url: string): Promise<ServerNovelInfo> {
           });
           if (chapters.length > 0) break;
         }
-      } catch {}
+      } catch { }
     }
   }
 
@@ -350,7 +350,7 @@ export async function analyzeNovelPage(url: string): Promise<ServerNovelInfo> {
           try {
             const parsed = JSON.parse(pageHtml);
             if (parsed?.data) actualHtml = parsed.data;
-          } catch {}
+          } catch { }
 
           const $p = cheerio.load(actualHtml);
           $p("a").each((_i, el) => {
@@ -371,7 +371,7 @@ export async function analyzeNovelPage(url: string): Promise<ServerNovelInfo> {
               }
             }
           });
-        } catch {}
+        } catch { }
       }
     }
   }
@@ -384,7 +384,7 @@ export async function analyzeNovelPage(url: string): Promise<ServerNovelInfo> {
     if (href && /mục lục|danh sách chương|tất cả chương|full list|xem thêm/i.test(text)) {
       try {
         tocUrl = new URL(href, url).toString();
-      } catch {}
+      } catch { }
     }
   });
 
@@ -397,7 +397,7 @@ export async function analyzeNovelPage(url: string): Promise<ServerNovelInfo> {
         if (!paginationUrls.includes(pageUrl)) {
           paginationUrls.push(pageUrl);
         }
-      } catch {}
+      } catch { }
     }
   });
 
@@ -408,6 +408,14 @@ export async function analyzeNovelPage(url: string): Promise<ServerNovelInfo> {
 
 export async function analyzeChapterPage(url: string): Promise<ServerChapterContent> {
   const html = await fetchHtml(url);
+  return parseChapterHtml(html, url);
+}
+
+/**
+ * Parse chapter content from pre-fetched HTML (no network request).
+ * Used by CloakBrowser fallback path.
+ */
+export function parseChapterHtml(html: string, url: string): ServerChapterContent {
   const $ = cheerio.load(html);
 
   // Title
@@ -448,11 +456,11 @@ export async function analyzeChapterPage(url: string): Promise<ServerChapterCont
 
   // Clean up any newlines or excess spaces that might have been captured
   title = title.replace(/[\r\n]+/g, " ").replace(/\s+/g, " ").trim();
-  
+
   // Specific fix for MTC where title might be "Novel Name Chương X" 
   if (title.includes("Chương") && !title.startsWith("Chương")) {
-     const match = title.match(/(Chương\s*\d+.*)/i);
-     if (match) title = match[1];
+    const match = title.match(/(Chương\s*\d+.*)/i);
+    if (match) title = match[1];
   }
 
   // Clean title
@@ -588,7 +596,7 @@ export async function analyzeSelectors(url: string): Promise<AnalyzedSelectors> 
     }
     try {
       sampleChapterUrl = new URL(chapLinks.first().attr("href") || "", url).toString();
-    } catch {}
+    } catch { }
   } else {
     let bestList: cheerio.Cheerio<any> | null = null;
     let maxLinks = 0;
@@ -603,7 +611,7 @@ export async function analyzeSelectors(url: string): Promise<AnalyzedSelectors> 
       chapterListSelector = `${getBestSelector($, bestList)} a`;
       try {
         sampleChapterUrl = new URL((bestList as cheerio.Cheerio<any>).find("a").first().attr("href") || "", url).toString();
-      } catch {}
+      } catch { }
     } else {
       chapterListSelector = "Không tìm thấy — cần URL trang mục lục";
     }
@@ -729,7 +737,7 @@ export async function testServerFetch(url: string): Promise<{
     const html = await fetchHtml(url);
     const responseTime = Date.now() - start;
     const $ = cheerio.load(html);
-    
+
     const isCloudflare =
       html.includes("cf-browser-verification") ||
       html.includes("__cf_chl") ||

@@ -125,7 +125,7 @@ function mergeSplitSyllables(text: string): string {
             // But first check: would this letter be a better final for prev?
             const finalCluster = prevLast + lower;
             if (prevToken && VALID_FINALS.has(finalCluster) &&
-                /[aăâeêioôơuưyàáảãạắằẳẵặấầẩẫậèéẻẽẹếềểễệìíỉĩịòóỏõọốồổỗộớờởỡợùúủũụứừửữựỳýỷỹỵ]/i.test(prevToken)) {
+              /[aăâeêioôơuưyàáảãạắằẳẵặấầẩẫậèéẻẽẹếềểễệìíỉĩịòóỏõọốồổỗộớờởỡợùúủũụứừửữựỳýỷỹỵ]/i.test(prevToken)) {
               // prev wants this as a final AND pair is valid initial → prefer final
               merged[prevIdx] = prevToken + token;
               continue;
@@ -203,7 +203,7 @@ export function fixStuckWords(text: string): string {
   // Rule A: Invalid Consonant-Consonant sequences
   const CONSONANTS_STR = "bcdfghjklmnpqrstvwxzđBCDFGHJKLMNPQRSTVWXZĐ";
   const VALID_PAIRS = new Set(["ch", "gh", "kh", "ng", "nh", "ph", "th", "tr", "CH", "GH", "KH", "NG", "NH", "PH", "TH", "TR", "Ch", "Gh", "Kh", "Ng", "Nh", "Ph", "Th", "Tr"]);
-  
+
   cleaned = cleaned.replace(
     new RegExp(`([${CONSONANTS_STR}])(?=([${CONSONANTS_STR}]))`, 'g'),
     (match, c1, c2) => {
@@ -329,27 +329,55 @@ export function cleanSTVOutput(text: string): string {
  */
 export function cleanGarbageLines(text: string): string {
   if (!text) return text;
-  
+
   const lines = text.split('\n');
   const cleanedLines = lines.filter(line => {
     const t = line.trim().toLowerCase();
     if (!t) return true;
-    
+
     // STV navigation
     if (t.includes("chương trước") && t.includes("mục lục") && t.includes("chương sau")) return false;
     if (t === "về trang sách" || t.includes("về trang sách") || t.includes("quay lại trang sách")) return false;
     if (t.includes("bạn đang đọc truyện trên")) return false;
     if (t.includes("sangtacviet")) return false;
-    
+
     // Common injected ads
     if (t.includes("meetsingles")) return false;
     if (t.includes("singleflirt")) return false;
     if (t.includes("looking for someone in")) return false;
     if (t.includes("seeking someone to do")) return false;
     if (t.includes("never believe why i moved to")) return false;
-    
+
     return true;
   });
-  
+
   return cleanedLines.join('\n').replace(/\n{3,}/g, "\n\n");
+}
+
+/**
+ * Splits a large text into smaller chunks based on a maximum character limit.
+ * Attempts to break cleanly at paragraph marks.
+ */
+export function chunkText(text: string, maxLimit: number = 2500): string[] {
+  if (!text) return [];
+  if (text.length <= maxLimit) return [text];
+
+  const chunks: string[] = [];
+  const paragraphs = text.split("\n");
+  let currentChunk = "";
+
+  for (const p of paragraphs) {
+    if (currentChunk.length + p.length > maxLimit && currentChunk.length > 0) {
+      chunks.push(currentChunk.trim());
+      currentChunk = p + "\n";
+    } else {
+      currentChunk += p + "\n";
+    }
+  }
+
+  if (currentChunk.trim()) {
+    chunks.push(currentChunk.trim());
+  }
+
+  return chunks;
 }
