@@ -1,19 +1,20 @@
 "use client";
 
-import { useEffect, useState, use } from "react";
+import { useEffect, useState, use, useRef, useCallback, useMemo } from "react";
 import { useRouter } from "next/navigation";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { ArrowLeftIcon, BookOpenIcon, ChevronRightIcon, ListIcon, LockIcon, UnlockIcon } from "lucide-react";
+import { ArrowLeftIcon, BookOpenIcon, ListIcon, LockIcon, UnlockIcon, SearchIcon, PencilIcon, CheckIcon, Loader2Icon, XIcon, Trash2Icon, FileTextIcon, BookDownIcon } from "lucide-react";
 import Link from "next/link";
 import { type Novel } from "@/lib/db";
 import { useProfile } from "@/lib/hooks/use-profile";
-import { PencilIcon, CheckIcon, Loader2Icon, XIcon, ThumbsUpIcon, ThumbsDownIcon, MessageCircleIcon, Trash2Icon, FileTextIcon, BookDownIcon } from "lucide-react";
 import { toast } from "sonner";
 import { Input } from "@/components/ui/input";
 import { ReadingRoomInteractions } from "@/components/reading-room/interactions";
 import { checkAndIncrementVipUsage, getRemainingVipUsage } from "@/lib/usage-limits";
+
+const CHAPTER_PAGE_SIZE = 50;
 
 export default function ReadingRoomNovelDetailsPage(props: { params: Promise<{ id: string }> }) {
     const params = use(props.params);
@@ -26,6 +27,9 @@ export default function ReadingRoomNovelDetailsPage(props: { params: Promise<{ i
     const [error, setError] = useState("");
     const { profile, isVip } = useProfile();
 
+    const [visibleChapters, setVisibleChapters] = useState(CHAPTER_PAGE_SIZE);
+    const [chapterSearch, setChapterSearch] = useState("");
+
     const [isEditingTitle, setIsEditingTitle] = useState(false);
     const [newTitle, setNewTitle] = useState("");
     const [isSavingTitle, setIsSavingTitle] = useState(false);
@@ -35,6 +39,35 @@ export default function ReadingRoomNovelDetailsPage(props: { params: Promise<{ i
     const [isSavingDesc, setIsSavingDesc] = useState(false);
 
     const [isDownloading, setIsDownloading] = useState(false);
+
+    // Infinite scroll for chapters
+    const observer = useRef<IntersectionObserver | null>(null);
+    const lastChapterRef = useCallback((node: HTMLDivElement | null) => {
+        if (loading) return;
+        if (observer.current) observer.current.disconnect();
+        
+        observer.current = new IntersectionObserver(entries => {
+            if (entries[0].isIntersecting && visibleChapters < filteredChapters.length) {
+                setVisibleChapters(prev => prev + CHAPTER_PAGE_SIZE);
+            }
+        });
+        
+        if (node) observer.current.observe(node);
+    }, [loading, visibleChapters, chapters.length, chapterSearch]);
+
+    const filteredChapters = useMemo(() => {
+        if (!chapterSearch.trim()) return chapters;
+        const q = chapterSearch.toLowerCase().trim();
+        return chapters.filter(ch => ch.title?.toLowerCase().includes(q) || String(ch.order + 1).includes(q));
+    }, [chapters, chapterSearch]);
+
+    const displayedChapters = useMemo(() => {
+        return filteredChapters.slice(0, visibleChapters);
+    }, [filteredChapters, visibleChapters]);
+
+    useEffect(() => {
+        setVisibleChapters(CHAPTER_PAGE_SIZE);
+    }, [chapterSearch]);
 
     useEffect(() => {
         setLoading(true);
@@ -425,41 +458,69 @@ export default function ReadingRoomNovelDetailsPage(props: { params: Promise<{ i
                     )}
                 </div>
 
-                <div className="divide-y">
-                    {chapters.length === 0 ? (
-                        <p className="p-6 text-center text-muted-foreground">Truyện chưa có chương nào.</p>
+                {/* Chapter Search */}
+                <div className="px-6 py-3 bg-muted/10 border-b flex items-center gap-3">
+                    <div className="relative flex-1 max-w-xs">
+                        <SearchIcon className="absolute left-2.5 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-muted-foreground" />
+                        <Input 
+                            placeholder="Tìm số chương hoặc tên chương..." 
+                            className="h-8 pl-8 text-xs" 
+                            value={chapterSearch}
+                            onChange={e => setChapterSearch(e.target.value)}
+                        />
+                    </div>
+                    <div className="text-[10px] text-muted-foreground font-medium">
+                        Hiển thị {Math.min(displayedChapters.length, filteredChapters.length)} / {filteredChapters.length} chương
+                    </div>
+                </div>
+
+                <div className="max-h-[600px] overflow-y-auto divide-y bg-muted/5 scrollbar-thin scrollbar-thumb-primary/10 hover:scrollbar-thumb-primary/20">
+                    {filteredChapters.length === 0 ? (
+                        <p className="p-10 text-center text-muted-foreground text-sm italic">Không tìm thấy chương nào phù hợp.</p>
                     ) : (
                         <div className="flex flex-col">
-                            {chapters.map((ch, idx) => (
-                                <div
-                                    key={ch.id}
-                                    className="flex items-center justify-between p-4 hover:bg-muted/50 transition-colors group"
-                                >
-                                    <Link
-                                        href={`/reading-room/${novel.id}/${idx}`}
-                                        className="flex-1 text-sm font-medium line-clamp-1 group-hover:text-primary transition-colors text-foreground/80 flex items-center gap-3"
+                            {displayedChapters.map((ch, idx) => {
+                                // Tìm index thật sự trong mảng chapters gốc để link đúng
+                                const realIdx = chapters.findIndex(c => c.id === ch.id);
+                                return (
+                                    <div
+                                        key={ch.id}
+                                        ref={idx === displayedChapters.length - 1 ? lastChapterRef : null}
+                                        className="flex items-center justify-between p-3.5 hover:bg-muted/50 transition-colors group"
                                     >
-                                        <span className="text-muted-foreground/50 w-6 text-right tabular-nums text-xs">{idx + 1}</span>
-                                        <span className="flex items-center gap-2">
-                                            {ch.isLocked && <LockIcon className="w-3.5 h-3.5 text-destructive" />}
-                                            {ch.title || `Chương ${idx + 1}`}
-                                        </span>
-                                    </Link>
-                                    <div className="flex gap-1.5 opacity-0 group-hover:opacity-100 transition-opacity">
-                                        {isUploader && (
-                                            <Button variant="ghost" size="sm" className="h-8" onClick={() => handleToggleLock(idx)}>
-                                                {ch.isLocked ? <UnlockIcon className="w-3.5 h-3.5 text-success" /> : <LockIcon className="w-3.5 h-3.5 text-muted-foreground" />}
+                                        <Link
+                                            href={`/reading-room/${novel.id}/${realIdx}`}
+                                            className="flex-1 text-sm font-medium line-clamp-1 group-hover:text-primary transition-colors text-foreground/80 flex items-center gap-3"
+                                        >
+                                            <span className="text-muted-foreground/40 w-8 text-right tabular-nums text-[11px]">{realIdx + 1}</span>
+                                            <span className="flex items-center gap-2">
+                                                {ch.isLocked && <LockIcon className="w-3.5 h-3.5 text-destructive/70" />}
+                                                {ch.title || `Chương ${realIdx + 1}`}
+                                            </span>
+                                        </Link>
+                                        <div className="flex gap-1.5 opacity-0 group-hover:opacity-100 transition-opacity">
+                                            {isUploader && (
+                                                <Button variant="ghost" size="sm" className="h-8 w-8 p-0" onClick={() => handleToggleLock(realIdx)}>
+                                                    {ch.isLocked ? <UnlockIcon className="w-3.5 h-3.5 text-success" /> : <LockIcon className="w-3.5 h-3.5 text-muted-foreground" />}
+                                                </Button>
+                                            )}
+                                            <Button variant="ghost" size="sm" className="h-8 gap-1.5 px-3" asChild>
+                                                <Link href={`/reading-room/${novel.id}/${realIdx}`}>
+                                                    <BookOpenIcon className="w-3.5 h-3.5" />
+                                                    Đọc
+                                                </Link>
                                             </Button>
-                                        )}
-                                        <Button variant="ghost" size="sm" className="h-8 gap-1.5" asChild>
-                                            <Link href={`/reading-room/${novel.id}/${idx}`}>
-                                                <BookOpenIcon className="w-3.5 h-3.5" />
-                                                Đọc
-                                            </Link>
-                                        </Button>
+                                        </div>
                                     </div>
+                                );
+                            })}
+                            
+                            {visibleChapters < filteredChapters.length && (
+                                <div className="p-6 text-center border-t">
+                                    <Loader2Icon className="w-5 h-5 animate-spin mx-auto text-primary/50" />
+                                    <p className="text-[10px] text-muted-foreground mt-2 uppercase tracking-widest font-bold">Đang tải thêm chương...</p>
                                 </div>
-                            ))}
+                            )}
                         </div>
                     )}
                 </div>

@@ -62,9 +62,11 @@ import {
   EraserIcon,
 } from "lucide-react";
 import Link from "next/link";
-import { useMemo, useRef, useState } from "react";
+import { useMemo, useRef, useState, useCallback, useEffect } from "react";
 import { toast } from "sonner";
 import { CopyXIcon } from "lucide-react";
+
+const CHAPTER_PAGE_SIZE = 50;
 
 const STATUS_CONFIG: Record<
   ChapterAnalysisStatus,
@@ -151,6 +153,7 @@ export function ChaptersTab({
   const [workspaceOpen, setWorkspaceOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
   const [showTranslateStatus, setShowTranslateStatus] = useState(true);
+  const [visibleCount, setVisibleCount] = useState(CHAPTER_PAGE_SIZE);
   const debouncedQuery = useDebouncedValue(searchQuery, 350);
 
   const translateJob = useBulkTranslateStore((s) => s.jobs[novelId]);
@@ -182,14 +185,33 @@ export function ChaptersTab({
     return results;
   }, [chapters, debouncedQuery]);
 
+  // Reset visibleCount when search changes
+  useEffect(() => {
+    setVisibleCount(CHAPTER_PAGE_SIZE);
+  }, [debouncedQuery]);
+
+  const displayedChaptersCount = Math.min(visibleCount, filteredChapters.length);
+
   // eslint-disable-next-line react-hooks/incompatible-library
   const virtualizer = useVirtualizer({
-    count: filteredChapters.length,
+    count: displayedChaptersCount,
     getScrollElement: () => scrollContainerRef.current,
     estimateSize: () => 52,
     overscan: 10,
     gap: 4,
   });
+
+  // Observer for lazy loading more
+  const observer = useRef<IntersectionObserver | null>(null);
+  const lastItemRef = useCallback((node: HTMLDivElement | null) => {
+    if (observer.current) observer.current.disconnect();
+    observer.current = new IntersectionObserver(entries => {
+        if (entries[0].isIntersecting && visibleCount < filteredChapters.length) {
+            setVisibleCount(prev => prev + CHAPTER_PAGE_SIZE);
+        }
+    });
+    if (node) observer.current.observe(node);
+  }, [visibleCount, filteredChapters.length]);
 
   const getStatus = (chapterId: string): ChapterAnalysisStatus =>
     statusMap.get(chapterId) ?? "unanalyzed";
@@ -463,7 +485,7 @@ export function ChaptersTab({
           {/* Virtualized chapter list */}
           <div
             ref={scrollContainerRef}
-            className="h-[calc(100svh-320px)] min-h-[300px] overflow-auto"
+            className="h-[calc(100svh-320px)] min-h-[300px] overflow-auto scrollbar-thin scrollbar-thumb-primary/10 hover:scrollbar-thumb-primary/20"
           >
             {filteredChapters.length === 0 ? (
               <p className="py-8 text-center text-sm text-muted-foreground">
@@ -499,7 +521,7 @@ export function ChaptersTab({
                     <div
                       key={ch.id}
                       data-index={virtualRow.index}
-                      ref={virtualizer.measureElement}
+                      ref={virtualRow.index === displayedChaptersCount - 1 ? lastItemRef : virtualizer.measureElement}
                       style={{
                         position: "absolute",
                         top: 0,
@@ -508,7 +530,7 @@ export function ChaptersTab({
                         transform: `translateY(${virtualRow.start}px)`,
                       }}
                     >
-                      <div className="rounded-lg border">
+                      <div className="rounded-lg border bg-card/50">
                         {/* Mobile: two-line layout */}
                         <div className="sm:hidden">
                           <div
@@ -531,7 +553,7 @@ export function ChaptersTab({
                               onClick={(e) => e.stopPropagation()}
                               className="size-3.5 shrink-0"
                             />
-                            <span className="w-6 shrink-0 text-center text-xs text-muted-foreground">
+                            <span className="w-6 shrink-0 text-center text-xs text-muted-foreground font-mono">
                               {ch.order + 1}
                             </span>
                             {isExpanded ? (
@@ -548,7 +570,7 @@ export function ChaptersTab({
                             </span>
                           </div>
                           <div className="flex items-center gap-1 px-3 pb-1.5 pl-[3.75rem]">
-                            <span className="text-xs text-muted-foreground">
+                            <span className="text-[10px] font-medium text-muted-foreground">
                               {(wordCounts.get(ch.id) ?? 0).toLocaleString()} từ
                             </span>
                             <StatusIcon
@@ -581,13 +603,13 @@ export function ChaptersTab({
                         </div>
 
                         {/* Desktop: single-line layout */}
-                        <div className="hidden min-w-0 items-center gap-2 px-3 py-2 sm:flex">
+                        <div className="hidden min-w-0 items-center gap-2 px-3 py-1.5 sm:flex">
                           <Checkbox
                             checked={selected.has(ch.id)}
                             onCheckedChange={() => toggleSelect(ch.id)}
                             className="size-3.5 shrink-0"
                           />
-                          <span className="w-8 shrink-0 text-center text-xs text-muted-foreground">
+                          <span className="w-8 shrink-0 text-center text-xs text-muted-foreground font-mono">
                             {ch.order + 1}
                           </span>
                           <button
@@ -609,14 +631,14 @@ export function ChaptersTab({
                               {TlBadge}
                             </span>
                           </button>
-                          <span className="w-14 shrink-0 text-right text-xs text-muted-foreground">
+                          <span className="w-14 shrink-0 text-right text-[11px] tabular-nums text-muted-foreground">
                             {(wordCounts.get(ch.id) ?? 0).toLocaleString()}
                           </span>
 
                           {/* Edited time — only on wide screens */}
                           <Tooltip>
                             <TooltipTrigger asChild>
-                              <span className="hidden w-20 shrink-0 text-right text-xs text-muted-foreground lg:block">
+                              <span className="hidden w-20 shrink-0 text-right text-[10px] tabular-nums text-muted-foreground lg:block">
                                 {formatDateTime(ch.updatedAt)}
                               </span>
                             </TooltipTrigger>
@@ -629,7 +651,7 @@ export function ChaptersTab({
                           <Tooltip>
                             <TooltipTrigger asChild>
                               <span
-                                className={`hidden w-20 shrink-0 items-center justify-end gap-1 text-xs lg:flex ${statusCfg.className}`}
+                                className={`hidden w-20 shrink-0 items-center justify-end gap-1 text-[10px] tabular-nums lg:flex ${statusCfg.className}`}
                               >
                                 <StatusIcon className="size-3" />
                                 {ch.analyzedAt
@@ -651,14 +673,14 @@ export function ChaptersTab({
                             />
                           </span>
                           <div className="flex w-[4.5rem] shrink-0 justify-end gap-0.5">
-                            <Button variant="ghost" size="icon-xs" asChild>
+                            <Button variant="ghost" size="icon-xs" asChild title="Đọc">
                               <Link
                                 href={`/novels/${novelId}/read/${originalIndex + 1}`}
                               >
                                 <BookOpenIcon className="size-3.5" />
                               </Link>
                             </Button>
-                            <Button variant="ghost" size="icon-xs" asChild>
+                            <Button variant="ghost" size="icon-xs" asChild title="Sửa">
                               <Link
                                 href={`/novels/${novelId}/chapters/${ch.id}`}
                               >
@@ -669,6 +691,7 @@ export function ChaptersTab({
                               variant="ghost"
                               size="icon-xs"
                               onClick={() => setDeleteTarget(ch)}
+                              title="Xóa"
                             >
                               <TrashIcon className="size-3.5" />
                             </Button>
@@ -678,14 +701,14 @@ export function ChaptersTab({
                         {/* Collapsible summary */}
                         {isExpanded && ch.summary && (
                           <div className="border-t px-4 py-2 sm:px-10">
-                            <p className="text-xs leading-relaxed text-muted-foreground">
+                            <p className="text-[11px] leading-relaxed text-muted-foreground">
                               {ch.summary}
                             </p>
                           </div>
                         )}
                         {isExpanded && !ch.summary && (
                           <div className="border-t px-4 py-2 sm:px-10">
-                            <p className="text-xs italic text-muted-foreground">
+                            <p className="text-[11px] italic text-muted-foreground">
                               Chưa có tóm tắt — chạy phân tích để tạo.
                             </p>
                           </div>
@@ -695,6 +718,13 @@ export function ChaptersTab({
                   );
                 })}
               </div>
+            )}
+            
+            {visibleCount < filteredChapters.length && (
+                <div className="p-8 text-center flex flex-col items-center gap-2">
+                    <LoaderIcon className="w-5 h-5 animate-spin text-primary/50" />
+                    <span className="text-[10px] text-muted-foreground uppercase tracking-widest font-bold">Đang tải thêm...</span>
+                </div>
             )}
           </div>
         </>
