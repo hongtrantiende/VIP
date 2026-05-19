@@ -620,27 +620,19 @@ function MottruyenScannerCard() {
             };
 
             const jsonString = JSON.stringify(exportData);
-            // Giảm dung lượng tải lên mỗi phần xuống 512KB 
-            // để tránh lỗi 413 Payload Too Large của Nginx trên VPS.
-            const CHUNK_SIZE = 512 * 1024; // 512KB
-            const totalChunks = Math.ceil(jsonString.length / CHUNK_SIZE);
-            const uploadId = crypto.randomUUID();
 
             let uploadSuccess = true;
             let uploadErrorMsg = '';
 
-            for (let i = 0; i < totalChunks; i++) {
-                const chunk = jsonString.slice(i * CHUNK_SIZE, (i + 1) * CHUNK_SIZE);
-                const uploadRes = await fetch(`/api/reading-room?action=upload_chunk&novelId=${novelObj.id}&uploadId=${uploadId}&chunkIndex=${i}&totalChunks=${totalChunks}`, {
-                    method: "POST",
-                    body: chunk,
-                });
-                if (!uploadRes.ok) {
-                    const errJson = await uploadRes.json().catch(() => ({}));
-                    uploadErrorMsg = errJson.error || `HTTP Error ${uploadRes.status}`;
-                    uploadSuccess = false;
-                    break;
-                }
+            const uploadRes = await fetch(`/api/reading-room?action=upload&novelId=${novelObj.id}`, {
+                method: "POST",
+                body: jsonString,
+            });
+
+            if (!uploadRes.ok) {
+                const errJson = await uploadRes.json().catch(() => ({}));
+                uploadErrorMsg = errJson.error || `HTTP Error ${uploadRes.status}`;
+                uploadSuccess = false;
             }
 
             if (uploadSuccess) {

@@ -265,29 +265,17 @@ export default function LibraryPage() {
     try {
       const data = await exportNovel(novel.id, { includeVersions: false });
       const jsonString = JSON.stringify(data);
-      // Giảm dung lượng tải lên mỗi phần xuống 512KB (nhỏ hơn 1MB) 
-      // để tránh lỗi 413 Payload Too Large cấu hình mặc định Nginx trên VPS.
-      const CHUNK_SIZE = 512 * 1024; // 512KB
-      const totalChunks = Math.ceil(jsonString.length / CHUNK_SIZE);
-      const uploadId = crypto.randomUUID();
 
-      let uploadSuccess = true;
-      for (let i = 0; i < totalChunks; i++) {
-        const chunk = jsonString.slice(i * CHUNK_SIZE, (i + 1) * CHUNK_SIZE);
-        const res = await fetch(`/api/reading-room?action=upload_chunk&novelId=${novel.id}&uploadId=${uploadId}&chunkIndex=${i}&totalChunks=${totalChunks}`, {
-          method: 'POST',
-          body: chunk
-        });
-        if (!res.ok) {
-          uploadSuccess = false;
-          break;
-        }
-      }
+      const res = await fetch(`/api/reading-room?action=upload&novelId=${novel.id}`, {
+        method: 'POST',
+        body: jsonString
+      });
 
-      if (uploadSuccess) {
+      if (res.ok) {
         toast.success(`Đã đăng "${novel.title}" lên Phòng Đọc thành công! Mọi người đã có thể vào đọc.`, { id: toastId });
       } else {
-        throw new Error("Lỗi tải lên từng phần.");
+        const errJson = await res.json().catch(() => ({}));
+        throw new Error(errJson.error || `HTTP Error ${res.status}`);
       }
     } catch (err: any) {
       toast.error(`Lỗi: ${err.message}`, { id: toastId });
