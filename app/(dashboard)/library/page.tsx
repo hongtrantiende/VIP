@@ -75,6 +75,7 @@ import {
   LoaderIcon,
   CloudDownloadIcon,
   CloudUploadIcon,
+  RefreshCwIcon,
 } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useCallback, useMemo, useRef, useState, useEffect } from "react";
@@ -163,6 +164,7 @@ export default function LibraryPage() {
   const [progress, setProgress] = useState<ProgressInfo | null>(null);
   const [result, setResult] = useState<{ success: boolean; message: string } | null>(null);
   const abortRef = useRef<AbortController | null>(null);
+  const [isSyncing, setIsSyncing] = useState(false);
 
   const handleBackupToDrive = async () => {
     if (!drive.accessToken) {
@@ -199,6 +201,76 @@ export default function LibraryPage() {
         setResult({ success: false, message: msg });
         toast.error(`Lỗi: ${msg}`, { id: toastId });
       }
+    }
+  };
+
+  const handleSyncAndCleanLibrary = async () => {
+    const toastId = toast.loading("Bắt đầu quét & đồng bộ thư viện cục bộ với Phòng Đọc...");
+    setIsSyncing(true);
+    try {
+      // 1. Lấy danh sách các truyện đã đăng lên Phòng Đọc
+      const listParams = new URLSearchParams({ action: 'list' });
+      const listRes = await fetch(`/api/reading-room?${listParams.toString()}`);
+      if (!listRes.ok) {
+        throw new Error(`Không thể lấy danh sách Phòng Đọc (HTTP ${listRes.status})`);
+      }
+      const listData = await listRes.json();
+      if (!listData.success) {
+        throw new Error(listData.error || "Không thể lấy danh sách truyện.");
+      }
+
+      const uploadedIds = new Set((listData.novels || []).map((n: any) => n.id));
+
+      let uploadedAndDeleted = 0;
+      let newlyUploadedAndDeleted = 0;
+      let failedUploads = 0;
+
+      // 2. Duyệt qua tất cả truyện trong thư viện cục bộ
+      for (const novel of novels || []) {
+        if (uploadedIds.has(novel.id)) {
+          // Truyện đã được upload -> Tiến hành xóa offline
+          try {
+            await deleteNovel(novel.id);
+            uploadedAndDeleted++;
+          } catch (err) {
+            console.error(`Lỗi khi xóa truyện "${novel.title}" cục bộ:`, err);
+          }
+        } else {
+          // Truyện chưa được upload -> Upload rồi xóa offline
+          try {
+            toast.loading(`Đang tải lên "${novel.title}" lên Phòng Đọc...`, { id: toastId });
+            const data = await exportNovel(novel.id, { includeVersions: false });
+            const jsonString = JSON.stringify(data);
+
+            const uploadRes = await fetch(`/api/reading-room?action=upload&novelId=${novel.id}`, {
+              method: 'POST',
+              body: jsonString
+            });
+
+            if (uploadRes.ok) {
+              await deleteNovel(novel.id);
+              newlyUploadedAndDeleted++;
+            } else {
+              failedUploads++;
+              console.error(`Upload thất bại cho truyện "${novel.title}"`);
+            }
+          } catch (err) {
+            failedUploads++;
+            console.error(`Lỗi khi xử lý truyện "${novel.title}":`, err);
+          }
+        }
+      }
+
+      toast.success(
+        `Đồng bộ thư viện thành công!\n- Đã xóa ${uploadedAndDeleted} bộ đã có trên Drive.\n- Đã tải lên & dọn dẹp ${newlyUploadedAndDeleted} bộ mới.\n${failedUploads > 0 ? `- Thất bại ${failedUploads} bộ.` : ""}`,
+        { id: toastId, duration: 6000 }
+      );
+      // Reload để cập nhật UI
+      setTimeout(() => window.location.reload(), 1500);
+    } catch (err: any) {
+      toast.error(`Đồng bộ thất bại: ${err.message}`, { id: toastId });
+    } finally {
+      setIsSyncing(false);
     }
   };
 
@@ -740,6 +812,21 @@ export default function LibraryPage() {
           </p>
         </div>
         <div className="flex items-center gap-2">
+          <Button
+            size="sm"
+            variant="outline"
+            className="text-violet-500 border-violet-500/30 hover:text-violet-600 hover:bg-violet-500/10 dark:text-violet-400 dark:border-violet-500/20 dark:hover:bg-violet-500/15 gap-2"
+            disabled={isSyncing}
+            onClick={handleSyncAndCleanLibrary}
+          >
+            {isSyncing ? (
+              <LoaderIcon className="size-4 animate-spin" />
+            ) : (
+              <RefreshCwIcon className="size-4" />
+            )}
+            <span className="hidden sm:inline">Đồng bộ & Dọn dẹp</span>
+          </Button>
+
           <Button
             size="sm"
             variant="outline"
