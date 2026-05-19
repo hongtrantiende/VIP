@@ -42,8 +42,8 @@ export async function POST(req: Request) {
                             const novelIdStr = `mottruyen-${i}`;
                             const existingInRR = rrIndex.find((n: any) => n.id === novelIdStr);
 
-                            if (existingInRR && existingInRR.chapterCount >= totalChap) {
-                                return null; // Bỏ qua, đã đủ
+                            if (existingInRR) {
+                                return null; // Bỏ qua hoàn toàn nếu đã có trong phòng đọc
                             }
 
                             return {
