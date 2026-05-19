@@ -314,7 +314,7 @@ function MottruyenScannerCard() {
 
     const downloadNovelInFrontend = async (novelInfo: any) => {
         try {
-            const { id, novelData, existingInRR } = novelInfo;
+            const { id, novelData } = novelInfo;
             const totalChap = parseInt(novelData.TOTALCHAPTER || "0");
 
             setProgressData(prev => ({ ...prev, [id]: { name: novelData.NAME, downloaded: 0, total: totalChap, status: "fetching" } }));
@@ -333,47 +333,46 @@ function MottruyenScannerCard() {
             // Lưu ngay metadata để tránh mất mát nếu bị ngắt giữa chừng
             await db.novels.put(novelObj);
 
-            let currentChapId = novelData.CHAPTER[0]?.id;
+            const chapterIds: string[] = Array.isArray(novelData.CHAPTER)
+                ? novelData.CHAPTER
+                    .map((ch: any) => String(ch?.id ?? "").trim())
+                    .filter((id: string) => id.length > 0)
+                : [];
+
+            const uniqueChapterIds = [...new Set(chapterIds)];
             let chapCount = 0;
-
-            if (existingInRR) {
-                try {
-                    const rrRes = await fetch(`/api/reading-room?action=novel_data&id=${existingInRR.id}`);
-                    if (rrRes.ok) {
-                        const rrData = await rrRes.json();
-                        if (rrData.chapters && rrData.chapters.length > 0) {
-                            rrData.chapters.sort((a: any, b: any) => a.order - b.order);
-                            const lastChap = rrData.chapters[rrData.chapters.length - 1];
-                            chapCount = rrData.chapters.length;
-                            const lastChapOriginalId = lastChap.id.replace("chap-", "");
-
-                            const proxyUrl = encodeURIComponent(`http://api.mottruyen.com/chapter/?chapter_id=${lastChapOriginalId}`);
-                            const lastChapRes = await fetch(`/api/mottruyen-proxy?url=${proxyUrl}`);
-                            if (lastChapRes.ok) {
-                                const lastChapData = await lastChapRes.json();
-                                if (lastChapData.data?.NEXT) {
-                                    currentChapId = lastChapData.data.NEXT;
-                                } else {
-                                    currentChapId = null; // Đã xong
-                                }
-                            }
-                        }
-                    }
-                } catch (e) { console.error(e); }
-            }
 
             let lastUiUpdate = Date.now();
 
             setProgressData(prev => ({ ...prev, [id]: { ...prev[id], downloaded: chapCount } }));
 
-            while (currentChapId && runningRef.current) {
-                // Removed the 50ms artificial delay to speed up download
-                const proxyUrl = encodeURIComponent(`http://api.mottruyen.com/chapter/?chapter_id=${currentChapId}`);
-                const chapRes = await fetch(`/api/mottruyen-proxy?url=${proxyUrl}`);
-                if (!chapRes.ok) break;
+            const failedChapterIds: string[] = [];
 
-                const chapData = await chapRes.json();
-                if (chapData?.success === 1 && chapData.data) {
+            for (const chapterSourceId of uniqueChapterIds) {
+                if (!runningRef.current) break;
+
+                let chapData: any = null;
+                let chapterLoaded = false;
+
+                // Retry ngắn cho từng chương để giảm thiếu chương do lỗi mạng tạm thời
+                for (let attempt = 0; attempt < 3; attempt++) {
+                    const proxyUrl = encodeURIComponent(`http://api.mottruyen.com/chapter/?chapter_id=${chapterSourceId}`);
+                    const chapRes = await fetch(`/api/mottruyen-proxy?url=${proxyUrl}`);
+                    if (!chapRes.ok) {
+                        await new Promise((r) => setTimeout(r, 200 * (attempt + 1)));
+                        continue;
+                    }
+
+                    chapData = await chapRes.json();
+                    if (chapData?.success === 1 && chapData.data) {
+                        chapterLoaded = true;
+                        break;
+                    }
+
+                    await new Promise((r) => setTimeout(r, 200 * (attempt + 1)));
+                }
+
+                if (chapterLoaded) {
                     let chapName = chapData.data.ENAME || `Chương ${chapCount + 1}`;
                     chapName = chapName.replace(/&#039;/g, "'").replace(/&quot;/g, '"').replace(/&amp;/g, '&').replace(/&lt;/g, '<').replace(/&gt;/g, '>');
 
@@ -387,7 +386,7 @@ function MottruyenScannerCard() {
                         return true;
                     }).join('\n');
 
-                    const chapterId = `chap-${currentChapId}`;
+                    const chapterId = `chap-${chapterSourceId}`;
                     const now = new Date();
 
                     // Đẩy dữ liệu vào DB (không chờ tuần tự để tối ưu tốc độ)
@@ -417,8 +416,6 @@ function MottruyenScannerCard() {
                     ];
 
                     chapCount++;
-                    currentChapId = chapData.data.NEXT;
-
                     // Giảm thiểu re-render UI: chỉ cập nhật state mỗi 500ms hoặc 20 chương
                     if (Date.now() - lastUiUpdate > 500 || chapCount % 20 === 0) {
                         setProgressData(prev => ({ ...prev, [id]: { ...prev[id], downloaded: chapCount } }));
@@ -427,7 +424,7 @@ function MottruyenScannerCard() {
 
                     await Promise.all(dbPromises);
                 } else {
-                    break;
+                    failedChapterIds.push(chapterSourceId);
                 }
             }
 
@@ -435,6 +432,14 @@ function MottruyenScannerCard() {
                 setProgressData(prev => ({ ...prev, [id]: { ...prev[id], downloaded: chapCount, status: "paused" } }));
                 return;
             }
+
+            if (failedChapterIds.length > 0 || chapCount !== uniqueChapterIds.length) {
+                setProgressData(prev => ({ ...prev, [id]: { ...prev[id], downloaded: chapCount, total: uniqueChapterIds.length, status: "error" } }));
+                toast.error(`Thiếu chương (${chapCount}/${uniqueChapterIds.length}), giữ lại trong Thư viện: ${novelObj.title}`);
+                return;
+            }
+
+            setProgressData(prev => ({ ...prev, [id]: { ...prev[id], downloaded: chapCount, total: uniqueChapterIds.length, status: "done" } }));
 
             // Upload to Reading Room
             const exportData = {
