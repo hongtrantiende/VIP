@@ -100,5 +100,8 @@
     "tailwindcss": "^4",
     "typescript": "^5",
     "wrangler": "^4.91.0"
+  },
+  "overrides": {
+    "onnxruntime-node": "npm:onnxruntime-web@^1.26.0"
   }
 }

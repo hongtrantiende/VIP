@@ -482,8 +482,22 @@ function MottruyenScannerCard() {
 
                 try {
                     const proxyUrl = encodeURIComponent(`http://api.mottruyen.com/chapter/?chapter_id=${cId}`);
-                    const chapRes = await fetch(`/api/mottruyen-proxy?url=${proxyUrl}`);
-                    if (!chapRes.ok) throw new Error("Fetch failed");
+
+                    let chapRes;
+                    for (let attempt = 1; attempt <= 3; attempt++) {
+                        try {
+                            chapRes = await fetch(`/api/mottruyen-proxy?url=${proxyUrl}`);
+                            if (chapRes.ok) {
+                                break;
+                            }
+                            if (attempt === 3) throw new Error(`Fetch failed with status ${chapRes.status}`);
+                        } catch (err: any) {
+                            if (attempt === 3) throw err;
+                            await new Promise(r => setTimeout(r, attempt * 1000));
+                        }
+                    }
+
+                    if (!chapRes || !chapRes.ok) throw new Error("Fetch failed after retries");
 
                     const chapData = await chapRes.json();
                     if (chapData?.success === 1 && chapData.data) {
