@@ -18,6 +18,7 @@ import { extractDictionaryEntries, type TrainingSuggestion } from "@/lib/ai/trai
 import { getModel } from "@/lib/ai/provider";
 import { appendToDictSource } from "@/lib/hooks/use-dict-entries";
 import { toast } from "sonner";
+import { compress } from "@/lib/compression";
 
 const GENRE_DICTS = [
   "hiendai", "tienhiep", "huyenhuyen", "dammi", "hocduong",
@@ -222,10 +223,12 @@ async function flushCloudUpload(force = false) {
             .join("\n");
         }
 
+        const compressed = await compress(finalContent);
         const upParams = new URLSearchParams({ action: 'upload-dict', filename });
         const upRes = await fetch(`/api/dict/cloud-storage?${upParams.toString()}`, {
           method: 'POST',
-          body: finalContent,
+          headers: { 'Content-Type': 'application/octet-stream' },
+          body: compressed,
         });
 
         if (upRes.ok) {

@@ -6,6 +6,7 @@ import { getMergedNameDict, bulkImportNameEntries } from "@/lib/hooks/use-name-e
 import { convertText } from "@/lib/hooks/use-qt-engine";
 import { chunkText } from "@/lib/text-utils";
 import { useBulkTranslateStore } from "@/lib/stores/bulk-translate";
+import { isSceneTranslated } from "@/lib/novel-io";
 
 // ── Constants ──
 const MAX_PERSISTENT_ATTEMPTS = 3;
@@ -278,11 +279,7 @@ export async function runComprehensiveTranslate(opts: ComprehensiveTranslateOpti
                 if (skipTranslated) {
                     let allTranslated = true;
                     for (const s of chapterScenes) {
-                        const hasDraft = await db.scenes
-                            .where("activeSceneId")
-                            .equals(s.id)
-                            .first();
-                        if (!hasDraft && !s.content?.trim()) {
+                        if (!isSceneTranslated(s)) {
                             allTranslated = false;
                             break;
                         }
@@ -422,7 +419,10 @@ export async function runComprehensiveTranslate(opts: ComprehensiveTranslateOpti
                         } catch { }
                     }
 
-                    let finalChunkContent = parsedDraft.content || chunkDictTranslated;
+                    if (!parsedDraft.content?.trim()) {
+                        throw new Error(`AI dịch nháp trả về nội dung trống ở đoạn ${chunkIdx + 1}`);
+                    }
+                    let finalChunkContent = parsedDraft.content;
 
                     // Run Phase 2 (Optional Polish / Editorial Pass)
                     if (twoPass) {
@@ -464,14 +464,15 @@ export async function runComprehensiveTranslate(opts: ComprehensiveTranslateOpti
                             }
                         }
 
-                        if (editSuccess && rawEditOutput.trim()) {
-                            const parsedEdit = parseIntermediateResult(rawEditOutput);
-                            if (parsedEdit.content.trim()) {
-                                finalChunkContent = parsedEdit.content;
-                            }
-                        } else {
-                            console.warn("Editor pass failed, falling back to draft output:", lastEditError);
+                        if (!editSuccess || !rawEditOutput.trim()) {
+                            throw lastEditError || new Error(`Không dịch được bản biên tập tại đoạn ${chunkIdx + 1}`);
                         }
+
+                        const parsedEdit = parseIntermediateResult(rawEditOutput);
+                        if (!parsedEdit.content?.trim()) {
+                            throw new Error(`AI biên tập trả về nội dung trống ở đoạn ${chunkIdx + 1}`);
+                        }
+                        finalChunkContent = parsedEdit.content;
                     }
 
                     finalAccumulatedContent += (finalAccumulatedContent ? "\n\n" : "") + finalChunkContent;

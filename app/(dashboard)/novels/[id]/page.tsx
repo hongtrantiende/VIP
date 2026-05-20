@@ -7,6 +7,9 @@ import { HybridConverterDialog } from "@/components/novel/hybrid-converter-dialo
 import { BulkTranslateDialog } from "@/components/bulk-translate-dialog";
 import { BulkReplaceDialog } from "@/components/novel/bulk-replace-dialog";
 import { BulkResplitDialog } from "@/components/novel/bulk-resplit-dialog";
+import { SplitChapterDialog } from "@/components/novel/split-chapter-dialog";
+import { MergeChaptersDialog } from "@/components/novel/merge-chapters-dialog";
+import { MergePartsDialog } from "@/components/novel/merge-parts-dialog";
 import { ChaptersTab } from "@/components/novel/chapters-tab";
 import { EditableText } from "@/components/novel/editable-text";
 import {
@@ -120,6 +123,12 @@ export default function NovelDetailPage() {
   const [convertChapterIds, setConvertChapterIds] = useState<string[]>([]);
   const [resplitOpen, setResplitOpen] = useState(false);
   const [resplitChapterIds, setResplitChapterIds] = useState<string[]>([]);
+  const [splitOpen, setSplitOpen] = useState(false);
+  const [splitChapterIds, setSplitChapterIds] = useState<string[]>([]);
+  const [mergeOpen, setMergeOpen] = useState(false);
+  const [mergeChapterIds, setMergeChapterIds] = useState<string[]>([]);
+  const [mergePartsOpen, setMergePartsOpen] = useState(false);
+  const [mergePartsChapterIds, setMergePartsChapterIds] = useState<string[]>([]);
 
   const [translateTitleOpen, setTranslateTitleOpen] = useState(false);
   const providers = useApiInferenceProviders();
@@ -171,6 +180,21 @@ export default function NovelDetailPage() {
   const handleResplit = (chapterIds: string[]) => {
     setResplitChapterIds(chapterIds);
     setResplitOpen(true);
+  };
+
+  const handleSplitMultiple = (chapterIds: string[]) => {
+    setSplitChapterIds(chapterIds);
+    setSplitOpen(true);
+  };
+
+  const handleMergeMultiple = (chapterIds: string[]) => {
+    setMergeChapterIds(chapterIds);
+    setMergeOpen(true);
+  };
+
+  const handleMergeParts = (chapterIds: string[]) => {
+    setMergePartsChapterIds(chapterIds);
+    setMergePartsOpen(true);
   };
 
   const handleExportEpub = useCallback(async () => {
@@ -585,6 +609,9 @@ export default function NovelDetailPage() {
             onConvert={handleConvert}
             onPdfTranslate={handlePdfTranslate}
             onResplit={handleResplit}
+            onSplitMultiple={handleSplitMultiple}
+            onMergeMultiple={handleMergeMultiple}
+            onMergeParts={handleMergeParts}
           />
         </TabsContent>
       </Tabs>
@@ -622,6 +649,33 @@ export default function NovelDetailPage() {
         onOpenChange={setResplitOpen}
         novelId={id}
         chapterIds={resplitChapterIds}
+        chapters={chapters ?? []}
+      />
+
+      {/* Split chapter dialog */}
+      <SplitChapterDialog
+        open={splitOpen}
+        onOpenChange={setSplitOpen}
+        novelId={id}
+        chapterIds={splitChapterIds}
+        chapters={chapters ?? []}
+      />
+
+      {/* Merge chapters dialog */}
+      <MergeChaptersDialog
+        open={mergeOpen}
+        onOpenChange={setMergeOpen}
+        novelId={id}
+        chapterIds={mergeChapterIds}
+        chapters={chapters ?? []}
+      />
+
+      {/* Merge parts dialog */}
+      <MergePartsDialog
+        open={mergePartsOpen}
+        onOpenChange={setMergePartsOpen}
+        novelId={id}
+        chapterIds={mergePartsChapterIds}
         chapters={chapters ?? []}
       />
 

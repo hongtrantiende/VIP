@@ -2,6 +2,7 @@ let cachedToken: string | null = null;
 let tokenExpiryTime: number = 0;
 
 import { getCloudflareContext } from "@opennextjs/cloudflare";
+import { decompressIfNeeded } from "./compression";
 
 async function getAccessToken(): Promise<string> {
   if (cachedToken && Date.now() < tokenExpiryTime) {
@@ -65,7 +66,7 @@ const READING_ROOM_FOLDER_NAME = 'Phong_doc_cong_dong';
 
 const folderCache: Record<string, Promise<string>> = {};
 
-async function fetchDriveAPI(url: string, options: RequestInit = {}) {
+async function fetchDriveAPI(url: string, options: RequestInit = {}, raw?: boolean) {
   const token = await getAccessToken();
   const headers = new Headers(options.headers || {});
   if (!headers.has('Authorization')) {
@@ -77,9 +78,14 @@ async function fetchDriveAPI(url: string, options: RequestInit = {}) {
     const text = await res.text();
     throw new Error(`Google Drive API Error (${res.status}): ${text}`);
   }
-  // Nếu là tải file dạng text (alt=media) thì trả về text, còn lại trả về json
+  // Nếu là tải file dạng text (alt=media)
   if (url.includes('alt=media')) {
-    return res.text();
+    const buffer = await res.arrayBuffer();
+    const bytes = new Uint8Array(buffer);
+    if (raw) {
+      return bytes;
+    }
+    return await decompressIfNeeded(bytes);
   }
   // Delete trả về empty
   if (options.method === 'DELETE') return null;
@@ -147,8 +153,14 @@ async function getTxtFolder(type: 'text_trung' | 'text_dich'): Promise<string> {
   return await findOrCreateFolder(type, txtRootId);
 }
 
-/** Helper function for Multipart upload (cho file nhỏ hoặc vừa) */
-async function uploadMultipart(filename: string, content: string, mimeType: string, parentId?: string, fileIdToUpdate?: string) {
+/** Helper function for Multipart upload (cho file nhỏ hoặc vừa, hỗ trợ binary và text) */
+async function uploadMultipart(
+  filename: string,
+  content: string | ArrayBuffer | Uint8Array,
+  mimeType: string,
+  parentId?: string,
+  fileIdToUpdate?: string
+) {
   const boundary = "-------314159265358979323846";
   const delimiter = "\r\n--" + boundary + "\r\n";
   const close_delim = "\r\n--" + boundary + "--";
@@ -159,14 +171,22 @@ async function uploadMultipart(filename: string, content: string, mimeType: stri
     ...(fileIdToUpdate ? {} : { parents: parentId ? [parentId] : undefined })
   };
 
-  const multipartRequestBody =
+  const encoder = new TextEncoder();
+  const part1 = encoder.encode(
     delimiter +
     "Content-Type: application/json; charset=UTF-8\r\n\r\n" +
     JSON.stringify(metadata) +
     delimiter +
-    `Content-Type: ${mimeType}; charset=UTF-8\r\n\r\n` +
-    content +
-    close_delim;
+    `Content-Type: ${mimeType}\r\n\r\n`
+  );
+
+  const part2 = typeof content === 'string'
+    ? encoder.encode(content)
+    : (content instanceof ArrayBuffer ? new Uint8Array(content) : content);
+
+  const part3 = encoder.encode(close_delim);
+
+  const body = new Blob([part1, part2, part3]);
 
   const url = fileIdToUpdate
     ? `https://www.googleapis.com/upload/drive/v3/files/${fileIdToUpdate}?uploadType=multipart`
@@ -176,7 +196,7 @@ async function uploadMultipart(filename: string, content: string, mimeType: stri
   return await fetchDriveAPI(url, {
     method,
     headers: { 'Content-Type': `multipart/related; boundary=${boundary}` },
-    body: multipartRequestBody
+    body
   });
 }
 
@@ -243,7 +263,7 @@ export async function listTxtFromAdminDrive(type: 'text_trung' | 'text_dich') {
   }));
 }
 
-export async function downloadFromAdminDrive(userIdentifier: string, novelName: string): Promise<string | null> {
+export async function downloadFromAdminDrive(userIdentifier: string, novelName: string, raw?: boolean) {
   const userFolderId = await getUserNovelFolder(userIdentifier);
   const filename = `${novelName}.json`;
   const safeName = filename.replace(/'/g, "\\'");
@@ -254,7 +274,7 @@ export async function downloadFromAdminDrive(userIdentifier: string, novelName: 
   if (!listRes.files || listRes.files.length === 0) return null;
 
   const fileId = listRes.files[0].id;
-  const content = await fetchDriveAPI(`https://www.googleapis.com/drive/v3/files/${fileId}?alt=media`);
+  const content = await fetchDriveAPI(`https://www.googleapis.com/drive/v3/files/${fileId}?alt=media`, {}, raw);
   return content;
 }
 
@@ -327,7 +347,7 @@ export async function uploadDictToAdminDrive(filename: string, content: string) 
   }
 }
 
-export async function downloadDictFromAdminDrive(filename: string) {
+export async function downloadDictFromAdminDrive(filename: string, raw?: boolean) {
   const masterId = await findOrCreateFolder(MASTER_FOLDER_NAME);
   const dictFolderId = await findOrCreateFolder(DICT_FOLDER_NAME, masterId);
 
@@ -336,7 +356,7 @@ export async function downloadDictFromAdminDrive(filename: string) {
   const listRes = await fetchDriveAPI(`https://www.googleapis.com/drive/v3/files?q=${q}&fields=files(id)`);
 
   if (!listRes.files || listRes.files.length === 0) return null;
-  const content = await fetchDriveAPI(`https://www.googleapis.com/drive/v3/files/${listRes.files[0].id}?alt=media`);
+  const content = await fetchDriveAPI(`https://www.googleapis.com/drive/v3/files/${listRes.files[0].id}?alt=media`, {}, raw);
   return content;
 }
 
@@ -418,8 +438,9 @@ export async function listCommunityDictsFromAdminDrive() {
   return results;
 }
 
-export async function getDriveFileContent(fileId: string) {
-  const content = await fetchDriveAPI(`https://www.googleapis.com/drive/v3/files/${fileId}?alt=media`);
+export async function getDriveFileContent(fileId: string, raw?: boolean) {
+  const content = await fetchDriveAPI(`https://www.googleapis.com/drive/v3/files/${fileId}?alt=media`, {}, raw);
+  if (raw) return content as Uint8Array;
   return typeof content === 'string' ? content : JSON.stringify(content);
 }
 
@@ -500,7 +521,7 @@ export async function getReadingRoomIndex(): Promise<ReadingRoomMetadata[]> {
 export async function uploadToReadingRoom(
   novelId: string,
   metadata: ReadingRoomMetadata,
-  fullData: string
+  fullData: string | ArrayBuffer | Uint8Array
 ) {
   const masterId = await findOrCreateFolder(MASTER_FOLDER_NAME);
   const readingRoomId = await findOrCreateFolder(READING_ROOM_FOLDER_NAME, masterId);
@@ -659,7 +680,7 @@ export async function toggleChapterLockInReadingRoom(novelId: string, chapterIdx
   return ch.isLocked;
 }
 
-export async function downloadNovelFromReadingRoom(novelId: string): Promise<string | null> {
+export async function downloadNovelFromReadingRoom(novelId: string, raw?: boolean): Promise<any> {
   const masterId = await findOrCreateFolder(MASTER_FOLDER_NAME);
   const readingRoomId = await findOrCreateFolder(READING_ROOM_FOLDER_NAME, masterId);
 
@@ -670,7 +691,8 @@ export async function downloadNovelFromReadingRoom(novelId: string): Promise<str
 
   if (!listRes.files || listRes.files.length === 0) return null;
 
-  const content = await fetchDriveAPI(`https://www.googleapis.com/drive/v3/files/${listRes.files[0].id}?alt=media`);
+  const content = await fetchDriveAPI(`https://www.googleapis.com/drive/v3/files/${listRes.files[0].id}?alt=media`, {}, raw);
+  if (raw) return content;
   return typeof content === 'string' ? content : JSON.stringify(content);
 }
 

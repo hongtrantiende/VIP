@@ -23,20 +23,37 @@ export async function POST(req: Request) {
     const novelId = searchParams.get('novelId');
     const filename = searchParams.get('filename');
 
+    const getPayload = async () => {
+      const contentType = req.headers.get('content-type') || '';
+      if (contentType.includes('octet-stream')) {
+        return await req.arrayBuffer();
+      }
+      return await req.text();
+    };
+
     // ── Dict actions: dùng service account, không cần user auth ──
     if (action === 'upload-dict') {
       if (!filename) return NextResponse.json({ error: 'Missing filename' }, { status: 400 });
-      let content = await req.text();
-      console.log('UPLOAD-DICT RECEIVED SIZE:', content.length);
+      const content = await getPayload();
+      const size = typeof content === 'string' ? content.length : content.byteLength;
+      console.log('UPLOAD-DICT RECEIVED SIZE:', size);
       await uploadDictToAdminDrive(filename, content);
-      return NextResponse.json({ success: true, sizeReceived: content.length });
+      return NextResponse.json({ success: true, sizeReceived: size });
     }
 
     if (action === 'download-dict') {
       if (!filename) return NextResponse.json({ error: 'Missing filename' }, { status: 400 });
-      const text = await downloadDictFromAdminDrive(filename);
-      if (text === null) return new Response('File not found', { status: 404 });
-      return new Response(text, { headers: { 'Content-Type': 'text/plain; charset=utf-8' } });
+      const data = await downloadDictFromAdminDrive(filename, true);
+      if (data === null) return new Response('File not found', { status: 404 });
+      
+      const headers = new Headers();
+      headers.set('Content-Type', 'text/plain; charset=utf-8');
+      
+      const bytes = data instanceof Uint8Array ? data : new Uint8Array(data as any);
+      if (bytes.length > 2 && bytes[0] === 0x1f && bytes[1] === 0x8b) {
+        headers.set('Content-Encoding', 'gzip');
+      }
+      return new Response(bytes, { headers });
     }
 
     if (action === 'download-all-dicts') {
@@ -54,8 +71,16 @@ export async function POST(req: Request) {
     if (action === 'download-txt') {
       const fileId = searchParams.get('fileId');
       if (!fileId) return NextResponse.json({ error: 'Missing fileId parameter' }, { status: 400 });
-      const content = await getDriveFileContent(fileId);
-      return new Response(content, { headers: { 'Content-Type': 'text/plain; charset=utf-8' } });
+      const data = await getDriveFileContent(fileId, true);
+      
+      const headers = new Headers();
+      headers.set('Content-Type', 'text/plain; charset=utf-8');
+      
+      const bytes = data instanceof Uint8Array ? data : new Uint8Array(data as any);
+      if (bytes.length > 2 && bytes[0] === 0x1f && bytes[1] === 0x8b) {
+        headers.set('Content-Encoding', 'gzip');
+      }
+      return new Response(bytes, { headers });
     }
 
     // ── User-specific actions: cần auth ──
@@ -71,11 +96,10 @@ export async function POST(req: Request) {
     }
 
     if (action === 'upload-txt') {
-      // type: 'text_trung' | 'text_dich', novelName, content
       const type = searchParams.get('type') as 'text_trung' | 'text_dich';
       const novelName = searchParams.get('novelName');
       if (!type || !novelName) return NextResponse.json({ error: 'Missing parameters' }, { status: 400 });
-      const content = await req.text();
+      const content = await getPayload();
       const result = await uploadTxtToAdminDrive(type, novelName, content);
       return NextResponse.json({ success: true, result });
     }
@@ -85,7 +109,7 @@ export async function POST(req: Request) {
       if (!novelName) {
         return NextResponse.json({ error: 'Missing novelName' }, { status: 400 });
       }
-      let content = await req.text();
+      const content = await getPayload();
       const fileId = await uploadToAdminDrive(userIdentifier, novelName, content);
       return NextResponse.json({ success: true, fileId });
     }
@@ -95,13 +119,17 @@ export async function POST(req: Request) {
       if (!novelName) {
         return NextResponse.json({ error: 'Missing novelName' }, { status: 400 });
       }
-      const text = await downloadFromAdminDrive(userIdentifier, novelName);
-      if (text === null) return new Response('File not found', { status: 404 });
+      const data = await downloadFromAdminDrive(userIdentifier, novelName, true);
+      if (data === null) return new Response('File not found', { status: 404 });
       
-      // Trả về Raw Text để xử lý file lớn cực nhanh
-      return new Response(text, {
-        headers: { 'Content-Type': 'application/json; charset=utf-8' }
-      });
+      const headers = new Headers();
+      headers.set('Content-Type', 'application/json; charset=utf-8');
+      
+      const bytes = data instanceof Uint8Array ? data : new Uint8Array(data as any);
+      if (bytes.length > 2 && bytes[0] === 0x1f && bytes[1] === 0x8b) {
+        headers.set('Content-Encoding', 'gzip');
+      }
+      return new Response(bytes, { headers });
     }
 
     if (action === 'download-all') {

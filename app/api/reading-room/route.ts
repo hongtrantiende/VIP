@@ -178,15 +178,19 @@ export async function GET(req: Request) {
             const cacheFile = path.join(CACHE_DIR, `${novelId}.json`);
 
             if (!fs.existsSync(cacheFile)) {
-                const fullDataStr = await downloadNovelFromReadingRoom(novelId);
-                if (!fullDataStr) return NextResponse.json({ error: 'Novel not found' }, { status: 404 });
-                fs.writeFileSync(cacheFile, fullDataStr, 'utf-8');
+                const fullDataBytes = await downloadNovelFromReadingRoom(novelId, true);
+                if (!fullDataBytes) return NextResponse.json({ error: 'Novel not found' }, { status: 404 });
+                fs.writeFileSync(cacheFile, fullDataBytes);
             }
 
-            const dataStr = fs.readFileSync(cacheFile, 'utf-8');
-            return new NextResponse(dataStr, {
-                headers: { 'Content-Type': 'application/json' }
-            });
+            const data = fs.readFileSync(cacheFile);
+            const bytes = typeof data === 'string' ? new TextEncoder().encode(data) : new Uint8Array(data);
+            const headers = new Headers();
+            headers.set('Content-Type', 'application/json');
+            if (bytes.length > 2 && bytes[0] === 0x1f && bytes[1] === 0x8b) {
+                headers.set('Content-Encoding', 'gzip');
+            }
+            return new NextResponse(bytes, { headers });
         }
 
         return NextResponse.json({ error: 'Invalid action' }, { status: 400 });
@@ -217,41 +221,67 @@ export async function POST(req: Request) {
             const novelId = searchParams.get('novelId');
             if (!novelId) return NextResponse.json({ error: 'Missing novelId' }, { status: 400 });
 
-            const content = await req.text();
-            let parseData;
-            try {
-                parseData = JSON.parse(content);
-            } catch (err) {
-                return NextResponse.json({ error: 'Invalid JSON body' }, { status: 400 });
+            const metadataHeader = req.headers.get('x-novel-metadata');
+            if (metadataHeader) {
+                const metadata = JSON.parse(decodeURIComponent(metadataHeader)) as ReadingRoomMetadata;
+                metadata.uploaderName = uploaderName;
+                metadata.uploaderId = user.id;
+                metadata.updatedAt = Date.now();
+
+                const contentBuffer = await req.arrayBuffer();
+                const contentBytes = new Uint8Array(contentBuffer);
+                await uploadToReadingRoom(novelId, metadata, contentBytes);
+
+                if (HAS_FS) {
+                    try {
+                        const { decompress } = await import('@/lib/compression');
+                        const decompressedText = await decompress(contentBytes);
+                        const parseData = JSON.parse(decompressedText);
+                        ensureCacheDir();
+                        const cacheFile = path.join(CACHE_DIR, `${novelId}.json`);
+                        fs.writeFileSync(cacheFile, decompressedText);
+                        splitNovelToChunks(novelId, parseData);
+                    } catch (e) {
+                        console.error('Lỗi giải nén cache cục bộ:', e);
+                    }
+                }
+                return NextResponse.json({ success: true });
+            } else {
+                const content = await req.text();
+                let parseData;
+                try {
+                    parseData = JSON.parse(content);
+                } catch (err) {
+                    return NextResponse.json({ error: 'Invalid JSON body' }, { status: 400 });
+                }
+
+                const novel = parseData.novel;
+                const chapters = parseData.chapters || [];
+
+                const metadata: ReadingRoomMetadata = {
+                    id: novelId,
+                    title: novel.title,
+                    author: novel.author,
+                    description: novel.description,
+                    coverImage: novel.coverImage,
+                    chapterCount: chapters.length,
+                    uploaderName: uploaderName,
+                    uploaderId: user.id,
+                    genres: novel.genres || [],
+                    updatedAt: Date.now(),
+                };
+
+                await uploadToReadingRoom(novelId, metadata, content);
+
+                if (HAS_FS) {
+                    ensureCacheDir();
+                    const cacheFile = path.join(CACHE_DIR, `${novelId}.json`);
+                    fs.writeFileSync(cacheFile, content);
+                    splitNovelToChunks(novelId, parseData);
+                }
+
+                return NextResponse.json({ success: true });
             }
-
-            const novel = parseData.novel;
-            const chapters = parseData.chapters || [];
-
-            const metadata: ReadingRoomMetadata = {
-                id: novelId,
-                title: novel.title,
-                author: novel.author,
-                description: novel.description,
-                coverImage: novel.coverImage,
-                chapterCount: chapters.length,
-                uploaderName: uploaderName,
-                uploaderId: user.id,
-                genres: novel.genres || [],
-                updatedAt: Date.now(),
-            };
-
-            await uploadToReadingRoom(novelId, metadata, content);
-
-            // Cache and Split (chỉ chạy ở môi trường localhost có File System thực tế để tránh tràn bộ nhớ V8/timeout trên Cloudflare Pages)
-            if (HAS_FS) {
-                ensureCacheDir();
-                const cacheFile = path.join(CACHE_DIR, `${novelId}.json`);
-                fs.writeFileSync(cacheFile, content);
-                splitNovelToChunks(novelId, parseData);
-            }
-
-            return NextResponse.json({ success: true });
         }
 
         if (action === 'upload_chunk') {

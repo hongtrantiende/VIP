@@ -89,6 +89,7 @@ import { useGoogleDrive } from "@/lib/hooks/use-google-drive";
 import { useLiveQuery } from "dexie-react-hooks";
 import { useRef, useState, useEffect, useMemo } from "react";
 import { toast } from "sonner";
+import { compress } from "@/lib/compression";
 
 import { DICT_GENRES, DICT_TYPES, type DictGenre, type DictType, type DictSource } from "@/lib/db";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
@@ -330,31 +331,17 @@ export function DictionaryManagement({ compact }: { compact?: boolean }) {
           .join("\n");
       }
 
-      // 2. Chia nhỏ và tải lên (Chunked Upload) để vượt giới hạn 10MB của Next.js
-      const lines = finalContent.split("\n");
-      const CHUNK_LINES = 50000; // Khoảng 1-2MB mỗi chunk
-      const chunks = [];
-      for (let i = 0; i < lines.length; i += CHUNK_LINES) {
-        const isLastChunk = i + CHUNK_LINES >= lines.length;
-        chunks.push(lines.slice(i, i + CHUNK_LINES).join("\n") + (isLastChunk ? "" : "\n"));
-      }
+      // 2. Nén Gzip và tải lên trực tiếp (Single Compressed Upload)
+      const compressed = await compress(finalContent);
+      const uploadParams = new URLSearchParams({ action: 'upload-dict', filename });
+      const res = await fetch(`/api/dict/cloud-storage?${uploadParams.toString()}`, {
+        method: "POST",
+        headers: { "Content-Type": "application/octet-stream" },
+        body: compressed
+      });
 
-      for (let i = 0; i < chunks.length; i++) {
-        const res = await fetch("/api/dict/chunk-upload", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            filename,
-            chunk: chunks[i],
-            index: i,
-            total: chunks.length
-          })
-        });
-
-        if (!res.ok) {
-          const errData = await res.json().catch(() => ({ error: "Unknown error" }));
-          throw new Error(`Upload phần ${i + 1}/${chunks.length} thất bại: ${errData.error}`);
-        }
+      if (!res.ok) {
+        throw new Error(await res.text() || "Upload thất bại");
       }
 
       toast.success(`Đã hòa nhập và cập nhật ${filename} lên Kho chung!`, { id: toastId });
@@ -428,33 +415,21 @@ export function DictionaryManagement({ compact }: { compact?: boolean }) {
                 .join("\n");
             }
 
-            const lines = finalContent.split("\n");
-            const CHUNK_LINES = 50000;
-            const chunks = [];
-            for (let i = 0; i < lines.length; i += CHUNK_LINES) {
-              const isLastChunk = i + CHUNK_LINES >= lines.length;
-              chunks.push(lines.slice(i, i + CHUNK_LINES).join("\n") + (isLastChunk ? "" : "\n"));
-            }
-
-            let chunkSuccess = true;
-            for (let i = 0; i < chunks.length; i++) {
-              const res = await fetch("/api/dict/chunk-upload", {
+            try {
+              const compressed = await compress(finalContent);
+              const uploadParams = new URLSearchParams({ action: 'upload-dict', filename });
+              const res = await fetch(`/api/dict/cloud-storage?${uploadParams.toString()}`, {
                 method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({
-                  filename,
-                  chunk: chunks[i],
-                  index: i,
-                  total: chunks.length
-                })
+                headers: { "Content-Type": "application/octet-stream" },
+                body: compressed
               });
-              if (!res.ok) {
-                chunkSuccess = false;
-                break;
-              }
-            }
 
-            if (chunkSuccess) successCount++;
+              if (res.ok) {
+                successCount++;
+              }
+            } catch (err) {
+              console.error(`Failed to upload ${filename}:`, err);
+            }
           })
         );
         

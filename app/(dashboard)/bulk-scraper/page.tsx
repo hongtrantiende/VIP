@@ -17,6 +17,7 @@ import { useBulkScraperStore } from "@/lib/stores/bulk-scraper-queue";
 import { db } from "@/lib/db";
 import { toast } from "sonner";
 import { redirect } from "next/navigation";
+import { compress } from "@/lib/compression";
 
 const DEFAULT_URL = "https://truyenfull.today";
 
@@ -620,13 +621,28 @@ function MottruyenScannerCard() {
             };
 
             const jsonString = JSON.stringify(exportData);
+            const compressed = await compress(jsonString);
+
+            const metadata = {
+              id: novelObj.id,
+              title: exportData.novel?.title || '',
+              author: exportData.novel?.author || '',
+              description: exportData.novel?.description || '',
+              coverImage: exportData.novel?.coverImage || '',
+              chapterCount: sortedChapters.length,
+              genres: exportData.novel?.genres || [],
+            };
 
             let uploadSuccess = true;
             let uploadErrorMsg = '';
 
             const uploadRes = await fetch(`/api/reading-room?action=upload&novelId=${novelObj.id}`, {
                 method: "POST",
-                body: jsonString,
+                headers: {
+                    'Content-Type': 'application/octet-stream',
+                    'x-novel-metadata': encodeURIComponent(JSON.stringify(metadata))
+                },
+                body: compressed,
             });
 
             if (!uploadRes.ok) {

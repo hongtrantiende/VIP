@@ -64,7 +64,7 @@ import {
 import Link from "next/link";
 import { useMemo, useRef, useState, useCallback, useEffect } from "react";
 import { toast } from "sonner";
-import { CopyXIcon } from "lucide-react";
+import { CopyXIcon, CombineIcon } from "lucide-react";
 
 const CHAPTER_PAGE_SIZE = 50;
 
@@ -124,6 +124,9 @@ export function ChaptersTab({
   onQtTranslate,
   onPdfTranslate,
   onResplit,
+  onSplitMultiple,
+  onMergeMultiple,
+  onMergeParts,
 }: {
   novelId: string;
   chapters: Chapter[];
@@ -142,6 +145,9 @@ export function ChaptersTab({
   onQtTranslate?: (chapterIds: string[]) => void;
   onPdfTranslate?: (chapterIds: string[]) => void;
   onResplit?: (chapterIds: string[]) => void;
+  onSplitMultiple?: (chapterIds: string[]) => void;
+  onMergeMultiple?: (chapterIds: string[]) => void;
+  onMergeParts?: (chapterIds: string[]) => void;
 }) {
   const [selected, setSelected] = useState<Set<string>>(new Set());
   const [expandedId, setExpandedId] = useState<string | null>(null);
@@ -229,38 +235,27 @@ export function ChaptersTab({
   };
 
   const toggleAll = () => {
-    const validIds = filteredChapters
-      .map((f) => f.chapter.id)
-      .filter((id) => !translatedChapterIds?.has(id));
+    const allIds = filteredChapters.map((f) => f.chapter.id);
+    const allSelected = allIds.length > 0 && allIds.every((id) => selected.has(id));
 
-    const currentlySelectedFiltered = filteredChapters.filter(f => selected.has(f.chapter.id));
-    const allValidSelected = validIds.length > 0 && validIds.every((id) => selected.has(id));
-
-    if (allValidSelected || (validIds.length === 0 && currentlySelectedFiltered.length > 0)) {
+    if (allSelected) {
       // Deselect all currently filtered ones
-      const filteredIds = filteredChapters.map((f) => f.chapter.id);
       setSelected((prev) => {
         const next = new Set(prev);
-        for (const id of filteredIds) next.delete(id);
+        for (const id of allIds) next.delete(id);
         return next;
       });
     } else {
-      // Select all untranslated
-      setSelected((prev) => new Set([...prev, ...validIds]));
+      // Select all filtered ones
+      setSelected((prev) => new Set([...prev, ...allIds]));
     }
   };
 
   const isAllValidSelected = useMemo(() => {
     if (filteredChapters.length === 0) return false;
-    const validIds = filteredChapters
-      .map((f) => f.chapter.id)
-      .filter((id) => !translatedChapterIds?.has(id));
-    if (validIds.length === 0) {
-      // If there are no valid chapters, check if any filtered ones are manually selected
-      return filteredChapters.every((f) => selected.has(f.chapter.id));
-    }
-    return validIds.every((id) => selected.has(id));
-  }, [filteredChapters, selected, translatedChapterIds]);
+    const allIds = filteredChapters.map((f) => f.chapter.id);
+    return allIds.every((id) => selected.has(id));
+  }, [filteredChapters, selected]);
 
   const handleDelete = async () => {
     if (!deleteTarget) return;
@@ -385,6 +380,28 @@ export function ChaptersTab({
           <ZapIcon className="size-3.5 sm:mr-1.5" />
           <span className="hidden sm:inline">Khu Vực Dịch Truyện</span>
         </Button>
+        {selected.size > 0 && onSplitMultiple && (
+          <Button
+            size="sm"
+            variant="outline"
+            className="text-emerald-600 dark:text-emerald-400 border-emerald-500/30 bg-emerald-50/50 dark:bg-emerald-950/20 hover:bg-emerald-100 dark:hover:bg-emerald-900/30 transition-all duration-300 animate-in fade-in slide-in-from-left-2"
+            onClick={() => onSplitMultiple(Array.from(selected))}
+          >
+            <ScissorsIcon className="size-3.5 sm:mr-1.5 animate-pulse" />
+            <span>Tách chương hàng loạt ({selected.size})</span>
+          </Button>
+        )}
+        {selected.size > 1 && onMergeParts && (
+          <Button
+            size="sm"
+            variant="outline"
+            className="text-indigo-600 dark:text-indigo-400 border-indigo-500/30 bg-indigo-50/50 dark:bg-indigo-950/20 hover:bg-indigo-100 dark:hover:bg-indigo-900/30 transition-all duration-300 animate-in fade-in slide-in-from-left-2"
+            onClick={() => onMergeParts(Array.from(selected))}
+          >
+            <CombineIcon className="size-3.5 sm:mr-1.5" />
+            <span>Gộp phần đã tách</span>
+          </Button>
+        )}
         <Button
           size="sm"
           variant="outline"
@@ -442,6 +459,33 @@ export function ChaptersTab({
                 >
                   <ScissorsIcon className="size-3.5" />
                   Gộp & Tách lại
+                </button>
+              )}
+              {onSplitMultiple && selected.size >= 1 && (
+                <button
+                  className="flex w-full items-center gap-2 rounded-md px-2 py-1.5 text-sm hover:bg-muted text-emerald-600 dark:text-emerald-400"
+                  onClick={() => onSplitMultiple(Array.from(selected))}
+                >
+                  <ScissorsIcon className="size-3.5" />
+                  {selected.size === 1 ? "Tách chương" : "Tách chương hàng loạt"}
+                </button>
+              )}
+              {onMergeParts && selected.size > 1 && (
+                <button
+                  className="flex w-full items-center gap-2 rounded-md px-2 py-1.5 text-sm hover:bg-muted text-indigo-600 dark:text-indigo-400"
+                  onClick={() => onMergeParts(Array.from(selected))}
+                >
+                  <CombineIcon className="size-3.5" />
+                  Gộp các phần đã tách
+                </button>
+              )}
+              {onMergeMultiple && selected.size > 1 && (
+                <button
+                  className="flex w-full items-center gap-2 rounded-md px-2 py-1.5 text-sm hover:bg-muted text-violet-600 dark:text-violet-400"
+                  onClick={() => onMergeMultiple(Array.from(selected))}
+                >
+                  <CombineIcon className="size-3.5" />
+                  Gộp thành 1 chương
                 </button>
               )}
             </PopoverContent>

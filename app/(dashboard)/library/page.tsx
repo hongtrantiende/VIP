@@ -56,6 +56,7 @@ import {
 } from "@/components/ui/tooltip";
 import { db, type Novel } from "@/lib/db";
 import { deleteNovel, useNovels } from "@/lib/hooks";
+import { useProfile } from "@/lib/hooks/use-profile";
 import { downloadNovelJson, exportNovel, importNovel, isSceneTranslated } from "@/lib/novel-io";
 import { CollectionManager } from "@/components/collection-manager";
 import { CategorizeNovelsDialog } from "@/components/categorize-novels-dialog";
@@ -78,6 +79,7 @@ import {
   RefreshCwIcon,
 } from "lucide-react";
 import { useRouter } from "next/navigation";
+import { compress } from "@/lib/compression";
 import { useCallback, useMemo, useRef, useState, useEffect } from "react";
 import { toast } from "sonner";
 import { useBulkTranslateStore } from "@/lib/stores/bulk-translate";
@@ -136,6 +138,7 @@ function formatDate(date: Date) {
 export default function LibraryPage() {
   const novels = useNovels();
   const router = useRouter();
+  const { isAdmin } = useProfile();
   const importInputRef = useRef<HTMLInputElement>(null);
 
   const [search, setSearch] = useState("");
@@ -241,10 +244,25 @@ export default function LibraryPage() {
             toast.loading(`Đang tải lên "${novel.title}" lên Phòng Đọc...`, { id: toastId });
             const data = await exportNovel(novel.id, { includeVersions: false });
             const jsonString = JSON.stringify(data);
+            const compressed = await compress(jsonString);
+
+            const metadata = {
+              id: novel.id,
+              title: novel.title,
+              author: novel.author,
+              description: novel.description || '',
+              coverImage: novel.coverImage || '',
+              chapterCount: data.chapters?.length || 0,
+              genres: novel.genres || [],
+            };
 
             const uploadRes = await fetch(`/api/reading-room?action=upload&novelId=${novel.id}`, {
               method: 'POST',
-              body: jsonString
+              headers: {
+                'Content-Type': 'application/octet-stream',
+                'x-novel-metadata': encodeURIComponent(JSON.stringify(metadata))
+              },
+              body: compressed
             });
 
             if (uploadRes.ok) {
@@ -279,9 +297,13 @@ export default function LibraryPage() {
     try {
       const data = await exportNovel(novel.id, { includeVersions: true });
       const json = JSON.stringify(data);
-      const filename = `novel_data.json`;
+      const compressed = await compress(json);
       const params = new URLSearchParams({ action: 'upload', novelName: novel.title });
-      const res = await fetch(`/api/dict/cloud-storage?${params.toString()}`, { method: 'POST', body: json });
+      const res = await fetch(`/api/dict/cloud-storage?${params.toString()}`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/octet-stream' },
+        body: compressed
+      });
       if (!res.ok) throw new Error(await res.text());
       toast.success(`Đã sao lưu "${novel.title}" thành công!`, { id: toastId });
     } catch (err: any) {
@@ -337,10 +359,25 @@ export default function LibraryPage() {
     try {
       const data = await exportNovel(novel.id, { includeVersions: false });
       const jsonString = JSON.stringify(data);
+      const compressed = await compress(jsonString);
+
+      const metadata = {
+        id: novel.id,
+        title: novel.title,
+        author: novel.author,
+        description: novel.description || '',
+        coverImage: novel.coverImage || '',
+        chapterCount: data.chapters?.length || 0,
+        genres: novel.genres || [],
+      };
 
       const res = await fetch(`/api/reading-room?action=upload&novelId=${novel.id}`, {
         method: 'POST',
-        body: jsonString
+        headers: {
+          'Content-Type': 'application/octet-stream',
+          'x-novel-metadata': encodeURIComponent(JSON.stringify(metadata))
+        },
+        body: compressed
       });
 
       if (res.ok) {
@@ -417,6 +454,10 @@ export default function LibraryPage() {
                 }
               }
 
+              const compressedJson = await compress(json);
+              const compressedChinese = fullChinese.trim() ? await compress(fullChinese) : null;
+              const compressedVietnamese = hasTranslation ? await compress(fullVietnamese) : null;
+
               const jsonParams = new URLSearchParams({ action: 'upload', novelName: novel.title });
               const txtTrungParams = new URLSearchParams({ action: 'upload-txt', type: 'text_trung', novelName: novel.title });
               const txtDichParams = new URLSearchParams({ action: 'upload-txt', type: 'text_dich', novelName: novel.title });
@@ -424,13 +465,19 @@ export default function LibraryPage() {
               // Tải lên 3 file song song vào 2 kho khác nhau
               await Promise.all([
                 fetch(`/api/dict/cloud-storage?${jsonParams.toString()}`, {
-                  method: 'POST', body: json
+                  method: 'POST',
+                  headers: { 'Content-Type': 'application/octet-stream' },
+                  body: compressedJson
                 }),
-                fullChinese.trim() && fetch(`/api/dict/cloud-storage?${txtTrungParams.toString()}`, {
-                  method: 'POST', body: fullChinese
+                compressedChinese && fetch(`/api/dict/cloud-storage?${txtTrungParams.toString()}`, {
+                  method: 'POST',
+                  headers: { 'Content-Type': 'application/octet-stream' },
+                  body: compressedChinese
                 }),
-                hasTranslation && fetch(`/api/dict/cloud-storage?${txtDichParams.toString()}`, {
-                  method: 'POST', body: fullVietnamese
+                compressedVietnamese && fetch(`/api/dict/cloud-storage?${txtDichParams.toString()}`, {
+                  method: 'POST',
+                  headers: { 'Content-Type': 'application/octet-stream' },
+                  body: compressedVietnamese
                 })
               ]);
 
@@ -812,20 +859,22 @@ export default function LibraryPage() {
           </p>
         </div>
         <div className="flex items-center gap-2">
-          <Button
-            size="sm"
-            variant="outline"
-            className="text-violet-500 border-violet-500/30 hover:text-violet-600 hover:bg-violet-500/10 dark:text-violet-400 dark:border-violet-500/20 dark:hover:bg-violet-500/15 gap-2"
-            disabled={isSyncing}
-            onClick={handleSyncAndCleanLibrary}
-          >
-            {isSyncing ? (
-              <LoaderIcon className="size-4 animate-spin" />
-            ) : (
-              <RefreshCwIcon className="size-4" />
-            )}
-            <span className="hidden sm:inline">Đồng bộ & Dọn dẹp</span>
-          </Button>
+          {isAdmin && (
+            <Button
+              size="sm"
+              variant="outline"
+              className="text-violet-500 border-violet-500/30 hover:text-violet-600 hover:bg-violet-500/10 dark:text-violet-400 dark:border-violet-500/20 dark:hover:bg-violet-500/15 gap-2"
+              disabled={isSyncing}
+              onClick={handleSyncAndCleanLibrary}
+            >
+              {isSyncing ? (
+                <LoaderIcon className="size-4 animate-spin" />
+              ) : (
+                <RefreshCwIcon className="size-4" />
+              )}
+              <span className="hidden sm:inline">Đồng bộ & Dọn dẹp</span>
+            </Button>
+          )}
 
           <Button
             size="sm"
