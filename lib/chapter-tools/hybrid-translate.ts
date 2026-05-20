@@ -99,6 +99,7 @@ export interface HybridTranslateOptions {
   extractDict?: boolean;
   skipTranslated?: boolean;
   continuousMode?: boolean;
+  errorAction?: "stop" | "skip"; // "stop" = dừng lại khi lỗi, "skip" = bỏ qua chương lỗi
   signal?: AbortSignal;
   delayMs?: number;
 
@@ -793,9 +794,14 @@ ${cleaned}`;
       });
       store.incrementCompleted(novelId);
 
-      // Stop the entire translation job immediately upon chapter failure
-      store.cancel(novelId);
-      break;
+      if (opts.errorAction === "skip") {
+        // Bỏ qua chương lỗi, tiếp tục dịch chương tiếp theo
+        continue;
+      } else {
+        // Stop the entire translation job immediately upon chapter failure
+        store.cancel(novelId);
+        break;
+      }
     }
   }
 

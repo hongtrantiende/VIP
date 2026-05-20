@@ -25,6 +25,23 @@ function withJsonExtraction(model: LanguageModel): LanguageModel {
   });
 }
 
+function getPlainHeaders(headers: any): Record<string, string> {
+  const plain: Record<string, string> = {};
+  if (!headers) return plain;
+  if (headers instanceof Headers) {
+    headers.forEach((value, key) => {
+      plain[key] = value;
+    });
+  } else if (Array.isArray(headers)) {
+    for (const [key, value] of headers) {
+      plain[key] = value;
+    }
+  } else if (typeof headers === "object") {
+    Object.assign(plain, headers);
+  }
+  return plain;
+}
+
 /**
  * Create a LanguageModel for a specific provider + model ID.
  * Dispatches to the appropriate native SDK based on providerType,
@@ -48,11 +65,10 @@ export async function getModel(
         supportsStructuredOutputs: false,
         fetch: async (url, options) => {
           // Route through the dedicated admin proxy
+          const plainHeaders = getPlainHeaders(options?.headers);
           return fetch("/api/ai/admin-proxy", {
             ...options,
-            headers: {
-              ...options?.headers,
-            },
+            headers: plainHeaders,
           });
         },
       }).chatModel(modelId),
@@ -113,11 +129,12 @@ export async function getModel(
               console.error("Failed to get supabase session", e);
             }
 
+            const plainHeaders = getPlainHeaders(options?.headers);
             // Route through server-side proxy to bypass CORS
             return fetch("/api/ai-proxy", {
               ...options,
               headers: {
-                ...options?.headers,
+                ...plainHeaders,
                 "x-target-url": url.toString(),
                 ...(authHeader ? { "x-supabase-auth": authHeader } : {}),
               },

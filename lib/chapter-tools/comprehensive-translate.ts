@@ -208,6 +208,7 @@ export interface ComprehensiveTranslateOptions {
     twoPass?: boolean; // Enable two-pass edit/polish pipeline
     skipTranslated?: boolean;
     continuousMode?: boolean;
+    errorAction?: "stop" | "skip"; // "stop" = dừng lại khi lỗi, "skip" = bỏ qua chương lỗi
     signal?: AbortSignal;
     delayMs?: number;
     onPhase?: (chapterId: string, phase: string) => void;
@@ -574,9 +575,14 @@ export async function runComprehensiveTranslate(opts: ComprehensiveTranslateOpti
                 });
                 store.incrementCompleted(novelId);
 
-                // Stop the entire translation job immediately upon chapter failure
-                store.cancel(novelId);
-                break;
+                if (opts.errorAction === "skip") {
+                    // Bỏ qua chương lỗi, tiếp tục dịch chương tiếp theo
+                    continue;
+                } else {
+                    // Stop the entire translation job immediately upon chapter failure
+                    store.cancel(novelId);
+                    break;
+                }
             }
         }
     };

@@ -72,6 +72,7 @@ import { useDictMeta } from "@/lib/hooks/use-dict-entries";
 import { useProfile } from "@/lib/hooks/use-profile";
 import { cn } from "@/lib/utils";
 import { Switch } from "@/components/ui/switch";
+import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { useBulkTranslateStore } from "@/lib/stores/bulk-translate";
 import { cleanErrorCausingCharacters } from "@/lib/text-utils";
 
@@ -167,6 +168,7 @@ export function TranslateTabPanel({
     const [qtDictSources, setQtDictSources] = useState<string[]>(["tienhiep"]);
     const [extractDict, setExtractDict] = useState(true);
     const [skipTranslated, setSkipTranslated] = useState(true);
+    const [errorAction, setErrorAction] = useState<"stop" | "skip">("stop");
     const [twoPass, setTwoPass] = useState(true);
     const [inlinePrompt, setInlinePrompt] = useState("");
     const [customStylePrompt, setCustomStylePrompt] = useState("");
@@ -316,6 +318,18 @@ export function TranslateTabPanel({
         try {
             let cleanedCount = 0;
             for (const chId of chapterIds) {
+                // Clean chapter title in database first
+                const chapter = await db.chapters.get(chId);
+                if (chapter) {
+                    const cleanedTitle = cleanErrorCausingCharacters(chapter.title);
+                    if (cleanedTitle !== chapter.title) {
+                        await db.chapters.update(chId, {
+                            title: cleanedTitle,
+                            updatedAt: new Date()
+                        });
+                    }
+                }
+
                 const scenes = await db.scenes
                     .where("chapterId")
                     .equals(chId)
@@ -440,40 +454,54 @@ export function TranslateTabPanel({
 
         const targetChapterIds = target === "selected" ? chapterIds : chapters.map(c => c.id);
 
-        // Tự động dọn dẹp các ký tự lỗi (Emoji, Icon...) trong các chương gốc cần dịch
-        try {
-            for (const chId of targetChapterIds) {
-                const scenes = await db.scenes
-                    .where("chapterId")
-                    .equals(chId)
-                    .toArray();
-
-                for (const scene of scenes) {
-                    if (scene.isActive === 1 && (scene.versionType === "manual" || scene.version === 1)) {
-                        const cleaned = cleanErrorCausingCharacters(scene.content);
-                        if (cleaned !== scene.content) {
-                            await db.scenes.update(scene.id, {
-                                content: cleaned,
-                                wordCount: cleaned.split(/\s+/).filter(Boolean).length,
+        // Tự động dọn dẹp các ký tự lỗi (Emoji, Icon...) trong các chương gốc cần dịch (chạy ngầm, không block)
+        setTimeout(async () => {
+            try {
+                for (const chId of targetChapterIds) {
+                    // Clean chapter title in database first
+                    const chapter = await db.chapters.get(chId);
+                    if (chapter) {
+                        const cleanedTitle = cleanErrorCausingCharacters(chapter.title);
+                        if (cleanedTitle !== chapter.title) {
+                            await db.chapters.update(chId, {
+                                title: cleanedTitle,
                                 updatedAt: new Date()
                             });
                         }
                     }
-                    if (scene.isActive === 0 && scene.version === 1) {
-                        const cleaned = cleanErrorCausingCharacters(scene.content);
-                        if (cleaned !== scene.content) {
-                            await db.scenes.update(scene.id, {
-                                content: cleaned,
-                                wordCount: cleaned.split(/\s+/).filter(Boolean).length,
-                                updatedAt: new Date()
-                            });
+
+                    const scenes = await db.scenes
+                        .where("chapterId")
+                        .equals(chId)
+                        .toArray();
+
+                    for (const scene of scenes) {
+                        if (scene.isActive === 1 && (scene.versionType === "manual" || scene.version === 1)) {
+                            const cleaned = cleanErrorCausingCharacters(scene.content);
+                            if (cleaned !== scene.content) {
+                                await db.scenes.update(scene.id, {
+                                    content: cleaned,
+                                    wordCount: cleaned.split(/\s+/).filter(Boolean).length,
+                                    updatedAt: new Date()
+                                });
+                            }
+                        }
+                        if (scene.isActive === 0 && scene.version === 1) {
+                            const cleaned = cleanErrorCausingCharacters(scene.content);
+                            if (cleaned !== scene.content) {
+                                await db.scenes.update(scene.id, {
+                                    content: cleaned,
+                                    wordCount: cleaned.split(/\s+/).filter(Boolean).length,
+                                    updatedAt: new Date()
+                                });
+                            }
                         }
                     }
                 }
+            } catch (cleanErr) {
+                console.error("Auto cleanup failed:", cleanErr);
             }
-        } catch (cleanErr) {
-            console.error("Auto cleanup failed:", cleanErr);
-        }
+        }, 50);
 
         // Khởi tạo và đồng bộ trạng thái dịch vào global store
         const store = useBulkTranslateStore.getState();
@@ -507,13 +535,13 @@ export function TranslateTabPanel({
                     customTranslatePrompt: novel?.customComprehensivePrompt || "",
                     customStylePrompt: customStylePrompt,
                     customPronounPrompt: customPronounPrompt,
-                    twoPass, skipTranslated,
+                    twoPass, skipTranslated, errorAction,
                     ...commonCallbacks,
                 });
             } else if (activeMode === "stv-prompt") {
                 await runHybridTranslate({
                     novelId, chapterIds: targetChapterIds, model, models: resolvedModels,
-                    extractDict, skipTranslated, continuousMode: target === "all_untranslated",
+                    extractDict, skipTranslated, continuousMode: target === "all_untranslated", errorAction,
                     ...commonCallbacks,
                 });
             } else if (activeMode === "prompt") {
@@ -521,7 +549,7 @@ export function TranslateTabPanel({
                     novelId, chapterIds: targetChapterIds, model, models: resolvedModels,
                     qtDictSources: [],
                     promptType: "custom" as PromptType, extractDict, skipTranslated,
-                    continuousMode: target === "all_untranslated",
+                    continuousMode: target === "all_untranslated", errorAction,
                     ...commonCallbacks,
                 });
             } else if (activeMode === "edit") {
@@ -788,6 +816,20 @@ export function TranslateTabPanel({
                                     <div className="flex items-center gap-2">
                                         <Switch id="skip-tl" checked={skipTranslated} onCheckedChange={setSkipTranslated} />
                                         <Label htmlFor="skip-tl" className="cursor-pointer text-xs">Bỏ qua chương đã dịch</Label>
+                                    </div>
+
+                                    <div className="space-y-1.5 pt-1.5 border-t border-muted/50 mt-1">
+                                        <span className="text-[10px] uppercase font-bold text-muted-foreground tracking-wider">Khi gặp lỗi dịch</span>
+                                        <RadioGroup value={errorAction} onValueChange={(val: any) => setErrorAction(val)} className="flex items-center gap-4 mt-0.5">
+                                            <div className="flex items-center gap-1.5 cursor-pointer">
+                                                <RadioGroupItem value="stop" id="err-stop" />
+                                                <Label htmlFor="err-stop" className="text-xs cursor-pointer">Dừng lại</Label>
+                                            </div>
+                                            <div className="flex items-center gap-1.5 cursor-pointer">
+                                                <RadioGroupItem value="skip" id="err-skip" />
+                                                <Label htmlFor="err-skip" className="text-xs cursor-pointer">Bỏ qua & Dịch tiếp</Label>
+                                            </div>
+                                        </RadioGroup>
                                     </div>
                                 </div>
 

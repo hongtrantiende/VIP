@@ -256,16 +256,33 @@ export default function LibraryPage() {
               genres: novel.genres || [],
             };
 
-            const uploadRes = await fetch(`/api/reading-room?action=upload&novelId=${novel.id}`, {
-              method: 'POST',
-              headers: {
-                'Content-Type': 'application/octet-stream',
-                'x-novel-metadata': encodeURIComponent(JSON.stringify(metadata))
-              },
-              body: new Blob([compressed as any])
-            });
+            let uploadSuccess = false;
+            for (let attempt = 1; attempt <= 3; attempt++) {
+              try {
+                const uploadRes = await fetch(`/api/reading-room?action=upload&novelId=${novel.id}`, {
+                  method: 'POST',
+                  headers: {
+                    'Content-Type': 'application/octet-stream',
+                    'x-novel-metadata': encodeURIComponent(JSON.stringify(metadata))
+                  },
+                  body: new Blob([compressed as any])
+                });
 
-            if (uploadRes.ok) {
+                if (uploadRes.ok) {
+                  uploadSuccess = true;
+                  break;
+                } else if (uploadRes.status !== 503 && uploadRes.status !== 502 && uploadRes.status !== 504 && uploadRes.status !== 429) {
+                  break; // Không retry cho các lỗi 4xx
+                }
+              } catch (err) {
+                console.warn(`Lần thử ${attempt} upload thất bại:`, err);
+              }
+              if (attempt < 3) {
+                await new Promise(resolve => setTimeout(resolve, 2000));
+              }
+            }
+
+            if (uploadSuccess) {
               await deleteNovel(novel.id);
               newlyUploadedAndDeleted++;
             } else {
@@ -369,20 +386,42 @@ export default function LibraryPage() {
         genres: novel.genres || [],
       };
 
-      const res = await fetch(`/api/reading-room?action=upload&novelId=${novel.id}`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/octet-stream',
-          'x-novel-metadata': encodeURIComponent(JSON.stringify(metadata))
-        },
-        body: new Blob([compressed as any])
-      });
+      let uploadSuccess = false;
+      let lastError: any = null;
 
-      if (res.ok) {
+      for (let attempt = 1; attempt <= 3; attempt++) {
+        try {
+          const res = await fetch(`/api/reading-room?action=upload&novelId=${novel.id}`, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/octet-stream',
+              'x-novel-metadata': encodeURIComponent(JSON.stringify(metadata))
+            },
+            body: new Blob([compressed as any])
+          });
+
+          if (res.ok) {
+            uploadSuccess = true;
+            break;
+          } else {
+            const errJson = await res.json().catch(() => ({}));
+            lastError = new Error(errJson.error || `HTTP Error ${res.status}`);
+            if (res.status !== 503 && res.status !== 502 && res.status !== 504 && res.status !== 429) {
+              break;
+            }
+          }
+        } catch (err: any) {
+          lastError = err;
+        }
+        if (attempt < 3) {
+          await new Promise(resolve => setTimeout(resolve, Math.pow(2, attempt) * 1000));
+        }
+      }
+
+      if (uploadSuccess) {
         toast.success(`Đã đăng "${novel.title}" lên Phòng Đọc thành công! Mọi người đã có thể vào đọc.`, { id: toastId });
       } else {
-        const errJson = await res.json().catch(() => ({}));
-        throw new Error(errJson.error || `HTTP Error ${res.status}`);
+        throw lastError || new Error("Đăng tải thất bại sau 3 lần thử");
       }
     } catch (err: any) {
       toast.error(`Lỗi: ${err.message}`, { id: toastId });

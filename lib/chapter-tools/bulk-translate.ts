@@ -21,7 +21,7 @@ import { checkIsVipStandalone } from "../hooks/use-profile";
 
 // ── Retry & Error Handling ──
 
-const MAX_RETRIES = 9999;
+const MAX_RETRIES = 3;
 const RETRY_BASE_DELAY = 30000; // 30s
 
 /** Classify API errors and decide if they are retryable */
@@ -58,7 +58,7 @@ function classifyError(err: unknown): { retryable: boolean; message: string } {
     return { retryable: true, message: `Lỗi SSL/TLS — đang retry... (${msg})` };
   }
   // Empty / malformed response (proxy returned HTML error page or empty body)
-  if (lower.includes('unexpected end') || lower.includes('unexpected token') || lower.includes('json') || lower.includes('empty') || lower.includes('no body') || lower.includes('invalid json')) {
+  if (lower.includes('unexpected end') || lower.includes('unexpected token') || lower.includes('json') || lower.includes('empty') || lower.includes('trống') || lower.includes('no body') || lower.includes('invalid json')) {
     return { retryable: true, message: `Response lỗi/rỗng từ proxy — đang retry... (${msg})` };
   }
   // Generic "failed to" errors
@@ -89,8 +89,26 @@ function classifyError(err: unknown): { retryable: boolean; message: string } {
   return { retryable: true, message: `Lỗi không xác định — đang retry... (${msg})` };
 }
 
-async function delay(ms: number): Promise<void> {
-  return new Promise((resolve) => setTimeout(resolve, ms));
+async function delay(ms: number, signal?: AbortSignal): Promise<void> {
+  return new Promise((resolve, reject) => {
+    if (signal?.aborted) {
+      return reject(new DOMException("Aborted", "AbortError"));
+    }
+    const timer = setTimeout(() => {
+      if (signal) {
+        signal.removeEventListener("abort", onAbort);
+      }
+      resolve();
+    }, ms);
+
+    function onAbort() {
+      clearTimeout(timer);
+      reject(new DOMException("Aborted", "AbortError"));
+    }
+    if (signal) {
+      signal.addEventListener("abort", onAbort);
+    }
+  });
 }
 
 // ── Shared constants & helpers (also used by translate-mode.tsx) ──
@@ -393,7 +411,7 @@ export async function runBulkTranslate(opts: BulkTranslateOptions): Promise<void
 
           const backoffMs = RETRY_BASE_DELAY; // Cố định 30 giây
           console.warn(`[Translate] Lỗi: ${classified.message}. Chờ 30s để thử lại lần ${attempt + 1}...`);
-          await delay(backoffMs);
+          await delay(backoffMs, signal);
         }
       }
 
@@ -468,7 +486,7 @@ export async function runBulkTranslate(opts: BulkTranslateOptions): Promise<void
 
       // Pause loop
       while (useBulkTranslateStore.getState().jobs[novelId]?.isPaused) {
-        await delay(1000);
+        await delay(1000, signal);
         if (signal?.aborted) return;
       }
 
@@ -517,13 +535,13 @@ export async function runBulkTranslate(opts: BulkTranslateOptions): Promise<void
               chapterTitle: chapter.title,
               message: `⏳ Retry lần ${chapterRetries}: ${classified.message} — đang chờ 30s...`,
             });
-            await delay(RETRY_BASE_DELAY);
+            await delay(RETRY_BASE_DELAY, signal);
           }
         }
       }
 
       if (delayMs && delayMs > 0 && currentIndex < chapters.length && !signal?.aborted) {
-        await delay(delayMs);
+        await delay(delayMs, signal);
       }
     }
   }

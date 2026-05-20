@@ -67,29 +67,49 @@ const READING_ROOM_FOLDER_NAME = 'Phong_doc_cong_dong';
 const folderCache: Record<string, Promise<string>> = {};
 
 async function fetchDriveAPI(url: string, options: RequestInit = {}, raw?: boolean) {
-  const token = await getAccessToken();
-  const headers = new Headers(options.headers || {});
-  if (!headers.has('Authorization')) {
-    headers.set('Authorization', `Bearer ${token}`);
-  }
+  const maxRetries = 3;
+  let attempt = 0;
+  while (true) {
+    attempt++;
+    try {
+      const token = await getAccessToken();
+      const headers = new Headers(options.headers || {});
+      if (!headers.has('Authorization')) {
+        headers.set('Authorization', `Bearer ${token}`);
+      }
 
-  const res = await fetch(url, { cache: 'no-store', ...options, headers });
-  if (!res.ok) {
-    const text = await res.text();
-    throw new Error(`Google Drive API Error (${res.status}): ${text}`);
-  }
-  // Nếu là tải file dạng text (alt=media)
-  if (url.includes('alt=media')) {
-    const buffer = await res.arrayBuffer();
-    const bytes = new Uint8Array(buffer);
-    if (raw) {
-      return bytes;
+      const res = await fetch(url, { cache: 'no-store', ...options, headers });
+      if (!res.ok) {
+        const isRetryable = res.status === 429 || res.status === 502 || res.status === 503 || res.status === 504;
+        if (isRetryable && attempt < maxRetries) {
+          const delayMs = attempt * 2000 + Math.random() * 1000;
+          await new Promise(resolve => setTimeout(resolve, delayMs));
+          continue;
+        }
+        const text = await res.text();
+        throw new Error(`Google Drive API Error (${res.status}): ${text}`);
+      }
+      // Nếu là tải file dạng text (alt=media)
+      if (url.includes('alt=media')) {
+        const buffer = await res.arrayBuffer();
+        const bytes = new Uint8Array(buffer);
+        if (raw) {
+          return bytes;
+        }
+        return await decompressIfNeeded(bytes);
+      }
+      // Delete trả về empty
+      if (options.method === 'DELETE') return null;
+      return res.json();
+    } catch (err) {
+      if (attempt < maxRetries) {
+        const delayMs = attempt * 2000 + Math.random() * 1000;
+        await new Promise(resolve => setTimeout(resolve, delayMs));
+        continue;
+      }
+      throw err;
     }
-    return await decompressIfNeeded(bytes);
   }
-  // Delete trả về empty
-  if (options.method === 'DELETE') return null;
-  return res.json();
 }
 
 /** Find or create a folder by name under a parent (Race-condition safe) */

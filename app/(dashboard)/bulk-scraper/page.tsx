@@ -624,31 +624,45 @@ function MottruyenScannerCard() {
             const compressed = await compress(jsonString);
 
             const metadata = {
-              id: novelObj.id,
-              title: exportData.novel?.title || '',
-              author: exportData.novel?.author || '',
-              description: exportData.novel?.description || '',
-              coverImage: exportData.novel?.coverImage || '',
-              chapterCount: sortedChapters.length,
-              genres: exportData.novel?.genres || [],
+                id: novelObj.id,
+                title: exportData.novel?.title || '',
+                author: exportData.novel?.author || '',
+                description: exportData.novel?.description || '',
+                coverImage: exportData.novel?.coverImage || '',
+                chapterCount: sortedChapters.length,
+                genres: exportData.novel?.genres || [],
             };
 
-            let uploadSuccess = true;
+            let uploadSuccess = false;
             let uploadErrorMsg = '';
 
-            const uploadRes = await fetch(`/api/reading-room?action=upload&novelId=${novelObj.id}`, {
-                method: "POST",
-                headers: {
-                    'Content-Type': 'application/octet-stream',
-                    'x-novel-metadata': encodeURIComponent(JSON.stringify(metadata))
-                },
-                body: compressed,
-            });
+            for (let attempt = 1; attempt <= 3; attempt++) {
+                try {
+                    const uploadRes = await fetch(`/api/reading-room?action=upload&novelId=${novelObj.id}`, {
+                        method: "POST",
+                        headers: {
+                            'Content-Type': 'application/octet-stream',
+                            'x-novel-metadata': encodeURIComponent(JSON.stringify(metadata))
+                        },
+                        body: new Blob([compressed as any])
+                    });
 
-            if (!uploadRes.ok) {
-                const errJson = await uploadRes.json().catch(() => ({}));
-                uploadErrorMsg = errJson.error || `HTTP Error ${uploadRes.status}`;
-                uploadSuccess = false;
+                    if (uploadRes.ok) {
+                        uploadSuccess = true;
+                        break;
+                    } else {
+                        const errJson = await uploadRes.json().catch(() => ({}));
+                        uploadErrorMsg = errJson.error || `HTTP Error ${uploadRes.status}`;
+                        if (uploadRes.status !== 503 && uploadRes.status !== 502 && uploadRes.status !== 504 && uploadRes.status !== 429) {
+                            break; // Không retry cho lỗi 4xx cố định
+                        }
+                    }
+                } catch (fetchErr: any) {
+                    uploadErrorMsg = fetchErr.message || 'Lỗi mạng khi tải lên';
+                }
+                if (attempt < 3) {
+                    await new Promise(resolve => setTimeout(resolve, 2000));
+                }
             }
 
             if (uploadSuccess) {

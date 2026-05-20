@@ -115,6 +115,7 @@ export interface QtAiTranslateOptions {
   extractDict?: boolean; // "Càng dịch càng hay" — extract names + upload to Supabase
   skipTranslated?: boolean;
   continuousMode?: boolean; // Tự động nạp chương mới nếu có
+  errorAction?: "stop" | "skip"; // "stop" = dừng lại khi lỗi, "skip" = bỏ qua chương lỗi
   signal?: AbortSignal;
   delayMs?: number;
 
@@ -426,6 +427,7 @@ export async function runQtAiTranslate(opts: QtAiTranslateOptions): Promise<void
     qtDictSources,
     skipTranslated,
     continuousMode,
+    errorAction = "stop",
     signal,
     delayMs,
     onPhase,
@@ -945,9 +947,14 @@ ${cleaned}`;
         });
         store.incrementCompleted(novelId);
 
-        // Stop the entire translation job immediately upon chapter failure
-        store.cancel(novelId);
-        break;
+        if (errorAction === "skip") {
+          // Bỏ qua chương lỗi, tiếp tục dịch chương tiếp theo
+          continue;
+        } else {
+          // Stop the entire translation job immediately upon chapter failure
+          store.cancel(novelId);
+          break;
+        }
       }
     } // End of while loop
   }; // End of runWorker

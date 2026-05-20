@@ -360,15 +360,23 @@ export function cleanGarbageLines(text: string): string {
 export function cleanErrorCausingCharacters(text: string): string {
   if (!text) return "";
 
-  // 1. Remove standard emojis & pictographs (using Unicode property escape)
-  let cleaned = text.normalize("NFC").replace(/\p{Extended_Pictographic}/gu, "");
+  // 1. Normalize Unicode to NFC
+  let cleaned = text.normalize("NFC");
 
-  // 2. Remove common decorative shapes, signs, and symbols that aren't letters or numbers
-  cleaned = cleaned.replace(/[♥♡❣❤✨⭐🌟⚡💥🔥✖️➖➕➗🥀🌹🍀🍁🍂🍃🌸🌺🌻🌼🏵️⚜️🔱⚓🌈🌊🌀🌬️💨🫧❄️⛄☄️⛱️☔☠️☣️☢️]/gu, "");
-  cleaned = cleaned.replace(/[❀✿❁❃❋✦✧✩✪✫✬✭✭✮✯✰★☆❖⊙㍿卍卐▬▭▮▮▰▱▲▼◆◇○●■□]/g, "");
+  // 2. Remove standard emojis, pictographs and other symbols using Unicode property escapes
+  cleaned = cleaned.replace(/\p{Extended_Pictographic}/gu, "");
+  cleaned = cleaned.replace(/\p{So}/gu, "");
 
-  // 3. Remove miscellaneous symbols/dingbats/geometric shapes [\u2500-\u27BF]
-  cleaned = cleaned.replace(/[\u2500-\u27BF]/g, "");
+  // 3. Remove common decorative shapes, signs, and symbols that aren't letters or numbers
+  cleaned = cleaned.replace(/[♥♡❣❤✨⭐🌟⚡💥🔥✖️➖➕➗🥀🌹🍀🍁🍂🍃🌸🌺🌻🌼🏵️⚜️🔱⚓🌈🌊🌀🌬️💨🫧❄️⛄☄️⛱️☔☠️☣️☢️✓✔✕✖✗✘♫♪♫♬♩♯✙✚✛✜✝✞✟✠✡✢✣✤✥✦✧✩✪✫✬✭✮✯✰★☆✨🌠🌌🌙☀️⛅⚡❄️🍀☘️🌿🌾🌴🌲🌳🌵🌸🌹🌺🌻🌼💐⚛️🕉️☸️☮️☯️☪️☦️🛐🔘🔳🔲🔺🔻🔸🔹🔶🔷▪️▫️⬕⬔⬗⬘⬙⬚◽◾◼️◻️🔲🔳]/gu, "");
+  cleaned = cleaned.replace(/[❀✿❁❃❋✦✧✩✪✫✬✭✭✮✯✰★☆❖⊙㍿卍卐▬▭▮▮▰▱▲▼◆◇○●■□◎☉☼☽☾♨]/g, "");
+
+  // 4. Remove miscellaneous symbols/dingbats/geometric shapes [\u2500-\u28FF] (covers box drawing, block elements, geometric shapes, dingbats, braille)
+  cleaned = cleaned.replace(/[\u2500-\u28FF]/g, "");
+  cleaned = cleaned.replace(/[\u2190-\u21FF]/g, ""); // Remove arrows
+
+  // 5. Clean up any double spaces caused by removal
+  cleaned = cleaned.replace(/\s+/g, " ");
 
   return cleaned.trim();
 }
