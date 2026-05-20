@@ -117,30 +117,21 @@ export async function POST(req: NextRequest) {
         // Ignore if body is not JSON
       }
     }
-    // Forward the request to the actual AI provider
-    const headersToSend: Record<string, string> = {};
-    req.headers.forEach((value, key) => {
-      const lowerKey = key.toLowerCase();
-      // Exclude Vercel, hop-by-hop, nextjs internal, and connection-specific headers
-      if (
-        lowerKey === "host" ||
-        lowerKey === "connection" ||
-        lowerKey === "content-length" ||
-        lowerKey === "x-target-url" ||
-        lowerKey === "x-supabase-auth" ||
-        lowerKey === "cookie" ||
-        lowerKey === "origin" ||
-        lowerKey === "referer" ||
-        lowerKey.startsWith("sec-") ||
-        lowerKey.startsWith("x-forwarded-")
-      ) {
-        return;
-      }
-      headersToSend[key] = value;
-    });
+    // Forward ONLY essential headers to the AI provider
+    // (forwarding all browser headers causes many providers to reject with 401/403)
+    const headersToSend: Record<string, string> = {
+      "Content-Type": contentType,
+    };
 
     if (authHeader) {
       headersToSend["Authorization"] = authHeader;
+    }
+
+    // Forward specific provider headers if present (some providers need these)
+    const providerHeaders = ["x-api-key", "api-key", "http-referer", "x-title"];
+    for (const h of providerHeaders) {
+      const val = req.headers.get(h);
+      if (val) headersToSend[h] = val;
     }
 
     const response = await fetch(targetUrl, {

@@ -18,7 +18,7 @@ export interface CatalogScanAdapter {
 // ─── Adapter implementations ─────────────────────────────────
 
 export const CATALOG_ADAPTERS: Record<string, CatalogScanAdapter> = {
-    "truyenfull.today": {
+    "truyenfull": {
         getCatalogUrl(baseUrl, page) {
             const origin = new URL(baseUrl).origin;
             return `${origin}/danh-sach/truyen-moi/trang-${page}/`;
@@ -73,6 +73,63 @@ export const CATALOG_ADAPTERS: Record<string, CatalogScanAdapter> = {
 
             // Fallback: check if there are any results on this page
             const items = doc.querySelectorAll(".list-truyen .row .truyen-title a");
+            return items.length > 0;
+        },
+    },
+
+    "69shu": {
+        getCatalogUrl(baseUrl, page) {
+            const origin = new URL(baseUrl).origin;
+            let classId = "1";
+            const match = baseUrl.match(/class\/(\d+)/);
+            if (match) {
+                classId = match[1];
+            }
+            if (page === 1) {
+                return `${origin}/novels/class/${classId}.htm`;
+            }
+            return `${origin}/novels/class/${classId}/${page}.htm`;
+        },
+
+        parseCatalogPage(html, baseUrl) {
+            const parser = new DOMParser();
+            const doc = parser.parseFromString(html, "text/html");
+            const origin = new URL(baseUrl).origin;
+            const novels: CatalogNovel[] = [];
+
+            const items = doc.querySelectorAll(".section-box li, .my-box li, .grid li, .section li");
+            items.forEach((li) => {
+                const titleEl = li.querySelector("h3 a, .title a, a[href*='/book/']");
+                if (!titleEl) return;
+
+                const title = titleEl.textContent?.trim() || "";
+                let url = titleEl.getAttribute("href") || "";
+                if (url && !url.startsWith("http")) {
+                    url = origin + (url.startsWith("/") ? url : "/" + url);
+                }
+                if (!title || !url) return;
+
+                const author = li.querySelector(".author, .name, span:nth-child(2)")?.textContent?.trim() || "";
+
+                const img = li.querySelector("img");
+                const coverImage = img?.getAttribute("src") || img?.getAttribute("data-src") || "";
+
+                novels.push({ title, url, author, genre: "", coverImage });
+            });
+
+            return novels;
+        },
+
+        hasNextPage(html, currentPage) {
+            const parser = new DOMParser();
+            const doc = parser.parseFromString(html, "text/html");
+
+            const activePage = doc.querySelector(".page a.active, .page span.current");
+            if (activePage && activePage.nextElementSibling) {
+                return activePage.nextElementSibling.tagName.toLowerCase() === "a";
+            }
+
+            const items = doc.querySelectorAll(".section-box li, .my-box li, .grid li, a[href*='/book/']");
             return items.length > 0;
         },
     },

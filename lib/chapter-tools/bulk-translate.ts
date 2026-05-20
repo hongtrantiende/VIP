@@ -22,7 +22,8 @@ import { checkIsVipStandalone } from "../hooks/use-profile";
 // ── Retry & Error Handling ──
 
 const MAX_RETRIES = 3;
-const RETRY_BASE_DELAY = 30000; // 30s
+const RETRY_BASE_DELAY = 30000; // 30s for rate limits
+const RETRY_EMPTY_DELAY = 5000;  // 5s for empty responses (quick transient failure)
 
 /** Classify API errors and decide if they are retryable */
 function classifyError(err: unknown): { retryable: boolean; message: string } {
@@ -387,9 +388,13 @@ export async function runBulkTranslate(opts: BulkTranslateOptions): Promise<void
             }
           }
 
-          // Check for empty response — treat as retryable error
+          // Check for empty response — treat as retryable with short delay
           if (!accumulated.trim()) {
-            throw new Error("AI trả về nội dung trống — thử lại...");
+            const emptyErr = new Error("AI trả về nội dung trống — thử lại nhanh...");
+            lastError = emptyErr;
+            console.warn(`[Translate] Chapter "${chapter.title}" trả về trống (lần ${attempt + 1}). Chờ 5s retry...`);
+            await delay(RETRY_EMPTY_DELAY, signal);
+            continue;
           }
 
           const finishReason = await result.finishReason;
@@ -409,7 +414,7 @@ export async function runBulkTranslate(opts: BulkTranslateOptions): Promise<void
             throw new Error(classified.message);
           }
 
-          const backoffMs = RETRY_BASE_DELAY; // Cố định 30 giây
+          const backoffMs = RETRY_BASE_DELAY;
           console.warn(`[Translate] Lỗi: ${classified.message}. Chờ 30s để thử lại lần ${attempt + 1}...`);
           await delay(backoffMs, signal);
         }
