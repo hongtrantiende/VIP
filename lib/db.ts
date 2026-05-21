@@ -611,6 +611,47 @@ export class NovelStudioDB extends Dexie {
 }
 
 export const db = new NovelStudioDB();
+
+// ─── Seed Default Providers ─────────────────────────────────
+// On first open (no providers in DB yet), add pre-configured providers
+// so users only need to paste their API key and hit "Tải mô hình".
+const DEFAULT_PROVIDERS: Array<{
+  id: string;
+  name: string;
+  baseUrl: string;
+}> = [
+  {
+    id: "preset-bactinh",
+    name: "Bắc Cực Tinh",
+    baseUrl: "https://ag.beijixingxing.com/v1",
+  },
+  {
+    id: "preset-catiecli",
+    name: "CatieCLI",
+    baseUrl: "https://catiecli.sukaka.top/v1",
+  },
+  {
+    id: "preset-ggchan",
+    name: "GGChan",
+    baseUrl: "https://gcli.ggchan.dev",
+  },
+];
+
+db.on("ready", async () => {
+  const existingCount = await db.aiProviders.count();
+  if (existingCount > 0) return; // User already has providers — don't seed
+
+  const now = new Date();
+  const toAdd = DEFAULT_PROVIDERS.map((p) => ({
+    ...p,
+    apiKey: "",
+    isActive: true,
+    providerType: "openai-compatible" as const,
+    createdAt: now,
+    updatedAt: now,
+  }));
+  await db.aiProviders.bulkAdd(toAdd);
+});
 export const GENRE_LABELS: Record<string, string> = {
   ngontinh: "Ngôn tình",
   hiendai: "Hiện đại",

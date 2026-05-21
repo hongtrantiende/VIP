@@ -454,6 +454,8 @@ function ProviderCard({ provider }: { provider: AIProvider }) {
   const [editingModel, setEditingModel] = useState<AIModel | undefined>();
   const [fetching, setFetching] = useState(false);
   const [showKey, setShowKey] = useState(false);
+  const [inlineKey, setInlineKey] = useState("");
+  const [savingKey, setSavingKey] = useState(false);
 
   function openAddModel() {
     setEditingModel(undefined);
@@ -476,6 +478,27 @@ function ProviderCard({ provider }: { provider: AIProvider }) {
       toast.error(err instanceof Error ? err.message : "Tải mô hình thất bại");
     } finally {
       setFetching(false);
+    }
+  }
+
+  async function handleSaveKeyAndFetch() {
+    if (!inlineKey.trim()) return;
+    setSavingKey(true);
+    try {
+      await updateAIProvider(provider.id, { apiKey: inlineKey.trim() });
+      const updatedProvider = { ...provider, apiKey: inlineKey.trim() };
+      setInlineKey("");
+      toast.success("Đã lưu API Key — đang quét mô hình...");
+      try {
+        const count = await fetchAndSyncModels(updatedProvider);
+        toast.success(`Đã tải ${count} mô hình`);
+      } catch (err) {
+        toast.warning(err instanceof Error ? err.message : "Không thể tải mô hình tự động. Hãy thử nút Tải mô hình.");
+      }
+    } catch {
+      toast.error("Lưu API Key thất bại");
+    } finally {
+      setSavingKey(false);
     }
   }
 
@@ -528,14 +551,37 @@ function ProviderCard({ provider }: { provider: AIProvider }) {
         </CardHeader>
 
         <CardContent className="space-y-3">
-          {/* API key display — hidden for Admin models */}
+          {/* API key display/edit — hidden for Admin models */}
           {provider.id !== "admin-provider" && (
-            <div className="flex items-center gap-2 text-xs text-muted-foreground">
-              <span className="font-medium">Khóa API:</span>
-              <code className="flex-1 truncate">
-                {showKey ? provider.apiKey || "Chưa đặt" : maskedKey}
-              </code>
-              {provider.apiKey && (
+            !provider.apiKey ? (
+              <div className="space-y-1.5">
+                <span className="text-xs font-medium text-muted-foreground">Nhập API Key để bắt đầu:</span>
+                <div className="flex gap-1.5">
+                  <Input
+                    type="password"
+                    placeholder="Dán API Key vào đây..."
+                    value={inlineKey}
+                    onChange={(e) => setInlineKey(e.target.value)}
+                    onKeyDown={(e) => { if (e.key === "Enter") { e.preventDefault(); handleSaveKeyAndFetch(); } }}
+                    className="h-8 text-xs"
+                  />
+                  <Button
+                    size="sm"
+                    onClick={handleSaveKeyAndFetch}
+                    disabled={savingKey || !inlineKey.trim()}
+                    className="h-8 shrink-0"
+                  >
+                    {savingKey ? <LoaderIcon className="animate-spin size-3" /> : <RefreshCwIcon className="size-3" />}
+                    {savingKey ? "Đang quét..." : "Lưu & Quét"}
+                  </Button>
+                </div>
+              </div>
+            ) : (
+              <div className="flex items-center gap-2 text-xs text-muted-foreground">
+                <span className="font-medium">Khóa API:</span>
+                <code className="flex-1 truncate">
+                  {showKey ? provider.apiKey : maskedKey}
+                </code>
                 <Button
                   variant="ghost"
                   size="icon-xs"
@@ -543,8 +589,8 @@ function ProviderCard({ provider }: { provider: AIProvider }) {
                 >
                   {showKey ? <EyeOffIcon /> : <EyeIcon />}
                 </Button>
-              )}
-            </div>
+              </div>
+            )
           )}
 
           {provider.id === "admin-provider" && (
