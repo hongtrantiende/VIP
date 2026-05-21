@@ -226,6 +226,35 @@ function ProviderFormDialog({
                 </Field>
               )}
 
+              {/* Quick-add popular providers */}
+              {!isEditing && providerType === "openai-compatible" && (
+                <Field>
+                  <FieldLabel>Nhà cung cấp phổ biến</FieldLabel>
+                  <FieldDescription>Chọn nhanh — chỉ cần nhập API Key là dùng ngay.</FieldDescription>
+                  <div className="flex flex-wrap gap-1.5 mt-1.5">
+                    {[
+                      { name: "Bắc Cực Tinh", url: "https://ag.beijixingxing.com/v1", emoji: "⭐" },
+                      { name: "CatieCLI", url: "https://catiecli.sukaka.top/v1", emoji: "🐱" },
+                      { name: "GGChan", url: "https://gcli.ggchan.dev", emoji: "🎮" },
+                    ].map((p) => (
+                      <button
+                        key={p.url}
+                        type="button"
+                        onClick={() => { setName(p.name); setBaseUrl(p.url); }}
+                        className={`flex items-center gap-1.5 rounded-lg border px-3 py-1.5 text-sm font-medium transition-colors cursor-pointer ${
+                          baseUrl === p.url
+                            ? "border-primary bg-primary/10 text-primary"
+                            : "hover:bg-muted/50"
+                        }`}
+                      >
+                        <span>{p.emoji}</span>
+                        <span>{p.name}</span>
+                      </button>
+                    ))}
+                  </div>
+                </Field>
+              )}
+
               <Field>
                 <FieldLabel>Tên</FieldLabel>
                 <Input
