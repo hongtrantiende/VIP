@@ -80,31 +80,7 @@ export async function POST(req: NextRequest) {
       resHeaders["Connection"] = "keep-alive";
     }
 
-    if (!response.body) {
-      return new Response("Missing response body from AI provider", { status: 500 });
-    }
-
-    const reader = response.body.getReader();
-    const stream = new ReadableStream({
-      async pull(controller) {
-        try {
-          const { done, value } = await reader.read();
-          if (done) {
-            controller.close();
-          } else {
-            controller.enqueue(value);
-          }
-        } catch (e) {
-          console.error("Admin proxy stream read error:", e);
-          controller.error(e);
-        }
-      },
-      cancel() {
-        reader.releaseLock();
-      }
-    });
-
-    return new Response(stream, {
+    return new Response(response.body, {
       status: response.status,
       headers: resHeaders,
     });
