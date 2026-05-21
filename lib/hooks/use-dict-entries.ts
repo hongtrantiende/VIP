@@ -59,6 +59,20 @@ function parseDictText(
   return entries;
 }
 
+async function fetchDictFile(url: string, signal?: AbortSignal): Promise<string | null> {
+  try {
+    const resp = await fetch(url, { signal });
+    if (!resp.ok) return null;
+    const contentType = resp.headers.get("content-type") || "";
+    if (contentType.toLowerCase().includes("text/html")) return null;
+    const text = await resp.text();
+    if (text.startsWith("<!") || text.slice(0, 100).toLowerCase().includes("<html")) return null;
+    return text;
+  } catch {
+    return null;
+  }
+}
+
 // ─── Fast Loading (parallel fetch, direct to worker) ─────────
 
 /**
@@ -74,6 +88,28 @@ export async function loadRawDictTexts(
 
   // ── Fast path: read from IndexedDB cache ──
   const cached = await db.dictCache.toArray();
+  let isCacheValid = cached.length > 0;
+  if (isCacheValid) {
+    for (const item of cached) {
+      if (item.rawText.startsWith("<!") || item.rawText.slice(0, 100).toLowerCase().includes("<html")) {
+        console.warn(`[DictLoader] Cache corruption detected for ${item.source} (contains HTML). Clearing cache.`);
+        isCacheValid = false;
+        break;
+      }
+      if (item.source === "core_vietphrase" && item.rawText.length < 500000) {
+        console.warn(`[DictLoader] Cache truncation detected for core_vietphrase (too small: ${item.rawText.length} bytes). Clearing cache.`);
+        isCacheValid = false;
+        break;
+      }
+    }
+  }
+
+  if (!isCacheValid && cached.length > 0) {
+    await db.dictCache.clear();
+    await db.dictMeta.delete("dict-meta");
+    cached.length = 0;
+  }
+
   if (cached.length > 0) {
     for (let i = 0; i < cached.length; i++) {
       result[cached[i].source] = cached[i].rawText;
@@ -107,12 +143,9 @@ export async function loadRawDictTexts(
 
     // Also load override file
     try {
-      const resp = await fetch(VIETPHRASE_OVERRIDE_URL, { signal: AbortSignal.timeout(3000) });
-      if (resp.ok) {
-        const overrideText = await resp.text();
-        if (overrideText && result.core_vietphrase) {
-          result.core_vietphrase = result.core_vietphrase + "\n" + overrideText;
-        }
+      const overrideText = await fetchDictFile(VIETPHRASE_OVERRIDE_URL, AbortSignal.timeout(3000));
+      if (overrideText && result.core_vietphrase) {
+        result.core_vietphrase = result.core_vietphrase + "\n" + overrideText;
       }
     } catch { /* optional */ }
 
@@ -134,17 +167,19 @@ export async function loadRawDictTexts(
       batch.map(async (source) => {
         const url = DICT_FILES[source];
         try {
-          let resp = await fetch(url, { signal: AbortSignal.timeout(3000) });
-          if (!resp.ok && source === "core_vietphrase") {
-            const [r1, r2] = await Promise.all([
-              fetch("/dict/vietphrase_1.txt", { signal: AbortSignal.timeout(3000) }),
-              fetch("/dict/vietphrase_2.txt", { signal: AbortSignal.timeout(3000) })
+          if (source === "core_vietphrase") {
+            const text = await fetchDictFile(url, AbortSignal.timeout(3000));
+            if (text) return { source, text, ok: true };
+            const [t1, t2] = await Promise.all([
+              fetchDictFile("/dict/vietphrase_1.txt", AbortSignal.timeout(3000)),
+              fetchDictFile("/dict/vietphrase_2.txt", AbortSignal.timeout(3000))
             ]);
-            if (r1.ok && r2.ok) return { source, text: (await r1.text()) + "\n" + (await r2.text()), ok: true };
+            if (t1 && t2) return { source, text: t1 + "\n" + t2, ok: true };
             return { source, text: "", ok: false };
+          } else {
+            const text = await fetchDictFile(url, AbortSignal.timeout(3000));
+            return { source, text: text || "", ok: !!text };
           }
-          if (!resp.ok) return { source, text: "", ok: false };
-          return { source, text: await resp.text(), ok: true };
         } catch {
           return { source, text: "", ok: false };
         }
@@ -243,6 +278,28 @@ export async function loadDictDataForWorker(
 
   // ── Fast path: read from IndexedDB cache ──
   const cached = await db.dictCache.toArray();
+  let isCacheValid = cached.length > 0;
+  if (isCacheValid) {
+    for (const item of cached) {
+      if (item.rawText.startsWith("<!") || item.rawText.slice(0, 100).toLowerCase().includes("<html")) {
+        console.warn(`[DictLoader] Cache corruption detected for ${item.source} (contains HTML). Clearing cache.`);
+        isCacheValid = false;
+        break;
+      }
+      if (item.source === "core_vietphrase" && item.rawText.length < 500000) {
+        console.warn(`[DictLoader] Cache truncation detected for core_vietphrase (too small: ${item.rawText.length} bytes). Clearing cache.`);
+        isCacheValid = false;
+        break;
+      }
+    }
+  }
+
+  if (!isCacheValid && cached.length > 0) {
+    await db.dictCache.clear();
+    await db.dictMeta.delete("dict-meta");
+    cached.length = 0;
+  }
+
   if (cached.length > 0) {
     const counts: Record<string, number> = {};
     for (let ci = 0; ci < cached.length; ci++) {
@@ -289,23 +346,19 @@ export async function loadDictDataForWorker(
       batch.map(async (source) => {
         const url = DICT_FILES[source];
         try {
-          let resp = await fetch(url, { signal: AbortSignal.timeout(3000) });
-          if (!resp.ok && source === "core_vietphrase") {
-            // Fallback for large vietphrase file
-            const [r1, r2] = await Promise.all([
-              fetch("/dict/vietphrase_1.txt", { signal: AbortSignal.timeout(3000) }),
-              fetch("/dict/vietphrase_2.txt", { signal: AbortSignal.timeout(3000) })
+          if (source === "core_vietphrase") {
+            const text = await fetchDictFile(url, AbortSignal.timeout(3000));
+            if (text) return { source, text, ok: true };
+            const [t1, t2] = await Promise.all([
+              fetchDictFile("/dict/vietphrase_1.txt", AbortSignal.timeout(3000)),
+              fetchDictFile("/dict/vietphrase_2.txt", AbortSignal.timeout(3000))
             ]);
-            if (r1.ok && r2.ok) {
-              const text1 = await r1.text();
-              const text2 = await r2.text();
-              return { source, text: text1 + "\n" + text2, ok: true };
-            }
+            if (t1 && t2) return { source, text: t1 + "\n" + t2, ok: true };
             return { source, text: "", ok: false };
+          } else {
+            const text = await fetchDictFile(url, AbortSignal.timeout(3000));
+            return { source, text: text || "", ok: !!text };
           }
-          if (!resp.ok) return { source, text: "", ok: false };
-          const text = await resp.text();
-          return { source, text, ok: true };
         } catch {
           return { source, text: "", ok: false };
         }
@@ -371,23 +424,23 @@ export async function loadDictFromPublic(
     let text = "";
 
     if (source === "core_vietphrase") {
-      const resp = await fetch(DICT_FILES[source]);
-      if (resp.ok) {
-        text = await resp.text();
+      const fetchedText = await fetchDictFile(DICT_FILES[source]);
+      if (fetchedText) {
+        text = fetchedText;
       } else {
         // Try parts
-        const [r1, r2] = await Promise.all([
-          fetch("/dict/vietphrase_1.txt"),
-          fetch("/dict/vietphrase_2.txt")
+        const [t1, t2] = await Promise.all([
+          fetchDictFile("/dict/vietphrase_1.txt"),
+          fetchDictFile("/dict/vietphrase_2.txt")
         ]);
-        if (r1.ok && r2.ok) {
-          text = (await r1.text()) + "\n" + (await r2.text());
+        if (t1 && t2) {
+          text = t1 + "\n" + t2;
         }
       }
     } else {
-      const resp = await fetch(DICT_FILES[source]);
-      if (resp.ok) {
-        text = await resp.text();
+      const fetchedText = await fetchDictFile(DICT_FILES[source]);
+      if (fetchedText) {
+        text = fetchedText;
       }
     }
 
