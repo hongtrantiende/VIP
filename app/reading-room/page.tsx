@@ -614,7 +614,7 @@ export default function StandaloneReadingRoomApp() {
     }
 
     return (
-        <div className={`min-h-screen transition-colors duration-250 flex justify-center items-start overflow-x-hidden font-sans ${isDark ? "bg-[#0f0f12]" : "bg-[#f1f1f5]"}`}>
+        <div className={`min-h-screen transition-colors duration-250 flex justify-center items-start overflow-x-hidden font-sans ${isDark ? "bg-[#0f0f12]" : "bg-[#faf5ea]"}`}>
             {/* Full-width viewport with mobile bottom nav space */}
             <div className="w-full min-h-screen relative flex flex-col pb-26 overflow-hidden px-4 md:px-8 max-w-4xl mx-auto">
 
