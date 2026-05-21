@@ -81,6 +81,7 @@ export function ReaderPanel() {
   const pathname = usePathname();
   const isReaderPage = /^\/novels\/[^/]+\/read\/\d+/.test(pathname);
   const isReadingRoomPage = /^\/reading-room\/[^/]+\/\d+/.test(pathname);
+  const isStandaloneReaderPage = /^\/reader\/[^/]+\/\d+/.test(pathname);
 
   // Keep the store in sync with Dexie-backed settings
   useEffect(() => {
@@ -97,7 +98,8 @@ export function ReaderPanel() {
     useReaderPanel.getState().prevChapter();
     if (isReaderPage) router.push(`/novels/${novelId}/read/${newIndex + 1}`);
     else if (isReadingRoomPage) router.push(`/reading-room/${novelId}/${newIndex}`);
-  }, [router, isReaderPage, isReadingRoomPage]);
+    else if (isStandaloneReaderPage) router.push(`/reader/${novelId}/${newIndex}`);
+  }, [router, isReaderPage, isReadingRoomPage, isStandaloneReaderPage]);
 
   const handleNext = useCallback(() => {
     const { novelId, chapterIndex, totalChapters } = useReaderPanel.getState();
@@ -106,7 +108,8 @@ export function ReaderPanel() {
     useReaderPanel.getState().nextChapter();
     if (isReaderPage) router.push(`/novels/${novelId}/read/${newIndex + 1}`);
     else if (isReadingRoomPage) router.push(`/reading-room/${novelId}/${newIndex}`);
-  }, [router, isReaderPage, isReadingRoomPage]);
+    else if (isStandaloneReaderPage) router.push(`/reader/${novelId}/${newIndex}`);
+  }, [router, isReaderPage, isReadingRoomPage, isStandaloneReaderPage]);
 
   const panelContent = (
     <>

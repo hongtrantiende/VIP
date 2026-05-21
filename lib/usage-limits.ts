@@ -1,5 +1,5 @@
-export const DAILY_FREE_DOWNLOAD_LIMIT = 100;
-export const DAILY_FREE_TRANSLATE_LIMIT = 100;
+export const DAILY_FREE_DOWNLOAD_LIMIT = 30;
+export const DAILY_FREE_TRANSLATE_LIMIT = 30;
 
 function getTodayString() {
     return new Date().toISOString().split("T")[0];

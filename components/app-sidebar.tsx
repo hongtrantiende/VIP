@@ -61,15 +61,8 @@ export const navConfig = [
   { title: "Thư viện", href: "/library", icon: LibraryIcon },
   { title: "Phòng Đọc", href: "/reading-room", icon: GlobeIcon },
   { title: "Nhập sách", href: "/import", icon: UploadIcon },
-  { title: "Convert nhanh", href: "/convert", icon: Wand2Icon },
   { title: "Import Truyện", href: "/scraper", icon: GlobeIcon },
   { title: "Quản lý từ điển", href: "/dictionary", icon: BookOpenIcon },
-  { title: "Nhà cung cấp AI", href: "/settings/providers", icon: ServerIcon },
-  {
-    title: "Quản lý dữ liệu",
-    href: "/settings/data",
-    icon: DatabaseIcon,
-  },
 ] as const;
 
 export const miscNav = [
@@ -116,10 +109,9 @@ export function AppSidebar() {
   } as const;
 
   let mainNav = navConfig.filter(
-    (item) => !item.href.startsWith("/settings"),
-  );
-  const settingsNav = navConfig.filter((item) =>
-    item.href.startsWith("/settings"),
+    (item) =>
+      !item.href.startsWith("/settings") &&
+      (item.href !== "/reading-room" || isVip || isAdmin),
   );
 
   const [logoError, setLogoError] = useState(false);
@@ -242,7 +234,10 @@ export function AppSidebar() {
                       tooltip={item.title}
                       className="text-base font-medium py-2.5 h-auto relative"
                     >
-                      <Link href={item.href}>
+                      <Link
+                        href={item.href}
+                        target={item.href === "/reading-room" ? "_blank" : undefined}
+                      >
                         <item.icon className="size-5" />
                         <span className="flex-1">{item.title}</span>
                         {isRestricted && !isVip && (
@@ -258,44 +253,26 @@ export function AppSidebar() {
         </SidebarGroup>
 
 
-
         <SidebarGroup>
           <SidebarGroupLabel>Cài đặt</SidebarGroupLabel>
           <SidebarGroupContent>
             <SidebarMenu>
-              <Collapsible defaultOpen className="group/collapsible">
-                <SidebarMenuItem>
-                  <CollapsibleTrigger asChild>
-                    <SidebarMenuButton tooltip="Cài đặt" className="text-base font-medium py-2.5 h-auto w-full justify-between">
-                      <div className="flex items-center gap-2">
-                        <SettingsIcon className="size-5" />
-                        <span>Cài đặt hệ thống</span>
-                      </div>
-                      <ChevronRightIcon className="size-4 transition-transform duration-200 group-data-[state=open]/collapsible:rotate-90" />
-                    </SidebarMenuButton>
-                  </CollapsibleTrigger>
-                  <CollapsibleContent>
-                    <SidebarMenuSub>
-                      {settingsNav.map((item) => {
-                        const isRestricted = true; // All settings are restricted
-                        return (
-                          <SidebarMenuSubItem key={item.href}>
-                            <SidebarMenuSubButton asChild isActive={pathname === item.href} className="text-sm py-2 h-auto relative">
-                              <Link href={item.href}>
-                                <item.icon className="size-4" />
-                                <span className="flex-1">{item.title}</span>
-                                {isRestricted && !isVip && (
-                                  <LockIcon className="size-3.5 ml-auto text-yellow-600/70" />
-                                )}
-                              </Link>
-                            </SidebarMenuSubButton>
-                          </SidebarMenuSubItem>
-                        );
-                      })}
-                    </SidebarMenuSub>
-                  </CollapsibleContent>
-                </SidebarMenuItem>
-              </Collapsible>
+              <SidebarMenuItem>
+                <SidebarMenuButton
+                  asChild
+                  isActive={pathname.startsWith("/settings")}
+                  tooltip="Cài đặt hệ thống"
+                  className="text-base font-medium py-2.5 h-auto relative"
+                >
+                  <Link href="/settings/providers">
+                    <SettingsIcon className="size-5" />
+                    <span className="flex-1">Cài đặt hệ thống</span>
+                    {!isVip && (
+                      <LockIcon className="size-4 ml-auto text-yellow-600/70" />
+                    )}
+                  </Link>
+                </SidebarMenuButton>
+              </SidebarMenuItem>
             </SidebarMenu>
           </SidebarGroupContent>
         </SidebarGroup>

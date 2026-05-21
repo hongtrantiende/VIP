@@ -138,6 +138,116 @@ export async function GET(req: Request) {
             return NextResponse.json({ success: true, novels: index });
         }
 
+        if (action === 'get_classify_config') {
+            const supabase = await createClient();
+            const { data: { user } } = await supabase.auth.getUser();
+            if (!user) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+
+            const admins = ["nthanhnam2005@gmail.com", "thanhxnam2005@gmail.com", "test@example.com"];
+            if (!admins.includes(user.email || '')) {
+                return NextResponse.json({ error: 'Unauthorized. Chỉ dành cho Admin.' }, { status: 403 });
+            }
+
+            const { data: settingsData } = await supabase
+                .from("app_settings")
+                .select("key, value");
+
+            const settingsMap = (settingsData || []).reduce((acc: any, curr: any) => {
+                acc[curr.key] = curr.value;
+                return acc;
+            }, {});
+
+            const rawUrl = settingsMap["admin_proxy_url"] || "";
+            const rawKey = settingsMap["admin_proxy_key"] || "";
+            const rawModel = settingsMap["admin_classify_model"] || "gemini-2.5-flash-search";
+
+            const maskedKey = rawKey ? "••••••••••••" : "";
+
+            return NextResponse.json({
+                success: true,
+                proxyUrl: rawUrl,
+                apiKey: maskedKey,
+                model: rawModel
+            });
+        }
+
+        if (action === 'get_classification_lists') {
+            const index = await getReadingRoomIndex();
+
+            const unclassified = index.filter(n =>
+                (!n.genres || n.genres.length === 0)
+            ).map(n => ({
+                id: n.id,
+                title: n.title,
+                author: n.author,
+                coverImage: n.coverImage,
+                chapterCount: n.chapterCount,
+                uploaderName: n.uploaderName
+            }));
+
+            const classified = index.filter(n =>
+                (n.genres && n.genres.length > 0)
+            ).map(n => ({
+                id: n.id,
+                title: n.title,
+                author: n.author,
+                coverImage: n.coverImage,
+                chapterCount: n.chapterCount,
+                uploaderName: n.uploaderName,
+                genres: n.genres || []
+            }));
+
+            return NextResponse.json({
+                success: true,
+                unclassified,
+                classified
+            });
+        }
+
+        if (action === 'get_available_models') {
+            const supabase = await createClient();
+            const { data: { user } } = await supabase.auth.getUser();
+            if (!user) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+
+            const admins = ["nthanhnam2005@gmail.com", "thanhxnam2005@gmail.com", "test@example.com"];
+            if (!admins.includes(user.email || '')) {
+                return NextResponse.json({ error: 'Unauthorized. Chỉ dành cho Admin.' }, { status: 403 });
+            }
+
+            const { data: settingsData } = await supabase
+                .from("app_settings")
+                .select("key, value");
+
+            const settingsMap = (settingsData || []).reduce((acc: any, curr: any) => {
+                acc[curr.key] = curr.value;
+                return acc;
+            }, {});
+
+            const rawUrl = settingsMap["admin_proxy_url"] || "";
+            const rawKey = settingsMap["admin_proxy_key"] || "";
+
+            if (!rawUrl) {
+                return NextResponse.json({ error: 'Chưa cấu hình Proxy API URL.' }, { status: 400 });
+            }
+
+            try {
+                const modelsUrl = `${rawUrl.replace(/\/+$/, "")}/models`;
+                const headers: Record<string, string> = {};
+                if (rawKey) {
+                    headers["Authorization"] = `Bearer ${rawKey}`;
+                }
+                const res = await fetch(modelsUrl, { headers, method: "GET" });
+                if (!res.ok) {
+                    throw new Error(`Server proxy trả về mã lỗi: ${res.status}`);
+                }
+                const body = await res.json();
+                const models = (body?.data || []).map((m: any) => m.id);
+                return NextResponse.json({ success: true, models });
+            } catch (err: any) {
+                return NextResponse.json({ error: `Không thể kết nối API URL: ${err.message}` }, { status: 550 });
+            }
+        }
+
         if (action === 'novel_data') {
             const novelId = searchParams.get('id');
             if (!novelId) return NextResponse.json({ error: 'Missing novel ID' }, { status: 400 });
@@ -157,8 +267,21 @@ export async function GET(req: Request) {
             }
 
             const meta = JSON.parse(fs.readFileSync(metaFile, 'utf-8'));
-            const index = await getReadingRoomIndex();
-            const indexMeta = index.find(n => n.id === novelId);
+            let uploaderId = meta.novel?.uploaderId;
+            if (!uploaderId) {
+                const index = await getReadingRoomIndex();
+                const indexMeta = index.find(n => n.id === novelId);
+                if (indexMeta?.uploaderId) {
+                    uploaderId = indexMeta.uploaderId;
+                    if (!meta.novel) meta.novel = {};
+                    meta.novel.uploaderId = uploaderId;
+                    try {
+                        fs.writeFileSync(metaFile, JSON.stringify(meta), 'utf-8');
+                    } catch (e) {
+                        console.error("Failed to write uploaderId update into meta.json", e);
+                    }
+                }
+            }
 
             let mottruyenGenre = "";
             let mottruyenIntro = "";
@@ -182,7 +305,7 @@ export async function GET(req: Request) {
 
             const returnedNovel = {
                 ...meta.novel,
-                uploaderId: indexMeta?.uploaderId,
+                uploaderId: uploaderId,
                 mottruyenGenre: mottruyenGenre || undefined,
                 mottruyenIntro: mottruyenIntro || undefined
             };
@@ -286,6 +409,116 @@ export async function GET(req: Request) {
         console.error('Reading Room GET Error:', error);
         return NextResponse.json({ error: error.message }, { status: 500 });
     }
+}
+async function classifyNovelAI(
+    novelId: string,
+    title: string,
+    description: string,
+    proxyUrlRaw: string,
+    proxyKey: string,
+    rawModel: string,
+    userId: string,
+    isUserAdmin: boolean
+): Promise<string[]> {
+    let proxyUrl = proxyUrlRaw.trim().replace(/[^\x20-\x7E]/g, '');
+    if (!proxyUrl.includes("/chat/completions")) {
+        proxyUrl = proxyUrl.replace(/\/+$/, "") + "/chat/completions";
+    }
+
+    const CATEGORY_GROUPS: Record<string, string[]> = {
+        "Thể loại": [
+            "Tiên Hiệp", "Huyền Huyễn", "Khoa Huyễn", "Võng Du", "Đô Thị", "Đồng Nhân", "Dã Sử", "Cạnh Kỹ", "Huyền Nghi", "Kiếm Hiệp", "Kỳ Ảo", "Light Novel", "Hiện Đại Ngôn Tình", "Huyền Huyễn Ngôn Tình", "Tiên Hiệp Kỳ Duyên", "Cổ Đại Ngôn Tình", "Huyền Nghi Thần Quái", "Khoa Huyễn Không Gian", "Lãng Mạn Thanh Xuân"
+        ],
+        "Tính cách": [
+            "Điềm Đạm", "Nhiệt Huyết", "Vô Sỉ", "Thiết Huyết", "Nhẹ Nhàng", "Cơ Trí", "Lãnh Khốc", "Kiêu Ngạo", "Ngu Ngốc"
+        ],
+        "Bối cảnh": [
+            "Đông Phương Huyền Huyễn", "Dị Thế Đại Lục", "Vương Triều Tranh Bá", "Cao Võ Thế Giới", "Tây Phương Kỳ Huyễn", "Hiện Đại Ma Pháp", "Hắc Ám Huyền Tưởng", "Lịch Sử Thần Thoại", "Võ Hiệp Huyền Tưởng", "Cổ Võ Tương Lai", "Tu Chân Văn Minh", "Huyền Tưởng Tu Tiên", "Hiện Đại Tu Chân", "Thần Thoại Tu Chân", "Cổ Điển Tiên Hiệp", "Viễn Cổ Hồng Hoang", "Đô Thị Sinh Hoạt", "Đô Thị Dị Năng", "Thanh Xuân Vườn Trường", "Ngu Nhạc Minh Tinh", "Thương Chiến Chức Tràng", "Giả Không Lịch Sử", "Lịch Sử Quân Sự", "Dân Gian Truyền Thuyết", "Lịch Sử Quan Trường", "Hư Nghĩ Võng Du", "Du Hí Dị Giới", "Điện Tử Cạnh Kỹ", "Thể Dục Cạnh Kỹ", "Cổ Võ Cơ Giáp", "Thế Giới Tương Lai", "Tinh Tế Văn Minh", "Tiến Hóa Biến Di", "Mạt Thế Nguy Cơ", "Thời Không Xuyên Toa", "Quỷ Bí Huyền Nghi", "Kỳ Diệu Thế Giới", "Trinh Thám Thôi Lý", "Thám Hiểm Sinh Tồn", "Cung Vi Trạch Đấu", "Kinh Thương Chủng Điền", "Tiên Lữ Kỳ Duyên", "Hào Môn Thế Gia", "Dị Tộc Luyến Tình", "Ma Pháp Huyền Tình", "Tinh Tế Luyến Ca", "Linh Khí Khôi Phục", "Chư Thiên Vạn Giới", "Nguyên Sinh Huyền Tưởng", "Yêu Đương Thường Ngày", "Diễn Sinh Đồng Nhân", "Cáo Tiểu Thổ Tào"
+        ],
+        "Lưu phái": [
+            "Hệ Thống", "Lão Gia", "Bàn Thờ", "Tùy Thân", "Phàm Nhân", "Vô Địch", "Xuyên Qua", "Nữ Cường", "Khế Ước", "Trọng Sinh", "Hồng Lâu", "Học Viện", "Biến Thân", "Cổ Ngu", "Chuyển Thế", "Xuyên Sách", "Đàn Xuyên", "Phế Tài", "Dưỡng Thành", "Cơm Mềm", "Vô Hạn", "Mary Sue", "Cá Mặn", "Xây Dựng Thế Lực", "Xuyên Nhanh", "Nữ Phụ", "Vả Mặt", "Sảng Văn", "Xuyên Không", "Ngọt Sủng", "Ngự Thú", "Điền Viên", "Toàn Dân", "Mỹ Thực", "Phản Phái", "Sau Màn", "Thiên Tài"
+        ]
+    };
+    const STANDARD_GENRES = Object.values(CATEGORY_GROUPS).flat();
+    const genreListStr = STANDARD_GENRES.join(", ");
+
+    let mottruyenGenre = "";
+    let mottruyenIntro = "";
+
+    if (novelId.startsWith("mottruyen-")) {
+        try {
+            const storyId = novelId.replace("mottruyen-", "");
+            const mtRes = await fetch(`http://api.mottruyen.com/story/?story_id=${storyId}`, {
+                signal: AbortSignal.timeout(2000)
+            });
+            if (mtRes.ok) {
+                const mtData = await mtRes.json();
+                if (mtData && mtData.success === 1 && mtData.data) {
+                    mottruyenGenre = mtData.data.KIND || "";
+                    mottruyenIntro = mtData.data.INTRO || "";
+                }
+            }
+        } catch (e) {
+            console.error("Mottruyen metadata query failed inside classify helper", e);
+        }
+    }
+
+    const finalDesc = description || mottruyenIntro || "";
+    const mottruyenContext = mottruyenGenre ? `\n\nTHỂ LOẠI GỐC (từ nguồn Mottruyen): ${mottruyenGenre}` : "";
+
+    const systemsPrompt = `Bạn là một chuyên gia phân loại thể loại tiểu thuyết mạng. Hãy phân loại thể loại cho bộ truyện dựa vào tên và mô tả. Chọn tối đa 1 đến 4 thể loại KHỚP NHẤT từ danh sách sau: ${genreListStr}.`;
+    const usrsPrompt = `Tên truyện: ${title}\nMô tả:\n${finalDesc}${mottruyenContext}\n\nTrả về DUY NHẤT một mảng JSON các chuỗi tương ứng với các thể loại được chọn, không giải thích gì thêm, ví dụ: ["Huyền huyễn", "Hệ thống"].`;
+
+    const headers: Record<string, string> = {
+        "Content-Type": "application/json"
+    };
+    if (proxyKey) {
+        headers["Authorization"] = `Bearer ${proxyKey}`;
+    }
+
+    const apiRes = await fetch(proxyUrl, {
+        method: "POST",
+        headers,
+        body: JSON.stringify({
+            model: rawModel,
+            messages: [
+                { role: "system", content: systemsPrompt },
+                { role: "user", content: usrsPrompt }
+            ],
+            temperature: 0.1
+        }),
+        signal: AbortSignal.timeout(25000)
+    });
+
+    if (!apiRes.ok) {
+        throw new Error(`Server proxy trả về mã lỗi: ${apiRes.status}`);
+    }
+
+    const resJson = await apiRes.ok ? await apiRes.json() : null;
+    if (!resJson) {
+        throw new Error("Không nhận được phản hồi từ AI");
+    }
+    const text = resJson.choices?.[0]?.message?.content || "";
+    let cleaned = text.replace(/```json/gi, "").replace(/```/g, "").trim();
+    const startIdx = cleaned.indexOf("[");
+    const endIdx = cleaned.lastIndexOf("]");
+    if (startIdx !== -1 && endIdx !== -1) {
+        cleaned = cleaned.substring(startIdx, endIdx + 1);
+    }
+    const parsed = JSON.parse(cleaned);
+    if (!Array.isArray(parsed) || parsed.length === 0) {
+        throw new Error("Dữ liệu thể loại trả về rỗng hoặc không đúng định dạng");
+    }
+
+    const newGenres = parsed.map((s: any) => String(s).trim()).filter(Boolean);
+    const { editMetadataInReadingRoom } = await import('@/lib/google-drive-admin-v2');
+    await editMetadataInReadingRoom(novelId, title, finalDesc, userId, newGenres, isUserAdmin);
+
+    const cacheFile = path.join(os.tmpdir(), 'novel-studio-reading-room', `${novelId}.json`);
+    if (fs.existsSync(cacheFile)) {
+        fs.unlinkSync(cacheFile);
+    }
+    return newGenres;
 }
 
 export async function POST(req: Request) {
@@ -453,26 +686,67 @@ export async function POST(req: Request) {
         }
 
         if (action === 'edit_metadata') {
-            const novelId = searchParams.get('novelId');
+            const novelId = searchParams.get('novelId') || searchParams.get('id');
             if (!novelId) return NextResponse.json({ error: 'Missing novelId' }, { status: 400 });
 
             const content = await req.text();
             let newTitle: string | undefined = undefined;
             let newDescription: string | undefined = undefined;
             let newGenres: string[] | undefined = undefined;
+            let forceAutoClassify = false;
             try {
                 const b = JSON.parse(content);
                 newTitle = b.newTitle;
                 newDescription = b.newDescription;
                 newGenres = b.newGenres;
+                forceAutoClassify = !!b.forceAutoClassify;
             } catch {
                 return NextResponse.json({ error: 'Invalid JSON body' }, { status: 400 });
             }
 
+            const admins = ["nthanhnam2005@gmail.com", "thanhxnam2005@gmail.com", "test@example.com"];
+            const isUserAdmin = admins.includes(user.email || '');
+
+            if (forceAutoClassify) {
+                const { data: settingsData } = await supabase
+                    .from("app_settings")
+                    .select("key, value");
+
+                const settingsMap = (settingsData || []).reduce((acc: any, curr: any) => {
+                    acc[curr.key] = curr.value;
+                    return acc;
+                }, {});
+
+                const proxyUrlRaw = settingsMap["admin_proxy_url"];
+                const proxyKey = settingsMap["admin_proxy_key"];
+                const rawModel = settingsMap["admin_classify_model"] || "gemini-2.5-flash-search";
+
+                if (!proxyUrlRaw) {
+                    return NextResponse.json({ error: 'Chưa cấu hình API URL.' }, { status: 400 });
+                }
+
+                let title = newTitle || "";
+                let description = newDescription || "";
+
+                if (!title || !description) {
+                    const index = await getReadingRoomIndex();
+                    const meta = index.find(n => n.id === novelId);
+                    if (meta) {
+                        if (!title) title = meta.title;
+                        if (!description) description = meta.description || "";
+                    }
+                }
+
+                try {
+                    const detectedGenres = await classifyNovelAI(novelId, title, description, proxyUrlRaw, proxyKey || "", rawModel, user.id, isUserAdmin);
+                    return NextResponse.json({ success: true, genres: detectedGenres });
+                } catch (err: any) {
+                    return NextResponse.json({ error: `Phân loại tự động thất bại: ${err.message}` }, { status: 550 });
+                }
+            }
+
             const { editMetadataInReadingRoom } = await import('@/lib/google-drive-admin-v2');
             try {
-                const admins = ["nthanhnam2005@gmail.com", "thanhxnam2005@gmail.com"];
-                const isUserAdmin = admins.includes(user.email || '');
                 await editMetadataInReadingRoom(novelId, newTitle || '', newDescription, user.id, newGenres, isUserAdmin);
                 // Xóa cache
                 const cacheFile = path.join(os.tmpdir(), 'novel-studio-reading-room', `${novelId}.json`);
@@ -509,7 +783,7 @@ export async function POST(req: Request) {
 
             // Ensure they are the uploader or ADMIN
             let isAllowed = false;
-            const admins = ["nthanhnam2005@gmail.com", "thanhxnam2005@gmail.com"];
+            const admins = ["nthanhnam2005@gmail.com", "thanhxnam2005@gmail.com", "test@example.com"];
             if (admins.includes(user.email || '')) {
                 isAllowed = true;
             } else {
@@ -534,8 +808,112 @@ export async function POST(req: Request) {
                 }
                 return NextResponse.json({ success: true });
             } catch (err: any) {
-                return NextResponse.json({ error: err.message }, { status: 500 });
+                return NextResponse.json({ error: err.message }, { status: 550 });
             }
+        }
+
+        if (action === 'batch_classify') {
+            const admins = ["nthanhnam2005@gmail.com", "thanhxnam2005@gmail.com", "test@example.com"];
+            if (!admins.includes(user.email || '')) {
+                return NextResponse.json({ error: 'Unauthorized. Chỉ dành cho Admin.' }, { status: 403 });
+            }
+
+            const index = await getReadingRoomIndex();
+            const targetNovels = index.filter(n => !n.genres || n.genres.length === 0);
+
+            let classifiedCount = 0;
+            const { editMetadataInReadingRoom } = await import('@/lib/google-drive-admin-v2');
+
+            const { data: settingsData } = await supabase
+                .from("app_settings")
+                .select("key, value");
+
+            const settingsMap = (settingsData || []).reduce((acc: any, curr: any) => {
+                acc[curr.key] = curr.value;
+                return acc;
+            }, {});
+
+            const proxyUrlRaw = settingsMap["admin_proxy_url"];
+            const proxyKey = settingsMap["admin_proxy_key"];
+            const rawModel = settingsMap["admin_classify_model"] || "gemini-2.5-flash-search";
+
+            const novelId = searchParams.get('novelId');
+            if (novelId) {
+                const novel = index.find(n => n.id === novelId);
+                if (!novel) return NextResponse.json({ error: 'Novel not found' }, { status: 404 });
+                const genres = await classifyNovelAI(
+                    novel.id,
+                    novel.title,
+                    novel.description || "",
+                    proxyUrlRaw,
+                    proxyKey || "",
+                    rawModel,
+                    user.id,
+                    true
+                );
+                return NextResponse.json({ success: true, genres });
+            }
+
+            const novelsToProcess = targetNovels.slice(0, 10);
+
+            for (const novel of novelsToProcess) {
+                try {
+                    await classifyNovelAI(
+                        novel.id,
+                        novel.title,
+                        novel.description || "",
+                        proxyUrlRaw,
+                        proxyKey || "",
+                        rawModel,
+                        user.id,
+                        true
+                    );
+                    classifiedCount++;
+                } catch (err) {
+                    console.error(`Failed to batch-classify novel ${novel.id}:`, err);
+                }
+            }
+
+            return NextResponse.json({ success: true, classifiedCount });
+        }
+
+        if (action === 'save_classify_config') {
+            const admins = ["nthanhnam2005@gmail.com", "thanhxnam2005@gmail.com", "test@example.com"];
+            if (!admins.includes(user.email || '')) {
+                return NextResponse.json({ error: 'Unauthorized. Chỉ dành cho Admin.' }, { status: 403 });
+            }
+
+            const body = await req.json();
+            const { proxyUrl, apiKey, model } = body;
+
+            const { createClient: createAdminClient } = await import("@supabase/supabase-js");
+            const adminDb = createAdminClient(
+                process.env.NEXT_PUBLIC_SUPABASE_URL!,
+                process.env.SUPABASE_SERVICE_ROLE_KEY || process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
+            );
+
+            if (proxyUrl !== undefined) {
+                const cleanUrl = String(proxyUrl).trim().replace(/[^\x20-\x7E]/g, '');
+                await adminDb
+                    .from("app_settings")
+                    .upsert({ key: "admin_proxy_url", value: cleanUrl }, { onConflict: "key" });
+            }
+
+            if (apiKey !== undefined && apiKey !== "••••••••••••" && apiKey.trim() !== "") {
+                const cleanKey = String(apiKey).trim().replace(/[^\x20-\x7E]/g, '');
+                await adminDb
+                    .from("app_settings")
+                    .upsert({ key: "admin_proxy_key", value: cleanKey }, { onConflict: "key" });
+            }
+
+            if (model !== undefined) {
+                const cleanModel = String(model).trim().replace(/[^\x20-\x7E]/g, '');
+                await adminDb
+                    .from("app_settings")
+                    .upsert({ key: "admin_classify_model", value: cleanModel }, { onConflict: "key" });
+            }
+
+            return NextResponse.json({ success: true });
         }
 
         return NextResponse.json({ error: 'Invalid action' }, { status: 400 });
@@ -548,7 +926,6 @@ export async function POST(req: Request) {
 // Background auto classification helper running client-agnostically on the server context
 async function triggerAutoClassifyServer(novelId: string, metadata: ReadingRoomMetadata) {
     if (metadata.genres && metadata.genres.length > 0) {
-        // Skip if uploader already provided genres
         return;
     }
 
@@ -568,6 +945,7 @@ async function triggerAutoClassifyServer(novelId: string, metadata: ReadingRoomM
 
         const proxyUrlRaw = settingsMap["admin_proxy_url"];
         const proxyKey = settingsMap["admin_proxy_key"];
+        const autoModel = settingsMap["admin_classify_model"] || "gemini-2.5-flash-search";
         if (!proxyUrlRaw || !proxyKey) return;
 
         let proxyUrl = proxyUrlRaw.trim().replace(/[^\x20-\x7E]/g, '');
@@ -605,16 +983,16 @@ async function triggerAutoClassifyServer(novelId: string, metadata: ReadingRoomM
 
                 const CATEGORY_GROUPS: Record<string, string[]> = {
                     "Thể loại": [
-                        "Tiên Hiệp", "Huyền Huyễn", "Khoa Huyễn", "Võng Du", "Đô Thị", "Đồng Nhân", "Dã Sử", "Kỳ Ảo", "Huyền Nghi", "Võ Hiệp", "Cung Đấu", "Gia Đấu", "Trinh Thám", "Mạt Thế", "Lịch Sử", "Quân Sự"
+                        "Tiên Hiệp", "Huyền Huyễn", "Khoa Huyễn", "Võng Du", "Đô Thị", "Đồng Nhân", "Dã Sử", "Cạnh Kỹ", "Huyền Nghi", "Kiếm Hiệp", "Kỳ Ảo", "Light Novel", "Hiện Đại Ngôn Tình", "Huyền Huyễn Ngôn Tình", "Tiên Hiệp Kỳ Duyên", "Cổ Đại Ngôn Tình", "Huyền Nghi Thần Quái", "Khoa Huyễn Không Gian", "Lãng Mạn Thanh Xuân"
                     ],
                     "Tính cách": [
-                        "Sát Phạt", "Cơ Trí", "Vô Sỉ", "Văn Nhã", "Mãng Phu", "Nhẹ Nhàng", "Hài Hước", "Lạnh Lùng", "Nhiệt Huyết"
+                        "Điềm Đạm", "Nhiệt Huyết", "Vô Sỉ", "Thiết Huyết", "Nhẹ Nhàng", "Cơ Trí", "Lãnh Khốc", "Kiêu Ngạo", "Ngu Ngốc"
                     ],
                     "Bối cảnh": [
-                        "Chư Thiên Vạn Giới", "Vô Hạn Lưu", "Đông Phương Huyền Huyễn", "Tây Phương Kỳ Ảo", "Hiện Đại Tu Chân", "Hư Nghĩ Võng Du", "Thời Không Xuyên Toa", "Đô Thị Dị Năng", "Đô Thị Sinh Hoạt", "Học Đường", "Vương Triều Tranh Bá"
+                        "Đông Phương Huyền Huyễn", "Dị Thế Đại Lục", "Vương Triều Tranh Bá", "Cao Võ Thế Giới", "Tây Phương Kỳ Huyễn", "Hiện Đại Ma Pháp", "Hắc Ám Huyền Tưởng", "Lịch Sử Thần Thoại", "Võ Hiệp Huyền Tưởng", "Cổ Võ Tương Lai", "Tu Chân Văn Minh", "Huyền Tưởng Tu Tiên", "Hiện Đại Tu Chân", "Thần Thoại Tu Chân", "Cổ Điển Tiên Hiệp", "Viễn Cổ Hồng Hoang", "Đô Thị Sinh Hoạt", "Đô Thị Dị Năng", "Thanh Xuân Vườn Trường", "Ngu Nhạc Minh Tinh", "Thương Chiến Chức Tràng", "Giả Không Lịch Sử", "Lịch Sử Quân Sự", "Dân Gian Truyền Thuyết", "Lịch Sử Quan Trường", "Hư Nghĩ Võng Du", "Du Hí Dị Giới", "Điện Tử Cạnh Kỹ", "Thể Dục Cạnh Kỹ", "Cổ Võ Cơ Giáp", "Thế Giới Tương Lai", "Tinh Tế Văn Minh", "Tiến Hóa Biến Di", "Mạt Thế Nguy Cơ", "Thời Không Xuyên Toa", "Quỷ Bí Huyền Nghi", "Kỳ Diệu Thế Giới", "Trinh Thám Thôi Lý", "Thám Hiểm Sinh Tồn", "Cung Vi Trạch Đấu", "Kinh Thương Chủng Điền", "Tiên Lữ Kỳ Duyên", "Hào Môn Thế Gia", "Dị Tộc Luyến Tình", "Ma Pháp Huyền Tình", "Tinh Tế Luyến Ca", "Linh Khí Khôi Phục", "Chư Thiên Vạn Giới", "Nguyên Sinh Huyền Tưởng", "Yêu Đương Thường Ngày", "Diễn Sinh Đồng Nhân", "Cáo Tiểu Thổ Tào"
                     ],
                     "Lưu phái": [
-                        "Hệ Thống", "Xuyên Không", "Trọng Sinh", "Vô Địch", "Đầu Cơ", "Ngu Nhạc Minh Tinh", "Ngự Thú", "Điền Viên", "Bác Sĩ", "Học Hối", "Sau Màn", "Khoái Xuyên", "Nữ Phụ", "Sảng Văn", "Ngôn Tình", "Nữ Cường"
+                        "Hệ Thống", "Lão Gia", "Bàn Thờ", "Tùy Thân", "Phàm Nhân", "Vô Địch", "Xuyên Qua", "Nữ Cường", "Khế Ước", "Trọng Sinh", "Hồng Lâu", "Học Viện", "Biến Thân", "Cổ Ngu", "Chuyển Thế", "Xuyên Sách", "Đàn Xuyên", "Phế Tài", "Dưỡng Thành", "Cơm Mềm", "Vô Hạn", "Mary Sue", "Cá Mặn", "Xây Dựng Thế Lực", "Xuyên Nhanh", "Nữ Phụ", "Vả Mặt", "Sảng Văn", "Xuyên Không", "Ngọt Sủng", "Ngự Thú", "Điền Viên", "Toàn Dân", "Mỹ Thực", "Phản Phái", "Sau Màn", "Thiên Tài"
                     ]
                 };
                 const STANDARD_GENRES = Object.values(CATEGORY_GROUPS).flat();
@@ -630,7 +1008,7 @@ async function triggerAutoClassifyServer(novelId: string, metadata: ReadingRoomM
                         "Authorization": `Bearer ${proxyKey}`
                     },
                     body: JSON.stringify({
-                        model: "gemini-2.5-flash-search",
+                        model: autoModel,
                         messages: [
                             { role: "system", content: sysPrompt },
                             { role: "user", content: usrPrompt }
