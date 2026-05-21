@@ -23,7 +23,7 @@ import { ImagePicker } from "@/components/ui/image-picker";
 import { PlusIcon, XIcon, CheckIcon } from "lucide-react";
 
 const GENRE_DICTS = [
-  "hiendai", "tienhiep", "huyenhuyen", "dammi", "hocduong", 
+  "hiendai", "tienhiep", "huyenhuyen", "dammi", "hocduong",
   "dothi", "vongdu", "dongnhan", "ngontinh"
 ];
 
@@ -63,6 +63,7 @@ export function EditNovelDialog({
   const [tags, setTags] = useState<string[]>(novel.tags ?? []);
   const [activeDictSources, setActiveDictSources] = useState<string[]>(novel.activeDictSources ?? []);
   const [coverImage, setCoverImage] = useState<string | undefined>(novel.coverImage);
+  const [keepLocal, setKeepLocal] = useState(novel.keepLocal ?? false);
   const [saving, setSaving] = useState(false);
 
   const dictMeta = useDictMeta();
@@ -91,6 +92,7 @@ export function EditNovelDialog({
       setTags(novel.tags ?? []);
       setActiveDictSources(novel.activeDictSources ?? []);
       setCoverImage(novel.coverImage);
+      setKeepLocal(novel.keepLocal ?? false);
     }
   }, [open, novel]);
 
@@ -110,6 +112,7 @@ export function EditNovelDialog({
         tags,
         activeDictSources,
         coverImage: coverImage || undefined,
+        keepLocal,
       });
 
       toast.success("Đã cập nhật tiểu thuyết");
@@ -240,8 +243,8 @@ export function EditNovelDialog({
                       }}
                       className={cn(
                         "flex items-center gap-1 rounded-md px-2 py-1 text-xs font-medium transition-colors border",
-                        isActive 
-                          ? "bg-primary text-primary-foreground border-primary" 
+                        isActive
+                          ? "bg-primary text-primary-foreground border-primary"
                           : "bg-background text-muted-foreground hover:bg-muted"
                       )}
                     >
@@ -292,6 +295,24 @@ export function EditNovelDialog({
                     className="absolute inset-0 cursor-pointer opacity-0"
                   />
                 </label>
+              </div>
+            </div>
+
+            <div className="flex items-center gap-2 pt-2 border-t">
+              <input
+                type="checkbox"
+                id="edit-novel-keeplocal"
+                checked={keepLocal}
+                onChange={(e) => setKeepLocal(e.target.checked)}
+                className="size-4 rounded border-gray-300 text-primary focus:ring-primary cursor-pointer"
+              />
+              <div className="grid gap-1.5 leading-none">
+                <Label htmlFor="edit-novel-keeplocal" className="cursor-pointer font-medium">
+                  Giữ lại thiết bị
+                </Label>
+                <p className="text-xs text-muted-foreground">
+                  Không tự động tải lên Phòng Đọc & không tự động xóa khi chạy 同步 & dọn dẹp.
+                </p>
               </div>
             </div>
           </div>

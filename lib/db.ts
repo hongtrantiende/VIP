@@ -65,6 +65,8 @@ export interface Novel {
   stylePreset?: string;
   pronounMatrix?: string;
   pronounMatrixEnabled?: boolean;
+  /** Keep novel locally (skip bulk upload / auto-cleaning syncing) */
+  keepLocal?: boolean;
   createdAt: Date;
   updatedAt: Date;
 }

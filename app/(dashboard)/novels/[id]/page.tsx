@@ -62,6 +62,7 @@ import {
   useCharacters,
   useNovel,
 } from "@/lib/hooks";
+import { useProfile } from "@/lib/hooks/use-profile";
 import { useScraperQueueStore } from "@/lib/stores/scraper-queue";
 import { db } from "@/lib/db";
 import { generateEpub } from "@/lib/epub-generator";
@@ -97,6 +98,7 @@ export default function NovelDetailPage() {
   const router = useRouter();
   const pathname = usePathname();
   const [activeTab, setActiveTab] = useState("chapters");
+  const { isAdmin } = useProfile();
   const novel = useNovel(id);
   const chapters = useChapters(id);
   const { chapterWordCounts, chapterOriginalWordCounts, analysisStatuses, translatedChapterIds } = useNovelDetailStats(id);
@@ -523,19 +525,21 @@ export default function NovelDetailPage() {
                 </TooltipTrigger>
                 <TooltipContent>Xuất JSON</TooltipContent>
               </Tooltip>
-              <Tooltip>
-                <TooltipTrigger asChild>
-                  <Button
-                    variant="ghost"
-                    size="icon"
-                    className="text-destructive hover:text-destructive"
-                    onClick={() => setDeleteOpen(true)}
-                  >
-                    <Trash2Icon className="size-4" />
-                  </Button>
-                </TooltipTrigger>
-                <TooltipContent>Xóa</TooltipContent>
-              </Tooltip>
+              {isAdmin && (
+                <Tooltip>
+                  <TooltipTrigger asChild>
+                    <Button
+                      variant="ghost"
+                      size="icon"
+                      className="text-destructive hover:text-destructive"
+                      onClick={() => setDeleteOpen(true)}
+                    >
+                      <Trash2Icon className="size-4" />
+                    </Button>
+                  </TooltipTrigger>
+                  <TooltipContent>Xóa</TooltipContent>
+                </Tooltip>
+              )}
             </div>
           </div>
 

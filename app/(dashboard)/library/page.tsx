@@ -230,6 +230,9 @@ export default function LibraryPage() {
 
       // 2. Duyệt qua tất cả truyện trong thư viện cục bộ
       for (const novel of novels || []) {
+        if (novel.keepLocal) {
+          continue;
+        }
         if (uploadedIds.has(novel.id)) {
           // Truyện đã được upload -> Tiến hành xóa offline
           try {
@@ -537,9 +540,10 @@ export default function LibraryPage() {
   };
 
   const handleDownloadAllFromCloud = async () => {
-    const toastId = toast.loading("Đang quét và tải toàn bộ truyện từ Kho của bạn...");
+    const toastId = toast.loading("Đang quét và tải danh sách truyện từ Kho của bạn...");
     try {
-      const listParams = new URLSearchParams({ action: 'download-all' });
+      // 1. Lấy danh sách truyện trước (chỉ là tên file, cực nhanh và không sợ timeout)
+      const listParams = new URLSearchParams({ action: 'list-novels' });
       const listRes = await fetch(`/api/dict/cloud-storage?${listParams.toString()}`, { method: 'POST' });
       if (!listRes.ok) {
         const errorData = await listRes.json().catch(() => ({ error: 'Không thể parse JSON lỗi' }));
@@ -547,29 +551,36 @@ export default function LibraryPage() {
       }
 
       const listData = await listRes.json();
-      const novelsToImport = listData.novels || []; // Mảng chứa {name, content}
+      const novelsList = listData.novels || []; // Mảng chứa các {name, modifiedTime, size}
 
-      if (novelsToImport.length === 0) {
+      if (novelsList.length === 0) {
         toast.error("Kho của bạn đang trống. Hãy 'Lưu lên Kho' trước nhé!", { id: toastId });
         return;
       }
 
-      toast.loading(`Đang khôi phục ${novelsToImport.length} truyện vào thư viện...`, { id: toastId });
+      toast.loading(`Tìm thấy ${novelsList.length} truyện. Đang tiến hành khôi phục về thư viện...`, { id: toastId });
 
       let processed = 0;
       let failedNames: string[] = [];
-      const total = novelsToImport.length;
+      const total = novelsList.length;
       const CONCURRENCY = 3;
 
       for (let i = 0; i < total; i += CONCURRENCY) {
-        const batch = novelsToImport.slice(i, i + CONCURRENCY);
+        const batch = novelsList.slice(i, i + CONCURRENCY);
 
         await Promise.allSettled(
-          batch.map(async (novelData: { name: string, content: string }) => {
+          batch.map(async (novelMeta: { name: string }) => {
             try {
-              // Ensure we have json syntax checked
-              const data = JSON.parse(novelData.content);
-              const file = new File([novelData.content], `${novelData.name}.json`, { type: "application/json" });
+              // Tải từng truyện riêng lẻ để tránh timeout và OOM trên Cloudflare
+              const dlParams = new URLSearchParams({ action: 'download', novelName: novelMeta.name });
+              const dlRes = await fetch(`/api/dict/cloud-storage?${dlParams.toString()}`, { method: 'POST' });
+              if (!dlRes.ok) {
+                throw new Error(`Lỗi tải file (HTTP ${dlRes.status})`);
+              }
+
+              const contentText = await dlRes.text();
+              const data = JSON.parse(contentText);
+              const file = new File([contentText], `${novelMeta.name}.json`, { type: "application/json" });
               const newNovelId = await importNovel(file, { preserveId: true });
 
               if (data.novel?.sourceUrl) {
@@ -582,22 +593,22 @@ export default function LibraryPage() {
               }
               processed++;
             } catch (err) {
-              failedNames.push(novelData.name);
-              console.error(`Failed to import novel ${novelData.name}:`, err);
+              failedNames.push(novelMeta.name);
+              console.error(`Thất bại khi khôi phục truyện "${novelMeta.name}":`, err);
             }
           })
         );
 
         if (i + CONCURRENCY < total) {
-          await new Promise(r => setTimeout(r, 100));
+          await new Promise(r => setTimeout(r, 200));
         }
 
-        toast.loading(`Đang khôi phục: ${Math.round(Math.min(i + batch.length, total) / total * 100)}% (${processed} xong)...`, { id: toastId });
+        toast.loading(`Đang khôi phục: ${Math.round(Math.min(i + batch.length, total) / total * 100)}% (${processed}/${total} xong)...`, { id: toastId });
       }
 
       if (processed > 0) {
         const failMsg = failedNames.length > 0 ? ` (Thất bại ${failedNames.length}: ${failedNames.slice(0, 2).join(", ")}...)` : "";
-        toast.success(`Đồng bộ thành công ${processed} truyện!${failMsg}`, { id: toastId, duration: 5000 });
+        toast.success(`Đồng bộ thành công ${processed}/${total} truyện!${failMsg}`, { id: toastId, duration: 6000 });
       } else {
         toast.error(`Không có truyện nào được tải về. Thất bại: ${failedNames.join(", ")}`, { id: toastId });
       }
@@ -1438,6 +1449,7 @@ function NovelActions({
   onCloudDownload: (novel: Novel) => void;
   onReadingRoomUpload: (novel: Novel) => void;
 }) {
+  const { isAdmin } = useProfile();
   return (
     <div
       className="flex shrink-0 items-center gap-0.5"
@@ -1534,19 +1546,21 @@ function NovelActions({
         </TooltipTrigger>
         <TooltipContent>Xuất JSON</TooltipContent>
       </Tooltip>
-      <Tooltip>
-        <TooltipTrigger asChild>
-          <Button
-            variant="ghost"
-            size="icon"
-            className="size-7 text-destructive hover:bg-destructive/10 hover:text-destructive"
-            onClick={() => onDelete(novel)}
-          >
-            <Trash2Icon className="size-3.5" />
-          </Button>
-        </TooltipTrigger>
-        <TooltipContent>Xóa</TooltipContent>
-      </Tooltip>
+      {isAdmin && (
+        <Tooltip>
+          <TooltipTrigger asChild>
+            <Button
+              variant="ghost"
+              size="icon"
+              className="size-7 text-destructive hover:bg-destructive/10 hover:text-destructive"
+              onClick={() => onDelete(novel)}
+            >
+              <Trash2Icon className="size-3.5" />
+            </Button>
+          </TooltipTrigger>
+          <TooltipContent>Xóa</TooltipContent>
+        </Tooltip>
+      )}
     </div>
   );
 }
