@@ -150,19 +150,40 @@ export async function uploadCompressedInChunks(
   onProgress?: (percent: number) => void,
   chunkSize = 1024 * 1024 // 1MB mặc định
 ): Promise<void> {
-  const uploadId = Math.random().toString(36).substring(2) + Date.now().toString(36);
-  const totalChunks = Math.ceil(compressedBytes.length / chunkSize);
+  const finalChunkSize = Math.ceil(chunkSize / (256 * 1024)) * (256 * 1024);
+  const totalSize = compressedBytes.length;
 
-  console.log(`Bắt đầu tải lên novel ${novelId} bằng chunk. Tổng dung lượng: ${compressedBytes.length} bytes, số chunk: ${totalChunks}`);
+  console.log(`Bắt đầu tải lên novel ${novelId} bằng chunk. Tổng dung lượng: ${totalSize} bytes, chunk size: ${finalChunkSize}`);
 
-  // 1. Tải lên tất cả các chunk tuần tự
+  // 1. Khởi tạo phiên tải lên Resumable (nhận sessionUrl)
+  let sessionUrl = '';
+  try {
+    const initRes = await fetch(`/api/reading-room?action=init_upload&novelId=${novelId}&totalSize=${totalSize}`, {
+      method: 'POST'
+    });
+    if (!initRes.ok) {
+      const errJson = await initRes.json().catch(() => ({}));
+      throw new Error(errJson.error || `HTTP ${initRes.status}`);
+    }
+    const data = await initRes.json();
+    sessionUrl = data.sessionUrl;
+  } catch (err: any) {
+    throw new Error(`Khởi tạo tải lên thất bại: ${err.message}`);
+  }
+
+  const totalChunks = Math.ceil(totalSize / finalChunkSize);
+
+  // 2. Tải lên tất cả các chunk tuần tự sử dụng sessionUrl
   for (let i = 0; i < totalChunks; i++) {
-    const start = i * chunkSize;
-    const end = Math.min(start + chunkSize, compressedBytes.length);
+    const start = i * finalChunkSize;
+    const end = Math.min(start + finalChunkSize, totalSize);
     const chunkSlice = compressedBytes.subarray(start, end);
+    const contentRange = `bytes ${start}-${end - 1}/${totalSize}`;
 
     const headers: Record<string, string> = {
       'Content-Type': 'application/octet-stream',
+      'x-session-url': sessionUrl,
+      'content-range': contentRange
     };
 
     let success = false;
@@ -170,7 +191,7 @@ export async function uploadCompressedInChunks(
 
     for (let attempt = 1; attempt <= 3; attempt++) {
       try {
-        const url = `/api/reading-room?action=upload_chunk&uploadId=${uploadId}&chunkIndex=${i}&totalChunks=${totalChunks}&novelId=${novelId}`;
+        const url = `/api/reading-room?action=upload_chunk&chunkIndex=${i}`;
         const res = await fetch(url, {
           method: 'POST',
           headers,
@@ -178,8 +199,13 @@ export async function uploadCompressedInChunks(
         });
 
         if (res.ok) {
-          success = true;
-          break;
+          const resJson = await res.json().catch(() => ({}));
+          if (resJson.success && (resJson.status === 308 || resJson.status === 200 || resJson.status === 201)) {
+            success = true;
+            break;
+          } else {
+            errorMsg = resJson.error || `Google Drive status ${resJson.status}: ${resJson.responseText}`;
+          }
         } else {
           const errJson = await res.json().catch(() => ({}));
           errorMsg = errJson.error || `HTTP Error ${res.status}`;
@@ -204,25 +230,24 @@ export async function uploadCompressedInChunks(
     }
 
     if (onProgress) {
-      // Giữ tiến độ đạt max 95% ở các chunk, 5% còn lại dành cho việc hoàn tất (finalize)
       onProgress(Math.round(((i + 1) / totalChunks) * 95));
     }
   }
 
-  // 2. Gửi yêu cầu hoàn tất tải lên (Finalize) kèm theo metadata đầy đủ trong body
+  // 3. Gửi yêu cầu hoàn tất tải lên (Finalize) kèm theo metadata, sessionUrl và totalSize
   console.log(`Đang gửi yêu cầu hoàn tất tải lên cho novel ${novelId}`);
   let finalizeSuccess = false;
   let finalizeErrorMsg = '';
 
   for (let attempt = 1; attempt <= 3; attempt++) {
     try {
-      const url = `/api/reading-room?action=finalize_upload&uploadId=${uploadId}&novelId=${novelId}`;
+      const url = `/api/reading-room?action=finalize_upload&novelId=${novelId}`;
       const res = await fetch(url, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ metadata }),
+        body: JSON.stringify({ metadata, sessionUrl, totalSize }),
       });
 
       if (res.ok) {

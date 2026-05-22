@@ -986,3 +986,159 @@ export async function deleteFromReadingRoom(novelId: string) {
   });
 }
 
+export async function initResumableUpload(novelId: string, totalSize: number): Promise<string> {
+  const masterId = await findOrCreateFolder(MASTER_FOLDER_NAME);
+  const readingRoomId = await findOrCreateFolder(READING_ROOM_FOLDER_NAME, masterId);
+
+  const dataFilename = `${novelId}_data.json`;
+  let dataFileId: string | undefined = undefined;
+
+  const currentIndex = await getReadingRoomIndex().catch(() => []);
+  const existingNovelMeta = currentIndex.find(n => n.id === novelId);
+  if (existingNovelMeta && existingNovelMeta.driveFileId) {
+    dataFileId = existingNovelMeta.driveFileId;
+  }
+
+  if (!dataFileId) {
+    const safeDataName = dataFilename.replace(/'/g, "\\'");
+    const qData = encodeURIComponent(`name = '${safeDataName}' and '${readingRoomId}' in parents and trashed = false`);
+    const listDataRes = await fetchDriveAPI(`https://www.googleapis.com/drive/v3/files?q=${qData}&fields=files(id)`);
+    if (listDataRes.files && listDataRes.files.length > 0) {
+      dataFileId = listDataRes.files[0].id;
+    }
+  }
+
+  const metadata = {
+    name: dataFilename,
+    mimeType: 'application/json',
+    ...(dataFileId ? {} : { parents: [readingRoomId] })
+  };
+
+  const initUrl = dataFileId
+    ? `https://www.googleapis.com/upload/drive/v3/files/${dataFileId}?uploadType=resumable`
+    : "https://www.googleapis.com/upload/drive/v3/files?uploadType=resumable";
+  const initMethod = dataFileId ? "PATCH" : "POST";
+
+  const token = await getAccessToken();
+  const initRes = await fetch(initUrl, {
+    method: initMethod,
+    headers: {
+      'Authorization': `Bearer ${token}`,
+      'Content-Type': 'application/json; charset=UTF-8',
+      'X-Upload-Content-Type': 'application/json',
+      'X-Upload-Content-Length': String(totalSize)
+    },
+    body: JSON.stringify(metadata)
+  });
+
+  if (!initRes.ok) {
+    const text = await initRes.text();
+    throw new Error(`Google Drive Resumable Init Error (${initRes.status}): ${text}`);
+  }
+
+  const sessionUrl = initRes.headers.get('Location');
+  if (!sessionUrl) {
+    throw new Error("Không nhận được session URL (Location header) từ Google Drive");
+  }
+  return sessionUrl;
+}
+
+export async function uploadResumableChunk(
+  sessionUrl: string,
+  chunkBytes: Uint8Array,
+  contentRange: string
+): Promise<{ status: number; text: string }> {
+  const res = await fetch(sessionUrl, {
+    method: 'PUT',
+    headers: {
+      'Content-Range': contentRange,
+      'Content-Length': String(chunkBytes.length)
+    },
+    body: chunkBytes as any
+  });
+
+  const text = await res.text();
+  return { status: res.status, text };
+}
+
+export async function checkResumableUploadStatus(
+  sessionUrl: string,
+  totalSize: number
+): Promise<{ completed: boolean; fileId?: string; range?: string | null }> {
+  const res = await fetch(sessionUrl, {
+    method: 'PUT',
+    headers: {
+      'Content-Range': `bytes */${totalSize}`
+    }
+  });
+
+  if (res.status === 200 || res.status === 201) {
+    const data = await res.json();
+    return { completed: true, fileId: data.id };
+  } else if (res.status === 308) {
+    const range = res.headers.get('Range');
+    return { completed: false, range };
+  } else {
+    const text = await res.text();
+    throw new Error(`Google Drive Resumable Check Status Error (${res.status}): ${text}`);
+  }
+}
+
+export async function updateReadingRoomIndex(
+  novelId: string,
+  metadata: ReadingRoomMetadata,
+  dataFileId: string
+): Promise<void> {
+  const masterId = await findOrCreateFolder(MASTER_FOLDER_NAME);
+  const readingRoomId = await findOrCreateFolder(READING_ROOM_FOLDER_NAME, masterId);
+
+  await readingRoomIndexMutex.runExclusive(async () => {
+    const indexFilename = 'index.json';
+    let indexFileId = cachedIndexFileId;
+    let currentList: ReadingRoomMetadata[] = [];
+
+    if (!indexFileId) {
+      const qIndex = encodeURIComponent(`name = '${indexFilename}' and '${readingRoomId}' in parents and trashed = false`);
+      const listIndexRes = await fetchDriveAPI(`https://www.googleapis.com/drive/v3/files?q=${qIndex}&fields=files(id)`);
+      if (listIndexRes.files && listIndexRes.files.length > 0) {
+        indexFileId = listIndexRes.files[0].id;
+        cachedIndexFileId = indexFileId;
+      }
+    }
+
+    if (indexFileId) {
+      try {
+        const content = await fetchDriveAPI(`https://www.googleapis.com/drive/v3/files/${indexFileId}?alt=media`);
+        const str = typeof content === 'string' ? content : JSON.stringify(content);
+        currentList = JSON.parse(str);
+      } catch {
+        currentList = [];
+      }
+    }
+
+    metadata.driveFileId = dataFileId;
+    metadata.updatedAt = Date.now();
+
+    const existingIndex = currentList.findIndex(x => x.id === novelId);
+    if (existingIndex >= 0) {
+      currentList[existingIndex] = metadata;
+    } else {
+      currentList.push(metadata);
+    }
+
+    currentList.sort((a, b) => b.updatedAt - a.updatedAt);
+    const indexStr = JSON.stringify(currentList, null, 2);
+
+    if (indexFileId) {
+      await uploadMultipart(indexFilename, indexStr, 'application/json', undefined, indexFileId);
+    } else {
+      const res = await uploadMultipart(indexFilename, indexStr, 'application/json', readingRoomId);
+      if (res && res.id) {
+        cachedIndexFileId = res.id;
+      }
+    }
+    _readingRoomIndexCache = { timestamp: Date.now(), data: currentList };
+  });
+}
+
+

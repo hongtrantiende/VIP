@@ -1,5 +1,14 @@
 import { NextResponse } from 'next/server';
-import { getReadingRoomIndex, uploadToReadingRoom, downloadNovelFromReadingRoom, type ReadingRoomMetadata } from '@/lib/google-drive-admin-v2';
+import {
+    getReadingRoomIndex,
+    uploadToReadingRoom,
+    downloadNovelFromReadingRoom,
+    type ReadingRoomMetadata,
+    initResumableUpload,
+    uploadResumableChunk,
+    checkResumableUploadStatus,
+    updateReadingRoomIndex
+} from '@/lib/google-drive-admin-v2';
 import { createClient } from '@/lib/supabase/server';
 import _fs from 'fs';
 import path from 'path';
@@ -763,9 +772,44 @@ export async function POST(req: Request) {
             }
         }
 
+        if (action === 'init_upload') {
+            const novelId = searchParams.get('novelId');
+            const totalSize = Number(searchParams.get('totalSize'));
+            if (!novelId || isNaN(totalSize)) {
+                return NextResponse.json({ error: 'Missing novelId or totalSize' }, { status: 400 });
+            }
+            try {
+                const sessionUrl = await initResumableUpload(novelId, totalSize);
+                return NextResponse.json({ success: true, sessionUrl });
+            } catch (err: any) {
+                console.error("Lỗi khởi tạo upload session:", err);
+                return NextResponse.json({ error: err.message || 'Lỗi khởi tạo resumable upload' }, { status: 500 });
+            }
+        }
+
         if (action === 'upload_chunk') {
-            const uploadId = searchParams.get('uploadId');
+            const sessionUrl = req.headers.get('x-session-url');
+            const contentRange = req.headers.get('content-range') || req.headers.get('Content-Range');
             const chunkIndex = Number(searchParams.get('chunkIndex'));
+
+            if (sessionUrl && contentRange) {
+                const chunkBuffer = await req.arrayBuffer();
+                const chunkBytes = new Uint8Array(chunkBuffer);
+                try {
+                    const gdRes = await uploadResumableChunk(sessionUrl, chunkBytes, contentRange);
+                    return NextResponse.json({
+                        success: true,
+                        status: gdRes.status,
+                        responseText: gdRes.text,
+                        chunkIndex
+                    });
+                } catch (err: any) {
+                    console.error("Lỗi upload chunk statelessly:", err);
+                    return NextResponse.json({ error: err.message || 'Lỗi upload chunk trực tiếp' }, { status: 500 });
+                }
+            }
+
+            const uploadId = searchParams.get('uploadId');
             const totalChunks = Number(searchParams.get('totalChunks'));
             const novelId = searchParams.get('novelId');
 
@@ -871,9 +915,69 @@ export async function POST(req: Request) {
         }
 
         if (action === 'finalize_upload') {
-            const uploadId = searchParams.get('uploadId');
             const novelId = searchParams.get('novelId');
+            const body = await req.json().catch(() => ({}));
+            const { metadata, sessionUrl, totalSize } = body as {
+                metadata: ReadingRoomMetadata;
+                sessionUrl?: string;
+                totalSize?: number;
+            };
 
+            if (sessionUrl) {
+                if (!novelId) {
+                    return NextResponse.json({ error: 'Missing novelId' }, { status: 400 });
+                }
+                if (!metadata) {
+                    return NextResponse.json({ error: 'Missing metadata' }, { status: 400 });
+                }
+                if (!totalSize) {
+                    return NextResponse.json({ error: 'Missing totalSize' }, { status: 400 });
+                }
+
+                try {
+                    const status = await checkResumableUploadStatus(sessionUrl, totalSize);
+                    if (!status.completed) {
+                        return NextResponse.json({
+                            error: 'File upload not complete on Google Drive. Range status: ' + status.range
+                        }, { status: 400 });
+                    }
+
+                    const dataFileId = status.fileId!;
+                    const seed = (novelId || '').split('').reduce((acc, char) => acc + char.charCodeAt(0), 0);
+                    metadata.uploaderName = uploaderName;
+                    metadata.uploaderId = user.id;
+                    metadata.updatedAt = Date.now();
+                    metadata.viewsCount = metadata.viewsCount ?? Math.floor(((seed * 37) % 8000) + (metadata.chapterCount || 100) * 12 + 150);
+                    metadata.reviewCount = metadata.reviewCount ?? Math.floor(((seed * 17) % 120) + 5);
+
+                    await updateReadingRoomIndex(novelId, metadata, dataFileId);
+
+                    if (HAS_FS) {
+                        setTimeout(async () => {
+                            try {
+                                const fullDataStr = await downloadNovelFromReadingRoom(novelId);
+                                if (fullDataStr) {
+                                    const data = JSON.parse(fullDataStr);
+                                    const cacheFile = path.join(CACHE_DIR, `${novelId}.json`);
+                                    fs.writeFileSync(cacheFile, fullDataStr);
+                                    splitNovelToChunks(novelId, data);
+                                    console.log(`Cache background và split thành công cho novel ${novelId} (Stateless)`);
+                                }
+                            } catch (cacheErr) {
+                                console.error('Lỗi lưu cache background (Stateless):', cacheErr);
+                            }
+                        }, 100);
+                    }
+
+                    triggerAutoClassifyServer(novelId, metadata);
+                    return NextResponse.json({ success: true, finalized: true });
+                } catch (err: any) {
+                    console.error("Lỗi hoàn tất upload (Stateless):", err);
+                    return NextResponse.json({ error: err.message || 'Lỗi hoàn tất upload' }, { status: 500 });
+                }
+            }
+
+            const uploadId = searchParams.get('uploadId');
             if (!uploadId || !novelId) {
                 return NextResponse.json({ error: 'Missing uploadId or novelId' }, { status: 400 });
             }
@@ -885,8 +989,6 @@ export async function POST(req: Request) {
                 return NextResponse.json({ error: 'Temporary upload file not found' }, { status: 400 });
             }
 
-            const body = await req.json().catch(() => ({}));
-            const { metadata } = body as { metadata: ReadingRoomMetadata };
             if (!metadata) {
                 return NextResponse.json({ error: 'Missing metadata in request body' }, { status: 400 });
             }
