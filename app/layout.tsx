@@ -1,7 +1,5 @@
 import { Toaster } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
-import { Analytics } from "@vercel/analytics/next";
-import { SpeedInsights } from "@vercel/speed-insights/next";
 import type { Metadata } from "next";
 import { JetBrains_Mono, Open_Sans, Playfair_Display, Literata, Lora } from "next/font/google";
 import "./globals.css";
@@ -55,8 +53,6 @@ export default function RootLayout({
           {children}
         </TooltipProvider>
         <Toaster position="top-center" richColors />
-        <Analytics />
-        <SpeedInsights />
       </body>
     </html>
   );
