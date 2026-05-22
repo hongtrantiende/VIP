@@ -364,11 +364,11 @@ async function processJob(
                 id: novelId,
                 title: exportData.novel?.title || job.novel.title || '',
                 author: exportData.novel?.author || job.novel.author || '',
-                // Truncate description to 100 chars in headers to avoid Cloudflare 8KB limit (server extracts full description from compressed body)
-                description: (exportData.novel?.description || '').substring(0, 100),
+                description: exportData.novel?.description || '',
                 coverImage: exportData.novel?.coverImage || job.novel.coverImage || '',
                 chapterCount: exportData.chapters?.length || results.length,
                 genres: exportData.novel?.genres || [],
+                wrongChaptersCount: exportData.novel?.reviewIssues?.length || 0,
             };
 
             const { uploadCompressedInChunks } = await import("../utils");

@@ -621,10 +621,11 @@ const downloadNovelInFrontend = async (novelInfo: any, isUpdateOrFix: boolean = 
             id: novelObj.id,
             title: exportData.novel?.title || '',
             author: exportData.novel?.author || '',
-            description: (exportData.novel?.description || '').substring(0, 100),
+            description: exportData.novel?.description || '',
             coverImage: exportData.novel?.coverImage || '',
             chapterCount: sortedChapters.length,
             genres: exportData.novel?.genres || [],
+            wrongChaptersCount: exportData.novel?.reviewIssues?.length || 0,
         };
 
         try {

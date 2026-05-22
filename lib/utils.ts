@@ -155,6 +155,7 @@ export async function uploadCompressedInChunks(
 
   console.log(`Bắt đầu tải lên novel ${novelId} bằng chunk. Tổng dung lượng: ${compressedBytes.length} bytes, số chunk: ${totalChunks}`);
 
+  // 1. Tải lên tất cả các chunk tuần tự
   for (let i = 0; i < totalChunks; i++) {
     const start = i * chunkSize;
     const end = Math.min(start + chunkSize, compressedBytes.length);
@@ -163,11 +164,6 @@ export async function uploadCompressedInChunks(
     const headers: Record<string, string> = {
       'Content-Type': 'application/octet-stream',
     };
-
-    // Chỉ đính kèm metadata ở chunk cuối cùng để server kích hoạt finalize
-    if (i === totalChunks - 1) {
-      headers['x-novel-metadata'] = encodeURIComponent(JSON.stringify(metadata));
-    }
 
     let success = false;
     let errorMsg = '';
@@ -197,7 +193,6 @@ export async function uploadCompressedInChunks(
       }
 
       if (attempt < 3) {
-        // Chờ tăng dần trước khi retry (exponential backoff)
         console.warn(`Lần tải lên chunk ${i + 1}/${totalChunks} thất bại (Lần ${attempt}). Thử lại sau ${Math.pow(2, attempt)}s...`);
         await new Promise((resolve) => setTimeout(resolve, Math.pow(2, attempt) * 1000));
       }
@@ -209,8 +204,55 @@ export async function uploadCompressedInChunks(
     }
 
     if (onProgress) {
-      onProgress(Math.round(((i + 1) / totalChunks) * 100));
+      // Giữ tiến độ đạt max 95% ở các chunk, 5% còn lại dành cho việc hoàn tất (finalize)
+      onProgress(Math.round(((i + 1) / totalChunks) * 95));
     }
+  }
+
+  // 2. Gửi yêu cầu hoàn tất tải lên (Finalize) kèm theo metadata đầy đủ trong body
+  console.log(`Đang gửi yêu cầu hoàn tất tải lên cho novel ${novelId}`);
+  let finalizeSuccess = false;
+  let finalizeErrorMsg = '';
+
+  for (let attempt = 1; attempt <= 3; attempt++) {
+    try {
+      const url = `/api/reading-room?action=finalize_upload&uploadId=${uploadId}&novelId=${novelId}`;
+      const res = await fetch(url, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ metadata }),
+      });
+
+      if (res.ok) {
+        finalizeSuccess = true;
+        break;
+      } else {
+        const errJson = await res.json().catch(() => ({}));
+        finalizeErrorMsg = errJson.error || `HTTP Error ${res.status}`;
+        const transientStatusCodes = [429, 500, 502, 503, 504];
+        if (!transientStatusCodes.includes(res.status)) {
+          break; // Lỗi nghiêm trọng không cần thử lại
+        }
+      }
+    } catch (err: any) {
+      finalizeErrorMsg = err.message || 'Lỗi kết nối';
+    }
+
+    if (attempt < 3) {
+      console.warn(`Yêu cầu hoàn tất tải lên thất bại (Lần ${attempt}). Thử lại sau ${Math.pow(2, attempt)}s...`);
+      await new Promise((resolve) => setTimeout(resolve, Math.pow(2, attempt) * 1000));
+    }
+  }
+
+  if (!finalizeSuccess) {
+    console.error(`Hoàn tất tải lên thất bại: ${finalizeErrorMsg}`);
+    throw new Error(`Lỗi hoàn tất tải lên: ${finalizeErrorMsg}`);
+  }
+
+  if (onProgress) {
+    onProgress(100);
   }
   console.log(`Tải lên hoàn tất thành công cho novel ${novelId}`);
 }

@@ -787,7 +787,13 @@ export async function POST(req: Request) {
             }
 
             if (chunkIndex === totalChunks - 1) {
-                // Ghép tất cả các chunk và tiến hành giải nén/upload
+                const metadataHeader = req.headers.get('x-novel-metadata');
+                if (!metadataHeader) {
+                    // Modern client: final chunk is just saved. Finalization is done in a separate 'finalize_upload' request.
+                    return NextResponse.json({ success: true, chunkIndex, finalized: false });
+                }
+
+                // Legacy client: metadata header is present, so we finalize immediately (but with the optimized timeout caching!)
                 const rawData = fs.readFileSync(tempFile);
                 fs.unlinkSync(tempFile);
 
@@ -818,55 +824,43 @@ export async function POST(req: Request) {
                 const novel = parseData.novel;
                 const chapters = parseData.chapters || [];
 
-                const metadataHeader = req.headers.get('x-novel-metadata');
                 let metadata: ReadingRoomMetadata;
                 const seed = (novelId || '').split('').reduce((acc, char) => acc + char.charCodeAt(0), 0);
 
-                if (metadataHeader) {
-                    metadata = JSON.parse(decodeURIComponent(metadataHeader)) as ReadingRoomMetadata;
-                    metadata.uploaderName = uploaderName;
-                    metadata.uploaderId = user.id;
-                    metadata.updatedAt = Date.now();
+                metadata = JSON.parse(decodeURIComponent(metadataHeader)) as ReadingRoomMetadata;
+                metadata.uploaderName = uploaderName;
+                metadata.uploaderId = user.id;
+                metadata.updatedAt = Date.now();
 
-                    if (novel?.description) {
-                        metadata.description = novel.description;
-                    }
-                    if (novel?.genres) {
-                        metadata.genres = novel.genres;
-                    }
-                    metadata.wrongChaptersCount = novel?.reviewIssues?.length || 0;
-                    metadata.viewsCount = Math.floor(((seed * 37) % 8000) + (metadata.chapterCount || 100) * 12 + 150);
-                    metadata.reviewCount = Math.floor(((seed * 17) % 120) + 5);
-                } else {
-                    metadata = {
-                        id: novelId,
-                        title: novel.title,
-                        author: novel.author,
-                        description: novel.description,
-                        coverImage: novel.coverImage,
-                        chapterCount: chapters.length,
-                        uploaderName: uploaderName,
-                        uploaderId: user.id,
-                        genres: novel.genres || [],
-                        updatedAt: Date.now(),
-                        wrongChaptersCount: novel.reviewIssues?.length || 0,
-                        viewsCount: Math.floor(((seed * 37) % 8000) + chapters.length * 12 + 150),
-                        reviewCount: Math.floor(((seed * 17) % 120) + 5),
-                    };
+                if (novel?.description) {
+                    metadata.description = novel.description;
                 }
+                if (novel?.genres) {
+                    metadata.genres = novel.genres;
+                }
+                metadata.wrongChaptersCount = novel?.reviewIssues?.length || 0;
+                metadata.viewsCount = Math.floor(((seed * 37) % 8000) + (metadata.chapterCount || 100) * 12 + 150);
+                metadata.reviewCount = Math.floor(((seed * 17) % 120) + 5);
 
-                // Upload lên Google Drive: Nếu là gzip nén thì giữ nguyên dạng binary nén để tiết kiệm băng thông/dung lượng
+                // Upload to Reading Room
                 if (isGzipped) {
                     await uploadToReadingRoom(novelId, metadata, contentBytes);
                 } else {
                     await uploadToReadingRoom(novelId, metadata, decompressedText);
                 }
 
-                // Lưu cache local để phục vụ đọc nhanh
+                // Defer parsing and caching to a background thread to respond quickly!
                 if (HAS_FS) {
-                    const cacheFile = path.join(CACHE_DIR, `${novelId}.json`);
-                    fs.writeFileSync(cacheFile, decompressedText);
-                    splitNovelToChunks(novelId, parseData);
+                    setTimeout(() => {
+                        try {
+                            const cacheFile = path.join(CACHE_DIR, `${novelId}.json`);
+                            fs.writeFileSync(cacheFile, decompressedText);
+                            splitNovelToChunks(novelId, parseData);
+                            console.log(`Cache background và split thành công cho novel ${novelId} (Legacy)`);
+                        } catch (cacheErr) {
+                            console.error('Lỗi lưu cache cục bộ trong background (Legacy):', cacheErr);
+                        }
+                    }, 100);
                 }
 
                 triggerAutoClassifyServer(novelId, metadata);
@@ -874,6 +868,77 @@ export async function POST(req: Request) {
             }
 
             return NextResponse.json({ success: true, chunkIndex });
+        }
+
+        if (action === 'finalize_upload') {
+            const uploadId = searchParams.get('uploadId');
+            const novelId = searchParams.get('novelId');
+
+            if (!uploadId || !novelId) {
+                return NextResponse.json({ error: 'Missing uploadId or novelId' }, { status: 400 });
+            }
+
+            ensureCacheDir();
+            const tempFile = path.join(CACHE_DIR, `upload_${uploadId}.tmp`);
+
+            if (!fs.existsSync(tempFile)) {
+                return NextResponse.json({ error: 'Temporary upload file not found' }, { status: 400 });
+            }
+
+            const body = await req.json().catch(() => ({}));
+            const { metadata } = body as { metadata: ReadingRoomMetadata };
+            if (!metadata) {
+                return NextResponse.json({ error: 'Missing metadata in request body' }, { status: 400 });
+            }
+
+            // Read the assembled chunk file
+            const rawData = fs.readFileSync(tempFile);
+            fs.unlinkSync(tempFile);
+
+            const contentBytes = rawData instanceof Uint8Array ? rawData : new Uint8Array(rawData);
+
+            // Populate/Enrich metadata
+            const seed = (novelId || '').split('').reduce((acc, char) => acc + char.charCodeAt(0), 0);
+            metadata.uploaderName = uploaderName;
+            metadata.uploaderId = user.id;
+            metadata.updatedAt = Date.now();
+            metadata.viewsCount = metadata.viewsCount ?? Math.floor(((seed * 37) % 8000) + (metadata.chapterCount || 100) * 12 + 150);
+            metadata.reviewCount = metadata.reviewCount ?? Math.floor(((seed * 17) % 120) + 5);
+
+            // Upload directly to Google Drive (tempFile was created from gzip chunks)
+            const { isGzip } = await import('@/lib/compression');
+            const isGzipped = isGzip(contentBytes);
+            if (isGzipped) {
+                await uploadToReadingRoom(novelId, metadata, contentBytes);
+            } else {
+                const decompressedText = new TextDecoder().decode(contentBytes);
+                await uploadToReadingRoom(novelId, metadata, decompressedText);
+            }
+
+            // Asynchronously run decompression and caching
+            if (HAS_FS) {
+                setTimeout(async () => {
+                    try {
+                        const { decompress } = await import('@/lib/compression');
+                        let decompressedText: string;
+                        if (isGzipped) {
+                            decompressedText = await decompress(contentBytes);
+                        } else {
+                            decompressedText = new TextDecoder().decode(contentBytes);
+                        }
+                        const parseData = JSON.parse(decompressedText);
+                        const cacheFile = path.join(CACHE_DIR, `${novelId}.json`);
+                        fs.writeFileSync(cacheFile, decompressedText);
+                        splitNovelToChunks(novelId, parseData);
+                        console.log(`Cache background và split thành công cho novel ${novelId}`);
+                    } catch (cacheErr) {
+                        console.error('Lỗi lưu cache background:', cacheErr);
+                    }
+                }, 100);
+            }
+
+            triggerAutoClassifyServer(novelId, metadata);
+            return NextResponse.json({ success: true, finalized: true });
         }
 
         if (action === 'edit_metadata') {
