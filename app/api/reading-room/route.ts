@@ -145,10 +145,50 @@ async function searchDuckDuckGo(query: string): Promise<string> {
     }
 }
 
+async function verifyVipAccess(supabase: any, user: any): Promise<boolean> {
+    if (!user) return false;
+    const email = user.email?.toLowerCase();
+    const isAdmin = ["nthanhnam2005@gmail.com", "thanhxnam2005@gmail.com", "test@example.com"].includes(email || "");
+    if (isAdmin) return true;
+
+    // Check app_settings free_mode
+    const { data: settingsData } = await supabase
+        .from("app_settings")
+        .select("key, value");
+    const settingsMap = (settingsData || []).reduce((acc: any, curr: any) => {
+        acc[curr.key] = curr.value;
+        return acc;
+    }, {});
+    if (settingsMap["free_mode"] === "true") {
+        return true;
+    }
+
+    // Check vip_until in profiles
+    const { data: profile } = await supabase
+        .from("profiles")
+        .select("vip_until")
+        .eq("id", user.id)
+        .maybeSingle();
+    if (profile?.vip_until && new Date(profile.vip_until) > new Date()) {
+        return true;
+    }
+
+    return false;
+}
+
 export async function GET(req: Request) {
     try {
         const { searchParams } = new URL(req.url);
         const action = searchParams.get('action');
+
+        const supabase = await createClient();
+        const { data: { user } } = await supabase.auth.getUser();
+        if (!user) return NextResponse.json({ error: 'Unauthorized. Vui lòng đăng nhập.' }, { status: 401 });
+
+        const isVip = await verifyVipAccess(supabase, user);
+        if (!isVip) {
+            return NextResponse.json({ error: 'Phòng đọc dành riêng cho thành viên VIP!' }, { status: 403 });
+        }
 
         if (action === 'search_web') {
             const query = searchParams.get('q');
@@ -469,46 +509,6 @@ export async function GET(req: Request) {
             const novelId = searchParams.get('id');
             if (!novelId) return NextResponse.json({ error: 'Missing novel ID' }, { status: 400 });
 
-            // Enforce VIP only download on server side
-            const supabase = await createClient();
-            const { data: { user } } = await supabase.auth.getUser();
-            if (!user) {
-                return NextResponse.json({ error: 'Vui lòng đăng nhập để tải truyện.' }, { status: 401 });
-            }
-
-            const email = user.email?.toLowerCase();
-            const isAdmin = ["nthanhnam2005@gmail.com", "thanhxnam2005@gmail.com", "test@example.com"].includes(email || "");
-            
-            let isVip = isAdmin;
-            if (!isVip) {
-                // Check app_settings free_mode
-                const { data: settingsData } = await supabase
-                    .from("app_settings")
-                    .select("key, value");
-                const settingsMap = (settingsData || []).reduce((acc: any, curr: any) => {
-                    acc[curr.key] = curr.value;
-                    return acc;
-                }, {});
-                if (settingsMap["free_mode"] === "true") {
-                    isVip = true;
-                }
-            }
-            if (!isVip) {
-                // Check vip_until in profiles
-                const { data: profile } = await supabase
-                    .from("profiles")
-                    .select("vip_until")
-                    .eq("id", user.id)
-                    .single();
-                if (profile?.vip_until && new Date(profile.vip_until) > new Date()) {
-                    isVip = true;
-                }
-            }
-
-            if (!isVip) {
-                return NextResponse.json({ error: 'Chỉ tài khoản VIP mới được phép tải truyện.' }, { status: 403 });
-            }
-
             ensureCacheDir();
             const cacheFile = path.join(CACHE_DIR, `${novelId}.json`);
 
@@ -658,6 +658,11 @@ export async function POST(req: Request) {
         const supabase = await createClient();
         const { data: { user } } = await supabase.auth.getUser();
         if (!user) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+
+        const isVip = await verifyVipAccess(supabase, user);
+        if (!isVip) {
+            return NextResponse.json({ error: 'Phòng đọc dành riêng cho thành viên VIP!' }, { status: 403 });
+        }
 
         let uploaderName = 'Ẩn danh';
         const { data: profile } = await supabase.from('profiles').select('display_name').eq('id', user.id).single();
