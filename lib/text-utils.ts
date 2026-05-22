@@ -438,3 +438,122 @@ export function chunkText(text: string, maxLimit: number = 2500): string[] {
   return chunks;
 }
 
+/**
+ * Automatically detects if the provided text is already in Vietnamese.
+ * It uses a heuristic checking CJK density, accented character count/density,
+ * and matching common Vietnamese words.
+ */
+export function isVietnameseText(text: string): boolean {
+  if (!text || text.trim().length === 0) return false;
+
+  const cjkMatches = text.match(CJK_RE);
+  const cjkCount = cjkMatches ? cjkMatches.length : 0;
+  const cjkRatio = cjkCount / text.length;
+
+  // If there's a significant amount of CJK characters, it's Chinese/non-Vietnamese
+  if (cjkRatio > 0.05) return false;
+
+  const VIET_ACCENTED_RE = /[àáảãạăắằẳẵặâấầẩẫậèéẻẽẹêếềểễệìíỉĩịòóỏõọôốồổỗộơớờởỡợùúủũụưứừửữựỳýỷỹỵđĐ]/gi;
+  const accentedMatches = text.match(VIET_ACCENTED_RE);
+  const accentedCount = accentedMatches ? accentedMatches.length : 0;
+  const accentedRatio = accentedCount / text.length;
+
+  if (accentedCount > 20 || (text.length > 0 && accentedRatio > 0.03)) {
+    return true;
+  }
+
+  // Fallback for unaccented or low-accented Vietnamese: check common words (case-insensitive)
+  const commonVietWords = /\b(thì|thi|là|la|mà|ma|của|cua|cho|các|cac|những|nhung|đã|da|đang|dang|sẽ|se|có|co|không|khong|với|voi|trong|như|nhu|một|mot|này|nay|đó|do|được|duoc|người|nguoi|anh|em|ta|ngươi|nguoi|tôi|toi|nó|no|chúng|chung|đến|den|đi|di|lại|lai|để|de)\b/gi;
+  const wordMatches = text.match(commonVietWords);
+  const wordCount = wordMatches ? wordMatches.length : 0;
+  if (wordCount >= 5) {
+    return true;
+  }
+
+  return false;
+}
+
+/**
+ * Split text by any variation of the scene break marker.
+ * Accepts ===SCENE_BREAK===, [=== SCENE BREAK ===], and variations.
+ */
+export function splitBySceneBreak(content: string): string[] {
+  if (!content) return [];
+  // Matches optional [ plus === with spaces plus SCENE_BREAK/SCENE BREAK/scene break plus === plus optional ]
+  // and consumes optional leading/trailing newlines.
+  const regex = /\r?\n*\s*\[?\s*===\s*SCENE[\s_-]*BREAK\s*===\s*\]?\s*\r?\n*/gi;
+  return content.split(regex).map((s) => s.trim());
+}
+
+/**
+ * Fallback splitter that divides a text into a specific number of parts,
+ * aligning with paragraph boundaries (\n\n) to avoid cutting words or sentences.
+ */
+export function splitTextIntoParts(content: string, partsCount: number): string[] {
+  if (partsCount <= 1) return [content];
+
+  // 1. Try splitting by double newlines first
+  let paragraphs = content.split(/\r?\n\r?\n/).map((p) => p.trim()).filter(Boolean);
+
+  // If not enough paragraphs, try splitting by single newlines
+  if (paragraphs.length < partsCount) {
+    paragraphs = content.split(/\r?\n/).map((p) => p.trim()).filter(Boolean);
+  }
+
+  // If still not enough, split by characters (fallback)
+  if (paragraphs.length < partsCount) {
+    const parts: string[] = [];
+    const partLength = Math.max(1, Math.floor(content.length / partsCount));
+    for (let i = 0; i < partsCount; i++) {
+      if (i === partsCount - 1) {
+        parts.push(content.substring(i * partLength).trim());
+      } else {
+        parts.push(content.substring(i * partLength, (i + 1) * partLength).trim());
+      }
+    }
+    return parts;
+  }
+
+  // Distribute paragraphs into partsCount groups to keep character count as balanced as possible
+  const totalChars = paragraphs.reduce((sum, p) => sum + p.length, 0);
+  const targetCharsPerPart = totalChars / partsCount;
+
+  const parts: string[][] = Array.from({ length: partsCount }, () => []);
+  let currentPartIndex = 0;
+  let currentPartChars = 0;
+
+  for (let i = 0; i < paragraphs.length; i++) {
+    const p = paragraphs[i];
+    const remainingParts = partsCount - 1 - currentPartIndex;
+    const remainingParagraphs = paragraphs.length - 1 - i;
+
+    // Force moving to next part if we must have at least one paragraph per remaining part
+    if (remainingParagraphs <= remainingParts && remainingParts > 0) {
+      if (parts[currentPartIndex].length > 0) {
+        currentPartIndex++;
+        currentPartChars = 0;
+      }
+    } else if (currentPartIndex < partsCount - 1) {
+      // Decide whether to add to current part or move to next
+      const currentDiff = Math.abs(currentPartChars - targetCharsPerPart);
+      const nextDiff = Math.abs((currentPartChars + p.length) - targetCharsPerPart);
+
+      // If current part is not empty, and moving to next part is closer to target or we already exceeded
+      if (
+        parts[currentPartIndex].length > 0 &&
+        currentPartChars + p.length > targetCharsPerPart &&
+        nextDiff > currentDiff
+      ) {
+        currentPartIndex++;
+        currentPartChars = 0;
+      }
+    }
+
+    parts[currentPartIndex].push(p);
+    currentPartChars += p.length;
+  }
+
+  return parts.map((p) => p.join("\n\n"));
+}
+
+

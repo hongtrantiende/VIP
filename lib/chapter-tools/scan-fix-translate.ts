@@ -36,7 +36,8 @@ Nhiệm vụ: Đọc bản dịch Tiếng Việt, phát hiện và SỬA tất c
 
 # Quy tắc:
 - PHẢI giữ nguyên nội dung cốt truyện, KHÔNG thêm bớt tình tiết
-- PHẢI giữ nguyên cấu trúc đoạn văn, số dòng
+- BẮT BUỘC biên tập đầy đủ 100% nội dung, TUYỆT ĐỐI không tóm tắt, cắt xén hay lược bỏ câu chữ.
+- PHẢI giữ nguyên cấu trúc đoạn văn, số dòng. Nếu có dấu phân cách phân cảnh (như ===SCENE_BREAK===), bắt buộc giữ nguyên định dạng và vị trí của các dấu này, không tự ý xóa bỏ hay sửa đổi.
 - Chỉ SỬA những chỗ thực sự có lỗi, không viết lại toàn bộ
 - Tên nhân vật PHẢI khớp với Bảng tên chính thức (nếu có)
 ${nameListStr ? `\n# Bảng tên chính thức (BẮT BUỘC dùng đúng):\n${nameListStr}` : ""}
@@ -163,9 +164,11 @@ export async function runScanFix(opts: ScanFixOptions) {
                 const currentContent = scene.content;
                 if (!currentContent?.trim()) continue;
 
+                const origContent = await getOriginalContent(scene.id);
+
                 // Inject relevant names for this scene
                 const relevantNames = nameDict
-                    .filter(n => currentContent.includes(n.chinese) || currentContent.includes(n.vietnamese))
+                    .filter(n => (origContent && origContent.includes(n.chinese)) || currentContent.includes(n.vietnamese))
                     .slice(0, 100);
 
                 let sceneNameHint = "";
@@ -226,11 +229,11 @@ export async function runScanFix(opts: ScanFixOptions) {
                 }
 
                 // Save
-                const origContent = await getOriginalContent(scene.id);
                 await ensureInitialVersion(scene.id, novelId, origContent);
                 await createSceneVersion(scene.id, novelId, "scan-fix", fixedContent);
                 await db.scenes.update(scene.id, {
                     content: fixedContent,
+                    versionType: "scan-fix",
                     wordCount: countWords(fixedContent),
                     updatedAt: new Date(),
                 });

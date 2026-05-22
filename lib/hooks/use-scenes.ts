@@ -2,6 +2,7 @@
 
 import { useLiveQuery } from "dexie-react-hooks";
 import { db, type Scene } from "@/lib/db";
+import { countWords } from "@/lib/utils";
 
 export function useScenes(chapterId: string | undefined) {
   const scenes = useLiveQuery(
@@ -113,7 +114,7 @@ export async function createScene(
 ) {
   const now = new Date();
   const id = crypto.randomUUID();
-  const wordCount = data.content.split(/\s+/).filter(Boolean).length;
+  const wordCount = countWords(data.content);
   await db.scenes.add({
     ...data,
     id,
@@ -133,7 +134,7 @@ export async function updateScene(
 ) {
   const updates: Partial<Scene> = { ...data, updatedAt: new Date() };
   if (data.content !== undefined) {
-    updates.wordCount = data.content.split(/\s+/).filter(Boolean).length;
+    updates.wordCount = countWords(data.content);
   }
   await db.scenes.update(id, updates);
 }

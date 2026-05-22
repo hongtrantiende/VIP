@@ -9,6 +9,7 @@ import Link from "next/link";
 import { useReaderPanel } from "@/lib/stores/reader-panel";
 import { SentenceRenderer } from "@/components/reader/sentence-renderer";
 import { ReaderPanel } from "@/components/reader/reader-panel";
+import { ObfuscatedText } from "@/components/reader/obfuscated-text";
 import { toast } from "sonner";
 
 export default function StandaloneChapterReaderPage(props: { params: Promise<{ id: string, chapterIdx: string }> }) {
@@ -34,6 +35,7 @@ export default function StandaloneChapterReaderPage(props: { params: Promise<{ i
 
     // Theme state
     const [theme, setTheme] = useState<"light" | "dark">("light");
+    const isDark = theme === "dark";
 
     // Load settings from localStorage on mount
     useEffect(() => {
@@ -127,8 +129,8 @@ export default function StandaloneChapterReaderPage(props: { params: Promise<{ i
 
     if (loading) {
         return (
-            <div className="min-h-screen bg-[#0f0f12] flex justify-center items-center">
-                <div className="w-full max-w-lg bg-[#131416] min-h-screen flex flex-col justify-center items-center gap-2 text-zinc-400">
+            <div key="loading" className={`min-h-screen transition-colors duration-250 flex justify-center items-center animate-page-enter ${isDark ? "bg-[#0f0f12] text-[#f1f1f5]" : "bg-[#faf5ea] text-[#2c2c2e]"}`}>
+                <div className={`w-full max-w-lg min-h-screen flex flex-col justify-center items-center gap-2 transition-colors duration-250 ${isDark ? "bg-[#131416] text-zinc-400" : "bg-[#fffbf4] text-zinc-600 border-x border-zinc-200"}`}>
                     <Loader2Icon className="w-8 h-8 text-blue-500 animate-spin" />
                     <p className="text-xs">Đang tải nội dung chương...</p>
                 </div>
@@ -138,11 +140,11 @@ export default function StandaloneChapterReaderPage(props: { params: Promise<{ i
 
     if (error || !chapter) {
         return (
-            <div className="min-h-screen bg-[#0f0f12] flex justify-center items-center">
-                <div className="w-full max-w-lg bg-[#131416] min-h-screen flex flex-col justify-center items-center px-6 text-center text-zinc-400">
+            <div key="error" className={`min-h-screen transition-colors duration-250 flex justify-center items-center animate-page-enter ${isDark ? "bg-[#0f0f12] text-[#f1f1f5]" : "bg-[#faf5ea] text-[#2c2c2e]"}`}>
+                <div className={`w-full max-w-lg min-h-screen flex flex-col justify-center items-center px-6 text-center transition-colors duration-250 ${isDark ? "bg-[#131416] text-zinc-400" : "bg-[#fffbf4] text-zinc-600 border-x border-zinc-200"}`}>
                     <h1 className="text-base font-bold mb-2">Lỗi Tải Chương</h1>
                     <p className="text-xs text-zinc-550 mb-6">{error}</p>
-                    <button onClick={() => router.push(`/reader/${novelId}`)} className="px-4 py-2 bg-zinc-800 text-xs rounded-xl text-white">Quay lại Mục Lục</button>
+                    <Link href={`/reader/${novelId}`} className={`px-4 py-2 text-xs rounded-xl transition ${isDark ? "bg-zinc-800 hover:bg-zinc-700 text-white" : "bg-zinc-200 hover:bg-zinc-300 text-zinc-800"}`}>Quay lại Mục Lục</Link>
                 </div>
             </div>
         );
@@ -173,10 +175,8 @@ export default function StandaloneChapterReaderPage(props: { params: Promise<{ i
 
     const displayTitle = hasExistingPrefix ? rawTitle : `Chương ${currentOrder + 1}: ${rawTitle}`;
 
-    const isDark = theme === "dark";
-
     return (
-        <div className={`min-h-screen transition-colors duration-250 flex justify-center items-start overflow-x-hidden font-sans border-0 ${isDark ? "bg-[#0f0f12] text-[#f1f1f5]" : "bg-[#faf5ea] text-[#2c2c2e]"
+        <div key={`chapter-${chapterOrder}`} className={`min-h-screen transition-colors duration-250 flex justify-center items-start overflow-x-hidden font-sans border-0 animate-page-enter ${isDark ? "bg-[#0f0f12] text-[#f1f1f5]" : "bg-[#faf5ea] text-[#2c2c2e]"
             }`}>
             {/* Dynamic Full Screen Content Container */}
             <div className="w-full min-h-screen relative flex flex-col pb-20 max-w-4xl mx-auto px-4 md:px-8">
@@ -217,7 +217,12 @@ export default function StandaloneChapterReaderPage(props: { params: Promise<{ i
                                 : "bg-[#fffbf4] border-zinc-200 text-zinc-800"
                                 }`}
                         >
-                            <option value="font-serif">Serif</option>
+                            <option value="font-serif">Serif (Playfair)</option>
+                            <option value="font-bookerly">Bookerly</option>
+                            <option value="font-literata">Literata</option>
+                            <option value="font-lora">Lora</option>
+                            <option value="font-palatino">Palatino</option>
+                            <option value="font-times">Times New Roman</option>
                             <option value="font-sans">Sans-serif</option>
                             <option value="font-mono">Monospace</option>
                         </select>
@@ -262,7 +267,9 @@ export default function StandaloneChapterReaderPage(props: { params: Promise<{ i
                             displayScenes.map((text, idx) => (
                                 <div key={idx} className="mb-6">
                                     {text.split('\n').map(l => l.trim()).filter(l => l.length > 0).map((line, i) => (
-                                        <p key={i} className="mb-4 text-justify">{line}</p>
+                                        <p key={i} className="mb-4 text-justify">
+                                            <ObfuscatedText text={line} />
+                                        </p>
                                     ))}
                                 </div>
                             ))
@@ -273,25 +280,41 @@ export default function StandaloneChapterReaderPage(props: { params: Promise<{ i
                 {/* Bottom floating button navigator */}
                 <div className={`fixed bottom-0 left-0 right-0 h-16 border-t flex items-center justify-between px-6 z-40 max-w-lg mx-auto sm:rounded-t-2xl shadow-xl transition-colors ${isDark ? "bg-[#131416] border-zinc-850" : "bg-[#fffbf4] border-[#d2c2ad]/30"
                     }`}>
-                    <button
-                        onClick={() => router.push(`/reader/${novelId}/${currentOrder - 1}`)}
-                        disabled={currentOrder <= 0}
-                        className={`px-4 py-2 disabled:opacity-30 rounded-xl text-xs font-bold flex items-center gap-1.5 transition ${isDark ? "hover:bg-zinc-800 text-zinc-300" : "hover:bg-zinc-100 text-zinc-800"
-                            }`}
-                    >
-                        <ChevronLeftIcon className="w-4 h-4" />
-                        <span>Chương trước</span>
-                    </button>
+                    {currentOrder <= 0 ? (
+                        <button
+                            disabled
+                            className={`px-4 py-2 disabled:opacity-30 rounded-xl text-xs font-bold flex items-center gap-1.5 transition ${isDark ? "hover:bg-zinc-800 text-zinc-300" : "hover:bg-zinc-100 text-zinc-800"}`}
+                        >
+                            <ChevronLeftIcon className="w-4 h-4" />
+                            <span>Chương trước</span>
+                        </button>
+                    ) : (
+                        <Link
+                            href={`/reader/${novelId}/${currentOrder - 1}`}
+                            className={`px-4 py-2 rounded-xl text-xs font-bold flex items-center gap-1.5 transition ${isDark ? "hover:bg-zinc-800 text-zinc-300" : "hover:bg-zinc-100 text-zinc-800"}`}
+                        >
+                            <ChevronLeftIcon className="w-4 h-4" />
+                            <span>Chương trước</span>
+                        </Link>
+                    )}
 
-                    <button
-                        onClick={() => router.push(`/reader/${novelId}/${currentOrder + 1}`)}
-                        disabled={totalChapters > 0 && currentOrder >= totalChapters - 1}
-                        className={`px-4 py-2 disabled:opacity-30 rounded-xl text-xs font-bold flex items-center gap-1.5 transition ${isDark ? "hover:bg-zinc-800 text-zinc-300" : "hover:bg-zinc-100 text-zinc-800"
-                            }`}
-                    >
-                        <span>Sau</span>
-                        <ChevronRightIcon className="w-4 h-4" />
-                    </button>
+                    {totalChapters > 0 && currentOrder >= totalChapters - 1 ? (
+                        <button
+                            disabled
+                            className={`px-4 py-2 disabled:opacity-30 rounded-xl text-xs font-bold flex items-center gap-1.5 transition ${isDark ? "hover:bg-zinc-800 text-zinc-300" : "hover:bg-zinc-100 text-zinc-800"}`}
+                        >
+                            <span>Sau</span>
+                            <ChevronRightIcon className="w-4 h-4" />
+                        </button>
+                    ) : (
+                        <Link
+                            href={`/reader/${novelId}/${currentOrder + 1}`}
+                            className={`px-4 py-2 rounded-xl text-xs font-bold flex items-center gap-1.5 transition ${isDark ? "hover:bg-zinc-800 text-zinc-300" : "hover:bg-zinc-100 text-zinc-800"}`}
+                        >
+                            <span>Sau</span>
+                            <ChevronRightIcon className="w-4 h-4" />
+                        </Link>
+                    )}
                 </div>
 
             </div>

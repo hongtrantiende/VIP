@@ -40,8 +40,8 @@ Nhiệm vụ: Đọc bản dịch Tiếng Việt dưới đây và biên tập l
 1. **Xóa phong cách thô cứng**: Chuyển các cụm từ Hán Việt thô thành diễn đạt tự nhiên thuần Việt.
 2. **Nhịp điệu câu**: Điều chỉnh độ dài ngắn câu tạo sự nhịp nhàng, truyền cảm.
 3. **Nhất quán tên riêng**: Giữ nguyên tên nhân vật, địa danh chính xác tuyệt đối.
-4. **Không sáng tác thêm**: Không thêm bớt tình tiết, giữ nguyên cốt truyện gốc.
-5. **Giữ cấu trúc**: Giữ nguyên số đoạn văn, dấu ngắt dòng.
+4. **Không sáng tác thêm & Bản dịch đầy đủ 100% (Tuyệt đối không tóm tắt)**: Không thêm bớt tình tiết ngoại truyện. BẮT BUỘC biên tập đầy đủ 100% nội dung, không tóm tắt ý, không cắt xén hay lược bỏ bất kỳ câu chữ nào.
+5. **Giữ cấu trúc và dấu phân cảnh**: Giữ nguyên số đoạn văn, dấu ngắt dòng. Nếu có dấu phân cách phân cảnh (như ===SCENE_BREAK===), bạn BẮT BUỘC phải giữ nguyên chính xác định dạng và vị trí của các dấu này, không tự ý xóa bỏ hay dịch nghĩa.
 
 # Định dạng đầu ra:
 <content>
@@ -195,6 +195,7 @@ export async function runEditTranslate(opts: EditTranslateOptions) {
                 await createSceneVersion(scene.id, novelId, "edit-translate", editedContent);
                 await db.scenes.update(scene.id, {
                     content: editedContent,
+                    versionType: "edit-translate",
                     wordCount: countWords(editedContent),
                     updatedAt: new Date(),
                 });

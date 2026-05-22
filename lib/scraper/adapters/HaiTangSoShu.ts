@@ -2,6 +2,63 @@ import { cleanGarbageLines } from "../../text-utils";
 import type { SiteAdapter, ChapterLink } from "../types";
 import { extensionFetch } from "../extension-bridge";
 
+function extractChapterText(doc: Document, baseUrl: string) {
+    let contentContainer =
+        doc.querySelector("#C0NTENT") ||
+        doc.querySelector("#CONTENT") ||
+        doc.querySelector(".RBGsectionThree-content");
+
+    const imageAntiScraping = doc.querySelectorAll("img.hz");
+    if (imageAntiScraping.length > 0) {
+        if (!contentContainer) {
+            contentContainer = imageAntiScraping[0].closest("div[id]") || imageAntiScraping[0].closest("div");
+        }
+
+        // Replace anti-scraping images with OCR placeholder [?]
+        imageAntiScraping.forEach(img => {
+            const span = doc.createElement("span");
+            span.textContent = "[?]";
+            img.replaceWith(span);
+        });
+    }
+
+    if (!contentContainer) {
+        const firstP = doc.querySelector("p");
+        if (firstP) {
+            contentContainer = firstP.closest("div[id]") || firstP.parentElement;
+        }
+    }
+
+    let rawText = "";
+    if (contentContainer) {
+        // Clone element to safely remove junk tags
+        const clone = contentContainer.cloneNode(true) as HTMLElement;
+        clone.querySelectorAll("script, style, a, .ads").forEach(el => el.remove());
+        rawText = clone.innerHTML
+            .replace(/<(br|hr)\s*\/?>/gi, '\n')
+            .replace(/<\/(p|div|section|article|li)>/gi, '\n')
+            .replace(/<[^>]+>/g, '');
+    }
+
+    let nextUrl = "";
+    let isNextPage = false;
+    const nextBtn = Array.from(doc.querySelectorAll("a")).find(a => {
+        const text = a.textContent || "";
+        return text.includes("下一页") || text.includes("下一章");
+    });
+
+    if (nextBtn) {
+        const btnText = nextBtn.textContent?.trim() || "";
+        const href = nextBtn.getAttribute("href") || "";
+        if (href && !href.startsWith("javascript") && !href.startsWith("#")) {
+            nextUrl = new URL(href, baseUrl).toString();
+            isNextPage = btnText.includes("下一页");
+        }
+    }
+
+    return { text: rawText, nextUrl, isNextPage };
+}
+
 export const HaiTangSoShuAdapter: SiteAdapter = {
     name: "HaiTangSoShu",
     group: "cn",
@@ -135,69 +192,42 @@ export const HaiTangSoShuAdapter: SiteAdapter = {
         return { title, author, description, coverImage, chapters };
     },
 
-    getChapterContent(html, url, contentText) {
+    async getChapterContent(html, url, contentText) {
         const doc = new DOMParser().parseFromString(html, "text/html");
 
         let title = doc.querySelector("#chapterTitle")?.textContent?.trim() || "";
         // Xóa hậu tố (1/3), (2/3) để Crawler có thể merge các phần của cùng một chương
         title = title.replace(/\(\d+\/\d+\)$/, "").trim();
 
-        // Hệ thống chống crawl tạo div id lạ. Nội dung thực nằm ở div bao bọc các img class hz hoặc p
-        let contentContainer = null;
-        let fallbackText = "";
+        // 1. Extract first page text
+        let { text: rawText, nextUrl, isNextPage } = extractChapterText(doc, url);
 
-        // Quét tìm thẻ ảnh chống copy
-        const imageAntiScraping = doc.querySelectorAll("img.hz");
-        if (imageAntiScraping.length > 0) {
-            contentContainer = imageAntiScraping[0].closest("div[id]");
+        // 2. Loop merge sub-pages recursively if "下一页" button is found
+        let safety = 0;
+        while (isNextPage && nextUrl && safety < 12) {
+            safety++;
+            try {
+                console.log(`[HaiTangSoShu] Fetching sub-page ${safety}: ${nextUrl}`);
+                const res = await extensionFetch(nextUrl);
+                if (!res || !res.html) {
+                    console.warn(`[HaiTangSoShu] Empty response for sub-page: ${nextUrl}`);
+                    break;
+                }
 
-            // Thay thế ảnh bị thiếu bằng placeholder [?] thay vì để chuỗi trống liền nhau
-            // AI sẽ dịch mượt hơn nếu biết ở đó bị khuyết một từ.
-            imageAntiScraping.forEach(img => {
-                const span = doc.createElement("span");
-                span.textContent = "[?]"; // Placeholder for OCR/AI mapping
-                img.replaceWith(span);
-            });
-        }
+                const nextDoc = new DOMParser().parseFromString(res.html, "text/html");
+                const parsed = extractChapterText(nextDoc, nextUrl);
 
-        if (!contentContainer) {
-            const firstP = doc.querySelector("p");
-            if (firstP && firstP.parentElement) {
-                contentContainer = firstP.parentElement;
+                if (parsed.text.trim().length > 10) {
+                    rawText += "\n\n" + parsed.text;
+                }
+
+                nextUrl = parsed.nextUrl;
+                isNextPage = parsed.isNextPage;
+            } catch (err) {
+                console.error(`[HaiTangSoShu] Error loop merging sub-page at ${nextUrl}:`, err);
+                break;
             }
         }
-
-        if (contentContainer) {
-            // Làm sạch container
-            contentContainer.querySelectorAll("script, style, a, .ads").forEach(el => el.remove());
-            fallbackText = (contentContainer as HTMLElement).innerHTML
-                .replace(/<(br|hr)\s*\/?>/gi, '\n')
-                .replace(/<\/(p|div|section|article|li)>/gi, '\n')
-                .replace(/<[^>]+>/g, '');
-        }
-
-        // Lấy link trang kế tiếp hoặc chương kế tiếp.
-        let nextChapterUrl = "";
-
-        // Nút bên phải: .RBGsectionTwo-right a hoặc tìm nút chứa "下一页"
-        const nextBtn = Array.from(doc.querySelectorAll("a")).find(a =>
-            a.textContent?.includes("下一页") || // Next Page (same chapter)
-            a.textContent?.includes("下一章")    // Next Chapter
-        );
-
-        if (nextBtn) {
-            const btnText = nextBtn.textContent?.trim();
-            const href = nextBtn.getAttribute("href") || "";
-
-            // Nếu là "下一页" (Next Page), chúng ta trả về liên kết này để Crawler gọi tự động tiếp.
-            // Vì title không đổi (đã bị xóa số trang), Crawler sẽ merge nó vào chương hiện tại!
-            if (btnText === "下一页" && href) {
-                // href có thể dạng `/book/246892/18700986_2.html`
-                nextChapterUrl = new URL(href, url).href;
-            }
-        }
-
-        let rawText = contentText || fallbackText || "";
 
         let text = rawText
             .split("\n")
@@ -211,6 +241,10 @@ export const HaiTangSoShuAdapter: SiteAdapter = {
 
         text = cleanGarbageLines(text);
 
-        return { title, content: text, nextChapterUrl };
+        return {
+            title,
+            content: text,
+            nextChapterUrl: isNextPage ? "" : nextUrl
+        };
     },
 };

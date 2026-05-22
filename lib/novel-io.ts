@@ -283,6 +283,7 @@ export async function importNovel(file: File, options?: { preserveId?: boolean }
       const newId = preserveId ? ch.id : crypto.randomUUID();
       chapterIdMap.set(ch.id, newId);
       await db.chapters[dbOp]({
+        originalTitle: ch.originalTitle || ch.title,
         ...ch,
         id: newId,
         novelId,

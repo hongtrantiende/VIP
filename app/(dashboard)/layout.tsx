@@ -35,7 +35,7 @@ import Link from "next/link";
 import { lazy, Suspense, useCallback, useEffect, useMemo, useState } from "react";
 import { useProfile } from "@/lib/hooks/use-profile";
 import { CrownIcon } from "lucide-react";
-import { NavigationProgress } from "@/components/navigation-progress";
+import { checkActiveSessionAction, signOutAction } from "@/app/actions/auth";
 
 
 
@@ -47,6 +47,7 @@ const DictInitializer = lazy(() => import("@/components/dict-initializer").then(
 const WelcomeModal = lazy(() => import("@/components/welcome-modal").then(m => ({ default: m.WelcomeModal })));
 const AutoDictSync = lazy(() => import("@/components/auto-dict-sync").then(m => ({ default: m.AutoDictSync })));
 const GlobalSearchDialog = lazy(() => import("@/components/global-search-dialog").then(m => ({ default: m.GlobalSearchDialog })));
+const WordCountHealer = lazy(() => import("@/components/word-count-healer").then(m => ({ default: m.WordCountHealer })));
 
 const pageTitles: Record<string, string> = Object.fromEntries(
   [...navConfig, ...miscNav].map((item) => [item.href, item.title]),
@@ -91,21 +92,29 @@ export default function DashboardLayout({
     const localToken = localStorage.getItem("session_token");
     if (!localToken) return; // No token = old login, skip check
 
-    const interval = setInterval(async () => {
-      try {
-        const { createClient } = await import("@/lib/supabase/client");
-        const supabase = createClient();
-        const { data } = await supabase
-          .from("profiles")
-          .select("active_session_id")
-          .eq("id", profile.id)
-          .single();
+    let isFeatureSupported = true;
 
-        if (data?.active_session_id && data.active_session_id !== localToken) {
+    const interval = setInterval(async () => {
+      if (!isFeatureSupported) return;
+      try {
+        const res = await checkActiveSessionAction(profile.id);
+
+        if (!res.success) {
+          const error = res.error;
+          // Nếu cột active_session_id chưa được thêm vào bảng profiles trong db (lỗi PGRST204/PGRST100), tắt tính năng check session và huỷ interval
+          if (error && (error.code === "PGRST204" || error.code === "PGRST100" || error.message?.includes("active_session_id"))) {
+            isFeatureSupported = false;
+            clearInterval(interval);
+            console.log("Single-session check disabled because profiles.active_session_id column does not exist.");
+          }
+          return;
+        }
+
+        if (res.active_session_id && res.active_session_id !== localToken) {
           // Another device logged in — force logout
           clearInterval(interval);
           localStorage.removeItem("session_token");
-          await supabase.auth.signOut();
+          await signOutAction();
           router.push("/login");
           // Use alert instead of toast since we're leaving
           alert("Tài khoản đã đăng nhập ở thiết bị khác. Bạn đã bị đăng xuất.");
@@ -149,7 +158,6 @@ export default function DashboardLayout({
 
   return (
     <SidebarProvider defaultOpen={true}>
-      <NavigationProgress />
       <AppSidebar />
       <SidebarInset>
         <header className="flex h-14 shrink-0 items-center gap-2 border-b bg-background px-4">
@@ -257,6 +265,9 @@ export default function DashboardLayout({
       </Suspense>
       <Suspense fallback={null}>
         <WelcomeModal />
+      </Suspense>
+      <Suspense fallback={null}>
+        <WordCountHealer />
       </Suspense>
 
     </SidebarProvider>

@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef, useCallback } from "react";
-import { createClient } from "@/lib/supabase/client";
+import { getProfileStateAction, checkIsVipStandaloneAction } from "@/app/actions/auth";
 
 export interface UserProfile {
   id: string;
@@ -18,12 +18,21 @@ let _cachedAdminModelEnabled = true;
 let _loadingPromise: Promise<void> | null = null;
 let _lastLoadTime = 0;
 const CACHE_TTL = 30_000; // 30 seconds
+let _hasMountedGlobal = false;
 
 export function useProfile() {
-  const [profile, setProfile] = useState<UserProfile | null>(_cachedProfile);
-  const [freeMode, setFreeMode] = useState(_cachedFreeMode);
-  const [adminModelEnabled, setAdminModelEnabled] = useState(_cachedAdminModelEnabled);
-  const [loading, setLoading] = useState(!_cachedProfile);
+  const [profile, setProfile] = useState<UserProfile | null>(() => {
+    return typeof window !== "undefined" && _hasMountedGlobal ? _cachedProfile : null;
+  });
+  const [freeMode, setFreeMode] = useState(() => {
+    return typeof window !== "undefined" && _hasMountedGlobal ? _cachedFreeMode : false;
+  });
+  const [adminModelEnabled, setAdminModelEnabled] = useState(() => {
+    return typeof window !== "undefined" && _hasMountedGlobal ? _cachedAdminModelEnabled : true;
+  });
+  const [loading, setLoading] = useState(() => {
+    return typeof window !== "undefined" && _hasMountedGlobal ? !_cachedProfile : true;
+  });
   const mountedRef = useRef(true);
 
   const loadProfile = useCallback(async (force = false) => {
@@ -51,32 +60,19 @@ export function useProfile() {
 
     _loadingPromise = (async () => {
       try {
-        const supabase = createClient();
-
-        // Fetch both in parallel for speed
-        const [settingsResult, userResult] = await Promise.all([
-          supabase.from("app_settings").select("key, value").in("key", ["free_mode", "admin_model_enabled"]),
-          supabase.auth.getUser(),
-        ]);
-
-        const settingsData = settingsResult.data || [];
-        _cachedFreeMode = settingsData.find(s => s.key === "free_mode")?.value === "true";
-        _cachedAdminModelEnabled = settingsData.find(s => s.key === "admin_model_enabled")?.value !== "false"; // default true
-
-        const user = userResult.data?.user;
-        if (user) {
-          const { data } = await supabase
-            .from("profiles")
-            .select("*")
-            .eq("id", user.id)
-            .single();
-
-          if (data) {
-            _cachedProfile = { ...data, email: data.email || user.email } as UserProfile;
+        const res = await getProfileStateAction();
+        if (res.success) {
+          _cachedFreeMode = !!res.freeMode;
+          _cachedAdminModelEnabled = !!res.adminModelEnabled;
+          if (res.profile) {
+            _cachedProfile = res.profile as UserProfile;
+          } else {
+            _cachedProfile = null;
           }
         }
-
         _lastLoadTime = Date.now();
+      } catch (err) {
+        console.error("Lỗi getProfileStateAction:", err);
       } finally {
         _loadingPromise = null;
       }
@@ -93,6 +89,7 @@ export function useProfile() {
   }, []);
 
   useEffect(() => {
+    _hasMountedGlobal = true;
     mountedRef.current = true;
     loadProfile();
     return () => { mountedRef.current = false; };
@@ -126,27 +123,7 @@ export async function checkIsVipStandalone(): Promise<boolean> {
     return new Date(_cachedProfile.vip_until) > new Date();
   }
 
-  // Fetch directly from supabase
-  const supabase = createClient();
-  const [settingsResult, userResult] = await Promise.all([
-    supabase.from("app_settings").select("key, value").eq("key", "free_mode").maybeSingle(),
-    supabase.auth.getUser(),
-  ]);
-
-  if (settingsResult.data?.value === "true") return true;
-
-  const user = userResult.data?.user;
-  if (!user) return false;
-
-  const email = user.email?.toLowerCase() || "";
-  if (email === "nthanhnam2005@gmail.com" || email === "thanhxnam2005@gmail.com") return true;
-
-  const { data } = await supabase
-    .from("profiles")
-    .select("vip_until")
-    .eq("id", user.id)
-    .single();
-
-  if (!data?.vip_until) return false;
-  return new Date(data.vip_until) > new Date();
+  // Fetch directly from server action
+  const res = await checkIsVipStandaloneAction();
+  return !!res.isVip;
 }

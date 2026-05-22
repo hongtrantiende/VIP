@@ -10,13 +10,14 @@
  */
 import { generateText, streamText } from "ai";
 import type { LanguageModel } from "ai";
-import { db } from "@/lib/db";
+import { db, resolveChapterOriginalTitle } from "@/lib/db";
 import type { AnalysisSettings, Scene } from "@/lib/db";
 import { createSceneVersion, ensureInitialVersion, getOriginalContent } from "@/lib/hooks/use-scene-versions";
 import { getMergedNameDict, bulkImportNameEntries } from "@/lib/hooks/use-name-entries";
-import { cleanGarbageLines, chunkText } from "@/lib/text-utils";
+import { cleanGarbageLines, chunkText, isVietnameseText, splitBySceneBreak, splitTextIntoParts } from "@/lib/text-utils";
 import { useBulkTranslateStore } from "@/lib/stores/bulk-translate";
 import { scanNewNames, autoAddNames } from "./name-scanner";
+import { buildQaSystemPrompt, buildQaUserPrompt, parseQaAndApply } from "./qa-helper";
 
 import { isSceneTranslated } from "@/lib/novel-io";
 
@@ -39,8 +40,9 @@ NGHIÊM CẤM sử dụng bất kỳ định dạng Markdown nào (như in đậ
 2. **Xưng hô**: PHẢI đi theo thể loại và phong cách truyện. Truyện tiên hiệp dùng ta/ngươi, tại hạ, bản tọa, sư huynh/sư đệ. Truyện đô thị dùng tôi/anh/cậu.
 3. **Ngữ cảnh**: Sửa câu bị dịch sai nghĩa do thiếu ngữ cảnh (đại từ nhầm, quan hệ nhầm).
 4. **Văn phong**: Sửa câu cứng/lủng củng cho tự nhiên hơn nhưng giữ đúng phong cách thể loại. KHÔNG thuần Việt hóa quá mức — giữ hơi thở nguyên tác.
-5. **Giữ nguyên**: Giữ nguyên cấu trúc đoạn văn, dấu ngắt dòng, định dạng gốc. KHÔNG thêm bớt nội dung.
-6. **Nếu có bảng tên riêng**: BẮT BUỘC dùng đúng tên dịch đã cho, KHÔNG tự ý đổi.
+5. **Bản dịch đầy đủ 100% (Tuyệt đối không tóm tắt)**: Biên tập trọn vẹn toàn bộ nội dung, không được lược dịch, không tóm tắt ý và không bỏ sót bất kỳ câu chữ nào.
+6. **Giữ nguyên dấu phân cảnh**: Nếu có các dấu phân cách phân cảnh (như \`===SCENE_BREAK===\`), bạn BẮT BUỘC phải giữ nguyên chính xác 100% vị trí và định dạng của các dấu này, không thay đổi, không dịch nghĩa, không tự viết lại.
+7. **Nếu có bảng tên riêng**: BẮT BUỘC dùng đúng tên dịch đã cho, KHÔNG tự ý đổi.
 
 # Yêu cầu đầu ra (BẮT BUỘC THEO ĐÚNG FORMAT NÀY):
 <content>
@@ -159,7 +161,7 @@ ${cleaned}`;
 
       const result = await streamText({
         model,
-        system: "Bạn là chuyên gia trích xuất thực thể tiếng Trung. Luôn trả về mảng chuỗi dạng JSON. Trích xuất toàn bộ tên riêng, môn phái, địa danh, công pháp xuất hiện trong đoạn văn. KHÔNG trích xuất đại từ nhân xưng, từ thông dụng.",
+        system: "Bạn là chuyên gia trích xuất thực thể tiếng Trung và phiên âm Hán-Việt. Luôn trả về đúng định dạng JSON Array chứa các đối tượng có thuộc tính chinese (chữ Hán gốc), vietnamese (phiên âm Hán-Việt chuẩn), và dictType (phân loại: 'names', 'tuvung', 'ngucanh'). KHÔNG trả về định dạng mảng chuỗi đơn giản. KHÔNG trích xuất đại từ nhân xưng hay từ thông dụng.",
         prompt,
         abortSignal: signal,
       });
@@ -286,8 +288,11 @@ function parseHybridResult(
 
   if (!includeTitle) return { title: null, content: contentPart, extractedNames };
 
-  const sepIndex = contentPart.indexOf("\n---\n");
-  if (sepIndex === -1) return { title: null, content: contentPart, extractedNames };
+  const titleSepMatch = contentPart.match(/\r?\n\s*(?:[-=*#~—]{3,})\s*\r?\n/);
+  if (!titleSepMatch) return { title: null, content: contentPart, extractedNames };
+
+  const sepIndex = titleSepMatch.index!;
+  const sepLength = titleSepMatch[0].length;
 
   let title = contentPart.slice(0, sepIndex).trim();
   // Strip "Tiêu đề:" or "Title:" prefix (case-insensitive, handles standard and full-width colons)
@@ -298,7 +303,7 @@ function parseHybridResult(
     return { title: null, content: contentPart, extractedNames };
   }
 
-  const textBody = contentPart.slice(sepIndex + 5).trim();
+  const textBody = contentPart.slice(sepIndex + sepLength).trim();
   return { title: title || null, content: textBody, extractedNames };
 }
 
@@ -370,7 +375,7 @@ ${cleaned}`;
           onPhase?.(firstChapter[0].id, "model2"); // Tận dụng UI báo hiệu đang quét từ điển
           const result = await streamText({
             model: dictModel || defaultModel,
-            system: "Bạn là chuyên gia trích xuất thực thể tiếng Trung. Luôn trả về mảng chuỗi dạng JSON (ví dụ: [\"Tên 1\", \"Tên 2\"]). Trích xuất toàn bộ tên riêng, môn phái, địa danh, công pháp xuất hiện trong đoạn văn. KHÔNG trích xuất đại từ nhân xưng, từ thông dụng.",
+            system: "Bạn là chuyên gia trích xuất thực thể tiếng Trung và phiên âm Hán-Việt. Luôn trả về đúng định dạng JSON Array chứa các đối tượng có thuộc tính chinese (chữ Hán gốc), vietnamese (phiên âm Hán-Việt chuẩn), và dictType (phân loại: 'names', 'tuvung', 'ngucanh'). KHÔNG trả về định dạng mảng chuỗi đơn giản. KHÔNG trích xuất đại từ nhân xưng hay từ thông dụng.",
             prompt,
             abortSignal: signal,
           });
@@ -625,6 +630,7 @@ ${cleaned}`;
     onChapterStart(chapter.id, chapter.title);
 
     try {
+      const originalTitle = await resolveChapterOriginalTitle(chapter);
       const scenes = chapterScenes;
       if (scenes.length === 0) {
         onChapterError({
@@ -643,6 +649,65 @@ ${cleaned}`;
       }
 
       // The chapter logic already skips translated chapters during discovery now.
+
+      const SCENE_BREAK = "===SCENE_BREAK===";
+      const isMultiScene = scenes.length > 1;
+      const originalContents = await Promise.all(
+        scenes.map((s) => getOriginalContent(s.id))
+      );
+      const joinedContent = isMultiScene
+        ? originalContents.join(`\n\n${SCENE_BREAK}\n\n`)
+        : originalContents[0];
+
+      const cleanedContent = cleanGarbageLines(joinedContent);
+
+      // Check if original content is already Vietnamese
+      if (isVietnameseText(cleanedContent)) {
+        onPhase(chapter.id, "done");
+
+        const finalParsedScenes = scenes.map((s, i) => ({
+          sceneId: s.id,
+          content: originalContents[i],
+        }));
+
+        const now = new Date();
+        for (const scene of finalParsedScenes) {
+          const existing = await db.scenes.get(scene.sceneId);
+          if (existing) {
+            const origContent = await getOriginalContent(scene.sceneId);
+            await ensureInitialVersion(scene.sceneId, existing.novelId, origContent);
+            await createSceneVersion(scene.sceneId, existing.novelId, "hybrid-converter", scene.content);
+          }
+          await db.scenes.update(scene.sceneId, {
+            content: scene.content,
+            versionType: "hybrid-converter",
+            wordCount: countWords(scene.content),
+            updatedAt: now,
+          });
+        }
+
+        onChapterComplete({
+          chapterId: chapter.id,
+          chapterTitle: chapter.title,
+          originalTitle: originalTitle,
+          newTitle: chapter.title,
+          scenes: finalParsedScenes,
+          extractedNamesCount: 0,
+        });
+
+        store.setChapterStatus(novelId, chapter.id, "done");
+        store.addResult(novelId, {
+          chapterId: chapter.id,
+          chapterTitle: chapter.title,
+          originalTitle: originalTitle,
+          newTitle: chapter.title,
+          originalLineCount: 0,
+          translatedLineCount: 0,
+          scenes: finalParsedScenes,
+        });
+        store.incrementCompleted(novelId);
+        continue;
+      }
 
       let finalParsedTitle: string | null = null;
       let finalParsedScenes: { sceneId: string; content: string }[] = [];
@@ -663,17 +728,6 @@ ${cleaned}`;
             await delay(3000 * (chapterAttempt - 1));
           }
 
-          // Join scene contents — ALWAYS use ORIGINAL content (pre-translation)
-          const SCENE_BREAK = "===SCENE_BREAK===";
-          const isMultiScene = scenes.length > 1;
-          const originalContents = await Promise.all(
-            scenes.map((s) => getOriginalContent(s.id))
-          );
-          const joinedContent = isMultiScene
-            ? originalContents.join(`\n\n${SCENE_BREAK}\n\n`)
-            : originalContents[0];
-
-          const cleanedContent = cleanGarbageLines(joinedContent);
 
           // Fetch the latest dictionary (to include words extracted by Lookahead)
           nameDict = await getMergedNameDict(novelId);
@@ -698,15 +752,15 @@ ${cleaned}`;
             // ═══════════════════════════════════════════
             // PHASE 1: Dictionary/STV Translation (fast)
             // ═══════════════════════════════════════════
-            let dictTranslatedTitle: string = chapter.title;
+            let dictTranslatedTitle: string = originalTitle;
             let dictTranslatedContent: string = "";
 
             try {
               // You must import stvTranslate locally or statically from STV translator
               const { stvTranslate } = await import("@/lib/api/stv-translator");
               const titlePromise = chunkIdx === 0
-                ? stvTranslate(chapter.title, { signal, dictionary: nameDict })
-                : Promise.resolve(chapter.title);
+                ? stvTranslate(originalTitle, { signal, dictionary: nameDict })
+                : Promise.resolve(originalTitle);
 
               const contentPromise = stvTranslate(chunk, { signal, dictionary: nameDict });
 
@@ -733,7 +787,7 @@ ${cleaned}`;
             const userPrompt = buildPostEditUserPrompt(
               chunk,
               dictTranslatedContent,
-              chunkIdx === 0 ? chapter.title : undefined,
+              chunkIdx === 0 ? originalTitle : undefined,
               chunkIdx === 0 ? dictTranslatedTitle : undefined,
               novelCustomPrompt,
             );
@@ -812,29 +866,8 @@ ${cleaned}`;
               if (qaEnabled && qaModel) {
                 onPhase(chapter.id, "model3");
                 console.log(`[3-Model Pipeline] Đang chạy QA Bot tối ưu hóa đoạn ${chunkIdx + 1}/${chunks.length}...`);
-                const qaSystemPrompt = opts.qaPrompt?.trim() || `# Vai trò
-Bạn là Giám sát Chất lượng Dịch thuật (QA Bot) chuyên nghiệp. Nhiệm vụ của bạn là đọc và tinh chỉnh bản dịch tiếng Việt của tiểu thuyết Trung-Việt để nâng cao chất lượng và độ tự nhiên.
-
-# Nhiệm vụ
-So sánh Bản Dịch Thô, Bản Dịch AI và Văn Bản Gốc để phát hiện và sửa đổi các lỗi:
-1. Sót câu, sót đoạn, hoặc thiếu câu văn/đối thoại.
-2. Từ ngữ thô cứng, lặp từ, hành văn Hán Việt quá đà hoặc sai cấu trúc ngữ pháp tiếng Việt.
-3. Không nhất quán hoặc không phù hợp đại từ xưng hô theo thể loại cốt truyện.
-4. Còn sót các từ tiếng Trung chưa được dịch (hoặc dịch bừa không sát nghĩa).
-
-Hãy trả về phiên bản dịch tiếng Việt CUỐI CÙNG đã được sửa đổi và làm mượt tối đa.
-CẤM giải thích gì thêm, KHÔNG chèn bất kỳ thẻ hay định dạng Markdown nào khác (như in đậm **, tiêu đề ###).`;
-
-                const qaUserPrompt = `[VĂN BẢN GỐC TIẾNG TRUNG]
-${chunk}
-
-[BẢN DỊCH THÔ DIỄN GIẢI]
-${dictTranslatedContent}
-
-[BẢN DỊCH CHƯA TINH CHỈNH]
-${finalChunkContent}
-
-Hãy trả về bản dịch tiếng Việt hoàn thiện nhất (chỉ trả về text dịch, không giải thích gì thêm):`;
+                const qaSystemPrompt = buildQaSystemPrompt(chunk, nameDict, opts.qaPrompt);
+                const qaUserPrompt = buildQaUserPrompt(chunk, dictTranslatedContent, finalChunkContent);
 
                 let qaResult = "";
                 let qaError: unknown = null;
@@ -855,12 +888,7 @@ Hãy trả về bản dịch tiếng Việt hoàn thiện nhất (chỉ trả v�
                   }
                 }
                 if (qaResult.trim()) {
-                  // Clean potential markdown tags added by QA assistant
-                  let cleanedQa = qaResult.trim();
-                  cleanedQa = cleanedQa.replace(/<content>([\s\S]*?)<\/content>/i, "$1").trim();
-                  cleanedQa = cleanedQa.replace(/^```[\s\S]*?\n/g, "").replace(/```$/g, "").trim();
-                  cleanedQa = cleanedQa.replace(/\*\*/g, "").replace(/^###\s+/gm, "").trim();
-                  finalChunkContent = cleanedQa;
+                  finalChunkContent = parseQaAndApply(qaResult, finalChunkContent);
                 } else {
                   console.warn(`[3-Model Pipeline] QA Bot chunk ${chunkIdx + 1} trả về kết quả rỗng hoặc lỗi:`, qaError);
                 }
@@ -874,11 +902,20 @@ Hãy trả về bản dịch tiếng Việt hoàn thiện nhất (chỉ trả v�
 
           // Map back to scenes
           if (isMultiScene) {
-            const parts = finalAccumulatedContent.split(SCENE_BREAK).map((s) => s.trim());
-            finalParsedScenes = scenes.map((s, i) => ({
-              sceneId: s.id,
-              content: parts[i] || s.content,
-            }));
+            const parts = splitBySceneBreak(finalAccumulatedContent);
+            if (parts.length === scenes.length) {
+              finalParsedScenes = scenes.map((s, i) => ({
+                sceneId: s.id,
+                content: parts[i],
+              }));
+            } else {
+              // Fallback to splitting by paragraph boundaries
+              const splitParts = splitTextIntoParts(finalAccumulatedContent, scenes.length);
+              finalParsedScenes = scenes.map((s, i) => ({
+                sceneId: s.id,
+                content: splitParts[i] || "",
+              }));
+            }
           } else {
             finalParsedScenes = [{ sceneId: scenes[0].id, content: finalAccumulatedContent }];
           }
@@ -899,6 +936,7 @@ Hãy trả về bản dịch tiếng Việt hoàn thiện nhất (chỉ trả v�
             }
             await db.scenes.update(scene.sceneId, {
               content: scene.content,
+              versionType: "hybrid-converter",
               wordCount: countWords(scene.content),
               updatedAt: now,
             });
@@ -907,7 +945,7 @@ Hãy trả về bản dịch tiếng Việt hoàn thiện nhất (chỉ trả v�
           onChapterComplete({
             chapterId: chapter.id,
             chapterTitle: chapter.title,
-            originalTitle: chapter.title,
+            originalTitle: originalTitle,
             newTitle: finalParsedTitle ?? chapter.title,
             scenes: finalParsedScenes,
             extractedNamesCount: totalExtractedNamesCount,
@@ -917,7 +955,7 @@ Hãy trả về bản dịch tiếng Việt hoàn thiện nhất (chỉ trả v�
           store.addResult(novelId, {
             chapterId: chapter.id,
             chapterTitle: chapter.title,
-            originalTitle: chapter.title,
+            originalTitle: originalTitle,
             newTitle: finalParsedTitle ?? chapter.title,
             originalLineCount: 0,
             translatedLineCount: 0,

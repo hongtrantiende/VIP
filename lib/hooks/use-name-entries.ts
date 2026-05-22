@@ -125,7 +125,7 @@ export async function bulkImportNameEntries(
 
   const now = new Date();
   const toAdd: NameEntry[] = [];
-  const toUpdate: Array<{ id: string; vietnamese: string; updatedAt: Date }> =
+  const toUpdate: Array<{ id: string; vietnamese: string; category?: string; updatedAt: Date }> =
     [];
   let skipped = 0;
 
@@ -140,9 +140,17 @@ export async function bulkImportNameEntries(
     const ex = existingMap.get(chinese);
     if (ex) {
       if (duplicateMode === "replace") {
-        toUpdate.push({ id: ex.id, vietnamese, updatedAt: now });
+        toUpdate.push({ id: ex.id, vietnamese, category: itemCategory, updatedAt: now });
       } else {
-        skipped++;
+        // If mode is "skip", but the existing entry has a generic category ("khác")
+        // and the new entry has a specific category, we update the category to improve classifications.
+        const isGenericEx = !ex.category || ex.category === "khác";
+        const isSpecificNew = itemCategory && itemCategory !== "khác";
+        if (isGenericEx && isSpecificNew) {
+          toUpdate.push({ id: ex.id, vietnamese: ex.vietnamese, category: itemCategory, updatedAt: now });
+        } else {
+          skipped++;
+        }
       }
     } else {
       toAdd.push({
@@ -161,10 +169,14 @@ export async function bulkImportNameEntries(
   await db.transaction("rw", db.nameEntries, async () => {
     if (toAdd.length > 0) await db.nameEntries.bulkAdd(toAdd);
     for (const u of toUpdate) {
-      await db.nameEntries.update(u.id, {
+      const updateData: Partial<NameEntry> = {
         vietnamese: u.vietnamese,
         updatedAt: u.updatedAt,
-      });
+      };
+      if (u.category) {
+        updateData.category = u.category;
+      }
+      await db.nameEntries.update(u.id, updateData);
     }
   });
 

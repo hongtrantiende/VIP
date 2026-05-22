@@ -18,6 +18,7 @@ import { db } from "@/lib/db";
 import { toast } from "sonner";
 import { redirect } from "next/navigation";
 import { compress } from "@/lib/compression";
+import { useMottruyenStore, mottruyenGlobalRefs } from "@/lib/stores/mottruyen-scraper";
 
 const DEFAULT_URL = "https://truyenfull.today";
 
@@ -174,7 +175,10 @@ export default function BulkScraperPage() {
             </Card>
 
             {/* Mottruyen Scanner */}
-            <MottruyenScannerCard />
+            <div className="space-y-6">
+                <MottruyenScannerCard />
+                <MottruyenIdDownloaderCard />
+            </div>
 
 
             {/* Active Jobs */}
@@ -267,23 +271,393 @@ function JobRow({ job, onCancel, compact }: { job: any; onCancel?: () => void; c
                         {job.progress.total} chương đã tải
                     </p>
                 )}
-
                 {job.error && <p className="text-[10px] text-red-500 truncate">{job.error}</p>}
             </div>
 
             {onCancel && ["pending", "scraping", "fetching-info"].includes(job.status) && (
                 <Button variant="ghost" size="icon" className="size-7 shrink-0" onClick={onCancel}>
-                    <XCircleIcon className="size-3.5 text-muted-foreground" />
+                    <XCircleIcon className="size-4 text-muted-foreground hover:text-destructive" />
                 </Button>
             )}
         </div>
     );
 }
 
-import { useMottruyenStore, mottruyenGlobalRefs } from "@/lib/stores/mottruyen-scraper";
+const ensureNovelInDexie = async (novelIdStr: string) => {
+    try {
+        const existingInDb = await db.novels.get(novelIdStr);
+        if (existingInDb) {
+            const count = await db.chapters.where("novelId").equals(novelIdStr).count();
+            if (count > 0) return true;
+        }
+
+        const res = await fetch(`/api/reading-room?action=download_full&id=${novelIdStr}`);
+        if (!res.ok) return false;
+
+        const data = await res.json();
+        if (data && data.novel) {
+            await db.transaction("rw", [db.novels, db.chapters, db.scenes], async () => {
+                await db.novels.put(data.novel);
+                if (Array.isArray(data.chapters)) {
+                    await db.chapters.bulkPut(data.chapters);
+                }
+                if (Array.isArray(data.scenes)) {
+                    await db.scenes.bulkPut(data.scenes);
+                }
+            });
+            return true;
+        }
+    } catch (e) {
+        console.error("Lỗi đồng bộ vào Dexie:", e);
+    }
+    return false;
+};
+
+const processDownloadQueue = async () => {
+    const limit = mottruyenGlobalRefs.maxParallelDownloads ?? 10;
+    if (mottruyenGlobalRefs.activeDownloadsCount >= limit) {
+        return;
+    }
+
+    const isRunning = useMottruyenStore.getState().status === "running";
+    let index = -1;
+    if (isRunning) {
+        index = mottruyenGlobalRefs.downloadQueue.findIndex(() => true);
+    } else {
+        index = mottruyenGlobalRefs.downloadQueue.findIndex(item => item.isUpdateOrFix);
+    }
+
+    if (index === -1) return;
+
+    const novelInfo = mottruyenGlobalRefs.downloadQueue.splice(index, 1)[0];
+    if (!novelInfo) return;
+
+    mottruyenGlobalRefs.activeDownloadsCount++;
+    try {
+        await downloadNovelInFrontend(novelInfo, !!novelInfo.isUpdateOrFix);
+        mottruyenGlobalRefs.successCount++;
+        useMottruyenStore.getState().setSuccessCount(mottruyenGlobalRefs.successCount);
+    } catch (e) {
+        console.error("Lỗi tải truyện:", e);
+    } finally {
+        mottruyenGlobalRefs.activeDownloadsCount--;
+        processDownloadQueue();
+    }
+};
+
+const downloadNovelInFrontend = async (novelInfo: any, isUpdateOrFix: boolean = false) => {
+    const { id, novelData } = novelInfo;
+    const novelIdStr = `mottruyen-${id}`;
+    let crawlError: Error | null = null;
+    const shouldContinue = () => (useMottruyenStore.getState().status === "running" || isUpdateOrFix) && !crawlError;
+
+    try {
+        if (!isUpdateOrFix && mottruyenGlobalRefs.readingRoomIndex.has(novelIdStr)) {
+            console.log(`[ID ${id}] Đã có trong Phòng Đọc, bỏ qua.`);
+            return;
+        }
+
+        if (isUpdateOrFix) {
+            await ensureNovelInDexie(novelIdStr);
+
+            if (Array.isArray(novelInfo.faultyChapterIds) && novelInfo.faultyChapterIds.length > 0) {
+                await db.transaction("rw", [db.chapters, db.scenes], async () => {
+                    for (const chapId of novelInfo.faultyChapterIds) {
+                        const dbId = `chap-${chapId}`;
+                        await db.chapters.delete(dbId);
+                        await db.scenes.delete(`scene-${dbId}`);
+                    }
+                });
+            }
+        }
+
+        const totalChap = parseInt(novelData.TOTALCHAPTER || "0");
+
+        const freshExistingInDb = await db.novels.get(novelIdStr);
+        const freshExistingChapters = freshExistingInDb
+            ? await db.chapters.where("novelId").equals(novelIdStr).toArray()
+            : [];
+
+        let downloadedCount = freshExistingChapters.length;
+
+        useMottruyenStore.getState().setProgressData(prev => ({
+            ...prev,
+            [id]: { name: novelData.NAME, downloaded: downloadedCount, total: totalChap, status: "fetching" }
+        }));
+
+        let extractedGenres: string[] = [];
+        if (typeof novelData.KIND === 'string' && novelData.KIND.trim() !== '') {
+            extractedGenres = novelData.KIND.split(/[,;\-]/).map((k: string) => k.trim()).filter(Boolean);
+        }
+        const resolvedGenres = extractedGenres.length > 0 ? extractedGenres : (freshExistingInDb?.genres || []);
+
+        if (id === "899" || id === 899) {
+            toast(`Thể loại gốc: "${novelData.KIND}" => Mảng: ${JSON.stringify(resolvedGenres)}`);
+        }
+
+        let cleanedTitle = novelData.NAME || "";
+        let cleanedDesc = (novelData.DESC || "").replace(/<[^>]*>?/gm, '').trim();
+        try {
+            const parser = new DOMParser();
+            cleanedTitle = parser.parseFromString(cleanedTitle, "text/html").documentElement.textContent || cleanedTitle;
+            cleanedDesc = parser.parseFromString(cleanedDesc, "text/html").documentElement.textContent || cleanedDesc;
+        } catch (e) { }
+
+        let novelObj = freshExistingInDb ? {
+            ...freshExistingInDb,
+            title: cleanedTitle,
+            description: cleanedDesc,
+            genres: resolvedGenres,
+            genre: novelData.KIND || freshExistingInDb.genre || "",
+            wrongChaptersCount: 0,
+            reviewIssues: []
+        } : {
+            id: novelIdStr,
+            title: cleanedTitle,
+            author: novelData.AUTHOR || "Unknown",
+            coverImage: novelData.IMG || "",
+            description: cleanedDesc,
+            genres: resolvedGenres,
+            genre: novelData.KIND || "",
+            sourceUrl: `http://api.mottruyen.com/story/?story_id=${id}`,
+            createdAt: new Date(),
+            updatedAt: new Date(),
+            wrongChaptersCount: 0,
+            reviewIssues: []
+        };
+
+        await db.novels.put(novelObj);
+
+        const alreadyFetchedChapterIds = new Set(
+            freshExistingChapters.map(ch => ch.id.replace("chap-", ""))
+        );
+
+        const queue: string[] = [];
+
+        if (isUpdateOrFix && Array.isArray(novelInfo.faultyChapterIds) && novelInfo.faultyChapterIds.length > 0) {
+            queue.push(...novelInfo.faultyChapterIds);
+        }
+
+        if (queue.length === 0 && freshExistingChapters.length > 0) {
+            const sorted = [...freshExistingChapters].sort((a, b) => b.order - a.order);
+            const latestChap = sorted[0];
+            const latestChapId = latestChap.id.replace("chap-", "");
+            alreadyFetchedChapterIds.delete(latestChapId);
+            queue.push(latestChapId);
+        }
+
+        if (queue.length === 0) {
+            let initialChapterIds: string[] = Array.isArray(novelData.CHAPTER)
+                ? novelData.CHAPTER
+                    .map((ch: any) => String(ch?.id ?? "").trim())
+                    .filter((id: string) => id.length > 0)
+                : [];
+            queue.push(...initialChapterIds.filter(cId => !alreadyFetchedChapterIds.has(cId)));
+        }
+
+        if (queue.length === 0) {
+            useMottruyenStore.getState().setProgressData(prev => ({ ...prev, [id]: { ...prev[id], status: "done" } }));
+            return;
+        }
+
+        const processed = new Set<string>([...alreadyFetchedChapterIds]);
+        let activeCount = 0;
+        const CONCURRENCY = 15;
+
+        let lastUiUpdate = Date.now();
+
+        const fetchAndStore = async (cId: string) => {
+            if (processed.has(cId) || !shouldContinue()) return;
+            processed.add(cId);
+            activeCount++;
+
+            try {
+                const proxyUrl = encodeURIComponent(`http://api.mottruyen.com/chapter/?chapter_id=${cId}`);
+
+                let chapData;
+                for (let attempt = 1; attempt <= 3; attempt++) {
+                    try {
+                        const chapRes = await fetch(`/api/mottruyen-proxy?url=${proxyUrl}`);
+                        if (!chapRes.ok) {
+                            throw new Error(`Fetch failed with status ${chapRes.status}`);
+                        }
+                        chapData = await chapRes.json();
+                        if (chapData?.error) {
+                            throw new Error(`Proxy error: ${chapData.error}`);
+                        }
+                        break;
+                    } catch (err: any) {
+                        if (attempt === 3) throw err;
+                        await new Promise(r => setTimeout(r, attempt * 1000));
+                    }
+                }
+
+                if (!chapData) throw new Error("Failed to load and parse chapter data after retries");
+
+                if (chapData.success === 1 && chapData.data) {
+                    const data = chapData.data;
+
+                    let chapName = data.ENAME || `Chương ${data.ORDER || "?"}`;
+                    try {
+                        chapName = new DOMParser().parseFromString(chapName, "text/html").documentElement.textContent || chapName;
+                    } catch (e) { }
+
+                    let chapContent = data.CONTENT || "";
+                    chapContent = chapContent.replace(/<p[^>]*>/gi, "").replace(/<\/p>/gi, "\n").replace(/<br\s*\/?>/gi, "\n");
+
+                    try {
+                        chapContent = new DOMParser().parseFromString(chapContent, "text/html").documentElement.textContent || chapContent;
+                    } catch (e) { }
+
+                    chapContent = chapContent.split('\n')
+                        .map((l: string) => l.trim())
+                        .filter((line: string) => {
+                            if (!line) return false;
+                            const lower = line.toLowerCase();
+                            const blacklist = ["người đăng", "thời gian đổi mới", "thời gian cập nhật", "cầu nguyệt phiếu", "nhóm dịch", "mới đọc giả", "mottruyen.com"];
+                            return !blacklist.some(b => lower.includes(b));
+                        }).join('\n\n').trim();
+
+                    let order = parseInt(data.ORDER || "0");
+                    if (data.ENAME) {
+                        const match = data.ENAME.match(/\(#(\d+)\)/);
+                        if (match) {
+                            order = parseInt(match[1]);
+                        }
+                    }
+                    const dbId = `chap-${cId}`;
+                    const now = new Date();
+
+                    await Promise.all([
+                        db.chapters.put({
+                            id: dbId,
+                            novelId: novelObj.id,
+                            title: chapName,
+                            order: order,
+                            createdAt: now,
+                            updatedAt: now,
+                        }),
+                        db.scenes.put({
+                            id: `scene-${dbId}`,
+                            novelId: novelObj.id,
+                            chapterId: dbId,
+                            title: "",
+                            content: chapContent,
+                            wordCount: chapContent.split(/\s+/).length,
+                            order: 0,
+                            version: 1,
+                            versionType: "manual" as any,
+                            isActive: 1,
+                            createdAt: now,
+                            updatedAt: now,
+                        })
+                    ]);
+
+                    downloadedCount++;
+
+                    if (data.NEXT && data.NEXT !== "0" && !processed.has(data.NEXT)) {
+                        queue.push(data.NEXT);
+                    }
+                    if (data.PREV && data.PREV !== "0" && !processed.has(data.PREV)) {
+                        queue.push(data.PREV);
+                    }
+
+                    if (Date.now() - lastUiUpdate > 1000) {
+                        useMottruyenStore.getState().setProgressData(prev => ({ ...prev, [id]: { ...prev[id], downloaded: downloadedCount } }));
+                        lastUiUpdate = Date.now();
+                    }
+                }
+            } catch (e: any) {
+                console.error(`Lỗi tải chương ${cId}:`, e);
+                crawlError = e;
+            } finally {
+                activeCount--;
+            }
+        };
+
+        const workers = Array.from({ length: CONCURRENCY }, async () => {
+            while (shouldContinue()) {
+                const cId = queue.shift();
+                if (cId) {
+                    await fetchAndStore(cId);
+                } else if (activeCount > 0) {
+                    await new Promise(r => setTimeout(r, 100));
+                } else {
+                    break;
+                }
+            }
+        });
+        await Promise.all(workers);
+
+        if (crawlError) {
+            throw crawlError;
+        }
+
+        if (!shouldContinue()) {
+            useMottruyenStore.getState().setProgressData(prev => ({ ...prev, [id]: { ...prev[id], status: "paused" } }));
+            mottruyenGlobalRefs.downloadQueue.unshift(novelInfo);
+            return;
+        }
+
+        useMottruyenStore.getState().setProgressData(prev => ({ ...prev, [id]: { ...prev[id], downloaded: downloadedCount, status: "done" } }));
+
+        const [chapters, scenes] = await Promise.all([
+            db.chapters.where("novelId").equals(novelObj.id).toArray(),
+            db.scenes.where("novelId").equals(novelObj.id).toArray()
+        ]);
+
+        const sortedChapters = chapters.sort((a, b) => a.order - b.order);
+
+        const exportData = {
+            novel: await db.novels.get(novelObj.id),
+            chapters: sortedChapters,
+            scenes: scenes
+        };
+
+        const jsonString = JSON.stringify(exportData);
+        const compressed = await compress(jsonString);
+
+        const metadata = {
+            id: novelObj.id,
+            title: exportData.novel?.title || '',
+            author: exportData.novel?.author || '',
+            description: (exportData.novel?.description || '').substring(0, 100),
+            coverImage: exportData.novel?.coverImage || '',
+            chapterCount: sortedChapters.length,
+            genres: exportData.novel?.genres || [],
+        };
+
+        try {
+            const { uploadCompressedInChunks } = await import("@/lib/utils");
+            await uploadCompressedInChunks(
+                novelObj.id,
+                metadata,
+                compressed
+            );
+
+            mottruyenGlobalRefs.readingRoomIndex.add(novelIdStr);
+            toast.success(`Đã lưu phòng đọc: ${novelObj.title} (${downloadedCount} ch)`);
+            await Promise.all([
+                db.scenes.where("novelId").equals(novelObj.id).delete(),
+                db.chapters.where("novelId").equals(novelObj.id).delete(),
+                db.novels.delete(novelObj.id)
+            ]);
+
+            useMottruyenStore.getState().setProgressData(prev => {
+                const newData = { ...prev };
+                delete newData[id];
+                return newData;
+            });
+        } catch (uploadErr: any) {
+            toast.error(`Lỗi upload phòng đọc: ${novelObj.title} - ${uploadErr.message}`);
+        }
+    } catch (err) {
+        console.error("Lỗi downloadNovelInFrontend:", err);
+        useMottruyenStore.getState().setProgressData(prev => ({ ...prev, [id]: { ...prev[id], status: "error" } }));
+    }
+};
 
 function MottruyenScannerCard() {
-    // 1. Lấy state từ Zustand thay vì useState cục bộ
     const {
         status, setStatus,
         currentId, setCurrentId,
@@ -296,29 +670,46 @@ function MottruyenScannerCard() {
         reset
     } = useMottruyenStore();
 
-    // startId chỉ dùng UI tạm thời để input
     const [startId, setStartId] = useState(currentId === 800 ? 800 : currentId);
+    const [parallelLimitInput, setParallelLimitInput] = useState<string>("10");
 
-    // Dùng global refs thay vì React.useRef để sống sót khi Component Unmount
-    const downloadQueueRef = {
-        get current() { return mottruyenGlobalRefs.downloadQueue; },
-        set current(val) { mottruyenGlobalRefs.downloadQueue = val; }
-    };
-    const activeDownloadsCountRef = {
-        get current() { return mottruyenGlobalRefs.activeDownloadsCount; },
-        set current(val) { mottruyenGlobalRefs.activeDownloadsCount = val; }
-    };
-    const readingRoomIndexRef = {
-        get current() { return mottruyenGlobalRefs.readingRoomIndex; },
-        set current(val) { mottruyenGlobalRefs.readingRoomIndex = val; }
+    useEffect(() => {
+        if (typeof window !== "undefined") {
+            const saved = localStorage.getItem("mottruyen_parallel_limit");
+            if (saved) {
+                const num = parseInt(saved);
+                if (!isNaN(num) && num > 0) {
+                    mottruyenGlobalRefs.maxParallelDownloads = num;
+                    setParallelLimitInput(String(num));
+                }
+            }
+        }
+    }, []);
+
+    const handleSaveParallelLimit = () => {
+        const val = parseInt(parallelLimitInput);
+        if (isNaN(val) || val <= 0) {
+            toast.error("Số lượng truyện tải song song không hợp lệ!");
+            return;
+        }
+        if (typeof window !== "undefined") {
+            localStorage.setItem("mottruyen_parallel_limit", String(val));
+        }
+        mottruyenGlobalRefs.maxParallelDownloads = val;
+        toast.success(`Đã lưu giới hạn tải song song: ${val} truyện`);
+
+        if (useMottruyenStore.getState().status === "running") {
+            const needed = val - mottruyenGlobalRefs.activeDownloadsCount;
+            for (let i = 0; i < needed; i++) {
+                processDownloadQueue();
+            }
+        }
     };
 
-    // Gắn liền cờ runningRef vào status `running` từ cache toàn cục (store.getState) để tránh "stale closure"
     const runningRef = {
         get current() { return useMottruyenStore.getState().status === "running"; }
     };
 
-    // Live counters in refs -> link tới global refs
     const successCountRef = {
         get current() { return mottruyenGlobalRefs.successCount; },
         set current(val) { mottruyenGlobalRefs.successCount = val; }
@@ -332,25 +723,22 @@ function MottruyenScannerCard() {
         set current(val) { mottruyenGlobalRefs.currentId = val; }
     };
 
-    // Nạp danh sách truyện trong phòng đọc khi mở component (Chỉ tải 1 lần)
-    React.useEffect(() => {
+    useEffect(() => {
         if (mottruyenGlobalRefs.readingRoomIndex.size > 0) return;
         fetch('/api/reading-room?action=list')
             .then(res => res.json())
             .then(data => {
                 if (data.success && data.novels) {
                     const ids = data.novels.map((n: any) => n.id);
-                    readingRoomIndexRef.current = new Set(ids);
+                    mottruyenGlobalRefs.readingRoomIndex = new Set(ids);
                 }
             })
             .catch(console.error);
     }, []);
 
-    // Đồng bộ DOM khi quay lại Tab
-    React.useEffect(() => {
+    useEffect(() => {
         const onVisibilityChange = () => {
             if (document.visibilityState === 'visible' && runningRef.current) {
-                // Ép component cập nhật lại giá trị mới nhất
                 setSuccessCount(successCountRef.current);
                 setTotalProcessed(totalProcessedRef.current);
                 setCurrentId(currentIdRef.current);
@@ -360,339 +748,6 @@ function MottruyenScannerCard() {
         return () => document.removeEventListener('visibilitychange', onVisibilityChange);
     }, []);
 
-    const processDownloadQueue = async () => {
-        // Cố định số luồng tải truyện song song tối đa là 10
-        if (!runningRef.current || downloadQueueRef.current.length === 0 || activeDownloadsCountRef.current >= 10) {
-            return;
-        }
-
-        const novelInfo = downloadQueueRef.current.shift();
-        if (!novelInfo) return;
-
-        activeDownloadsCountRef.current++;
-        try {
-            await downloadNovelInFrontend(novelInfo);
-            successCountRef.current++;
-            setSuccessCount(successCountRef.current);
-        } catch (e) {
-            console.error("Lỗi tải truyện:", e);
-        } finally {
-            activeDownloadsCountRef.current--;
-            // Tải xong bộ này, tự động gọi tải bộ tiếp theo trong hàng đợi
-            processDownloadQueue();
-        }
-    };
-
-    const downloadNovelInFrontend = async (novelInfo: any) => {
-        const { id, novelData } = novelInfo;
-        const novelIdStr = `mottruyen-${id}`;
-
-        try {
-            // 1. Kiểm tra Phòng Đọc trước — nếu đã upload đủ rồi thì bỏ qua
-            if (readingRoomIndexRef.current.has(novelIdStr)) {
-                console.log(`[ID ${id}] Đã có trong Phòng Đọc, bỏ qua.`);
-                return;
-            }
-
-            const totalChap = parseInt(novelData.TOTALCHAPTER || "0");
-
-            // 2. Kiểm tra Thư viện cục bộ — nếu đang tải dở thì tiếp tục
-            const existingInDb = await db.novels.get(novelIdStr);
-            const existingChapters = existingInDb
-                ? await db.chapters.where("novelId").equals(novelIdStr).toArray()
-                : [];
-
-            let resumeMode = existingInDb && existingChapters.length > 0;
-            let downloadedCount = existingChapters.length;
-
-            setProgressData(prev => ({
-                ...prev,
-                [id]: { name: novelData.NAME, downloaded: downloadedCount, total: totalChap, status: "fetching" }
-            }));
-
-            let extractedGenres: string[] = [];
-            if (typeof novelData.KIND === 'string' && novelData.KIND.trim() !== '') {
-                extractedGenres = novelData.KIND.split(/[,;\-]/).map((k: string) => k.trim()).filter(Boolean);
-            }
-            const resolvedGenres = extractedGenres.length > 0 ? extractedGenres : (existingInDb?.genres || []);
-
-            // Xoá console log, hiển thị thẳng lên màn hình để User Test
-            if (id === "899" || id === 899) {
-                toast(`Thể loại gốc: "${novelData.KIND}" => Mảng: ${JSON.stringify(resolvedGenres)}`);
-            }
-
-            let cleanedTitle = novelData.NAME || "";
-            let cleanedDesc = (novelData.DESC || "").replace(/<[^>]*>?/gm, '').trim();
-            try {
-                const parser = new DOMParser();
-                cleanedTitle = parser.parseFromString(cleanedTitle, "text/html").documentElement.textContent || cleanedTitle;
-                cleanedDesc = parser.parseFromString(cleanedDesc, "text/html").documentElement.textContent || cleanedDesc;
-            } catch (e) { }
-
-            let novelObj = existingInDb ? {
-                ...existingInDb,
-                title: cleanedTitle,
-                description: cleanedDesc,
-                genres: resolvedGenres,
-                genre: novelData.KIND || existingInDb.genre || "",
-            } : {
-                id: novelIdStr,
-                title: cleanedTitle,
-                author: novelData.AUTHOR || "Unknown",
-                coverImage: novelData.IMG || "",
-                description: cleanedDesc,
-                genres: resolvedGenres,
-                genre: novelData.KIND || "", // Lưu thêm chuỗi gốc để hỗ trợ text hiển thị
-                sourceUrl: `http://api.mottruyen.com/story/?story_id=${id}`,
-                createdAt: new Date(),
-                updatedAt: new Date(),
-            };
-
-            // Luôn cập nhật lại vào DB để đảm bảo (vd: bộ tải dở chưa có thể loại sẽ được gán lại)
-            await db.novels.put(novelObj);
-
-            // Tập hợp chapter IDs đã tải (để bỏ qua)
-            const alreadyFetchedChapterIds = new Set(
-                existingChapters.map(ch => ch.id.replace("chap-", ""))
-            );
-
-            // 3. Crawl toàn bộ chương (Bi-directional)
-            let initialChapterIds: string[] = Array.isArray(novelData.CHAPTER)
-                ? novelData.CHAPTER
-                    .map((ch: any) => String(ch?.id ?? "").trim())
-                    .filter((id: string) => id.length > 0)
-                : [];
-
-            if (initialChapterIds.length === 0) {
-                setProgressData(prev => ({ ...prev, [id]: { ...prev[id], status: "done" } }));
-                return;
-            }
-
-            // Chỉ queue các chương chưa tải
-            const queue: string[] = initialChapterIds.filter(cId => !alreadyFetchedChapterIds.has(cId));
-            const processed = new Set<string>([...alreadyFetchedChapterIds]);
-            let activeCount = 0;
-            const CONCURRENCY = 15;
-
-            let lastUiUpdate = Date.now();
-
-            const fetchAndStore = async (cId: string) => {
-                if (processed.has(cId) || !runningRef.current) return;
-                processed.add(cId);
-                activeCount++;
-
-                try {
-                    const proxyUrl = encodeURIComponent(`http://api.mottruyen.com/chapter/?chapter_id=${cId}`);
-
-                    let chapRes;
-                    for (let attempt = 1; attempt <= 3; attempt++) {
-                        try {
-                            chapRes = await fetch(`/api/mottruyen-proxy?url=${proxyUrl}`);
-                            if (chapRes.ok) {
-                                break;
-                            }
-                            if (attempt === 3) throw new Error(`Fetch failed with status ${chapRes.status}`);
-                        } catch (err: any) {
-                            if (attempt === 3) throw err;
-                            await new Promise(r => setTimeout(r, attempt * 1000));
-                        }
-                    }
-
-                    if (!chapRes || !chapRes.ok) throw new Error("Fetch failed after retries");
-
-                    const chapData = await chapRes.json();
-                    if (chapData?.success === 1 && chapData.data) {
-                        const data = chapData.data;
-
-                        // Xử lý nội dung (Dùng DOMParser để giải mã toàn bộ HTML Entities &aacute;, &nbsp;, v.v.)
-                        let chapName = data.ENAME || `Chương ${data.ORDER || "?"}`;
-                        try {
-                            chapName = new DOMParser().parseFromString(chapName, "text/html").documentElement.textContent || chapName;
-                        } catch (e) { }
-
-                        let chapContent = data.CONTENT || "";
-                        // Thay thế thẻ ngắt đoạn bằng newline trước khi decode để không bị dính liền
-                        chapContent = chapContent.replace(/<p[^>]*>/gi, "").replace(/<\/p>/gi, "\n").replace(/<br\s*\/?>/gi, "\n");
-
-                        try {
-                            chapContent = new DOMParser().parseFromString(chapContent, "text/html").documentElement.textContent || chapContent;
-                        } catch (e) { }
-
-                        // Lọc dòng rỗng, quảng cáo, và nối lại bằng \n\n để tạo ĐÚNG 1 KHOẢNG TRỐNG (gap)
-                        chapContent = chapContent.split('\n')
-                            .map((l: string) => l.trim())
-                            .filter((line: string) => {
-                                if (!line) return false;
-                                const lower = line.toLowerCase();
-                                const blacklist = ["người đăng", "thời gian đổi mới", "thời gian cập nhật", "cầu nguyệt phiếu", "nhóm dịch", "mời đọc giả", "mottruyen.com"];
-                                return !blacklist.some(b => lower.includes(b));
-                            }).join('\n\n').trim();
-
-                        const order = parseInt(data.ORDER || "0");
-                        const dbId = `chap-${cId}`;
-                        const now = new Date();
-
-                        await Promise.all([
-                            db.chapters.put({
-                                id: dbId,
-                                novelId: novelObj.id,
-                                title: chapName,
-                                order: order,
-                                createdAt: now,
-                                updatedAt: now,
-                            }),
-                            db.scenes.put({
-                                id: `scene-${dbId}`,
-                                novelId: novelObj.id,
-                                chapterId: dbId,
-                                title: "",
-                                content: chapContent,
-                                wordCount: chapContent.split(/\s+/).length,
-                                order: 0,
-                                version: 1,
-                                versionType: "manual" as any,
-                                isActive: 1,
-                                createdAt: now,
-                                updatedAt: now,
-                            })
-                        ]);
-
-                        downloadedCount++;
-
-                        // Thêm NEXT và PREV vào hàng đợi nếu chưa có
-                        if (data.NEXT && data.NEXT !== "0" && !processed.has(data.NEXT)) {
-                            queue.push(data.NEXT);
-                        }
-                        if (data.PREV && data.PREV !== "0" && !processed.has(data.PREV)) {
-                            queue.push(data.PREV);
-                        }
-
-                        // Cập nhật UI
-                        if (Date.now() - lastUiUpdate > 1000) {
-                            setProgressData(prev => ({ ...prev, [id]: { ...prev[id], downloaded: downloadedCount } }));
-                            lastUiUpdate = Date.now();
-                        }
-                    }
-                } catch (e) {
-                    console.error(`Lỗi tải chương ${cId}:`, e);
-                } finally {
-                    activeCount--;
-                }
-            };
-
-            // Loop chính của Crawler bằng Promise worker (không dùng setTimeout polling liên tục để tránh browser throttle)
-            const workers = Array.from({ length: CONCURRENCY }, async () => {
-                while (runningRef.current) {
-                    const cId = queue.shift();
-                    if (cId) {
-                        await fetchAndStore(cId);
-                    } else if (activeCount > 0) {
-                        // Hàng đợi rỗng nhưng có luồng khác đang fetch (có thể sẽ đẩy thêm NEXT vào queue)
-                        await new Promise(r => setTimeout(r, 100));
-                    } else {
-                        // Hoàn toàn kết thúc
-                        break;
-                    }
-                }
-            });
-            await Promise.all(workers);
-
-            if (!runningRef.current) {
-                setProgressData(prev => ({ ...prev, [id]: { ...prev[id], status: "paused" } }));
-                // Trả lại bộ truyện về đầu hàng đợi để khi resume sẽ tiếp tục tải bộ này
-                downloadQueueRef.current.unshift(novelInfo);
-                return;
-            }
-
-            setProgressData(prev => ({ ...prev, [id]: { ...prev[id], downloaded: downloadedCount, status: "done" } }));
-
-            // 4. Upload to Reading Room
-            const [chapters, scenes] = await Promise.all([
-                db.chapters.where("novelId").equals(novelObj.id).toArray(),
-                db.scenes.where("novelId").equals(novelObj.id).toArray()
-            ]);
-
-            const sortedChapters = chapters.sort((a, b) => a.order - b.order);
-
-            const exportData = {
-                novel: await db.novels.get(novelObj.id),
-                chapters: sortedChapters,
-                scenes: scenes
-            };
-
-            const jsonString = JSON.stringify(exportData);
-            const compressed = await compress(jsonString);
-
-            const metadata = {
-                id: novelObj.id,
-                title: exportData.novel?.title || '',
-                author: exportData.novel?.author || '',
-                // Truncate description to 100 chars in headers to avoid Cloudflare 8KB limit (server extracts full description from compressed body)
-                description: (exportData.novel?.description || '').substring(0, 100),
-                coverImage: exportData.novel?.coverImage || '',
-                chapterCount: sortedChapters.length,
-                genres: exportData.novel?.genres || [],
-            };
-
-            let uploadSuccess = false;
-            let uploadErrorMsg = '';
-
-            for (let attempt = 1; attempt <= 3; attempt++) {
-                try {
-                    const uploadRes = await fetch(`/api/reading-room?action=upload&novelId=${novelObj.id}`, {
-                        method: "POST",
-                        headers: {
-                            'Content-Type': 'application/octet-stream',
-                            'x-novel-metadata': encodeURIComponent(JSON.stringify(metadata))
-                        },
-                        body: new Blob([compressed as any])
-                    });
-
-                    if (uploadRes.ok) {
-                        uploadSuccess = true;
-                        break;
-                    } else {
-                        const errJson = await uploadRes.json().catch(() => ({}));
-                        uploadErrorMsg = errJson.error || `HTTP Error ${uploadRes.status}`;
-                        if (uploadRes.status !== 503 && uploadRes.status !== 502 && uploadRes.status !== 504 && uploadRes.status !== 429) {
-                            break; // Không retry cho lỗi 4xx cố định
-                        }
-                    }
-                } catch (fetchErr: any) {
-                    uploadErrorMsg = fetchErr.message || 'Lỗi mạng khi tải lên';
-                }
-                if (attempt < 3) {
-                    await new Promise(resolve => setTimeout(resolve, 2000));
-                }
-            }
-
-            if (uploadSuccess) {
-                // Đánh dấu đã có trong Reading Room cache
-                readingRoomIndexRef.current.add(novelIdStr);
-                toast.success(`Đã lưu phòng đọc: ${novelObj.title} (${downloadedCount} ch)`);
-                // Xóa cục bộ sau khi upload thành công
-                await Promise.all([
-                    db.scenes.where("novelId").equals(novelObj.id).delete(),
-                    db.chapters.where("novelId").equals(novelObj.id).delete(),
-                    db.novels.delete(novelObj.id)
-                ]);
-
-                setProgressData(prev => {
-                    const newData = { ...prev };
-                    delete newData[id];
-                    return newData;
-                });
-            } else {
-                toast.error(`Lỗi upload phòng đọc: ${novelObj.title} - ${uploadErrorMsg}`);
-            }
-        } catch (err) {
-            console.error("Lỗi downloadNovelInFrontend:", err);
-            setProgressData(prev => ({ ...prev, [id]: { ...prev[id], status: "error" } }));
-        }
-
-
-    };
-
     const startScan = async () => {
         if (useMottruyenStore.getState().status === "running") return;
         if (currentId >= endId) return;
@@ -700,8 +755,7 @@ function MottruyenScannerCard() {
 
         let cid = currentId;
         while (useMottruyenStore.getState().status === "running" && cid <= endId) {
-            // Ngăn chặn quét quá nhanh làm tràn bộ nhớ
-            if (downloadQueueRef.current.length >= batchSize * 2) {
+            if (mottruyenGlobalRefs.downloadQueue.length >= batchSize * 2) {
                 await new Promise(r => setTimeout(r, 1000));
                 continue;
             }
@@ -716,18 +770,17 @@ function MottruyenScannerCard() {
                 if (res.ok) {
                     const data = await res.json();
 
-                    // Thêm truyện hợp lệ vào hàng đợi
                     if (data.validNovels && data.validNovels.length > 0) {
-                        downloadQueueRef.current.push(...data.validNovels);
+                        mottruyenGlobalRefs.downloadQueue.push(...data.validNovels);
 
-                        // Kích hoạt các luồng tải song song (tối đa bằng 10 bộ truyện)
-                        for (let i = activeDownloadsCountRef.current; i < 10; i++) {
+                        const limit = mottruyenGlobalRefs.maxParallelDownloads ?? 10;
+                        for (let i = mottruyenGlobalRefs.activeDownloadsCount; i < limit; i++) {
                             processDownloadQueue();
                         }
                     }
 
-                    totalProcessedRef.current += data.totalScanned;
-                    setTotalProcessed(totalProcessedRef.current);
+                    mottruyenGlobalRefs.totalProcessed += data.totalScanned;
+                    setTotalProcessed(mottruyenGlobalRefs.totalProcessed);
                 }
             } catch (err) {
                 console.error(err);
@@ -735,14 +788,13 @@ function MottruyenScannerCard() {
 
             if (useMottruyenStore.getState().status !== "running") break;
             cid += batchSize;
-            currentIdRef.current = cid;
+            mottruyenGlobalRefs.currentId = cid;
             setCurrentId(cid);
         }
 
         if (cid > endId) {
-            // Chờ cho tất cả các tiến trình tải còn lại hoàn tất
             const waitFinish = setInterval(() => {
-                if (activeDownloadsCountRef.current === 0 && downloadQueueRef.current.length === 0) {
+                if (mottruyenGlobalRefs.activeDownloadsCount === 0 && mottruyenGlobalRefs.downloadQueue.length === 0) {
                     clearInterval(waitFinish);
                     setStatus("finished");
                 }
@@ -759,7 +811,7 @@ function MottruyenScannerCard() {
         setCurrentId(startId);
     };
 
-    // ── Kiểm tra cập nhật chương mới ──
+    // ── Kiểm tra cập nhật chương mới & Tự động cập nhật ──
     const [updateStatus, setUpdateStatus] = useState<"idle" | "checking" | "done">("idle");
     const [updatableNovels, setUpdatableNovels] = useState<Array<{
         localId: string; mottruyenId: number; title: string;
@@ -772,12 +824,10 @@ function MottruyenScannerCard() {
         setUpdateStatus("checking");
         setUpdatableNovels([]);
         try {
-            // 1. Load Reading Room index
             const rrRes = await fetch("/api/reading-room?action=list");
             const rrData = await rrRes.json();
             const rrNovels: any[] = rrData.novels || [];
 
-            // 2. Filter mottruyen novels and extract IDs + chapter counts
             const mottruyenNovels = rrNovels
                 .filter((n: any) => n.id?.startsWith("mottruyen-"))
                 .map((n: any) => ({
@@ -795,7 +845,6 @@ function MottruyenScannerCard() {
 
             toast(`Đang kiểm tra ${mottruyenNovels.length} truyện Mottruyen...`);
 
-            // 3. Call check-updates API
             const res = await fetch("/api/mottruyen-scanner/check-updates", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
@@ -809,6 +858,12 @@ function MottruyenScannerCard() {
                     toast.success("Tất cả truyện đã cập nhật đầy đủ! ✅");
                 } else {
                     toast.success(`Có ${data.totalWithUpdates} truyện cần cập nhật!`);
+                    
+                    toast.info(`Bắt đầu tự động tải và cập nhật ${data.totalWithUpdates} bộ truyện...`);
+                    for (const novel of data.updatable) {
+                        await updateNovel(novel);
+                        await new Promise(r => setTimeout(r, 400));
+                    }
                 }
             }
         } catch (err: any) {
@@ -821,16 +876,13 @@ function MottruyenScannerCard() {
     const updateNovel = async (novel: typeof updatableNovels[0]) => {
         setUpdatingIds(prev => new Set(prev).add(novel.mottruyenId));
         try {
-            // Gọi lại hàm downloadNovelInFrontend bằng cách fetch story info
             const storyRes = await fetch(`/api/mottruyen-proxy?url=${encodeURIComponent(`http://api.mottruyen.com/story/?story_id=${novel.mottruyenId}`)}`);
             const storyData = await storyRes.json();
             if (storyData?.success === 1 && storyData.data) {
-                // Push to download queue
-                downloadQueueRef.current.push({ id: novel.mottruyenId, novelData: storyData.data });
+                mottruyenGlobalRefs.downloadQueue.push({ id: novel.mottruyenId, novelData: storyData.data, isUpdateOrFix: true });
                 processDownloadQueue();
                 toast.success(`Đang tải thêm ${novel.newChapters} chương mới: ${novel.title}`);
 
-                // Xóa khỏi danh sách updatable
                 setUpdatableNovels(prev => prev.filter(n => n.mottruyenId !== novel.mottruyenId));
             } else {
                 toast.error(`Không tải được thông tin truyện ID ${novel.mottruyenId}`);
@@ -842,8 +894,172 @@ function MottruyenScannerCard() {
         }
     };
 
+    // ── Quét lỗi & Sửa lỗi truyện trong Phòng Đọc ──
+    const [errorScanStatus, setErrorScanStatus] = useState<"idle" | "scanning" | "done">("idle");
+    const [errorProgress, setErrorProgress] = useState({ current: 0, total: 0 });
+    const [errorScanLog, setErrorScanLog] = useState<string[]>([]);
+
+    const scanReadingRoomErrors = async () => {
+        setErrorScanStatus("scanning");
+        setErrorScanLog([]);
+        setErrorProgress({ current: 0, total: 0 });
+        toast.info("Bắt đầu quét lỗi các truyện Mottruyen trong phòng đọc...");
+
+        try {
+            const rrRes = await fetch("/api/reading-room?action=list");
+            if (!rrRes.ok) throw new Error("Không lấy được danh sách phòng đọc");
+            const rrData = await rrRes.json();
+            const rrNovels: any[] = rrData.novels || [];
+
+            const mottruyenNovels = rrNovels.filter((n: any) => n.id?.startsWith("mottruyen-"));
+            if (mottruyenNovels.length === 0) {
+                toast.success("Không có truyện Mottruyen nào trong phòng đọc để quét.");
+                setErrorScanStatus("done");
+                return;
+            }
+
+            setErrorProgress({ current: 0, total: mottruyenNovels.length });
+
+            let fixedCount = 0;
+
+            for (let i = 0; i < mottruyenNovels.length; i++) {
+                const novel = mottruyenNovels[i];
+                setErrorProgress(prev => ({ ...prev, current: i + 1 }));
+
+                try {
+                    const fullRes = await fetch(`/api/reading-room?action=download_full&id=${novel.id}`);
+                    if (!fullRes.ok) {
+                        setErrorScanLog(prev => [...prev, `❌ [${novel.title}] Lỗi: Không thể tải từ phòng đọc`]);
+                        continue;
+                    }
+                    const fullData = await fullRes.json();
+                    
+                    const mottruyenId = novel.id.replace("mottruyen-", "");
+                    const storyRes = await fetch(`/api/mottruyen-proxy?url=${encodeURIComponent(`http://api.mottruyen.com/story/?story_id=${mottruyenId}`)}`);
+                    if (!storyRes.ok) {
+                        setErrorScanLog(prev => [...prev, `⚠️ [${novel.title}] Không tải được thông tin từ API Mottruyen`]);
+                        continue;
+                    }
+                    const storyData = await storyRes.json();
+                    if (storyData?.success !== 1 || !storyData.data) {
+                        setErrorScanLog(prev => [...prev, `⚠️ [${novel.title}] API Mottruyen trả về dữ liệu không hợp lệ`]);
+                        continue;
+                    }
+
+                    const remoteChapterList = Array.isArray(storyData.data.CHAPTER) ? storyData.data.CHAPTER : [];
+                    const remoteChapterIds = new Set<string>(remoteChapterList.map((ch: any) => String(ch.id).trim()));
+                    const localChapters = Array.isArray(fullData.chapters) ? fullData.chapters : [];
+                    const localScenes = Array.isArray(fullData.scenes) ? fullData.scenes : [];
+                    
+                    const localChapterMap = new Map<string, any>(localChapters.map((ch: any) => [ch.id.replace("chap-", ""), ch]));
+                    const localSceneMap = new Map<string, any>(localScenes.map((sc: any) => [sc.chapterId, sc]));
+
+                    const missingChapterIds: string[] = [];
+                    const faultyChapterIds: string[] = [];
+
+                    for (const rcId of remoteChapterIds) {
+                        if (!localChapterMap.has(rcId)) {
+                            missingChapterIds.push(rcId);
+                        }
+                    }
+
+                    for (const ch of localChapters) {
+                        const numericId = ch.id.replace("chap-", "");
+                        const scene = localSceneMap.get(ch.id);
+                        
+                        let isFaulty = false;
+                        let reason = "";
+
+                        if (!scene || !scene.content) {
+                            isFaulty = true;
+                            reason = "Thiếu nội dung";
+                        } else {
+                            const content = String(scene.content).trim();
+                            const contentLower = content.toLowerCase();
+                            
+                            if (content.length < 100) {
+                                isFaulty = true;
+                                reason = "Nội dung quá ngắn (<100 ký tự)";
+                            } else if (
+                                contentLower.includes("proxy error") ||
+                                contentLower.includes("fetch failed") ||
+                                contentLower.includes("bad gateway") ||
+                                contentLower.includes("gateway timeout") ||
+                                contentLower.includes("service unavailable") ||
+                                contentLower.includes("internal server error")
+                            ) {
+                                isFaulty = true;
+                                reason = "Chứa từ khóa lỗi Proxy/Fetch";
+                            }
+                        }
+
+                        if (isFaulty) {
+                            faultyChapterIds.push(numericId);
+                        }
+                    }
+
+                    const allProblemIds = [...new Set([...missingChapterIds, ...faultyChapterIds])];
+
+                    if (allProblemIds.length > 0) {
+                        setErrorScanLog(prev => [
+                            ...prev, 
+                            `🛠️ [${novel.title}] Có ${missingChapterIds.length} ch thiếu, ${faultyChapterIds.length} ch lỗi (${allProblemIds.join(", ")}). Đang đưa vào hàng đợi tự động sửa.`
+                        ]);
+                        
+                        mottruyenGlobalRefs.downloadQueue.push({
+                            id: mottruyenId,
+                            novelData: storyData.data,
+                            isUpdateOrFix: true,
+                            faultyChapterIds: allProblemIds
+                        });
+                        
+                        processDownloadQueue();
+                        fixedCount++;
+                    } else {
+                        if (Number(novel.wrongChaptersCount) > 0) {
+                            setErrorScanLog(prev => [...prev, `🔄 [${novel.title}] Có cảnh báo lỗi chương (${novel.wrongChaptersCount} ch) nhưng không có lỗi thực tế. Đang xóa cảnh báo...`]);
+                            try {
+                                const clearRes = await fetch(`/api/reading-room?action=edit_metadata&id=${novel.id}`, {
+                                    method: "POST",
+                                    headers: { "Content-Type": "application/json" },
+                                    body: JSON.stringify({
+                                        newWrongChaptersCount: 0,
+                                        newReviewIssues: []
+                                    })
+                                });
+                                if (clearRes.ok) {
+                                    setErrorScanLog(prev => [...prev, `✅ [${novel.title}] Đã xóa cảnh báo thành công.`]);
+                                } else {
+                                    setErrorScanLog(prev => [...prev, `⚠️ [${novel.title}] Không thể xóa cảnh báo trên máy chủ.`]);
+                                }
+                            } catch (clearErr: any) {
+                                setErrorScanLog(prev => [...prev, `⚠️ [${novel.title}] Lỗi khi gửi lệnh xóa cảnh báo: ${clearErr.message}`]);
+                            }
+                        } else {
+                            setErrorScanLog(prev => [...prev, `✅ [${novel.title}] Hợp lệ (không phát hiện lỗi).`]);
+                        }
+                    }
+                } catch (e: any) {
+                    setErrorScanLog(prev => [...prev, `❌ [${novel.title}] Gặp lỗi khi phân tích: ${e.message}`]);
+                }
+                
+                await new Promise(r => setTimeout(r, 300));
+            }
+
+            if (fixedCount > 0) {
+                toast.success(`Quét xong! Phát hiện & đang tự động sửa lỗi cho ${fixedCount} truyện.`);
+            } else {
+                toast.success("Quét xong! Không phát hiện truyện nào bị lỗi chương. ✅");
+            }
+        } catch (err: any) {
+            toast.error("Lỗi khi quét lỗi: " + err.message);
+        } finally {
+            setErrorScanStatus("done");
+        }
+    };
+
     return (
-        <Card>
+        <Card className="border border-blue-500/20 bg-blue-500/5 shadow-sm backdrop-blur-md">
             <CardHeader className="pb-3">
                 <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
                     <div>
@@ -856,7 +1072,6 @@ function MottruyenScannerCard() {
                         </CardDescription>
                     </div>
                     <div className="flex flex-wrap gap-2 items-center">
-                        {/* Nút Kiểm tra cập nhật — luôn hiển thị */}
                         <Button
                             variant="outline" size="sm"
                             onClick={checkForUpdates}
@@ -869,6 +1084,38 @@ function MottruyenScannerCard() {
                                 <><RefreshCwIcon className="size-3.5 mr-1" />Kiểm tra cập nhật</>
                             )}
                         </Button>
+
+                        <Button
+                            variant="outline" size="sm"
+                            onClick={scanReadingRoomErrors}
+                            disabled={errorScanStatus === "scanning" || status === "running"}
+                            className="shrink-0 border-red-500/30 text-red-600 hover:bg-red-500/10"
+                        >
+                            {errorScanStatus === "scanning" ? (
+                                <><Loader2Icon className="size-3.5 mr-1 animate-spin" />Đang quét lỗi...</>
+                            ) : (
+                                <><AlertTriangleIcon className="size-3.5 mr-1" />Quét lỗi</>
+                            )}
+                        </Button>
+
+                        <div className="flex items-center gap-1.5 border border-muted-foreground/20 rounded-md p-1 bg-background/50 h-9 shrink-0">
+                            <span className="text-xs text-muted-foreground pl-1 shrink-0">Tải song song:</span>
+                            <Input
+                                type="number"
+                                value={parallelLimitInput}
+                                onChange={e => setParallelLimitInput(e.target.value)}
+                                className="w-12 h-7 text-xs px-1 text-center bg-transparent border-0 focus-visible:ring-0 focus-visible:ring-offset-0 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
+                                min={1}
+                                max={50}
+                                title="Số lượng truyện tải song song"
+                            />
+                            <Button
+                                onClick={handleSaveParallelLimit}
+                                className="h-7 text-[10px] px-2 shrink-0 bg-blue-600 hover:bg-blue-700 text-white font-semibold"
+                            >
+                                Lưu
+                            </Button>
+                        </div>
 
                         {status === "idle" && (
                             <>
@@ -912,23 +1159,44 @@ function MottruyenScannerCard() {
                     </div>
                 </div>
             </CardHeader>
-            {status !== "idle" && (
+            {(status !== "idle" || updatableNovels.length > 0 || errorScanStatus !== "idle" || errorScanLog.length > 0) && (
                 <CardContent className="pt-0">
                     <div className="space-y-4">
-                        <div className="space-y-2">
-                            <div className="flex justify-between text-xs text-muted-foreground">
-                                <span>Tiến độ tổng: {Math.min(100, Math.round(((currentId - startId) / (endId - startId)) * 100))}%</span>
-                                <span>ID hiện tại: {currentId} / {endId}</span>
+                        {status !== "idle" && (
+                            <div className="space-y-2">
+                                <div className="flex justify-between text-xs text-muted-foreground">
+                                    <span>Tiến độ tổng: {Math.min(100, Math.round(((currentId - startId) / (endId - startId)) * 100))}%</span>
+                                    <span>ID hiện tại: {currentId} / {endId}</span>
+                                </div>
+                                <Progress value={Math.min(100, ((currentId - startId) / (endId - startId)) * 100)} className="h-2" />
                             </div>
-                            <Progress value={Math.min(100, ((currentId - startId) / (endId - startId)) * 100)} className="h-2" />
-                        </div>
+                        )}
 
-                        {/* Chi tiết từng truyện đang tải */}
+                        {errorScanStatus !== "idle" && (
+                            <div className="space-y-2 p-3 rounded-lg border border-red-500/10 bg-red-500/5 text-xs">
+                                <div className="flex justify-between font-medium text-red-600">
+                                    <span>Quét lỗi phòng đọc...</span>
+                                    <span>{errorProgress.current} / {errorProgress.total} truyện</span>
+                                </div>
+                                <Progress value={errorProgress.total > 0 ? (errorProgress.current / errorProgress.total) * 100 : 0} className="h-1.5 bg-red-100" />
+                            </div>
+                        )}
+
+                        {errorScanLog.length > 0 && (
+                            <div className="space-y-1.5 pt-2 border-t border-border/50">
+                                <h4 className="text-xs font-semibold text-red-500 ml-1">Nhật ký quét lỗi:</h4>
+                                <div className="bg-muted/50 p-2.5 rounded-lg text-[10px] font-mono space-y-1 max-h-[200px] overflow-y-auto border">
+                                    {errorScanLog.map((log, idx) => (
+                                        <div key={idx} className="leading-relaxed break-words">{log}</div>
+                                    ))}
+                                </div>
+                            </div>
+                        )}
+
                         {Object.keys(progressData).length > 0 && (
                             <div className="space-y-2 max-h-[300px] overflow-y-auto pr-2">
                                 {Object.entries(progressData)
                                     .filter(([id, p]) => p.status === "fetching" || p.status === "done" || p.status === "paused")
-                                    // Sắp xếp ID lớn hơn lên trên để dễ xem
                                     .sort((a, b) => Number(b[0]) - Number(a[0]))
                                     .map(([id, p]) => {
                                         const pct = p.total > 0 ? Math.round((p.downloaded / p.total) * 100) : 0;
@@ -949,14 +1217,13 @@ function MottruyenScannerCard() {
                             </div>
                         )}
 
-                        {/* Danh sách cập nhật chương mới */}
                         {updatableNovels.length > 0 && (
                             <div className="pt-4 mt-4 border-t border-border/50">
                                 <h3 className="text-sm font-semibold text-emerald-500 mb-3 ml-1 flex items-center gap-1.5">
                                     <ZapIcon className="size-4" />
                                     Có {updatableNovels.length} truyện có chương mới:
                                 </h3>
-                                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 max-h-[600px] overflow-y-auto pr-2 pb-2">
+                                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 max-h-[600px] overflow-y-auto pr-2 pb-2">
                                     {updatableNovels.map((novel) => {
                                         const isUp = updatingIds.has(novel.mottruyenId);
                                         return (
@@ -974,7 +1241,6 @@ function MottruyenScannerCard() {
                                                         <div className="text-xs text-muted-foreground">ID: {novel.mottruyenId}</div>
                                                     </div>
                                                 </div>
-
                                                 <div className="flex items-center justify-between mt-auto pt-2 border-t text-xs">
                                                     <div className="flex flex-col gap-0.5">
                                                         <span className="text-muted-foreground line-through decoration-muted-foreground/30">{novel.localChapterCount} ch</span>
@@ -1002,6 +1268,95 @@ function MottruyenScannerCard() {
                     </div>
                 </CardContent>
             )}
+        </Card>
+    );
+}
+
+function MottruyenIdDownloaderCard() {
+    const [idsInput, setIdsInput] = useState("");
+    const [loading, setLoading] = useState(false);
+
+    const handleDownload = async () => {
+        const cleanedIds = idsInput
+            .split(",")
+            .map(id => id.trim())
+            .filter(id => id.length > 0 && !isNaN(Number(id)));
+
+        if (cleanedIds.length === 0) {
+            toast.error("Vui lòng nhập ít nhất một ID hợp lệ (số).");
+            return;
+        }
+
+        setLoading(true);
+        toast.info(`Bắt đầu xử lý tải cho ${cleanedIds.length} ID truyện...`);
+
+        try {
+            for (const idStr of cleanedIds) {
+                const id = parseInt(idStr);
+                try {
+                    const storyRes = await fetch(`/api/mottruyen-proxy?url=${encodeURIComponent(`http://api.mottruyen.com/story/?story_id=${id}`)}`);
+                    if (!storyRes.ok) {
+                        toast.error(`ID ${id}: Không tải được thông tin từ API Mottruyen`);
+                        continue;
+                    }
+                    const storyData = await storyRes.json();
+                    if (storyData?.success === 1 && storyData.data) {
+                        mottruyenGlobalRefs.downloadQueue.push({
+                            id: id,
+                            novelData: storyData.data,
+                            isUpdateOrFix: true
+                        });
+                        processDownloadQueue();
+                        toast.success(`Đã thêm ID ${id} (${storyData.data.NAME || "Không tên"}) vào hàng đợi tải.`);
+                    } else {
+                        toast.error(`ID ${id}: Truyện không tồn tại hoặc API lỗi`);
+                    }
+                } catch (e: any) {
+                    toast.error(`Lỗi khi xử lý ID ${id}: ${e.message}`);
+                }
+                await new Promise(r => setTimeout(r, 200));
+            }
+            setIdsInput("");
+        } catch (err: any) {
+            toast.error("Lỗi: " + err.message);
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    return (
+        <Card className="border border-violet-500/20 bg-violet-500/5 shadow-sm backdrop-blur-md flex flex-col justify-between">
+            <CardHeader className="pb-3">
+                <CardTitle className="text-sm flex items-center gap-2 text-violet-600">
+                    <DownloadIcon className="size-4" />
+                    Tải Truyện Mottruyen Theo ID
+                </CardTitle>
+                <CardDescription className="text-xs">
+                    Nhập danh sách ID truyện Mottruyen cần tải (cách nhau bởi dấu phẩy). Dành riêng cho tải lẻ không ảnh hưởng quét dải ID hàng loạt.
+                </CardDescription>
+            </CardHeader>
+            <CardContent className="space-y-4 pt-0">
+                <div className="flex gap-2 items-center">
+                    <Input
+                        value={idsInput}
+                        onChange={e => setIdsInput(e.target.value)}
+                        placeholder="Ví dụ: 14336, 17290, 30192"
+                        className="flex-1 h-9"
+                        disabled={loading}
+                    />
+                    <Button
+                        onClick={handleDownload}
+                        disabled={loading}
+                        className="h-9 bg-gradient-to-r from-violet-600 to-purple-600 text-white shrink-0 font-medium"
+                    >
+                        {loading ? (
+                            <><Loader2Icon className="size-3.5 mr-1.5 animate-spin" />Đang thêm...</>
+                        ) : (
+                            <><PlayIcon className="size-3.5 mr-1.5" />Bắt đầu tải</>
+                        )}
+                    </Button>
+                </div>
+            </CardContent>
         </Card>
     );
 }

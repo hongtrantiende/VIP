@@ -48,6 +48,7 @@ export async function saveGeneratedChapter(options: {
     id: chapterId,
     novelId,
     title: outline.chapterTitle,
+    originalTitle: outline.chapterTitle,
     order: chapterPlan.chapterOrder,
     summary: outline.synopsis,
     createdAt: now,

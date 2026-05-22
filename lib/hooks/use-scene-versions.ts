@@ -2,6 +2,7 @@
 
 import { useLiveQuery } from "dexie-react-hooks";
 import { db, type SceneVersionType } from "@/lib/db";
+import { countWords } from "@/lib/utils";
 
 export const MAX_VERSIONS = 10;
 
@@ -54,7 +55,7 @@ export async function createSceneVersion(
       title: activeScene.title,
       content,
       order: activeScene.order,
-      wordCount: (content || "").split(/\s+/).filter(Boolean).length,
+      wordCount: countWords(content || ""),
       version: nextVersion,
       versionType: type,
       isActive: 0,
@@ -94,7 +95,7 @@ export async function ensureInitialVersion(
       title: activeScene.title,
       content,
       order: activeScene.order,
-      wordCount: (content || "").split(/\s+/).filter(Boolean).length,
+      wordCount: countWords(content || ""),
       version: 1,
       versionType: "manual",
       isActive: 0,
@@ -182,7 +183,7 @@ export async function clearChapterTranslations(chapterIds: string[]): Promise<vo
         content: originalContent,
         version: 1,
         versionType: "manual",
-        wordCount: (originalContent || "").split(/\s+/).filter(Boolean).length,
+        wordCount: countWords(originalContent || ""),
         updatedAt: new Date()
       });
     }

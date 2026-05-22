@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { createClient } from "@/lib/supabase/client";
+import { loginAction } from "@/app/actions/auth";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -28,26 +28,15 @@ export default function LoginPage() {
     e.preventDefault();
     setLoading(true);
     
-    const supabase = createClient();
-    const { data, error } = await supabase.auth.signInWithPassword({
-      email,
-      password,
-    });
+    const res = await loginAction(email, password);
 
     setLoading(false);
 
-    if (error) {
-      toast.error(error.message);
+    if (!res.success) {
+      toast.error(res.error || "Đăng nhập thất bại");
     } else {
-      // Generate unique session token for single-session enforcement
-      const sessionToken = crypto.randomUUID();
-      localStorage.setItem("session_token", sessionToken);
-      
-      // Save session token to profiles table
-      if (data.user) {
-        await supabase
-          .from("profiles")
-          .upsert({ id: data.user.id, active_session_id: sessionToken }, { onConflict: "id" });
+      if (res.sessionToken) {
+        localStorage.setItem("session_token", res.sessionToken);
       }
 
       toast.success("Đăng nhập thành công!");

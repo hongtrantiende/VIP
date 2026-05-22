@@ -323,6 +323,7 @@ async function processJob(
             id: `${novelId}-ch-${i}`,
             novelId,
             title: ch.title || `Chương ${i + 1}`,
+            originalTitle: ch.title || `Chương ${i + 1}`,
             order: ch.order ?? i,
             createdAt: new Date(),
             updatedAt: new Date(),
@@ -370,43 +371,21 @@ async function processJob(
                 genres: exportData.novel?.genres || [],
             };
 
-            let uploadSuccess = false;
-            let uploadErrorMsg = '';
-
-            for (let attempt = 1; attempt <= 3; attempt++) {
-                try {
-                    const uploadRes = await fetch(`/api/reading-room?action=upload&novelId=${novelId}`, {
-                        method: "POST",
-                        headers: {
-                            'Content-Type': 'application/octet-stream',
-                            'x-novel-metadata': encodeURIComponent(JSON.stringify(metadata))
-                        },
-                        body: new Blob([compressed as any])
-                    });
-
-                    if (uploadRes.ok) {
-                        uploadSuccess = true;
-                        break;
-                    } else {
-                        const errJson = await uploadRes.json().catch(() => ({}));
-                        uploadErrorMsg = errJson.error || `HTTP Error ${uploadRes.status}`;
-                        // Do not retry for non-transient status codes (e.g. 400, 401, 403, 404)
-                        const transientStatusCodes = [429, 502, 503, 504];
-                        if (!transientStatusCodes.includes(uploadRes.status)) {
-                            break;
+            const { uploadCompressedInChunks } = await import("../utils");
+            await uploadCompressedInChunks(
+                novelId,
+                metadata,
+                compressed,
+                (percent) => {
+                    update({
+                        progress: {
+                            completed: results.length,
+                            total: results.length,
+                            current: `Đang tải lên Reading Room (${percent}%)`
                         }
-                    }
-                } catch (err: any) {
-                    uploadErrorMsg = err.message || "Lỗi kết nối khi tải lên";
+                    });
                 }
-                if (attempt < 3) {
-                    await new Promise(resolve => setTimeout(resolve, Math.pow(2, attempt) * 1000));
-                }
-            }
-
-            if (!uploadSuccess) {
-                throw new Error(uploadErrorMsg || "Lỗi tải lên sau nhiều lần thử");
-            }
+            );
 
             // Xóa cục bộ sau khi upload thành công
             const { deleteNovel } = await import("../hooks/use-novels");

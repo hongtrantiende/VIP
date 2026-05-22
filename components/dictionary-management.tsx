@@ -211,7 +211,11 @@ export function DictionaryManagement({ compact }: { compact?: boolean }) {
         scopeFilter === "all" || e.scope === scopeFilter;
       return matchesSearch && matchesCategory && matchesScope;
     })
-    .sort((a, b) => b.updatedAt.getTime() - a.updatedAt.getTime()); // Mới nhất lên đầu
+    .sort((a, b) => {
+      const timeA = a.updatedAt ? new Date(a.updatedAt).getTime() : 0;
+      const timeB = b.updatedAt ? new Date(b.updatedAt).getTime() : 0;
+      return timeB - timeA;
+    }); // Mới nhất lên đầu
 
   const handleReloadDicts = async () => {
     setIsReloading(true);

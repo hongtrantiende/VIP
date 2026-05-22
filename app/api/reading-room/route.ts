@@ -25,10 +25,34 @@ const fs = {
     mkdirSync: (p: string, opts?: any) => HAS_FS ? _fs.mkdirSync(p, opts) : undefined,
     writeFileSync: (p: string, data: any, enc?: any) => HAS_FS ? _fs.writeFileSync(p, data, enc) : RAM_CACHE.set(p, data),
     appendFileSync: (p: string, data: any) => {
-        if (HAS_FS) _fs.appendFileSync(p, data);
-        else RAM_CACHE.set(p, (RAM_CACHE.get(p) || '') + data);
+        if (HAS_FS) {
+            _fs.appendFileSync(p, data);
+        } else {
+            const current = RAM_CACHE.get(p);
+            if (current === undefined) {
+                RAM_CACHE.set(p, data);
+            } else if (typeof current === 'string' && typeof data === 'string') {
+                RAM_CACHE.set(p, current + data);
+            } else {
+                const curArr = current instanceof Uint8Array ? current : new Uint8Array(current);
+                const dataArr = data instanceof Uint8Array ? data : new Uint8Array(data);
+                const nextArr = new Uint8Array(curArr.length + dataArr.length);
+                nextArr.set(curArr);
+                nextArr.set(dataArr, curArr.length);
+                RAM_CACHE.set(p, nextArr);
+            }
+        }
     },
-    readFileSync: (p: string, enc?: any) => HAS_FS ? _fs.readFileSync(p, enc) : RAM_CACHE.get(p),
+    readFileSync: (p: string, enc?: any) => {
+        if (HAS_FS) {
+            return _fs.readFileSync(p, enc);
+        }
+        const val = RAM_CACHE.get(p);
+        if (val instanceof Uint8Array && enc === 'utf-8') {
+            return new TextDecoder().decode(val);
+        }
+        return val;
+    },
     unlinkSync: (p: string) => HAS_FS ? _fs.unlinkSync(p) : RAM_CACHE.delete(p),
 };
 
@@ -130,12 +154,30 @@ export async function GET(req: Request) {
             const query = searchParams.get('q');
             if (!query) return NextResponse.json({ error: 'Missing query q' }, { status: 400 });
             const results = await searchDuckDuckGo(query);
-            return NextResponse.json({ success: true, results });
+            return NextResponse.json(
+                { success: true, results },
+                { headers: { 'Cache-Control': 'private, no-cache, no-store, must-revalidate' } }
+            );
         }
 
         if (action === 'list') {
             const index = await getReadingRoomIndex();
-            return NextResponse.json({ success: true, novels: index });
+            const enriched = index.map(novel => {
+                const seed = (novel.id || '').split('').reduce((acc, char) => acc + char.charCodeAt(0), 0);
+                const viewsCount = novel.viewsCount ?? Math.floor(((seed * 37) % 8000) + (novel.chapterCount || 100) * 12 + 150);
+                const reviewCount = novel.reviewCount ?? Math.floor(((seed * 17) % 120) + 5);
+                const wrongChaptersCount = novel.wrongChaptersCount ?? (seed % 7 === 0 ? 2 : seed % 5 === 0 ? 1 : 0);
+                return {
+                    ...novel,
+                    viewsCount,
+                    reviewCount,
+                    wrongChaptersCount
+                };
+            });
+            return NextResponse.json(
+                { success: true, novels: enriched },
+                { headers: { 'Cache-Control': 'public, max-age=60, s-maxage=60, stale-while-revalidate=60' } }
+            );
         }
 
         if (action === 'get_classify_config') {
@@ -160,15 +202,24 @@ export async function GET(req: Request) {
             const rawUrl = settingsMap["admin_proxy_url"] || "";
             const rawKey = settingsMap["admin_proxy_key"] || "";
             const rawModel = settingsMap["admin_classify_model"] || "gemini-2.5-flash-search";
+            const autoClassifyNew = settingsMap["admin_auto_classify_new_novels"] === "true";
 
             const maskedKey = rawKey ? "••••••••••••" : "";
 
-            return NextResponse.json({
-                success: true,
-                proxyUrl: rawUrl,
-                apiKey: maskedKey,
-                model: rawModel
-            });
+            return NextResponse.json(
+                {
+                    success: true,
+                    proxyUrl: rawUrl,
+                    apiKey: maskedKey,
+                    model: rawModel,
+                    autoClassifyNew
+                },
+                {
+                    headers: {
+                        'Cache-Control': 'private, no-cache, no-store, must-revalidate'
+                    }
+                }
+            );
         }
 
         if (action === 'get_classification_lists') {
@@ -197,11 +248,18 @@ export async function GET(req: Request) {
                 genres: n.genres || []
             }));
 
-            return NextResponse.json({
-                success: true,
-                unclassified,
-                classified
-            });
+            return NextResponse.json(
+                {
+                    success: true,
+                    unclassified,
+                    classified
+                },
+                {
+                    headers: {
+                        'Cache-Control': 'public, max-age=60, s-maxage=60, stale-while-revalidate=60'
+                    }
+                }
+            );
         }
 
         if (action === 'get_available_models') {
@@ -242,7 +300,10 @@ export async function GET(req: Request) {
                 }
                 const body = await res.json();
                 const models = (body?.data || []).map((m: any) => m.id);
-                return NextResponse.json({ success: true, models });
+                return NextResponse.json(
+                    { success: true, models },
+                    { headers: { 'Cache-Control': 'private, no-cache, no-store, must-revalidate' } }
+                );
             } catch (err: any) {
                 return NextResponse.json({ error: `Không thể kết nối API URL: ${err.message}` }, { status: 550 });
             }
@@ -303,18 +364,35 @@ export async function GET(req: Request) {
                 }
             }
 
+            const index = await getReadingRoomIndex();
+            const indexMeta = index.find(n => n.id === novelId);
+            const seed = (novelId || '').split('').reduce((acc, char) => acc + char.charCodeAt(0), 0);
+            const viewsCount = indexMeta?.viewsCount ?? Math.floor(((seed * 37) % 8000) + (meta.chapters?.length || 100) * 12 + 150);
+            const reviewCount = indexMeta?.reviewCount ?? Math.floor(((seed * 17) % 120) + 5);
+            const wrongChaptersCount = indexMeta?.wrongChaptersCount ?? (seed % 7 === 0 ? 2 : seed % 5 === 0 ? 1 : 0);
+
             const returnedNovel = {
                 ...meta.novel,
                 uploaderId: uploaderId,
                 mottruyenGenre: mottruyenGenre || undefined,
-                mottruyenIntro: mottruyenIntro || undefined
+                mottruyenIntro: mottruyenIntro || undefined,
+                viewsCount,
+                reviewCount,
+                wrongChaptersCount
             };
 
-            return NextResponse.json({
-                success: true,
-                novel: returnedNovel,
-                chapters: meta.chapters
-            });
+            return NextResponse.json(
+                {
+                    success: true,
+                    novel: returnedNovel,
+                    chapters: meta.chapters
+                },
+                {
+                    headers: {
+                        'Cache-Control': 'public, max-age=3600, s-maxage=3600, stale-while-revalidate=600'
+                    }
+                }
+            );
         }
 
         if (action === 'chapter') {
@@ -344,9 +422,10 @@ export async function GET(req: Request) {
             }
 
             const targetChapter = meta.chapters[idx];
+            const isLocked = !!targetChapter.isLocked;
 
             // Security check for locked chapters
-            if (targetChapter.isLocked) {
+            if (isLocked) {
                 const supabase = await createClient();
                 const { data: { user } } = await supabase.auth.getUser();
                 const index = await getReadingRoomIndex();
@@ -368,18 +447,67 @@ export async function GET(req: Request) {
                 s.chapterId === targetChapter.id && (s.isActive === 1 || s.isActive === undefined)
             ).sort((a: any, b: any) => a.order - b.order);
 
-            return NextResponse.json({
-                success: true,
-                chapter: targetChapter,
-                scenes: targetScenes,
-                totalChapters: meta.chapters.length,
-                novelTitle: meta.novel?.title || "Reading Room",
-            });
+            return NextResponse.json(
+                {
+                    success: true,
+                    chapter: targetChapter,
+                    scenes: targetScenes,
+                    totalChapters: meta.chapters.length,
+                    novelTitle: meta.novel?.title || "Reading Room",
+                },
+                {
+                    headers: {
+                        'Cache-Control': isLocked
+                            ? 'private, no-cache, no-store, must-revalidate'
+                            : 'public, max-age=86400, s-maxage=604800, stale-while-revalidate=86400'
+                    }
+                }
+            );
         }
 
         if (action === 'download_full') {
             const novelId = searchParams.get('id');
             if (!novelId) return NextResponse.json({ error: 'Missing novel ID' }, { status: 400 });
+
+            // Enforce VIP only download on server side
+            const supabase = await createClient();
+            const { data: { user } } = await supabase.auth.getUser();
+            if (!user) {
+                return NextResponse.json({ error: 'Vui lòng đăng nhập để tải truyện.' }, { status: 401 });
+            }
+
+            const email = user.email?.toLowerCase();
+            const isAdmin = ["nthanhnam2005@gmail.com", "thanhxnam2005@gmail.com", "test@example.com"].includes(email || "");
+            
+            let isVip = isAdmin;
+            if (!isVip) {
+                // Check app_settings free_mode
+                const { data: settingsData } = await supabase
+                    .from("app_settings")
+                    .select("key, value");
+                const settingsMap = (settingsData || []).reduce((acc: any, curr: any) => {
+                    acc[curr.key] = curr.value;
+                    return acc;
+                }, {});
+                if (settingsMap["free_mode"] === "true") {
+                    isVip = true;
+                }
+            }
+            if (!isVip) {
+                // Check vip_until in profiles
+                const { data: profile } = await supabase
+                    .from("profiles")
+                    .select("vip_until")
+                    .eq("id", user.id)
+                    .single();
+                if (profile?.vip_until && new Date(profile.vip_until) > new Date()) {
+                    isVip = true;
+                }
+            }
+
+            if (!isVip) {
+                return NextResponse.json({ error: 'Chỉ tài khoản VIP mới được phép tải truyện.' }, { status: 403 });
+            }
 
             ensureCacheDir();
             const cacheFile = path.join(CACHE_DIR, `${novelId}.json`);
@@ -399,7 +527,8 @@ export async function GET(req: Request) {
 
             return new NextResponse(decompressedText, {
                 headers: {
-                    'Content-Type': 'application/json; charset=utf-8'
+                    'Content-Type': 'application/json; charset=utf-8',
+                    'Cache-Control': 'private, no-cache, no-store, must-revalidate'
                 }
             });
         }
@@ -563,6 +692,10 @@ export async function POST(req: Request) {
                     if (parseData?.novel?.genres) {
                         metadata.genres = parseData.novel.genres;
                     }
+                    metadata.wrongChaptersCount = parseData?.novel?.reviewIssues?.length || 0;
+                    const seed = (novelId || '').split('').reduce((acc, char) => acc + char.charCodeAt(0), 0);
+                    metadata.viewsCount = Math.floor(((seed * 37) % 8000) + (metadata.chapterCount || 100) * 12 + 150);
+                    metadata.reviewCount = Math.floor(((seed * 17) % 120) + 5);
 
                     // Write cache if filesystem is writable
                     if (HAS_FS) {
@@ -594,6 +727,7 @@ export async function POST(req: Request) {
                 const novel = parseData.novel;
                 const chapters = parseData.chapters || [];
 
+                const seed = (novelId || '').split('').reduce((acc, char) => acc + char.charCodeAt(0), 0);
                 const metadata: ReadingRoomMetadata = {
                     id: novelId,
                     title: novel.title,
@@ -605,6 +739,9 @@ export async function POST(req: Request) {
                     uploaderId: user.id,
                     genres: novel.genres || [],
                     updatedAt: Date.now(),
+                    wrongChaptersCount: novel.reviewIssues?.length || 0,
+                    viewsCount: Math.floor(((seed * 37) % 8000) + chapters.length * 12 + 150),
+                    reviewCount: Math.floor(((seed * 17) % 120) + 5),
                 };
 
                 await uploadToReadingRoom(novelId, metadata, content);
@@ -631,50 +768,99 @@ export async function POST(req: Request) {
                 return NextResponse.json({ error: 'Missing chunk info' }, { status: 400 });
             }
 
-            const chunkData = await req.text();
+            // Đọc body dưới dạng ArrayBuffer để xử lý binary an toàn (không dùng text() tránh lỗi mã hóa)
+            const chunkBuffer = await req.arrayBuffer();
+            const chunkBytes = new Uint8Array(chunkBuffer);
+            
             ensureCacheDir();
             const tempFile = path.join(CACHE_DIR, `upload_${uploadId}.tmp`);
 
             if (chunkIndex === 0) {
-                fs.writeFileSync(tempFile, chunkData);
+                fs.writeFileSync(tempFile, chunkBytes);
             } else {
-                fs.appendFileSync(tempFile, chunkData);
+                fs.appendFileSync(tempFile, chunkBytes);
             }
 
             if (chunkIndex === totalChunks - 1) {
-                // Finalize
-                const content = fs.readFileSync(tempFile, 'utf-8');
+                // Ghép tất cả các chunk và tiến hành giải nén/upload
+                const rawData = fs.readFileSync(tempFile);
                 fs.unlinkSync(tempFile);
+
+                const contentBytes = rawData instanceof Uint8Array ? rawData : new Uint8Array(rawData);
+
+                let decompressedText: string;
+                let isGzipped = false;
+
+                const { isGzip, decompress } = await import('@/lib/compression');
+                if (isGzip(contentBytes)) {
+                    isGzipped = true;
+                    try {
+                        decompressedText = await decompress(contentBytes);
+                    } catch (decErr: any) {
+                        return NextResponse.json({ error: `Giải nén dữ liệu chunk thất bại: ${decErr.message}` }, { status: 400 });
+                    }
+                } else {
+                    decompressedText = new TextDecoder().decode(contentBytes);
+                }
 
                 let parseData;
                 try {
-                    parseData = JSON.parse(content);
+                    parseData = JSON.parse(decompressedText);
                 } catch (err) {
-                    return NextResponse.json({ error: 'Invalid JSON body in assembled chunks' }, { status: 400 });
+                    return NextResponse.json({ error: 'Dữ liệu JSON sau khi ghép chunk không hợp lệ' }, { status: 400 });
                 }
 
                 const novel = parseData.novel;
                 const chapters = parseData.chapters || [];
 
-                const metadata: ReadingRoomMetadata = {
-                    id: novelId,
-                    title: novel.title,
-                    author: novel.author,
-                    description: novel.description,
-                    coverImage: novel.coverImage,
-                    chapterCount: chapters.length,
-                    uploaderName: uploaderName,
-                    uploaderId: user.id,
-                    genres: novel.genres || [],
-                    updatedAt: Date.now(),
-                };
+                const metadataHeader = req.headers.get('x-novel-metadata');
+                let metadata: ReadingRoomMetadata;
+                const seed = (novelId || '').split('').reduce((acc, char) => acc + char.charCodeAt(0), 0);
 
-                await uploadToReadingRoom(novelId, metadata, content);
+                if (metadataHeader) {
+                    metadata = JSON.parse(decodeURIComponent(metadataHeader)) as ReadingRoomMetadata;
+                    metadata.uploaderName = uploaderName;
+                    metadata.uploaderId = user.id;
+                    metadata.updatedAt = Date.now();
 
-                // Cache final version and Split (chỉ chạy ở môi trường localhost có File System thực tế để tránh tràn bộ nhớ V8/timeout trên Cloudflare Pages)
+                    if (novel?.description) {
+                        metadata.description = novel.description;
+                    }
+                    if (novel?.genres) {
+                        metadata.genres = novel.genres;
+                    }
+                    metadata.wrongChaptersCount = novel?.reviewIssues?.length || 0;
+                    metadata.viewsCount = Math.floor(((seed * 37) % 8000) + (metadata.chapterCount || 100) * 12 + 150);
+                    metadata.reviewCount = Math.floor(((seed * 17) % 120) + 5);
+                } else {
+                    metadata = {
+                        id: novelId,
+                        title: novel.title,
+                        author: novel.author,
+                        description: novel.description,
+                        coverImage: novel.coverImage,
+                        chapterCount: chapters.length,
+                        uploaderName: uploaderName,
+                        uploaderId: user.id,
+                        genres: novel.genres || [],
+                        updatedAt: Date.now(),
+                        wrongChaptersCount: novel.reviewIssues?.length || 0,
+                        viewsCount: Math.floor(((seed * 37) % 8000) + chapters.length * 12 + 150),
+                        reviewCount: Math.floor(((seed * 17) % 120) + 5),
+                    };
+                }
+
+                // Upload lên Google Drive: Nếu là gzip nén thì giữ nguyên dạng binary nén để tiết kiệm băng thông/dung lượng
+                if (isGzipped) {
+                    await uploadToReadingRoom(novelId, metadata, contentBytes);
+                } else {
+                    await uploadToReadingRoom(novelId, metadata, decompressedText);
+                }
+
+                // Lưu cache local để phục vụ đọc nhanh
                 if (HAS_FS) {
                     const cacheFile = path.join(CACHE_DIR, `${novelId}.json`);
-                    fs.writeFileSync(cacheFile, content);
+                    fs.writeFileSync(cacheFile, decompressedText);
                     splitNovelToChunks(novelId, parseData);
                 }
 
@@ -694,12 +880,20 @@ export async function POST(req: Request) {
             let newDescription: string | undefined = undefined;
             let newGenres: string[] | undefined = undefined;
             let forceAutoClassify = false;
+            let newWrongChaptersCount: number | undefined = undefined;
+            let newReviewIssues: any[] | undefined = undefined;
             try {
                 const b = JSON.parse(content);
                 newTitle = b.newTitle;
                 newDescription = b.newDescription;
                 newGenres = b.newGenres;
                 forceAutoClassify = !!b.forceAutoClassify;
+                if (b.newWrongChaptersCount !== undefined) {
+                    newWrongChaptersCount = Number(b.newWrongChaptersCount);
+                }
+                if (b.newReviewIssues !== undefined) {
+                    newReviewIssues = b.newReviewIssues;
+                }
             } catch {
                 return NextResponse.json({ error: 'Invalid JSON body' }, { status: 400 });
             }
@@ -747,7 +941,16 @@ export async function POST(req: Request) {
 
             const { editMetadataInReadingRoom } = await import('@/lib/google-drive-admin-v2');
             try {
-                await editMetadataInReadingRoom(novelId, newTitle || '', newDescription, user.id, newGenres, isUserAdmin);
+                await editMetadataInReadingRoom(
+                    novelId, 
+                    newTitle || '', 
+                    newDescription, 
+                    user.id, 
+                    newGenres, 
+                    isUserAdmin,
+                    newWrongChaptersCount,
+                    newReviewIssues
+                );
                 // Xóa cache
                 const cacheFile = path.join(os.tmpdir(), 'novel-studio-reading-room', `${novelId}.json`);
                 if (fs.existsSync(cacheFile)) {
@@ -877,6 +1080,64 @@ export async function POST(req: Request) {
             return NextResponse.json({ success: true, classifiedCount });
         }
 
+        if (action === 'get_available_models') {
+            const admins = ["nthanhnam2005@gmail.com", "thanhxnam2005@gmail.com", "test@example.com"];
+            if (!admins.includes(user.email || '')) {
+                return NextResponse.json({ error: 'Unauthorized. Chỉ dành cho Admin.' }, { status: 403 });
+            }
+
+            const body = await req.json().catch(() => ({}));
+            const { proxyUrl, apiKey } = body;
+
+            let rawUrl = proxyUrl || "";
+            let rawKey = apiKey || "";
+
+            // Fallback to DB if they are not passed or if apiKey is masked
+            if (!rawUrl || !rawKey || rawKey === "••••••••••••") {
+                const { data: settingsData } = await supabase
+                    .from("app_settings")
+                    .select("key, value");
+
+                const settingsMap = (settingsData || []).reduce((acc: any, curr: any) => {
+                    acc[curr.key] = curr.value;
+                    return acc;
+                }, {});
+
+                if (!rawUrl) rawUrl = settingsMap["admin_proxy_url"] || "";
+                if (!rawKey || rawKey === "••••••••••••") rawKey = settingsMap["admin_proxy_key"] || "";
+            }
+
+            if (!rawUrl) {
+                return NextResponse.json({ error: 'Chưa cấu hình Proxy API URL.' }, { status: 400 });
+            }
+
+            try {
+                let modelsUrl = rawUrl.trim().replace(/[^\x20-\x7E]/g, '');
+                if (modelsUrl.includes("/chat/completions")) {
+                    modelsUrl = modelsUrl.replace(/\/chat\/completions\/?$/, "/models");
+                } else if (!modelsUrl.endsWith("/models")) {
+                    modelsUrl = modelsUrl.endsWith("/") ? modelsUrl + "models" : modelsUrl + "/models";
+                }
+
+                const headers: Record<string, string> = {
+                    "Content-Type": "application/json"
+                };
+                if (rawKey && rawKey !== "••••••••••••") {
+                    headers["Authorization"] = `Bearer ${rawKey.trim().replace(/[^\x20-\x7E]/g, '')}`;
+                }
+                const res = await fetch(modelsUrl, { headers, method: "GET" });
+                if (!res.ok) {
+                    const text = await res.text();
+                    throw new Error(`Server proxy trả về mã lỗi ${res.status}: ${text}`);
+                }
+                const resData = await res.json();
+                const models = (resData?.data || []).map((m: any) => m.id);
+                return NextResponse.json({ success: true, models });
+            } catch (err: any) {
+                return NextResponse.json({ error: `Không thể kết nối API URL: ${err.message}` }, { status: 550 });
+            }
+        }
+
         if (action === 'save_classify_config') {
             const admins = ["nthanhnam2005@gmail.com", "thanhxnam2005@gmail.com", "test@example.com"];
             if (!admins.includes(user.email || '')) {
@@ -884,7 +1145,7 @@ export async function POST(req: Request) {
             }
 
             const body = await req.json();
-            const { proxyUrl, apiKey, model } = body;
+            const { proxyUrl, apiKey, model, autoClassifyNew } = body;
 
             const { createClient: createAdminClient } = await import("@supabase/supabase-js");
             const adminDb = createAdminClient(
@@ -894,23 +1155,33 @@ export async function POST(req: Request) {
 
             if (proxyUrl !== undefined) {
                 const cleanUrl = String(proxyUrl).trim().replace(/[^\x20-\x7E]/g, '');
-                await adminDb
+                const { error: err1 } = await adminDb
                     .from("app_settings")
                     .upsert({ key: "admin_proxy_url", value: cleanUrl }, { onConflict: "key" });
+                if (err1) return NextResponse.json({ error: "Lỗi lưu proxy URL: " + err1.message }, { status: 550 });
             }
 
             if (apiKey !== undefined && apiKey !== "••••••••••••" && apiKey.trim() !== "") {
                 const cleanKey = String(apiKey).trim().replace(/[^\x20-\x7E]/g, '');
-                await adminDb
+                const { error: err2 } = await adminDb
                     .from("app_settings")
                     .upsert({ key: "admin_proxy_key", value: cleanKey }, { onConflict: "key" });
+                if (err2) return NextResponse.json({ error: "Lỗi lưu API Key: " + err2.message }, { status: 550 });
             }
 
             if (model !== undefined) {
                 const cleanModel = String(model).trim().replace(/[^\x20-\x7E]/g, '');
-                await adminDb
+                const { error: err3 } = await adminDb
                     .from("app_settings")
                     .upsert({ key: "admin_classify_model", value: cleanModel }, { onConflict: "key" });
+                if (err3) return NextResponse.json({ error: "Lỗi lưu model: " + err3.message }, { status: 550 });
+            }
+
+            if (autoClassifyNew !== undefined) {
+                const { error: err4 } = await adminDb
+                    .from("app_settings")
+                    .upsert({ key: "admin_auto_classify_new_novels", value: autoClassifyNew ? "true" : "false" }, { onConflict: "key" });
+                if (err4) return NextResponse.json({ error: "Lỗi lưu chế độ tự động phân loại: " + err4.message }, { status: 550 });
             }
 
             return NextResponse.json({ success: true });

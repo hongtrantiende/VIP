@@ -80,5 +80,6 @@ export const mottruyenGlobalRefs = {
     successCount: 0,
     totalProcessed: 0,
     currentId: 800,
-    readingRoomIndex: new Set<string>()
+    readingRoomIndex: new Set<string>(),
+    maxParallelDownloads: 10
 };

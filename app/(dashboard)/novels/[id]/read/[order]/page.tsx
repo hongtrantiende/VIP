@@ -2,6 +2,7 @@
 
 import { ChapterSelectDialog } from "@/components/reader/chapter-select-dialog";
 import { SentenceRenderer } from "@/components/reader/sentence-renderer";
+import { ObfuscatedText } from "@/components/reader/obfuscated-text";
 import { Button } from "@/components/ui/button";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Skeleton } from "@/components/ui/skeleton";
@@ -73,7 +74,7 @@ function ChapterContent({
       >
         {text.split(/\r?\n/).map(p => p.trim()).filter(Boolean).map((paragraph, i) => (
           <p key={i} className="mb-6 last:mb-0">
-            {paragraph}
+            <ObfuscatedText text={paragraph} />
           </p>
         ))}
       </div>
@@ -121,7 +122,17 @@ export default function ReadingView() {
     const savedSize = localStorage.getItem("reader_font_size");
     const savedFamily = localStorage.getItem("reader_font_family");
     if (savedSize) setFontSize(parseInt(savedSize));
-    if (savedFamily) setFontFamily(savedFamily);
+    if (savedFamily) {
+      if (savedFamily.includes("Palatino")) {
+        setFontFamily("font-palatino");
+      } else if (savedFamily.includes("Times_New_Roman")) {
+        setFontFamily("font-times");
+      } else if (savedFamily.includes("Arial")) {
+        setFontFamily("font-sans");
+      } else {
+        setFontFamily(savedFamily);
+      }
+    }
   }, []);
 
   const updateFontSize = (newSize: number) => {
@@ -243,12 +254,14 @@ export default function ReadingView() {
               <SelectValue placeholder="Font" />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value="font-serif">Serif</SelectItem>
+              <SelectItem value="font-serif">Serif (Playfair)</SelectItem>
+              <SelectItem value="font-bookerly">Bookerly</SelectItem>
+              <SelectItem value="font-literata">Literata</SelectItem>
+              <SelectItem value="font-lora">Lora</SelectItem>
+              <SelectItem value="font-palatino">Palatino</SelectItem>
+              <SelectItem value="font-times">Times New Roman</SelectItem>
               <SelectItem value="font-sans">Sans-serif</SelectItem>
               <SelectItem value="font-mono">Monospace</SelectItem>
-              <SelectItem value="!font-['Palatino_Linotype',_'Book_Antiqua',_Palatino,_serif]">Palatino</SelectItem>
-              <SelectItem value="!font-['Times_New_Roman',_Times,_serif]">Times New Roman</SelectItem>
-              <SelectItem value="!font-[Arial,_Helvetica,_sans-serif]">Arial</SelectItem>
             </SelectContent>
           </Select>
 

@@ -428,6 +428,7 @@ export const useScraperStore = create<ScraperState>()(
                 id: chapterId,
                 novelId: targetId,
                 title: content.title,
+                originalTitle: content.title,
                 order: currentOrder,
                 createdAt: now,
                 updatedAt: now,

@@ -26,6 +26,105 @@ import { type Novel } from "@/lib/db";
 import { useProfile } from "@/lib/hooks/use-profile";
 import { toast } from "sonner";
 
+const formatViews = (val?: number) => {
+    if (!val) return "0";
+    if (val >= 1000) {
+        return (val / 1000).toFixed(1).replace(/\.0$/, "") + "K";
+    }
+    return val.toString();
+};
+
+function ExploreSkeleton({ isDark }: { isDark: boolean }) {
+    return (
+        <div className="space-y-6 animate-page-enter">
+            {/* Banner skeleton */}
+            <div className={`relative w-full h-36 sm:h-48 md:h-56 rounded-2xl overflow-hidden border ${isDark ? "bg-zinc-900 border-zinc-800" : "bg-zinc-100 border-zinc-200"}`}>
+                <div className="w-full h-full flex items-stretch gap-4 p-4">
+                    <div className={`shrink-0 h-full aspect-[3/4] rounded-xl animate-pulse ${isDark ? "bg-zinc-850" : "bg-zinc-250"}`} />
+                    <div className="flex-1 flex flex-col justify-center space-y-3">
+                        <div className="flex gap-2">
+                            <div className={`h-4 w-12 rounded animate-pulse ${isDark ? "bg-zinc-850" : "bg-zinc-250"}`} />
+                            <div className={`h-4 w-10 rounded animate-pulse ${isDark ? "bg-zinc-850" : "bg-zinc-250"}`} />
+                        </div>
+                        <div className={`h-6 w-3/4 rounded animate-pulse ${isDark ? "bg-zinc-850" : "bg-zinc-250"}`} />
+                        <div className={`h-4 w-1/2 rounded animate-pulse ${isDark ? "bg-zinc-850" : "bg-zinc-250"}`} />
+                    </div>
+                </div>
+                {/* Shimmer overlay */}
+                <div className="absolute inset-0 animate-shimmer pointer-events-none" />
+            </div>
+
+            {/* Mới cập nhật section */}
+            <div className="space-y-3">
+                <div className="flex justify-between items-center">
+                    <div className={`h-5 w-32 rounded animate-pulse ${isDark ? "bg-zinc-850" : "bg-zinc-250"}`} />
+                    <div className={`h-3 w-16 rounded animate-pulse ${isDark ? "bg-zinc-850" : "bg-zinc-250"}`} />
+                </div>
+                <div className="flex gap-4 overflow-x-auto pb-2 scrollbar-none">
+                    {Array.from({ length: 5 }).map((_, i) => (
+                        <div key={i} className="shrink-0 w-28 flex flex-col gap-2 relative overflow-hidden">
+                            <div className={`w-full aspect-3/4 rounded-xl animate-pulse ${isDark ? "bg-zinc-850" : "bg-zinc-250"}`} />
+                            <div className={`h-3.5 w-full rounded animate-pulse ${isDark ? "bg-zinc-850" : "bg-zinc-250"}`} />
+                            <div className={`h-3 w-2/3 rounded animate-pulse ${isDark ? "bg-zinc-850" : "bg-zinc-250"}`} />
+                            <div className="absolute inset-0 animate-shimmer pointer-events-none" />
+                        </div>
+                    ))}
+                </div>
+            </div>
+
+            {/* Truyện chọn lọc section */}
+            <div className="space-y-3">
+                <div className={`h-5 w-36 rounded animate-pulse ${isDark ? "bg-zinc-850" : "bg-zinc-250"}`} />
+                <div className="grid grid-cols-3 sm:grid-cols-6 gap-3">
+                    {Array.from({ length: 6 }).map((_, i) => (
+                        <div key={i} className="flex flex-col gap-2 relative overflow-hidden">
+                            <div className={`w-full aspect-3/4 rounded-xl animate-pulse ${isDark ? "bg-zinc-850" : "bg-zinc-250"}`} />
+                            <div className={`h-3 w-5/6 mx-auto rounded animate-pulse ${isDark ? "bg-zinc-850" : "bg-zinc-250"}`} />
+                            <div className="absolute inset-0 animate-shimmer pointer-events-none" />
+                        </div>
+                    ))}
+                </div>
+            </div>
+        </div>
+    );
+}
+
+function CatalogSkeleton({ isDark }: { isDark: boolean }) {
+    return (
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5 animate-page-enter">
+            {Array.from({ length: 6 }).map((_, i) => (
+                <div
+                    key={i}
+                    className={`flex gap-4 p-3 rounded-2xl border relative overflow-hidden ${isDark ? "bg-[#131416] border-zinc-800/30" : "bg-[#fffbf4] border-zinc-200"}`}
+                >
+                    {/* Cover shape */}
+                    <div className={`shrink-0 w-16 aspect-3/4 rounded-xl animate-pulse ${isDark ? "bg-zinc-850" : "bg-zinc-250"}`} />
+
+                    {/* Details shape */}
+                    <div className="flex-1 flex flex-col justify-between py-1">
+                        <div className="space-y-2">
+                            {/* Pill tag */}
+                            <div className={`h-4.5 w-16 rounded animate-pulse ${isDark ? "bg-zinc-850" : "bg-zinc-250"}`} />
+                            {/* Title */}
+                            <div className={`h-4.5 w-5/6 rounded animate-pulse ${isDark ? "bg-zinc-850" : "bg-zinc-250"}`} />
+                        </div>
+                        {/* Meta row */}
+                        <div className="flex justify-between items-center">
+                            <div className={`h-3 w-20 rounded animate-pulse ${isDark ? "bg-zinc-850" : "bg-zinc-250"}`} />
+                            <div className="flex gap-2">
+                                <div className={`h-3.5 w-10 rounded animate-pulse ${isDark ? "bg-zinc-850" : "bg-zinc-250"}`} />
+                                <div className={`h-3.5 w-12 rounded animate-pulse ${isDark ? "bg-zinc-850" : "bg-zinc-250"}`} />
+                            </div>
+                        </div>
+                    </div>
+                    {/* Shimmer effect */}
+                    <div className="absolute inset-0 animate-shimmer pointer-events-none" />
+                </div>
+            ))}
+        </div>
+    );
+}
+
 export default function StandaloneReadingRoomApp() {
     const router = useRouter();
     const { profile, loading: profileLoading, isVip } = useProfile();
@@ -623,7 +722,7 @@ export default function StandaloneReadingRoomApp() {
 
                     {/* library tab */}
                     {activeTab === "library" && (
-                        <div className="space-y-4 animate-in fade-in duration-300">
+                        <div key="library" className="space-y-4 animate-page-enter">
                             {/* Library top bar */}
                             <div className="flex justify-between items-center pb-2">
                                 <h1 className="text-2xl font-bold">Tủ Truyện</h1>
@@ -733,7 +832,7 @@ export default function StandaloneReadingRoomApp() {
 
                     {/* explore tab */}
                     {activeTab === "explore" && (
-                        <div className="space-y-6 animate-in fade-in duration-300">
+                        <div key="explore" className="space-y-6 animate-page-enter">
                             {/* Explore Top bar */}
                             <div className="flex justify-between items-center pb-1">
                                 <div className={`flex gap-1.5 items-center font-bold text-sm border px-3 py-1 rounded-full ${isDark ? "bg-zinc-800/30 border-zinc-800 text-zinc-300" : "bg-white border-zinc-200 text-zinc-700 shadow-sm"}`}>
@@ -756,89 +855,95 @@ export default function StandaloneReadingRoomApp() {
                                 </div>
                             </div>
 
-                            {/* Slider rotating banners */}
-                            <div className={`relative w-full h-36 sm:h-48 md:h-56 rounded-2xl overflow-hidden shadow-lg border ${isDark ? "bg-zinc-900 border-zinc-800" : "bg-zinc-100 border-zinc-200"}`}>
-                                {exploreBannerNovels.length > 0 ? (
-                                    <div className="relative w-full h-full flex items-stretch gap-4 overflow-hidden group">
-                                        {/* Blurred background image cover */}
-                                        <img src={exploreBannerNovels[0].coverImage} className="absolute inset-0 w-full h-full object-cover filter blur-md opacity-35 scale-105 select-none pointer-events-none" referrerPolicy="no-referrer" />
-                                        <div className="absolute inset-0 bg-gradient-to-r from-black/95 via-black/85 to-black/65" />
+                            {loading ? (
+                                <ExploreSkeleton isDark={isDark} />
+                            ) : (
+                                <>
+                                    {/* Slider rotating banners */}
+                                    <div className={`relative w-full h-36 sm:h-48 md:h-56 rounded-2xl overflow-hidden shadow-lg border ${isDark ? "bg-zinc-900 border-zinc-800" : "bg-zinc-100 border-zinc-200"}`}>
+                                        {exploreBannerNovels.length > 0 ? (
+                                            <div className="relative w-full h-full flex items-stretch gap-4 overflow-hidden group">
+                                                {/* Blurred background image cover */}
+                                                <img src={exploreBannerNovels[0].coverImage} className="absolute inset-0 w-full h-full object-cover filter blur-md opacity-35 scale-105 select-none pointer-events-none" referrerPolicy="no-referrer" />
+                                                <div className="absolute inset-0 bg-gradient-to-r from-black/95 via-black/85 to-black/65" />
 
-                                        {/* Sharp portrait cover foreground */}
-                                        <div className="relative shrink-0 h-full aspect-[3/4] overflow-hidden border-r border-white/10 shadow-md">
-                                            {exploreBannerNovels[0].coverImage ? (
-                                                <img src={exploreBannerNovels[0].coverImage} className="w-full h-full object-cover" referrerPolicy="no-referrer" />
-                                            ) : (
-                                                <div className="w-full h-full bg-zinc-700 flex items-center justify-center text-[8px] text-white p-0.5 text-center font-bold">{exploreBannerNovels[0].title}</div>
-                                            )}
-                                        </div>
+                                                {/* Sharp portrait cover foreground */}
+                                                <div className="relative shrink-0 h-full aspect-[3/4] overflow-hidden border-r border-white/10 shadow-md">
+                                                    {exploreBannerNovels[0].coverImage ? (
+                                                        <img src={exploreBannerNovels[0].coverImage} className="w-full h-full object-cover" referrerPolicy="no-referrer" />
+                                                    ) : (
+                                                        <div className="w-full h-full bg-zinc-700 flex items-center justify-center text-[8px] text-white p-0.5 text-center font-bold">{exploreBannerNovels[0].title}</div>
+                                                    )}
+                                                </div>
 
-                                        {/* Details */}
-                                        <div className="relative flex-1 min-w-0 flex flex-col justify-center py-3 pr-4 pl-1 text-white">
-                                            <div className="flex gap-1.5 items-center mb-1.5">
-                                                <span className="bg-blue-500/95 text-[8px] font-extrabold px-1.5 py-0.5 rounded w-max uppercase tracking-wider shadow-sm text-white">NỔI BẬT</span>
-                                                <span className="bg-emerald-500 text-[8px] font-extrabold px-1.5 py-0.5 rounded w-max uppercase tracking-wider shadow-sm text-white">NEW</span>
+                                                {/* Details */}
+                                                <div className="relative flex-1 min-w-0 flex flex-col justify-center py-3 pr-4 pl-1 text-white">
+                                                    <div className="flex gap-1.5 items-center mb-1.5">
+                                                        <span className="bg-blue-500/95 text-[8px] font-extrabold px-1.5 py-0.5 rounded w-max uppercase tracking-wider shadow-sm text-white">NỔI BẬT</span>
+                                                        <span className="bg-emerald-500 text-[8px] font-extrabold px-1.5 py-0.5 rounded w-max uppercase tracking-wider shadow-sm text-white">NEW</span>
+                                                    </div>
+                                                    <h2 className="text-sm md:text-lg font-extrabold truncate drop-shadow-sm leading-snug">{exploreBannerNovels[0].title}</h2>
+                                                    <p className="text-[10px] md:text-xs text-zinc-300 font-medium truncate mt-0.5">{exploreBannerNovels[0].author || "Khuyết danh"}</p>
+                                                    {exploreBannerNovels[0].description && (
+                                                        <p className="text-[9px] text-zinc-400 mt-1 lines-clamp-2 leading-relaxed hidden sm:block">
+                                                            {exploreBannerNovels[0].description.slice(0, 110) + (exploreBannerNovels[0].description.length > 110 ? "..." : "")}
+                                                        </p>
+                                                    )}
+                                                </div>
                                             </div>
-                                            <h2 className="text-sm md:text-lg font-extrabold truncate drop-shadow-sm leading-snug">{exploreBannerNovels[0].title}</h2>
-                                            <p className="text-[10px] md:text-xs text-zinc-300 font-medium truncate mt-0.5">{exploreBannerNovels[0].author || "Khuyết danh"}</p>
-                                            {exploreBannerNovels[0].description && (
-                                                <p className="text-[9px] text-zinc-400 mt-1 lines-clamp-2 leading-relaxed hidden sm:block">
-                                                    {exploreBannerNovels[0].description.slice(0, 110) + (exploreBannerNovels[0].description.length > 110 ? "..." : "")}
-                                                </p>
-                                            )}
+                                        ) : (
+                                            <div className="w-full h-full flex items-center justify-center text-zinc-550 text-xs font-semibold">Gợi ý truyện đề cử</div>
+                                        )}
+                                    </div>
+
+                                    {/* Section: Mới nhất */}
+                                    <div className="space-y-2.5">
+                                        <div className="flex justify-between items-center">
+                                            <h2 className="text-base font-bold flex items-center gap-1.5"><SparklesIcon className="w-4 h-4 text-orange-500" /> Mới cập nhật</h2>
+                                            <button onClick={() => setActiveTab("catalog")} className="text-[11px] font-bold text-zinc-400 hover:text-zinc-600 flex items-center">Xem thêm <ChevronRightIcon className="w-3.5 h-3.5" /></button>
+                                        </div>
+                                        <div className="flex gap-4 overflow-x-auto pb-2 scrollbar-none snap-x">
+                                            {novels.slice(0, 8).map(novel => (
+                                                <Link key={novel.id} href={`/reader/${novel.id}`} className="snap-start shrink-0 w-28 flex flex-col gap-1.5">
+                                                    <div className="w-full aspect-3/4 rounded-xl overflow-hidden relative shadow-md bg-zinc-800/10">
+                                                        {novel.coverImage ? (
+                                                            <img src={novel.coverImage} className="w-full h-full object-cover" referrerPolicy="no-referrer" />
+                                                        ) : (
+                                                            <div className="w-full h-full flex items-center justify-center p-2 bg-gradient-to-br from-zinc-200 to-zinc-300 dark:from-zinc-700 dark:to-zinc-800 text-[10px] text-center font-bold">{novel.title}</div>
+                                                        )}
+                                                    </div>
+                                                    <p className="text-xs font-bold line-clamp-2 h-8 leading-tight mt-0.5">{novel.title}</p>
+                                                </Link>
+                                            ))}
                                         </div>
                                     </div>
-                                ) : (
-                                    <div className="w-full h-full flex items-center justify-center text-zinc-550 text-xs font-semibold">Gợi ý truyện đề cử</div>
-                                )}
-                            </div>
 
-                            {/* Section: Mới nhất */}
-                            <div className="space-y-2.5">
-                                <div className="flex justify-between items-center">
-                                    <h2 className="text-base font-bold flex items-center gap-1.5"><SparklesIcon className="w-4 h-4 text-orange-500" /> Mới cập nhật</h2>
-                                    <button onClick={() => setActiveTab("catalog")} className="text-[11px] font-bold text-zinc-400 hover:text-zinc-600 flex items-center">Xem thêm <ChevronRightIcon className="w-3.5 h-3.5" /></button>
-                                </div>
-                                <div className="flex gap-4 overflow-x-auto pb-2 scrollbar-none snap-x">
-                                    {novels.slice(0, 8).map(novel => (
-                                        <Link key={novel.id} href={`/reader/${novel.id}`} className="snap-start shrink-0 w-28 flex flex-col gap-1.5">
-                                            <div className="w-full aspect-3/4 rounded-xl overflow-hidden relative shadow-md bg-zinc-800/10">
-                                                {novel.coverImage ? (
-                                                    <img src={novel.coverImage} className="w-full h-full object-cover" referrerPolicy="no-referrer" />
-                                                ) : (
-                                                    <div className="w-full h-full flex items-center justify-center p-2 bg-gradient-to-br from-zinc-200 to-zinc-300 dark:from-zinc-700 dark:to-zinc-800 text-[10px] text-center font-bold">{novel.title}</div>
-                                                )}
-                                            </div>
-                                            <p className="text-xs font-bold line-clamp-2 h-8 leading-tight mt-0.5">{novel.title}</p>
-                                        </Link>
-                                    ))}
-                                </div>
-                            </div>
-
-                            {/* Section: Đề cử */}
-                            <div className="space-y-2.5">
-                                <h2 className="text-base font-bold flex items-center gap-1.5"><TrendingUpIcon className="w-4 h-4 text-blue-500" /> Truyện chọn lọc</h2>
-                                <div className="grid grid-cols-3 sm:grid-cols-6 gap-3">
-                                    {novels.slice(3, 9).map(novel => (
-                                        <Link key={novel.id} href={`/reader/${novel.id}`} className="flex flex-col gap-1.5 text-center">
-                                            <div className="w-full aspect-3/4 rounded-xl overflow-hidden relative shadow-md bg-zinc-550/10">
-                                                {novel.coverImage ? (
-                                                    <img src={novel.coverImage} className="w-full h-full object-cover" referrerPolicy="no-referrer" />
-                                                ) : (
-                                                    <div className="w-full h-full flex items-center justify-center p-2 bg-zinc-300 dark:bg-zinc-800 text-[10px] font-bold">{novel.title}</div>
-                                                )}
-                                            </div>
-                                            <p className="text-[11px] font-bold truncate px-0.5">{novel.title}</p>
-                                        </Link>
-                                    ))}
-                                </div>
-                            </div>
+                                    {/* Section: Đề cử */}
+                                    <div className="space-y-2.5">
+                                        <h2 className="text-base font-bold flex items-center gap-1.5"><TrendingUpIcon className="w-4 h-4 text-blue-500" /> Truyện chọn lọc</h2>
+                                        <div className="grid grid-cols-3 sm:grid-cols-6 gap-3">
+                                            {novels.slice(3, 9).map(novel => (
+                                                <Link key={novel.id} href={`/reader/${novel.id}`} className="flex flex-col gap-1.5 text-center">
+                                                    <div className="w-full aspect-3/4 rounded-xl overflow-hidden relative shadow-md bg-zinc-550/10">
+                                                        {novel.coverImage ? (
+                                                            <img src={novel.coverImage} className="w-full h-full object-cover" referrerPolicy="no-referrer" />
+                                                        ) : (
+                                                            <div className="w-full h-full flex items-center justify-center p-2 bg-zinc-300 dark:bg-zinc-800 text-[10px] font-bold">{novel.title}</div>
+                                                        )}
+                                                    </div>
+                                                    <p className="text-[11px] font-bold truncate px-0.5">{novel.title}</p>
+                                                </Link>
+                                            ))}
+                                        </div>
+                                    </div>
+                                </>
+                            )}
                         </div>
                     )}
 
                     {/* catalog tab (Middle button navigation click) */}
                     {activeTab === "catalog" && (
-                        <div className="space-y-4 animate-in fade-in duration-300 pb-8">
+                        <div key="catalog" className="space-y-4 animate-page-enter pb-8">
                             {/* Catalog Page Header matching Picture 1 */}
                             <div className="flex justify-between items-center pb-1">
                                 <h1 className="text-lg font-bold tracking-tight">Danh Sách Truyện</h1>
@@ -879,7 +984,7 @@ export default function StandaloneReadingRoomApp() {
                             {/* List cards matching Picture 1 exactly */}
                             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
                                 {loading ? (
-                                    <div className="col-span-full py-20 flex justify-center items-center"><Loader2Icon className="w-6 h-6 text-blue-555 animate-spin" /></div>
+                                    <CatalogSkeleton isDark={isDark} />
                                 ) : filteredCatalogNovels.length === 0 ? (
                                     <div className="col-span-full text-center py-20 text-zinc-500 text-sm font-medium">Không tìm thấy truyện nào phù hợp.</div>
                                 ) : (
@@ -921,12 +1026,20 @@ export default function StandaloneReadingRoomApp() {
                                                     </div>
 
                                                     {/* Rating/Meta row */}
-                                                    <div className="flex justify-between items-center mt-2">
-                                                        <span className="text-[10px] font-semibold text-zinc-500 truncate max-w-[120px]">{novel.author || "Khuyết danh"}</span>
-                                                        <div className="flex gap-2 items-center text-[10px] font-bold text-zinc-400">
-                                                            <span className="flex items-center text-amber-500">★ 5.0</span>
-                                                            <span className="flex items-center">📖 {novel.totalChapters || 483}</span>
+                                                    <div className="flex flex-col gap-1.5 mt-2">
+                                                        <div className="flex justify-between items-center text-[10px]">
+                                                            <span className="font-semibold text-zinc-500 truncate max-w-[120px]">{novel.author || "Khuyết danh"}</span>
+                                                            <div className="flex gap-2 items-center font-bold text-zinc-400">
+                                                                <span className="flex items-center gap-0.5 text-amber-500">★ 5.0 <span className="text-[9px] font-medium text-zinc-500">({(novel as any).reviewCount ?? 0})</span></span>
+                                                                <span className="flex items-center gap-0.5">👁️ {formatViews((novel as any).viewsCount)}</span>
+                                                                <span className="flex items-center gap-0.5">📖 {novel.totalChapters || (novel as any).chapterCount || 0}</span>
+                                                            </div>
                                                         </div>
+                                                        {Number((novel as any).wrongChaptersCount) > 0 && (
+                                                            <div className="flex items-center gap-1 text-[9px] font-bold text-red-500 bg-red-500/10 dark:bg-red-500/5 px-2 py-0.5 rounded border border-red-500/20 w-fit">
+                                                                <span>⚠️ Lỗi chương: {(novel as any).wrongChaptersCount} ch</span>
+                                                            </div>
+                                                        )}
                                                     </div>
                                                 </div>
                                             </Link>
@@ -939,7 +1052,7 @@ export default function StandaloneReadingRoomApp() {
 
                     {/* account tab */}
                     {activeTab === "account" && (
-                        <div className="max-w-md mx-auto space-y-4 animate-in fade-in duration-350">
+                        <div key="account" className="max-w-md mx-auto space-y-4 animate-page-enter">
                             {/* Profile card */}
                             <div className={`p-5 rounded-2xl border text-center flex flex-col items-center transition ${isDark ? "bg-[#131416] border-zinc-800" : "bg-[#fffbf4] border-zinc-200 shadow-sm"}`}>
                                 <div className="w-14 h-14 bg-zinc-800 p-3 rounded-full border border-blue-500/20 text-blue-500 flex items-center justify-center text-lg font-bold mb-3 shadow-[0_0_15px_rgba(59,130,246,0.1)]">

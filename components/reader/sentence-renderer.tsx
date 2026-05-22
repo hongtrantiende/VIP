@@ -4,6 +4,7 @@ import { useReaderPanel } from "@/lib/stores/reader-panel";
 import { tokenizeSentences } from "@/lib/tts";
 import { cn } from "@/lib/utils";
 import { useCallback, useEffect, useMemo, useRef } from "react";
+import { ObfuscatedText } from "@/components/reader/obfuscated-text";
 
 /**
  * Splits content into lines and computes the sentence index range for each line.
@@ -90,7 +91,7 @@ export function SentenceRenderer({ content }: { content: string }) {
                     : undefined
                 }
               >
-                {sentence.originalText}
+                <ObfuscatedText text={sentence.originalText} />
               </span>
             ))}
           </div>

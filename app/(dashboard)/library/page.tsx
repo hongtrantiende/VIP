@@ -121,13 +121,22 @@ function sortNovels(
     if (field === "title") {
       cmp = a.title.localeCompare(b.title, "vi");
     } else {
-      cmp = a[field].getTime() - b[field].getTime();
+      const getVal = (val: any) => {
+        if (!val) return 0;
+        const d = val instanceof Date ? val : new Date(val);
+        const t = d.getTime();
+        return isNaN(t) ? 0 : t;
+      };
+      cmp = getVal(a[field]) - getVal(b[field]);
     }
     return direction === "asc" ? cmp : -cmp;
   });
 }
 
-function formatDate(date: Date) {
+function formatDate(dateVal: Date | string | number | undefined | null) {
+  if (!dateVal) return "";
+  const date = dateVal instanceof Date ? dateVal : new Date(dateVal);
+  if (isNaN(date.getTime())) return "";
   return date.toLocaleDateString("vi-VN", {
     day: "2-digit",
     month: "2-digit",
@@ -260,39 +269,18 @@ export default function LibraryPage() {
               genres: novel.genres || [],
             };
 
-            let uploadSuccess = false;
-            for (let attempt = 1; attempt <= 3; attempt++) {
-              try {
-                const uploadRes = await fetch(`/api/reading-room?action=upload&novelId=${novel.id}`, {
-                  method: 'POST',
-                  headers: {
-                    'Content-Type': 'application/octet-stream',
-                    'x-novel-metadata': encodeURIComponent(JSON.stringify(metadata))
-                  },
-                  body: new Blob([compressed as any])
-                });
-
-                if (uploadRes.ok) {
-                  uploadSuccess = true;
-                  break;
-                } else if (uploadRes.status !== 503 && uploadRes.status !== 502 && uploadRes.status !== 504 && uploadRes.status !== 429) {
-                  break; // Không retry cho các lỗi 4xx
-                }
-              } catch (err) {
-                console.warn(`Lần thử ${attempt} upload thất bại:`, err);
+            const { uploadCompressedInChunks } = await import("@/lib/utils");
+            await uploadCompressedInChunks(
+              novel.id,
+              metadata,
+              compressed,
+              (percent) => {
+                toast.loading(`Đang tải lên "${novel.title}" lên Phòng Đọc (${percent}%)...`, { id: toastId });
               }
-              if (attempt < 3) {
-                await new Promise(resolve => setTimeout(resolve, 2000));
-              }
-            }
+            );
 
-            if (uploadSuccess) {
-              await deleteNovel(novel.id);
-              newlyUploadedAndDeleted++;
-            } else {
-              failedUploads++;
-              console.error(`Upload thất bại cho truyện "${novel.title}"`);
-            }
+            await deleteNovel(novel.id);
+            newlyUploadedAndDeleted++;
           } catch (err) {
             failedUploads++;
             console.error(`Lỗi khi xử lý truyện "${novel.title}":`, err);
@@ -391,43 +379,17 @@ export default function LibraryPage() {
         genres: novel.genres || [],
       };
 
-      let uploadSuccess = false;
-      let lastError: any = null;
-
-      for (let attempt = 1; attempt <= 3; attempt++) {
-        try {
-          const res = await fetch(`/api/reading-room?action=upload&novelId=${novel.id}`, {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/octet-stream',
-              'x-novel-metadata': encodeURIComponent(JSON.stringify(metadata))
-            },
-            body: new Blob([compressed as any])
-          });
-
-          if (res.ok) {
-            uploadSuccess = true;
-            break;
-          } else {
-            const errJson = await res.json().catch(() => ({}));
-            lastError = new Error(errJson.error || `HTTP Error ${res.status}`);
-            if (res.status !== 503 && res.status !== 502 && res.status !== 504 && res.status !== 429) {
-              break;
-            }
-          }
-        } catch (err: any) {
-          lastError = err;
+      const { uploadCompressedInChunks } = await import("@/lib/utils");
+      await uploadCompressedInChunks(
+        novel.id,
+        metadata,
+        compressed,
+        (percent) => {
+          toast.loading(`Đang đăng "${novel.title}" lên Phòng Đọc (${percent}%)...`, { id: toastId });
         }
-        if (attempt < 3) {
-          await new Promise(resolve => setTimeout(resolve, Math.pow(2, attempt) * 1000));
-        }
-      }
+      );
 
-      if (uploadSuccess) {
-        toast.success(`Đã đăng "${novel.title}" lên Phòng Đọc thành công! Mọi người đã có thể vào đọc.`, { id: toastId });
-      } else {
-        throw lastError || new Error("Đăng tải thất bại sau 3 lần thử");
-      }
+      toast.success(`Đã đăng "${novel.title}" lên Phòng Đọc thành công! Mọi người đã có thể vào đọc.`, { id: toastId });
     } catch (err: any) {
       toast.error(`Lỗi: ${err.message}`, { id: toastId });
     }

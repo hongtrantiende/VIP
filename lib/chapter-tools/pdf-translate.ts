@@ -501,6 +501,7 @@ export async function runPdfTranslate(opts: HybridTranslateOptions): Promise<voi
         }
         await db.scenes.update(scene.sceneId, {
           content: scene.content,
+          versionType: "hybrid-converter",
           wordCount: countWords(scene.content),
           updatedAt: now,
         });

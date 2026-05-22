@@ -4,6 +4,14 @@ import { useLiveQuery } from "dexie-react-hooks";
 import { useState, useEffect } from "react";
 import { db, type Chapter } from "@/lib/db";
 
+function getTimestamp(val: any): number {
+  if (!val) return 0;
+  if (val instanceof Date) return val.getTime();
+  if (typeof val === "number") return val;
+  const parsed = new Date(val).getTime();
+  return isNaN(parsed) ? 0 : parsed;
+}
+
 export function useChapters(novelId: string | undefined) {
   const chapters = useLiveQuery(
     () =>
@@ -28,7 +36,13 @@ export async function createChapter(
 ) {
   const now = new Date();
   const id = crypto.randomUUID();
-  await db.chapters.add({ ...data, id, createdAt: now, updatedAt: now });
+  await db.chapters.add({
+    originalTitle: data.originalTitle || data.title,
+    ...data,
+    id,
+    createdAt: now,
+    updatedAt: now,
+  });
   return id;
 }
 
@@ -63,7 +77,7 @@ export function useChapterAnalysisStatus(novelId: string | undefined) {
         .where("[novelId+isActive]")
         .equals([novelId, 1])
         .each((s) => {
-          const t = s.updatedAt.getTime();
+          const t = getTimestamp(s.updatedAt);
           const current = latestEditByChapter.get(s.chapterId) || 0;
           if (t > current) {
             latestEditByChapter.set(s.chapterId, t);
@@ -75,7 +89,7 @@ export function useChapterAnalysisStatus(novelId: string | undefined) {
         const latestEdit = latestEditByChapter.get(ch.id) || 0;
         return {
           chapterId: ch.id,
-          status: latestEdit > ch.analyzedAt.getTime() ? "stale" as const : "analyzed" as const,
+          status: latestEdit > getTimestamp(ch.analyzedAt) ? "stale" as const : "analyzed" as const,
         };
       });
     },
@@ -144,7 +158,7 @@ export function useNovelDetailStats(novelId: string | undefined) {
 
       for (const s of allActiveScenes) {
         chapterWordCounts.set(s.chapterId, (chapterWordCounts.get(s.chapterId) ?? 0) + s.wordCount);
-        const t = s.updatedAt.getTime();
+        const t = getTimestamp(s.updatedAt);
         const current = latestEditByChapter.get(s.chapterId) || 0;
         if (t > current) {
           latestEditByChapter.set(s.chapterId, t);
@@ -159,7 +173,7 @@ export function useNovelDetailStats(novelId: string | undefined) {
         const latestEdit = latestEditByChapter.get(ch.id) || 0;
         return {
           chapterId: ch.id,
-          status: latestEdit > ch.analyzedAt.getTime() ? "stale" as const : "analyzed" as const,
+          status: latestEdit > getTimestamp(ch.analyzedAt) ? "stale" as const : "analyzed" as const,
         };
       });
 

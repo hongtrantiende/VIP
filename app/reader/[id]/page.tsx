@@ -15,7 +15,8 @@ import {
     Trash2Icon,
     PlusIcon,
     SunIcon,
-    MoonIcon
+    MoonIcon,
+    AlertTriangle
 } from "lucide-react";
 import Link from "next/link";
 import { type Novel } from "@/lib/db";
@@ -23,8 +24,18 @@ import { useProfile } from "@/lib/hooks/use-profile";
 import { toast } from "sonner";
 import { Input } from "@/components/ui/input";
 import { ReadingRoomInteractions } from "@/components/reading-room/interactions";
+import { checkAndIncrementVipUsage, getRemainingVipUsage } from "@/lib/usage-limits";
+import { sanitizeFilename } from "@/lib/utils";
 
 const CHAPTER_PAGE_SIZE = 50;
+
+const formatViews = (val?: number) => {
+    if (!val) return "0";
+    if (val >= 1000) {
+        return (val / 1000).toFixed(1).replace(/\.0$/, "") + "K";
+    }
+    return val.toString();
+};
 
 export default function StandaloneReaderNovelDetailsPage(props: { params: Promise<{ id: string }> }) {
     const params = use(props.params);
@@ -35,7 +46,11 @@ export default function StandaloneReaderNovelDetailsPage(props: { params: Promis
     const [chapters, setChapters] = useState<{ id: string, title: string, order: number, isLocked?: boolean }[]>([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState("");
-    const { profile } = useProfile();
+    const { profile, isVip } = useProfile();
+
+    const [remainingDownloads, setRemainingDownloads] = useState(10);
+    const [isDownloading, setIsDownloading] = useState(false);
+    const [isDownloadingFormat, setIsDownloadingFormat] = useState<"txt" | "epub" | null>(null);
 
     const [visibleChapters, setVisibleChapters] = useState(CHAPTER_PAGE_SIZE);
     const [chapterSearch, setChapterSearch] = useState("");
@@ -77,6 +92,7 @@ export default function StandaloneReaderNovelDetailsPage(props: { params: Promis
         if (savedTheme === "light" || savedTheme === "dark") {
             setTheme(savedTheme);
         }
+        setRemainingDownloads(getRemainingVipUsage("rr_download"));
     }, []);
 
     const toggleTheme = () => {
@@ -172,10 +188,160 @@ export default function StandaloneReaderNovelDetailsPage(props: { params: Promis
         }
     };
 
+    const cleanContent = (text: string) => {
+        const UNWANTED_PATTERNS = [
+            "Bạn đang xem văn bản gốc chưa dịch, có thể kéo xuống cuối trang để chọn bản dịch.",
+            "Mời bạn đọc tiếp tại",
+            "Chúc bạn đọc truyện vui vẻ",
+            "Hãy ủng hộ tác giả bằng cách",
+        ];
+        let cleaned = text;
+        UNWANTED_PATTERNS.forEach(pattern => {
+            cleaned = cleaned.replace(new RegExp(pattern, "gi"), "");
+        });
+        return cleaned.trim();
+    };
+
+    const handleDownload = async (format: "txt" | "epub") => {
+        if (!novel) {
+            toast.error("Dữ liệu truyện chưa được tải xong.");
+            return;
+        }
+        if (!isVip) {
+            toast.error("Chỉ tài khoản VIP mới được phép tải truyện.");
+            return;
+        }
+
+        const allowed = checkAndIncrementVipUsage("rr_download", 1);
+        if (!allowed) {
+            toast.error("Hôm nay bạn đã vượt quá giới hạn tải 10 bộ truyện.");
+            return;
+        }
+
+        setRemainingDownloads(getRemainingVipUsage("rr_download"));
+        setIsDownloading(true);
+        setIsDownloadingFormat(format);
+        const toastId = toast.loading(`Đang tải truyện về bản ${format.toUpperCase()}...`);
+
+        try {
+            const res = await fetch(`/api/reading-room?action=download_full&id=${novelId}`);
+            if (!res.ok) {
+                const errData = await res.json().catch(() => ({}));
+                throw new Error(errData.error || `Server trả về lỗi HTTP ${res.status}`);
+            }
+
+            const fullData = await res.json();
+            if (!fullData || !fullData.chapters) {
+                throw new Error("Không có dữ liệu chương.");
+            }
+
+            const chaptersList = fullData.chapters || [];
+            const scenesList = fullData.scenes || [];
+
+            if (format === "txt") {
+                let txtContent = `${fullData.novel?.title || novel.title}\n`;
+                txtContent += `Tác giả: ${fullData.novel?.author || novel.author || "Khuyết danh"}\n`;
+                txtContent += `Giới thiệu:\n${fullData.novel?.description || novel.description || ""}\n\n`;
+                txtContent += `=========================================\n\n`;
+
+                chaptersList.forEach((ch: any, idx: number) => {
+                    const chapterScenes = scenesList
+                        .filter((s: any) => s.chapterId === ch.id && (s.isActive === 1 || s.isActive === undefined))
+                        .sort((a: any, b: any) => a.order - b.order);
+                    
+                    const chContent = chapterScenes
+                        .map((s: any) => cleanContent(s.content))
+                        .filter((text: string) => text.length > 0)
+                        .join("\n\n");
+
+                    txtContent += `${ch.title || `Chương ${idx + 1}`}\n\n`;
+                    txtContent += `${chContent}\n\n`;
+                    txtContent += `-----------------------------------------\n\n`;
+                });
+
+                const blob = new Blob([txtContent], { type: "text/plain;charset=utf-8" });
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement("a");
+                a.href = url;
+                a.download = `${sanitizeFilename(fullData.novel?.title || novel.title)}.txt`;
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+                URL.revokeObjectURL(url);
+            } else {
+                // epub download
+                let coverImageBase64: string | null = null;
+                const coverImgUrl = fullData.novel?.coverImage || novel.coverImage;
+                if (coverImgUrl) {
+                    try {
+                        const imgRes = await fetch(coverImgUrl);
+                        if (imgRes.ok) {
+                            const blob = await imgRes.blob();
+                            const reader = new FileReader();
+                            const base64Promise = new Promise<string>((resolve, reject) => {
+                                reader.onloadend = () => resolve(reader.result as string);
+                                reader.onerror = reject;
+                            });
+                            reader.readAsDataURL(blob);
+                            coverImageBase64 = await base64Promise;
+                        }
+                    } catch (e) {
+                        console.warn("Failed to fetch cover image as base64", e);
+                    }
+                }
+
+                const epubChapters = chaptersList.map((ch: any, idx: number) => {
+                    const chapterScenes = scenesList
+                        .filter((s: any) => s.chapterId === ch.id && (s.isActive === 1 || s.isActive === undefined))
+                        .sort((a: any, b: any) => a.order - b.order);
+                    
+                    const content = chapterScenes
+                        .map((s: any) => cleanContent(s.content))
+                        .filter((text: string) => text.length > 0)
+                        .join("\n\n");
+
+                    return {
+                        title: ch.title || `Chương ${idx + 1}`,
+                        content: content
+                    };
+                });
+
+                const { generateEpub } = await import("@/lib/epub-generator");
+                const epubBlob = await generateEpub(
+                    fullData.novel?.title || novel.title,
+                    fullData.novel?.author || novel.author || "Khuyết danh",
+                    coverImageBase64,
+                    epubChapters
+                );
+
+                const url = URL.createObjectURL(epubBlob);
+                const a = document.createElement("a");
+                a.href = url;
+                a.download = `${sanitizeFilename(fullData.novel?.title || novel.title)}.epub`;
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+                URL.revokeObjectURL(url);
+            }
+
+            toast.success("Tải truyện thành công!", { id: toastId });
+        } catch (err: any) {
+            console.error("Lỗi khi tải truyện:", err);
+            toast.error(`Tải truyện thất bại: ${err.message || err}`, { id: toastId });
+            
+            // Rollback limit
+            checkAndIncrementVipUsage("rr_download", -1);
+            setRemainingDownloads(getRemainingVipUsage("rr_download"));
+        } finally {
+            setIsDownloading(false);
+            setIsDownloadingFormat(null);
+        }
+    };
+
     if (loading) {
         const isDark = theme === "dark";
         return (
-            <div className={`min-h-screen flex justify-center items-start overflow-x-hidden font-sans ${isDark ? "bg-[#0f0f12] text-[#f1f1f5]" : "bg-[#faf5ea] text-[#110c08]"}`}>
+            <div key="loading" className={`min-h-screen flex justify-center items-start overflow-x-hidden font-sans animate-page-enter ${isDark ? "bg-[#0f0f12] text-[#f1f1f5]" : "bg-[#faf5ea] text-[#110c08]"}`}>
                 <div className="w-full min-h-screen relative flex flex-col pb-20 overflow-hidden max-w-4xl mx-auto px-4 md:px-8">
                     {/* Header skeleton */}
                     <div className="flex justify-between items-center py-4 bg-transparent">
@@ -241,7 +407,7 @@ export default function StandaloneReaderNovelDetailsPage(props: { params: Promis
 
     if (error || !novel) {
         return (
-            <div className="min-h-screen bg-[#0f0f12] flex flex-col justify-center items-center px-6 text-center text-[#f1f1f5]">
+            <div key="error" className="min-h-screen bg-[#0f0f12] flex flex-col justify-center items-center px-6 text-center text-[#f1f1f5] animate-page-enter">
                 <h1 className="text-lg font-bold mb-2">Lỗi tải dữ liệu</h1>
                 <p className="text-xs text-zinc-550 mb-6">{error}</p>
                 <button onClick={() => router.push("/reading-room")} className="px-5 py-2.5 bg-zinc-800 text-xs font-bold rounded-xl text-white">Quay lại Phòng Đọc</button>
@@ -336,7 +502,7 @@ export default function StandaloneReaderNovelDetailsPage(props: { params: Promis
     const isDark = theme === "dark";
 
     return (
-        <div className={`min-h-screen transition-colors duration-250 flex justify-center items-start overflow-x-hidden font-sans ${isDark ? "bg-[#0f0f12] text-[#f1f1f5]" : "bg-[#faf5ea] text-[#110c08]"}`}>
+        <div key="content" className={`min-h-screen transition-colors duration-250 flex justify-center items-start overflow-x-hidden font-sans animate-page-enter ${isDark ? "bg-[#0f0f12] text-[#f1f1f5]" : "bg-[#faf5ea] text-[#110c08]"}`}>
             {/* Full viewport scale layout on PC */}
             <div className="w-full min-h-screen relative flex flex-col pb-20 overflow-hidden max-w-4xl mx-auto px-4 md:px-8">
 
@@ -426,7 +592,7 @@ export default function StandaloneReaderNovelDetailsPage(props: { params: Promis
 
                             {/* Rating Stars row */}
                             <div className="flex items-center justify-center sm:justify-start gap-1.5 mt-2">
-                                <span className={`text-[10px] font-semibold ${isDark ? "text-zinc-300" : "text-zinc-600"}`}>5.0 (2 đánh giá)</span>
+                                <span className={`text-[10px] font-semibold ${isDark ? "text-zinc-300" : "text-zinc-650"}`}>5.0 ({novel.reviewCount || 0} đánh giá)</span>
                                 <div className="flex gap-0.5 text-amber-500 text-xs">★★★★★</div>
                             </div>
 
@@ -461,6 +627,57 @@ export default function StandaloneReaderNovelDetailsPage(props: { params: Promis
                     </div>
                 </div>
 
+                {/* VIP Download Box */}
+                {isVip && (
+                    <div className={`mt-4 p-4 rounded-xl border flex flex-col sm:flex-row sm:items-center justify-between gap-3.5 transition-colors ${
+                        isDark ? "bg-[#161b22]/40 border-amber-500/20" : "bg-amber-500/5 border-amber-500/10 shadow-sm"
+                    }`}>
+                        <div className="space-y-1">
+                            <div className="flex items-center gap-1.5">
+                                <span className={`text-[10px] font-bold px-2 py-0.5 rounded border max-w-max uppercase tracking-wider ${
+                                    isDark ? "bg-amber-500/10 text-amber-400 border-amber-500/30" : "bg-amber-100 text-amber-800 border-amber-200"
+                                }`}>
+                                    VIP Download
+                                </span>
+                                <span className={`text-[10px] font-medium ${isDark ? "text-zinc-400" : "text-zinc-550"}`}>
+                                    Hôm nay còn lại: <span className="font-extrabold text-amber-500">{remainingDownloads} / 10</span> lượt tải
+                                </span>
+                            </div>
+                            <p className="text-[11px] text-zinc-500">Tải toàn bộ bộ truyện về máy dưới dạng tệp văn bản TXT hoặc sách điện tử EPUB sạch lỗi.</p>
+                        </div>
+                        <div className="flex gap-2 shrink-0">
+                            <button
+                                onClick={() => handleDownload("txt")}
+                                disabled={isDownloading}
+                                className={`px-3.5 py-1.5 rounded-lg text-xs font-bold border flex items-center gap-1.5 active:scale-95 transition-all ${
+                                    isDownloading 
+                                        ? "opacity-50 cursor-not-allowed" 
+                                        : isDark 
+                                            ? "bg-zinc-800 hover:bg-zinc-750 text-white border-zinc-700" 
+                                            : "bg-white hover:bg-zinc-50 text-zinc-850 border-zinc-200 shadow-xs"
+                                }`}
+                            >
+                                {isDownloadingFormat === "txt" ? <Loader2Icon className="w-3.5 h-3.5 animate-spin" /> : null}
+                                Tải TXT
+                            </button>
+                            <button
+                                onClick={() => handleDownload("epub")}
+                                disabled={isDownloading}
+                                className={`px-3.5 py-1.5 rounded-lg text-xs font-bold border flex items-center gap-1.5 active:scale-95 transition-all ${
+                                    isDownloading 
+                                        ? "opacity-50 cursor-not-allowed" 
+                                        : isDark 
+                                            ? "bg-zinc-800 hover:bg-zinc-750 text-white border-zinc-700" 
+                                            : "bg-white hover:bg-zinc-50 text-zinc-850 border-zinc-200 shadow-xs"
+                                }`}
+                            >
+                                {isDownloadingFormat === "epub" ? <Loader2Icon className="w-3.5 h-3.5 animate-spin" /> : null}
+                                Tải EPUB
+                            </button>
+                        </div>
+                    </div>
+                )}
+
                 {/* Sub Tab selection header bar matching screenshots */}
                 <div className={`flex border-b text-xs font-bold text-center mt-5 transition-colors ${isDark ? "border-zinc-850 bg-[#131416]/50" : "border-zinc-200 bg-zinc-100/50"
                     }`}>
@@ -468,7 +685,7 @@ export default function StandaloneReaderNovelDetailsPage(props: { params: Promis
                         { id: "intro", label: "Giới Thiệu" },
                         { id: "reviews", label: "Đánh Giá" },
                         { id: "comments", label: "Bình Luận" },
-                        { id: "chapters", label: "D.S Chương" }
+                        { id: "chapters", label: `D.S Chương${novel.wrongChaptersCount ? ` (${novel.wrongChaptersCount})` : ""}` }
                     ].map(tab => (
                         <button
                             key={tab.id}
@@ -498,10 +715,24 @@ export default function StandaloneReaderNovelDetailsPage(props: { params: Promis
                                     <p className="text-[10px] text-zinc-500 font-bold uppercase mt-0.5">Chương - Còn tiếp</p>
                                 </div>
                                 <div>
-                                    <p className="text-base font-extrabold">1,2K</p>
+                                    <p className="text-base font-extrabold">{formatViews(novel.viewsCount)}</p>
                                     <p className="text-[10px] text-zinc-500 font-bold uppercase mt-0.5">Lượt đọc</p>
                                 </div>
                             </div>
+
+                            {/* Warning Banner for wrong/faulty chapters */}
+                            {novel.wrongChaptersCount && novel.wrongChaptersCount > 0 ? (
+                                <div className={`flex items-center gap-3 p-3.5 mt-2 rounded-xl border ${
+                                    isDark 
+                                        ? "bg-amber-500/10 border-amber-500/30 text-amber-400" 
+                                        : "bg-amber-50 border-amber-200 text-amber-805"
+                                }`}>
+                                    <AlertTriangle className="w-5 h-5 shrink-0" />
+                                    <div className="text-xs text-left">
+                                        <span className="font-extrabold">Cảnh báo:</span> Truyện này hiện có <span className="font-extrabold">{novel.wrongChaptersCount} chương</span> được phát hiện có sai sót, lỗi chương hoặc nội dung cần kiểm tra lại.
+                                    </div>
+                                </div>
+                            ) : null}
 
                             {/* Intro text */}
                             <div className={`p-4.5 rounded-xl border transition ${isDark ? "bg-[#131416]/50 border-zinc-850/50" : "bg-[#fffbf4] border-zinc-200 shadow-sm"

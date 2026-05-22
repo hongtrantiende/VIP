@@ -1,6 +1,6 @@
 import { streamText } from "ai";
 import type { LanguageModel } from "ai";
-import { db } from "@/lib/db";
+import { db, resolveChapterOriginalTitle } from "@/lib/db";
 import type { AnalysisSettings, Scene } from "@/lib/db";
 import { createSceneVersion, ensureInitialVersion, getOriginalContent } from "@/lib/hooks/use-scene-versions";
 import { getMergedNameDict } from "@/lib/hooks/use-name-entries";
@@ -12,7 +12,7 @@ import {
   buildTranslateSceneBreakNote,
   buildTranslateUserPrompt,
 } from "./prompts";
-import { cleanGarbageLines } from "@/lib/text-utils";
+import { cleanGarbageLines, splitBySceneBreak, splitTextIntoParts } from "@/lib/text-utils";
 import { useBulkTranslateStore, type TranslateChapterResult, type TranslateError } from "@/lib/stores/bulk-translate";
 import { scanNewNames, autoAddNames } from "./name-scanner";
 import { isSceneTranslated } from "@/lib/novel-io";
@@ -168,6 +168,7 @@ async function saveChapterScenes(
     }
     await db.scenes.update(scene.sceneId, {
       content: scene.content,
+      versionType: "ai-translate",
       wordCount: countWords(scene.content),
       updatedAt: timestamp,
     });
@@ -341,13 +342,15 @@ export async function runBulkTranslate(opts: BulkTranslateOptions): Promise<void
         return;
       }
 
+      const originalTitle = await resolveChapterOriginalTitle(chapter);
+
       // Check if we should skip already translated chapters
       if (skipTranslated && scenes.some(isSceneTranslated)) {
         console.log(`[BulkTranslate] Bỏ qua chương đã dịch: ${chapter.title}`);
         onChapterComplete({
           chapterId: chapter.id,
           chapterTitle: chapter.title,
-          originalTitle: chapter.title,
+          originalTitle: originalTitle,
           originalLineCount: 0,
           translatedLineCount: 0,
           scenes: [] // Not touching DB since we skip
@@ -423,7 +426,7 @@ export async function runBulkTranslate(opts: BulkTranslateOptions): Promise<void
       // Build user prompt
       const cleanedJoinedContent = cleanGarbageLines(joinedContent);
       const userPrompt = translateTitle
-        ? buildTranslateUserPrompt(cleanedJoinedContent, chapter.title, TITLE_SEPARATOR)
+        ? buildTranslateUserPrompt(cleanedJoinedContent, originalTitle, TITLE_SEPARATOR)
         : cleanedJoinedContent;
 
       // Stream translation with retry logic
@@ -495,17 +498,18 @@ export async function runBulkTranslate(opts: BulkTranslateOptions): Promise<void
       // Split back to scenes
       let sceneResults: { sceneId: string; content: string }[];
       if (isMultiScene) {
-        const parts = parsed.content.split(SCENE_BREAK).map((s) => s.trim());
+        const parts = splitBySceneBreak(parsed.content);
         if (parts.length === scenes.length) {
           sceneResults = scenes.map((s, i) => ({
             sceneId: s.id,
             content: parts[i],
           }));
         } else {
-          // Fallback
+          // Fallback to splitting by paragraph boundaries
+          const splitParts = splitTextIntoParts(parsed.content, scenes.length);
           sceneResults = scenes.map((s, i) => ({
             sceneId: s.id,
-            content: i === 0 ? parsed.content.replaceAll(SCENE_BREAK, "").trim() : s.content,
+            content: splitParts[i] || "",
           }));
         }
       } else {
@@ -515,7 +519,7 @@ export async function runBulkTranslate(opts: BulkTranslateOptions): Promise<void
       const chapterResult: TranslateChapterResult = {
         chapterId: chapter.id,
         chapterTitle: chapter.title,
-        originalTitle: chapter.title,
+        originalTitle: originalTitle,
         newTitle: parsed.title ?? undefined,
         originalLineCount: joinedContent.split("\n").length,
         translatedLineCount: parsed.content.split("\n").length,

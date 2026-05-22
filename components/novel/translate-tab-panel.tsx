@@ -70,7 +70,7 @@ import {
 } from "@/components/ui/select";
 import { useDictMeta } from "@/lib/hooks/use-dict-entries";
 import { useProfile } from "@/lib/hooks/use-profile";
-import { cn } from "@/lib/utils";
+import { cn, countWords } from "@/lib/utils";
 import { Switch } from "@/components/ui/switch";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { useBulkTranslateStore } from "@/lib/stores/bulk-translate";
@@ -425,7 +425,7 @@ export function TranslateTabPanel({
                         if (cleaned !== scene.content) {
                             await db.scenes.update(scene.id, {
                                 content: cleaned,
-                                wordCount: cleaned.split(/\s+/).filter(Boolean).length,
+                                wordCount: countWords(cleaned),
                                 updatedAt: new Date()
                             });
                             cleanedCount++;
@@ -437,7 +437,7 @@ export function TranslateTabPanel({
                         if (cleaned !== scene.content) {
                             await db.scenes.update(scene.id, {
                                 content: cleaned,
-                                wordCount: cleaned.split(/\s+/).filter(Boolean).length,
+                                wordCount: countWords(cleaned),
                                 updatedAt: new Date()
                             });
                         }
@@ -610,7 +610,7 @@ export function TranslateTabPanel({
                             if (cleaned !== scene.content) {
                                 await db.scenes.update(scene.id, {
                                     content: cleaned,
-                                    wordCount: cleaned.split(/\s+/).filter(Boolean).length,
+                                    wordCount: countWords(cleaned),
                                     updatedAt: new Date()
                                 });
                             }
@@ -620,7 +620,7 @@ export function TranslateTabPanel({
                             if (cleaned !== scene.content) {
                                 await db.scenes.update(scene.id, {
                                     content: cleaned,
-                                    wordCount: cleaned.split(/\s+/).filter(Boolean).length,
+                                    wordCount: countWords(cleaned),
                                     updatedAt: new Date()
                                 });
                             }

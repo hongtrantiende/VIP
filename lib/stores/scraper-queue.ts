@@ -225,6 +225,7 @@ export const useScraperQueueStore = create<ScraperQueueState>()(
                     if (activeScene) {
                       await db.scenes.update(activeScene.id, {
                         content: entry.parsed.content,
+                        versionType: "manual",
                         wordCount: countWords(stripHtml(entry.parsed.content)),
                         updatedAt: now,
                       });
@@ -238,6 +239,7 @@ export const useScraperQueueStore = create<ScraperQueueState>()(
                       id: chapterId,
                       novelId: nextJob.id,
                       title: entry.parsed.title,
+                      originalTitle: entry.parsed.title,
                       order: entry.parsed.order ?? currentOrder,
                       createdAt: now,
                       updatedAt: now,
@@ -344,6 +346,7 @@ export const useScraperQueueStore = create<ScraperQueueState>()(
                     if (activeScene) {
                       await db.scenes.update(activeScene.id, {
                         content: entry.parsed.content,
+                        versionType: "manual",
                         wordCount: countWords(stripHtml(entry.parsed.content)),
                         updatedAt: now,
                       });
@@ -357,6 +360,7 @@ export const useScraperQueueStore = create<ScraperQueueState>()(
                       id: chapterId,
                       novelId: nextJob.id,
                       title: entry.parsed.title,
+                      originalTitle: entry.parsed.title,
                       order: entry.parsed.order ?? currentOrder,
                       createdAt: now,
                       updatedAt: now,

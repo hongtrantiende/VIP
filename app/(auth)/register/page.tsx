@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { createClient } from "@/lib/supabase/client";
+import { registerAction } from "@/app/actions/auth";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -39,21 +39,12 @@ export default function RegisterPage() {
 
     setLoading(true);
     
-    const supabase = createClient();
-    const { error } = await supabase.auth.signUp({
-      email,
-      password,
-      options: {
-        data: {
-          display_name: displayName.trim(),
-        }
-      }
-    });
+    const res = await registerAction(email, password, displayName);
 
     setLoading(false);
 
-    if (error) {
-      toast.error(error.message);
+    if (!res.success) {
+      toast.error(res.error || "Đăng ký thất bại");
     } else {
       toast.success("Đăng ký thành công! Vui lòng kiểm tra email để xác nhận (nếu có).");
       router.push("/dashboard");

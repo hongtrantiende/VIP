@@ -33,7 +33,9 @@ const nameSchema = jsonSchema<{ names: ExtractedName[] }>({
 
 const SCAN_NAMES_SYSTEM = `Bạn là chuyên gia phiên âm Hán-Việt. Nhiệm vụ: trích xuất TẤT CẢ tên riêng (nhân vật, địa danh, tông môn, bí kỹ) từ đoạn văn tiếng Trung và phiên âm Hán-Việt chuẩn xác.
 Quy tắc:
-- CHỈ trích xuất tên riêng (danh từ riêng), KHÔNG trích xuất từ vựng thông thường.
+- CHỈ trích xuất tên riêng (danh từ riêng), KHÔNG trích xuất từ vựng thông thường hay đại từ nhân xưng.
+- Trường "chinese" BẮT BUỘC phải chứa chính xác chữ Hán gốc (chữ Trung Quốc) xuất hiện trong đoạn văn, KHÔNG được dịch nghĩa hay viết bằng Pinyin hoặc tiếng Anh.
+- Trường "vietnamese" là phiên âm Hán-Việt chuẩn xác và tự nhiên của tên riêng đó.
 - Phiên âm Hán-Việt chuẩn, nhất quán.
 - Mỗi tên CHỈ 1 nghĩa duy nhất, KHÔNG dùng dấu gạch chéo.
 - Trả về JSON, không giải thích.`;

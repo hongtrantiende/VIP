@@ -62,11 +62,14 @@ function parseDictText(
 async function fetchDictFile(url: string, signal?: AbortSignal): Promise<string | null> {
   try {
     const resp = await fetch(url, { signal });
-    if (!resp.ok) return null;
+    if (!resp.ok) {
+      if (resp.status === 404) return "";
+      return null;
+    }
     const contentType = resp.headers.get("content-type") || "";
-    if (contentType.toLowerCase().includes("text/html")) return null;
+    if (contentType.toLowerCase().includes("text/html")) return "";
     const text = await resp.text();
-    if (text.startsWith("<!") || text.slice(0, 100).toLowerCase().includes("<html")) return null;
+    if (text.startsWith("<!") || text.slice(0, 100).toLowerCase().includes("<html")) return "";
     return text;
   } catch {
     return null;
@@ -157,7 +160,7 @@ export async function loadRawDictTexts(
   }
 
   // ── Slow path: fetch missing files ──
-  const missingSources = ALL_SOURCES.filter(s => !result[s]);
+  const missingSources = ALL_SOURCES.filter(s => !(s in result));
   onProgress?.("all", 0);
 
   const BATCH_SIZE = 20;
@@ -178,7 +181,7 @@ export async function loadRawDictTexts(
             return { source, text: "", ok: false };
           } else {
             const text = await fetchDictFile(url, AbortSignal.timeout(3000));
-            return { source, text: text || "", ok: !!text };
+            return { source, text: text ?? "", ok: text !== null };
           }
         } catch {
           return { source, text: "", ok: false };
@@ -199,7 +202,7 @@ export async function loadRawDictTexts(
   void (async () => {
     try {
       const toCache = missingSources
-        .filter(s => result[s])
+        .filter(s => result[s] !== undefined)
         .map(s => ({ source: s, rawText: result[s] }));
       if (toCache.length > 0) await db.dictCache.bulkPut(toCache);
 
@@ -332,7 +335,7 @@ export async function loadDictDataForWorker(
   }
 
   // ── Slow path: fetch ONLY missing files ──
-  const missingSources = ALL_SOURCES.filter(s => !result[s] || result[s].length === 0);
+  const missingSources = ALL_SOURCES.filter(s => !(s in result));
   console.log(`[DictLoader] Fetching ${missingSources.length} missing sources...`);
   onProgress?.("all", 0);
 
@@ -357,7 +360,7 @@ export async function loadDictDataForWorker(
             return { source, text: "", ok: false };
           } else {
             const text = await fetchDictFile(url, AbortSignal.timeout(3000));
-            return { source, text: text || "", ok: !!text };
+            return { source, text: text ?? "", ok: text !== null };
           }
         } catch {
           return { source, text: "", ok: false };
@@ -377,10 +380,10 @@ export async function loadDictDataForWorker(
 
   // Parse results
   for (const { source, text, ok } of fetchResults) {
-    if (ok && text) {
+    if (ok) {
       result[source] = parseDictText(text);
       sourceCounts[source] = result[source].length;
-    } else if (!result[source]) {
+    } else if (result[source] === undefined) {
       result[source] = [];
       sourceCounts[source] = 0;
     }
@@ -390,7 +393,7 @@ export async function loadDictDataForWorker(
   void (async () => {
     try {
       const toCache = fetchResults
-        .filter(r => r.ok && r.text)
+        .filter(r => r.ok)
         .map(r => ({ source: r.source, rawText: r.text }));
       if (toCache.length > 0) {
         await db.dictCache.bulkPut(toCache);

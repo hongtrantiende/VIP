@@ -49,7 +49,7 @@ import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { useProfile } from "@/lib/hooks/use-profile";
 import { UserProfileDialog } from "@/components/user-profile-dialog";
-import { createClient } from "@/lib/supabase/client";
+import { signOutAction } from "@/app/actions/auth";
 import {
   isTrainingRunning,
   subscribeTrainingManager,
@@ -81,26 +81,13 @@ export const miscNav = [
 export function AppSidebar() {
   const pathname = usePathname();
   const router = useRouter();
-  const { profile, loadProfile, isVip } = useProfile();
-  const [isAdmin, setIsAdmin] = useState(false);
+  const { profile, loadProfile, isVip, isAdmin } = useProfile();
   const [profileDialogOpen, setProfileDialogOpen] = useState(false);
 
   const handleLogout = async () => {
-    const supabase = createClient();
-    await supabase.auth.signOut();
+    await signOutAction();
     router.push("/login");
   };
-
-  useEffect(() => {
-    import("@/lib/supabase/client").then(({ createClient }) => {
-      const supabase = createClient();
-      supabase.auth.getUser().then(({ data: { user } }) => {
-        if (user?.email === "nthanhnam2005@gmail.com" || user?.email === "thanhxnam2005@gmail.com") {
-          setIsAdmin(true);
-        }
-      });
-    });
-  }, []);
 
   const adminNavItem = {
     title: "Quản lý VIP",

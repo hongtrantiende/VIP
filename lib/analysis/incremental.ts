@@ -24,7 +24,7 @@ export async function getChaptersNeedingAnalysis(novelId: string): Promise<{
     .toArray();
   const latestEditByChapter = new Map<string, number>();
   for (const scene of allActiveScenes) {
-    const ts = scene.updatedAt.getTime();
+    const ts = scene.updatedAt ? new Date(scene.updatedAt).getTime() : 0;
     const prev = latestEditByChapter.get(scene.chapterId) ?? 0;
     if (ts > prev) latestEditByChapter.set(scene.chapterId, ts);
   }
@@ -36,7 +36,7 @@ export async function getChaptersNeedingAnalysis(novelId: string): Promise<{
     }
     const latestEdit = latestEditByChapter.get(ch.id) ?? 0;
 
-    if (latestEdit > ch.analyzedAt.getTime()) {
+    if (latestEdit > (ch.analyzedAt ? new Date(ch.analyzedAt).getTime() : 0)) {
       needsAnalysis.push(ch);
     } else {
       upToDate.push(ch);

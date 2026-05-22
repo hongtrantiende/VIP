@@ -16,6 +16,11 @@ html, body {
   --font-sans: var(--font-sans);
   --font-mono: var(--font-mono);
   --font-serif: var(--font-serif);
+  --font-bookerly: var(--font-bookerly);
+  --font-literata: var(--font-literata);
+  --font-lora: var(--font-lora);
+  --font-palatino: var(--font-palatino);
+  --font-times: var(--font-times);
   --radius: 0.5rem;
   --tracking-tighter: calc(var(--tracking-normal) - 0.05em);
   --tracking-tight: calc(var(--tracking-normal) - 0.025em);
@@ -119,6 +124,11 @@ html, body {
   --font-heading: var(--font-playfair), Georgia, serif;
   --font-serif: var(--font-playfair), Georgia, serif;
   --font-mono: var(--font-jetbrains-mono), ui-monospace, monospace;
+  --font-bookerly: 'Bookerly', var(--font-literata), Georgia, serif;
+  --font-literata: var(--font-literata), Georgia, serif;
+  --font-lora: var(--font-lora), Georgia, serif;
+  --font-palatino: 'Palatino Linotype', 'Book Antiqua', Palatino, serif;
+  --font-times: 'Times New Roman', Times, serif;
   --shadow-color: oklch(0.2 0.02 55);
   --shadow-opacity: 0.04;
   --shadow-blur: 6px;
@@ -188,6 +198,11 @@ html, body {
   --font-heading: var(--font-playfair), Georgia, serif;
   --font-serif: var(--font-playfair), Georgia, serif;
   --font-mono: var(--font-jetbrains-mono), ui-monospace, monospace;
+  --font-bookerly: 'Bookerly', var(--font-literata), Georgia, serif;
+  --font-literata: var(--font-literata), Georgia, serif;
+  --font-lora: var(--font-lora), Georgia, serif;
+  --font-palatino: 'Palatino Linotype', 'Book Antiqua', Palatino, serif;
+  --font-times: 'Times New Roman', Times, serif;
   --shadow-color: #000000;
   --shadow-opacity: 0.06;
   --shadow-blur: 6px;
@@ -334,8 +349,24 @@ a[href] {
 }
 
 /* Input focus glow */
+
 [data-slot="input"]:focus,
 [data-slot="textarea"]:focus {
   transition: border-color 0.15s ease, box-shadow 0.15s ease;
 }
 
+/* Decoy class for DOM text protection */
+.decoy {
+  position: absolute !important;
+  width: 0 !important;
+  height: 0 !important;
+  overflow: hidden !important;
+  clip: rect(0 0 0 0) !important;
+  clip-path: inset(50%) !important;
+  opacity: 0 !important;
+  color: transparent !important;
+  pointer-events: none !important;
+  z-index: -1 !important;
+  display: inline-block !important;
+  user-select: none !important;
+}

@@ -207,7 +207,102 @@ async function getTxtFolder(type: 'text_trung' | 'text_dich'): Promise<string> {
 }
 
 /** Helper function for Multipart upload (cho file nhỏ hoặc vừa, hỗ trợ binary và text) */
+async function uploadResumable(
+  filename: string,
+  content: string | ArrayBuffer | Uint8Array,
+  mimeType: string,
+  parentId?: string,
+  fileIdToUpdate?: string
+) {
+  const metadata = {
+    name: filename,
+    mimeType: mimeType,
+    ...(fileIdToUpdate ? {} : { parents: parentId ? [parentId] : undefined })
+  };
+
+  const bodyBytes = typeof content === 'string'
+    ? new TextEncoder().encode(content)
+    : (content instanceof ArrayBuffer ? new Uint8Array(content) : content);
+
+  const initUrl = fileIdToUpdate
+    ? `https://www.googleapis.com/upload/drive/v3/files/${fileIdToUpdate}?uploadType=resumable`
+    : "https://www.googleapis.com/upload/drive/v3/files?uploadType=resumable";
+  const initMethod = fileIdToUpdate ? "PATCH" : "POST";
+
+  // 1. Khởi tạo phiên tải lên Resumable (gửi metadata trước)
+  const token = await getAccessToken();
+  const initRes = await fetch(initUrl, {
+    method: initMethod,
+    headers: {
+      'Authorization': `Bearer ${token}`,
+      'Content-Type': 'application/json; charset=UTF-8',
+      'X-Upload-Content-Type': mimeType,
+      'X-Upload-Content-Length': String(bodyBytes.length)
+    },
+    body: JSON.stringify(metadata)
+  });
+
+  if (!initRes.ok) {
+    const text = await initRes.text();
+    throw new Error(`Google Drive Resumable Init Error (${initRes.status}): ${text}`);
+  }
+
+  const sessionUrl = initRes.headers.get('Location');
+  if (!sessionUrl) {
+    throw new Error("Không nhận được session URL (Location header) từ Google Drive");
+  }
+
+  // 2. Gửi dữ liệu file đến Session URL vừa nhận
+  let lastError: any = null;
+  const maxAttempts = 3;
+  for (let attempt = 1; attempt <= maxAttempts; attempt++) {
+    try {
+      const uploadRes = await fetch(sessionUrl, {
+        method: 'PUT',
+        headers: {
+          'Content-Length': String(bodyBytes.length)
+        },
+        body: new Blob([bodyBytes as any])
+      });
+
+      if (uploadRes.ok) {
+        return await uploadRes.json();
+      } else {
+        const text = await uploadRes.text();
+        throw new Error(`Google Drive Resumable PUT Error (${uploadRes.status}): ${text}`);
+      }
+    } catch (err: any) {
+      lastError = err;
+      console.warn(`[DriveAPI] Resumable PUT failed (Lần ${attempt}/${maxAttempts}): ${err.message}`);
+      if (attempt < maxAttempts) {
+        await new Promise(r => setTimeout(r, attempt * 2000));
+      }
+    }
+  }
+  throw lastError;
+}
+
 async function uploadMultipart(
+  filename: string,
+  content: string | ArrayBuffer | Uint8Array,
+  mimeType: string,
+  parentId?: string,
+  fileIdToUpdate?: string
+) {
+  const size = typeof content === 'string'
+    ? new TextEncoder().encode(content).length
+    : (content instanceof ArrayBuffer ? content.byteLength : content.length);
+
+  // Nếu file lớn hơn 4.5MB, tự động dùng Resumable Upload
+  if (size > 4.5 * 1024 * 1024) {
+    console.log(`[DriveAPI] Dung lượng file ${size} bytes (> 4.5MB). Sử dụng Resumable upload cho ${filename}`);
+    return await uploadResumable(filename, content, mimeType, parentId, fileIdToUpdate);
+  }
+
+  return await uploadMultipartRaw(filename, content, mimeType, parentId, fileIdToUpdate);
+}
+
+async function uploadMultipartRaw(
   filename: string,
   content: string | ArrayBuffer | Uint8Array,
   mimeType: string,
@@ -552,6 +647,9 @@ export interface ReadingRoomMetadata {
   genres?: string[]; // Bổ sung thể loại
   updatedAt: number;
   driveFileId?: string; // Cache Google Drive file ID of the novel data file
+  viewsCount?: number;
+  reviewCount?: number;
+  wrongChaptersCount?: number;
 }
 
 let _readingRoomIndexCache: { timestamp: number, data: ReadingRoomMetadata[] } | null = null;
@@ -683,7 +781,9 @@ export async function editMetadataInReadingRoom(
   newDescription: string | undefined,
   userId: string,
   newGenres?: string[],
-  isAdminOverride?: boolean
+  isAdminOverride?: boolean,
+  newWrongChaptersCount?: number,
+  newReviewIssues?: any[]
 ) {
   const masterId = await findOrCreateFolder(MASTER_FOLDER_NAME);
   const readingRoomId = await findOrCreateFolder(READING_ROOM_FOLDER_NAME, masterId);
@@ -719,6 +819,7 @@ export async function editMetadataInReadingRoom(
     if (newTitle) novel.title = newTitle;
     if (newDescription !== undefined) novel.description = newDescription;
     if (newGenres !== undefined) novel.genres = newGenres;
+    if (newWrongChaptersCount !== undefined) novel.wrongChaptersCount = newWrongChaptersCount;
     novel.updatedAt = Date.now();
 
     const indexStr = JSON.stringify(currentList, null, 2);
@@ -760,6 +861,18 @@ export async function editMetadataInReadingRoom(
     if (newGenres !== undefined) {
       if (parsedData.genres !== undefined) parsedData.genres = newGenres;
       if (parsedData.novel?.genres !== undefined) parsedData.novel.genres = newGenres;
+    }
+    if (newWrongChaptersCount !== undefined) {
+      if (parsedData.wrongChaptersCount !== undefined) parsedData.wrongChaptersCount = newWrongChaptersCount;
+      if (parsedData.novel !== undefined) {
+        parsedData.novel.wrongChaptersCount = newWrongChaptersCount;
+      }
+    }
+    if (newReviewIssues !== undefined) {
+      if (parsedData.reviewIssues !== undefined) parsedData.reviewIssues = newReviewIssues;
+      if (parsedData.novel !== undefined) {
+        parsedData.novel.reviewIssues = newReviewIssues;
+      }
     }
 
     await uploadMultipart(dataFilename, JSON.stringify(parsedData), 'application/json', undefined, dataId);

@@ -1,5 +1,6 @@
 import Dexie, { type EntityTable } from "dexie";
 import { registerMigrations } from "./db-migrations";
+import { isVietnameseText } from "./text-utils";
 
 // ─── Entity Types ────────────────────────────────────────────
 
@@ -33,6 +34,9 @@ export interface Novel {
   analysisStatus?: "pending" | "analyzing" | "completed" | "failed";
   chaptersAnalyzed?: number;
   totalChapters?: number;
+  viewsCount?: number;
+  reviewCount?: number;
+  wrongChaptersCount?: number;
   analysisError?: string;
   /** Persisted critical/minor review issues from prior chapters for cross-session memory. */
   reviewIssues?: Array<{
@@ -75,6 +79,7 @@ export interface Chapter {
   id: string;
   novelId: string;
   title: string;
+  originalTitle?: string; // Tên chương tiếng Trung gốc trước khi dịch
   order: number;
   summary?: string;
   characterIds?: string[];
@@ -682,3 +687,32 @@ export const GENRE_LABELS: Record<string, string> = {
   trinhtham: "Trinh thám",
   lichsu: "Lịch sử"
 };
+
+/**
+ * Lấy hoặc tự động khôi phục tiêu đề gốc của chương (chưa bị Việt hóa).
+ * Nếu không có originalTitle, ta dò tìm scene đầu tiên để lấy title.
+ */
+export async function resolveChapterOriginalTitle(chapter: Chapter): Promise<string> {
+  if (chapter.originalTitle) return chapter.originalTitle;
+
+  // Tìm scene đầu tiên có order = 0 (hoặc order nhỏ nhất)
+  const firstScene = await db.scenes
+    .where("chapterId")
+    .equals(chapter.id)
+    .sortBy("order")
+    .then((scenes) => scenes[0]);
+
+  let originalTitle = "";
+  if (firstScene && firstScene.title && !isVietnameseText(firstScene.title)) {
+    originalTitle = firstScene.title;
+  } else if (!isVietnameseText(chapter.title)) {
+    originalTitle = chapter.title;
+  } else {
+    originalTitle = chapter.title;
+  }
+
+  // Cập nhật lại db để lần sau không cần dò lại
+  await db.chapters.update(chapter.id, { originalTitle });
+  chapter.originalTitle = originalTitle; // Đồng bộ hóa object in-memory
+  return originalTitle;
+}

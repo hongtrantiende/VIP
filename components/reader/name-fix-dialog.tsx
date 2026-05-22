@@ -51,7 +51,8 @@ export function NameFixDialog({
       // Check if entry already exists to pre-fill category
       const targetScope = scope === "novel" ? novelId! : "global";
       db.nameEntries
-        .where({ scope: targetScope, chinese })
+        .where("[scope+chinese]")
+        .equals([targetScope, chinese])
         .first()
         .then((existing) => {
           if (existing) {
@@ -67,9 +68,10 @@ export function NameFixDialog({
     try {
       const targetScope = scope === "novel" ? novelId! : "global";
       
-      // Check if exists
+      // Check if exists using compound index
       const existing = await db.nameEntries
-        .where({ scope: targetScope, chinese })
+        .where("[scope+chinese]")
+        .equals([targetScope, chinese])
         .first();
 
       if (existing) {

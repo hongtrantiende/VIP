@@ -138,3 +138,96 @@ export function isAdmin(email: string | null | undefined): boolean {
   ];
   return adminEmails.includes(email.toLowerCase());
 }
+
+/**
+ * Tải lên một file nén Uint8Array theo dạng chunk để tránh lỗi timeout/503.
+ * Mỗi chunk được gửi tuần tự kèm theo cơ chế retry nếu gặp lỗi mạng tạm thời.
+ */
+export async function uploadCompressedInChunks(
+  novelId: string,
+  metadata: any,
+  compressedBytes: Uint8Array,
+  onProgress?: (percent: number) => void,
+  chunkSize = 1024 * 1024 // 1MB mặc định
+): Promise<void> {
+  const uploadId = Math.random().toString(36).substring(2) + Date.now().toString(36);
+  const totalChunks = Math.ceil(compressedBytes.length / chunkSize);
+
+  console.log(`Bắt đầu tải lên novel ${novelId} bằng chunk. Tổng dung lượng: ${compressedBytes.length} bytes, số chunk: ${totalChunks}`);
+
+  for (let i = 0; i < totalChunks; i++) {
+    const start = i * chunkSize;
+    const end = Math.min(start + chunkSize, compressedBytes.length);
+    const chunkSlice = compressedBytes.subarray(start, end);
+
+    const headers: Record<string, string> = {
+      'Content-Type': 'application/octet-stream',
+    };
+
+    // Chỉ đính kèm metadata ở chunk cuối cùng để server kích hoạt finalize
+    if (i === totalChunks - 1) {
+      headers['x-novel-metadata'] = encodeURIComponent(JSON.stringify(metadata));
+    }
+
+    let success = false;
+    let errorMsg = '';
+
+    for (let attempt = 1; attempt <= 3; attempt++) {
+      try {
+        const url = `/api/reading-room?action=upload_chunk&uploadId=${uploadId}&chunkIndex=${i}&totalChunks=${totalChunks}&novelId=${novelId}`;
+        const res = await fetch(url, {
+          method: 'POST',
+          headers,
+          body: new Blob([chunkSlice as any]),
+        });
+
+        if (res.ok) {
+          success = true;
+          break;
+        } else {
+          const errJson = await res.json().catch(() => ({}));
+          errorMsg = errJson.error || `HTTP Error ${res.status}`;
+          const transientStatusCodes = [429, 500, 502, 503, 504];
+          if (!transientStatusCodes.includes(res.status)) {
+            break; // Lỗi nghiêm trọng không cần thử lại
+          }
+        }
+      } catch (err: any) {
+        errorMsg = err.message || 'Lỗi kết nối';
+      }
+
+      if (attempt < 3) {
+        // Chờ tăng dần trước khi retry (exponential backoff)
+        console.warn(`Lần tải lên chunk ${i + 1}/${totalChunks} thất bại (Lần ${attempt}). Thử lại sau ${Math.pow(2, attempt)}s...`);
+        await new Promise((resolve) => setTimeout(resolve, Math.pow(2, attempt) * 1000));
+      }
+    }
+
+    if (!success) {
+      console.error(`Tải lên chunk ${i + 1}/${totalChunks} thất bại vĩnh viễn: ${errorMsg}`);
+      throw new Error(`Lỗi tải lên chunk ${i + 1}/${totalChunks}: ${errorMsg}`);
+    }
+
+    if (onProgress) {
+      onProgress(Math.round(((i + 1) / totalChunks) * 100));
+    }
+  }
+  console.log(`Tải lên hoàn tất thành công cho novel ${novelId}`);
+}
+
+/**
+ * Sanitize a string to be a safe, clean, and readable filename
+ * by removing Vietnamese diacritics and replacing non-alphanumeric characters.
+ */
+export function sanitizeFilename(title: string): string {
+  if (!title) return "novel";
+  return title
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .replace(/đ/g, "d")
+    .replace(/Đ/g, "D")
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "_")
+    .replace(/^_+|_+$/g, "");
+}
+
