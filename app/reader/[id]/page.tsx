@@ -519,7 +519,7 @@ export default function StandaloneReaderNovelDetailsPage(props: { params: Promis
                         >
                             {isDark ? <SunIcon className="w-4.5 h-4.5" /> : <MoonIcon className="w-4.5 h-4.5" />}
                         </button>
-                        {isUploader && (
+                        {profile && isUploader && (
                             <button onClick={handleDeleteNovel} className="p-2 text-red-500 hover:bg-red-950/20 rounded-full">
                                 <Trash2Icon className="w-4 h-4" />
                             </button>

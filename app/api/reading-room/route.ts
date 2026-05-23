@@ -1156,21 +1156,16 @@ export async function POST(req: Request) {
             const novelId = searchParams.get('novelId');
             if (!novelId) return NextResponse.json({ error: 'Missing novelId' }, { status: 400 });
 
-            // Ensure they are the uploader or ADMIN
-            let isAllowed = false;
-            const admins = ["nthanhnam2005@gmail.com", "thanhxnam2005@gmail.com", "test@example.com"];
-            if (admins.includes(user.email || '')) {
-                isAllowed = true;
-            } else {
-                const index = await getReadingRoomIndex();
-                const indexMeta = index.find(n => n.id === novelId);
-                if (indexMeta && indexMeta.uploaderId === user.id) {
-                    isAllowed = true;
-                }
-            }
+            // Enforce that only uploader or admin can delete from reading room
+            const index = await getReadingRoomIndex();
+            const indexMeta = index.find(n => n.id === novelId);
+            const uploaderId = indexMeta?.uploaderId;
 
-            if (!isAllowed) {
-                return NextResponse.json({ error: 'Unauthorized. Bạn không phải là admin hoặc tác giả đăng bộ này.' }, { status: 403 });
+            const admins = ["nthanhnam2005@gmail.com", "thanhxnam2005@gmail.com", "test@example.com"];
+            const isUserAdmin = admins.includes(user.email || '');
+
+            if (!isUserAdmin && uploaderId && user.id !== uploaderId) {
+                return NextResponse.json({ error: 'Unauthorized. Bạn không có quyền xóa truyện này khỏi Phòng Đọc.' }, { status: 403 });
             }
 
             const { deleteFromReadingRoom } = await import('@/lib/google-drive-admin-v2');

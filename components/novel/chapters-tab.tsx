@@ -28,6 +28,7 @@ import {
   TooltipTrigger,
 } from "@/components/ui/tooltip";
 import { db, type Chapter } from "@/lib/db";
+import { useLiveQuery } from "dexie-react-hooks";
 import { fuzzyMatch } from "@/lib/fuzzy";
 import { deleteChapter, clearChapterTranslations, type ChapterAnalysisStatus } from "@/lib/hooks";
 import { useBulkTranslateStore } from "@/lib/stores/bulk-translate";
@@ -151,6 +152,9 @@ export function ChaptersTab({
   onMergeMultiple?: (chapterIds: string[]) => void;
   onMergeParts?: (chapterIds: string[]) => void;
 }) {
+  const novel = useLiveQuery(() => db.novels.get(novelId), [novelId]);
+  const isEditMode = novel?.customTranslateMode === "edit";
+
   const [selected, setSelected] = useState<Set<string>>(new Set());
   const [expandedId, setExpandedId] = useState<string | null>(null);
   const [deleteTarget, setDeleteTarget] = useState<Chapter | null>(null);
@@ -376,7 +380,7 @@ export function ChaptersTab({
         </Button>
         <Button size="sm" variant="outline" className="text-red-600 dark:text-red-400 border-red-500/30" onClick={selectTranslationErrors}>
           <XCircleIcon className="size-3.5 sm:mr-1.5" />
-          <span className="hidden sm:inline">Chọn lỗi dịch</span>
+          <span className="hidden sm:inline">{isEditMode ? "Chọn lỗi biên tập" : "Chọn lỗi dịch"}</span>
         </Button>
         <Button size="sm" variant="outline" className="text-blue-600 dark:text-blue-400" onClick={() => setWorkspaceOpen(true)}>
           <ZapIcon className="size-3.5 sm:mr-1.5" />
@@ -443,7 +447,7 @@ export function ChaptersTab({
                 onClick={() => setBulkClearTranslationsOpen(true)}
               >
                 <EraserIcon className="size-3.5" />
-                Xóa bản dịch
+                {isEditMode ? "Xóa bản biên tập" : "Xóa bản dịch"}
               </button>
               {onReplace && (
                 <button
@@ -580,14 +584,14 @@ export function ChaptersTab({
                   const tlStatus = translateJob?.statuses.get(ch.id);
                   let TlBadge = null;
                   if (showTranslateStatus && tlStatus) {
-                    if (tlStatus === "pending") TlBadge = <span className="ml-2 rounded px-1.5 py-0.5 text-[10px] bg-muted text-muted-foreground whitespace-nowrap">Chờ dịch</span>;
+                    if (tlStatus === "pending") TlBadge = <span className="ml-2 rounded px-1.5 py-0.5 text-[10px] bg-muted text-muted-foreground whitespace-nowrap">{isEditMode ? "Chờ biên tập" : "Chờ dịch"}</span>;
                     else if (tlStatus === "scanning") TlBadge = <span className="ml-2 rounded px-1.5 py-0.5 text-[10px] bg-purple-500/10 text-purple-600 whitespace-nowrap flex items-center gap-1"><LoaderIcon className="size-3 animate-spin" />Quét từ điển</span>;
                     else if (tlStatus === "scanned") TlBadge = <span className="ml-2 rounded px-1.5 py-0.5 text-[10px] bg-indigo-500/10 text-indigo-600 whitespace-nowrap">Đã quét (Chờ AI 1)</span>;
-                    else if (tlStatus === "translating") TlBadge = <span className="ml-2 rounded px-1.5 py-0.5 text-[10px] bg-blue-500/10 text-blue-600 whitespace-nowrap flex items-center gap-1"><LoaderIcon className="size-3 animate-spin" />Đang dịch</span>;
-                    else if (tlStatus === "done") TlBadge = <span className="ml-2 rounded px-1.5 py-0.5 text-[10px] bg-emerald-500/10 text-emerald-600 whitespace-nowrap">Đã dịch</span>;
+                    else if (tlStatus === "translating") TlBadge = <span className="ml-2 rounded px-1.5 py-0.5 text-[10px] bg-blue-500/10 text-blue-600 whitespace-nowrap flex items-center gap-1"><LoaderIcon className="size-3 animate-spin" />{isEditMode ? "Đang biên tập" : "Đang dịch"}</span>;
+                    else if (tlStatus === "done") TlBadge = <span className="ml-2 rounded px-1.5 py-0.5 text-[10px] bg-emerald-500/10 text-emerald-600 whitespace-nowrap">{isEditMode ? "Đã biên tập" : "Đã dịch"}</span>;
                     else if (tlStatus === "error") TlBadge = <span className="ml-2 rounded px-1.5 py-0.5 text-[10px] bg-red-500/10 text-red-600 whitespace-nowrap">Lỗi</span>;
                   } else if (translatedChapterIds?.has(ch.id)) {
-                    TlBadge = <span className="ml-2 rounded px-1.5 py-0.5 text-[10px] bg-emerald-500/10 text-emerald-600 whitespace-nowrap">Đã dịch</span>;
+                    TlBadge = <span className="ml-2 rounded px-1.5 py-0.5 text-[10px] bg-emerald-500/10 text-emerald-600 whitespace-nowrap">{isEditMode ? "Đã biên tập" : "Đã dịch"}</span>;
                   }
 
                   return (
@@ -645,7 +649,7 @@ export function ChaptersTab({
                           <div className="flex items-center gap-1 px-3 pb-1.5 pl-[3.75rem]">
                             <span className="text-[10px] font-medium text-muted-foreground">
                               {translatedChapterIds?.has(ch.id)
-                                ? `${(originalWordCounts?.get(ch.id) ?? 0).toLocaleString()} gốc / ${(wordCounts.get(ch.id) ?? 0).toLocaleString()} dịch`
+                                ? `${(originalWordCounts?.get(ch.id) ?? 0).toLocaleString()} gốc / ${(wordCounts.get(ch.id) ?? 0).toLocaleString()} ${isEditMode ? "biên tập" : "dịch"}`
                                 : `${(originalWordCounts?.get(ch.id) ?? 0).toLocaleString()} từ`}
                             </span>
                             <StatusIcon
@@ -716,8 +720,8 @@ export function ChaptersTab({
                             </TooltipTrigger>
                             <TooltipContent>
                               {translatedChapterIds?.has(ch.id)
-                                ? `Gốc: ${(originalWordCounts?.get(ch.id) ?? 0).toLocaleString()} từ / Dịch: ${(wordCounts.get(ch.id) ?? 0).toLocaleString()} từ`
-                                : `Gốc: ${(originalWordCounts?.get(ch.id) ?? 0).toLocaleString()} từ (Chưa dịch)`}
+                                ? `Gốc: ${(originalWordCounts?.get(ch.id) ?? 0).toLocaleString()} từ / ${isEditMode ? "Biên tập" : "Dịch"}: ${(wordCounts.get(ch.id) ?? 0).toLocaleString()} từ`
+                                : `Gốc: ${(originalWordCounts?.get(ch.id) ?? 0).toLocaleString()} từ ${isEditMode ? "(Chưa biên tập)" : "(Chưa dịch)"}`}
                             </TooltipContent>
                           </Tooltip>
 
@@ -878,9 +882,11 @@ export function ChaptersTab({
       <AlertDialog open={bulkClearTranslationsOpen} onOpenChange={setBulkClearTranslationsOpen}>
         <AlertDialogContent>
           <AlertDialogHeader>
-            <AlertDialogTitle>Xóa bản dịch</AlertDialogTitle>
+            <AlertDialogTitle>{isEditMode ? "Xóa bản biên tập" : "Xóa bản dịch"}</AlertDialogTitle>
             <AlertDialogDescription>
-              Bạn chuẩn bị xóa nội dung dịch của <strong>{selected.size}</strong> chương đã chọn và khôi phục về bản gốc. Hành động này không thể hoàn tác.
+              {isEditMode
+                ? `Bạn chuẩn bị xóa nội dung biên tập của ${selected.size} chương đã chọn và khôi phục về bản gốc. Hành động này không thể hoàn tác.`
+                : `Bạn chuẩn bị xóa nội dung dịch của ${selected.size} chương đã chọn và khôi phục về bản gốc. Hành động này không thể hoàn tác.`}
             </AlertDialogDescription>
           </AlertDialogHeader>
           <AlertDialogFooter>
@@ -897,7 +903,7 @@ export function ChaptersTab({
           <div className="flex-1 min-w-0">
             <div className="flex items-center justify-between text-xs font-medium mb-1.5">
               <span className="text-primary truncate">
-                Dịch hàng loạt ({translateJob.chaptersCompleted}/{translateJob.totalChapters})
+                {isEditMode ? "Biên tập hàng loạt" : "Dịch hàng loạt"} ({translateJob.chaptersCompleted}/{translateJob.totalChapters})
               </span>
               <span>{Math.round((translateJob.chaptersCompleted / Math.max(1, translateJob.totalChapters)) * 100)}%</span>
             </div>
@@ -909,7 +915,7 @@ export function ChaptersTab({
             </div>
             {translateJob.currentChapterId && !translateJob.isPaused && (
               <p className="text-[10px] text-muted-foreground mt-1 truncate animate-pulse">
-                Đang dịch chương hiện tại...
+                {isEditMode ? "Đang biên tập chương hiện tại..." : "Đang dịch chương hiện tại..."}
               </p>
             )}
             {translateJob.isPaused && (
@@ -928,7 +934,7 @@ export function ChaptersTab({
                 <PauseIcon className="size-4" />
               </Button>
             )}
-            <Button size="icon" variant="outline" className="h-8 w-8 text-destructive" onClick={() => useBulkTranslateStore.getState().cancel(novelId)} title="Hủy dịch">
+            <Button size="icon" variant="outline" className="h-8 w-8 text-destructive" onClick={() => useBulkTranslateStore.getState().cancel(novelId)} title={isEditMode ? "Hủy biên tập" : "Hủy dịch"}>
               <XCircleIcon className="size-4" />
             </Button>
           </div>

@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState, useMemo } from "react";
+import { useEffect, useState, useMemo, useRef } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import {
@@ -20,11 +20,13 @@ import {
     BookMarkedIcon,
     Loader2Icon,
     SunIcon,
-    MoonIcon
+    MoonIcon,
+    GlobeIcon
 } from "lucide-react";
 import { type Novel } from "@/lib/db";
 import { useProfile } from "@/lib/hooks/use-profile";
 import { toast } from "sonner";
+import { sanitizeFilename, uploadCompressedInChunks } from "@/lib/utils";
 
 const formatViews = (val?: number) => {
     if (!val) return "0";
@@ -33,6 +35,101 @@ const formatViews = (val?: number) => {
     }
     return val.toString();
 };
+
+async function uploadNovelToReadingRoom(
+    source: string,
+    slug: string,
+    title: string,
+    author: string,
+    cover: string,
+    description: string,
+    downloadedChapters: Array<{ title: string; content: string }>
+) {
+    try {
+        const novelId = `novelhub-${source}-${slug}`;
+        
+        // 1. Construct the exportData structure
+        const chapters = downloadedChapters.map((ch, idx) => ({
+            id: `${novelId}-ch-${idx}`,
+            novelId,
+            title: ch.title,
+            originalTitle: ch.title,
+            order: idx,
+            createdAt: new Date(),
+            updatedAt: new Date(),
+        }));
+
+        const scenes = downloadedChapters.map((ch, idx) => ({
+            id: `${novelId}-sc-${idx}`,
+            chapterId: `${novelId}-ch-${idx}`,
+            novelId,
+            title: ch.title,
+            content: ch.content,
+            order: idx,
+            wordCount: ch.content.split(/\s+/).filter(Boolean).length,
+            version: 1,
+            versionType: "qt-convert" as any,
+            isActive: 1,
+            createdAt: new Date(),
+            updatedAt: new Date(),
+        }));
+
+        const exportData = {
+            novel: {
+                id: novelId,
+                title: title || "Không rõ",
+                author: author || "Khuyết danh",
+                description: description || "Chưa có mô tả...",
+                coverImage: cover || "",
+                genres: [],
+                createdAt: new Date(),
+                updatedAt: new Date(),
+            },
+            chapters,
+            scenes,
+            characters: [],
+            notes: [],
+            plotArcs: [],
+            chapterPlans: [],
+            characterArcs: [],
+            writingSettings: null
+        };
+
+        // 2. Compress the JSON
+        const jsonString = JSON.stringify(exportData);
+        const { compress } = await import("@/lib/compression");
+        const compressed = await compress(jsonString);
+
+        // 3. Create metadata
+        const metadata = {
+            id: novelId,
+            title: title || "Không rõ",
+            author: author || "Khuyết danh",
+            description: description || "Chưa có mô tả...",
+            coverImage: cover || "",
+            chapterCount: chapters.length,
+            genres: [],
+            wrongChaptersCount: 0,
+        };
+
+        // 4. Upload in chunks
+        const uploadToastId = toast.loading(`Đang gửi truyện lên kho chung: "${title}"...`);
+        
+        await uploadCompressedInChunks(
+            novelId,
+            metadata,
+            compressed,
+            (percent) => {
+                toast.loading(`Đang gửi truyện lên kho chung: "${title}" (${percent}%)`, { id: uploadToastId });
+            }
+        );
+        
+        toast.success(`Đã lưu "${title}" vào kho chung Phòng Đọc!`, { id: uploadToastId });
+    } catch (err: any) {
+        console.error("Lỗi khi tự động lưu lên kho chung:", err);
+        toast.info(`Không thể lưu truyện vào kho chung: ${err.message || err}`);
+    }
+}
 
 function ExploreSkeleton({ isDark }: { isDark: boolean }) {
     return (
@@ -125,6 +222,20 @@ function CatalogSkeleton({ isDark }: { isDark: boolean }) {
     );
 }
 
+export type NovelHubView = "home" | "search" | "story" | "chapter" | "list";
+
+export interface NovelHubState {
+    view: NovelHubView;
+    storySlug?: string;
+    chapterSlug?: string;
+    listType?: string;
+    searchQuery?: string;
+    page?: number;
+    storyTitle?: string;
+    storyCover?: string;
+    storyAuthor?: string;
+}
+
 export default function StandaloneReadingRoomApp() {
     const router = useRouter();
     const { profile, loading: profileLoading, isVip } = useProfile();
@@ -140,9 +251,97 @@ export default function StandaloneReadingRoomApp() {
     }, [profileLoading, isVip, router]);
 
     // UI states
-    const [activeTab, setActiveTab] = useState<"library" | "explore" | "catalog" | "account">("explore");
+    const [activeTab, setActiveTab] = useState<"library" | "explore" | "catalog" | "account" | "novelhub">("explore");
     const [librarySubTab, setLibrarySubTab] = useState<"history" | "bookmarks">("history");
+    const [catalogSourceTab, setCatalogSourceTab] = useState<"all" | "truyenfull" | "metruyenchu" | "wikidich">("all");
     const [soundMuted, setSoundMuted] = useState(false);
+
+    // NovelHub states & navigation
+    const [nhState, setNhState] = useState<NovelHubState>({ view: "home" });
+    const [nhHistory, setNhHistory] = useState<NovelHubState[]>([]);
+    const [nhSource, setNhSource] = useState<string>("truyenfull");
+    const [nhSubTab, setNhSubTab] = useState<"home" | "new_list">("home");
+    const [nhQuery, setNhQuery] = useState("");
+
+    const handleNhSearch = (e: React.FormEvent) => {
+        e.preventDefault();
+        if (nhQuery.trim()) {
+            navigateNh({ view: "search", searchQuery: nhQuery.trim() });
+        }
+    };
+
+    useEffect(() => {
+        const saved = localStorage.getItem("nh_source");
+        if (saved) {
+            setNhSource(saved);
+        }
+    }, []);
+
+    const changeNhSource = (src: string) => {
+        setNhSource(src);
+        localStorage.setItem("nh_source", src);
+        setNhSubTab("home");
+        setNhState({ view: "home" });
+        setNhHistory([]);
+    };
+
+    const navigateNh = (newState: NovelHubState) => {
+        setNhHistory((prev) => [...prev, nhState]);
+        setNhState(newState);
+    };
+
+    const navigateNhBack = () => {
+        if (nhHistory.length > 0) {
+            const prev = nhHistory[nhHistory.length - 1];
+            setNhHistory((prevList) => prevList.slice(0, -1));
+            setNhState(prev);
+        } else {
+            setNhState({ view: "home" });
+        }
+    };
+
+    const handleLibraryItemClick = (id: string, e: React.MouseEvent) => {
+        if (id.startsWith("novelhub-")) {
+            e.preventDefault();
+            const parts = id.split("-");
+            const source = parts[1];
+            const slug = parts.slice(2).join("-");
+            
+            let chapterSlug = "";
+            let coverImage = "";
+            let author = "";
+            let title = "";
+            try {
+                const historyObj = JSON.parse(localStorage.getItem("rr_history") || "{}");
+                const item = historyObj[id];
+                if (item) {
+                    chapterSlug = item.lastReadChapterSlug || "";
+                    coverImage = item.coverImage || "";
+                    author = item.author || "";
+                    title = item.title || "";
+                }
+            } catch (err) {}
+
+            setNhSource(source);
+            localStorage.setItem("nh_source", source);
+            setNhSubTab("home");
+            setNhHistory([]);
+            
+            if (chapterSlug) {
+                setNhState({
+                    view: "chapter",
+                    storySlug: slug,
+                    chapterSlug: chapterSlug,
+                    storyTitle: title,
+                    storyCover: coverImage,
+                    storyAuthor: author
+                });
+            } else {
+                setNhState({ view: "story", storySlug: slug, page: 1 });
+            }
+            setActiveTab("novelhub");
+        }
+    };
 
     // Theme state
     const [theme, setTheme] = useState<"light" | "dark">("dark");
@@ -150,10 +349,49 @@ export default function StandaloneReadingRoomApp() {
     // Sorting configs modal
     const [showLibrarySort, setShowLibrarySort] = useState(false);
     const [librarySortBy, setLibrarySortBy] = useState<"recent" | "new_chap" | "name">("recent");
+    const [wikiDichCookie, setWikiDichCookie] = useState("");
 
     // Dynamic state logs
     const [historyList, setHistoryList] = useState<any[]>([]);
     const [bookmarksList, setBookmarksList] = useState<any[]>([]);
+
+    // States for bulk downloading from bookmarks
+    const [selectedBookmarkIds, setSelectedBookmarkIds] = useState<string[]>([]);
+    const [bulkStatus, setBulkStatus] = useState<"idle" | "downloading" | "paused">("idle");
+    const [bulkFormat, setBulkFormat] = useState<"txt" | "epub" | null>(null);
+    const [bulkProgress, setBulkProgress] = useState(0);
+    const [bulkCurrentBookProgress, setBulkCurrentBookProgress] = useState("");
+    const [bulkSavedState, setBulkSavedState] = useState<any>(null);
+    const bulkAbortedRef = useRef<boolean>(false);
+
+    // Scan for any paused bulk downloads on mount
+    useEffect(() => {
+        try {
+            const saved = localStorage.getItem("rr_bulk_download_state");
+            if (saved) {
+                const parsed = JSON.parse(saved);
+                setBulkSavedState(parsed);
+                setBulkStatus("paused");
+                setBulkFormat(parsed.format);
+                const progress = Math.round((parsed.completedChaptersCount / parsed.totalChaptersCount) * 100) || 0;
+                setBulkProgress(progress);
+                setBulkCurrentBookProgress(`Đang tạm dừng: ${parsed.queue[parsed.currentBookIndex]?.title || "Truyện"}`);
+            }
+        } catch (e) {
+            console.error("Failed to load bulk download state", e);
+        }
+    }, []);
+
+    // Load WikiDich search bypass cookie
+    useEffect(() => {
+        const savedCookie = localStorage.getItem("nh_wikidich_cookie") || "";
+        setWikiDichCookie(savedCookie);
+    }, []);
+
+    const handleSaveWikiDichCookie = (val: string) => {
+        setWikiDichCookie(val);
+        localStorage.setItem("nh_wikidich_cookie", val.trim());
+    };
 
     // Catalog filtering
     const [showFilters, setShowFilters] = useState(false);
@@ -350,9 +588,375 @@ export default function StandaloneReadingRoomApp() {
         } catch (e) { }
     };
 
+    const fetchChaptersForBulk = async (slug: string, source: string, bookObj?: any) => {
+        try {
+            const res = await fetch(`/api/novelhub?action=story&slug=${slug}&page=1&source=${source}`);
+            const data = await res.json();
+            if (!data || data.error) {
+                throw new Error(data?.error || "Không thể tải chi tiết truyện.");
+            }
+
+            if (bookObj && data.desc) {
+                bookObj.desc = data.desc;
+            }
+
+            const allChapters: any[] = [...(data.chapters || [])];
+            if (data.totalPages > 1) {
+                const fetchPromises = [];
+                for (let p = 2; p <= data.totalPages; p++) {
+                    fetchPromises.push(
+                        fetch(`/api/novelhub?action=story&slug=${slug}&page=${p}&source=${source}`)
+                            .then((res) => res.json())
+                            .then((d) => d.chapters || [])
+                            .catch(() => [])
+                    );
+                }
+                const results = await Promise.all(fetchPromises);
+                results.forEach((chaps) => {
+                    allChapters.push(...chaps);
+                });
+            }
+            return allChapters;
+        } catch (e: any) {
+            console.error("fetchChaptersForBulk error", e);
+            throw e;
+        }
+    };
+
+    const runBulkDownload = async (state: any) => {
+        setBulkStatus("downloading");
+        setBulkFormat(state.format);
+        bulkAbortedRef.current = false;
+        
+        let {
+            queue,
+            currentBookIndex,
+            currentBookDownloadedChapters,
+            currentBookChaptersToDownload,
+            currentBookChapterIndex,
+            totalChaptersCount,
+            completedChaptersCount,
+            consecutiveErrors
+        } = state;
+
+        const storageKey = "rr_bulk_download_state";
+
+        const saveState = (cIdx: number, downloaded: any[], chaptersList: any[], chapIdx: number, compCount: number, errCount: number) => {
+            const updated = {
+                format: state.format,
+                queue,
+                currentBookIndex: cIdx,
+                currentBookDownloadedChapters: downloaded,
+                currentBookChaptersToDownload: chaptersList,
+                currentBookChapterIndex: chapIdx,
+                totalChaptersCount,
+                completedChaptersCount: compCount,
+                consecutiveErrors: errCount
+            };
+            localStorage.setItem(storageKey, JSON.stringify(updated));
+            setBulkSavedState(updated);
+            const progress = Math.round((compCount / totalChaptersCount) * 100) || 0;
+            setBulkProgress(progress);
+        };
+
+        try {
+            for (let b = currentBookIndex; b < queue.length; b++) {
+                const book = queue[b];
+                setBulkCurrentBookProgress(`Chuẩn bị mục lục: "${book.title}"...`);
+
+                // Check abort flag
+                if (bulkAbortedRef.current) {
+                    saveState(b, currentBookDownloadedChapters, currentBookChaptersToDownload, currentBookChapterIndex, completedChaptersCount, consecutiveErrors);
+                    setBulkStatus("paused");
+                    return;
+                }
+
+                if (currentBookChaptersToDownload.length === 0) {
+                    try {
+                        const allChapters = await fetchChaptersForBulk(book.slug, book.source, book);
+                        if (allChapters.length === 0) {
+                            throw new Error("Mục lục trống.");
+                        }
+
+                        totalChaptersCount = totalChaptersCount - (book.totalChapters || 100) + allChapters.length;
+                        if (totalChaptersCount <= 0) totalChaptersCount = allChapters.length;
+
+                        currentBookChapterIndex = 0;
+                        currentBookDownloadedChapters = [];
+                        currentBookChaptersToDownload = allChapters;
+                        saveState(b, currentBookDownloadedChapters, currentBookChaptersToDownload, 0, completedChaptersCount, consecutiveErrors);
+                    } catch (e: any) {
+                        toast.error(`Lỗi tải truyện "${book.title}": ${e.message}`);
+                        completedChaptersCount += (book.totalChapters || 100);
+                        currentBookIndex = b + 1;
+                        currentBookChaptersToDownload = [];
+                        currentBookDownloadedChapters = [];
+                        saveState(currentBookIndex, [], [], 0, completedChaptersCount, 0);
+                        continue;
+                    }
+                }
+
+                for (let c = currentBookChapterIndex; c < currentBookChaptersToDownload.length; c++) {
+                    if (bulkAbortedRef.current) {
+                        saveState(b, currentBookDownloadedChapters, currentBookChaptersToDownload, c, completedChaptersCount, consecutiveErrors);
+                        setBulkStatus("paused");
+                        return;
+                    }
+
+                    const chap = currentBookChaptersToDownload[c];
+                    setBulkCurrentBookProgress(`[${b + 1}/${queue.length}] ${book.title} - ${chap.title}`);
+
+                    let success = false;
+                    let retries = 3;
+                    let dData: any = null;
+
+                    const getRefererUrl = (src: string, bSlug: string, cSlug?: string) => {
+                        if (src === "truyenfull") {
+                            return cSlug ? `https://truyenfull.today/${bSlug}/${cSlug}/` : `https://truyenfull.today/${bSlug}/`;
+                        } else if (src === "metruyenchu") {
+                            return cSlug ? `https://metruyenchu.co/truyen/${bSlug}/${cSlug}` : `https://metruyenchu.co/truyen/${bSlug}`;
+                        } else {
+                            return cSlug ? `https://wikicv.net/truyen/${bSlug}/${cSlug}` : `https://wikicv.net/truyen/${bSlug}`;
+                        }
+                    };
+
+                    const refererUrl = c === 0
+                        ? getRefererUrl(book.source, book.slug)
+                        : getRefererUrl(book.source, book.slug, currentBookChaptersToDownload[c - 1].slug);
+
+                    while (!success && retries > 0) {
+                        try {
+                            const res = await fetch(
+                                `/api/novelhub?action=chapter&slug=${book.slug}&chapterSlug=${encodeURIComponent(
+                                    chap.slug
+                                )}&source=${book.source}&referer=${encodeURIComponent(refererUrl)}`
+                            );
+                            dData = await res.json();
+                            if (dData && dData.content && !dData.content.includes("Không thể tải nội dung")) {
+                                success = true;
+                            } else {
+                                retries--;
+                                if (retries > 0) await new Promise((r) => setTimeout(r, 3000));
+                            }
+                        } catch (e) {
+                            retries--;
+                            if (retries > 0) await new Promise((r) => setTimeout(r, 3000));
+                        }
+                    }
+
+                    if (success && dData) {
+                        const parser = new DOMParser();
+                        const doc = parser.parseFromString(dData.content, "text/html");
+                        const pElements = doc.querySelectorAll("p, div");
+                        let textContent = "";
+                        if (pElements.length > 0) {
+                            const paragraphs: string[] = [];
+                            pElements.forEach(el => {
+                                const txt = el.textContent?.trim();
+                                if (txt) paragraphs.push(txt);
+                            });
+                            textContent = paragraphs.join("\n\n");
+                        } else {
+                            textContent = (doc.body.textContent || "").trim().replace(/\n\s*\n/g, "\n\n");
+                        }
+                        currentBookDownloadedChapters.push({ title: chap.title, content: textContent });
+                        consecutiveErrors = 0; // Reset consecutive errors
+                    } else {
+                        consecutiveErrors++;
+                        if (consecutiveErrors >= 3) {
+                            saveState(b, currentBookDownloadedChapters, currentBookChaptersToDownload, c, completedChaptersCount, consecutiveErrors);
+                            setBulkStatus("paused");
+                            // Required alert
+                            alert(`[LỖI TẢI HÀNG LOẠT] Tải thất bại liên tục quá 3 lần!\n\nVui lòng TẮT và BẬT LẠI ứng dụng Cloudflare 1.1.1.1 (WARP) hoặc VPN để đổi IP mới, sau đó nhấn "Tiếp tục".`);
+                            toast.error("Quá 3 lượt tải lỗi. Đã tạm dừng. Vui lòng bật lại 1.1.1.1 rồi tiếp tục.");
+                            return;
+                        }
+                        currentBookDownloadedChapters.push({ title: chap.title, content: "[Lỗi: Không tải được nội dung chương này]" });
+                    }
+
+                    completedChaptersCount++;
+                    saveState(b, currentBookDownloadedChapters, currentBookChaptersToDownload, c + 1, completedChaptersCount, consecutiveErrors);
+
+                    const randomDelay = Math.floor(Math.random() * 1500) + 1500;
+                    await new Promise((r) => setTimeout(r, randomDelay));
+                }
+
+                // Download book
+                const format = state.format;
+                if (format === "txt") {
+                    let txtContent = `${book.title}\n`;
+                    txtContent += `Tác giả: ${book.author || "Khuyết danh"}\n`;
+                    txtContent += `Nguồn ngoài: ${book.source.toUpperCase()}\n\n`;
+                    txtContent += `=========================================\n\n`;
+
+                    currentBookDownloadedChapters.forEach((ch: any) => {
+                        txtContent += `${ch.title}\n\n`;
+                        txtContent += `${ch.content}\n\n`;
+                        txtContent += `-----------------------------------------\n\n`;
+                    });
+
+                    const blob = new Blob([txtContent], { type: "text/plain;charset=utf-8" });
+                    const url = URL.createObjectURL(blob);
+                    const a = document.createElement("a");
+                    a.href = url;
+                    a.download = `${sanitizeFilename(book.title)}.txt`;
+                    document.body.appendChild(a);
+                    a.click();
+                    document.body.removeChild(a);
+                    URL.revokeObjectURL(url);
+                } else {
+                    const cleanChapters = currentBookDownloadedChapters.map((ch: any) => ({
+                        title: ch.title,
+                        content: ch.content.replace(/\n/g, "<br/>")
+                    }));
+
+                    let coverImageBase64: string | null = null;
+                    if (book.cover) {
+                        try {
+                            const imgRes = await fetch(`/api/proxy-image?url=${encodeURIComponent(book.cover)}`);
+                            if (imgRes.ok) {
+                                const blob = await imgRes.blob();
+                                const reader = new FileReader();
+                                const base64Promise = new Promise<string>((resolve, reject) => {
+                                    reader.onloadend = () => resolve(reader.result as string);
+                                    reader.onerror = reject;
+                                });
+                                reader.readAsDataURL(blob);
+                                coverImageBase64 = await base64Promise;
+                            }
+                        } catch (e) {
+                            console.warn("Failed to fetch cover image base64", e);
+                        }
+                    }
+
+                    const { generateEpub } = await import("@/lib/epub-generator");
+                    const epubBlob = await generateEpub(
+                        book.title,
+                        book.author || "Khuyết danh",
+                        coverImageBase64,
+                        cleanChapters
+                    );
+
+                    const url = URL.createObjectURL(epubBlob);
+                    const a = document.createElement("a");
+                    a.href = url;
+                    a.download = `${sanitizeFilename(book.title)}.epub`;
+                    document.body.appendChild(a);
+                    a.click();
+                    document.body.removeChild(a);
+                    URL.revokeObjectURL(url);
+                }
+
+                toast.success(`Đã tải xong bộ: "${book.title}"!`);
+
+                uploadNovelToReadingRoom(
+                    book.source,
+                    book.slug,
+                    book.title,
+                    book.author,
+                    book.cover,
+                    book.desc || book.description || "",
+                    [...currentBookDownloadedChapters]
+                ).catch((err) => {
+                    console.error("Lỗi khi tự động tải lên kho chung (bulk):", err);
+                });
+
+                currentBookIndex = b + 1;
+                currentBookChaptersToDownload = [];
+                currentBookDownloadedChapters = [];
+                saveState(currentBookIndex, [], [], 0, completedChaptersCount, 0);
+            }
+
+            localStorage.removeItem(storageKey);
+            setBulkSavedState(null);
+            setBulkStatus("idle");
+            setBulkFormat(null);
+            setBulkProgress(100);
+            setBulkCurrentBookProgress("Đã tải xong toàn bộ truyện đã chọn!");
+            setSelectedBookmarkIds([]);
+            toast.success("Tải hàng loạt thành công!");
+        } catch (e: any) {
+            console.error("Bulk download error", e);
+            toast.error(`Lỗi tải hàng loạt: ${e.message}`);
+            setBulkStatus("paused");
+        }
+    };
+
+    const startBulkDownload = async (format: "txt" | "epub") => {
+        if (selectedBookmarkIds.length === 0) return;
+
+        const queue = selectedBookmarkIds.map(id => {
+            const parts = id.split("-");
+            const source = parts[1];
+            const slug = parts.slice(2).join("-");
+            const book = bookmarksList.find(b => b.id === id);
+            return {
+                id,
+                title: book?.title || "Truyện nguồn ngoài",
+                author: book?.author || "Khuyết danh",
+                cover: book?.coverImage || "",
+                totalChapters: book?.totalChapters || 100,
+                source,
+                slug
+            };
+        });
+
+        const totalChapters = queue.reduce((sum, b) => sum + (b.totalChapters || 100), 0);
+
+        const initialState = {
+            format,
+            queue,
+            currentBookIndex: 0,
+            currentBookDownloadedChapters: [],
+            currentBookChaptersToDownload: [],
+            currentBookChapterIndex: 0,
+            totalChaptersCount: totalChapters,
+            completedChaptersCount: 0,
+            consecutiveErrors: 0
+        };
+
+        setBulkSavedState(initialState);
+        await runBulkDownload(initialState);
+    };
+
+    const pauseBulkDownload = () => {
+        bulkAbortedRef.current = true;
+        toast.info("Đang tạm dừng tải hàng loạt... Đang đợi tải xong chương hiện tại.");
+    };
+
+    const resumeBulkDownload = async () => {
+        if (bulkSavedState) {
+            await runBulkDownload(bulkSavedState);
+        }
+    };
+
+    const cancelBulkDownload = () => {
+        localStorage.removeItem("rr_bulk_download_state");
+        setBulkSavedState(null);
+        setBulkStatus("idle");
+        setBulkFormat(null);
+        setBulkProgress(0);
+        setBulkCurrentBookProgress("");
+        setSelectedBookmarkIds([]);
+        toast.success("Đã hủy lượt tải hàng loạt.");
+    };
+
     // Filter logic on catalog
     const filteredCatalogNovels = useMemo(() => {
         let list = [...novels];
+
+        const getNovelSource = (id: string) => {
+            const lower = id.toLowerCase();
+            if (lower.includes("metruyenchu") || lower.includes("mtc")) return "metruyenchu";
+            if (lower.includes("wikidich") || lower.includes("wikicv")) return "wikidich";
+            if (lower.includes("truyenfull")) return "truyenfull";
+            return "other";
+        };
+
+        // Filter by source tab
+        if (catalogSourceTab !== "all") {
+            list = list.filter(n => getNovelSource(n.id) === catalogSourceTab);
+        }
 
         // Search query
         if (searchQuery.trim()) {
@@ -475,14 +1079,14 @@ export default function StandaloneReadingRoomApp() {
         }
 
         return list;
-    }, [novels, searchQuery, appliedFilters]);
+    }, [novels, searchQuery, appliedFilters, catalogSourceTab]);
 
-    // Reset visible count when filters or search query changes
+    // Reset visible count when filters, source tab, or search query changes
     useEffect(() => {
         if (!isRestored) return;
         setVisibleCount(14);
         sessionStorage.setItem("rr_scroll_y", "0");
-    }, [appliedFilters, searchQuery, isRestored]);
+    }, [appliedFilters, searchQuery, isRestored, catalogSourceTab]);
 
 
     // Infinite scroll detection on window scroll
@@ -772,14 +1376,14 @@ export default function StandaloneReadingRoomApp() {
                                                     : "bg-[#fffbf4] border-zinc-200 shadow-sm hover:border-zinc-300"
                                                     }`}
                                             >
-                                                <Link href={`/reader/${item.id}`} className="shrink-0 w-12 aspect-3/4 rounded-lg bg-zinc-500/10 overflow-hidden relative">
+                                                <Link href={`/reader/${item.id}`} onClick={(e) => handleLibraryItemClick(item.id, e)} className="shrink-0 w-12 aspect-3/4 rounded-lg bg-zinc-500/10 overflow-hidden relative">
                                                     {item.coverImage ? (
                                                         <img src={item.coverImage} className="w-full h-full object-cover" referrerPolicy="no-referrer" />
                                                     ) : (
                                                         <div className="w-full h-full bg-zinc-300 dark:bg-zinc-800 flex items-center justify-center text-[10px] text-zinc-500 font-bold p-1 text-center line-clamp-2">{item.title}</div>
                                                     )}
                                                 </Link>
-                                                <Link href={`/reader/${item.id}`} className="flex-1 min-w-0">
+                                                <Link href={`/reader/${item.id}`} onClick={(e) => handleLibraryItemClick(item.id, e)} className="flex-1 min-w-0">
                                                     <h3 className="text-sm font-bold truncate">{item.title}</h3>
                                                     <p className="text-xs text-blue-500 font-semibold mt-0.5">Đã đọc: {item.lastReadChapterTitle || `Chương ${item.lastReadChapterIdx + 1}`}</p>
                                                     <p className="text-[10px] text-zinc-500 mt-0.5">Cập nhật: {new Date(item.updatedAt).toLocaleDateString()}</p>
@@ -795,36 +1399,142 @@ export default function StandaloneReadingRoomApp() {
                                     )}
                                 </div>
                             ) : (
-                                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                                    {bookmarksList.length === 0 ? (
-                                        <div className="col-span-full text-center py-16 text-zinc-500 text-sm font-medium">Chưa có truyện đánh dấu.</div>
-                                    ) : (
-                                        bookmarksList.map((item) => (
-                                            <div
-                                                key={item.id}
-                                                className={`flex gap-3 items-center p-3 rounded-xl border transition ${isDark
-                                                    ? "bg-[#131416] border-zinc-800/50 hover:border-zinc-700"
-                                                    : "bg-[#fffbf4] border-zinc-200 shadow-sm hover:border-zinc-300"
-                                                    }`}
-                                            >
-                                                <Link href={`/reader/${item.id}`} className="shrink-0 w-12 aspect-3/4 rounded-lg bg-zinc-500/10 overflow-hidden relative">
-                                                    {item.coverImage ? (
-                                                        <img src={item.coverImage} className="w-full h-full object-cover" referrerPolicy="no-referrer" />
-                                                    ) : (
-                                                        <div className="w-full h-full bg-zinc-300 dark:bg-zinc-800 flex items-center justify-center text-[10px] text-zinc-550 font-bold p-1 text-center line-clamp-2">{item.title}</div>
+                                <div className="space-y-4">
+                                    {/* Panel Tải hàng loạt */}
+                                    {bookmarksList.filter(item => item.id.startsWith("novelhub-")).length > 0 && (
+                                        <div className={`p-4 rounded-xl border space-y-3 transition-colors ${
+                                            isDark ? "bg-[#161b22]/40 border-amber-500/20" : "bg-amber-500/5 border-amber-500/10 shadow-sm"
+                                        }`}>
+                                            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                                                <div>
+                                                    <h3 className="text-xs font-bold text-amber-500 flex items-center gap-1.5">
+                                                        📦 Tải Hàng Loạt Nguồn Ngoài ({selectedBookmarkIds.length} truyện đã chọn)
+                                                    </h3>
+                                                    <p className="text-[10px] text-zinc-500 mt-1">
+                                                        Chọn các truyện trong danh sách Đánh dấu dưới đây để tải hàng loạt file TXT/EPUB sạch lỗi.
+                                                    </p>
+                                                </div>
+                                                <div className="flex gap-2 shrink-0 justify-center sm:justify-start">
+                                                    {bulkStatus === "idle" && (
+                                                        <>
+                                                            <button
+                                                                disabled={selectedBookmarkIds.length === 0}
+                                                                onClick={() => startBulkDownload("txt")}
+                                                                className={`px-3 py-1.5 rounded-lg text-[10px] font-bold border transition ${
+                                                                    selectedBookmarkIds.length === 0
+                                                                        ? "opacity-50 cursor-not-allowed text-zinc-400"
+                                                                        : isDark
+                                                                            ? "bg-zinc-800 hover:bg-zinc-750 text-white border-zinc-700"
+                                                                            : "bg-white hover:bg-zinc-50 text-zinc-850 border-zinc-200 shadow-xs"
+                                                                }`}
+                                                            >
+                                                                Tải TXT loạt
+                                                            </button>
+                                                            <button
+                                                                disabled={selectedBookmarkIds.length === 0}
+                                                                onClick={() => startBulkDownload("epub")}
+                                                                className={`px-3 py-1.5 rounded-lg text-[10px] font-bold border transition ${
+                                                                    selectedBookmarkIds.length === 0
+                                                                        ? "opacity-50 cursor-not-allowed text-zinc-400"
+                                                                        : isDark
+                                                                            ? "bg-zinc-800 hover:bg-zinc-750 text-white border-zinc-700"
+                                                                            : "bg-white hover:bg-zinc-50 text-zinc-850 border-zinc-200 shadow-xs"
+                                                                }`}
+                                                            >
+                                                                Tải EPUB loạt
+                                                            </button>
+                                                        </>
                                                     )}
-                                                </Link>
-                                                <Link href={`/reader/${item.id}`} className="flex-1 min-w-0">
-                                                    <h3 className="text-sm font-bold truncate">{item.title}</h3>
-                                                    <p className="text-xs text-zinc-400 mt-0.5">Tác giả: {item.author || "Khuyết danh"}</p>
-                                                    <p className="text-[10px] text-zinc-500 mt-0.5">Số chương: {item.totalChapters || 0}</p>
-                                                </Link>
-                                                <button onClick={(e) => handleClearBookmarkItem(item.id, e)} className="p-2 text-zinc-400 hover:text-red-505">
-                                                    <Trash2Icon className="w-4 h-4" />
-                                                </button>
+                                                    {bulkStatus === "downloading" && (
+                                                        <button
+                                                            onClick={pauseBulkDownload}
+                                                            className={`px-3 py-1.5 rounded-lg text-[10px] font-bold border flex items-center gap-1.5 bg-red-500/10 hover:bg-red-500/20 text-red-400 border-red-500/30 active:scale-95 transition-all`}
+                                                        >
+                                                            <Loader2Icon className="w-3.5 h-3.5 animate-spin" />
+                                                            Tạm dừng
+                                                        </button>
+                                                    )}
+                                                    {bulkStatus === "paused" && (
+                                                        <>
+                                                            <button
+                                                                onClick={resumeBulkDownload}
+                                                                className={`px-3 py-1.5 rounded-lg text-[10px] font-bold border bg-emerald-500/10 hover:bg-emerald-500/20 text-emerald-400 border-emerald-500/30 active:scale-95 transition-all`}
+                                                            >
+                                                                Tiếp tục
+                                                            </button>
+                                                            <button
+                                                                onClick={cancelBulkDownload}
+                                                                className={`px-3 py-1.5 rounded-lg text-[10px] font-bold border border-zinc-200 bg-white hover:bg-zinc-50 text-zinc-855 dark:border-zinc-800 dark:bg-zinc-900 dark:text-white active:scale-95 transition-all`}
+                                                            >
+                                                                Hủy bỏ
+                                                            </button>
+                                                        </>
+                                                    )}
+                                                </div>
                                             </div>
-                                        ))
+
+                                            {bulkStatus !== "idle" && (
+                                                <div className="w-full space-y-1.5">
+                                                    <div className="flex justify-between text-[10px] text-zinc-550 font-semibold">
+                                                        <span className="truncate max-w-[85%]">{bulkCurrentBookProgress}</span>
+                                                        <span>{bulkProgress}%</span>
+                                                    </div>
+                                                    <div className="w-full bg-zinc-200 dark:bg-zinc-800 h-1.5 rounded-full overflow-hidden">
+                                                        <div className="bg-amber-500 h-full rounded-full transition-all duration-300" style={{ width: `${bulkProgress}%` }} />
+                                                    </div>
+                                                </div>
+                                            )}
+                                        </div>
                                     )}
+
+                                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                                        {bookmarksList.length === 0 ? (
+                                            <div className="col-span-full text-center py-16 text-zinc-500 text-sm font-medium">Chưa có truyện đánh dấu.</div>
+                                        ) : (
+                                            bookmarksList.map((item) => (
+                                                <div
+                                                    key={item.id}
+                                                    className={`flex gap-3 items-center p-3 rounded-xl border transition ${isDark
+                                                        ? "bg-[#131416] border-zinc-800/50 hover:border-zinc-700"
+                                                        : "bg-[#fffbf4] border-zinc-200 shadow-sm hover:border-zinc-300"
+                                                        }`}
+                                                >
+                                                    {item.id.startsWith("novelhub-") && (
+                                                        <input
+                                                            type="checkbox"
+                                                            checked={selectedBookmarkIds.includes(item.id)}
+                                                            onChange={(e) => {
+                                                                if (e.target.checked) {
+                                                                    setSelectedBookmarkIds(prev => [...prev, item.id]);
+                                                                } else {
+                                                                    setSelectedBookmarkIds(prev => prev.filter(id => id !== item.id));
+                                                                }
+                                                            }}
+                                                            onClick={(e) => e.stopPropagation()}
+                                                            className={`w-4 h-4 rounded border text-blue-500 focus:ring-0 focus:ring-offset-0 cursor-pointer shrink-0 ${
+                                                                isDark ? "bg-[#1d1e22] border-zinc-800" : "bg-white border-zinc-300"
+                                                            }`}
+                                                        />
+                                                    )}
+                                                    <Link href={`/reader/${item.id}`} onClick={(e) => handleLibraryItemClick(item.id, e)} className="shrink-0 w-12 aspect-3/4 rounded-lg bg-zinc-500/10 overflow-hidden relative">
+                                                        {item.coverImage ? (
+                                                            <img src={item.coverImage} className="w-full h-full object-cover" referrerPolicy="no-referrer" />
+                                                        ) : (
+                                                            <div className="w-full h-full bg-zinc-300 dark:bg-zinc-800 flex items-center justify-center text-[10px] text-zinc-550 font-bold p-1 text-center line-clamp-2">{item.title}</div>
+                                                        )}
+                                                    </Link>
+                                                    <Link href={`/reader/${item.id}`} onClick={(e) => handleLibraryItemClick(item.id, e)} className="flex-1 min-w-0">
+                                                        <h3 className="text-sm font-bold truncate">{item.title}</h3>
+                                                        <p className="text-xs text-zinc-400 mt-0.5">Tác giả: {item.author || "Khuyết danh"}</p>
+                                                        <p className="text-[10px] text-zinc-500 mt-0.5">Số chương: {item.totalChapters || 0}</p>
+                                                    </Link>
+                                                    <button onClick={(e) => handleClearBookmarkItem(item.id, e)} className="p-2 text-zinc-400 hover:text-red-505">
+                                                        <Trash2Icon className="w-4 h-4" />
+                                                    </button>
+                                                </div>
+                                            ))
+                                        )}
+                                    </div>
                                 </div>
                             )}
                         </div>
@@ -981,6 +1691,35 @@ export default function StandaloneReadingRoomApp() {
                                 />
                             </div>
 
+                            {/* Source Tabs: Kho tổng, TruyenFull, MTC, WikiDich */}
+                            <div className="flex gap-2 text-xs font-bold pb-1 overflow-x-auto scrollbar-none">
+                                {[
+                                    { id: "all", label: "Kho tổng" },
+                                    { id: "truyenfull", label: "Truyện Full" },
+                                    { id: "metruyenchu", label: "Mê Truyện Chữ" },
+                                    { id: "wikidich", label: "WikiDịch" }
+                                ].map((tab) => {
+                                    const isActive = catalogSourceTab === tab.id;
+                                    return (
+                                        <button
+                                            key={tab.id}
+                                            onClick={() => setCatalogSourceTab(tab.id as any)}
+                                            className={`px-4 py-2 rounded-full border text-[11px] font-bold transition-all duration-300 ${
+                                                isActive
+                                                    ? isDark
+                                                        ? "bg-blue-600 border-blue-500 text-white shadow-lg shadow-blue-500/20"
+                                                        : "bg-blue-500 border-blue-500 text-white shadow-md shadow-blue-500/10"
+                                                    : isDark
+                                                        ? "bg-[#161719] border-zinc-800/80 text-zinc-405 hover:text-white hover:border-zinc-700"
+                                                        : "bg-white border-zinc-250 text-zinc-655 hover:text-zinc-900 hover:border-zinc-350 shadow-sm"
+                                            }`}
+                                        >
+                                            {tab.label}
+                                        </button>
+                                    );
+                                })}
+                            </div>
+
                             {/* List cards matching Picture 1 exactly */}
                             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
                                 {loading ? (
@@ -989,9 +1728,22 @@ export default function StandaloneReadingRoomApp() {
                                     <div className="col-span-full text-center py-20 text-zinc-500 text-sm font-medium">Không tìm thấy truyện nào phù hợp.</div>
                                 ) : (
                                     filteredCatalogNovels.slice(0, visibleCount).map((novel) => {
-                                        const displayTag = novel.id.startsWith("mottruyen-")
-                                            ? `MT-${novel.id.replace("mottruyen-", "")}`
-                                            : novel.id.toUpperCase();
+                                        let displayTag = novel.id.toUpperCase();
+                                        if (novel.id.startsWith("novelhub-truyenfull-")) {
+                                            const slug = novel.id.substring("novelhub-truyenfull-".length);
+                                            displayTag = `TF-${slug.toUpperCase()}`;
+                                        } else if (novel.id.startsWith("novelhub-metruyenchu-")) {
+                                            const slug = novel.id.substring("novelhub-metruyenchu-".length);
+                                            displayTag = `MTC-${slug.toUpperCase()}`;
+                                        } else if (novel.id.startsWith("novelhub-wikidich-")) {
+                                            const slug = novel.id.substring("novelhub-wikidich-".length);
+                                            displayTag = `WD-${slug.toUpperCase()}`;
+                                        } else if (novel.id.startsWith("mottruyen-")) {
+                                            displayTag = `MT-${novel.id.replace("mottruyen-", "").toUpperCase()}`;
+                                        }
+                                        if (displayTag.length > 25) {
+                                            displayTag = displayTag.substring(0, 22) + "...";
+                                        }
 
                                         return (
                                             <Link
@@ -1029,7 +1781,7 @@ export default function StandaloneReadingRoomApp() {
                                                     <div className="flex flex-col gap-1.5 mt-2">
                                                         <div className="flex justify-between items-center text-[10px]">
                                                             <span className="font-semibold text-zinc-500 truncate max-w-[120px]">{novel.author || "Khuyết danh"}</span>
-                                                            <div className="flex gap-2 items-center font-bold text-zinc-400">
+                                                            <div className="flex gap-2 items-center font-bold text-zinc-450">
                                                                 <span className="flex items-center gap-0.5 text-amber-500">★ 5.0 <span className="text-[9px] font-medium text-zinc-500">({(novel as any).reviewCount ?? 0})</span></span>
                                                                 <span className="flex items-center gap-0.5">👁️ {formatViews((novel as any).viewsCount)}</span>
                                                                 <span className="flex items-center gap-0.5">📖 {novel.totalChapters || (novel as any).chapterCount || 0}</span>
@@ -1298,6 +2050,193 @@ export default function StandaloneReadingRoomApp() {
                         </div>
                     )}
 
+                    {/* novelhub tab */}
+                    {activeTab === "novelhub" && (
+                        <div key="novelhub" className="space-y-6 animate-page-enter pb-16">
+                            {/* Navbar: Select source, back buttons, search */}
+                            <div className="flex flex-col gap-4">
+                                <div className="flex justify-between items-center pb-1">
+                                    <div className="flex items-center gap-3">
+                                        {nhHistory.length > 0 && (
+                                            <button 
+                                                onClick={navigateNhBack}
+                                                className={`p-2 rounded-full border transition ${
+                                                    isDark 
+                                                        ? "bg-zinc-800/40 border-transparent hover:bg-zinc-800 text-zinc-300" 
+                                                        : "bg-white border-zinc-200 hover:bg-zinc-50 text-zinc-700 shadow-sm"
+                                                }`}
+                                                title="Quay lại"
+                                            >
+                                                ◀ Quay lại
+                                            </button>
+                                        )}
+                                        <h1 className="text-lg font-bold tracking-tight flex items-center gap-2">
+                                            <GlobeIcon className="w-5 h-5 text-blue-500 animate-pulse" />
+                                            <span>Nguồn Ngoài (Scraper)</span>
+                                        </h1>
+                                    </div>
+                                    <div className="flex gap-2">
+                                        <button
+                                            onClick={toggleTheme}
+                                            className={`p-2 rounded-full transition ${isDark ? "bg-zinc-800/40 hover:bg-zinc-850 text-white" : "bg-white hover:bg-zinc-100 text-zinc-700 shadow-sm border border-zinc-200"}`}
+                                        >
+                                            {isDark ? <SunIcon className="w-4 h-4" /> : <MoonIcon className="w-4 h-4" />}
+                                        </button>
+                                    </div>
+                                </div>
+
+                                <div className="flex flex-col sm:flex-row gap-3">
+                                    <div className={`flex gap-1 p-1 rounded-xl border text-xs font-bold uppercase tracking-wider ${
+                                        isDark ? "bg-[#131416] border-zinc-800" : "bg-zinc-100/50 border-zinc-200 shadow-sm bg-white"
+                                    }`}>
+                                        <button 
+                                            onClick={() => changeNhSource("truyenfull")} 
+                                            className={`px-3 py-1.5 rounded-lg transition-colors ${
+                                                nhSource === "truyenfull" 
+                                                    ? "bg-blue-600 text-white shadow-sm" 
+                                                    : "text-zinc-500 hover:text-zinc-800 dark:hover:text-zinc-200"
+                                            }`}
+                                        >
+                                            Truyện Full
+                                        </button>
+                                        <button 
+                                            onClick={() => changeNhSource("metruyenchu")} 
+                                            className={`px-3 py-1.5 rounded-lg transition-colors ${
+                                                nhSource === "metruyenchu" 
+                                                    ? "bg-blue-600 text-white shadow-sm" 
+                                                    : "text-zinc-500 hover:text-zinc-800 dark:hover:text-zinc-200"
+                                            }`}
+                                        >
+                                            Mê Truyện Chữ
+                                        </button>
+                                        <button 
+                                            onClick={() => changeNhSource("wikidich")} 
+                                            className={`px-3 py-1.5 rounded-lg transition-colors ${
+                                                nhSource === "wikidich" 
+                                                    ? "bg-blue-600 text-white shadow-sm" 
+                                                    : "text-zinc-500 hover:text-zinc-800 dark:hover:text-zinc-200"
+                                            }`}
+                                        >
+                                            Wiki Dịch
+                                        </button>
+                                    </div>
+
+                                    <form onSubmit={handleNhSearch} className="flex-1 relative">
+                                        <SearchIcon className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-zinc-550" />
+                                        <input
+                                            type="text"
+                                            placeholder="Tìm truyện nguồn ngoài..."
+                                            value={nhQuery}
+                                            onChange={(e) => setNhQuery(e.target.value)}
+                                            className={`w-full pl-9 pr-4 py-2.5 text-xs rounded-xl border focus:outline-none focus:border-zinc-500 placeholder-zinc-500 font-medium transition ${
+                                                isDark
+                                                    ? "bg-[#131416] border-zinc-800 text-[#f1f1f5]"
+                                                    : "bg-white border-zinc-200 text-[#110c08] shadow-sm"
+                                            }`}
+                                        />
+                                    </form>
+                                </div>
+                            </div>
+
+                            {/* NovelHub Sub-views */}
+                            {nhState.view === "home" && (
+                                <div className="space-y-4">
+                                    {/* Sub-tab selection bar when source is Truyen Full or Metruyenchu */}
+                                    {(nhSource === "truyenfull" || nhSource === "metruyenchu") && (
+                                        <div className={`flex border-b text-xs font-bold ${
+                                            isDark ? "border-zinc-800" : "border-zinc-200"
+                                        }`}>
+                                            <button
+                                                onClick={() => setNhSubTab("home")}
+                                                className={`pb-2.5 px-4 transition-colors relative ${
+                                                    nhSubTab === "home"
+                                                        ? "text-blue-500 border-b-2 border-blue-500"
+                                                        : "text-zinc-500 hover:text-zinc-800 dark:hover:text-zinc-200"
+                                                }`}
+                                            >
+                                                Khám Phá
+                                            </button>
+                                            <button
+                                                onClick={() => {
+                                                    setNhSubTab("new_list");
+                                                    // Reset page back to 1 when changing subtabs
+                                                    setNhState(prev => ({ ...prev, page: 1 }));
+                                                }}
+                                                className={`pb-2.5 px-4 transition-colors relative ${
+                                                    nhSubTab === "new_list"
+                                                        ? "text-blue-500 border-b-2 border-blue-500"
+                                                        : "text-zinc-500 hover:text-zinc-800 dark:hover:text-zinc-200"
+                                                }`}
+                                            >
+                                                Truyện Mới
+                                            </button>
+                                        </div>
+                                    )}
+
+                                    {/* Sub-view rendering */}
+                                    {nhSubTab === "home" || (nhSource !== "truyenfull" && nhSource !== "metruyenchu") ? (
+                                        <NovelHubHomeView 
+                                            nhSource={nhSource}
+                                            navigateNh={navigateNh}
+                                            setNhSubTab={setNhSubTab}
+                                            isDark={isDark}
+                                        />
+                                    ) : (
+                                        <NovelHubStoryListView 
+                                            nhSource={nhSource}
+                                            listType="truyen-moi"
+                                            page={nhState.page || 1}
+                                            navigateNh={navigateNh}
+                                            setNhState={setNhState}
+                                            isDark={isDark}
+                                        />
+                                    )}
+                                </div>
+                            )}
+                            {nhState.view === "search" && (
+                                <NovelHubSearchView 
+                                    nhSource={nhSource}
+                                    searchQuery={nhState.searchQuery || ""}
+                                    navigateNh={navigateNh}
+                                    isDark={isDark}
+                                />
+                            )}
+                            {nhState.view === "story" && (
+                                <NovelHubStoryDetailsView 
+                                    nhSource={nhSource}
+                                    storySlug={nhState.storySlug || ""}
+                                    page={nhState.page || 1}
+                                    navigateNh={navigateNh}
+                                    setNhState={setNhState}
+                                    isDark={isDark}
+                                />
+                            )}
+                            {nhState.view === "chapter" && (
+                                <NovelHubChapterView 
+                                    nhSource={nhSource}
+                                    storySlug={nhState.storySlug || ""}
+                                    chapterSlug={nhState.chapterSlug || ""}
+                                    storyTitle={nhState.storyTitle}
+                                    storyCover={nhState.storyCover}
+                                    storyAuthor={nhState.storyAuthor}
+                                    navigateNhBack={navigateNhBack}
+                                    setNhState={setNhState}
+                                    isDark={isDark}
+                                />
+                            )}
+                            {nhState.view === "list" && (
+                                <NovelHubStoryListView 
+                                    nhSource={nhSource}
+                                    listType={nhState.listType || ""}
+                                    page={nhState.page || 1}
+                                    navigateNh={navigateNh}
+                                    setNhState={setNhState}
+                                    isDark={isDark}
+                                />
+                            )}
+                        </div>
+                    )}
+
                     {/* Sticky/Fixed bottom footer bar style spanning full viewport width */}
                     <nav className={`fixed bottom-0 left-0 right-0 h-16 border-t flex items-center justify-around px-2 z-45 max-w-lg mx-auto sm:rounded-t-2xl shadow-xl transition ${isDark
                         ? "bg-[#131416] border-zinc-800/80"
@@ -1325,6 +2264,14 @@ export default function StandaloneReadingRoomApp() {
                         >
                             <BookOpenIcon className="w-5 h-5" />
                             <span className="text-[9px] font-bold">Danh sách truyện</span>
+                        </button>
+
+                        <button
+                            onClick={() => setActiveTab("novelhub")}
+                            className={`flex flex-col items-center gap-1 transition ${activeTab === "novelhub" ? "text-blue-500" : "text-zinc-550 hover:text-zinc-400"}`}
+                        >
+                            <GlobeIcon className="w-5 h-5" />
+                            <span className="text-[9px] font-bold">Nguồn Ngoài</span>
                         </button>
 
                         <button
@@ -1363,6 +2310,26 @@ export default function StandaloneReadingRoomApp() {
                                                     {opt}
                                                 </button>
                                             ))}
+                                        </div>
+                                    </div>
+
+                                    <div className="pt-3 border-t border-zinc-200/50 dark:border-zinc-800/50">
+                                        <p className="text-[10px] font-bold text-zinc-500 uppercase tracking-widest mb-1.5">WikiDich Cookie (Bypass tìm kiếm)</p>
+                                        <div className="space-y-2">
+                                            <input
+                                                type="text"
+                                                placeholder="Dán giá trị cookie 'express.sid' vào đây..."
+                                                value={wikiDichCookie}
+                                                onChange={(e) => handleSaveWikiDichCookie(e.target.value)}
+                                                className={`w-full px-3 py-2 text-xs rounded-lg border focus:outline-none placeholder-zinc-500 transition ${
+                                                    isDark
+                                                        ? "bg-[#1d1e22] border-zinc-800 text-white focus:border-zinc-700"
+                                                        : "bg-white border-zinc-200 text-zinc-800 focus:border-zinc-300 shadow-inner"
+                                                }`}
+                                            />
+                                            <p className="text-[9px] text-zinc-500 leading-relaxed">
+                                                * Hướng dẫn: Đăng nhập vào <strong>wikicv.net</strong> trên trình duyệt này &gt; F12 &gt; Application &gt; Cookies &gt; copy giá trị của <strong>express.sid</strong> rồi dán vào đây để tìm kiếm trực tiếp ổn định 100%.
+                                            </p>
                                         </div>
                                     </div>
                                 </div>
@@ -1660,6 +2627,1298 @@ export default function StandaloneReadingRoomApp() {
                     )}
                 </div>
             </div>
+        </div>
+    );
+}
+
+// ==========================================
+// NOVELHUB WEB SCRAPER SUB-COMPONENTS
+// ==========================================
+
+function NovelHubHomeView({
+    nhSource,
+    navigateNh,
+    setNhSubTab,
+    isDark
+}: {
+    nhSource: string;
+    navigateNh: (s: any) => void;
+    setNhSubTab: (s: "home" | "new_list") => void;
+    isDark: boolean;
+}) {
+    const [data, setData] = useState<any>({ hotStories: [], newUpdates: [] });
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+        setLoading(true);
+        const savedCookie = localStorage.getItem("nh_wikidich_cookie") || "";
+        const headers: Record<string, string> = {};
+        if (nhSource === "wikidich" && savedCookie) {
+            headers["x-wikidich-cookie"] = savedCookie;
+        }
+        fetch(`/api/novelhub?action=home&source=${nhSource}`, { headers })
+            .then((res) => res.json())
+            .then((d) => {
+                setData(d);
+            })
+            .catch((err) => {
+                console.error(err);
+                toast.error("Không thể tải dữ liệu.");
+            })
+            .finally(() => setLoading(false));
+    }, [nhSource]);
+
+    if (loading) {
+        return (
+            <div className="flex flex-col justify-center items-center h-48 space-y-4 w-full">
+                <Loader2Icon className="w-8 h-8 animate-spin text-blue-500" />
+                <div className="text-[10px] uppercase tracking-[0.2em] font-bold text-zinc-500">Đang tải...</div>
+            </div>
+        );
+    }
+
+    return (
+        <div className="space-y-8 animate-page-enter">
+            {data.hotStories?.length > 0 && (
+                <section className="space-y-4">
+                    <h2 className="text-base font-bold flex items-center gap-1.5">🔥 Truyện Phổ Biến</h2>
+                    <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
+                        {data.hotStories.map((s: any, idx: number) => (
+                            <div
+                                key={idx}
+                                onClick={() => navigateNh({ view: "story", storySlug: s.slug })}
+                                className={`group flex flex-col gap-2 cursor-pointer p-2 rounded-xl border transition ${
+                                    isDark
+                                        ? "bg-[#131416] border-zinc-800/40 hover:border-zinc-700"
+                                        : "bg-[#fffbf4] border-zinc-200 hover:border-zinc-300 shadow-sm"
+                                }`}
+                            >
+                                <div className="aspect-[3/4] overflow-hidden bg-zinc-550/10 rounded-lg shadow-sm border border-zinc-300 dark:border-zinc-800">
+                                    {s.cover ? (
+                                        <img
+                                            src={s.cover}
+                                            alt={s.title}
+                                            className="w-full h-full object-cover group-hover:scale-105 transition duration-300"
+                                            referrerPolicy="no-referrer"
+                                        />
+                                    ) : (
+                                        <div className="w-full h-full flex items-center justify-center text-zinc-400">📖</div>
+                                    )}
+                                </div>
+                                <h3 className="font-bold text-xs line-clamp-2 leading-tight h-8" title={s.title}>
+                                    {s.title}
+                                </h3>
+                            </div>
+                        ))}
+                    </div>
+                </section>
+            )}
+
+            {data.newUpdates?.length > 0 && (
+                <section className="space-y-4">
+                    <h2 className="text-base font-bold flex items-center gap-1.5">⚡ Vừa Cập Nhật</h2>
+                    <div
+                        className={`border rounded-2xl p-4 divide-y ${
+                            isDark
+                                ? "bg-[#131416] border-zinc-800 divide-zinc-800"
+                                : "bg-[#fffbf4] border-zinc-200 divide-zinc-200 shadow-sm"
+                        }`}
+                    >
+                        {data.newUpdates.map((s: any, idx: number) => (
+                            <div key={idx} className="flex justify-between items-center py-3 gap-3 first:pt-0 last:pb-0">
+                                <div
+                                    onClick={() => navigateNh({ view: "story", storySlug: s.slug })}
+                                    className="font-bold text-xs hover:text-blue-500 transition cursor-pointer truncate flex-1"
+                                >
+                                    {s.title}
+                                </div>
+                                <button
+                                    onClick={() =>
+                                        navigateNh({
+                                            view: "chapter",
+                                            storySlug: s.slug,
+                                            chapterSlug: s.latestChapterSlug
+                                        })
+                                    }
+                                    className="text-[10px] text-blue-500 hover:underline font-semibold shrink-0"
+                                >
+                                    {s.latestChapter}
+                                </button>
+                            </div>
+                        ))}
+                    </div>
+                    <div className="flex justify-center pt-2">
+                        <button
+                            onClick={() => {
+                                if (nhSource === "truyenfull") {
+                                    setNhSubTab("new_list");
+                                } else {
+                                    navigateNh({
+                                        view: "list",
+                                        listType: "chuong-moi"
+                                    });
+                                }
+                            }}
+                            className={`px-6 py-2 rounded-xl text-[10px] font-bold uppercase tracking-wider border transition ${
+                                isDark
+                                    ? "border-zinc-800 bg-zinc-900/50 text-zinc-400 hover:bg-zinc-800"
+                                    : "border-zinc-200 bg-white text-zinc-650 hover:bg-zinc-50"
+                            }`}
+                        >
+                            Xem tất cả
+                        </button>
+                    </div>
+                </section>
+            )}
+        </div>
+    );
+}
+
+function NovelHubSearchView({
+    nhSource,
+    searchQuery,
+    navigateNh,
+    isDark
+}: {
+    nhSource: string;
+    searchQuery: string;
+    navigateNh: (s: any) => void;
+    isDark: boolean;
+}) {
+    const [results, setResults] = useState<any[]>([]);
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+        setLoading(true);
+        const savedCookie = localStorage.getItem("nh_wikidich_cookie") || "";
+        const headers: Record<string, string> = {};
+        if (nhSource === "wikidich" && savedCookie) {
+            headers["x-wikidich-cookie"] = savedCookie;
+        }
+        fetch(`/api/novelhub?action=search&q=${encodeURIComponent(searchQuery)}&source=${nhSource}`, { headers })
+            .then((res) => res.json())
+            .then((d) => {
+                setResults(d.results || []);
+            })
+            .catch((err) => {
+                console.error(err);
+                toast.error("Tìm kiếm thất bại.");
+            })
+            .finally(() => setLoading(false));
+    }, [searchQuery, nhSource]);
+
+    if (loading) {
+        return (
+            <div className="flex flex-col justify-center items-center h-48 space-y-4 w-full">
+                <Loader2Icon className="w-8 h-8 animate-spin text-blue-500" />
+                <div className="text-[10px] uppercase tracking-[0.2em] font-bold text-zinc-500">Đang tìm kiếm...</div>
+            </div>
+        );
+    }
+
+    return (
+        <div className="space-y-4 animate-page-enter">
+            <h2 className="text-sm font-bold text-zinc-500">Kết quả cho: "{searchQuery}"</h2>
+            <div
+                className={`border rounded-2xl p-4 divide-y ${
+                    isDark
+                        ? "bg-[#131416] border-zinc-800 divide-zinc-800"
+                        : "bg-[#fffbf4] border-zinc-200 divide-zinc-200 shadow-sm"
+                }`}
+            >
+                {results.length === 0 ? (
+                    <div className="text-center py-8 text-zinc-500 text-xs">Không tìm thấy truyện nào.</div>
+                ) : (
+                    results.map((r: any, idx: number) => (
+                        <div key={idx} className="flex justify-between items-center py-3.5 gap-4 first:pt-0 last:pb-0">
+                            <div
+                                onClick={() => navigateNh({ view: "story", storySlug: r.slug })}
+                                className="flex-1 min-w-0 cursor-pointer group"
+                            >
+                                <h3 className="font-bold text-xs group-hover:text-blue-500 transition truncate">{r.title}</h3>
+                                <p className="text-[10px] text-zinc-500 mt-0.5">Tác giả: {r.author || "Khuyết danh"}</p>
+                            </div>
+                            <div className="text-[10px] font-semibold text-blue-500 shrink-0">{r.latestChapter}</div>
+                        </div>
+                    ))
+                )}
+            </div>
+        </div>
+    );
+}
+
+function NovelHubStoryDetailsView({
+    nhSource,
+    storySlug,
+    page = 1,
+    navigateNh,
+    setNhState,
+    isDark
+}: {
+    nhSource: string;
+    storySlug: string;
+    page: number;
+    navigateNh: (s: any) => void;
+    setNhState: any;
+    isDark: boolean;
+}) {
+    const [story, setStory] = useState<any>(null);
+    const [loading, setLoading] = useState(true);
+    const [downloading, setDownloading] = useState(false);
+    const [downloadProgress, setDownloadProgress] = useState(0);
+
+    const [downloadStatus, setDownloadStatus] = useState<"idle" | "downloading" | "paused">("idle");
+    const [savedDownloadState, setSavedDownloadState] = useState<any>(null);
+    const isAbortedRef = useRef<boolean>(false);
+
+    const { isVip } = useProfile();
+    const [downloadingFormat, setDownloadingFormat] = useState<"txt" | "epub" | null>(null);
+
+    // Scan for any paused/partially finished downloads in localStorage
+    useEffect(() => {
+        if (!storySlug || !nhSource) return;
+        try {
+            const saved = localStorage.getItem(`rr_download_state_${nhSource}_${storySlug}`);
+            if (saved) {
+                const parsed = JSON.parse(saved);
+                setSavedDownloadState(parsed);
+                setDownloadStatus("paused");
+                setDownloadingFormat(parsed.format);
+                const progressPercent = Math.round((parsed.currentIndex / parsed.chaptersToDownload.length) * 100);
+                setDownloadProgress(progressPercent);
+            } else {
+                setSavedDownloadState(null);
+                setDownloadStatus("idle");
+            }
+        } catch (e) {
+            console.error("Failed to load saved download state", e);
+        }
+    }, [storySlug, nhSource]);
+
+    // Không giới hạn lượt tải VIP nên không cần đếm lượt
+
+    const [isBookmarked, setIsBookmarked] = useState(false);
+
+    useEffect(() => {
+        if (!story) return;
+        try {
+            const bookmarks = JSON.parse(localStorage.getItem("rr_bookmarks") || "{}");
+            const bookmarkId = `novelhub-${nhSource}-${storySlug}`;
+            setIsBookmarked(!!bookmarks[bookmarkId]);
+        } catch (e) { }
+    }, [story, nhSource, storySlug]);
+
+    const toggleBookmark = () => {
+        if (!story) return;
+        try {
+            const bookmarks = JSON.parse(localStorage.getItem("rr_bookmarks") || "{}");
+            const bookmarkId = `novelhub-${nhSource}-${storySlug}`;
+            if (bookmarks[bookmarkId]) {
+                delete bookmarks[bookmarkId];
+                setIsBookmarked(false);
+                toast.success("Đã xoá khỏi Tủ Truyện");
+            } else {
+                bookmarks[bookmarkId] = {
+                    id: bookmarkId,
+                    title: story.title,
+                    coverImage: story.cover || "",
+                    author: story.author || "Khuyết danh",
+                    genres: [],
+                    bookmarkedAt: Date.now(),
+                    totalChapters: story.chapters?.length || 0
+                };
+                setIsBookmarked(true);
+                toast.success("Đã thêm vào Tủ Truyện");
+            }
+            localStorage.setItem("rr_bookmarks", JSON.stringify(bookmarks));
+        } catch (e) {
+            console.error("Lỗi cập nhật đánh dấu", e);
+        }
+    };
+
+    useEffect(() => {
+        setLoading(true);
+        const savedCookie = localStorage.getItem("nh_wikidich_cookie") || "";
+        const headers: Record<string, string> = {};
+        if (nhSource === "wikidich" && savedCookie) {
+            headers["x-wikidich-cookie"] = savedCookie;
+        }
+        fetch(`/api/novelhub?action=story&slug=${storySlug}&page=${page}&source=${nhSource}`, { headers })
+            .then((res) => res.json())
+            .then((d) => {
+                setStory(d);
+            })
+            .catch((err) => {
+                console.error(err);
+                toast.error("Không thể tải thông tin truyện.");
+            })
+            .finally(() => setLoading(false));
+    }, [storySlug, page, nhSource]);
+
+    const fetchAllChapters = async () => {
+        if (!story) return [];
+        if (story.totalPages <= 1) {
+            return story.chapters || [];
+        }
+        
+        const toastId = toast.loading("Đang chuẩn bị mục lục truyện...");
+        try {
+            const allChapters: any[] = [...(story.chapters || [])];
+            const savedCookie = localStorage.getItem("nh_wikidich_cookie") || "";
+            const headers: Record<string, string> = {};
+            if (nhSource === "wikidich" && savedCookie) {
+                headers["x-wikidich-cookie"] = savedCookie;
+            }
+            const fetchPromises = [];
+            for (let p = 2; p <= story.totalPages; p++) {
+                fetchPromises.push(
+                    fetch(`/api/novelhub?action=story&slug=${storySlug}&page=${p}&source=${nhSource}`, { headers })
+                        .then((res) => res.json())
+                        .then((d) => d.chapters || [])
+                        .catch(() => [])
+                );
+            }
+            
+            const results = await Promise.all(fetchPromises);
+            results.forEach((chaps) => {
+                allChapters.push(...chaps);
+            });
+            
+            toast.dismiss(toastId);
+            return allChapters;
+        } catch (e) {
+            toast.error("Không thể tải toàn bộ mục lục truyện.");
+            toast.dismiss(toastId);
+            return story.chapters || [];
+        }
+    };
+
+    const handleDownload = async (format: "txt" | "epub", isResume = false) => {
+        if (!story) {
+            toast.error("Dữ liệu truyện chưa được tải xong.");
+            return;
+        }
+        if (!isVip) {
+            toast.error("Chỉ tài khoản VIP mới được phép tải truyện.");
+            return;
+        }
+
+        // Không giới hạn số lượng tải từ nguồn ngoài
+
+        setDownloading(true);
+        setDownloadStatus("downloading");
+        setDownloadingFormat(format);
+        isAbortedRef.current = false;
+
+        let chaptersToDownload: any[] = [];
+        let downloadedChapters: { title: string; content: string }[] = [];
+        let startIndex = 0;
+        let didPause = false;
+        const storageKey = `rr_download_state_${nhSource}_${storySlug}`;
+
+        const toastId = toast.loading(isResume ? `Đang tiếp tục tải bản ${format.toUpperCase()}...` : `Đang chuẩn bị tải truyện bản ${format.toUpperCase()}...`);
+
+        try {
+            if (isResume && savedDownloadState) {
+                chaptersToDownload = savedDownloadState.chaptersToDownload;
+                downloadedChapters = savedDownloadState.downloadedChapters || [];
+                startIndex = savedDownloadState.currentIndex || 0;
+            } else {
+                chaptersToDownload = await fetchAllChapters();
+                if (chaptersToDownload.length === 0) {
+                    throw new Error("Không tìm thấy mục lục chương.");
+                }
+                const initialState = {
+                    storySlug,
+                    nhSource,
+                    format,
+                    storyTitle: story.title,
+                    storyAuthor: story.author,
+                    storyCover: story.cover,
+                    storyDesc: story.desc,
+                    downloadedChapters: [],
+                    chaptersToDownload,
+                    currentIndex: 0,
+                    timestamp: Date.now()
+                };
+                localStorage.setItem(storageKey, JSON.stringify(initialState));
+            }
+
+            let successCount = downloadedChapters.filter(ch => !ch.content.includes("[Lỗi:")).length;
+            didPause = false;
+
+            for (let i = startIndex; i < chaptersToDownload.length; i++) {
+                if (isAbortedRef.current) {
+                    const currentState = {
+                        storySlug,
+                        nhSource,
+                        format,
+                        storyTitle: story.title,
+                        storyAuthor: story.author,
+                        storyCover: story.cover,
+                        storyDesc: story.desc,
+                        downloadedChapters,
+                        chaptersToDownload,
+                        currentIndex: i,
+                        timestamp: Date.now()
+                    };
+                    localStorage.setItem(storageKey, JSON.stringify(currentState));
+                    setSavedDownloadState(currentState);
+                    didPause = true;
+                    toast.dismiss(toastId);
+                    toast.success(`Đã tạm dừng. Tải được ${i}/${chaptersToDownload.length} chương.`);
+                    return;
+                }
+
+                const c = chaptersToDownload[i];
+                let success = false;
+                let retries = 3;
+                let dData: any = null;
+
+                const getRefererUrlSingle = (src: string, bSlug: string, cSlug?: string) => {
+                    if (src === "truyenfull") {
+                        return cSlug ? `https://truyenfull.today/${bSlug}/${cSlug}/` : `https://truyenfull.today/${bSlug}/`;
+                    } else if (src === "metruyenchu") {
+                        return cSlug ? `https://metruyenchu.co/truyen/${bSlug}/${cSlug}` : `https://metruyenchu.co/truyen/${bSlug}`;
+                    } else {
+                        return cSlug ? `https://wikicv.net/truyen/${bSlug}/${cSlug}` : `https://wikicv.net/truyen/${bSlug}`;
+                    }
+                };
+
+                const refererUrl = i === 0
+                    ? getRefererUrlSingle(nhSource, storySlug)
+                    : getRefererUrlSingle(nhSource, storySlug, chaptersToDownload[i - 1].slug);
+
+                const savedCookie = localStorage.getItem("nh_wikidich_cookie") || "";
+                const headers: Record<string, string> = {};
+                if (nhSource === "wikidich" && savedCookie) {
+                    headers["x-wikidich-cookie"] = savedCookie;
+                }
+                while (!success && retries > 0) {
+                    try {
+                        const res = await fetch(
+                            `/api/novelhub?action=chapter&slug=${storySlug}&chapterSlug=${encodeURIComponent(
+                                c.slug
+                            )}&source=${nhSource}&referer=${encodeURIComponent(refererUrl)}`,
+                            { headers }
+                        );
+                        dData = await res.json();
+                        if (dData && dData.content && !dData.content.includes("Không thể tải nội dung")) {
+                            success = true;
+                        } else {
+                            retries--;
+                            if (retries > 0) await new Promise((r) => setTimeout(r, 3000));
+                        }
+                    } catch (e) {
+                        retries--;
+                        if (retries > 0) await new Promise((r) => setTimeout(r, 3000));
+                    }
+                }
+
+                if (success && dData) {
+                    const parser = new DOMParser();
+                    const doc = parser.parseFromString(dData.content, "text/html");
+                    const pElements = doc.querySelectorAll("p, div");
+                    let textContent = "";
+                    if (pElements.length > 0) {
+                        const paragraphs: string[] = [];
+                        pElements.forEach(el => {
+                            const txt = el.textContent?.trim();
+                            if (txt) paragraphs.push(txt);
+                        });
+                        textContent = paragraphs.join("\n\n");
+                    } else {
+                        textContent = (doc.body.textContent || "").trim().replace(/\n\s*\n/g, "\n\n");
+                    }
+                    successCount++;
+                    downloadedChapters.push({ title: c.title, content: textContent });
+                } else {
+                    const currentState = {
+                        storySlug,
+                        nhSource,
+                        format,
+                        storyTitle: story.title,
+                        storyAuthor: story.author,
+                        storyCover: story.cover,
+                        storyDesc: story.desc,
+                        downloadedChapters,
+                        chaptersToDownload,
+                        currentIndex: i,
+                        timestamp: Date.now()
+                    };
+                    localStorage.setItem(storageKey, JSON.stringify(currentState));
+                    setSavedDownloadState(currentState);
+                    didPause = true;
+                    toast.dismiss(toastId);
+                    toast.error(`Tải chương "${c.title}" thất bại. Đã tự động tạm dừng và lưu tiến trình.`);
+                    return;
+                }
+
+                const progressPercent = Math.round(((i + 1) / chaptersToDownload.length) * 100);
+                setDownloadProgress(progressPercent);
+                toast.loading(`Đang tải nội dung chương (${i + 1}/${chaptersToDownload.length})...`, { id: toastId });
+
+                const currentState = {
+                    storySlug,
+                    nhSource,
+                    format,
+                    storyTitle: story.title,
+                    storyAuthor: story.author,
+                    storyCover: story.cover,
+                    storyDesc: story.desc,
+                    downloadedChapters,
+                    chaptersToDownload,
+                    currentIndex: i + 1,
+                    timestamp: Date.now()
+                };
+                localStorage.setItem(storageKey, JSON.stringify(currentState));
+                setSavedDownloadState(currentState);
+
+                const randomDelay = Math.floor(Math.random() * 1500) + 1500;
+                await new Promise((r) => setTimeout(r, randomDelay));
+            }
+
+            if (successCount === 0) {
+                throw new Error("Không tải được chương nào!");
+            }
+
+            if (format === "txt") {
+                let txtContent = `${story.title}\n`;
+                txtContent += `Tác giả: ${story.author || "Khuyết danh"}\n`;
+                txtContent += `Nguồn ngoài: ${nhSource.toUpperCase()}\n`;
+                txtContent += `Giới thiệu:\n${story.desc ? story.desc.replace(/<[^>]*>/g, "") : ""}\n\n`;
+                txtContent += `=========================================\n\n`;
+
+                downloadedChapters.forEach((ch) => {
+                    txtContent += `${ch.title}\n\n`;
+                    txtContent += `${ch.content}\n\n`;
+                    txtContent += `-----------------------------------------\n\n`;
+                });
+
+                const blob = new Blob([txtContent], { type: "text/plain;charset=utf-8" });
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement("a");
+                a.href = url;
+                a.download = `${sanitizeFilename(story.title)}.txt`;
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+                URL.revokeObjectURL(url);
+            } else {
+                const cleanChapters = downloadedChapters.map((ch) => ({
+                    title: ch.title,
+                    content: ch.content.replace(/\n/g, "<br/>")
+                }));
+
+                let coverImageBase64: string | null = null;
+                if (story.cover) {
+                    try {
+                        const imgRes = await fetch(`/api/proxy-image?url=${encodeURIComponent(story.cover)}`);
+                        if (imgRes.ok) {
+                            const blob = await imgRes.blob();
+                            const reader = new FileReader();
+                            const base64Promise = new Promise<string>((resolve, reject) => {
+                                reader.onloadend = () => resolve(reader.result as string);
+                                reader.onerror = reject;
+                            });
+                            reader.readAsDataURL(blob);
+                            coverImageBase64 = await base64Promise;
+                        }
+                    } catch (e) {
+                        console.warn("Failed to fetch cover image as base64", e);
+                    }
+                }
+
+                const { generateEpub } = await import("@/lib/epub-generator");
+                const epubBlob = await generateEpub(
+                    story.title,
+                    story.author || "Khuyết danh",
+                    coverImageBase64,
+                    cleanChapters
+                );
+
+                const url = URL.createObjectURL(epubBlob);
+                const a = document.createElement("a");
+                a.href = url;
+                a.download = `${sanitizeFilename(story.title)}.epub`;
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+                URL.revokeObjectURL(url);
+            }
+
+            localStorage.removeItem(storageKey);
+            setSavedDownloadState(null);
+            setDownloadStatus("idle");
+            setDownloadingFormat(null);
+            toast.success("Tải truyện thành công!", { id: toastId });
+
+            uploadNovelToReadingRoom(
+                nhSource,
+                storySlug,
+                story.title,
+                story.author,
+                story.cover,
+                story.desc || "",
+                [...downloadedChapters]
+            ).catch((err) => {
+                console.error("Lỗi khi tự động tải lên kho chung (single):", err);
+            });
+        } catch (err: any) {
+            console.error("Lỗi khi tải truyện:", err);
+            toast.error(`Tải truyện thất bại: ${err.message || err}`, { id: toastId });
+        } finally {
+            setDownloading(false);
+            if (isAbortedRef.current || didPause) {
+                setDownloadStatus("paused");
+            } else {
+                setDownloadStatus("idle");
+                setDownloadingFormat(null);
+            }
+        }
+    };
+
+    const handlePauseDownload = () => {
+        isAbortedRef.current = true;
+        toast.info("Đang tạm dừng tiến trình... Vui lòng đợi chương hiện tại tải xong.");
+    };
+
+    const handleCancelDownload = () => {
+        const storageKey = `rr_download_state_${nhSource}_${storySlug}`;
+        localStorage.removeItem(storageKey);
+        setSavedDownloadState(null);
+        setDownloadStatus("idle");
+        setDownloadingFormat(null);
+        setDownloadProgress(0);
+        
+        toast.success("Đã hủy lượt tải dở dang.");
+    };
+
+    if (loading) {
+        return (
+            <div className="flex flex-col justify-center items-center h-48 space-y-4 w-full">
+                <Loader2Icon className="w-8 h-8 animate-spin text-blue-500" />
+                <div className="text-[10px] uppercase tracking-[0.2em] font-bold text-zinc-550">Đang tải chi tiết...</div>
+            </div>
+        );
+    }
+
+    if (!story || story.error) {
+        return <div className="text-center text-zinc-500 py-12 text-xs">Không tìm thấy truyện.</div>;
+    }
+
+    return (
+        <div className="space-y-6 animate-page-enter">
+            <div
+                className={`p-4 rounded-2xl border flex flex-col sm:flex-row gap-4 transition ${
+                    isDark ? "bg-[#131416] border-zinc-800/60" : "bg-[#fffbf4] border-zinc-200 shadow-sm"
+                }`}
+            >
+                <div className="w-24 aspect-[3/4] shrink-0 bg-zinc-500/10 rounded-lg overflow-hidden border border-zinc-350 dark:border-zinc-800 mx-auto sm:mx-0">
+                    {story.cover ? (
+                        <img src={story.cover} alt={story.title} className="w-full h-full object-cover" referrerPolicy="no-referrer" />
+                    ) : (
+                        <div className="w-full h-full flex items-center justify-center text-zinc-400">📖</div>
+                    )}
+                </div>
+                <div className="flex-1 min-w-0 flex flex-col justify-between text-center sm:text-left">
+                    <div>
+                        <h1 className="font-extrabold text-sm sm:text-base leading-snug">{story.title}</h1>
+                        <p className="text-xs text-zinc-500 mt-1 font-semibold">Tác giả: {story.author}</p>
+                        {story.desc && (
+                            <div
+                                className="text-zinc-600 dark:text-zinc-400 text-[11px] leading-relaxed line-clamp-3 mt-2 text-justify select-text"
+                                dangerouslySetInnerHTML={{ __html: story.desc }}
+                            />
+                        )}
+                    </div>
+                    <div className="mt-3 flex flex-wrap gap-2 justify-center sm:justify-start">
+                        <button
+                            onClick={toggleBookmark}
+                            className={`px-4 py-1.5 rounded-lg text-[10px] font-bold uppercase tracking-wider transition ${
+                                isBookmarked
+                                    ? isDark
+                                        ? "bg-red-500/10 hover:bg-red-500/20 text-red-400 border border-red-500/30"
+                                        : "bg-red-50 hover:bg-red-100 text-red-600 border border-red-200"
+                                    : isDark
+                                        ? "bg-zinc-800 hover:bg-zinc-750 text-zinc-350 border border-zinc-700"
+                                        : "bg-white hover:bg-zinc-50 text-zinc-700 border border-zinc-200 shadow-sm"
+                            }`}
+                        >
+                            {isBookmarked ? "Xóa khỏi Tủ Truyện" : "Lưu vào Tủ Truyện"}
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            {/* VIP Download Box */}
+            {isVip && (
+                <div className={`p-4 rounded-xl border flex flex-col sm:flex-row sm:items-center justify-between gap-3.5 transition-colors ${
+                    isDark ? "bg-[#161b22]/40 border-amber-500/20" : "bg-amber-500/5 border-amber-500/10 shadow-sm"
+                }`}>
+                    <div className="space-y-1 text-left flex-1 min-w-0">
+                        <div className="flex items-center gap-1.5 justify-center sm:justify-start">
+                            <span className={`text-[10px] font-bold px-2 py-0.5 rounded border max-w-max uppercase tracking-wider ${
+                                isDark ? "bg-amber-500/10 text-amber-400 border-amber-500/30" : "bg-amber-100 text-amber-800 border-amber-200"
+                            }`}>
+                                VIP Download
+                            </span>
+                            {downloadStatus === "idle" && (
+                                <span className={`text-[10px] font-medium ${isDark ? "text-zinc-400" : "text-zinc-550"}`}>
+                                    Lượt tải hôm nay: <span className="font-extrabold text-amber-500">Không giới hạn</span>
+                                </span>
+                            )}
+                            {downloadStatus === "downloading" && (
+                                <span className={`text-[10px] font-medium text-blue-500 animate-pulse`}>
+                                    Đang tiến hành tải: {downloadProgress}%
+                                </span>
+                            )}
+                            {downloadStatus === "paused" && (
+                                <span className={`text-[10px] font-bold text-amber-500`}>
+                                    Đã tạm dừng tải
+                                </span>
+                            )}
+                        </div>
+                        
+                        {downloadStatus === "idle" && (
+                            <p className="text-[11px] text-zinc-500">Tải toàn bộ bộ truyện về máy dưới dạng tệp văn bản TXT hoặc sách điện tử EPUB sạch lỗi.</p>
+                        )}
+                        {downloadStatus === "downloading" && (
+                            <div className="w-full space-y-1.5 pr-4">
+                                <div className="flex justify-between text-[10px] text-zinc-500 font-semibold">
+                                    <span>Đang tải dở dang bản {downloadingFormat?.toUpperCase()}...</span>
+                                    <span>{downloadProgress}%</span>
+                                </div>
+                                <div className="w-full bg-zinc-200 dark:bg-zinc-800 h-1.5 rounded-full overflow-hidden">
+                                    <div className="bg-amber-500 h-full rounded-full transition-all duration-300" style={{ width: `${downloadProgress}%` }} />
+                                </div>
+                            </div>
+                        )}
+                        {downloadStatus === "paused" && (
+                            <p className="text-[11px] text-zinc-500">
+                                Đã cào được <span className="font-bold text-amber-500">{savedDownloadState?.currentIndex || 0}/{savedDownloadState?.chaptersToDownload?.length || 0}</span> chương bản <span className="font-bold uppercase">{downloadingFormat}</span>. Bạn có thể tiếp tục tải tiếp hoặc hủy để tải lại.
+                            </p>
+                        )}
+                    </div>
+                    <div className="flex gap-2 shrink-0 justify-center sm:justify-start">
+                        {downloadStatus === "idle" && (
+                            <>
+                                <button
+                                    onClick={() => handleDownload("txt")}
+                                    disabled={downloading}
+                                    className={`px-3.5 py-1.5 rounded-lg text-xs font-bold border flex items-center gap-1.5 active:scale-95 transition-all ${
+                                        isDark 
+                                            ? "bg-zinc-800 hover:bg-zinc-750 text-white border-zinc-700" 
+                                            : "bg-white hover:bg-zinc-50 text-zinc-850 border-zinc-200 shadow-xs"
+                                    }`}
+                                >
+                                    Tải TXT
+                                </button>
+                                <button
+                                    onClick={() => handleDownload("epub")}
+                                    disabled={downloading}
+                                    className={`px-3.5 py-1.5 rounded-lg text-xs font-bold border flex items-center gap-1.5 active:scale-95 transition-all ${
+                                        isDark 
+                                            ? "bg-zinc-800 hover:bg-zinc-750 text-white border-zinc-700" 
+                                            : "bg-white hover:bg-zinc-50 text-zinc-850 border-zinc-200 shadow-xs"
+                                    }`}
+                                >
+                                    Tải EPUB
+                                </button>
+                            </>
+                        )}
+                        {downloadStatus === "downloading" && (
+                            <button
+                                onClick={handlePauseDownload}
+                                className={`px-3.5 py-1.5 rounded-lg text-xs font-bold border flex items-center gap-1.5 active:scale-95 transition-all ${
+                                    isDark 
+                                        ? "bg-red-500/10 hover:bg-red-500/20 text-red-400 border-red-500/30" 
+                                        : "bg-red-50 hover:bg-red-100 text-red-600 border-red-200"
+                                }`}
+                            >
+                                <Loader2Icon className="w-3.5 h-3.5 animate-spin" />
+                                Tạm dừng
+                            </button>
+                        )}
+                        {downloadStatus === "paused" && (
+                            <>
+                                <button
+                                    onClick={() => handleDownload(downloadingFormat || "txt", true)}
+                                    disabled={downloading}
+                                    className={`px-3.5 py-1.5 rounded-lg text-xs font-bold border flex items-center gap-1.5 active:scale-95 transition-all ${
+                                        isDark 
+                                            ? "bg-emerald-500/10 hover:bg-emerald-500/20 text-emerald-400 border-emerald-500/30" 
+                                            : "bg-emerald-50 hover:bg-emerald-100 text-emerald-600 border-emerald-200"
+                                    }`}
+                                >
+                                    Tiếp tục tải
+                                </button>
+                                <button
+                                    onClick={handleCancelDownload}
+                                    disabled={downloading}
+                                    className={`px-3.5 py-1.5 rounded-lg text-xs font-bold border flex items-center gap-1.5 active:scale-95 transition-all ${
+                                        isDark 
+                                            ? "bg-zinc-800 hover:bg-zinc-750 text-white border-zinc-700" 
+                                            : "bg-white hover:bg-zinc-50 text-zinc-850 border-zinc-200 shadow-xs"
+                                    }`}
+                                >
+                                    Hủy tải dở
+                                </button>
+                            </>
+                        )}
+                    </div>
+                </div>
+            )}
+
+            <div className="space-y-3">
+                <h3 className="text-xs uppercase tracking-wider font-extrabold text-zinc-500">Danh Sách Chương</h3>
+                {story.chapters && story.chapters.length > 0 ? (
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-4 gap-y-1">
+                        {story.chapters.map((c: any, i: number) => (
+                            <div
+                                key={i}
+                                onClick={() => navigateNh({ 
+                                    view: "chapter", 
+                                    storySlug, 
+                                    chapterSlug: c.slug,
+                                    storyTitle: story.title,
+                                    storyCover: story.cover,
+                                    storyAuthor: story.author
+                                })}
+                                className={`py-2 px-3 border-b border-zinc-200 dark:border-zinc-800 text-xs hover:text-blue-500 cursor-pointer truncate transition font-medium`}
+                            >
+                                {c.title}
+                            </div>
+                        ))}
+                    </div>
+                ) : (
+                    <div className="text-center text-zinc-500 text-xs py-8">Không có chương nào.</div>
+                )}
+
+                {story.totalPages > 1 && (
+                    <div className="flex flex-wrap justify-center gap-1.5 pt-4">
+                        {Array.from({ length: story.totalPages }, (_, i) => {
+                            const p = i + 1;
+                            if (p === 1 || p === story.totalPages || Math.abs(p - page) <= 2) {
+                                return (
+                                    <button
+                                        key={p}
+                                        onClick={() => setNhState((prev: any) => ({ ...prev, page: p }))}
+                                        className={`w-7 h-7 flex items-center justify-center rounded text-[10px] font-bold border transition ${
+                                            p === page
+                                                ? "bg-blue-600 border-blue-500 text-white"
+                                                : isDark
+                                                    ? "border-zinc-850 bg-zinc-900/50 text-zinc-400 hover:bg-zinc-800"
+                                                    : "border-zinc-200 bg-white text-zinc-600 hover:bg-zinc-50"
+                                        }`}
+                                    >
+                                        {p}
+                                    </button>
+                                );
+                            }
+                            if (p === 2 || p === story.totalPages - 1) {
+                                return (
+                                    <span key={p} className="text-zinc-500 self-center">
+                                        ...
+                                    </span>
+                                );
+                            }
+                            return null;
+                        })}
+                    </div>
+                )}
+            </div>
+        </div>
+    );
+}
+
+function NovelHubChapterView({
+    nhSource,
+    storySlug,
+    chapterSlug,
+    storyTitle,
+    storyCover,
+    storyAuthor,
+    navigateNhBack,
+    setNhState,
+    isDark
+}: {
+    nhSource: string;
+    storySlug: string;
+    chapterSlug: string;
+    storyTitle?: string;
+    storyCover?: string;
+    storyAuthor?: string;
+    navigateNhBack: () => void;
+    setNhState: any;
+    isDark: boolean;
+}) {
+    const [data, setData] = useState<any>(null);
+    const [loading, setLoading] = useState(true);
+    const [fontSize, setFontSize] = useState(16);
+    const [fontFamily, setFontFamily] = useState("font-serif");
+
+    // Load saved font family from localStorage
+    useEffect(() => {
+        const savedFamily = localStorage.getItem("rr_font_family");
+        if (savedFamily) setFontFamily(savedFamily);
+    }, []);
+
+    const updateFontFamily = (newFamily: string) => {
+        setFontFamily(newFamily);
+        localStorage.setItem("rr_font_family", newFamily);
+    };
+
+    useEffect(() => {
+        setLoading(true);
+        const savedCookie = localStorage.getItem("nh_wikidich_cookie") || "";
+        const headers: Record<string, string> = {};
+        if (nhSource === "wikidich" && savedCookie) {
+            headers["x-wikidich-cookie"] = savedCookie;
+        }
+        fetch(
+            `/api/novelhub?action=chapter&slug=${storySlug}&chapterSlug=${encodeURIComponent(
+                chapterSlug
+            )}&source=${nhSource}`,
+            { headers }
+        )
+            .then((res) => res.json())
+            .then((d) => {
+                setData(d);
+                window.scrollTo({ top: 0, behavior: "instant" as any });
+
+                // Save to local reading history
+                try {
+                    const historyStr = localStorage.getItem("rr_history") || "{}";
+                    const history = JSON.parse(historyStr);
+                    const historyId = `novelhub-${nhSource}-${storySlug}`;
+                    
+                    history[historyId] = {
+                        id: historyId,
+                        title: d.storyTitle || storyTitle || "Truyện Nguồn Ngoài",
+                        coverImage: storyCover || "",
+                        author: storyAuthor || "Khuyết danh",
+                        genres: [],
+                        lastReadChapterIdx: 0,
+                        lastReadChapterTitle: d.title || "Chương mới nhất",
+                        lastReadChapterSlug: chapterSlug,
+                        totalChapters: 0,
+                        updatedAt: Date.now()
+                    };
+                    localStorage.setItem("rr_history", JSON.stringify(history));
+                } catch (e) {
+                    console.error("Lỗi lưu lịch sử", e);
+                }
+            })
+            .catch((err) => {
+                console.error(err);
+                toast.error("Không thể tải nội dung chương.");
+            })
+            .finally(() => setLoading(false));
+    }, [storySlug, chapterSlug, nhSource]);
+
+    const handleDownloadSingleTxt = () => {
+        if (!data || !data.content) return;
+        const parser = new DOMParser();
+        const doc = parser.parseFromString(data.content, "text/html");
+        
+        const pElements = doc.querySelectorAll("p, div");
+        let textContent = "";
+        if (pElements.length > 0) {
+            const paragraphs: string[] = [];
+            pElements.forEach(el => {
+                const txt = el.textContent?.trim();
+                if (txt) paragraphs.push(txt);
+            });
+            textContent = paragraphs.join("\n\n");
+        } else {
+            textContent = (doc.body.textContent || "").trim().replace(/\n\s*\n/g, "\n\n");
+        }
+
+        const fullText = `${data.storyTitle || "Truyện"}\n${data.title || "Chương"}\n\n${textContent}`;
+
+        const blob = new Blob([fullText], { type: "text/plain;charset=utf-8" });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement("a");
+        a.href = url;
+        a.download = `${data.storyTitle || "Truyen"} - ${data.title || "Chuong"}.txt`;
+        a.click();
+        URL.revokeObjectURL(url);
+        toast.success("Đã tải chương dạng TXT!");
+    };
+
+    if (loading) {
+        return (
+            <div className="flex flex-col justify-center items-center h-48 space-y-4 w-full">
+                <Loader2Icon className="w-8 h-8 animate-spin text-blue-500" />
+                <div className="text-[10px] uppercase tracking-[0.2em] font-bold text-zinc-550">Đang tải chương...</div>
+            </div>
+        );
+    }
+
+    if (!data || data.error) {
+        return (
+            <div className="text-center py-12 space-y-4">
+                <div className="text-zinc-500 text-xs">Lỗi tải chương. Vui lòng thử lại.</div>
+                <button onClick={navigateNhBack} className="px-4 py-1.5 bg-blue-600 text-white rounded-lg text-xs font-semibold">
+                    Quay lại
+                </button>
+            </div>
+        );
+    }
+
+    return (
+        <div className="space-y-6 animate-page-enter">
+            <style dangerouslySetInnerHTML={{ __html: `
+                .nh-chapter-content p, 
+                .nh-chapter-content div {
+                    margin-bottom: 0.8rem !important;
+                    line-height: 1.8 !important;
+                }
+                .nh-chapter-content br {
+                    margin-bottom: 0.5rem !important;
+                    display: block;
+                    content: "";
+                }
+            `}} />
+            {/* Header toolbar */}
+            <div className="flex justify-between items-center pb-2 border-b border-zinc-200 dark:border-zinc-800">
+                <button
+                    onClick={navigateNhBack}
+                    className="text-[10px] font-bold tracking-wider text-blue-500 uppercase flex items-center gap-1.5"
+                >
+                    ◀ Quay lại
+                </button>
+                <div className="flex gap-2 items-center">
+                    <button
+                        onClick={handleDownloadSingleTxt}
+                        className={`px-2.5 py-1 rounded text-[9px] font-bold border transition ${
+                            isDark
+                                ? "border-zinc-850 hover:bg-zinc-800 text-zinc-350"
+                                : "border-zinc-200 hover:bg-zinc-50 text-zinc-650 bg-white"
+                        }`}
+                    >
+                        Tải TXT
+                    </button>
+                    {/* Font family selection dropdown */}
+                    <select
+                        value={fontFamily}
+                        onChange={(e) => updateFontFamily(e.target.value)}
+                        className={`px-2 py-1 text-[10px] font-bold rounded border h-7 focus:outline-none transition ${
+                            isDark
+                                ? "bg-zinc-900 border-zinc-700 text-white"
+                                : "bg-white border-zinc-300 text-zinc-800"
+                        }`}
+                    >
+                        <option value="font-serif">Serif (Playfair)</option>
+                        <option value="font-bookerly">Bookerly</option>
+                        <option value="font-literata">Literata</option>
+                        <option value="font-lora">Lora</option>
+                        <option value="font-palatino">Palatino</option>
+                        <option value="font-times">Times New Roman</option>
+                        <option value="font-sans">Sans-serif</option>
+                        <option value="font-mono">Monospace</option>
+                    </select>
+                    <div className="flex border border-zinc-300 dark:border-zinc-700 rounded overflow-hidden">
+                        <button
+                            onClick={() => setFontSize((f) => Math.max(12, f - 2))}
+                            className="px-2.5 py-0.5 bg-white dark:bg-zinc-950 text-xs font-bold border-r border-zinc-300 dark:border-zinc-700 text-zinc-700 dark:text-zinc-300 hover:bg-zinc-100 dark:hover:bg-zinc-900"
+                        >
+                            A-
+                        </button>
+                        <button
+                            onClick={() => setFontSize((f) => Math.min(28, f + 2))}
+                            className="px-2.5 py-0.5 bg-white dark:bg-zinc-950 text-xs font-bold text-zinc-700 dark:text-zinc-300 hover:bg-zinc-100 dark:hover:bg-zinc-900"
+                        >
+                            A+
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            {/* Chapter header */}
+            <div className="text-center space-y-2">
+                <h1 className="text-base font-bold text-zinc-550">{data.storyTitle}</h1>
+                <h2 className="text-lg font-extrabold leading-snug">{data.title}</h2>
+            </div>
+
+            {/* Content text */}
+            <div
+                className={`select-text whitespace-pre-wrap leading-relaxed text-justify px-1 dark:text-zinc-200 nh-chapter-content ${fontFamily}`}
+                style={{ fontSize: `${fontSize}px` }}
+                dangerouslySetInnerHTML={{ __html: data.content }}
+            />
+
+            {/* Footer prev/next chapter */}
+            <div className="flex justify-between items-center pt-6 border-t border-zinc-200 dark:border-zinc-800">
+                <button
+                    disabled={!data.prevSlug}
+                    onClick={() => setNhState((prev: any) => ({ ...prev, chapterSlug: data.prevSlug }))}
+                    className={`px-4 py-2 rounded-xl text-xs font-bold border transition ${
+                        !data.prevSlug
+                            ? "opacity-30 cursor-not-allowed border-transparent text-zinc-500"
+                            : isDark
+                                ? "border-zinc-850 bg-zinc-900/50 text-zinc-350 hover:bg-zinc-800"
+                                : "border-zinc-200 bg-white text-zinc-650 hover:bg-zinc-50 shadow-sm"
+                    }`}
+                >
+                    ◀ Chương trước
+                </button>
+                <button
+                    disabled={!data.nextSlug}
+                    onClick={() => setNhState((prev: any) => ({ ...prev, chapterSlug: data.nextSlug }))}
+                    className={`px-4 py-2 rounded-xl text-xs font-bold border transition ${
+                        !data.nextSlug
+                            ? "opacity-30 cursor-not-allowed border-transparent text-zinc-500"
+                            : isDark
+                                ? "border-zinc-850 bg-zinc-900/50 text-zinc-350 hover:bg-zinc-800"
+                                : "border-zinc-200 bg-white text-zinc-650 hover:bg-zinc-50 shadow-sm"
+                    }`}
+                >
+                    Chương sau ▶
+                </button>
+            </div>
+        </div>
+    );
+}
+
+function NovelHubStoryListView({
+    nhSource,
+    listType,
+    page = 1,
+    navigateNh,
+    setNhState,
+    isDark
+}: {
+    nhSource: string;
+    listType: string;
+    page: number;
+    navigateNh: (s: any) => void;
+    setNhState: any;
+    isDark: boolean;
+}) {
+    const [data, setData] = useState<any>(null);
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+        setLoading(true);
+        const savedCookie = localStorage.getItem("nh_wikidich_cookie") || "";
+        const headers: Record<string, string> = {};
+        if (nhSource === "wikidich" && savedCookie) {
+            headers["x-wikidich-cookie"] = savedCookie;
+        }
+        fetch(`/api/novelhub?action=list&type=${listType}&page=${page}&source=${nhSource}`, { headers })
+            .then((res) => res.json())
+            .then((d) => {
+                setData(d);
+            })
+            .catch((err) => {
+                console.error(err);
+                toast.error("Không thể tải danh sách truyện.");
+            })
+            .finally(() => setLoading(false));
+    }, [listType, page, nhSource]);
+
+    if (loading) {
+        return (
+            <div className="flex flex-col justify-center items-center h-48 space-y-4 w-full">
+                <Loader2Icon className="w-8 h-8 animate-spin text-blue-500" />
+                <div className="text-[10px] uppercase tracking-[0.2em] font-bold text-zinc-550">Đang tải danh sách...</div>
+            </div>
+        );
+    }
+
+    if (!data || data.error) {
+        return <div className="text-center text-zinc-550 py-12 text-xs">Không tìm thấy danh sách.</div>;
+    }
+
+    return (
+        <div className="space-y-4 animate-page-enter">
+            <h2 className="text-sm font-bold text-zinc-550">{data.title || "Danh sách"}</h2>
+            <div
+                className={`border rounded-2xl p-4 divide-y ${
+                    isDark
+                        ? "bg-[#131416] border-zinc-800 divide-zinc-800"
+                        : "bg-[#fffbf4] border-zinc-200 divide-zinc-200 shadow-sm"
+                }`}
+            >
+                {!data.results || data.results.length === 0 ? (
+                    <div className="text-center py-8 text-zinc-500 text-xs">Không tìm thấy truyện nào.</div>
+                ) : (
+                    data.results.map((r: any, idx: number) => (
+                        <div
+                            key={idx}
+                            onClick={() => navigateNh({ view: "story", storySlug: r.slug })}
+                            className="flex gap-4 py-3.5 first:pt-0 last:pb-0 cursor-pointer group"
+                        >
+                            {/* Cover Image */}
+                            <div className="shrink-0 w-14 aspect-[3/4] bg-zinc-500/10 rounded-lg overflow-hidden border border-zinc-300 dark:border-zinc-800 shadow-sm">
+                                {r.cover ? (
+                                    <img
+                                        src={r.cover}
+                                        alt={r.title}
+                                        className="w-full h-full object-cover group-hover:scale-105 transition duration-300"
+                                        referrerPolicy="no-referrer"
+                                    />
+                                ) : (
+                                    <div className="w-full h-full flex items-center justify-center text-zinc-400 text-xs">📖</div>
+                                )}
+                            </div>
+
+                            {/* Details */}
+                            <div className="flex-1 min-w-0 flex flex-col justify-between">
+                                <div>
+                                    <h3 className="font-bold text-xs group-hover:text-blue-500 transition leading-snug line-clamp-1">
+                                        {r.title}
+                                    </h3>
+                                    <p className="text-[10px] text-zinc-500 mt-0.5 font-semibold">Tác giả: {r.author || "Khuyết danh"}</p>
+                                    {r.desc && (
+                                        <p className="text-[10px] text-zinc-600 dark:text-zinc-400 mt-1.5 line-clamp-2 leading-relaxed text-justify">
+                                            {r.desc}
+                                        </p>
+                                    )}
+                                </div>
+                                <div className="text-[10px] font-semibold text-blue-500 mt-1 flex justify-between items-center">
+                                    <span>Chương mới nhất: {r.latestChapter}</span>
+                                </div>
+                            </div>
+                        </div>
+                    ))
+                )}
+            </div>
+
+            {data.totalPages > 1 && (
+                <div className="flex flex-wrap justify-center gap-1.5 pt-4">
+                    {Array.from({ length: data.totalPages }, (_, i) => {
+                        const p = i + 1;
+                        if (p === 1 || p === data.totalPages || Math.abs(p - page) <= 2) {
+                            return (
+                                <button
+                                    key={p}
+                                    onClick={() => setNhState((prev: any) => ({ ...prev, page: p }))}
+                                    className={`w-7 h-7 flex items-center justify-center rounded text-[10px] font-bold border transition ${
+                                        p === page
+                                            ? "bg-blue-600 border-blue-500 text-white"
+                                            : isDark
+                                                ? "border-zinc-850 bg-zinc-900/50 text-zinc-405 hover:bg-zinc-800"
+                                                : "border-zinc-200 bg-white text-zinc-650 hover:bg-zinc-50"
+                                    }`}
+                                >
+                                    {p}
+                                </button>
+                            );
+                        }
+                        if (p === 2 || p === data.totalPages - 1) {
+                            return (
+                                <span key={p} className="text-zinc-500 self-center">
+                                    ...
+                                </span>
+                            );
+                        }
+                        return null;
+                    })}
+                </div>
+            )}
         </div>
     );
 }

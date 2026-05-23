@@ -10,14 +10,19 @@ import { db, GENRE_LABELS } from "@/lib/db";
 import { createSceneVersion, ensureInitialVersion, getOriginalContent } from "@/lib/hooks/use-scene-versions";
 import { useBulkTranslateStore } from "@/lib/stores/bulk-translate";
 import { chunkText } from "@/lib/text-utils";
+import { getMergedNameDict } from "@/lib/hooks/use-name-entries";
+import { parseQaAndApply } from "./qa-helper";
 
 const MAX_ATTEMPTS = 3;
 const RETRY_DELAY = 5000;
 
 function getEditSystemPrompt(
     genreText: string,
+    genreGuidelines: string,
     novelCustomPrompt?: string,
     stylePreset?: string,
+    customStylePrompt?: string,
+    customPronounPrompt?: string,
 ) {
     let styleInstruction = "";
     if (stylePreset === "epic") {
@@ -30,11 +35,23 @@ function getEditSystemPrompt(
         styleInstruction = `\n- **Phong cách (Tình cảm)**: Hành văn lãng mạn, giàu cảm xúc, chú trọng mô tả nội tâm.`;
     }
 
+    let customInstructions = "";
+    if (novelCustomPrompt?.trim()) {
+        customInstructions += `\n\n# CHỈ DẪN PROMPT BIÊN TẬP (BẮT BUỘC TUÂN THỦ TUYỆT ĐỐI):\n${novelCustomPrompt.trim()}`;
+    }
+    if (customStylePrompt?.trim()) {
+        customInstructions += `\n\n# CHỈ DẪN VỀ VĂN PHONG DỊCH (BẮT BUỘC): \n${customStylePrompt.trim()}`;
+    }
+    if (customPronounPrompt?.trim()) {
+        customInstructions += `\n\n# QUY TẮC XƯNG HÔ & BỐI CẢNH (BẮT BUỘC): \n${customPronounPrompt.trim()}`;
+    }
+
     return `# Vai trò
 Bạn là tổng biên tập văn học kì cựu chuyên biên tập tiểu thuyết dịch tại Việt Nam.
 Nhiệm vụ: Đọc bản dịch Tiếng Việt dưới đây và biên tập lại cho văn phong trôi chảy, tự nhiên, giàu cảm xúc văn học.
 
 # Thể loại: ${genreText}${styleInstruction}
+${genreGuidelines}
 
 # Chỉ dẫn biên tập:
 1. **Xóa phong cách thô cứng**: Chuyển các cụm từ Hán Việt thô thành diễn đạt tự nhiên thuần Việt.
@@ -47,17 +64,58 @@ Nhiệm vụ: Đọc bản dịch Tiếng Việt dưới đây và biên tập l
 <content>
 (Bản dịch đã biên tập hoàn thiện - TIẾNG VIỆT)
 </content>
-` + (novelCustomPrompt?.trim() ? `\n\n# Quy tắc riêng (ƯU TIÊN TUYỆT ĐỐI):\n${novelCustomPrompt.trim()}` : "");
+` + customInstructions;
+}
+
+function getEditQaSystemPrompt(
+    genreText: string,
+    nameDict: any[],
+    customQaPrompt?: string
+) {
+    let relevantNamesPrompt = "";
+    if (nameDict && nameDict.length > 0) {
+        relevantNamesPrompt = `\n\n# Bảng tên riêng bắt buộc dùng đúng:\n`;
+        for (const n of nameDict.slice(0, 150)) {
+            relevantNamesPrompt += `${n.chinese} hoặc phiên âm tương tự → ${n.vietnamese}\n`;
+        }
+    }
+
+    if (customQaPrompt?.trim()) {
+        return `${customQaPrompt.trim()}${relevantNamesPrompt}`;
+    }
+
+    return `# Vai trò
+Bạn là Giám sát Chất lượng Biên tập Văn học (QA Bot) chuyên nghiệp. Nhiệm vụ của bạn là rà soát và tinh chỉnh bản dịch tiếng Việt đã biên tập ở bước 1 để nâng cao độ trôi chảy, tự nhiên và đặc biệt sửa các lỗi không nhất quán về tên riêng, đại từ xưng hô và lỗi chính tả/ngữ pháp.
+${relevantNamesPrompt}
+# Quy tắc sửa lỗi (BẮT BUỘC):
+1. **Kiểm tra và sửa đổi tên riêng**:
+   - Đối chiếu tên nhân vật trong văn bản dịch chưa tinh chỉnh với Bảng tên riêng.
+   - Nếu xuất hiện tên bị viết sai hoặc không đồng bộ (ví dụ: "Lâm Phong" bị viết nhầm thành "Lâm Phóng", v.v.), bạn BẮT BUỘC phải sửa lại câu văn đó cho đúng tên dịch chuẩn.
+2. **Hành văn & Chính tả**:
+   - Tinh chỉnh các câu từ thô cứng, lặp từ hoặc diễn đạt chưa mượt mà để câu văn tự nhiên chuẩn văn học Việt Nam theo thể loại: ${genreText}.
+3. **Định dạng câu trả lời tiết kiệm Token**:
+   - Bạn chỉ cần trả về các dòng có lỗi cần sửa đổi kèm theo số dòng tương ứng.
+   - Tuyệt đối KHÔNG viết lại toàn bộ văn bản hay các câu không có lỗi, KHÔNG chèn thêm nhận xét, giải thích.
+   - Định dạng đầu ra bắt buộc cho mỗi dòng sửa đổi: \`L[Số dòng]: [Nội dung câu đã sửa lại hoàn chỉnh]\`
+   - Nếu toàn bộ văn bản hoàn toàn chính xác và không có dòng nào cần sửa đổi, hãy trả về duy nhất chuỗi sau: "Không có lỗi"`;
+}
+
+function buildEditQaUserPrompt(finalChunkContent: string): string {
+    const draftLines = finalChunkContent.split(/\r?\n/);
+    const formattedDraftLines = draftLines
+        .map((line, index) => `L${index + 1}: ${line}`)
+        .join("\n");
+
+    return `[VĂN BẢN TIẾNG VIỆT CHƯA TINH CHỈNH VỚI SỐ DÒNG]
+${formattedDraftLines}
+
+Hãy rà soát và chỉ trả về các câu có lỗi đã được sửa lại theo định dạng \`L[Số dòng]: [Nội dung câu đã sửa]\`:`;
 }
 
 function parseContent(xml: string): string {
     const match = xml.match(/<content>([\s\S]*?)<\/content>/);
     if (match?.[1]) return match[1].trim();
     return xml.replace(/<\/?content>/g, "").trim();
-}
-
-function countWords(s: string) {
-    return s ? s.split(/\s+/).filter(Boolean).length : 0;
 }
 
 export interface EditTranslateResult {
@@ -71,7 +129,14 @@ export interface EditTranslateOptions {
     chapterIds: string[];
     model: LanguageModel;
     novelCustomPrompt?: string;
+    customStylePrompt?: string;
+    customPronounPrompt?: string;
+    twoPass?: boolean;
+    qaModel?: LanguageModel;
+    qaEnabled?: boolean;
+    qaPrompt?: string;
     skipTranslated?: boolean;
+    errorAction?: "stop" | "skip";
     signal?: AbortSignal;
     delayMs?: number;
     onPhase?: (chapterId: string, phase: string) => void;
@@ -87,6 +152,14 @@ export async function runEditTranslate(opts: EditTranslateOptions) {
         chapterIds,
         model,
         novelCustomPrompt,
+        customStylePrompt,
+        customPronounPrompt,
+        twoPass = true,
+        qaModel,
+        qaEnabled = false,
+        qaPrompt,
+        skipTranslated = true,
+        errorAction = "stop",
         signal,
         delayMs = 0,
         onPhase = () => { },
@@ -101,7 +174,24 @@ export async function runEditTranslate(opts: EditTranslateOptions) {
     const genreKeys = novel?.genres || (novel?.genre ? [novel.genre] : []);
     const genreText = genreKeys.map(k => GENRE_LABELS[k] || k).join(", ") || "Chưa xác định";
 
-    const systemPrompt = getEditSystemPrompt(genreText, novelCustomPrompt, novel?.stylePreset);
+    // Build context-specific guidelines based on novel genre
+    let genreGuidelines = "";
+    if (genreKeys.some(k => ["tienhiep", "huyenhuyen", "dongphuong", "quybi"].includes(k))) {
+        genreGuidelines = `
+        - **Đặc trưng Thể loại (Tiên hiệp/Kỳ huyễn/Huyền huyễn)**: Tông giọng cổ kính, tôn nghiêm, sử dụng từ ngữ Hán Việt văn học cổ phong hợp lý. 
+        - **Quy tắc xưng hô**: Ưu tiên cổ phong trang nghiêm (Ta - Ngươi, Huynh - Đệ, Sư tôn - Đồ đệ, Bổn tọa, Các hạ, Tiền bối - Vãn bối).`;
+    } else if (genreKeys.some(k => ["dothi", "hiendai", "school", "hocduong", "vongdu"].includes(k))) {
+        genreGuidelines = `
+        - **Đặc trưng Thể loại (Hiện đại/Đô thị/Võng du)**: Hành văn hiện đại, trẻ trung, đời thường, trôi chảy tự nhiên.
+        - **Quy tắc xưng hô**: Linh hoạt theo bối cảnh xã hội hiện đại (Tôi - Cậu, Anh - Em, Ta - Ngươi khi thù địch/khiêu khích, Hắn, Nàng, Gã).`;
+    } else if (genreKeys.some(k => ["ngontinh", "dammi"].includes(k))) {
+        genreGuidelines = `
+        - **Đặc trưng Thể loại (Ngôn tình/Đam mỹ)**: Văn phong giàu cảm xúc, lãng mạn, mượt mà, tập trung sâu mô tả nội tâm và đường nét cử chỉ.
+        - **Quy tắc xưng hô**: Phải sâu lắng và tình cảm (Ta - Chàng/Thiếp nếu cổ đại; Anh - Em, Tôi - Em nếu hiện đại).`;
+    }
+
+    const nameDict = await getMergedNameDict(novelId);
+    const systemPrompt = getEditSystemPrompt(genreText, genreGuidelines, novelCustomPrompt, novel?.stylePreset, customStylePrompt, customPronounPrompt);
 
     for (const chapterId of chapterIds) {
         if (signal?.aborted) break;
@@ -126,6 +216,13 @@ export async function runEditTranslate(opts: EditTranslateOptions) {
                 throw new Error("Không tìm thấy phân cảnh nào.");
             }
 
+            // skip check
+            if (skipTranslated && chapterScenes.every(s => s.versionType === "edit-translate" || s.versionType === "ai-translate")) {
+                store.setChapterStatus(novelId, chapter.id, "done");
+                store.incrementCompleted(novelId);
+                continue;
+            }
+
             if (delayMs > 0) await new Promise(r => setTimeout(r, delayMs));
 
             onPhase(chapter.id, "ai");
@@ -135,7 +232,6 @@ export async function runEditTranslate(opts: EditTranslateOptions) {
             for (const scene of chapterScenes) {
                 if (signal?.aborted) throw new Error("Aborted");
 
-                // Get current translated content (not original)
                 const currentContent = scene.content;
                 if (!currentContent?.trim()) continue;
 
@@ -147,7 +243,9 @@ export async function runEditTranslate(opts: EditTranslateOptions) {
 
                     let success = false;
                     let lastErr: any = null;
+                    let chunkOutput = "";
 
+                    // Pass 1: Main Edit rewrite
                     for (let attempt = 0; attempt <= MAX_ATTEMPTS; attempt++) {
                         try {
                             const res = await streamText({
@@ -160,9 +258,7 @@ export async function runEditTranslate(opts: EditTranslateOptions) {
                             let text = "";
                             for await (const t of res.textStream) { text += t; }
 
-                            // Streaming fallback
                             if (!text.trim()) {
-                                console.warn(`[AI Edit] Stream returned empty. Retrying with generateText...`);
                                 const { generateText } = await import("ai");
                                 const directRes = await generateText({
                                     model,
@@ -175,7 +271,7 @@ export async function runEditTranslate(opts: EditTranslateOptions) {
 
                             const parsed = parseContent(text);
                             if (parsed.trim()) {
-                                editedContent += (editedContent ? "\n\n" : "") + parsed;
+                                chunkOutput = parsed;
                                 success = true;
                                 break;
                             }
@@ -186,7 +282,41 @@ export async function runEditTranslate(opts: EditTranslateOptions) {
                         }
                     }
 
-                    if (!success) throw lastErr || new Error("AI biên tập trả về rỗng");
+                    if (!success || !chunkOutput.trim()) {
+                        throw lastErr || new Error("AI biên tập trả về rỗng");
+                    }
+
+                    // Pass 2: QA Polisher
+                    if (qaEnabled && qaModel) {
+                        onPhase(chapter.id, "model3");
+                        const qaSystem = getEditQaSystemPrompt(genreText, nameDict, qaPrompt);
+                        const qaUser = buildEditQaUserPrompt(chunkOutput);
+
+                        let qaResult = "";
+                        let qaSuccess = false;
+                        for (let qaAttempt = 0; qaAttempt < 2; qaAttempt++) {
+                            try {
+                                const { generateText } = await import("ai");
+                                const res = await generateText({
+                                    model: qaModel,
+                                    system: qaSystem,
+                                    prompt: qaUser,
+                                    abortSignal: signal,
+                                });
+                                qaResult = res.text ?? "";
+                                qaSuccess = true;
+                                if (qaResult.trim()) break;
+                            } catch (err) {
+                                await new Promise((r) => setTimeout(r, 1000));
+                            }
+                        }
+
+                        if (qaSuccess && qaResult.trim() && qaResult !== "Không có lỗi") {
+                            chunkOutput = parseQaAndApply(qaResult, chunkOutput);
+                        }
+                    }
+
+                    editedContent += (editedContent ? "\n\n" : "") + chunkOutput;
                 }
 
                 // Save
@@ -196,7 +326,7 @@ export async function runEditTranslate(opts: EditTranslateOptions) {
                 await db.scenes.update(scene.id, {
                     content: editedContent,
                     versionType: "edit-translate",
-                    wordCount: countWords(editedContent),
+                    wordCount: editedContent.split(/\s+/).filter(Boolean).length,
                     updatedAt: new Date(),
                 });
 
@@ -214,9 +344,10 @@ export async function runEditTranslate(opts: EditTranslateOptions) {
             store.setChapterStatus(novelId, chapter.id, "error");
             store.incrementCompleted(novelId);
 
-            // Stop the entire translation job immediately upon chapter failure
-            store.cancel(novelId);
-            break;
+            if (errorAction === "stop") {
+                store.cancel(novelId);
+                break;
+            }
         }
     }
 

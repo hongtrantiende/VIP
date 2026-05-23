@@ -444,6 +444,8 @@ export interface TTSSettings {
   highlightColor: string;
   fluencyAdjust: number;
   providerApiKeys?: Record<string, string>;
+  sentenceDelay?: number;
+  maxPreload?: number;
 }
 
 // ─── Writing Pipeline ───────────────────────────────────────

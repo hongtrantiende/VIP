@@ -28,6 +28,8 @@ import { runComprehensiveTranslate } from "@/lib/chapter-tools/comprehensive-tra
 import { runEditTranslate } from "@/lib/chapter-tools/edit-translate";
 import { runScanFix } from "@/lib/chapter-tools/scan-fix-translate";
 import { streamText } from "ai";
+import { runLocalNameScan, applyFix } from "@/lib/chapter-tools/local-name-scanner";
+import type { ScanIssue } from "@/lib/chapter-tools/local-name-scanner";
 import { getOriginalContent } from "@/lib/hooks/use-scene-versions";
 import { useAnalysisSettings } from "@/lib/hooks/use-analysis-settings";
 import { useChatSettings } from "@/lib/hooks/use-chat-settings";
@@ -55,6 +57,9 @@ import {
     BotIcon,
     HelpCircleIcon,
     UsersIcon,
+    CheckIcon,
+    SearchIcon,
+    AlertTriangleIcon,
 } from "lucide-react";
 import { useCallback, useMemo, useRef, useState, useEffect } from "react";
 import { toast } from "sonner";
@@ -84,9 +89,9 @@ type TranslateMode = "prompt" | "stv-prompt" | "edit" | "comprehensive" | "scan-
 const MODES: { id: TranslateMode; label: string; icon: React.ElementType; color: string; desc: string }[] = [
     { id: "prompt", label: "Dịch Prompt", icon: SparklesIcon, color: "text-blue-600 dark:text-blue-400", desc: "Dịch thuần AI theo system prompt, không dùng từ điển" },
     { id: "stv-prompt", label: "STV + Prompt", icon: BookOpenIcon, color: "text-emerald-600 dark:text-emerald-400", desc: "Từ điển STV chuyển đổi thô → AI sửa lỗi theo prompt" },
-    { id: "edit", label: "Biên Tập AI", icon: PenToolIcon, color: "text-amber-600 dark:text-amber-400", desc: "Bảo trì, chưa có ý tưởng" },
+    { id: "edit", label: "Biên Tập AI", icon: PenToolIcon, color: "text-amber-600 dark:text-amber-400", desc: "Biên tập & làm mịn bản dịch tiếng Việt cho trôi chảy, đúng từ điển, mượt mà theo thể loại" },
     { id: "comprehensive", label: "Dịch Toàn Diện", icon: CrownIcon, color: "text-purple-600 dark:text-purple-400", desc: "Pipeline đầy đủ: QT → AI Draft → AI Editor (2-pass)" },
-    { id: "scan-fix", label: "Quét & Sửa", icon: ShieldCheckIcon, color: "text-red-600 dark:text-red-400", desc: "Bảo trì, chưa có ý tưởng" },
+    { id: "scan-fix", label: "Quét & Sửa", icon: ShieldCheckIcon, color: "text-rose-600 dark:text-rose-400", desc: "Quét và phát hiện lỗi chính tả, viết sai tên nhân vật theo từ điển" },
 ];
 
 const GENRE_DICTS = [
@@ -197,7 +202,7 @@ export function TranslateTabPanel({
     const [showStepsInfo, setShowStepsInfo] = useState(false);
     const [totalToProcess, setTotalToProcess] = useState(0);
     const abortRef = useRef<AbortController | null>(null);
-    const isUnderMaintenance = activeMode === "edit" || activeMode === "scan-fix";
+    const isUnderMaintenance = false;
 
 
     // Initialize from novel data
@@ -518,27 +523,29 @@ export function TranslateTabPanel({
         let model2: any = null;
         let model3: any = null;
 
-        if (activeMode === "stv-prompt" || activeMode === "comprehensive" || activeMode === "prompt") {
+        if (activeMode === "stv-prompt" || activeMode === "comprehensive" || activeMode === "prompt" || activeMode === "edit") {
             const config1 = { providerId: model1ProviderId, modelId: model1ModelId };
             if (!config1.providerId || !config1.modelId) {
-                toast.error("Vui lòng cấu hình đầy đủ Model 1 (Dịch chính)");
+                toast.error(activeMode === "edit" ? "Vui lòng cấu hình đầy đủ Model 1 (Biên tập chính)" : "Vui lòng cấu hình đầy đủ Model 1 (Dịch chính)");
                 return;
             }
             model = await resolveChapterToolModel(config1, defaultProvider, chatSettings);
             if (!model) {
-                toast.error("Không tìm thấy cấu hình Model 1 (Dịch chính)");
+                toast.error(activeMode === "edit" ? "Không tìm thấy cấu hình Model 1 (Biên tập chính)" : "Không tìm thấy cấu hình Model 1 (Dịch chính)");
                 return;
             }
 
             const config2 = { providerId: model2ProviderId, modelId: model2ModelId };
-            if (!config2.providerId || !config2.modelId) {
+            if (activeMode !== "edit" && (!config2.providerId || !config2.modelId)) {
                 toast.error("Vui lòng cấu hình đầy đủ Model 2 (Trích xuất từ điển)");
                 return;
             }
-            model2 = await resolveChapterToolModel(config2, defaultProvider, chatSettings);
-            if (!model2) {
-                toast.error("Không tìm thấy cấu hình Model 2 (Trích xuất từ điển)");
-                return;
+            if (config2.providerId && config2.modelId) {
+                model2 = await resolveChapterToolModel(config2, defaultProvider, chatSettings);
+                if (!model2 && activeMode !== "edit") {
+                    toast.error("Không tìm thấy cấu hình Model 2 (Trích xuất từ điển)");
+                    return;
+                }
             }
 
             if (model3Enabled) {
@@ -696,8 +703,18 @@ export function TranslateTabPanel({
                 });
             } else if (activeMode === "edit") {
                 await runEditTranslate({
-                    novelId, chapterIds: targetChapterIds, model,
+                    novelId,
+                    chapterIds: targetChapterIds,
+                    model,
                     novelCustomPrompt: inlinePrompt,
+                    customStylePrompt: customStylePrompt,
+                    customPronounPrompt: customPronounPrompt,
+                    twoPass: twoPass,
+                    qaModel: model3 || undefined,
+                    qaEnabled: model3Enabled,
+                    qaPrompt: customModel3Prompt || undefined,
+                    skipTranslated: skipTranslated,
+                    errorAction: errorAction,
                     ...commonCallbacks,
                 });
             } else if (activeMode === "scan-fix") {
@@ -811,8 +828,15 @@ export function TranslateTabPanel({
                         </div>
 
                         {!isUnderMaintenance ? (
-                            <>
-                                {/* ── Mode-specific Setup Panels ── */}
+                            activeMode === "scan-fix" ? (
+                                <ScanFixPanel
+                                    novelId={novelId}
+                                    chapterIds={chapterIds}
+                                    chapters={chapters}
+                                />
+                            ) : (
+                                <>
+                                    {/* ── Mode-specific Setup Panels ── */}
 
                                 {/* Cấu hình Prompt */}
                                 {(activeMode === "prompt" || activeMode === "stv-prompt" || activeMode === "comprehensive" || activeMode === "edit" || activeMode === "scan-fix") && (() => {
@@ -827,7 +851,7 @@ export function TranslateTabPanel({
                                                 <div className="flex items-center gap-2">
                                                     <span className="text-xs font-medium flex items-center gap-1.5 select-none">
                                                         <ScanSearchIcon className={cn("size-3.5", hasPrompt ? "text-emerald-600" : "text-muted-foreground")} />
-                                                        Cấu hình Prompt
+                                                        {activeMode === "edit" ? "Cấu hình Prompt Biên Tập" : "Cấu hình Prompt"}
                                                     </span>
                                                     {hasPrompt ? (
                                                         <span className="text-[9px] bg-emerald-500/10 text-emerald-700 dark:text-emerald-400 px-1.5 py-0.5 rounded border border-emerald-500/20 font-semibold flex items-center gap-0.5">
@@ -849,7 +873,7 @@ export function TranslateTabPanel({
                                 })()}
 
                                 {/* Comprehensive mode configuration */}
-                                {activeMode === "comprehensive" && (
+                                {(activeMode === "comprehensive" || activeMode === "edit") && (
                                     <div className="space-y-3">
                                         {/* Văn Phong Dịch */}
                                         <div className="rounded-lg border bg-card p-3 space-y-2 border-indigo-500/20">
@@ -857,7 +881,7 @@ export function TranslateTabPanel({
                                                 <div className="flex items-center gap-2">
                                                     <span className="text-xs font-medium flex items-center gap-1.5 select-none">
                                                         <BookOpenIcon className={cn("size-3.5", customStylePrompt?.trim() ? "text-indigo-600" : "text-muted-foreground")} />
-                                                        Văn Phong Dịch
+                                                        {activeMode === "edit" ? "Văn Phong Biên Tập" : "Văn Phong Dịch"}
                                                     </span>
                                                     {customStylePrompt?.trim() ? (
                                                         <span className="text-[9px] bg-indigo-500/10 text-indigo-700 dark:text-indigo-400 px-1.5 py-0.5 rounded border border-indigo-500/20 font-semibold flex items-center gap-0.5">
@@ -913,11 +937,13 @@ export function TranslateTabPanel({
                                 )}
 
                                 {/* ── AI Model Configuration ── */}
-                                {activeMode === "stv-prompt" || activeMode === "comprehensive" || activeMode === "prompt" ? (
+                                {activeMode === "stv-prompt" || activeMode === "comprehensive" || activeMode === "prompt" || activeMode === "edit" ? (
                                     <div className="space-y-3.5 border-t pt-3.5">
                                         <div className="space-y-1.5">
                                             <div className="flex justify-between items-center text-xs">
-                                                <Label className="text-xs font-bold text-blue-600 dark:text-blue-400">Model 1: Dịch chính (Khuyên dùng Pro)</Label>
+                                                <Label className="text-xs font-bold text-blue-600 dark:text-blue-400">
+                                                    {activeMode === "edit" ? "Model 1: Biên tập chính (Khuyên dùng Pro)" : "Model 1: Dịch chính (Khuyên dùng Pro)"}
+                                                </Label>
                                             </div>
                                             <div className="flex gap-2">
                                                 <Select value={model1ProviderId} onValueChange={handleModel1ProviderChange}>
@@ -1075,13 +1101,13 @@ export function TranslateTabPanel({
                                         disabled={
                                             selectedProviderId === "admin-provider"
                                                 ? (!isAdmin && rawQuota <= 0)
-                                                : ((activeMode === "stv-prompt" || activeMode === "comprehensive" || activeMode === "prompt")
-                                                    ? (!model1ProviderId || !model1ModelId || !model2ProviderId || !model2ModelId || (model3Enabled && (!model3ProviderId || !model3ModelId)))
+                                                : ((activeMode === "stv-prompt" || activeMode === "comprehensive" || activeMode === "prompt" || activeMode === "edit")
+                                                    ? (!model1ProviderId || !model1ModelId || (activeMode !== "edit" && (!model2ProviderId || !model2ModelId)) || (model3Enabled && (!model3ProviderId || !model3ModelId)))
                                                     : !currentModel)
                                         }
                                     >
                                         <ActiveIcon className="size-3.5" />
-                                        {chapterIds.length} chương đã chọn
+                                        {activeMode === "edit" ? `${chapterIds.length} chương biên tập` : `${chapterIds.length} chương đã chọn`}
                                     </Button>
                                     <Button
                                         onClick={() => handleStart("all_untranslated")}
@@ -1090,17 +1116,18 @@ export function TranslateTabPanel({
                                         disabled={
                                             selectedProviderId === "admin-provider"
                                                 ? (!isAdmin && rawQuota <= 0)
-                                                : ((activeMode === "stv-prompt" || activeMode === "comprehensive" || activeMode === "prompt")
-                                                    ? (!model1ProviderId || !model1ModelId || !model2ProviderId || !model2ModelId || (model3Enabled && (!model3ProviderId || !model3ModelId)))
+                                                : ((activeMode === "stv-prompt" || activeMode === "comprehensive" || activeMode === "prompt" || activeMode === "edit")
+                                                    ? (!model1ProviderId || !model1ModelId || (activeMode !== "edit" && (!model2ProviderId || !model2ModelId)) || (model3Enabled && (!model3ProviderId || !model3ModelId)))
                                                     : !currentModel)
                                         }
                                     >
                                         <ActiveIcon className="size-3.5" />
-                                        Dịch đến hết truyện
+                                        {activeMode === "edit" ? "Biên tập đến hết truyện" : "Dịch đến hết truyện"}
                                     </Button>
                                 </div>
                             </>
-                        ) : (
+                        )
+                    ) : (
                             <div className="flex flex-col items-center justify-center py-10 text-muted-foreground gap-2 border border-dashed rounded-lg bg-muted/20">
                                 <PenToolIcon className="size-8 text-muted-foreground/45 animate-pulse" />
                                 <p className="text-xs font-medium">Chương trình bảo trì, chưa có ý tưởng phát triển</p>
@@ -1116,7 +1143,40 @@ export function TranslateTabPanel({
                 {/* Dialog hiển thị các bước dịch ở chế độ Dịch Prompt hoặc STV + Prompt */}
                 <Dialog open={showStepsInfo} onOpenChange={setShowStepsInfo}>
                     <DialogContent className="sm:max-w-md">
-                        {activeMode === "stv-prompt" ? (
+                        {activeMode === "edit" ? (
+                            <>
+                                <DialogHeader>
+                                    <DialogTitle className="flex items-center gap-2 text-sm font-bold">
+                                        <HelpCircleIcon className="size-5 text-blue-500" />
+                                        Quy Trình Biên Tập AI
+                                    </DialogTitle>
+                                    <DialogDescription className="text-xs">
+                                        Chi tiết các bước thực hiện khi chạy chế độ Biên Tập AI:
+                                    </DialogDescription>
+                                </DialogHeader>
+
+                                <div className="space-y-3.5 py-3 text-xs leading-relaxed">
+                                    <div className="space-y-1">
+                                        <span className="font-bold text-blue-600 dark:text-blue-400">Bước 1: Tải Ngữ Cảnh & Từ Điển Riêng</span>
+                                        <p className="text-muted-foreground">
+                                            Hệ thống kết hợp Bảng tên riêng xưng hô và các hướng dẫn văn phong riêng để định hình khung biên tập chuẩn.
+                                        </p>
+                                    </div>
+                                    <div className="space-y-1">
+                                        <span className="font-bold text-blue-600 dark:text-blue-400">Bước 2: Model 1 Biên Tập & Đồng Nhất Từ Vựng</span>
+                                        <p className="text-muted-foreground">
+                                            AI tiến hành rà soát ngữ pháp tiếng Việt, loại bỏ từ Hán Việt thô cứng, và thay thế tên riêng theo đúng từ điển đã trang bị.
+                                        </p>
+                                    </div>
+                                    <div className="space-y-1">
+                                        <span className="font-bold text-blue-600 dark:text-blue-400">Bước 3: Model 3 (QA Bot) Làm Mịn Nâng Cao</span>
+                                        <p className="text-muted-foreground">
+                                            (Nếu bật QA Bot) AI thực hiện rà soát lại toàn bộ văn bản để nâng cao độ trôi chảy của văn phong, chỉnh sửa nhịp điệu câu cú mượt mà.
+                                        </p>
+                                    </div>
+                                </div>
+                            </>
+                        ) : activeMode === "stv-prompt" ? (
                             <>
                                 <DialogHeader>
                                     <DialogTitle className="flex items-center gap-2 text-sm font-bold">
@@ -1257,12 +1317,12 @@ export function TranslateTabPanel({
                                 )}
                                 {(currentPhase === "ai" || currentPhase === "model1") && (
                                     <span className="flex items-center gap-1.5 text-xs text-blue-600 dark:text-blue-400 font-medium">
-                                        <LanguagesIcon className="size-3.5 animate-pulse text-blue-500" /> Model 1 [Pro]: Đang dịch nội dung chính...
+                                        <LanguagesIcon className="size-3.5 animate-pulse text-blue-500" /> {activeMode === "edit" ? "Model 1 [Pro]: Đang biên tập nội dung..." : "Model 1 [Pro]: Đang dịch nội dung chính..."}
                                     </span>
                                 )}
                                 {currentPhase === "model3" && (
                                     <span className="flex items-center gap-1.5 text-xs text-purple-600 dark:text-purple-400 font-medium">
-                                        <BotIcon className="size-3.5 animate-pulse text-purple-500" /> Model 3 [QA Bot]: Giám sát & Tinh chỉnh bản dịch...
+                                        <BotIcon className="size-3.5 animate-pulse text-purple-500" /> {activeMode === "edit" ? "Model 3 [QA Bot]: Giám sát & Tinh chỉnh bản biên tập..." : "Model 3 [QA Bot]: Giám sát & Tinh chỉnh bản dịch..."}
                                     </span>
                                 )}
                             </div>
@@ -1307,5 +1367,289 @@ export function TranslateTabPanel({
                 )}
             </DialogContent>
         </Dialog>
+    );
+}
+
+// ── Quét & Sửa (Scan & Fix) sub-components ──
+
+function HighlightedContext({ context, matchedText }: { context: string; matchedText: string }) {
+    if (!matchedText) return <span>{context}</span>;
+    const escaped = matchedText.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+    const regex = new RegExp(`(${escaped})`, "gi");
+    const parts = context.split(regex);
+    return (
+        <span>
+            {parts.map((part, i) => {
+                const isMatch = part.toLowerCase() === matchedText.toLowerCase();
+                return isMatch ? (
+                    <mark key={i} className="bg-rose-100 dark:bg-rose-950/60 px-1 py-0.5 rounded font-bold text-rose-700 dark:text-rose-300 border border-rose-200 dark:border-rose-800/40">
+                        {part}
+                    </mark>
+                ) : (
+                    part
+                );
+            })}
+        </span>
+    );
+}
+
+interface ScanFixPanelProps {
+    novelId: string;
+    chapterIds: string[];
+    chapters: any[];
+}
+
+function ScanFixPanel({ novelId, chapterIds, chapters }: ScanFixPanelProps) {
+    const [scope, setScope] = useState<"selected" | "all">("selected");
+    const [status, setStatus] = useState<"idle" | "scanning" | "done">("idle");
+    const [progress, setProgress] = useState({ current: 0, total: 0, chapterTitle: "" });
+    const [issues, setIssues] = useState<ScanIssue[]>([]);
+    const [fixingIssueId, setFixingIssueId] = useState<string | null>(null);
+
+    // Default scope if no chapters are selected
+    useEffect(() => {
+        if (chapterIds.length === 0) {
+            setScope("all");
+        } else {
+            setScope("selected");
+        }
+    }, [chapterIds]);
+
+    const handleScan = async () => {
+        const targetIds = scope === "selected" ? chapterIds : chapters.map(c => c.id);
+        if (targetIds.length === 0) {
+            toast.error("Không có chương nào để quét!");
+            return;
+        }
+
+        setStatus("scanning");
+        setProgress({ current: 0, total: targetIds.length, chapterTitle: "Bắt đầu..." });
+        setIssues([]);
+
+        try {
+            const results = await runLocalNameScan(novelId, targetIds, (idx, total) => {
+                const targetId = targetIds[idx];
+                const currentChapter = chapters.find(c => c.id === targetId);
+                setProgress({
+                    current: idx,
+                    total,
+                    chapterTitle: currentChapter ? currentChapter.title : `Chương ${idx + 1}`
+                });
+            });
+
+            setIssues(results);
+            setStatus("done");
+            toast.success(`Đã quét xong! Tìm thấy ${results.length} lỗi nghi vấn.`);
+        } catch (err: any) {
+            console.error("Scan error:", err);
+            toast.error("Lỗi khi quét: " + err.message);
+            setStatus("idle");
+        }
+    };
+
+    const handleFix = async (issue: ScanIssue) => {
+        setFixingIssueId(issue.id);
+        try {
+            const diff = await applyFix(novelId, issue);
+            toast.success("Sửa thành công!");
+            
+            // Adjust offsets for other pending matches in the same scene
+            setIssues(prev => prev.map(item => {
+                if (item.sceneId === issue.sceneId && item.start > issue.start) {
+                    return {
+                        ...item,
+                        start: item.start + diff,
+                        end: item.end + diff
+                    };
+                }
+                return item;
+            }).filter(item => item.id !== issue.id));
+        } catch (err: any) {
+            console.error("Fix error:", err);
+            toast.error("Không thể sửa: " + err.message);
+        } finally {
+            setFixingIssueId(null);
+        }
+    };
+
+    const handleSkip = (issue: ScanIssue) => {
+        setIssues(prev => prev.filter(item => item.id !== issue.id));
+    };
+
+    // Group issues by chapter title
+    const groupedIssues = useMemo(() => {
+        const groups: Record<string, ScanIssue[]> = {};
+        for (const iss of issues) {
+            const key = iss.chapterTitle || "Không rõ chương";
+            if (!groups[key]) groups[key] = [];
+            groups[key].push(iss);
+        }
+        return groups;
+    }, [issues]);
+
+    if (status === "scanning") {
+        const pct = progress.total > 0 ? Math.round((progress.current / progress.total) * 100) : 0;
+        return (
+            <div className="flex flex-col items-center justify-center py-10 gap-4">
+                <Loader2Icon className="size-8 text-rose-500 animate-spin" />
+                <div className="text-center space-y-1">
+                    <p className="text-xs font-semibold text-rose-600 dark:text-rose-400">Đang quét tìm lỗi chính tả...</p>
+                    <p className="text-[10px] text-muted-foreground italic truncate max-w-[280px]">
+                        {progress.chapterTitle}
+                    </p>
+                    <p className="text-[10px] text-muted-foreground font-mono">
+                        {progress.current} / {progress.total} ({pct}%)
+                    </p>
+                </div>
+                <Progress value={pct} className="h-2 w-full max-w-[240px]" />
+            </div>
+        );
+    }
+
+    if (status === "done") {
+        if (issues.length === 0) {
+            return (
+                <div className="space-y-4 pt-2">
+                    <div className="flex flex-col items-center justify-center py-10 text-center gap-2 border border-dashed rounded-lg bg-emerald-50/20 border-emerald-500/30">
+                        <CheckCircle2Icon className="size-10 text-emerald-500" />
+                        <p className="text-sm font-semibold text-emerald-600 dark:text-emerald-400">Sạch sẽ! ✨</p>
+                        <p className="text-xs text-muted-foreground max-w-[280px]">
+                            Không phát hiện lỗi viết sai/na ná tên nhân vật nào dựa theo từ điển hiện tại.
+                        </p>
+                    </div>
+                    <Button onClick={() => setStatus("idle")} className="w-full text-xs h-9">
+                        Quét lại chương khác
+                    </Button>
+                </div>
+            );
+        }
+
+        return (
+            <div className="space-y-3 pt-2">
+                <div className="flex items-center justify-between">
+                    <span className="text-xs text-muted-foreground font-medium">
+                        Phát hiện <strong className="text-rose-600 dark:text-rose-400">{issues.length}</strong> từ nghi vấn
+                    </span>
+                    <Button variant="ghost" size="sm" onClick={() => setStatus("idle")} className="h-7 text-[10px] text-muted-foreground">
+                        Hủy / Quét lại
+                    </Button>
+                </div>
+
+                <div className="space-y-4 max-h-[45vh] overflow-y-auto pr-1">
+                    {Object.entries(groupedIssues).map(([chapterTitle, chapterIssues]) => (
+                        <div key={chapterTitle} className="space-y-2 border-l-2 border-rose-500/20 pl-3">
+                            <h4 className="text-[11px] font-bold text-foreground flex items-center gap-1.5 sticky top-0 bg-background/95 py-1 z-10">
+                                <BookOpenIcon className="size-3 text-rose-500" />
+                                {chapterTitle}
+                            </h4>
+                            <div className="space-y-2.5">
+                                {chapterIssues.map((issue) => (
+                                    <div key={issue.id} className="rounded-lg border bg-card p-2.5 text-xs space-y-2 hover:border-rose-500/30 transition-colors">
+                                        <div className="flex items-center justify-between gap-2 flex-wrap">
+                                            <div className="flex items-center gap-1 text-[11px] flex-wrap">
+                                                <span className="font-semibold text-rose-600 dark:text-rose-400 bg-rose-500/10 px-1.5 py-0.5 rounded border border-rose-500/20">
+                                                    {issue.matchedText}
+                                                </span>
+                                                <span className="text-muted-foreground">→</span>
+                                                <span className="font-semibold text-emerald-600 dark:text-emerald-400 bg-emerald-500/10 px-1.5 py-0.5 rounded border border-emerald-500/20" title={`Tiếng Trung: ${issue.chineseName}`}>
+                                                    {issue.dictName}
+                                                </span>
+                                                {issue.chineseName && (
+                                                    <span className="text-[9px] text-muted-foreground font-mono bg-muted px-1 py-0.2 rounded">
+                                                        {issue.chineseName}
+                                                    </span>
+                                                )}
+                                            </div>
+                                            <div className="flex items-center gap-1.5">
+                                                <Button
+                                                    size="xs"
+                                                    variant="outline"
+                                                    className="h-6 text-[10px] px-2 text-muted-foreground"
+                                                    onClick={() => handleSkip(issue)}
+                                                    disabled={fixingIssueId === issue.id}
+                                                >
+                                                    Bỏ qua
+                                                </Button>
+                                                <Button
+                                                    size="xs"
+                                                    className="h-6 text-[10px] px-2.5 bg-emerald-600 hover:bg-emerald-700 text-white gap-1"
+                                                    onClick={() => handleFix(issue)}
+                                                    disabled={fixingIssueId !== null}
+                                                >
+                                                    {fixingIssueId === issue.id ? (
+                                                        <Loader2Icon className="size-3 animate-spin" />
+                                                    ) : (
+                                                        <CheckIcon className="size-3" />
+                                                    )}
+                                                    Sửa
+                                                </Button>
+                                            </div>
+                                        </div>
+                                        <div className="p-2 rounded bg-muted/30 border text-muted-foreground leading-relaxed italic text-[11px] break-words">
+                                            <HighlightedContext context={issue.context} matchedText={issue.matchedText} />
+                                        </div>
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+                    ))}
+                </div>
+            </div>
+        );
+    }
+
+    return (
+        <div className="space-y-4 pt-2">
+            <div className="rounded-lg border border-rose-500/20 bg-rose-500/5 p-3 space-y-2">
+                <div className="flex items-center gap-1.5 text-xs font-semibold text-rose-600 dark:text-rose-400">
+                    <AlertTriangleIcon className="size-4" />
+                    <span>Lưu ý quét chính tả tên nhân vật</span>
+                </div>
+                <ul className="list-disc pl-4 text-[10px] space-y-1 text-muted-foreground">
+                    <li>Hệ thống chỉ quét các tên trong từ điển có từ <strong>2 từ trở lên</strong> để tránh gây nhiễu/báo lỗi giả.</li>
+                    <li>Sẽ tìm các biến thể cùng số từ nhưng viết sai dấu, viết hoa không khớp hoặc bỏ dấu (ví dụ: &quot;Lâm Phong&quot; tìm thấy &quot;lam phong&quot;, &quot;lâm phóng&quot;, &quot;lam phóng&quot;).</li>
+                    <li>Phát hiện và đề xuất sửa đổi trực tiếp vào database cảnh truyện.</li>
+                </ul>
+            </div>
+
+            <div className="space-y-2">
+                <Label className="text-xs font-medium">Phạm vi quét:</Label>
+                <div className="grid grid-cols-2 gap-2">
+                    <button
+                        type="button"
+                        onClick={() => setScope("selected")}
+                        disabled={chapterIds.length === 0}
+                        className={cn(
+                            "flex flex-col items-center justify-center p-2.5 rounded-lg border text-center transition-all gap-1",
+                            scope === "selected"
+                                ? "border-rose-500 bg-rose-500/10 text-rose-900 dark:text-rose-100"
+                                : "border-muted bg-background hover:bg-muted/50 text-muted-foreground",
+                            chapterIds.length === 0 && "opacity-50 cursor-not-allowed"
+                        )}
+                    >
+                        <span className="text-xs font-semibold">Chương đã chọn</span>
+                        <span className="text-[10px] font-medium opacity-80">{chapterIds.length} chương</span>
+                    </button>
+                    <button
+                        type="button"
+                        onClick={() => setScope("all")}
+                        className={cn(
+                            "flex flex-col items-center justify-center p-2.5 rounded-lg border text-center transition-all gap-1",
+                            scope === "all"
+                                ? "border-rose-500 bg-rose-500/10 text-rose-900 dark:text-rose-100"
+                                : "border-muted bg-background hover:bg-muted/50 text-muted-foreground"
+                        )}
+                    >
+                        <span className="text-xs font-semibold">Tất cả chương</span>
+                        <span className="text-[10px] font-medium opacity-80">{chapters.length} chương</span>
+                    </button>
+                </div>
+            </div>
+
+            <Button onClick={handleScan} className="w-full bg-rose-600 hover:bg-rose-700 text-white font-medium h-9 text-xs gap-1.5">
+                <SearchIcon className="size-3.5" />
+                Bắt đầu quét từ điển
+            </Button>
+        </div>
     );
 }

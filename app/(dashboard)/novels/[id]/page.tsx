@@ -525,21 +525,19 @@ export default function NovelDetailPage() {
                 </TooltipTrigger>
                 <TooltipContent>Xuất JSON</TooltipContent>
               </Tooltip>
-              {isAdmin && (
-                <Tooltip>
-                  <TooltipTrigger asChild>
-                    <Button
-                      variant="ghost"
-                      size="icon"
-                      className="text-destructive hover:text-destructive"
-                      onClick={() => setDeleteOpen(true)}
-                    >
-                      <Trash2Icon className="size-4" />
-                    </Button>
-                  </TooltipTrigger>
-                  <TooltipContent>Xóa</TooltipContent>
-                </Tooltip>
-              )}
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <Button
+                    variant="ghost"
+                    size="icon"
+                    className="text-destructive hover:text-destructive"
+                    onClick={() => setDeleteOpen(true)}
+                  >
+                    <Trash2Icon className="size-4" />
+                  </Button>
+                </TooltipTrigger>
+                <TooltipContent>Xóa</TooltipContent>
+              </Tooltip>
             </div>
           </div>
 

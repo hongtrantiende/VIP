@@ -56,6 +56,7 @@ export class Player {
   private voiceId: number | string = 0;
   private rate = 1.0;
   private pitch = 1.0;
+  private sentenceDelay = 400;
   private maxPreload = 2;
   private readonly MAX_RETRIES = 3;
   private readonly RETRY_BASE_DELAY_MS = 600;
@@ -63,6 +64,8 @@ export class Player {
   // -- Concurrency guard ---------------------------------------------------
   // Incremented on every cancel/jump so in-flight async ops can self-abort.
   private playbackGeneration = 0;
+  // Incremented on every preloadAhead call to cancel stale preloading loops.
+  private preloadGeneration = 0;
 
   // -- Retry state ---------------------------------------------------------
   private sentenceRetryCount = 0;
@@ -129,6 +132,54 @@ export class Player {
   /** Set the fluency adjuster effectiveness (0-2). */
   setFluencyEffectiveness(value: number): void {
     this.adjuster.effectiveness = Math.max(0, Math.min(value, 2));
+  }
+
+  /** Set the delay between sentences in milliseconds. */
+  setSentenceDelay(delayMs: number): void {
+    this.sentenceDelay = Math.max(0, Math.min(delayMs, 5000));
+  }
+
+  /** Set the maximum number of sentences to preload. */
+  setMaxPreload(count: number): void {
+    this.maxPreload = Math.max(0, count);
+  }
+
+  private isSentenceCachedOrFetching(sentence: Sentence): boolean {
+    const adjusted = this.adjuster.getAdjustmentFor(sentence.originalText, {
+      voice: this.voiceId,
+      rate: this.rate,
+      pitch: this.pitch,
+    });
+    const effectiveRate = adjusted.rate ?? this.rate;
+    const effectivePitch = adjusted.pitch ?? this.pitch;
+    
+    return this.cache.has(sentence.text, this.voiceId, effectiveRate, effectivePitch);
+  }
+
+  async preloadSentences(sentences: Sentence[]): Promise<void> {
+    if (!this.provider || this.maxPreload <= 0) return;
+    
+    const limit = Math.min(sentences.length, this.maxPreload);
+    const gen = this.playbackGeneration;
+
+    for (let i = 0; i < limit; i++) {
+      const sentence = sentences[i];
+      if (!sentence) continue;
+      
+      // If already cached or fetching, trigger/reuse instantly without staggering delay
+      if (this.isSentenceCachedOrFetching(sentence)) {
+        this.fetchAudioForSentence(sentence).catch(() => {});
+        continue;
+      }
+      
+      // Stagger fetches to avoid overwhelming the proxy backend
+      await this.delay(80);
+      if (gen !== this.playbackGeneration) return;
+
+      this.fetchAudioForSentence(sentence).catch(() => {
+        // Swallowed
+      });
+    }
   }
 
   // -- Transport controls --------------------------------------------------
@@ -246,7 +297,7 @@ export class Player {
           this.provider as unknown as {
             speakDirect(text: string, options?: unknown): Promise<void>;
           }
-        ).speakDirect(sentence.text, adjusted);
+        ).speakDirect(sentence.originalText, adjusted);
         if (stale() || this._state !== "playing") return;
         this.advanceToNext();
       } catch (err) {
@@ -323,7 +374,7 @@ export class Player {
       this.voiceId,
       effectiveRate,
       effectivePitch,
-      () => provider.fetchAudio(sentence.text, adjusted),
+      () => provider.fetchAudio(sentence.originalText, adjusted),
     );
   }
 
@@ -413,23 +464,23 @@ export class Player {
     // Capture generation NOW so that if cancelCurrentPlayback() fires between
     // here and the setTimeout callback, the stale check will abort this chain.
     const gen = this.playbackGeneration;
-    // Use setTimeout(0) to avoid deep call stacks on long documents
+    // Delay before playing next sentence
     setTimeout(() => {
       if (gen !== this.playbackGeneration) return;
       this.playCurrentSentence();
-    }, 0);
+    }, this.sentenceDelay);
   }
 
   // ========================================================================
   // Preloading
   // ========================================================================
 
-  /**
-   * Preload audio for the next N sentences (default 2) while the current
-   * sentence plays. Errors are swallowed — preloading is best-effort.
-   */
-  private preloadAhead(): void {
+  private async preloadAhead(): Promise<void> {
     if (!this.provider || this.maxPreload <= 0) return;
+
+    this.preloadGeneration++;
+    const pGen = this.preloadGeneration;
+    const gen = this.playbackGeneration;
 
     const start = this._currentIndex + 1;
     const end = Math.min(start + this.maxPreload, this.sentences.length);
@@ -437,7 +488,17 @@ export class Player {
     for (let i = start; i < end; i++) {
       const sentence = this.sentences[i];
       if (!sentence) continue;
-      // Fire and forget
+      
+      // If already cached or fetching, trigger/reuse instantly without staggering delay
+      if (this.isSentenceCachedOrFetching(sentence)) {
+        this.fetchAudioForSentence(sentence).catch(() => {});
+        continue;
+      }
+      
+      // Stagger fetches to avoid rate limits and connection congestion
+      await this.delay(80);
+      if (this._state !== "playing" || gen !== this.playbackGeneration || pGen !== this.preloadGeneration) return;
+
       this.fetchAudioForSentence(sentence).catch(() => {
         // Preload failure is non-fatal
       });

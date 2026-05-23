@@ -248,8 +248,22 @@ export function haveSpeakableText(text: string): boolean {
  * - Collapses whitespace
  */
 export function normalizeText(text: string): string {
-  text = text.replace(/[\u201C\u201D\u201E\u201F""]/g, " ");
-  text = text.replace(/^[.,!?\n]+|[.,!?\n]+$/g, "");
+  // Strip HTML tags / comments
+  text = text.replace(/<!--[\s\S]*?-->/g, "");
+  text = text.replace(/<[^>]*>/g, "");
+  
+  // Replace quotes with spaces
+  text = text.replace(/[\u201C\u201D\u201E\u201F""'`]/g, " ");
+  
+  // Replace symbols that can cause crackling / glitching in Piper with spaces
+  text = text.replace(/[~*_+\-=\\/|()[\]{}]/g, " ");
+  
+  // Replace multiple consecutive periods/ellipsis with a comma to create a natural pause
+  text = text.replace(/\.{2,}/g, ", ");
+  
+  // Trim leading/trailing punctuation and whitespace
+  text = text.replace(/^[.,!?\s\n]+|[.,!?\s\n]+$/g, "");
+  
   return text.toLocaleLowerCase().replace(/\s+/g, " ").trim();
 }
 
@@ -298,3 +312,25 @@ export function tokenizeSentences(text: string): Sentence[] {
     .filter((s) => s.text.length > 0 && haveSpeakableText(s.text))
     .map((s, i) => ({ ...s, index: i }));
 }
+
+/**
+ * Prepare text for actual speech synthesis.
+ * Preserves letter case and standard punctuation (periods, commas, exclamation marks, etc.)
+ * for natural intonation, but strips HTML tags, comments, and glitch-prone characters.
+ */
+export function getSpeakableText(text: string): string {
+  if (!text) return "";
+  
+  // Strip HTML tags / comments
+  text = text.replace(/<!--[\s\S]*?-->/g, "");
+  text = text.replace(/<[^>]*>/g, "");
+  
+  // Replace glitch-inducing characters with spaces
+  text = text.replace(/[~*_+\-=\\/|()[\]{}]/g, " ");
+  
+  // Replace multiple consecutive periods/ellipsis with a comma to create a natural pause
+  text = text.replace(/\.{2,}/g, ", ");
+  
+  return text.replace(/\s+/g, " ").trim();
+}
+

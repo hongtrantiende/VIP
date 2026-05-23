@@ -55,10 +55,10 @@ function configurePlayer(
   p: Player,
   settings: Pick<
     TTSSettings,
-    "providerId" | "voiceId" | "rate" | "pitch" | "fluencyAdjust" | "providerApiKeys"
+    "providerId" | "voiceId" | "rate" | "pitch" | "fluencyAdjust" | "providerApiKeys" | "sentenceDelay" | "maxPreload"
   >,
 ): void {
-  const { providerId, voiceId, rate, pitch, fluencyAdjust, providerApiKeys } =
+  const { providerId, voiceId, rate, pitch, fluencyAdjust, providerApiKeys, sentenceDelay, maxPreload } =
     settings;
   if (!providerId) return;
 
@@ -81,6 +81,8 @@ function configurePlayer(
   p.setRate(rate);
   p.setPitch(pitch);
   p.setFluencyEffectiveness(fluencyAdjust);
+  p.setSentenceDelay(sentenceDelay ?? 400);
+  p.setMaxPreload(maxPreload ?? 20);
 }
 
 // ---------------------------------------------------------------------------
@@ -132,6 +134,7 @@ interface ReaderPanelState {
   // --- Settings actions ---
   syncSettings: (settings: TTSSettings) => void;
   updateSettings: (partial: Partial<Omit<TTSSettings, "id">>) => void;
+  getPlayerInstance: () => Player;
 
   // --- Chapter navigation (store is the single source of truth) ---
   /** Called by the reading page on mount to initialise or update novel context. */
@@ -162,13 +165,15 @@ interface ReaderPanelState {
 
 const DEFAULT_TTS: TTSSettings = {
   id: "default",
-  providerId: "GoogleCloudTTS",
-  voiceId: "0",
+  providerId: "PiperTTS",
+  voiceId: "Ban Mai",
   rate: 1.0,
   pitch: 1.0,
   highlightColor: "#dbeafe",
   fluencyAdjust: 1.0,
   providerApiKeys: {},
+  sentenceDelay: 400,
+  maxPreload: 20,
 };
 
 export const useReaderPanel = create<ReaderPanelState>((set, get) => ({
@@ -294,6 +299,7 @@ export const useReaderPanel = create<ReaderPanelState>((set, get) => ({
   setCurrentSentenceIndex: (index) => set({ currentSentenceIndex: index }),
 
   // --- Settings ---
+  getPlayerInstance: () => getPlayer(),
 
   /** Called by the UI component to keep the store in sync with Dexie data. */
   syncSettings: (settings) => set({ ttsSettings: settings }),

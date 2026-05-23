@@ -1,44 +1,11 @@
 import { registerProvider } from "./registry";
 import type { PlaybackOptions, TTSOptions, TTSProvider, Voice } from "./types";
 
-const GOOGLE_URL = "https://readaloud.googleapis.com/v1:generateAudioDocStream";
 const PROXY_URL =
-  "/io/s1213/googlecloudtts?voice={voice}&rate={rate}&pitch={pitch}";
-// Embedded API key
-const API_KEY = atob("QUl6YVN5Q1JaVlI0THBzQTJoSXhuOHdrYm5hU3h4ZHVIaGVBdmhj");
+  "/api/tts/google-free?voice={voice}&rate={rate}&pitch={pitch}";
 
 /** Maps voice index (1-6) to the Google Cloud voice code. */
 const VOICE_CODES = [null, "via", "vib", "vic", "vid", "vie", "vif"] as const;
-
-/**
- * Fetch JSON with a timeout. Rejects if the request takes longer than `ms`.
- */
-async function fetchJsonWithTimeout(
-  url: string,
-  options: RequestInit,
-  ms = 20_000,
-): Promise<unknown[]> {
-  const controller = new AbortController();
-  const timer = setTimeout(() => controller.abort(), ms);
-
-  try {
-    const response = await fetch(url, {
-      ...options,
-      signal: controller.signal,
-    });
-    if (!response.ok) {
-      throw new Error(`Failed to fetch JSON: ${response.statusText}`);
-    }
-    return (await response.json()) as unknown[];
-  } catch (err) {
-    if (err instanceof DOMException && err.name === "AbortError") {
-      throw new Error("Fetch timeout");
-    }
-    throw err;
-  } finally {
-    clearTimeout(timer);
-  }
-}
 
 /**
  * POST with timeout. Rejects if the request takes longer than `ms`.
@@ -72,23 +39,8 @@ async function fetchPostWithTimeout(
   }
 }
 
-/** Detect Safari browser. */
-function isSafariBrowser(): boolean {
-  if (typeof navigator === "undefined") return false;
-  return (
-    !!navigator.vendor &&
-    navigator.vendor.indexOf("Apple") > -1 &&
-    !!navigator.userAgent &&
-    navigator.userAgent.indexOf("CriOS") === -1 &&
-    navigator.userAgent.indexOf("FxiOS") === -1
-  );
-}
-
 /**
- * Google Cloud TTS provider using the Read Aloud API.
- *
- * On Safari the proxy endpoint is used (avoids CORS issues).
- * On other browsers the direct Google API with an embedded key is used.
+ * Google Cloud TTS provider using the keyless Google Speech API v2 via a local Next.js proxy.
  *
  * Supports early ending (trimming trailing silence via `getCutTime()`).
  */
@@ -101,11 +53,8 @@ export class GoogleCloudTTS implements TTSProvider {
   private rate = 1.0;
   private pitch = 1.0;
   private isInitialized = false;
-  private readonly useSafari: boolean;
 
-  constructor() {
-    this.useSafari = isSafariBrowser();
-  }
+  constructor() {}
 
   async initialize(): Promise<void> {
     if (this.isInitialized) return;
@@ -115,42 +64,81 @@ export class GoogleCloudTTS implements TTSProvider {
   async getVoices(): Promise<Voice[]> {
     return [
       {
-        id: 0,
-        name: "Nữ 1",
-        fullName: "Giọng Google Nữ 1 (Tiếng Việt)",
+        id: "via",
+        name: "Google Nữ 1 (via)",
+        fullName: "Giọng Google Nữ 1 (via)",
         serverId: "google:1",
       },
       {
-        id: 1,
-        name: "Nữ 2",
-        fullName: "Giọng Google Nữ 2 (Tiếng Việt)",
+        id: "vic",
+        name: "Google Nữ 2 (vic)",
+        fullName: "Giọng Google Nữ 2 (vic)",
         serverId: "google:3",
       },
       {
-        id: 2,
-        name: "Nữ 3",
-        fullName: "Giọng Google Nữ 3 (Tiếng Việt)",
+        id: "vie",
+        name: "Google Nữ 3 (vie)",
+        fullName: "Giọng Google Nữ 3 (vie)",
         serverId: "google:5",
       },
       {
-        id: 3,
-        name: "Nam 1",
-        fullName: "Giọng Google Nam 1 (Tiếng Việt)",
+        id: "vib",
+        name: "Google Nam 1 (vib)",
+        fullName: "Giọng Google Nam 1 (vib)",
         serverId: "google:2",
       },
       {
-        id: 4,
-        name: "Nam 2",
-        fullName: "Giọng Google Nam 2 (Tiếng Việt)",
+        id: "vid",
+        name: "Google Nam 2 (vid)",
+        fullName: "Giọng Google Nam 2 (vid)",
         serverId: "google:4",
       },
       {
-        id: 5,
-        name: "Nam 3",
-        fullName: "Giọng Google Nam 3 (Tiếng Việt)",
+        id: "vif",
+        name: "Google Nam 3 (vif)",
+        fullName: "Giọng Google Nam 3 (vif)",
         serverId: "google:6",
       },
     ];
+  }
+
+  private resolveVoice(voiceId: number | string): { realVoice: string; serverVoiceId: string } {
+    const defaultVoice = "via";
+    const defaultServerVoice = "google:1";
+
+    const codeMapping: Record<string, { realVoice: string; serverVoiceId: string }> = {
+      via: { realVoice: "via", serverVoiceId: "google:1" },
+      vib: { realVoice: "vib", serverVoiceId: "google:2" },
+      vic: { realVoice: "vic", serverVoiceId: "google:3" },
+      vid: { realVoice: "vid", serverVoiceId: "google:4" },
+      vie: { realVoice: "vie", serverVoiceId: "google:5" },
+      vif: { realVoice: "vif", serverVoiceId: "google:6" },
+    };
+
+    if (typeof voiceId === "string") {
+      if (codeMapping[voiceId]) {
+        return codeMapping[voiceId];
+      }
+      if (voiceId.startsWith("google:")) {
+        const numPart = voiceId.split(":")[1];
+        const idx = parseInt(numPart, 10);
+        if (idx >= 1 && idx <= 6) {
+          const code = VOICE_CODES[idx] ?? defaultVoice;
+          return { realVoice: code, serverVoiceId: voiceId };
+        }
+      }
+    }
+
+    const voiceIndex = typeof voiceId === "number" ? voiceId : parseInt(voiceId, 10);
+    if (!isNaN(voiceIndex) && voiceIndex >= 0 && voiceIndex < 6) {
+      const indexMapping = [1, 3, 5, 2, 4, 6];
+      const codeIndex = indexMapping[voiceIndex] ?? 1;
+      const code = VOICE_CODES[codeIndex] ?? defaultVoice;
+      const serverId = `google:${codeIndex}`;
+      return { realVoice: code, serverVoiceId: serverId };
+    }
+
+    return { realVoice: defaultVoice, serverVoiceId: defaultServerVoice };
   }
 
   getCutTime(text: string): number {
@@ -161,91 +149,11 @@ export class GoogleCloudTTS implements TTSProvider {
   }
 
   async fetchAudio(text: string, options?: TTSOptions): Promise<Blob> {
-    if (this.useSafari) {
-      return this.fetchAudioWithProxy(text, options);
-    }
-    return this.fetchAudioDirect(text, options);
+    return this.fetchAudioWithProxy(text, options);
   }
 
   // ---------------------------------------------------------------------------
-  // Direct API (non-Safari)
-  // ---------------------------------------------------------------------------
-
-  private async fetchAudioDirect(
-    text: string,
-    options?: TTSOptions,
-  ): Promise<Blob> {
-    if (!text || text.trim().length === 0) {
-      throw new Error("Text is required");
-    }
-
-    const voiceId = options?.voice ?? this.voice;
-    const voices = await this.getVoices();
-    const voiceIndex =
-      typeof voiceId === "number" ? voiceId : parseInt(voiceId, 10) || 0;
-
-    if (voiceIndex < 0 || voiceIndex >= voices.length) {
-      throw new Error(
-        `Invalid voice ID: ${voiceId}. Available voices: ${voices.length}`,
-      );
-    }
-
-    const serverVoiceId = voices[voiceIndex].serverId ?? "google:1";
-    const voiceCodeIndex = parseInt(serverVoiceId.split(":")[1], 10);
-    const realVoice = VOICE_CODES[voiceCodeIndex] ?? "via";
-
-    let rate = options?.rate ?? this.rate;
-    rate = Math.round(Math.min(Math.max(rate, 0.5), 4.0) * 10) / 10;
-
-    let pitch = options?.pitch ?? this.pitch;
-    pitch = Math.round(Math.min(Math.max(pitch, 0.5), 2.0) * 10) / 10;
-
-    const body = {
-      text: { textParts: text },
-      advanced_options: {
-        force_language: "vi",
-        audio_generation_options: {
-          speed_factor: rate,
-          pitch_factor: pitch,
-        },
-      },
-      voice_settings: {
-        voice_criteria_and_selections: [
-          {
-            criteria: { language: "vi" },
-            selection: { default_voice: realVoice },
-          },
-        ],
-      },
-    };
-
-    const requestOptions: RequestInit = {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        "X-Goog-Api-Key": API_KEY,
-      },
-      body: JSON.stringify(body),
-    };
-
-    const responseData = await fetchJsonWithTimeout(GOOGLE_URL, requestOptions);
-
-    // The audio stream is at index 2 of the response array
-    const audioStream = responseData[2] as
-      | { audio?: { bytes?: string } }
-      | undefined;
-    if (!audioStream?.audio?.bytes) {
-      throw new Error("No audio stream found in the response");
-    }
-
-    const base64Data = audioStream.audio.bytes;
-    const dataUrl = `data:audio/mpeg;base64,${base64Data}`;
-    const blobResponse = await fetch(dataUrl);
-    return blobResponse.blob();
-  }
-
-  // ---------------------------------------------------------------------------
-  // Proxy API (Safari)
+  // Proxy API using local Next.js proxy
   // ---------------------------------------------------------------------------
 
   private async fetchAudioWithProxy(
@@ -257,17 +165,7 @@ export class GoogleCloudTTS implements TTSProvider {
     }
 
     const voiceId = options?.voice ?? this.voice;
-    const voices = await this.getVoices();
-    const voiceIndex =
-      typeof voiceId === "number" ? voiceId : parseInt(voiceId, 10) || 0;
-
-    if (voiceIndex < 0 || voiceIndex >= voices.length) {
-      throw new Error(
-        `Invalid voice ID: ${voiceId}. Available voices: ${voices.length}`,
-      );
-    }
-
-    const serverVoiceId = voices[voiceIndex].serverId ?? "google:1";
+    const { serverVoiceId } = this.resolveVoice(voiceId);
     const rate = options?.rate ?? this.rate;
     const pitch = options?.pitch ?? this.pitch;
 

@@ -16,20 +16,84 @@ import { useReaderPanel } from "@/lib/stores/reader-panel";
 import { getProvider, listProviders } from "@/lib/tts";
 import type { Voice } from "@/lib/tts/providers/types";
 import { cn } from "@/lib/utils";
-import { ChevronDownIcon, KeyIcon, SettingsIcon } from "lucide-react";
+import { ChevronDownIcon, KeyIcon, SettingsIcon, DownloadIcon, CheckIcon } from "lucide-react";
 import { useEffect, useState } from "react";
+import { toast } from "sonner";
 
 export function ReaderSettings() {
   const ttsSettings = useReaderPanel((s) => s.ttsSettings);
   const updateSettings = useReaderPanel((s) => s.updateSettings);
+  const selectedProvider = ttsSettings.providerId;
+  const providers = listProviders();
 
   const [isOpen, setIsOpen] = useState(true);
   const [voices, setVoices] = useState<Voice[]>([]);
   const [loadingVoices, setLoadingVoices] = useState(false);
   const [showApiKey, setShowApiKey] = useState(false);
+  const [isDownloaded, setIsDownloaded] = useState(true);
+  const [downloading, setDownloading] = useState(false);
 
-  const providers = listProviders();
-  const selectedProvider = ttsSettings.providerId;
+  // Check if voice is downloaded (for PiperTTS only)
+  useEffect(() => {
+    if (selectedProvider !== "PiperTTS" || !ttsSettings.voiceId) {
+      return;
+    }
+
+    let cancelled = false;
+    
+    (async () => {
+      try {
+        const response = await fetch(`/api/tts/piper?check=${ttsSettings.voiceId}`, {
+          headers: {
+            "x-piper-server-url": ttsSettings.providerApiKeys?.["PiperTTS"] || "http://localhost:5000",
+          }
+        });
+        if (response.ok) {
+          const data = await response.json();
+          if (!cancelled) {
+            setIsDownloaded(data.downloaded);
+          }
+        }
+      } catch (err) {
+        console.error("Error checking voice download status:", err);
+      }
+    })();
+
+    return () => {
+      cancelled = true;
+    };
+  }, [selectedProvider, ttsSettings.voiceId, ttsSettings.providerApiKeys]);
+
+  const handleDownloadVoice = async () => {
+    if (selectedProvider !== "PiperTTS" || !ttsSettings.voiceId || downloading) {
+      return;
+    }
+
+    setDownloading(true);
+    const toastId = toast.loading(`Đang tải giọng đọc ${ttsSettings.voiceId}...`);
+
+    try {
+      const response = await fetch(`/api/tts/piper?download=${ttsSettings.voiceId}`, {
+        headers: {
+          "x-piper-server-url": ttsSettings.providerApiKeys?.["PiperTTS"] || "http://localhost:5000",
+        }
+      });
+
+      if (response.ok) {
+        setIsDownloaded(true);
+        toast.success(`Đã tải xong giọng đọc!`, { id: toastId });
+      } else {
+        const data = await response.json().catch(() => ({}));
+        toast.error(data.error || `Tải giọng đọc thất bại!`, { id: toastId });
+      }
+    } catch (err: any) {
+      toast.error(`Lỗi kết nối: ${err.message || err}`, { id: toastId });
+    } finally {
+      setDownloading(false);
+    }
+  };
+
+
 
   // Check if selected provider requires API key
   const providerNeedsKey = (() => {
@@ -71,7 +135,13 @@ export function ReaderSettings() {
 
   const handleProviderChange = (providerId: string) => {
     // Reset voice to first available when switching providers
-    updateSettings({ providerId, voiceId: "0" });
+    let defaultVoice = "0";
+    if (providerId === "PiperTTS") {
+      defaultVoice = "Ban Mai";
+    } else if (providerId === "GoogleCloudTTS") {
+      defaultVoice = "via";
+    }
+    updateSettings({ providerId, voiceId: defaultVoice });
   };
 
   const currentApiKey = ttsSettings.providerApiKeys?.[selectedProvider] ?? "";
@@ -136,6 +206,37 @@ export function ReaderSettings() {
             </NativeSelect>
           </div>
 
+          {/* Download indicator for Piper TTS */}
+          {selectedProvider === "PiperTTS" && ttsSettings.voiceId && (
+            <div className="flex items-center justify-between rounded-lg border border-input/40 bg-muted/20 px-3 py-2 text-xs">
+              <span className="text-muted-foreground flex items-center gap-1.5">
+                {isDownloaded ? (
+                  <>
+                    <CheckIcon className="size-3.5 text-green-500" />
+                    Sẵn sàng hoạt động
+                  </>
+                ) : (
+                  <>
+                    <DownloadIcon className="size-3.5 text-amber-500" />
+                    Chưa tải về máy
+                  </>
+                )}
+              </span>
+              {!isDownloaded && (
+                <button
+                  type="button"
+                  onClick={handleDownloadVoice}
+                  disabled={downloading}
+                  className={cn(
+                    "flex items-center gap-1 rounded bg-primary px-2.5 py-1 font-medium text-primary-foreground transition-opacity hover:opacity-90 disabled:opacity-50 disabled:cursor-wait"
+                  )}
+                >
+                  {downloading ? "Đang tải..." : "Tải về (63MB)"}
+                </button>
+              )}
+            </div>
+          )}
+
           {/* API key (only for providers that need it) */}
           {providerNeedsKey && (
             <div className="space-y-1.5">
@@ -144,8 +245,12 @@ export function ReaderSettings() {
                 className="flex items-center gap-1.5 text-xs font-medium text-muted-foreground transition-colors hover:text-foreground"
                 onClick={() => setShowApiKey(!showApiKey)}
               >
-                <KeyIcon className="size-3" />
-                API Key
+                {selectedProvider === "PiperTTS" ? (
+                  <SettingsIcon className="size-3" />
+                ) : (
+                  <KeyIcon className="size-3" />
+                )}
+                {selectedProvider === "PiperTTS" ? "API URL" : "API Key"}
                 <ChevronDownIcon
                   className={cn(
                     "size-3 transition-transform",
@@ -155,8 +260,12 @@ export function ReaderSettings() {
               </button>
               {showApiKey && (
                 <Input
-                  type="password"
-                  placeholder="Nhập API key..."
+                  type={selectedProvider === "PiperTTS" ? "text" : "password"}
+                  placeholder={
+                    selectedProvider === "PiperTTS"
+                      ? "Mặc định: http://localhost:5000"
+                      : "Nhập API key..."
+                  }
                   value={currentApiKey}
                   onChange={(e) => handleApiKeyChange(e.target.value)}
                   className="h-8 text-xs"
@@ -179,6 +288,40 @@ export function ReaderSettings() {
               step={0.05}
               value={[ttsSettings.rate]}
               onValueChange={([v]) => updateSettings({ rate: v })}
+            />
+          </div>
+
+          {/* Sentence delay slider */}
+          <div className="space-y-1.5">
+            <div className="flex items-center justify-between">
+              <Label className="text-xs">Khoảng nghỉ giữa các câu</Label>
+              <span className="text-xs tabular-nums text-muted-foreground">
+                {ttsSettings.sentenceDelay ?? 400}ms
+              </span>
+            </div>
+            <Slider
+              min={0}
+              max={2000}
+              step={50}
+              value={[ttsSettings.sentenceDelay ?? 400]}
+              onValueChange={([v]) => updateSettings({ sentenceDelay: v })}
+            />
+          </div>
+
+          {/* Preload count slider */}
+          <div className="space-y-1.5">
+            <div className="flex items-center justify-between">
+              <Label className="text-xs">Số đoạn tải trước</Label>
+              <span className="text-xs tabular-nums text-muted-foreground">
+                {ttsSettings.maxPreload ?? 20} đoạn
+              </span>
+            </div>
+            <Slider
+              min={5}
+              max={20}
+              step={5}
+              value={[ttsSettings.maxPreload ?? 20]}
+              onValueChange={([v]) => updateSettings({ maxPreload: v })}
             />
           </div>
 

@@ -77,8 +77,13 @@ export function DownloadAudioButton() {
                 setProgressPct(Math.round(((i + 1) / total) * 100));
 
                 const sentence = sentences[i];
-                const text = sentence.text.trim();
+                const text = sentence.originalText.trim();
                 if (!text) continue;
+
+                // Stagger fetches to avoid triggering server rate limits
+                if (i > 0) {
+                    await new Promise((r) => setTimeout(r, 80));
+                }
 
                 const blob = await provider.fetchAudio(text, options);
                 blobs.push(blob);

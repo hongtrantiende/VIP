@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState, use } from "react";
+import { useEffect, useState, use, useRef } from "react";
 import { useRouter } from "next/navigation";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Button } from "@/components/ui/button";
@@ -11,18 +11,48 @@ import { SentenceRenderer } from "@/components/reader/sentence-renderer";
 import { ReaderPanel } from "@/components/reader/reader-panel";
 import { ObfuscatedText } from "@/components/reader/obfuscated-text";
 import { toast } from "sonner";
+import { tokenizeSentences } from "@/lib/tts";
+
+const UNWANTED_PATTERNS = [
+    "Bạn đang xem văn bản gốc chưa dịch, có thể kéo xuống cuối trang để chọn bản dịch.",
+    "Mời bạn đọc tiếp tại",
+    "Chúc bạn đọc truyện vui vẻ",
+    "Hãy ủng hộ tác giả bằng cách",
+];
+
+const cleanContent = (text: string) => {
+    let cleaned = text;
+    UNWANTED_PATTERNS.forEach(pattern => {
+        cleaned = cleaned.replace(new RegExp(pattern, "gi"), "");
+    });
+    return cleaned.trim();
+};
 
 export default function StandaloneChapterReaderPage(props: { params: Promise<{ id: string, chapterIdx: string }> }) {
     const params = use(props.params);
     const novelId = params.id;
     const chapterOrder = params.chapterIdx;
+    const currentOrder = Number(chapterOrder);
     const router = useRouter();
 
     const [chapter, setChapter] = useState<{ id: string, title: string, order: number } | null>(null);
     const [scenes, setScenes] = useState<{ id: string, content: string, version: number, activeSceneId?: string }[]>([]);
+    const [nextChapterData, setNextChapterData] = useState<{
+        chapter: { id: string, title: string, order: number },
+        scenes: { id: string, content: string, version: number }[]
+    } | null>(null);
+
+    const nextChapterDataRef = useRef(nextChapterData);
+    nextChapterDataRef.current = nextChapterData;
 
     const [totalChapters, setTotalChapters] = useState(0);
     const [novelTitle, setNovelTitle] = useState("");
+
+    const novelTitleRef = useRef(novelTitle);
+    novelTitleRef.current = novelTitle;
+
+    const totalChaptersRef = useRef(totalChapters);
+    totalChaptersRef.current = totalChapters;
     const isReaderOpen = useReaderPanel((s) => s.isOpen);
     const isReaderPlaying = useReaderPanel((s) => s.isPlaying);
     const toggleReader = useReaderPanel((s) => s.toggle);
@@ -69,6 +99,41 @@ export default function StandaloneChapterReaderPage(props: { params: Promise<{ i
     };
 
     useEffect(() => {
+        const targetOrder = Number(chapterOrder);
+        const preloaded = nextChapterDataRef.current;
+
+        // If we already preloaded this chapter, use it immediately
+        if (preloaded && preloaded.chapter.order === targetOrder) {
+            setChapter(preloaded.chapter);
+            setScenes(preloaded.scenes);
+            setError("");
+            setLoading(false);
+
+            // Save to local reading history
+            try {
+                const historyStr = localStorage.getItem("rr_history") || "{}";
+                const history = JSON.parse(historyStr);
+                history[novelId] = {
+                    id: novelId,
+                    title: novelTitleRef.current || history[novelId]?.title || "Truyện Không Tên",
+                    coverImage: history[novelId]?.coverImage || "",
+                    author: history[novelId]?.author || "",
+                    genres: history[novelId]?.genres || [],
+                    lastReadChapterIdx: targetOrder,
+                    lastReadChapterTitle: preloaded.chapter.title || `Chương ${targetOrder + 1}`,
+                    totalChapters: totalChaptersRef.current || history[novelId]?.totalChapters || 0,
+                    updatedAt: Date.now()
+                };
+                localStorage.setItem("rr_history", JSON.stringify(history));
+            } catch (e) {
+                console.error("Lỗi lưu lịch sử", e);
+            }
+
+            // Clear nextChapterData after applying it
+            setNextChapterData(null);
+            return;
+        }
+
         setLoading(true);
         fetch(`/api/reading-room?action=chapter&id=${novelId}&idx=${chapterOrder}`)
             .then(res => res.json())
@@ -78,6 +143,7 @@ export default function StandaloneChapterReaderPage(props: { params: Promise<{ i
                     setScenes(data.scenes || []);
                     if (data.totalChapters) setTotalChapters(data.totalChapters);
                     if (data.novelTitle) setNovelTitle(data.novelTitle);
+                    setError("");
 
                     // Save to local reading history
                     try {
@@ -104,9 +170,7 @@ export default function StandaloneChapterReaderPage(props: { params: Promise<{ i
             })
             .catch(() => setError("Lỗi kết nối."))
             .finally(() => setLoading(false));
-    }, [novelId, chapterOrder]);
-
-    const currentOrder = Number(chapterOrder);
+    }, [novelId, chapterOrder, currentOrder]);
 
     // Sync store whenever the chapter changes
     useEffect(() => {
@@ -127,10 +191,62 @@ export default function StandaloneChapterReaderPage(props: { params: Promise<{ i
         }
     }, [chapter?.title]);
 
-    if (loading) {
+    // Background preload of the next chapter and its starting audio
+    useEffect(() => {
+        if (loading || !chapter || totalChapters === 0 || currentOrder >= totalChapters - 1) {
+            return;
+        }
+
+        const nextOrder = currentOrder + 1;
+
+        // Skip if already preloaded
+        if (nextChapterData && nextChapterData.chapter.order === nextOrder) {
+            return;
+        }
+
+        const controller = new AbortController();
+
+        (async () => {
+            try {
+                const res = await fetch(`/api/reading-room?action=chapter&id=${novelId}&idx=${nextOrder}`, {
+                    signal: controller.signal
+                });
+                const data = await res.json();
+                if (data.success && data.chapter && data.scenes) {
+                    setNextChapterData({
+                        chapter: data.chapter,
+                        scenes: data.scenes
+                    });
+
+                    // Tokenize sentences to preload voice audio in the background
+                    const displayScenes = (data.scenes || [])
+                        .map((s: any) => cleanContent(s.content))
+                        .filter((text: string) => text.length > 0);
+
+                    const sentences = tokenizeSentences(displayScenes.join('\n\n'));
+                    
+                    // Preload the sentences through the player
+                    const p = useReaderPanel.getState().getPlayerInstance();
+                    if (p) {
+                        p.preloadSentences(sentences);
+                    }
+                }
+            } catch (err: any) {
+                if (err.name !== "AbortError") {
+                    console.error("Lỗi tải trước chương tiếp theo:", err);
+                }
+            }
+        })();
+
+        return () => {
+            controller.abort();
+        };
+    }, [novelId, currentOrder, loading, chapter, totalChapters, nextChapterData]);
+
+    if (loading && !chapter) {
         return (
             <div key="loading" className={`min-h-screen transition-colors duration-250 flex justify-center items-center animate-page-enter ${isDark ? "bg-[#0f0f12] text-[#f1f1f5]" : "bg-[#faf5ea] text-[#2c2c2e]"}`}>
-                <div className={`w-full max-w-lg min-h-screen flex flex-col justify-center items-center gap-2 transition-colors duration-250 ${isDark ? "bg-[#131416] text-zinc-400" : "bg-[#fffbf4] text-zinc-600 border-x border-zinc-200"}`}>
+                <div className={`w-full max-w-lg min-h-screen flex flex-col justify-center items-center gap-2 transition-colors duration-250 ${isDark ? "bg-[#131416] text-zinc-400" : "bg-[#fffbf4] text-[#f1f1f5] border-x border-zinc-200"}`}>
                     <Loader2Icon className="w-8 h-8 text-blue-500 animate-spin" />
                     <p className="text-xs">Đang tải nội dung chương...</p>
                 </div>
@@ -138,10 +254,10 @@ export default function StandaloneChapterReaderPage(props: { params: Promise<{ i
         );
     }
 
-    if (error || !chapter) {
+    if (error && !chapter) {
         return (
             <div key="error" className={`min-h-screen transition-colors duration-250 flex justify-center items-center animate-page-enter ${isDark ? "bg-[#0f0f12] text-[#f1f1f5]" : "bg-[#faf5ea] text-[#2c2c2e]"}`}>
-                <div className={`w-full max-w-lg min-h-screen flex flex-col justify-center items-center px-6 text-center transition-colors duration-250 ${isDark ? "bg-[#131416] text-zinc-400" : "bg-[#fffbf4] text-zinc-600 border-x border-zinc-200"}`}>
+                <div className={`w-full max-w-lg min-h-screen flex flex-col justify-center items-center px-6 text-center transition-colors duration-250 ${isDark ? "bg-[#131416] text-zinc-400" : "bg-[#fffbf4] text-[#f1f1f5] border-x border-zinc-200"}`}>
                     <h1 className="text-base font-bold mb-2">Lỗi Tải Chương</h1>
                     <p className="text-xs text-zinc-550 mb-6">{error}</p>
                     <Link href={`/reader/${novelId}`} className={`px-4 py-2 text-xs rounded-xl transition ${isDark ? "bg-zinc-800 hover:bg-zinc-700 text-white" : "bg-zinc-200 hover:bg-zinc-300 text-zinc-800"}`}>Quay lại Mục Lục</Link>
@@ -150,30 +266,17 @@ export default function StandaloneChapterReaderPage(props: { params: Promise<{ i
         );
     }
 
-    const UNWANTED_PATTERNS = [
-        "Bạn đang xem văn bản gốc chưa dịch, có thể kéo xuống cuối trang để chọn bản dịch.",
-        "Mời bạn đọc tiếp tại",
-        "Chúc bạn đọc truyện vui vẻ",
-        "Hãy ủng hộ tác giả bằng cách",
-    ];
-
-    const cleanContent = (text: string) => {
-        let cleaned = text;
-        UNWANTED_PATTERNS.forEach(pattern => {
-            cleaned = cleaned.replace(new RegExp(pattern, "gi"), "");
-        });
-        return cleaned.trim();
-    };
-
     const displayScenes = scenes
         .map(s => cleanContent(s.content))
         .filter(text => text.length > 0);
 
-    const rawTitle = chapter.title || "Không Tên";
+    const rawTitle = chapter?.title || "Không Tên";
     const rawTitleLower = rawTitle.toLowerCase();
     const hasExistingPrefix = rawTitleLower.startsWith("chương ") || rawTitleLower.startsWith("chương") || rawTitleLower.startsWith("đệ ") || rawTitleLower.startsWith("第") || rawTitleLower.match(/^[0-9]+:/);
 
-    const displayTitle = hasExistingPrefix ? rawTitle : `Chương ${currentOrder + 1}: ${rawTitle}`;
+    const displayTitle = (loading && !nextChapterData)
+        ? "Đang tải chương mới..."
+        : (hasExistingPrefix ? rawTitle : `Chương ${currentOrder + 1}: ${rawTitle}`);
 
     return (
         <div key={`chapter-${chapterOrder}`} className={`min-h-screen transition-colors duration-250 flex justify-center items-start overflow-x-hidden font-sans border-0 animate-page-enter ${isDark ? "bg-[#0f0f12] text-[#f1f1f5]" : "bg-[#faf5ea] text-[#2c2c2e]"
@@ -259,7 +362,12 @@ export default function StandaloneChapterReaderPage(props: { params: Promise<{ i
                             } ${fontFamily}`}
                         style={{ fontSize: `${fontSize}px` }}
                     >
-                        {isReaderOpen ? (
+                        {loading ? (
+                            <div className="flex flex-col gap-4 py-16 items-center justify-center animate-pulse">
+                                <Loader2Icon className="w-8 h-8 text-blue-500 animate-spin" />
+                                <p className="text-xs text-muted-foreground">Đang tải nội dung chương mới...</p>
+                            </div>
+                        ) : isReaderOpen ? (
                             <div className="prose prose-sm max-w-none dark:prose-invert">
                                 <SentenceRenderer content={displayScenes.join('\n\n')} />
                             </div>

@@ -36,6 +36,19 @@ export class AudioCache {
   }
 
   /**
+   * Return true if the audio is already cached or currently being fetched.
+   */
+  has(
+    text: string,
+    voiceId: number | string,
+    rate = 1,
+    pitch = 1,
+  ): boolean {
+    const key = cacheKey(text, voiceId, rate, pitch);
+    return this.cache.has(key) || this.pending.has(key);
+  }
+
+  /**
    * Return a cached blob if available, otherwise call `fetchFn` to produce
    * one. Concurrent calls for the same key share a single in-flight promise
    * so the provider is only called once.

@@ -1508,21 +1508,19 @@ function NovelActions({
         </TooltipTrigger>
         <TooltipContent>Xuất JSON</TooltipContent>
       </Tooltip>
-      {isAdmin && (
-        <Tooltip>
-          <TooltipTrigger asChild>
-            <Button
-              variant="ghost"
-              size="icon"
-              className="size-7 text-destructive hover:bg-destructive/10 hover:text-destructive"
-              onClick={() => onDelete(novel)}
-            >
-              <Trash2Icon className="size-3.5" />
-            </Button>
-          </TooltipTrigger>
-          <TooltipContent>Xóa</TooltipContent>
-        </Tooltip>
-      )}
+      <Tooltip>
+        <TooltipTrigger asChild>
+          <Button
+            variant="ghost"
+            size="icon"
+            className="size-7 text-destructive hover:bg-destructive/10 hover:text-destructive"
+            onClick={() => onDelete(novel)}
+          >
+            <Trash2Icon className="size-3.5" />
+          </Button>
+        </TooltipTrigger>
+        <TooltipContent>Xóa</TooltipContent>
+      </Tooltip>
     </div>
   );
 }

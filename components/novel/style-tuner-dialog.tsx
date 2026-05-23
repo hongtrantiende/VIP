@@ -158,7 +158,15 @@ export function StyleTunerDialog({
 
             const result = await streamText({
                 model,
-                system: `Bạn là chuyên gia phân tích văn phong tiểu thuyết Trung-Việt chuyên nghiệp.
+                system: novel?.customTranslateMode === "edit"
+                    ? `Bạn là chuyên gia phân tích và biên tập văn phong tiểu thuyết chuyên nghiệp.
+Hãy phân tích mẫu truyện tiếng Việt hiện tại để sinh ra định hướng văn phong biên tập ngắn gọn dưới dạng gạch đầu dòng, đúng trọng tâm.
+Yêu cầu định hướng văn phong bao gồm:
+- Xác định rõ thể loại truyện và phong cách viết chính.
+- Quy định âm điệu, nhịp điệu hành văn, cách hành văn mượt mà và trôi chảy.
+- Nhấn mạnh nguyên tắc chau chuốt từ ngữ, sửa câu cú lủng củng và lỗi chính tả, tuyệt đối không được tự ý thêm bớt tình tiết hay tóm tắt.
+- Không có lời dẫn dắt hay kết luận dư thừa, chỉ trả về đúng các hướng dẫn ngắn gọn cho AI biên tập.`
+                    : `Bạn là chuyên gia phân tích văn phong tiểu thuyết Trung-Việt chuyên nghiệp.
 Hãy phân tích mẫu truyện để sinh ra định hướng văn phong dịch ngắn gọn dưới dạng gạch đầu dòng, đúng trọng tâm.
 Yêu cầu định hướng văn phong bao gồm:
 - Xác định rõ thể loại truyện và phong cách viết chính.
@@ -187,7 +195,7 @@ Yêu cầu định hướng văn phong bao gồm:
             customStylePrompt: generatedPrompt.trim(),
             updatedAt: new Date(),
         });
-        toast.success("Đã lưu văn phong dịch thành công!");
+        toast.success(novel?.customTranslateMode === "edit" ? "Đã lưu văn phong biên tập thành công!" : "Đã lưu văn phong dịch thành công!");
         onOpenChange(false);
     };
 
@@ -197,10 +205,12 @@ Yêu cầu định hướng văn phong bao gồm:
                 <DialogHeader>
                     <DialogTitle className="flex items-center gap-2">
                         <BookOpen className="size-5 text-indigo-500" />
-                        Cấu hình Văn Phong Dịch
+                        {novel?.customTranslateMode === "edit" ? "Cấu hình Văn Phong Biên Tập" : "Cấu hình Văn Phong Dịch"}
                     </DialogTitle>
                     <DialogDescription>
-                        AI sẽ phân tích các chương đầu của truyện để xây dựng định hướng văn phong (nhịp điệu câu, giọng điệu, từ ngữ) chuyên biệt.
+                        {novel?.customTranslateMode === "edit"
+                            ? "AI sẽ phân tích các chương đầu của truyện để xây dựng định hướng văn phong biên tập (nhịp điệu câu, giọng điệu, từ ngữ) chuyên biệt."
+                            : "AI sẽ phân tích các chương đầu của truyện để xây dựng định hướng văn phong dịch (nhịp điệu câu, giọng điệu, từ ngữ) chuyên biệt."}
                     </DialogDescription>
                 </DialogHeader>
 
@@ -209,7 +219,7 @@ Yêu cầu định hướng văn phong bao gồm:
                         <div className="flex items-center justify-center p-2 rounded-lg border border-blue-500/30 bg-blue-500/10">
                             <span className="text-xs font-medium text-blue-700 dark:text-blue-400 flex items-center gap-1.5">
                                 <SparklesIcon className="size-4" />
-                                Dịch Admin miễn phí: Sẵn có
+                                {novel?.customTranslateMode === "edit" ? "Biên tập Admin miễn phí: Sẵn có" : "Dịch Admin miễn phí: Sẵn có"}
                             </span>
                         </div>
                     ) : (
@@ -269,7 +279,7 @@ Yêu cầu định hướng văn phong bao gồm:
                                 onChange={(e) => setGeneratedPrompt(e.target.value)}
                                 disabled={isScanning}
                                 className="flex-1 min-h-[250px] text-[12px] font-mono leading-relaxed"
-                                placeholder={isScanning ? "Đang phân tích..." : "Nhập định hướng văn phong dịch..."}
+                                placeholder={isScanning ? "Đang phân tích..." : (novel?.customTranslateMode === "edit" ? "Nhập định hướng văn phong biên tập..." : "Nhập định hướng văn phong dịch...")}
                             />
 
                             <Button onClick={handleSave} className="w-full gap-2 mt-2" disabled={isScanning}>

@@ -158,7 +158,15 @@ export function PronounTunerDialog({
 
             const result = await streamText({
                 model,
-                system: `Bạn là chuyên gia phân tích ngữ cảnh và xưng hô tiểu thuyết Trung-Việt chuyên nghiệp.
+                system: novel?.customTranslateMode === "edit"
+                    ? `Bạn là chuyên gia phân tích ngữ cảnh và xưng hô tiểu thuyết chuyên nghiệp.
+Hãy phân tích mối quan hệ nhân vật chính và ngữ cảnh truyện tiếng Việt hiện tại để sinh ra quy tắc xưng hô ngắn gọn dưới dạng gạch đầu dòng, đúng trọng tâm.
+Yêu cầu quy tắc xưng hô bao gồm:
+- Quy định đại từ nhân xưng chuẩn xác, nhất quán giữa các nhân vật chính phụ dựa trên quan hệ và vai vế trong câu chuyện.
+- Xác định sắc thái bối cảnh truyện (tiên hiệp, đô thị, ngôn tình...) để giữ xưng hô ổn định phù hợp bối cảnh đó.
+- Nhấn mạnh tính nhất quán và nghiêm cấm thêm bớt tình tiết khi biên tập xưng hô.
+- Không có lời dẫn dắt hay kết luận dư thừa, chỉ trả về các gạch đầu dòng quy tắc ngắn gọn cho AI biên tập.`
+                    : `Bạn là chuyên gia phân tích ngữ cảnh và xưng hô tiểu thuyết Trung-Việt chuyên nghiệp.
 Hãy phân tích mối quan hệ nhân vật chính và ngữ cảnh truyện để sinh ra quy tắc xưng hô ngắn gọn dưới dạng gạch đầu dòng, đúng trọng tâm.
 Yêu cầu quy tắc xưng hô bao gồm:
 - Quy định đại từ nhân xưng chuẩn xác, nhất quán giữa các nhân vật chính phụ dựa trên quan hệ và vai vế.
@@ -209,7 +217,7 @@ Yêu cầu quy tắc xưng hô bao gồm:
                         <div className="flex items-center justify-center p-2 rounded-lg border border-blue-500/30 bg-blue-500/10">
                             <span className="text-xs font-medium text-blue-700 dark:text-blue-400 flex items-center gap-1.5">
                                 <SparklesIcon className="size-4" />
-                                Dịch Admin miễn phí: Sẵn có
+                                {novel?.customTranslateMode === "edit" ? "Biên tập Admin miễn phí: Sẵn có" : "Dịch Admin miễn phí: Sẵn có"}
                             </span>
                         </div>
                     ) : (
