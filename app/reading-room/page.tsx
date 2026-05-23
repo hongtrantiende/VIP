@@ -27,6 +27,7 @@ import { type Novel } from "@/lib/db";
 import { useProfile } from "@/lib/hooks/use-profile";
 import { toast } from "sonner";
 import { sanitizeFilename, uploadCompressedInChunks } from "@/lib/utils";
+import { extensionFetch, checkExtensionStatus } from "@/lib/scraper/extension-bridge";
 
 const formatViews = (val?: number) => {
     if (!val) return "0";
@@ -35,6 +36,136 @@ const formatViews = (val?: number) => {
     }
     return val.toString();
 };
+
+async function fetchNovelHubData(
+    action: string,
+    source: string,
+    params: Record<string, any>,
+    headers: Record<string, string> = {}
+): Promise<any> {
+    const queryParams = new URLSearchParams({
+        action,
+        source,
+        ...Object.entries(params).reduce((acc, [k, v]) => ({ ...acc, [k]: String(v) }), {})
+    });
+    const url = `/api/novelhub?${queryParams.toString()}`;
+
+    try {
+        const res = await fetch(url, { headers });
+        if (res.ok) {
+            const data = await res.json();
+            if (!data.error) {
+                return data;
+            }
+        }
+    } catch (e) {
+        console.warn("[NovelHub Client] Direct fetch failed, trying extension fallback...", e);
+    }
+
+    const extStatus = await checkExtensionStatus();
+    if (extStatus.available) {
+        let targetUrl = "";
+        let waitSelector = "";
+        const slug = params.slug ? String(params.slug) : "";
+        const page = params.page ? String(params.page) : "1";
+        const q = params.q ? String(params.q) : "";
+        const chapterSlug = params.chapterSlug ? String(params.chapterSlug) : "";
+
+        if (source === "truyenfull") {
+            const truyenFullBase = "https://truyenfull.today";
+            if (action === "home") {
+                targetUrl = truyenFullBase;
+                waitSelector = ".index-intro";
+            } else if (action === "search") {
+                targetUrl = `${truyenFullBase}/tim-kiem/?tukhoa=${encodeURIComponent(q)}`;
+                waitSelector = ".list-truyen";
+            } else if (action === "story") {
+                targetUrl = `${truyenFullBase}/${slug}/`;
+                if (page !== "1") targetUrl += `trang-${page}/`;
+                waitSelector = ".desc-text, .book";
+            } else if (action === "chapter") {
+                targetUrl = `${truyenFullBase}/${slug}/${chapterSlug}/`;
+                waitSelector = "#chapter-c, .chapter-c, #chapter-content, .chapter-content";
+            }
+        } else if (source === "wikidich") {
+            const wikiDichBase = "https://wikicv.net";
+            if (action === "home") {
+                targetUrl = wikiDichBase;
+                waitSelector = ".book-item";
+            } else if (action === "search") {
+                targetUrl = `${wikiDichBase}/tim-kiem?q=${encodeURIComponent(q)}`;
+                waitSelector = ".book-item";
+            } else if (action === "story") {
+                targetUrl = `${wikiDichBase}/truyen/${slug}`;
+                waitSelector = ".book-desc-detail";
+            } else if (action === "chapter") {
+                targetUrl = `${wikiDichBase}/truyen/${slug}/${chapterSlug}`;
+                waitSelector = "#bookContentBody";
+            }
+        } else if (source === "metruyenchu") {
+            const mtcBase = "https://metruyenchu.co";
+            if (action === "home") {
+                targetUrl = mtcBase;
+            } else if (action === "search") {
+                targetUrl = mtcBase;
+            } else if (action === "story") {
+                targetUrl = `${mtcBase}/truyen/${slug}`;
+            } else if (action === "chapter") {
+                targetUrl = `${mtcBase}/truyen/${slug}/${chapterSlug}`;
+            }
+        }
+
+        if (targetUrl) {
+            try {
+                const extRes = await extensionFetch(targetUrl, { waitSelector });
+                const parseRes = await fetch("/api/novelhub", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                        ...headers
+                    },
+                    body: JSON.stringify({
+                        action,
+                        source,
+                        html: extRes.html,
+                        ...params
+                    })
+                });
+
+                if (parseRes.ok) {
+                    const parsedData = await parseRes.json();
+                    if (!parsedData.error) {
+                        if (source === "wikidich" && action === "story" && parsedData.needIndexUrl) {
+                            const indexExtRes = await extensionFetch(parsedData.needIndexUrl, { waitSelector: ".chapter-name" });
+                            const indexParseRes = await fetch("/api/novelhub", {
+                                method: "POST",
+                                headers: {
+                                    "Content-Type": "application/json",
+                                    ...headers
+                                },
+                                body: JSON.stringify({
+                                    action: "wiki-index",
+                                    source: "wikidich",
+                                    html: indexExtRes.html
+                                })
+                            });
+                            if (indexParseRes.ok) {
+                                const indexParsed = await indexParseRes.json();
+                                parsedData.chapters = indexParsed.chapters || [];
+                            }
+                        }
+                        return parsedData;
+                    }
+                    throw new Error(parsedData.error);
+                }
+            } catch (err: any) {
+                console.error("[NovelHub Client] Extension bypass failed:", err);
+            }
+        }
+    }
+
+    throw new Error("Không thể tải dữ liệu.");
+}
 
 async function uploadNovelToReadingRoom(
     source: string,
@@ -590,8 +721,7 @@ export default function StandaloneReadingRoomApp() {
 
     const fetchChaptersForBulk = async (slug: string, source: string, bookObj?: any) => {
         try {
-            const res = await fetch(`/api/novelhub?action=story&slug=${slug}&page=1&source=${source}`);
-            const data = await res.json();
+            const data = await fetchNovelHubData("story", source, { slug, page: 1 });
             if (!data || data.error) {
                 throw new Error(data?.error || "Không thể tải chi tiết truyện.");
             }
@@ -605,8 +735,7 @@ export default function StandaloneReadingRoomApp() {
                 const fetchPromises = [];
                 for (let p = 2; p <= data.totalPages; p++) {
                     fetchPromises.push(
-                        fetch(`/api/novelhub?action=story&slug=${slug}&page=${p}&source=${source}`)
-                            .then((res) => res.json())
+                        fetchNovelHubData("story", source, { slug, page: p })
                             .then((d) => d.chapters || [])
                             .catch(() => [])
                     );
@@ -726,12 +855,11 @@ export default function StandaloneReadingRoomApp() {
 
                     while (!success && retries > 0) {
                         try {
-                            const res = await fetch(
-                                `/api/novelhub?action=chapter&slug=${book.slug}&chapterSlug=${encodeURIComponent(
-                                    chap.slug
-                                )}&source=${book.source}&referer=${encodeURIComponent(refererUrl)}`
-                            );
-                            dData = await res.json();
+                            dData = await fetchNovelHubData("chapter", book.source, {
+                                slug: book.slug,
+                                chapterSlug: chap.slug,
+                                referer: refererUrl
+                            });
                             if (dData && dData.content && !dData.content.includes("Không thể tải nội dung")) {
                                 success = true;
                             } else {
@@ -2656,8 +2784,7 @@ function NovelHubHomeView({
         if (nhSource === "wikidich" && savedCookie) {
             headers["x-wikidich-cookie"] = savedCookie;
         }
-        fetch(`/api/novelhub?action=home&source=${nhSource}`, { headers })
-            .then((res) => res.json())
+        fetchNovelHubData("home", nhSource, {}, headers)
             .then((d) => {
                 setData(d);
             })
@@ -2795,8 +2922,7 @@ function NovelHubSearchView({
         if (nhSource === "wikidich" && savedCookie) {
             headers["x-wikidich-cookie"] = savedCookie;
         }
-        fetch(`/api/novelhub?action=search&q=${encodeURIComponent(searchQuery)}&source=${nhSource}`, { headers })
-            .then((res) => res.json())
+        fetchNovelHubData("search", nhSource, { q: searchQuery }, headers)
             .then((d) => {
                 setResults(d.results || []);
             })
@@ -2943,8 +3069,7 @@ function NovelHubStoryDetailsView({
         if (nhSource === "wikidich" && savedCookie) {
             headers["x-wikidich-cookie"] = savedCookie;
         }
-        fetch(`/api/novelhub?action=story&slug=${storySlug}&page=${page}&source=${nhSource}`, { headers })
-            .then((res) => res.json())
+        fetchNovelHubData("story", nhSource, { slug: storySlug, page }, headers)
             .then((d) => {
                 setStory(d);
             })
@@ -2972,8 +3097,7 @@ function NovelHubStoryDetailsView({
             const fetchPromises = [];
             for (let p = 2; p <= story.totalPages; p++) {
                 fetchPromises.push(
-                    fetch(`/api/novelhub?action=story&slug=${storySlug}&page=${p}&source=${nhSource}`, { headers })
-                        .then((res) => res.json())
+                    fetchNovelHubData("story", nhSource, { slug: storySlug, page: p }, headers)
                         .then((d) => d.chapters || [])
                         .catch(() => [])
                 );
@@ -3096,13 +3220,11 @@ function NovelHubStoryDetailsView({
                 }
                 while (!success && retries > 0) {
                     try {
-                        const res = await fetch(
-                            `/api/novelhub?action=chapter&slug=${storySlug}&chapterSlug=${encodeURIComponent(
-                                c.slug
-                            )}&source=${nhSource}&referer=${encodeURIComponent(refererUrl)}`,
-                            { headers }
-                        );
-                        dData = await res.json();
+                        dData = await fetchNovelHubData("chapter", nhSource, {
+                            slug: storySlug,
+                            chapterSlug: c.slug,
+                            referer: refererUrl
+                        }, headers);
                         if (dData && dData.content && !dData.content.includes("Không thể tải nội dung")) {
                             success = true;
                         } else {
@@ -3576,13 +3698,7 @@ function NovelHubChapterView({
         if (nhSource === "wikidich" && savedCookie) {
             headers["x-wikidich-cookie"] = savedCookie;
         }
-        fetch(
-            `/api/novelhub?action=chapter&slug=${storySlug}&chapterSlug=${encodeURIComponent(
-                chapterSlug
-            )}&source=${nhSource}`,
-            { headers }
-        )
-            .then((res) => res.json())
+        fetchNovelHubData("chapter", nhSource, { slug: storySlug, chapterSlug }, headers)
             .then((d) => {
                 setData(d);
                 window.scrollTo({ top: 0, behavior: "instant" as any });
@@ -3807,8 +3923,7 @@ function NovelHubStoryListView({
         if (nhSource === "wikidich" && savedCookie) {
             headers["x-wikidich-cookie"] = savedCookie;
         }
-        fetch(`/api/novelhub?action=list&type=${listType}&page=${page}&source=${nhSource}`, { headers })
-            .then((res) => res.json())
+        fetchNovelHubData("list", nhSource, { type: listType, page }, headers)
             .then((d) => {
                 setData(d);
             })

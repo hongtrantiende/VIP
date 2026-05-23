@@ -1535,5 +1535,244 @@ export async function GET(req: NextRequest) {
     return NextResponse.json({ error: err.message || "Internal server error" }, { status: 500 });
   }
 }
-// Force Next.js HMR recompile.
+
+export async function POST(req: NextRequest) {
+  try {
+    const body = await req.json();
+    const { action, source, html, q, slug, chapterSlug, page = "1" } = body;
+    const wikiDichCookie = req.headers.get("x-wikidich-cookie");
+
+    if (!action || !source || !html) {
+      return NextResponse.json({ error: "Missing parameters" }, { status: 400 });
+    }
+
+    const $ = cheerio.load(html);
+
+    switch (action) {
+      case "home": {
+        if (source === "truyenfull") {
+          const hotStories: any[] = [];
+          $(".index-intro .item").each((_, el) => {
+            const url = $(el).find("a").attr("href") || "";
+            const title = $(el).find("h3").text().trim();
+            const coverImg = $(el).find("img").attr("src");
+            if (title && url) {
+              hotStories.push({ title, slug: getSlug(url), cover: coverImg });
+            }
+          });
+          return NextResponse.json({ hotStories, newUpdates: [] });
+        } else if (source === "wikidich") {
+          const hotStories: any[] = [];
+          const newUpdates: any[] = [];
+          $(".book-item").each((i, el) => {
+            const url = $(el).find("a").first().attr("href") || "";
+            const title = $(el).find(".book-title").text().trim();
+            const coverImg = $(el).find("img").attr("src");
+            const author = $(el).find(".author").text().trim();
+            const itm = {
+              title,
+              slug: getWikiSlug(url),
+              cover: coverImg ? `${WIKIDICH_URL}${coverImg}` : "",
+              author,
+            };
+            if (title && url) {
+              if (i < 8) hotStories.push(itm);
+              else newUpdates.push({ ...itm, latestChapter: "Đang ra...", latestChapterSlug: "chuong-moi-nhat" });
+            }
+          });
+          return NextResponse.json({ hotStories, newUpdates });
+        }
+        return NextResponse.json({ hotStories: [], newUpdates: [] });
+      }
+
+      case "search": {
+        const results: any[] = [];
+        if (source === "truyenfull") {
+          $(".list-truyen .row").each((_, el) => {
+            const url = $(el).find("h3.truyen-title a").attr("href");
+            const title = $(el).find("h3.truyen-title a").text().trim();
+            const author = $(el).find(".author").text().trim();
+            const chapter = $(el).find(".text-info a").text().trim();
+            if (title && url) {
+              results.push({ title, slug: getSlug(url), author, latestChapter: chapter });
+            }
+          });
+        } else if (source === "wikidich") {
+          $(".book-item").each((_, el) => {
+            const url = $(el).find("a").first().attr("href") || "";
+            const title = $(el).find(".book-title").text().trim();
+            const author = $(el).find(".author").text().trim();
+            if (title && url) {
+              results.push({ title, slug: getWikiSlug(url), author, latestChapter: "Đang ra..." });
+            }
+          });
+        }
+        return NextResponse.json({ results });
+      }
+
+      case "story": {
+        if (source === "truyenfull") {
+          const title = $("h3.title").text().trim() || "";
+          const author = $('.info a[itemprop="author"]').text().trim() || "Đang cập nhật";
+          const desc = $(".desc-text").html()?.trim() || "";
+          const cover = $(".book img").attr("src");
+          const chapters: any[] = [];
+          $(".list-chapter li a").each((_, el) => {
+            const t = $(el).text().trim();
+            const chapUrl = $(el).attr("href");
+            if (t && chapUrl) chapters.push({ title: t, slug: getSlug(chapUrl) });
+          });
+          let totalPages = 1;
+          $(".pagination li a").each((_, el) => {
+            const href = $(el).attr("href");
+            if (href && href.includes("trang-")) {
+              const match = href.match(/trang-(\d+)/);
+              if (match) {
+                const pNum = parseInt(match[1]);
+                if (pNum > totalPages) totalPages = pNum;
+              }
+            }
+          });
+          return NextResponse.json({
+            title,
+            slug,
+            author,
+            cover,
+            desc,
+            chapters,
+            totalPages,
+            currentPage: parseInt(page),
+          });
+        } else if (source === "wikidich") {
+          const title = $("h2").first().text().trim() || "N/A";
+          const author = $('a[href*="/tac-gia/"]').first().text().trim() || "Đang cập nhật";
+          const desc = $(".book-desc-detail").html()?.trim() || "";
+          const c = $("img.materialboxed").attr("src");
+          const cover = c && c.startsWith("/") ? `${WIKIDICH_URL}${c}` : c;
+
+          const signKeyMatch = html.match(/signKey\s*=\s*['"](.*?)['"]/);
+          const bookIdMatch = html.match(/bookId\s*=\s*['"](.*?)['"]/);
+          const loadIndexMatch = html.match(/loadBookIndex\s*\(\s*(\d+)\s*,\s*(\d+)/);
+          const fuzzySignMatch = html.match(/fuzzySign[^{]*{\s*return\s*text\.substring\((\d+)\)/);
+
+          const chapters: any[] = [];
+          let needIndexUrl = "";
+
+          if (signKeyMatch && bookIdMatch && loadIndexMatch && fuzzySignMatch) {
+            const signKey = signKeyMatch[1];
+            const bookId = bookIdMatch[1];
+            const start = parseInt(loadIndexMatch[1], 10);
+            const size = parseInt(loadIndexMatch[2], 10);
+            const offset = parseInt(fuzzySignMatch[1], 10);
+            const b = wikiSign(fuzzySign(signKey + start + size, offset));
+            const indexUrl = `${WIKIDICH_URL}/book/index?bookId=${bookId}&start=${start}&size=${size}&signKey=${signKey}&sign=${b}`;
+
+            // Try to fetch internally
+            try {
+              const headers = getHeaders(indexUrl);
+              if (wikiDichCookie) {
+                headers["Cookie"] = wikiDichCookie.includes("express.sid=") ? wikiDichCookie : `express.sid=${wikiDichCookie}`;
+              }
+              const resIdx = await fetch(indexUrl, { headers });
+              if (resIdx.status === 200) {
+                const indexData = await resIdx.text();
+                if (indexData && !indexData.includes("cloudflare") && !indexData.includes("challenge-running")) {
+                  const $idx = cheerio.load(indexData);
+                  $idx(".chapter-name a").each((_, el) => {
+                    const t = $idx(el).text().trim();
+                    const u = $idx(el).attr("href");
+                    if (t && u) chapters.push({ title: t, slug: getWikiSlug(u) });
+                  });
+                }
+              }
+            } catch (e) {
+              console.warn("[NovelHub API POST] Internal fetch index failed:", e);
+            }
+
+            if (chapters.length === 0) {
+              needIndexUrl = indexUrl;
+            }
+          }
+
+          return NextResponse.json({
+            title,
+            slug,
+            author,
+            cover,
+            desc,
+            chapters,
+            needIndexUrl,
+            totalPages: 1,
+            currentPage: 1,
+          });
+        }
+      }
+
+      case "wiki-index": {
+        const chapters: any[] = [];
+        $(".chapter-name a").each((_, el) => {
+          const t = $(el).text().trim();
+          const u = $(el).attr("href");
+          if (t && u) chapters.push({ title: t, slug: getWikiSlug(u) });
+        });
+        return NextResponse.json({ chapters });
+      }
+
+      case "chapter": {
+        if (source === "truyenfull") {
+          const title = $(".chapter-title").text().trim() || "Chương không rõ";
+          const storyTitle = $(".truyen-title").text().trim() || "Truyện không rõ";
+          let selector = "";
+          if ($("#chapter-c").length) selector = "#chapter-c";
+          else if ($(".chapter-c").length) selector = ".chapter-c";
+          else if ($("#chapter-content").length) selector = "#chapter-content";
+          else if ($(".chapter-content").length) selector = ".chapter-content";
+
+          const content = selector ? processChapterContent($, selector) : "<p>Không thể tải nội dung.</p>";
+          const prevUrl = $("#prev_chap").attr("href");
+          const nextUrl = $("#next_chap").attr("href");
+
+          return NextResponse.json({
+            title,
+            storyTitle,
+            content,
+            externalApi: `${TRUYENFULL_URL}/${slug}/${chapterSlug}`,
+            prevSlug: !prevUrl || prevUrl.includes("javascript") ? null : getSlug(prevUrl),
+            nextSlug: !nextUrl || nextUrl.includes("javascript") ? null : getSlug(nextUrl),
+          });
+        } else if (source === "wikidich") {
+          const pageTitle = $("title").text().trim() || "";
+          let title = "";
+          $(".breadcrumb a").each((_, el) => {
+            const txt = $(el).text().trim();
+            if (txt.includes("Chương ") && !txt.includes("Chương trước") && !txt.includes("Chương sau")) {
+              title = txt;
+              return false;
+            }
+          });
+          if (!title) {
+            title = $("h2").first().text().trim() || pageTitle.split("- Chương")[1]?.trim() || "Chương không rõ";
+          }
+          const storyTitle = $("h1").first().text().trim() || pageTitle.split("- Chương")[0]?.trim() || "Truyện không rõ";
+          const content = processChapterContent($, "#bookContentBody");
+          const prevUrl = $(".pre").attr("href") || "";
+          const nextUrl = $(".next").attr("href") || "";
+
+          return NextResponse.json({
+            title,
+            storyTitle,
+            content,
+            externalApi: `${WIKIDICH_URL}/truyen/${slug}/${chapterSlug}`,
+            prevSlug: !prevUrl || prevUrl.includes("javascript") ? null : getWikiSlug(prevUrl),
+            nextSlug: !nextUrl || nextUrl.includes("javascript") ? null : getWikiSlug(nextUrl),
+          });
+        }
+      }
+    }
+    return NextResponse.json({ error: `Unknown POST action: ${action}` }, { status: 400 });
+  } catch (err: any) {
+    console.error("[/api/novelhub POST] Error:", err);
+    return NextResponse.json({ error: err.message || "Internal server error" }, { status: 500 });
+  }
+}
 
