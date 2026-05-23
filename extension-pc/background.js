@@ -298,6 +298,46 @@ async function handleFetch(url, waitSelector, clickSelector, timeout, forceActiv
   // Rotate proxy before this chapter
   await rotateProxyIfNeeded();
 
+  // 1. Try silent background fetch first if no clicking/special waiting is needed
+  if (!clickSelector) {
+    try {
+      console.log(`[Silent Fetch] Attempting silent background fetch for ${url}`);
+      const controller = new AbortController();
+      const fetchTimeout = setTimeout(() => controller.abort(), 10000); // 10s timeout
+      
+      const response = await fetch(url, {
+        signal: controller.signal,
+        headers: {
+          'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'
+        }
+      });
+      clearTimeout(fetchTimeout);
+
+      if (response.ok) {
+        const text = await response.text();
+        const hasCf = text.includes("Just a moment...") || text.includes("cf-challenge") || text.includes("cf_challenge") || text.includes("Turnstile") || text.includes("Checking your browser") || text.includes("Attention Required!");
+        
+        let isValid = !hasCf && text.length > 2000;
+        if (waitSelector && isValid) {
+          const className = waitSelector.replace(/^[.#]/, "");
+          if (!text.includes(className)) {
+            isValid = false;
+          }
+        }
+
+        if (isValid) {
+          console.log(`[Silent Fetch] Successful silent fetch (${text.length} bytes)`);
+          return { html: text, contentText: "", timedOut: false };
+        }
+        console.log(`[Silent Fetch] Raw HTML did not pass validation or contains anti-bot, falling back to tab...`);
+      } else {
+        console.log(`[Silent Fetch] Failed with status ${response.status}, falling back to tab...`);
+      }
+    } catch (e) {
+      console.log(`[Silent Fetch] Error: ${e.message}, falling back to tab...`);
+    }
+  }
+
   // Remember the current active tab so we can refocus it (important for Android)
   let originalTabId = null;
   try {
