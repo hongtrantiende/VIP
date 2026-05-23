@@ -36,7 +36,9 @@
       "https://thienthu.vipg.workers.dev/*",
       "https://*.workers.dev/*",
       "http://localhost/*",
-      "https://localhost/*"
+      "https://localhost/*",
+      "https://*.pages.dev/*",
+      "https://*.vercel.app/*"
     ]
   }
 }

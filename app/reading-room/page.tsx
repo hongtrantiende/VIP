@@ -393,6 +393,7 @@ export default function StandaloneReadingRoomApp() {
     const [nhSource, setNhSource] = useState<string>("truyenfull");
     const [nhSubTab, setNhSubTab] = useState<"home" | "new_list">("home");
     const [nhQuery, setNhQuery] = useState("");
+    const [nhStoryCache, setNhStoryCache] = useState<Record<string, any>>({});
 
     const handleNhSearch = (e: React.FormEvent) => {
         e.preventDefault();
@@ -2331,12 +2332,15 @@ export default function StandaloneReadingRoomApp() {
                             )}
                             {nhState.view === "story" && (
                                 <NovelHubStoryDetailsView 
+                                    key={`${nhSource}-${nhState.storySlug || ""}-${nhState.page || 1}`}
                                     nhSource={nhSource}
                                     storySlug={nhState.storySlug || ""}
                                     page={nhState.page || 1}
                                     navigateNh={navigateNh}
                                     setNhState={setNhState}
                                     isDark={isDark}
+                                    nhStoryCache={nhStoryCache}
+                                    setNhStoryCache={setNhStoryCache}
                                 />
                             )}
                             {nhState.view === "chapter" && (
@@ -2979,7 +2983,9 @@ function NovelHubStoryDetailsView({
     page = 1,
     navigateNh,
     setNhState,
-    isDark
+    isDark,
+    nhStoryCache,
+    setNhStoryCache
 }: {
     nhSource: string;
     storySlug: string;
@@ -2987,9 +2993,12 @@ function NovelHubStoryDetailsView({
     navigateNh: (s: any) => void;
     setNhState: any;
     isDark: boolean;
+    nhStoryCache: Record<string, any>;
+    setNhStoryCache: React.Dispatch<React.SetStateAction<Record<string, any>>>;
 }) {
-    const [story, setStory] = useState<any>(null);
-    const [loading, setLoading] = useState(true);
+    const cacheKey = `${nhSource}-${storySlug}-${page}`;
+    const [story, setStory] = useState<any>(() => nhStoryCache[cacheKey] || null);
+    const [loading, setLoading] = useState(!nhStoryCache[cacheKey]);
     const [downloading, setDownloading] = useState(false);
     const [downloadProgress, setDownloadProgress] = useState(0);
 
@@ -3063,6 +3072,12 @@ function NovelHubStoryDetailsView({
     };
 
     useEffect(() => {
+        if (nhStoryCache[cacheKey]) {
+            setStory(nhStoryCache[cacheKey]);
+            setLoading(false);
+            return;
+        }
+
         setLoading(true);
         const savedCookie = localStorage.getItem("nh_wikidich_cookie") || "";
         const headers: Record<string, string> = {};
@@ -3072,13 +3087,17 @@ function NovelHubStoryDetailsView({
         fetchNovelHubData("story", nhSource, { slug: storySlug, page }, headers)
             .then((d) => {
                 setStory(d);
+                setNhStoryCache((prev) => ({
+                    ...prev,
+                    [cacheKey]: d
+                }));
             })
             .catch((err) => {
                 console.error(err);
                 toast.error("Không thể tải thông tin truyện.");
             })
             .finally(() => setLoading(false));
-    }, [storySlug, page, nhSource]);
+    }, [storySlug, page, nhSource, cacheKey, nhStoryCache, setNhStoryCache]);
 
     const fetchAllChapters = async () => {
         if (!story) return [];
