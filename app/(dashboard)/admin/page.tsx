@@ -25,7 +25,6 @@ import { toast } from "sonner";
 import { CrownIcon, RefreshCwIcon, Trash2Icon, UserIcon, SparklesIcon, CalendarIcon } from "lucide-react";
 import { revokeAllModelAssignmentsAction } from "@/app/actions/admin-models";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { TranslationTest } from "@/components/admin/translation-test";
 
 interface Profile {
   id: string;
@@ -561,9 +560,8 @@ export default function AdminPage() {
       </div>
 
       <Tabs defaultValue="members-settings" className="space-y-6">
-        <TabsList className="grid w-full max-w-[400px] grid-cols-2">
+        <TabsList className="grid w-full max-w-[200px] grid-cols-1">
           <TabsTrigger value="members-settings">Thành viên & Cấu hình</TabsTrigger>
-          <TabsTrigger value="translate-test">Dịch Thử Nghiệm</TabsTrigger>
         </TabsList>
 
         <TabsContent value="members-settings" className="space-y-8 mt-6">
@@ -774,10 +772,6 @@ export default function AdminPage() {
               </Table>
             </div>
           </div>
-        </TabsContent>
-
-        <TabsContent value="translate-test" className="space-y-6 mt-6">
-          <TranslationTest />
         </TabsContent>
       </Tabs>
 
