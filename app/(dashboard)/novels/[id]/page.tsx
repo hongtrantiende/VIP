@@ -11,6 +11,7 @@ import { SplitChapterDialog } from "@/components/novel/split-chapter-dialog";
 import { MergeChaptersDialog } from "@/components/novel/merge-chapters-dialog";
 import { MergePartsDialog } from "@/components/novel/merge-parts-dialog";
 import { ChaptersTab } from "@/components/novel/chapters-tab";
+import { TranslationTest } from "@/components/admin/translation-test";
 import { EditableText } from "@/components/novel/editable-text";
 import {
   AlertDialog,
@@ -81,6 +82,7 @@ import {
   LanguagesIcon,
   BookDownIcon,
   LoaderIcon,
+  SparklesIcon,
 } from "lucide-react";
 import {
   useParams,
@@ -594,6 +596,15 @@ export default function NovelDetailPage() {
               </span>
             )}
           </TabsTrigger>
+          {isAdmin && (
+            <TabsTrigger
+              value="translate-test"
+              className="gap-1.5 px-2 py-1.5 sm:gap-2 sm:px-3"
+            >
+              <SparklesIcon className="size-3.5 text-indigo-600 dark:text-indigo-400 animate-pulse" />
+              <span>Dịch thử nghiệm</span>
+            </TabsTrigger>
+          )}
         </TabsList>
 
 
@@ -617,6 +628,11 @@ export default function NovelDetailPage() {
             onMergeParts={handleMergeParts}
           />
         </TabsContent>
+        {isAdmin && (
+          <TabsContent value="translate-test" className="mt-4">
+            <TranslationTest initialNovelId={id} />
+          </TabsContent>
+        )}
       </Tabs>
 
       {/* Bulk AI translate dialog */}

@@ -44,6 +44,63 @@ export class PiperTTS implements TTSProvider {
 
   async getVoices(): Promise<Voice[]> {
     const list = [...STATIC_PIPER_VOICES];
+    const isBrowser = typeof window !== "undefined";
+
+    if (isBrowser) {
+      try {
+        const response = await fetch(`${this.apiUrl}/voices`, {
+          method: "GET",
+          headers: {
+            "Accept": "application/json"
+          }
+        });
+
+        if (response.ok) {
+          const data = await response.json();
+          if (data && typeof data === "object") {
+            let serverVoices: Voice[] = [];
+            
+            if (Array.isArray(data)) {
+              serverVoices = data.map((v: any, index: number) => {
+                const name = typeof v === "string" ? v : v.name || v.id || `Voice ${index}`;
+                return {
+                  id: typeof v === "string" ? v : v.id || name,
+                  name: name,
+                  fullName: `Piper - ${name}`,
+                };
+              });
+            } else {
+              const keys = Object.keys(data);
+              serverVoices = keys.map((key) => {
+                const info = data[key];
+                const name = info?.name || key;
+                return {
+                  id: key,
+                  name: name,
+                  fullName: `Piper - ${name}`,
+                };
+              });
+            }
+
+            // Add server voices that are not already in the static list
+            for (const sv of serverVoices) {
+              const exists = list.some(
+                (v) =>
+                  v.id === sv.id ||
+                  v.name.toLowerCase() === sv.name.toLowerCase()
+              );
+              if (!exists) {
+                list.push(sv);
+              }
+            }
+            return list;
+          }
+        }
+      } catch (e) {
+        console.warn("[PiperTTS] Direct client-side voices fetch failed, falling back to Next.js proxy:", e);
+      }
+    }
+
     try {
       const response = await fetch("/api/tts/piper", {
         method: "GET",
@@ -115,6 +172,32 @@ export class PiperTTS implements TTSProvider {
 
     const voiceId = options?.voice ?? this.voice;
     const rate = options?.rate ?? this.rate;
+    const lengthScale = rate ? 1.0 / rate : 1.0;
+
+    const isBrowser = typeof window !== "undefined";
+    if (isBrowser) {
+      try {
+        let cleanVoice = String(voiceId).replace(/^voices\//, "").replace(/^vi\//, "").replace(/\.onnx$/, "");
+        const response = await fetch(`${this.apiUrl}`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            text,
+            voice: `voices/${cleanVoice}`,
+            length_scale: lengthScale,
+          }),
+        });
+
+        if (response.ok) {
+          return response.blob();
+        }
+        console.warn("[PiperTTS] Direct client-side synthesis failed, falling back to Next.js proxy...");
+      } catch (err) {
+        console.warn("[PiperTTS] Direct client-side synthesis error, falling back to Next.js proxy:", err);
+      }
+    }
 
     const response = await fetch("/api/tts/piper", {
       method: "POST",

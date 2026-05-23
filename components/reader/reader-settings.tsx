@@ -84,7 +84,34 @@ export function ReaderSettings() {
         toast.success(`Đã tải xong giọng đọc!`, { id: toastId });
       } else {
         const data = await response.json().catch(() => ({}));
-        toast.error(data.error || `Tải giọng đọc thất bại!`, { id: toastId });
+        
+        // Detect if hostname is production (non-local)
+        const isLocal = typeof window !== "undefined" && 
+          (window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1" || window.location.hostname.includes("192.168."));
+        
+        if (!isLocal) {
+          const clean = ttsSettings.voiceId.replace(/^voices\//, "").replace(/^vi\//, "").replace(/\.onnx$/, "");
+          const modelUrl = `https://tts-piper.pages.dev/api/model/${encodeURIComponent(clean)}.onnx`;
+          const jsonUrl = `https://tts-piper.pages.dev/api/model/${encodeURIComponent(clean)}.onnx.json`;
+
+          toast.error(
+            <div className="flex flex-col gap-1 text-xs text-foreground">
+              <span className="font-semibold text-amber-500">Lỗi lưu trữ đám mây (ổ đĩa Cloud bị khóa chỉ đọc).</span>
+              <span>Hãy tải thủ công 2 file này về thư mục <code className="bg-muted px-1 py-0.5 rounded text-[10px] font-mono">voices/</code> trong thư mục app của bạn:</span>
+              <div className="mt-2 flex flex-col gap-1.5 font-medium underline">
+                <a href={modelUrl} target="_blank" rel="noreferrer" className="text-blue-500 hover:text-blue-600 flex items-center gap-1">
+                  1. Tải Model ({clean}.onnx)
+                </a>
+                <a href={jsonUrl} target="_blank" rel="noreferrer" className="text-blue-500 hover:text-blue-600 flex items-center gap-1">
+                  2. Tải Cấu hình ({clean}.onnx.json)
+                </a>
+              </div>
+            </div>,
+            { id: toastId, duration: 15000 }
+          );
+        } else {
+          toast.error(data.error || `Tải giọng đọc thất bại!`, { id: toastId });
+        }
       }
     } catch (err: any) {
       toast.error(`Lỗi kết nối: ${err.message || err}`, { id: toastId });

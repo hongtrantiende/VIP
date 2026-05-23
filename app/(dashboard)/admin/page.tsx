@@ -24,6 +24,8 @@ import { Label } from "@/components/ui/label";
 import { toast } from "sonner";
 import { CrownIcon, RefreshCwIcon, Trash2Icon, UserIcon, SparklesIcon, CalendarIcon } from "lucide-react";
 import { revokeAllModelAssignmentsAction } from "@/app/actions/admin-models";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { TranslationTest } from "@/components/admin/translation-test";
 
 interface Profile {
   id: string;
@@ -558,213 +560,226 @@ export default function AdminPage() {
         </div>
       </div>
 
-      {/* Proxy Settings */}
-      <div className="bg-card border border-border shadow-sm rounded-xl p-6 space-y-6">
-        <h2 className="text-xl font-bold text-foreground flex items-center gap-2">
-          <SparklesIcon className="w-5 h-5 text-indigo-500" />
-          Cấu hình API Proxy Server (Dùng chung cho toàn hệ thống)
-        </h2>
-        
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-          <div className="space-y-2">
-            <label className="text-sm font-semibold text-muted-foreground">Base URL (API Endpoint)</label>
-            <Input 
-              value={adminProxyUrl} 
-              onChange={e => setAdminProxyUrl(e.target.value)} 
-              placeholder="VD: https://catiecli.sukaka.top/v1/chat/completions"
-              className="bg-muted/30 focus-visible:ring-indigo-500"
-            />
+      <Tabs defaultValue="members-settings" className="space-y-6">
+        <TabsList className="grid w-full max-w-[400px] grid-cols-2">
+          <TabsTrigger value="members-settings">Thành viên & Cấu hình</TabsTrigger>
+          <TabsTrigger value="translate-test">Dịch Thử Nghiệm</TabsTrigger>
+        </TabsList>
+
+        <TabsContent value="members-settings" className="space-y-8 mt-6">
+          {/* Proxy Settings */}
+          <div className="bg-card border border-border shadow-sm rounded-xl p-6 space-y-6">
+            <h2 className="text-xl font-bold text-foreground flex items-center gap-2">
+              <SparklesIcon className="w-5 h-5 text-indigo-500" />
+              Cấu hình API Proxy Server (Dùng chung cho toàn hệ thống)
+            </h2>
+            
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+              <div className="space-y-2">
+                <label className="text-sm font-semibold text-muted-foreground">Base URL (API Endpoint)</label>
+                <Input 
+                  value={adminProxyUrl} 
+                  onChange={e => setAdminProxyUrl(e.target.value)} 
+                  placeholder="VD: https://catiecli.sukaka.top/v1/chat/completions"
+                  className="bg-muted/30 focus-visible:ring-indigo-500"
+                />
+              </div>
+              <div className="space-y-2">
+                <label className="text-sm font-semibold text-muted-foreground">API Key (Bearer Token)</label>
+                <Input 
+                  value={adminProxyKey} 
+                  onChange={e => setAdminProxyKey(e.target.value)} 
+                  placeholder="Nhập API Key..."
+                  type="password"
+                  className="bg-muted/30 focus-visible:ring-indigo-500"
+                />
+              </div>
+            </div>
+
+            <div className="space-y-2 pt-2 border-t">
+              <label className="text-sm font-semibold text-muted-foreground">Model mặc định cho Chat AI (toàn hệ thống)</label>
+              <div className="flex items-center gap-3">
+                {availableModels.length > 0 ? (
+                  <select
+                    className="flex h-10 w-full max-w-md rounded-md border border-input bg-muted/30 px-3 py-2 text-sm shadow-sm transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-indigo-500"
+                    value={adminChatModel}
+                    onChange={e => setAdminChatModel(e.target.value)}
+                  >
+                    <option value="">-- Dùng cùng model dịch --</option>
+                    {availableModels.map(m => (
+                      <option key={m.id} value={m.id}>{m.name}</option>
+                    ))}
+                  </select>
+                ) : (
+                  <Input
+                    value={adminChatModel}
+                    onChange={e => setAdminChatModel(e.target.value)}
+                    placeholder="Nhập model ID cho chat (bỏ trống = dùng model dịch)"
+                    className="max-w-md bg-muted/30"
+                  />
+                )}
+                <Button
+                  variant="outline"
+                  onClick={async () => {
+                    const supabase = createClient();
+                    const { error } = await supabase
+                      .from("app_settings")
+                      .upsert({ key: "admin_chat_model", value: adminChatModel });
+                    if (error) {
+                      toast.error("Lỗi: " + error.message);
+                    } else {
+                      toast.success(adminChatModel ? `Đã đặt model chat: ${adminChatModel}` : "Chat sẽ dùng model dịch");
+                    }
+                  }}
+                  className="px-4"
+                >
+                  Lưu chat model
+                </Button>
+                <Button
+                  variant="secondary"
+                  onClick={handleScanModels}
+                  disabled={scanning}
+                  className="gap-2"
+                >
+                  <RefreshCwIcon className={`size-4 ${scanning ? "animate-spin" : ""}`} />
+                  Quét Model từ Proxy
+                </Button>
+              </div>
+              <p className="text-xs text-muted-foreground italic">Model này dùng cho AI Chat của toàn bộ người dùng. Bỏ trống = dùng model dịch đã cấp riêng cho từng user.</p>
+            </div>
+
+            <div className="pt-2">
+              <Button onClick={handleSaveAdminSettings} className="bg-indigo-600 hover:bg-indigo-700 text-white font-semibold">
+                Lưu cấu hình Server
+              </Button>
+            </div>
           </div>
-          <div className="space-y-2">
-            <label className="text-sm font-semibold text-muted-foreground">API Key (Bearer Token)</label>
-            <Input 
-              value={adminProxyKey} 
-              onChange={e => setAdminProxyKey(e.target.value)} 
-              placeholder="Nhập API Key..."
-              type="password"
-              className="bg-muted/30 focus-visible:ring-indigo-500"
-            />
-          </div>
-        </div>
 
-        <div className="space-y-2 pt-2 border-t">
-          <label className="text-sm font-semibold text-muted-foreground">Model mặc định cho Chat AI (toàn hệ thống)</label>
-          <div className="flex items-center gap-3">
-            {availableModels.length > 0 ? (
-              <select
-                className="flex h-10 w-full max-w-md rounded-md border border-input bg-muted/30 px-3 py-2 text-sm shadow-sm transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-indigo-500"
-                value={adminChatModel}
-                onChange={e => setAdminChatModel(e.target.value)}
-              >
-                <option value="">-- Dùng cùng model dịch --</option>
-                {availableModels.map(m => (
-                  <option key={m.id} value={m.id}>{m.name}</option>
-                ))}
-              </select>
-            ) : (
-              <Input
-                value={adminChatModel}
-                onChange={e => setAdminChatModel(e.target.value)}
-                placeholder="Nhập model ID cho chat (bỏ trống = dùng model dịch)"
-                className="max-w-md bg-muted/30"
-              />
-            )}
-            <Button
-              variant="outline"
-              onClick={async () => {
-                const supabase = createClient();
-                const { error } = await supabase
-                  .from("app_settings")
-                  .upsert({ key: "admin_chat_model", value: adminChatModel });
-                if (error) {
-                  toast.error("Lỗi: " + error.message);
-                } else {
-                  toast.success(adminChatModel ? `Đã đặt model chat: ${adminChatModel}` : "Chat sẽ dùng model dịch");
-                }
-              }}
-              className="px-4"
-            >
-              Lưu chat model
-            </Button>
-            <Button
-              variant="secondary"
-              onClick={handleScanModels}
-              disabled={scanning}
-              className="gap-2"
-            >
-              <RefreshCwIcon className={`size-4 ${scanning ? "animate-spin" : ""}`} />
-              Quét Model từ Proxy
-            </Button>
-          </div>
-          <p className="text-xs text-muted-foreground italic">Model này dùng cho AI Chat của toàn bộ người dùng. Bỏ trống = dùng model dịch đã cấp riêng cho từng user.</p>
-        </div>
-
-        <div className="pt-2">
-          <Button onClick={handleSaveAdminSettings} className="bg-indigo-600 hover:bg-indigo-700 text-white font-semibold">
-            Lưu cấu hình Server
-          </Button>
-        </div>
-      </div>
-
-      {/* User Management Table */}
-      <div className="space-y-4">
-        <h2 className="text-xl font-bold text-foreground">Danh sách người dùng và Quyền hạn</h2>
-        <div className="border border-border rounded-xl overflow-hidden bg-card shadow-sm">
-          <Table>
-            <TableHeader className="bg-muted/40">
-              <TableRow>
-                <TableHead className="w-[300px]">Người dùng</TableHead>
-                <TableHead className="w-[200px]">Trạng thái VIP</TableHead>
-                <TableHead className="w-[180px]">Lượt dịch tự động</TableHead>
-                <TableHead className="w-[220px]">Model được cấp riêng</TableHead>
-                <TableHead className="text-right pr-6">Hành động</TableHead>
-              </TableRow>
-            </TableHeader>
-            <TableBody>
-              {profiles.map((p) => {
-                const isVip = p.vip_until && new Date(p.vip_until) > new Date();
-                return (
-                  <TableRow key={p.id} className="hover:bg-muted/10 transition-colors">
-                    {/* User profile info */}
-                    <TableCell className="font-medium py-3">
-                      <div className="flex items-center gap-3">
-                        <div className="relative size-10 shrink-0">
-                          <div className={`flex size-10 items-center justify-center rounded-full bg-primary/10 text-primary font-bold text-sm overflow-hidden border ${isVip ? "ring-2 ring-yellow-400 ring-offset-1 dark:ring-offset-slate-900" : ""}`}>
-                            {p.avatar_url ? (
-                              <img src={p.avatar_url} alt="Avatar" className="w-full h-full object-cover" />
-                            ) : (
-                              (p.display_name || p.email || "U").substring(0, 2).toUpperCase()
-                            )}
-                          </div>
-                          {isVip && (
-                            <div className="absolute -top-1 -right-1 bg-yellow-400 text-yellow-900 rounded-full p-0.5 shadow-md">
-                              <CrownIcon className="size-3" />
-                            </div>
-                          )}
-                        </div>
-                        <div className="flex flex-col min-w-0">
-                          <span className="font-semibold text-foreground truncate max-w-[200px]">
-                            {p.display_name || "Chưa đặt tên"}
-                          </span>
-                          <span className="text-xs text-muted-foreground truncate max-w-[200px]" title={p.email}>
-                            {p.email}
-                          </span>
-                        </div>
-                      </div>
-                    </TableCell>
-
-                    {/* VIP status */}
-                    <TableCell>
-                      {isVip ? (
-                        <div className="flex flex-col">
-                          <span className="inline-flex items-center gap-1 rounded-full bg-yellow-100 dark:bg-yellow-950/60 px-2.5 py-0.5 text-xs font-semibold text-yellow-800 dark:text-yellow-400 w-fit">
-                            <CrownIcon className="size-3" />
-                            VIP hoạt động
-                          </span>
-                          <span className="text-xs text-muted-foreground mt-1">
-                            Hết hạn: {new Date(p.vip_until!).toLocaleDateString("vi-VN")}
-                          </span>
-                        </div>
-                      ) : (
-                        <span className="inline-flex items-center rounded-full bg-slate-100 dark:bg-slate-800 px-2.5 py-0.5 text-xs font-medium text-slate-800 dark:text-slate-300">
-                          Thành viên thường
-                        </span>
-                      )}
-                    </TableCell>
-
-                    {/* Quota */}
-                    <TableCell>
-                      <div className="flex flex-col gap-1.5">
-                        <span className="font-semibold text-sm">
-                          {p.admin_model_quota ?? 0} / {p.admin_daily_quota_limit ?? 0}
-                        </span>
-                        <div className="w-24 h-1.5 bg-muted rounded-full overflow-hidden">
-                          <div 
-                            className="h-full bg-blue-500 rounded-full transition-all duration-300" 
-                            style={{ 
-                              width: `${Math.min(100, p.admin_daily_quota_limit ? ((p.admin_model_quota ?? 0) / p.admin_daily_quota_limit) * 100 : 0)}%` 
-                            }}
-                          />
-                        </div>
-                      </div>
-                    </TableCell>
-
-                    {/* Assigned Model */}
-                    <TableCell>
-                      {p.admin_assigned_model ? (
-                        <span className="inline-flex items-center rounded-full bg-purple-100 dark:bg-purple-950 px-2.5 py-0.5 text-xs font-semibold text-purple-800 dark:text-purple-400 truncate max-w-[200px]" title={p.admin_assigned_model}>
-                          {p.admin_assigned_model.replace("gcli-", "").replace("假流式/", "[No Stream] ")}
-                        </span>
-                      ) : (
-                        <span className="text-xs text-muted-foreground italic">Mặc định hệ thống</span>
-                      )}
-                    </TableCell>
-
-                    {/* Actions */}
-                    <TableCell className="text-right pr-6">
-                      <Button
-                        variant="outline"
-                        size="sm"
-                        onClick={() => setEditingProfile(p)}
-                        className="hover:bg-primary hover:text-primary-foreground font-semibold"
-                      >
-                        Chỉnh sửa
-                      </Button>
-                    </TableCell>
+          {/* User Management Table */}
+          <div className="space-y-4">
+            <h2 className="text-xl font-bold text-foreground">Danh sách người dùng và Quyền hạn</h2>
+            <div className="border border-border rounded-xl overflow-hidden bg-card shadow-sm">
+              <Table>
+                <TableHeader className="bg-muted/40">
+                  <TableRow>
+                    <TableHead className="w-[300px]">Người dùng</TableHead>
+                    <TableHead className="w-[200px]">Trạng thái VIP</TableHead>
+                    <TableHead className="w-[180px]">Lượt dịch tự động</TableHead>
+                    <TableHead className="w-[220px]">Model được cấp riêng</TableHead>
+                    <TableHead className="text-right pr-6">Hành động</TableHead>
                   </TableRow>
-                );
-              })}
-              {profiles.length === 0 && (
-                <TableRow>
-                  <TableCell colSpan={5} className="text-center py-12 text-muted-foreground">
-                    Chưa có người dùng nào được đăng ký.
-                  </TableCell>
-                </TableRow>
-              )}
-            </TableBody>
-          </Table>
-        </div>
-      </div>
+                </TableHeader>
+                <TableBody>
+                  {profiles.map((p) => {
+                    const isVip = p.vip_until && new Date(p.vip_until) > new Date();
+                    return (
+                      <TableRow key={p.id} className="hover:bg-muted/10 transition-colors">
+                        {/* User profile info */}
+                        <TableCell className="font-medium py-3">
+                          <div className="flex items-center gap-3">
+                            <div className="relative size-10 shrink-0">
+                              <div className={`flex size-10 items-center justify-center rounded-full bg-primary/10 text-primary font-bold text-sm overflow-hidden border ${isVip ? "ring-2 ring-yellow-400 ring-offset-1 dark:ring-offset-slate-900" : ""}`}>
+                                {p.avatar_url ? (
+                                  <img src={p.avatar_url} alt="Avatar" className="w-full h-full object-cover" />
+                                ) : (
+                                  (p.display_name || p.email || "U").substring(0, 2).toUpperCase()
+                                )}
+                              </div>
+                              {isVip && (
+                                <div className="absolute -top-1 -right-1 bg-yellow-400 text-yellow-900 rounded-full p-0.5 shadow-md">
+                                  <CrownIcon className="size-3" />
+                                </div>
+                              )}
+                            </div>
+                            <div className="flex flex-col min-w-0">
+                              <span className="font-semibold text-foreground truncate max-w-[200px]">
+                                {p.display_name || "Chưa đặt tên"}
+                              </span>
+                              <span className="text-xs text-muted-foreground truncate max-w-[200px]" title={p.email}>
+                                {p.email}
+                              </span>
+                            </div>
+                          </div>
+                        </TableCell>
+
+                        {/* VIP status */}
+                        <TableCell>
+                          {isVip ? (
+                            <div className="flex flex-col">
+                              <span className="inline-flex items-center gap-1 rounded-full bg-yellow-100 dark:bg-yellow-950/60 px-2.5 py-0.5 text-xs font-semibold text-yellow-800 dark:text-yellow-400 w-fit">
+                                <CrownIcon className="size-3" />
+                                VIP hoạt động
+                              </span>
+                              <span className="text-xs text-muted-foreground mt-1">
+                                Hết hạn: {new Date(p.vip_until!).toLocaleDateString("vi-VN")}
+                              </span>
+                            </div>
+                          ) : (
+                            <span className="inline-flex items-center rounded-full bg-slate-100 dark:bg-slate-800 px-2.5 py-0.5 text-xs font-medium text-slate-800 dark:text-slate-300">
+                              Thành viên thường
+                            </span>
+                          )}
+                        </TableCell>
+
+                        {/* Quota */}
+                        <TableCell>
+                          <div className="flex flex-col gap-1.5">
+                            <span className="font-semibold text-sm">
+                              {p.admin_model_quota ?? 0} / {p.admin_daily_quota_limit ?? 0}
+                            </span>
+                            <div className="w-24 h-1.5 bg-muted rounded-full overflow-hidden">
+                              <div 
+                                className="h-full bg-blue-500 rounded-full transition-all duration-300" 
+                                style={{ 
+                                  width: `${Math.min(100, p.admin_daily_quota_limit ? ((p.admin_model_quota ?? 0) / p.admin_daily_quota_limit) * 100 : 0)}%` 
+                                }}
+                              />
+                            </div>
+                          </div>
+                        </TableCell>
+
+                        {/* Assigned Model */}
+                        <TableCell>
+                          {p.admin_assigned_model ? (
+                            <span className="inline-flex items-center rounded-full bg-purple-100 dark:bg-purple-950 px-2.5 py-0.5 text-xs font-semibold text-purple-800 dark:text-purple-400 truncate max-w-[200px]" title={p.admin_assigned_model}>
+                              {p.admin_assigned_model.replace("gcli-", "").replace("假流式/", "[No Stream] ")}
+                            </span>
+                          ) : (
+                            <span className="text-xs text-muted-foreground italic">Mặc định hệ thống</span>
+                          )}
+                        </TableCell>
+
+                        {/* Actions */}
+                        <TableCell className="text-right pr-6">
+                          <Button
+                            variant="outline"
+                            size="sm"
+                            onClick={() => setEditingProfile(p)}
+                            className="hover:bg-primary hover:text-primary-foreground font-semibold"
+                          >
+                            Chỉnh sửa
+                          </Button>
+                        </TableCell>
+                      </TableRow>
+                    );
+                  })}
+                  {profiles.length === 0 && (
+                    <TableRow>
+                      <TableCell colSpan={5} className="text-center py-12 text-muted-foreground">
+                        Chưa có người dùng nào được đăng ký.
+                      </TableCell>
+                    </TableRow>
+                  )}
+                </TableBody>
+              </Table>
+            </div>
+          </div>
+        </TabsContent>
+
+        <TabsContent value="translate-test" className="space-y-6 mt-6">
+          <TranslationTest />
+        </TabsContent>
+      </Tabs>
 
       {/* Edit User Dialog */}
       <EditUserDialog

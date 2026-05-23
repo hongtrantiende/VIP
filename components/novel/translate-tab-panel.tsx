@@ -11,7 +11,7 @@ import {
 import { Progress } from "@/components/ui/progress";
 import { Textarea } from "@/components/ui/textarea";
 import { db, type Chapter, GENRE_LABELS } from "@/lib/db";
-import { runQtAiTranslate, type PromptType } from "@/lib/chapter-tools/qt-ai-translate";
+import { runQtAiTranslate, type PromptType, STYLE_PRESETS } from "@/lib/chapter-tools/qt-ai-translate";
 import { BotQueueSubmit } from "@/components/novel/bot-queue-submit";
 import { runHybridTranslate } from "@/lib/chapter-tools/hybrid-translate";
 import type { HybridTranslateResult, HybridTranslateError } from "@/lib/chapter-tools/hybrid-translate";
@@ -80,11 +80,12 @@ import { Switch } from "@/components/ui/switch";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { useBulkTranslateStore } from "@/lib/stores/bulk-translate";
 import { cleanErrorCausingCharacters } from "@/lib/text-utils";
+import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 
 
 // ── Types ──
 type Phase = "idle" | "dict" | "ai" | "done" | "model1" | "model2" | "model3";
-type TranslateMode = "prompt" | "stv-prompt" | "edit" | "comprehensive" | "scan-fix";
+type TranslateMode = "prompt" | "stv-prompt" | "edit" | "comprehensive" | "scan-fix" | "test";
 
 const MODES: { id: TranslateMode; label: string; icon: React.ElementType; color: string; desc: string }[] = [
     { id: "prompt", label: "Dịch Prompt", icon: SparklesIcon, color: "text-blue-600 dark:text-blue-400", desc: "Dịch thuần AI theo system prompt, không dùng từ điển" },
@@ -92,6 +93,7 @@ const MODES: { id: TranslateMode; label: string; icon: React.ElementType; color:
     { id: "edit", label: "Biên Tập AI", icon: PenToolIcon, color: "text-amber-600 dark:text-amber-400", desc: "Biên tập & làm mịn bản dịch tiếng Việt cho trôi chảy, đúng từ điển, mượt mà theo thể loại" },
     { id: "comprehensive", label: "Dịch Toàn Diện", icon: CrownIcon, color: "text-purple-600 dark:text-purple-400", desc: "Pipeline đầy đủ: QT → AI Draft → AI Editor (2-pass)" },
     { id: "scan-fix", label: "Quét & Sửa", icon: ShieldCheckIcon, color: "text-rose-600 dark:text-rose-400", desc: "Quét và phát hiện lỗi chính tả, viết sai tên nhân vật theo từ điển" },
+    { id: "test", label: "Dịch Thử", icon: LanguagesIcon, color: "text-rose-600 dark:text-rose-400", desc: "Dịch thử nghiệm bằng AI 2-pass (Dịch + Biên tập) với văn phong & từ điển tự định nghĩa" },
 ];
 
 const GENRE_DICTS = [
@@ -523,7 +525,7 @@ export function TranslateTabPanel({
         let model2: any = null;
         let model3: any = null;
 
-        if (activeMode === "stv-prompt" || activeMode === "comprehensive" || activeMode === "prompt" || activeMode === "edit") {
+        if (activeMode === "stv-prompt" || activeMode === "comprehensive" || activeMode === "prompt" || activeMode === "edit" || activeMode === "test") {
             const config1 = { providerId: model1ProviderId, modelId: model1ModelId };
             if (!config1.providerId || !config1.modelId) {
                 toast.error(activeMode === "edit" ? "Vui lòng cấu hình đầy đủ Model 1 (Biên tập chính)" : "Vui lòng cấu hình đầy đủ Model 1 (Dịch chính)");
@@ -537,13 +539,13 @@ export function TranslateTabPanel({
 
             const config2 = { providerId: model2ProviderId, modelId: model2ModelId };
             if (activeMode !== "edit" && (!config2.providerId || !config2.modelId)) {
-                toast.error("Vui lòng cấu hình đầy đủ Model 2 (Trích xuất từ điển)");
+                toast.error(activeMode === "test" ? "Vui lòng cấu hình đầy đủ Model 2 (Biên tập Pass 2)" : "Vui lòng cấu hình đầy đủ Model 2 (Trích xuất từ điển)");
                 return;
             }
             if (config2.providerId && config2.modelId) {
                 model2 = await resolveChapterToolModel(config2, defaultProvider, chatSettings);
                 if (!model2 && activeMode !== "edit") {
-                    toast.error("Không tìm thấy cấu hình Model 2 (Trích xuất từ điển)");
+                    toast.error(activeMode === "test" ? "Không tìm thấy cấu hình Model 2 (Biên tập Pass 2)" : "Không tìm thấy cấu hình Model 2 (Trích xuất từ điển)");
                     return;
                 }
             }
@@ -570,6 +572,7 @@ export function TranslateTabPanel({
             customTranslateMode: activeMode,
             customStylePrompt: customStylePrompt.trim(),
             customPronounPrompt: customPronounPrompt.trim(),
+            stylePreset: stylePreset,
             updatedAt: new Date()
         };
         if (activeMode === "prompt" || activeMode === "edit" || activeMode === "scan-fix") {
@@ -701,6 +704,25 @@ export function TranslateTabPanel({
                     continuousMode: target === "all_untranslated", errorAction,
                     ...commonCallbacks,
                 });
+            } else if (activeMode === "test") {
+                await runQtAiTranslate({
+                    novelId, chapterIds: targetChapterIds, model, models: resolvedModels,
+                    dictModel: model2 || undefined,
+                    editorModel: model2 || undefined,
+                    twoPass: twoPass,
+                    stylePreset: stylePreset,
+                    customStylePrompt: customStylePrompt,
+                    customPronounPrompt: customPronounPrompt,
+                    qaModel: model3 || undefined,
+                    qaEnabled: model3Enabled,
+                    qaPrompt: customModel3Prompt || undefined,
+                    qtDictSources: [],
+                    promptType: "custom" as PromptType,
+                    extractDict: false,
+                    skipTranslated: skipTranslated,
+                    continuousMode: target === "all_untranslated", errorAction,
+                    ...commonCallbacks,
+                });
             } else if (activeMode === "edit") {
                 await runEditTranslate({
                     novelId,
@@ -762,9 +784,442 @@ export function TranslateTabPanel({
     const activeModeConfig = MODES.find(m => m.id === activeMode)!;
     const ActiveIcon = activeModeConfig.icon;
 
+    const bulkConfigContent = (
+        <div className="space-y-4 py-2">
+            {/* ── Mode Buttons ── */}
+            <div className="grid grid-cols-3 gap-2">
+                {MODES.map((mode) => {
+                    const Icon = mode.icon;
+                    const isActive = activeMode === mode.id;
+                    return (
+                        <button
+                            key={mode.id}
+                            type="button"
+                            onClick={async () => {
+                                setActiveMode(mode.id);
+                                await db.novels.update(novelId, { customTranslateMode: mode.id });
+                            }}
+                            className={cn(
+                                "flex flex-col items-center gap-1 rounded-lg border p-2 text-center transition-all",
+                                isActive
+                                    ? "border-primary bg-primary/10 shadow-sm"
+                                    : "border-muted bg-background hover:bg-muted/50"
+                            )}
+                        >
+                            <Icon className={cn("size-4", isActive ? mode.color : "text-muted-foreground")} />
+                            <span className={cn("text-[9px] font-medium leading-tight", isActive ? "text-foreground" : "text-muted-foreground")}>
+                                {mode.label}
+                            </span>
+                        </button>
+                    );
+                })}
+            </div>
+
+            {/* ── Mode Description ── */}
+            <div className="rounded-lg border border-dashed border-primary/30 bg-primary/5 p-2.5">
+                <div className="flex items-center justify-between mb-1">
+                    <span className="flex items-center gap-2">
+                        <ActiveIcon className={cn("size-4", activeModeConfig.color)} />
+                        <span className="text-xs font-semibold">{activeModeConfig.label}</span>
+                    </span>
+                    {(activeMode === "prompt" || activeMode === "stv-prompt") && (
+                        <button
+                            type="button"
+                            onClick={() => setShowStepsInfo(true)}
+                            className="text-muted-foreground hover:text-primary transition-colors p-0.5"
+                            title="Xem các bước dịch"
+                        >
+                            <HelpCircleIcon className="size-4" />
+                        </button>
+                    )}
+                </div>
+                <p className="text-[10px] text-muted-foreground">{activeModeConfig.desc}</p>
+            </div>
+
+            {!isUnderMaintenance ? (
+                activeMode === "scan-fix" ? (
+                    <ScanFixPanel
+                        novelId={novelId}
+                        chapterIds={chapterIds}
+                        chapters={chapters}
+                    />
+                ) : (
+                    <>
+                        {/* ── Mode-specific Setup Panels ── */}
+
+                    {/* Cấu hình Prompt */}
+                    {(activeMode === "prompt" || activeMode === "stv-prompt" || activeMode === "comprehensive" || activeMode === "edit") && (() => {
+                        const hasPrompt = activeMode === "stv-prompt"
+                            ? !!novel?.customStvPrompt?.trim()
+                            : activeMode === "comprehensive"
+                                ? !!novel?.customComprehensivePrompt?.trim()
+                                : !!novel?.customTranslatePrompt?.trim();
+                        return (
+                            <div className="rounded-lg border bg-card p-3 space-y-2">
+                                <div className="flex items-center justify-between">
+                                    <div className="flex items-center gap-2">
+                                        <span className="text-xs font-medium flex items-center gap-1.5 select-none">
+                                            <ScanSearchIcon className={cn("size-3.5", hasPrompt ? "text-emerald-600" : "text-muted-foreground")} />
+                                            {activeMode === "edit" ? "Cấu hình Prompt Biên Tập" : "Cấu hình Prompt"}
+                                        </span>
+                                        {hasPrompt ? (
+                                            <span className="text-[9px] bg-emerald-500/10 text-emerald-700 dark:text-emerald-400 px-1.5 py-0.5 rounded border border-emerald-500/20 font-semibold flex items-center gap-0.5">
+                                                <CheckCircle2Icon className="size-2.5 text-emerald-600" />
+                                                Đã trang bị
+                                            </span>
+                                        ) : (
+                                            <span className="text-[9px] bg-muted text-muted-foreground px-1.5 py-0.5 rounded border border-muted-foreground/10 font-normal">
+                                                Chưa có
+                                            </span>
+                                        )}
+                                    </div>
+                                    <Button variant="ghost" size="sm" className="h-6 text-[10px]" onClick={() => setTunerOpen(true)}>
+                                        <SparklesIcon className="size-3 mr-1" /> Mở Tuner
+                                    </Button>
+                                </div>
+                            </div>
+                        );
+                    })()}
+
+                    {/* Comprehensive mode configuration */}
+                    {(activeMode === "comprehensive" || activeMode === "edit") && (
+                        <div className="space-y-3">
+                            {/* Văn Phong Dịch */}
+                            <div className="rounded-lg border bg-card p-3 space-y-2 border-indigo-500/20">
+                                <div className="flex items-center justify-between">
+                                    <div className="flex items-center gap-2">
+                                        <span className="text-xs font-medium flex items-center gap-1.5 select-none">
+                                            <BookOpenIcon className={cn("size-3.5", customStylePrompt?.trim() ? "text-indigo-600" : "text-muted-foreground")} />
+                                            {activeMode === "edit" ? "Văn Phong Biên Tập" : "Văn Phong Dịch"}
+                                        </span>
+                                        {customStylePrompt?.trim() ? (
+                                            <span className="text-[9px] bg-indigo-500/10 text-indigo-700 dark:text-indigo-400 px-1.5 py-0.5 rounded border border-indigo-500/20 font-semibold flex items-center gap-0.5">
+                                                <CheckCircle2Icon className="size-2.5 text-indigo-600" />
+                                                Đã trang bị
+                                            </span>
+                                        ) : (
+                                            <span className="text-[9px] bg-muted text-muted-foreground px-1.5 py-0.5 rounded border border-muted-foreground/10 font-normal">
+                                                Chưa có
+                                            </span>
+                                        )}
+                                    </div>
+                                    <Button variant="ghost" size="sm" className="h-6 text-[10px]" onClick={() => setStyleTunerOpen(true)}>
+                                        <SparklesIcon className="size-3 mr-1" /> Mở Tuner
+                                    </Button>
+                                </div>
+                            </div>
+
+                            {/* Quy Tắc Xưng Hô & Bối Cảnh */}
+                            <div className="rounded-lg border bg-card p-3 space-y-2 border-purple-500/20">
+                                <div className="flex items-center justify-between">
+                                    <div className="flex items-center gap-2">
+                                        <span className="text-xs font-medium flex items-center gap-1.5 select-none">
+                                            <UsersIcon className={cn("size-3.5", customPronounPrompt?.trim() ? "text-purple-600" : "text-muted-foreground")} />
+                                            Quy Tắc Xưng Hô & Bối Cảnh
+                                        </span>
+                                        {customPronounPrompt?.trim() ? (
+                                            <span className="text-[9px] bg-purple-500/10 text-purple-700 dark:text-purple-400 px-1.5 py-0.5 rounded border border-purple-500/20 font-semibold flex items-center gap-0.5">
+                                                <CheckCircle2Icon className="size-2.5 text-purple-600" />
+                                                Đã trang bị
+                                            </span>
+                                        ) : (
+                                            <span className="text-[9px] bg-muted text-muted-foreground px-1.5 py-0.5 rounded border border-muted-foreground/10 font-normal">
+                                                Chưa có
+                                            </span>
+                                        )}
+                                    </div>
+                                    <Button variant="ghost" size="sm" className="h-6 text-[10px]" onClick={() => setPronounTunerOpen(true)}>
+                                        <SparklesIcon className="size-3 mr-1" /> Mở Tuner
+                                    </Button>
+                                </div>
+                            </div>
+
+                            {/* Two-pass toggle */}
+                            <div className="flex items-center justify-between border-t pt-2 mt-2">
+                                <div>
+                                    <Label htmlFor="two-pass" className="text-xs cursor-pointer">Biên tập 2-Pass</Label>
+                                    <p className="text-[10px] text-muted-foreground">AI biên tập thêm bước 2 cho mượt hơn</p>
+                                </div>
+                                <Switch id="two-pass" checked={twoPass} onCheckedChange={setTwoPass} />
+                            </div>
+                        </div>
+                    )}
+
+                    {/* Dịch Thử mode configuration */}
+                    {activeMode === "test" && (
+                        <div className="space-y-3.5 border rounded-lg p-3 bg-muted/20 border-dashed border-rose-500/30">
+                            <div className="flex items-center gap-2 pb-1.5 border-b border-muted">
+                                <LanguagesIcon className="size-4 text-rose-500" />
+                                <span className="text-xs font-bold text-rose-600 dark:text-rose-400">Thiết Lập Dịch Thử (AI 2-Pass)</span>
+                            </div>
+                            
+                            {/* Preset Select */}
+                            <div className="space-y-1.5">
+                                <Label className="text-xs font-medium">Văn phong chủ đạo:</Label>
+                                <Select 
+                                    value={stylePreset} 
+                                    onValueChange={async (val) => { 
+                                        setStylePreset(val); 
+                                        await db.novels.update(novelId, { stylePreset: val }); 
+                                    }}
+                                >
+                                    <SelectTrigger className="w-full text-xs h-8 bg-background">
+                                        <SelectValue placeholder="Mặc định (Standard)" />
+                                    </SelectTrigger>
+                                    <SelectContent>
+                                        {STYLE_PRESETS.map(p => (
+                                            <SelectItem key={p.id} value={p.id}>{p.name}</SelectItem>
+                                        ))}
+                                    </SelectContent>
+                                </Select>
+                            </div>
+
+                            {/* Custom Style Rules Textarea */}
+                            <div className="space-y-1.5">
+                                <Label htmlFor="test-style-prompt" className="text-xs font-medium">Quy tắc phong cách tùy chỉnh (tự định nghĩa):</Label>
+                                <Textarea
+                                    id="test-style-prompt"
+                                    placeholder="Ví dụ: Hành văn trôi chảy, sử dụng từ ngữ thuần Việt, mô tả tâm lý nhân vật sâu sắc..."
+                                    value={customStylePrompt}
+                                    onChange={async (e) => {
+                                        setCustomStylePrompt(e.target.value);
+                                        await db.novels.update(novelId, { customStylePrompt: e.target.value });
+                                    }}
+                                    className="text-xs h-16 min-h-[60px] max-h-32 bg-background"
+                                />
+                            </div>
+
+                            {/* Glossary Textarea */}
+                            <div className="space-y-1.5">
+                                <Label htmlFor="test-pronoun-prompt" className="text-xs font-medium">Từ điển & quy tắc xưng hô riêng (Glossary):</Label>
+                                <Textarea
+                                    id="test-pronoun-prompt"
+                                    placeholder="Ví dụ:&#10;Lâm Phong=anh, Sở Dao=cô&#10;Sư phụ -> Người, Đồ nhi -> Con"
+                                    value={customPronounPrompt}
+                                    onChange={async (e) => {
+                                        setCustomPronounPrompt(e.target.value);
+                                        await db.novels.update(novelId, { customPronounPrompt: e.target.value });
+                                    }}
+                                    className="text-xs h-20 min-h-[80px] max-h-40 bg-background"
+                                />
+                            </div>
+
+                            {/* Two-pass Toggle */}
+                            <div className="flex items-center justify-between pt-1">
+                                <div>
+                                    <Label htmlFor="test-two-pass" className="text-xs font-medium cursor-pointer">Biên tập 2-Pass (Khuyên dùng)</Label>
+                                    <p className="text-[10px] text-muted-foreground">Chạy thêm Model 2 để tối ưu hóa văn phong trôi chảy hơn</p>
+                                </div>
+                                <Switch id="test-two-pass" checked={twoPass} onCheckedChange={setTwoPass} />
+                            </div>
+                        </div>
+                    )}
+
+                    {/* ── AI Model Configuration ── */}
+                    {activeMode === "stv-prompt" || activeMode === "comprehensive" || activeMode === "prompt" || activeMode === "edit" || activeMode === "test" ? (
+                        <div className="space-y-3.5 border-t pt-3.5">
+                            <div className="space-y-1.5">
+                                <div className="flex justify-between items-center text-xs">
+                                    <Label className="text-xs font-bold text-blue-600 dark:text-blue-400">
+                                        {activeMode === "edit" ? "Model 1: Biên tập chính (Khuyên dùng Pro)" : "Model 1: Dịch chính (Khuyên dùng Pro)"}
+                                    </Label>
+                                </div>
+                                <div className="flex gap-2">
+                                    <Select value={model1ProviderId} onValueChange={handleModel1ProviderChange}>
+                                        <SelectTrigger className="flex-1 h-8 text-xs"><SelectValue placeholder="Provider..." /></SelectTrigger>
+                                        <SelectContent>{providers?.map(p => <SelectItem key={p.id} value={p.id}>{p.name}</SelectItem>)}</SelectContent>
+                                    </Select>
+                                    <Select value={model1ModelId} onValueChange={handleModel1ModelChange} disabled={!model1ProviderId}>
+                                        <SelectTrigger className="flex-1 h-8 text-xs"><SelectValue placeholder="Model..." /></SelectTrigger>
+                                        <SelectContent>{model1Models?.map(m => <SelectItem key={m.id} value={m.modelId}>{m.name || m.modelId}</SelectItem>)}</SelectContent>
+                                    </Select>
+                                </div>
+                            </div>
+
+                            <div className="space-y-1.5">
+                                <div className="flex justify-between items-center text-xs">
+                                    <Label className="text-xs font-bold text-emerald-600 dark:text-emerald-400">
+                                        {activeMode === "test" ? "Model 2: Biên tập Pass 2 (Khuyên dùng Flash/Pro)" : "Model 2: Quét từ điển (Khuyên dùng Flash)"}
+                                    </Label>
+                                </div>
+                                <div className="flex gap-2">
+                                    <Select value={model2ProviderId} onValueChange={handleModel2ProviderChange}>
+                                        <SelectTrigger className="flex-1 h-8 text-xs"><SelectValue placeholder="Provider..." /></SelectTrigger>
+                                        <SelectContent>{providers?.map(p => <SelectItem key={p.id} value={p.id}>{p.name}</SelectItem>)}</SelectContent>
+                                    </Select>
+                                    <Select value={model2ModelId} onValueChange={handleModel2ModelChange} disabled={!model2ProviderId}>
+                                        <SelectTrigger className="flex-1 h-8 text-xs"><SelectValue placeholder="Model..." /></SelectTrigger>
+                                        <SelectContent>{model2Models?.map(m => <SelectItem key={m.id} value={m.modelId}>{m.name || m.modelId}</SelectItem>)}</SelectContent>
+                                    </Select>
+                                </div>
+                            </div>
+
+                            <div className="space-y-1.5 pt-1.5 border-t border-muted/30">
+                                <div className="flex justify-between items-center">
+                                    <Label htmlFor="model3-enable" className="text-xs font-bold cursor-pointer text-purple-600 dark:text-purple-400 flex items-center gap-1.5">
+                                        <BotIcon className="size-3.5" /> Model 3: QA Bot (Giám sát & Tinh chỉnh)
+                                    </Label>
+                                    <Switch id="model3-enable" checked={model3Enabled} onCheckedChange={handleModel3EnabledToggle} />
+                                </div>
+                                {model3Enabled && (
+                                    <div className="space-y-2 pt-1 animate-in fade-in slide-in-from-top-1 duration-200">
+                                        <div className="flex gap-2">
+                                            <Select value={model3ProviderId} onValueChange={handleModel3ProviderChange}>
+                                                <SelectTrigger className="flex-1 h-8 text-xs"><SelectValue placeholder="Provider..." /></SelectTrigger>
+                                                <SelectContent>{providers?.map(p => <SelectItem key={p.id} value={p.id}>{p.name}</SelectItem>)}</SelectContent>
+                                            </Select>
+                                            <Select value={model3ModelId} onValueChange={handleModel3ModelChange} disabled={!model3ProviderId}>
+                                                <SelectTrigger className="flex-1 h-8 text-xs"><SelectValue placeholder="Model..." /></SelectTrigger>
+                                                <SelectContent>{model3Models?.map(m => <SelectItem key={m.id} value={m.modelId}>{m.name || m.modelId}</SelectItem>)}</SelectContent>
+                                            </Select>
+                                        </div>
+                                        <div className="space-y-1">
+                                            <Label htmlFor="model3-prompt" className="text-[10px] font-medium text-purple-600 dark:text-purple-400">Prompt Cấu Hình QA Bot (Giám sát & Tinh chỉnh)</Label>
+                                            <Textarea
+                                                id="model3-prompt"
+                                                placeholder="Nhập prompt điều chỉnh chất lượng dịch, sửa lỗi ngữ pháp, đại từ xưng hô..."
+                                                value={customModel3Prompt}
+                                                onChange={(e) => handleModel3PromptChange(e.target.value)}
+                                                className="text-xs h-16 min-h-[60px] max-h-32 focus-visible:ring-purple-500"
+                                            />
+                                        </div>
+                                    </div>
+                                )}
+                            </div>
+                        </div>
+                    ) : (
+                        <div className="space-y-2 border-t pt-3">
+                            <Label className="text-xs">AI Model:</Label>
+                            <div className="flex gap-2">
+                                <Select value={selectedProviderId} onValueChange={(val) => { handleProviderChange(val); setExtraModels([]); }}>
+                                    <SelectTrigger className="flex-1 h-8 text-xs"><SelectValue placeholder="Provider..." /></SelectTrigger>
+                                    <SelectContent>{providers?.map(p => <SelectItem key={p.id} value={p.id}>{p.name}</SelectItem>)}</SelectContent>
+                                </Select>
+                                <Select value={selectedModelId || ""} onValueChange={handleModelChange} disabled={!selectedProviderId}>
+                                    <SelectTrigger className="flex-1 h-8 text-xs"><SelectValue placeholder="Model..." /></SelectTrigger>
+                                    <SelectContent>{models?.map(m => <SelectItem key={m.id} value={m.modelId}>{m.name || m.modelId}</SelectItem>)}</SelectContent>
+                                </Select>
+                            </div>
+
+                            {/* Extra models */}
+                            {selectedProviderId && selectedModelId && (
+                                <div className="space-y-1 pl-1">
+                                    {extraModels.map((item, idx) => (
+                                        <ExtraModelRow
+                                            key={idx} index={idx} providers={providers} value={item}
+                                            onChange={(newVal) => { const m = [...extraModels]; m[idx] = newVal; setExtraModels(m); }}
+                                            onRemove={() => setExtraModels(prev => prev.filter((_, i) => i !== idx))}
+                                        />
+                                    ))}
+                                    <Button variant="outline" size="sm" className="h-6 text-[10px] gap-1" onClick={() => setExtraModels(prev => [...prev, { providerId: selectedProviderId || "", modelId: "" }])}>
+                                        <PlusIcon className="size-3" /> Thêm Model
+                                    </Button>
+                                </div>
+                            )}
+                        </div>
+                    )}
+
+                    {/* ── Common Options ── */}
+                    <div className="space-y-2">
+                        {(activeMode === "comprehensive" || activeMode === "prompt" || activeMode === "stv-prompt" || activeMode === "test") && (
+                            <label className="flex items-start gap-2 rounded-lg border border-emerald-500/30 bg-emerald-500/5 p-2.5 cursor-pointer hover:bg-emerald-500/10">
+                                <Checkbox checked={extractDict} onCheckedChange={(c) => setExtractDict(!!c)} className="mt-0.5 border-emerald-500 data-[state=checked]:bg-emerald-500" />
+                                <div>
+                                    <span className="text-[11px] font-medium text-emerald-700 dark:text-emerald-400">Càng dịch càng hay ✨</span>
+                                    <p className="text-[10px] text-muted-foreground">AI trích xuất tên → lưu từ điển → chương sau chính xác hơn</p>
+                                </div>
+                            </label>
+                        )}
+
+                        <div className="flex items-center gap-2">
+                            <Switch id="skip-tl" checked={skipTranslated} onCheckedChange={setSkipTranslated} />
+                            <Label htmlFor="skip-tl" className="cursor-pointer text-xs">Bỏ qua chương đã dịch</Label>
+                        </div>
+
+                        <div className="space-y-1.5 pt-1.5 border-t border-muted/50 mt-1">
+                            <span className="text-[10px] uppercase font-bold text-muted-foreground tracking-wider">Khi gặp lỗi dịch</span>
+                            <RadioGroup value={errorAction} onValueChange={(val: any) => setErrorAction(val)} className="flex items-center gap-4 mt-0.5">
+                                <div className="flex items-center gap-1.5 cursor-pointer">
+                                    <RadioGroupItem value="stop" id="err-stop" />
+                                    <Label htmlFor="err-stop" className="text-xs cursor-pointer">Dừng lại</Label>
+                                </div>
+                                <div className="flex items-center gap-1.5 cursor-pointer">
+                                    <RadioGroupItem value="skip" id="err-skip" />
+                                    <Label htmlFor="err-skip" className="text-xs cursor-pointer">Bỏ qua & Dịch tiếp</Label>
+                                </div>
+                            </RadioGroup>
+                        </div>
+                    </div>
+
+                    {/* Clean error characters button */}
+                    <Button
+                        variant="outline"
+                        size="sm"
+                        className="w-full text-xs gap-1.5 h-8 border-amber-500/30 hover:bg-amber-500/5 hover:text-amber-600 dark:hover:text-amber-400"
+                        onClick={handleCleanErrorChars}
+                        disabled={isCleaning || chapterIds.length === 0}
+                    >
+                        {isCleaning ? <Loader2Icon className="size-3.5 animate-spin" /> : <SparklesIcon className="size-3.5" />}
+                        Làm sạch ký tự lỗi (Emoji, Icon...) trong {chapterIds.length} chương gốc
+                    </Button>
+
+                    {/* ── Chapter count & Admin info ── */}
+                    <div className="rounded-md bg-muted/50 p-2 space-y-1">
+                        <p className="text-sm">Sẽ xử lý <strong>{chapterIds.length}</strong> chương đã chọn.</p>
+                        {selectedProviderId === "admin-provider" && (
+                            <p className="text-[10px] text-blue-600 dark:text-blue-400 font-medium flex items-center gap-1">
+                                <CrownIcon className="size-3" />
+                                Model Admin {isAdmin ? "(Không giới hạn)" : `(Còn ${rawQuota} lượt)`}
+                            </p>
+                        )}
+                    </div>
+
+                    {/* ── Action Buttons ── */}
+                    <div className="grid grid-cols-2 gap-2">
+                        <Button
+                            onClick={() => handleStart("selected")}
+                            className="w-full gap-1.5 bg-primary hover:bg-primary/90"
+                            disabled={
+                                selectedProviderId === "admin-provider"
+                                    ? (!isAdmin && rawQuota <= 0)
+                                    : ((activeMode === "stv-prompt" || activeMode === "comprehensive" || activeMode === "prompt" || activeMode === "edit" || activeMode === "test")
+                                        ? (!model1ProviderId || !model1ModelId || (activeMode !== "edit" && activeMode !== "test" && (!model2ProviderId || !model2ModelId)) || (model3Enabled && (!model3ProviderId || !model3ModelId)))
+                                        : !currentModel)
+                            }
+                        >
+                            <ActiveIcon className="size-3.5" />
+                            {activeMode === "edit" ? `${chapterIds.length} chương biên tập` : activeMode === "test" ? `${chapterIds.length} chương dịch thử` : `${chapterIds.length} chương đã chọn`}
+                        </Button>
+                        <Button
+                            onClick={() => handleStart("all_untranslated")}
+                            variant="outline"
+                            className="w-full gap-1.5"
+                            disabled={
+                                selectedProviderId === "admin-provider"
+                                    ? (!isAdmin && rawQuota <= 0)
+                                    : ((activeMode === "stv-prompt" || activeMode === "comprehensive" || activeMode === "prompt" || activeMode === "edit" || activeMode === "test")
+                                        ? (!model1ProviderId || !model1ModelId || (activeMode !== "edit" && activeMode !== "test" && (!model2ProviderId || !model2ModelId)) || (model3Enabled && (!model3ProviderId || !model3ModelId)))
+                                        : !currentModel)
+                            }
+                        >
+                            <ActiveIcon className="size-3.5" />
+                            {activeMode === "edit" ? "Biên tập đến hết truyện" : activeMode === "test" ? "Dịch thử đến hết truyện" : "Dịch đến hết truyện"}
+                        </Button>
+                    </div>
+                </>
+            )
+        ) : (
+                <div className="flex flex-col items-center justify-center py-10 text-muted-foreground gap-2 border border-dashed rounded-lg bg-muted/20">
+                    <PenToolIcon className="size-8 text-muted-foreground/45 animate-pulse" />
+                    <p className="text-xs font-medium">Chương trình bảo trì, chưa có ý tưởng phát triển</p>
+                </div>
+            )}
+        </div>
+    );
+
     return (
         <Dialog open={open} onOpenChange={handleOpenChange}>
-            <DialogContent className="sm:max-w-lg max-h-[90vh] overflow-y-auto">
+            <DialogContent className="max-h-[90vh] overflow-y-auto transition-all duration-300 sm:max-w-lg">
                 <DialogHeader>
                     <DialogTitle className="flex items-center gap-2">
                         <ZapIcon className="size-5 text-primary" />
@@ -775,366 +1230,7 @@ export function TranslateTabPanel({
                     </DialogDescription>
                 </DialogHeader>
 
-                {step === "config" && (
-                    <div className="space-y-4 py-2">
-                        {/* ── 5 Mode Buttons ── */}
-                        <div className="grid grid-cols-5 gap-1.5">
-                            {MODES.map((mode) => {
-                                const Icon = mode.icon;
-                                const isActive = activeMode === mode.id;
-                                return (
-                                    <button
-                                        key={mode.id}
-                                        type="button"
-                                        onClick={async () => {
-                                            setActiveMode(mode.id);
-                                            await db.novels.update(novelId, { customTranslateMode: mode.id });
-                                        }}
-                                        className={cn(
-                                            "flex flex-col items-center gap-1 rounded-lg border p-2 text-center transition-all",
-                                            isActive
-                                                ? "border-primary bg-primary/10 shadow-sm"
-                                                : "border-muted bg-background hover:bg-muted/50"
-                                        )}
-                                    >
-                                        <Icon className={cn("size-4", isActive ? mode.color : "text-muted-foreground")} />
-                                        <span className={cn("text-[9px] font-medium leading-tight", isActive ? "text-foreground" : "text-muted-foreground")}>
-                                            {mode.label}
-                                        </span>
-                                    </button>
-                                );
-                            })}
-                        </div>
-
-                        {/* ── Mode Description ── */}
-                        <div className="rounded-lg border border-dashed border-primary/30 bg-primary/5 p-2.5">
-                            <div className="flex items-center justify-between mb-1">
-                                <span className="flex items-center gap-2">
-                                    <ActiveIcon className={cn("size-4", activeModeConfig.color)} />
-                                    <span className="text-xs font-semibold">{activeModeConfig.label}</span>
-                                </span>
-                                {(activeMode === "prompt" || activeMode === "stv-prompt") && (
-                                    <button
-                                        type="button"
-                                        onClick={() => setShowStepsInfo(true)}
-                                        className="text-muted-foreground hover:text-primary transition-colors p-0.5"
-                                        title="Xem các bước dịch"
-                                    >
-                                        <HelpCircleIcon className="size-4" />
-                                    </button>
-                                )}
-                            </div>
-                            <p className="text-[10px] text-muted-foreground">{activeModeConfig.desc}</p>
-                        </div>
-
-                        {!isUnderMaintenance ? (
-                            activeMode === "scan-fix" ? (
-                                <ScanFixPanel
-                                    novelId={novelId}
-                                    chapterIds={chapterIds}
-                                    chapters={chapters}
-                                />
-                            ) : (
-                                <>
-                                    {/* ── Mode-specific Setup Panels ── */}
-
-                                {/* Cấu hình Prompt */}
-                                {(activeMode === "prompt" || activeMode === "stv-prompt" || activeMode === "comprehensive" || activeMode === "edit" || activeMode === "scan-fix") && (() => {
-                                    const hasPrompt = activeMode === "stv-prompt"
-                                        ? !!novel?.customStvPrompt?.trim()
-                                        : activeMode === "comprehensive"
-                                            ? !!novel?.customComprehensivePrompt?.trim()
-                                            : !!novel?.customTranslatePrompt?.trim();
-                                    return (
-                                        <div className="rounded-lg border bg-card p-3 space-y-2">
-                                            <div className="flex items-center justify-between">
-                                                <div className="flex items-center gap-2">
-                                                    <span className="text-xs font-medium flex items-center gap-1.5 select-none">
-                                                        <ScanSearchIcon className={cn("size-3.5", hasPrompt ? "text-emerald-600" : "text-muted-foreground")} />
-                                                        {activeMode === "edit" ? "Cấu hình Prompt Biên Tập" : "Cấu hình Prompt"}
-                                                    </span>
-                                                    {hasPrompt ? (
-                                                        <span className="text-[9px] bg-emerald-500/10 text-emerald-700 dark:text-emerald-400 px-1.5 py-0.5 rounded border border-emerald-500/20 font-semibold flex items-center gap-0.5">
-                                                            <CheckCircle2Icon className="size-2.5 text-emerald-600" />
-                                                            Đã trang bị
-                                                        </span>
-                                                    ) : (
-                                                        <span className="text-[9px] bg-muted text-muted-foreground px-1.5 py-0.5 rounded border border-muted-foreground/10 font-normal">
-                                                            Chưa có
-                                                        </span>
-                                                    )}
-                                                </div>
-                                                <Button variant="ghost" size="sm" className="h-6 text-[10px]" onClick={() => setTunerOpen(true)}>
-                                                    <SparklesIcon className="size-3 mr-1" /> Mở Tuner
-                                                </Button>
-                                            </div>
-                                        </div>
-                                    );
-                                })()}
-
-                                {/* Comprehensive mode configuration */}
-                                {(activeMode === "comprehensive" || activeMode === "edit") && (
-                                    <div className="space-y-3">
-                                        {/* Văn Phong Dịch */}
-                                        <div className="rounded-lg border bg-card p-3 space-y-2 border-indigo-500/20">
-                                            <div className="flex items-center justify-between">
-                                                <div className="flex items-center gap-2">
-                                                    <span className="text-xs font-medium flex items-center gap-1.5 select-none">
-                                                        <BookOpenIcon className={cn("size-3.5", customStylePrompt?.trim() ? "text-indigo-600" : "text-muted-foreground")} />
-                                                        {activeMode === "edit" ? "Văn Phong Biên Tập" : "Văn Phong Dịch"}
-                                                    </span>
-                                                    {customStylePrompt?.trim() ? (
-                                                        <span className="text-[9px] bg-indigo-500/10 text-indigo-700 dark:text-indigo-400 px-1.5 py-0.5 rounded border border-indigo-500/20 font-semibold flex items-center gap-0.5">
-                                                            <CheckCircle2Icon className="size-2.5 text-indigo-600" />
-                                                            Đã trang bị
-                                                        </span>
-                                                    ) : (
-                                                        <span className="text-[9px] bg-muted text-muted-foreground px-1.5 py-0.5 rounded border border-muted-foreground/10 font-normal">
-                                                            Chưa có
-                                                        </span>
-                                                    )}
-                                                </div>
-                                                <Button variant="ghost" size="sm" className="h-6 text-[10px]" onClick={() => setStyleTunerOpen(true)}>
-                                                    <SparklesIcon className="size-3 mr-1" /> Mở Tuner
-                                                </Button>
-                                            </div>
-                                        </div>
-
-                                        {/* Quy Tắc Xưng Hô & Bối Cảnh */}
-                                        <div className="rounded-lg border bg-card p-3 space-y-2 border-purple-500/20">
-                                            <div className="flex items-center justify-between">
-                                                <div className="flex items-center gap-2">
-                                                    <span className="text-xs font-medium flex items-center gap-1.5 select-none">
-                                                        <UsersIcon className={cn("size-3.5", customPronounPrompt?.trim() ? "text-purple-600" : "text-muted-foreground")} />
-                                                        Quy Tắc Xưng Hô & Bối Cảnh
-                                                    </span>
-                                                    {customPronounPrompt?.trim() ? (
-                                                        <span className="text-[9px] bg-purple-500/10 text-purple-700 dark:text-purple-400 px-1.5 py-0.5 rounded border border-purple-500/20 font-semibold flex items-center gap-0.5">
-                                                            <CheckCircle2Icon className="size-2.5 text-purple-600" />
-                                                            Đã trang bị
-                                                        </span>
-                                                    ) : (
-                                                        <span className="text-[9px] bg-muted text-muted-foreground px-1.5 py-0.5 rounded border border-muted-foreground/10 font-normal">
-                                                            Chưa có
-                                                        </span>
-                                                    )}
-                                                </div>
-                                                <Button variant="ghost" size="sm" className="h-6 text-[10px]" onClick={() => setPronounTunerOpen(true)}>
-                                                    <SparklesIcon className="size-3 mr-1" /> Mở Tuner
-                                                </Button>
-                                            </div>
-                                        </div>
-
-                                        {/* Two-pass toggle */}
-                                        <div className="flex items-center justify-between border-t pt-2 mt-2">
-                                            <div>
-                                                <Label htmlFor="two-pass" className="text-xs cursor-pointer">Biên tập 2-Pass</Label>
-                                                <p className="text-[10px] text-muted-foreground">AI biên tập thêm bước 2 cho mượt hơn</p>
-                                            </div>
-                                            <Switch id="two-pass" checked={twoPass} onCheckedChange={setTwoPass} />
-                                        </div>
-                                    </div>
-                                )}
-
-                                {/* ── AI Model Configuration ── */}
-                                {activeMode === "stv-prompt" || activeMode === "comprehensive" || activeMode === "prompt" || activeMode === "edit" ? (
-                                    <div className="space-y-3.5 border-t pt-3.5">
-                                        <div className="space-y-1.5">
-                                            <div className="flex justify-between items-center text-xs">
-                                                <Label className="text-xs font-bold text-blue-600 dark:text-blue-400">
-                                                    {activeMode === "edit" ? "Model 1: Biên tập chính (Khuyên dùng Pro)" : "Model 1: Dịch chính (Khuyên dùng Pro)"}
-                                                </Label>
-                                            </div>
-                                            <div className="flex gap-2">
-                                                <Select value={model1ProviderId} onValueChange={handleModel1ProviderChange}>
-                                                    <SelectTrigger className="flex-1 h-8 text-xs"><SelectValue placeholder="Provider..." /></SelectTrigger>
-                                                    <SelectContent>{providers?.map(p => <SelectItem key={p.id} value={p.id}>{p.name}</SelectItem>)}</SelectContent>
-                                                </Select>
-                                                <Select value={model1ModelId} onValueChange={handleModel1ModelChange} disabled={!model1ProviderId}>
-                                                    <SelectTrigger className="flex-1 h-8 text-xs"><SelectValue placeholder="Model..." /></SelectTrigger>
-                                                    <SelectContent>{model1Models?.map(m => <SelectItem key={m.id} value={m.modelId}>{m.name || m.modelId}</SelectItem>)}</SelectContent>
-                                                </Select>
-                                            </div>
-                                        </div>
-
-                                        <div className="space-y-1.5">
-                                            <div className="flex justify-between items-center text-xs">
-                                                <Label className="text-xs font-bold text-emerald-600 dark:text-emerald-400">Model 2: Quét từ điển (Khuyên dùng Flash)</Label>
-                                            </div>
-                                            <div className="flex gap-2">
-                                                <Select value={model2ProviderId} onValueChange={handleModel2ProviderChange}>
-                                                    <SelectTrigger className="flex-1 h-8 text-xs"><SelectValue placeholder="Provider..." /></SelectTrigger>
-                                                    <SelectContent>{providers?.map(p => <SelectItem key={p.id} value={p.id}>{p.name}</SelectItem>)}</SelectContent>
-                                                </Select>
-                                                <Select value={model2ModelId} onValueChange={handleModel2ModelChange} disabled={!model2ProviderId}>
-                                                    <SelectTrigger className="flex-1 h-8 text-xs"><SelectValue placeholder="Model..." /></SelectTrigger>
-                                                    <SelectContent>{model2Models?.map(m => <SelectItem key={m.id} value={m.modelId}>{m.name || m.modelId}</SelectItem>)}</SelectContent>
-                                                </Select>
-                                            </div>
-                                        </div>
-
-                                        <div className="space-y-1.5 pt-1.5 border-t border-muted/30">
-                                            <div className="flex justify-between items-center">
-                                                <Label htmlFor="model3-enable" className="text-xs font-bold cursor-pointer text-purple-600 dark:text-purple-400 flex items-center gap-1.5">
-                                                    <BotIcon className="size-3.5" /> Model 3: QA Bot (Giám sát & Tinh chỉnh)
-                                                </Label>
-                                                <Switch id="model3-enable" checked={model3Enabled} onCheckedChange={handleModel3EnabledToggle} />
-                                            </div>
-                                            {model3Enabled && (
-                                                <div className="space-y-2 pt-1 animate-in fade-in slide-in-from-top-1 duration-200">
-                                                    <div className="flex gap-2">
-                                                        <Select value={model3ProviderId} onValueChange={handleModel3ProviderChange}>
-                                                            <SelectTrigger className="flex-1 h-8 text-xs"><SelectValue placeholder="Provider..." /></SelectTrigger>
-                                                            <SelectContent>{providers?.map(p => <SelectItem key={p.id} value={p.id}>{p.name}</SelectItem>)}</SelectContent>
-                                                        </Select>
-                                                        <Select value={model3ModelId} onValueChange={handleModel3ModelChange} disabled={!model3ProviderId}>
-                                                            <SelectTrigger className="flex-1 h-8 text-xs"><SelectValue placeholder="Model..." /></SelectTrigger>
-                                                            <SelectContent>{model3Models?.map(m => <SelectItem key={m.id} value={m.modelId}>{m.name || m.modelId}</SelectItem>)}</SelectContent>
-                                                        </Select>
-                                                    </div>
-                                                    <div className="space-y-1">
-                                                        <Label htmlFor="model3-prompt" className="text-[10px] font-medium text-purple-600 dark:text-purple-400">Prompt Cấu Hình QA Bot (Giám sát & Tinh chỉnh)</Label>
-                                                        <Textarea
-                                                            id="model3-prompt"
-                                                            placeholder="Nhập prompt điều chỉnh chất lượng dịch, sửa lỗi ngữ pháp, đại từ xưng hô..."
-                                                            value={customModel3Prompt}
-                                                            onChange={(e) => handleModel3PromptChange(e.target.value)}
-                                                            className="text-xs h-16 min-h-[60px] max-h-32 focus-visible:ring-purple-500"
-                                                        />
-                                                    </div>
-                                                </div>
-                                            )}
-                                        </div>
-                                    </div>
-                                ) : (
-                                    <div className="space-y-2 border-t pt-3">
-                                        <Label className="text-xs">AI Model:</Label>
-                                        <div className="flex gap-2">
-                                            <Select value={selectedProviderId} onValueChange={(val) => { handleProviderChange(val); setExtraModels([]); }}>
-                                                <SelectTrigger className="flex-1 h-8 text-xs"><SelectValue placeholder="Provider..." /></SelectTrigger>
-                                                <SelectContent>{providers?.map(p => <SelectItem key={p.id} value={p.id}>{p.name}</SelectItem>)}</SelectContent>
-                                            </Select>
-                                            <Select value={selectedModelId || ""} onValueChange={handleModelChange} disabled={!selectedProviderId}>
-                                                <SelectTrigger className="flex-1 h-8 text-xs"><SelectValue placeholder="Model..." /></SelectTrigger>
-                                                <SelectContent>{models?.map(m => <SelectItem key={m.id} value={m.modelId}>{m.name || m.modelId}</SelectItem>)}</SelectContent>
-                                            </Select>
-                                        </div>
-
-                                        {/* Extra models */}
-                                        {selectedProviderId && selectedModelId && (
-                                            <div className="space-y-1 pl-1">
-                                                {extraModels.map((item, idx) => (
-                                                    <ExtraModelRow
-                                                        key={idx} index={idx} providers={providers} value={item}
-                                                        onChange={(newVal) => { const m = [...extraModels]; m[idx] = newVal; setExtraModels(m); }}
-                                                        onRemove={() => setExtraModels(prev => prev.filter((_, i) => i !== idx))}
-                                                    />
-                                                ))}
-                                                <Button variant="outline" size="sm" className="h-6 text-[10px] gap-1" onClick={() => setExtraModels(prev => [...prev, { providerId: selectedProviderId || "", modelId: "" }])}>
-                                                    <PlusIcon className="size-3" /> Thêm Model
-                                                </Button>
-                                            </div>
-                                        )}
-                                    </div>
-                                )}
-
-                                {/* ── Common Options ── */}
-                                <div className="space-y-2">
-                                    {(activeMode === "comprehensive" || activeMode === "prompt" || activeMode === "stv-prompt") && (
-                                        <label className="flex items-start gap-2 rounded-lg border border-emerald-500/30 bg-emerald-500/5 p-2.5 cursor-pointer hover:bg-emerald-500/10">
-                                            <Checkbox checked={extractDict} onCheckedChange={(c) => setExtractDict(!!c)} className="mt-0.5 border-emerald-500 data-[state=checked]:bg-emerald-500" />
-                                            <div>
-                                                <span className="text-[11px] font-medium text-emerald-700 dark:text-emerald-400">Càng dịch càng hay ✨</span>
-                                                <p className="text-[10px] text-muted-foreground">AI trích xuất tên → lưu từ điển → chương sau chính xác hơn</p>
-                                            </div>
-                                        </label>
-                                    )}
-
-                                    <div className="flex items-center gap-2">
-                                        <Switch id="skip-tl" checked={skipTranslated} onCheckedChange={setSkipTranslated} />
-                                        <Label htmlFor="skip-tl" className="cursor-pointer text-xs">Bỏ qua chương đã dịch</Label>
-                                    </div>
-
-                                    <div className="space-y-1.5 pt-1.5 border-t border-muted/50 mt-1">
-                                        <span className="text-[10px] uppercase font-bold text-muted-foreground tracking-wider">Khi gặp lỗi dịch</span>
-                                        <RadioGroup value={errorAction} onValueChange={(val: any) => setErrorAction(val)} className="flex items-center gap-4 mt-0.5">
-                                            <div className="flex items-center gap-1.5 cursor-pointer">
-                                                <RadioGroupItem value="stop" id="err-stop" />
-                                                <Label htmlFor="err-stop" className="text-xs cursor-pointer">Dừng lại</Label>
-                                            </div>
-                                            <div className="flex items-center gap-1.5 cursor-pointer">
-                                                <RadioGroupItem value="skip" id="err-skip" />
-                                                <Label htmlFor="err-skip" className="text-xs cursor-pointer">Bỏ qua & Dịch tiếp</Label>
-                                            </div>
-                                        </RadioGroup>
-                                    </div>
-                                </div>
-
-                                {/* Clean error characters button */}
-                                <Button
-                                    variant="outline"
-                                    size="sm"
-                                    className="w-full text-xs gap-1.5 h-8 border-amber-500/30 hover:bg-amber-500/5 hover:text-amber-600 dark:hover:text-amber-400"
-                                    onClick={handleCleanErrorChars}
-                                    disabled={isCleaning || chapterIds.length === 0}
-                                >
-                                    {isCleaning ? <Loader2Icon className="size-3.5 animate-spin" /> : <SparklesIcon className="size-3.5" />}
-                                    Làm sạch ký tự lỗi (Emoji, Icon...) trong {chapterIds.length} chương gốc
-                                </Button>
-
-                                {/* ── Chapter count & Admin info ── */}
-                                <div className="rounded-md bg-muted/50 p-2 space-y-1">
-                                    <p className="text-sm">Sẽ xử lý <strong>{chapterIds.length}</strong> chương đã chọn.</p>
-                                    {selectedProviderId === "admin-provider" && (
-                                        <p className="text-[10px] text-blue-600 dark:text-blue-400 font-medium flex items-center gap-1">
-                                            <CrownIcon className="size-3" />
-                                            Model Admin {isAdmin ? "(Không giới hạn)" : `(Còn ${rawQuota} lượt)`}
-                                        </p>
-                                    )}
-                                </div>
-
-                                {/* ── Action Buttons ── */}
-                                <div className="grid grid-cols-2 gap-2">
-                                    <Button
-                                        onClick={() => handleStart("selected")}
-                                        className="w-full gap-1.5 bg-primary hover:bg-primary/90"
-                                        disabled={
-                                            selectedProviderId === "admin-provider"
-                                                ? (!isAdmin && rawQuota <= 0)
-                                                : ((activeMode === "stv-prompt" || activeMode === "comprehensive" || activeMode === "prompt" || activeMode === "edit")
-                                                    ? (!model1ProviderId || !model1ModelId || (activeMode !== "edit" && (!model2ProviderId || !model2ModelId)) || (model3Enabled && (!model3ProviderId || !model3ModelId)))
-                                                    : !currentModel)
-                                        }
-                                    >
-                                        <ActiveIcon className="size-3.5" />
-                                        {activeMode === "edit" ? `${chapterIds.length} chương biên tập` : `${chapterIds.length} chương đã chọn`}
-                                    </Button>
-                                    <Button
-                                        onClick={() => handleStart("all_untranslated")}
-                                        variant="outline"
-                                        className="w-full gap-1.5"
-                                        disabled={
-                                            selectedProviderId === "admin-provider"
-                                                ? (!isAdmin && rawQuota <= 0)
-                                                : ((activeMode === "stv-prompt" || activeMode === "comprehensive" || activeMode === "prompt" || activeMode === "edit")
-                                                    ? (!model1ProviderId || !model1ModelId || (activeMode !== "edit" && (!model2ProviderId || !model2ModelId)) || (model3Enabled && (!model3ProviderId || !model3ModelId)))
-                                                    : !currentModel)
-                                        }
-                                    >
-                                        <ActiveIcon className="size-3.5" />
-                                        {activeMode === "edit" ? "Biên tập đến hết truyện" : "Dịch đến hết truyện"}
-                                    </Button>
-                                </div>
-                            </>
-                        )
-                    ) : (
-                            <div className="flex flex-col items-center justify-center py-10 text-muted-foreground gap-2 border border-dashed rounded-lg bg-muted/20">
-                                <PenToolIcon className="size-8 text-muted-foreground/45 animate-pulse" />
-                                <p className="text-xs font-medium">Chương trình bảo trì, chưa có ý tưởng phát triển</p>
-                            </div>
-                        )}
-                    </div>
-                )}
+                {step === "config" && bulkConfigContent}
 
                 <PromptTunerDialog open={tunerOpen} onOpenChange={setTunerOpen} novelId={novelId} mode={activeMode} />
                 <StyleTunerDialog open={styleTunerOpen} onOpenChange={setStyleTunerOpen} novelId={novelId} />
@@ -1311,9 +1407,15 @@ export function TranslateTabPanel({
                         {currentPhase !== "idle" && (
                             <div className="flex items-center gap-2 rounded-md bg-muted/50 px-3 py-2">
                                 {(currentPhase === "dict" || currentPhase === "model2") && (
-                                    <span className="flex items-center gap-1.5 text-xs text-emerald-600 dark:text-emerald-400 font-medium">
-                                        <ScanSearchIcon className="size-3.5 animate-pulse text-emerald-500" /> Model 2 [Flash]: Đang quét từ điển & phân tích...
-                                    </span>
+                                    activeMode === "test" && currentPhase === "model2" ? (
+                                        <span className="flex items-center gap-1.5 text-xs text-emerald-600 dark:text-emerald-400 font-medium">
+                                            <PenToolIcon className="size-3.5 animate-pulse text-emerald-500" /> Model 2: Đang chạy biên tập Pass 2...
+                                        </span>
+                                    ) : (
+                                        <span className="flex items-center gap-1.5 text-xs text-emerald-600 dark:text-emerald-400 font-medium">
+                                            <ScanSearchIcon className="size-3.5 animate-pulse text-emerald-500" /> Model 2 [Flash]: Đang quét từ điển & phân tích...
+                                        </span>
+                                    )
                                 )}
                                 {(currentPhase === "ai" || currentPhase === "model1") && (
                                     <span className="flex items-center gap-1.5 text-xs text-blue-600 dark:text-blue-400 font-medium">

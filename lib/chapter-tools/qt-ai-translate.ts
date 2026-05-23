@@ -23,6 +23,15 @@ import { createClient as createSupabaseClient } from "@/lib/supabase/client";
 import { isSceneTranslated } from "@/lib/novel-io";
 import { checkAndIncrementUsage } from "../usage-limits";
 import { checkIsVipStandalone } from "../hooks/use-profile";
+import { DEFAULT_EDIT_SYSTEM } from "./prompts";
+
+export const STYLE_PRESETS = [
+  { id: "default", name: "Mặc định (Standard)", rules: "" },
+  { id: "tienhiep", name: "Tiên Hiệp / Võ Hiệp", rules: "Dịch theo văn phong Tiên Hiệp/Kiếm Hiệp cổ trang Trung Quốc. Hãy giữ đúng phong vị cổ kính, trang nghiêm. Ưu tiên các thuật ngữ Hán-Việt phổ biến trong giới tiên hiệp như: tu chân, đan điền, đan dược, linh khí, độ kiếp, ngự kiếm, đạo hữu, các cấp bậc tu luyện. Xưng hô chuẩn cổ trang (ví dụ: ta - ngươi, huynh - đệ, sư phụ - đồ nhi, tôn kính thì dùng vãn bối - tiền bối)." },
+  { id: "huyenhuyen", name: "Huyền Huyễn / Kỳ Ảo", rules: "Dịch theo văn phong Huyền Huyễn kỳ ảo. Câu văn sinh động, hoành tráng, đầy sức tưởng tượng. Thích hợp cho bối cảnh dị thế ma pháp hoặc thế giới huyền ảo. Chú ý dịch chuẩn các thuật ngữ ma pháp, đấu khí, dị năng, chủng tộc dị giới và giữ xưng hô nhất quán dựa theo sức mạnh và vị thế." },
+  { id: "dothi", name: "Đô Thị / Hiện Đại", rules: "Dịch theo văn phong Đô Thị hiện đại. Dùng từ ngữ đời thường, tự nhiên, gần gũi như đời sống hàng ngày ở Việt Nam. Tuyệt đối không lạm dụng các từ Hán-Việt quá cổ kính hay tối nghĩa (ví dụ: không dùng 'thủ cơ' mà dịch là 'điện thoại', không dùng 'kính xa' mà dịch là 'gương xe'). Xưng hô tự nhiên theo quan hệ hiện đại (tôi - bạn, anh - em, cậu - tớ)." },
+  { id: "dammi_ngontinh", name: "Đam Mỹ / Ngôn Tình", rules: "Dịch theo văn phong tiểu thuyết lãng mạn (Đam mỹ/Ngôn tình). Chú ý câu văn mượt mà, uyển chuyển, giàu cảm xúc, nhấn mạnh tâm lý nhân vật. Chú ý dịch chuẩn xác các đại từ nhân xưng thể hiện sự thân mật, ngọt ngào hoặc đối đầu phức tạp (ví dụ: anh - em, hắn - cậu, ta - ngươi, nàng - ta, sư tôn - đệ tử) phù hợp với diễn biến tình cảm." }
+];
 
 // ── Constants ──
 
@@ -123,6 +132,11 @@ export interface QtAiTranslateOptions {
   continuousMode?: boolean; // Tự động nạp chương mới nếu có
   errorAction?: "stop" | "skip"; // "stop" = dừng lại khi lỗi, "skip" = bỏ qua chương lỗi
   signal?: AbortSignal;
+  editorModel?: LanguageModel;
+  twoPass?: boolean;
+  stylePreset?: string;
+  customStylePrompt?: string;
+  customPronounPrompt?: string;
   delayMs?: number;
 
   onPhase: (chapterId: string, phase: string) => void;
@@ -991,6 +1005,84 @@ ${cleaned}`;
                 }
 
                 let finalChunkContent = parsed.content || dictTranslatedContent;
+
+                // ═══════════════════════════════════════════
+                // PHASE 2b: Model 2 Refine (Two-Pass Editor)
+                // ═══════════════════════════════════════════
+                if (opts.twoPass && opts.editorModel) {
+                  onPhase(chapter.id, "model2");
+                  console.log(`[3-Model Pipeline QtAi] Đang chạy Editor (Pass 2) tối ưu hóa đoạn ${chunkIdx + 1}/${chunks.length}...`);
+                  
+                  const presetRules = STYLE_PRESETS.find(p => p.id === opts.stylePreset)?.rules || "";
+                  const customRules = opts.customStylePrompt?.trim() || "";
+                  let glossarySection = "";
+                  
+                  if (nameDict && nameDict.length > 0) {
+                    const relevantNames = nameDict.filter((n) =>
+                      chunk.includes(n.chinese) &&
+                      ["nhân vật", "địa danh", "môn phái", "bang hội", "tên riêng", "thuật ngữ", "context mapping", "khác", "tuvung", "ngucanh"].includes(n.category)
+                    ).sort((a, b) => b.chinese.length - a.chinese.length);
+                    if (relevantNames.length > 0) {
+                      glossarySection = `\n\n# THÔNG TIN TỪ ĐIỂN TÊN RIÊNG & THUẬT NGỮ (ƯU TIÊN CAO NHẤT):\n${relevantNames.slice(0, 150).map(e => `${e.chinese} → ${e.vietnamese}`).join("\n")}`;
+                    }
+                  }
+
+                  const editSystemPrompt = `${DEFAULT_EDIT_SYSTEM}
+                  
+# THÔNG TIN BỐI CẢNH & QUY TẮC BỔ SUNG:
+- Thể loại/Văn phong yêu cầu: ${opts.stylePreset || "Mặc định (Standard)"}
+- Chỉ thị văn phong đặc biệt: ${customRules || "Không có"}
+${opts.customPronounPrompt ? `- Quy tắc xưng hô: ${opts.customPronounPrompt}` : ""}
+${glossarySection}`;
+
+                  const editUserPrompt = `NGUYÊN TÁC TRUNG QUỐC:\n${chunk}\n\nBẢN DỊCH THÔ CẦN BIÊN TẬP:\n${finalChunkContent}`;
+
+                  let pass2ResultText = "";
+                  let editError: unknown = null;
+                  for (let editAttempt = 0; editAttempt < 3; editAttempt++) {
+                    if (signal?.aborted) break;
+                    try {
+                      const res = await streamText({
+                        model: opts.editorModel,
+                        system: editSystemPrompt,
+                        prompt: editUserPrompt,
+                        abortSignal: signal,
+                      });
+                      let fullText = "";
+                      for await (const chunkTxt of res.textStream) {
+                        fullText += chunkTxt;
+                      }
+                      if (!fullText.trim()) {
+                        const { generateText } = await import("ai");
+                        const directRes = await generateText({
+                          model: opts.editorModel,
+                          system: editSystemPrompt,
+                          prompt: editUserPrompt,
+                          abortSignal: signal,
+                        });
+                        fullText = directRes.text;
+                      }
+                      pass2ResultText = fullText;
+                      if (pass2ResultText.trim()) break;
+                    } catch (err) {
+                      editError = err;
+                      await delay(1000);
+                    }
+                  }
+                  if (pass2ResultText.trim()) {
+                    let cleanPass2 = pass2ResultText.trim();
+                    const contentMatch = cleanPass2.match(/<content>([\s\S]*?)<\/content>/i);
+                    if (contentMatch) {
+                      cleanPass2 = contentMatch[1].trim();
+                    } else {
+                      cleanPass2 = cleanPass2.replace(/<content>|<\/content>/gi, "").trim();
+                    }
+                    cleanPass2 = cleanPass2.replace(/\*\*/g, "").replace(/^###\s+/gm, "").trim();
+                    finalChunkContent = cleanPass2;
+                  } else {
+                    console.warn(`[3-Model Pipeline QtAi] Editor (Pass 2) chunk rỗng hoặc lỗi:`, editError);
+                  }
+                }
 
                 // ═══════════════════════════════════════════
                 // PHASE 2c: Model 3 QA Bot (Audit & Refine)
