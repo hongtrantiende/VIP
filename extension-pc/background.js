@@ -504,9 +504,40 @@ async function handleFetch(url, waitSelector, clickSelector, timeout, forceActiv
 
         if (bestTabNorm !== targetNorm) {
           console.log(`[Fetch] Paths differ. Navigating tab ${tabId} to ${url} (background, no focus steal)`);
-          // Navigate WITHOUT activating — critical to prevent stealing focus from the app window
-          await chrome.tabs.update(tabId, { url });
+          
+          if (url.includes("sangtacviet")) {
+            // STV: must activate tab briefly so its JS runs at full speed (not throttled).
+            // Then restore focus to the app tab after navigation completes.
+            await chrome.tabs.update(tabId, { url, active: true });
+            const tInfo = await chrome.tabs.get(tabId).catch(() => null);
+            if (tInfo?.windowId) {
+              await chrome.windows.update(tInfo.windowId, { focused: true }).catch(() => {});
+            }
+          } else {
+            // Navigate WITHOUT activating — critical to prevent stealing focus from the app window
+            await chrome.tabs.update(tabId, { url });
+          }
           didNavigate = true;
+          // STV / JS-heavy sites: inject visibilityState spoof IMMEDIATELY after navigation starts
+          // so the site's JS sees a "visible" tab from the very first script execution.
+          // We retry a few times to catch the earliest possible moment.
+          if (url.includes("sangtacviet")) {
+            for (let attempt = 0; attempt < 5; attempt++) {
+              await delay(200);
+              try {
+                await chrome.scripting.executeScript({
+                  target: { tabId }, world: "MAIN",
+                  func: () => {
+                    Object.defineProperty(document, "hidden", { get: () => false, configurable: true });
+                    Object.defineProperty(document, "visibilityState", { get: () => "visible", configurable: true });
+                    Document.prototype.hasFocus = () => true;
+                    document.addEventListener("visibilitychange", (e) => e.stopImmediatePropagation(), true);
+                  }
+                });
+                break; // succeeded
+              } catch { /* page not ready yet, try again */ }
+            }
+          }
         } else {
           console.log(`[Fetch] Paths are identical. No navigation needed.`);
           // Brief settle delay — page is already loaded, no need to activate
@@ -520,7 +551,8 @@ async function handleFetch(url, waitSelector, clickSelector, timeout, forceActiv
 
   if (!isReused) {
     try {
-      if (reuseTab) {
+      const isSTV = url.includes("sangtacviet");
+      if (reuseTab && !isSTV) {
         // Persistent-tab adapters (hetushu, 69shuba, etc.): create a background tab inside
         // the current window — no new window, no popup, no focus steal.
         // The tab is kept alive across all chapters and cleaned up by stopScrape/closePersistentTab.
@@ -530,20 +562,21 @@ async function handleFetch(url, waitSelector, clickSelector, timeout, forceActiv
         didNavigate = true;
         console.log(`[Fetch] Created persistent background tab ${tabId} for reuseTab adapter.`);
       } else {
-        // One-shot fetch: create a minimized window so the tab is fully active (no throttling)
-        // but doesn't interrupt the user's workflow.
+        // STV or one-shot fetch: create a minimized window so the tab gets full JS execution
+        // (no throttling from hidden state). STV needs visible tab to render chapter list.
         const win = await chrome.windows.create({ url, state: "minimized" });
         const tab = win.tabs && win.tabs.length > 0 ? win.tabs[0] : (await chrome.tabs.query({ windowId: win.id }))[0];
         tabId = tab.id;
         createdWindowId = win.id; // track so we can refocus and clean up later
         didNavigate = true;
+        console.log(`[Fetch] Created minimized window tab ${tabId} (isSTV: ${isSTV}).`);
       }
     } catch (winErr) {
       console.warn("[Fetch] Error creating tab/window, falling back to background tab:", winErr);
       try {
         const tab = await chrome.tabs.create({ url, active: false });
         tabId = tab.id;
-        if (reuseTab) persistentTabIds.add(tabId);
+        if (reuseTab && !url.includes("sangtacviet")) persistentTabIds.add(tabId);
         didNavigate = true;
       } catch (tabErr) {
         console.warn("[Fetch] Error creating background tab, falling back to active tab:", tabErr);

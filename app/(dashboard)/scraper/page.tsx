@@ -401,6 +401,7 @@ export default function ScraperLibraryPage() {
                       <Button variant="outline" size="sm" asChild><a href="https://www.po18.tw/" target="_blank" rel="noreferrer"><GlobeIcon className="mr-1.5 w-3 h-3 text-pink-500" /> PO18</a></Button>
                       <Button variant="outline" size="sm" asChild><a href="https://novel543.com/" target="_blank" rel="noreferrer"><GlobeIcon className="mr-1.5 w-3 h-3 text-purple-500" /> Novel543</a></Button>
                       <Button variant="outline" size="sm" asChild><a href="https://hetushu.com/" target="_blank" rel="noreferrer"><GlobeIcon className="mr-1.5 w-3 h-3 text-purple-600" /> HeTuShu</a></Button>
+                      <Button variant="outline" size="sm" asChild><a href="https://www.xbanxia.cc/" target="_blank" rel="noreferrer"><GlobeIcon className="mr-1.5 w-3 h-3 text-rose-500" /> XBanXia (半夏)</a></Button>
                       <Button variant="outline" size="sm" asChild><a href="https://www.52shuku.net/yanqing/" target="_blank" rel="noreferrer"><GlobeIcon className="mr-1.5 w-3 h-3 text-cyan-600" /> 52Shuku</a></Button>
                       <Button variant="outline" size="sm" asChild><a href="https://www.popo.tw/" target="_blank" rel="noreferrer"><GlobeIcon className="mr-1.5 w-3 h-3 text-pink-400" /> POPO</a></Button>
                       <Button variant="outline" size="sm" className="border-amber-200 bg-amber-50 dark:bg-amber-950/20" asChild>
