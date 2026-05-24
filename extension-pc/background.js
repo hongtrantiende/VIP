@@ -504,23 +504,16 @@ async function handleFetch(url, waitSelector, clickSelector, timeout, forceActiv
 
         if (bestTabNorm !== targetNorm) {
           console.log(`[Fetch] Paths differ. Navigating tab ${tabId} to ${url} (background, no focus steal)`);
-          
-          if (url.includes("sangtacviet")) {
-            // STV: must activate tab briefly so its JS runs at full speed (not throttled).
-            // Then restore focus to the app tab after navigation completes.
-            await chrome.tabs.update(tabId, { url, active: true });
-            const tInfo = await chrome.tabs.get(tabId).catch(() => null);
-            if (tInfo?.windowId) {
-              await chrome.windows.update(tInfo.windowId, { focused: true }).catch(() => {});
-            }
-          } else {
-            // Navigate WITHOUT activating — critical to prevent stealing focus from the app window
-            await chrome.tabs.update(tabId, { url });
-          }
+
+          // For all sites including STV: navigate WITHOUT activating the tab.
+          // STV novel info is now fetched via silent fetch (static HTML), so chapter fetches
+          // are the main reuseTab path. Chapter content renders fine in a background tab
+          // when we inject the visibilityState spoof below.
+          await chrome.tabs.update(tabId, { url });
           didNavigate = true;
-          // STV / JS-heavy sites: inject visibilityState spoof IMMEDIATELY after navigation starts
-          // so the site's JS sees a "visible" tab from the very first script execution.
-          // We retry a few times to catch the earliest possible moment.
+
+          // Inject visibilityState=visible ASAP so STV's JS doesn't throttle.
+          // Retry several times to catch the earliest possible moment after navigation.
           if (url.includes("sangtacviet")) {
             for (let attempt = 0; attempt < 5; attempt++) {
               await delay(200);
