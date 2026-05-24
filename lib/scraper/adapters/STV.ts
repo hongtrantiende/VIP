@@ -17,7 +17,8 @@ export const STVAdapter: SiteAdapter = {
   name: "STV",
   group: "vn",
   urlPattern: /sangtacviet\.\w+/,
-  novelWaitSelector: ".listchapitem",
+  // #book_name2 is always in the static HTML (unlike .listchapitem which requires AJAX)
+  novelWaitSelector: "#book_name2, h1.cap",
   chapterWaitSelector: "#content-container .contentbox",
   chapterClickSelector: "#content-container .contentbox",
 
@@ -51,16 +52,40 @@ export const STVAdapter: SiteAdapter = {
           .body.textContent?.trim() || undefined
       : undefined;
 
-    // Extract chapter list by class — all chapter links have class "listchapitem"
-    // URL uses 1-based sequential DOM position (not the number in the title)
+    // Extract chapter list.
+    // Priority 1: DOM-rendered .listchapitem (only available when JS has executed)
+    // Priority 2: Synthetic generation from chapter count in <title> (works on static HTML)
     const baseUrl = extractBaseUrl(url);
     const allLinks = doc.querySelectorAll("a.listchapitem");
-    const chapters = [...allLinks].map((el, i) => ({
-      title: el.textContent?.trim() ?? `Chương ${i + 1}`,
-      url: `${baseUrl}${i + 1}/`,
-      order: i,
-      id: bookinfo?.id,
-    }));
+
+    let chapters: { title: string; url: string; order: number; id?: string }[];
+
+    if (allLinks.length > 0) {
+      // JS rendered the list — use real titles
+      chapters = [...allLinks].map((el, i) => ({
+        title: el.textContent?.trim() ?? `Chương ${i + 1}`,
+        url: `${baseUrl}${i + 1}/`,
+        order: i,
+        id: bookinfo?.id,
+      }));
+    } else {
+      // Static HTML fallback: extract chapter count from <title>
+      // Format: "Novel Name - N chương"
+      const titleText = doc.querySelector("title")?.textContent?.trim() ?? "";
+      const countMatch = titleText.match(/[-–]\s*(\d+)\s*chương/i);
+      const chapterCount = countMatch ? parseInt(countMatch[1], 10) : 0;
+
+      if (chapterCount > 0) {
+        chapters = Array.from({ length: chapterCount }, (_, i) => ({
+          title: `Chương ${i + 1}`,
+          url: `${baseUrl}${i + 1}/`,
+          order: i,
+          id: bookinfo?.id,
+        }));
+      } else {
+        chapters = [];
+      }
+    }
 
     return { title, author, description, coverImage, chapters };
   },
