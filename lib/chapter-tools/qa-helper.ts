@@ -12,7 +12,8 @@ export interface NameEntryMin {
 export function buildQaSystemPrompt(
   chineseText: string,
   nameDict: NameEntryMin[],
-  customQaSystemPrompt?: string
+  customQaSystemPrompt?: string,
+  customPronounPrompt?: string
 ): string {
   // Filter and sort relevant names that appear in the Chinese chunk
   const relevantNames = nameDict
@@ -21,6 +22,7 @@ export function buildQaSystemPrompt(
         chineseText.includes(n.chinese) &&
         [
           "nhân vật",
+          "names",
           "địa danh",
           "môn phái",
           "bang hội",
@@ -30,6 +32,9 @@ export function buildQaSystemPrompt(
           "khác",
           "tuvung",
           "ngucanh",
+          "vật phẩm",
+          "kỹ năng",
+          "thuật ngữ tu tiên",
         ].includes(n.category)
     )
     .sort((a, b) => b.chinese.length - a.chinese.length);
@@ -42,21 +47,57 @@ export function buildQaSystemPrompt(
     }
   }
 
+  // Lọc các quy tắc xưng hô liên quan đến các nhân vật xuất hiện trong phân đoạn này
+  const pronounRules = nameDict.filter((n) => n.category === "xưng hô");
+  let relevantPronounsPrompt = "";
+  for (const p of pronounRules) {
+    const cnKey = p.chinese; // Định dạng "林枫->楚瑶"
+    const [speakerCn, listenerCn] = cnKey.split("->").map((s) => s.trim());
+    if (speakerCn && listenerCn && chineseText.includes(speakerCn) && chineseText.includes(listenerCn)) {
+      const parts = p.vietnamese.split("|");
+      const pronPart = parts[0];
+      const namePart = parts[1] || "";
+      const [speakerPron, listenerPron] = pronPart.split("->").map((s) => s.trim());
+      const [speakerName, listenerName] = namePart.split("->").map((s) => s.trim());
+
+      if (speakerName && listenerName && speakerPron && listenerPron) {
+        if (!relevantPronounsPrompt) {
+          relevantPronounsPrompt = `\n\n# Quy tắc xưng hô nhân vật bắt buộc tuân thủ (Chỉ trích xuất các nhân vật có mặt trong chương):\n`;
+        }
+        relevantPronounsPrompt += `- ${speakerName} nói với ${listenerName}: ${speakerName} xưng "${speakerPron}", gọi ${listenerName} là "${listenerPron}"\n`;
+      }
+    }
+  }
+
+  let pronounPrompt = "";
+  if (relevantPronounsPrompt) {
+    pronounPrompt = relevantPronounsPrompt;
+    if (customPronounPrompt?.trim()) {
+      pronounPrompt += `\n# Quy tắc xưng hô & Bối cảnh bổ sung:\n${customPronounPrompt.trim()}\n`;
+    }
+  } else if (customPronounPrompt?.trim()) {
+    pronounPrompt = `\n\n# Quy tắc xưng hô & Bối cảnh bắt buộc tuân thủ:\n${customPronounPrompt.trim()}\n`;
+  }
+
   if (customQaSystemPrompt?.trim()) {
-    // If the user has a custom QA prompt, append the dictionary context to it
-    return `${customQaSystemPrompt.trim()}${relevantNamesPrompt}`;
+    // If the user has a custom QA prompt, append the dictionary and pronoun context to it
+    return `${customQaSystemPrompt.trim()}${relevantNamesPrompt}${pronounPrompt}`;
   }
 
   return `# Vai trò
-Bạn là Giám sát Chất lượng Dịch thuật (QA Bot) chuyên nghiệp. Nhiệm vụ của bạn là rà soát và tinh chỉnh bản dịch tiếng Việt của tiểu thuyết Trung-Việt để nâng cao chất lượng, độ tự nhiên và đặc biệt sửa các lỗi không nhất quán về tên riêng/tên nhân vật.
-${relevantNamesPrompt}
+Bạn là Giám sát Chất lượng Dịch thuật (QA Bot) chuyên nghiệp. Nhiệm vụ của bạn là rà soát và tinh chỉnh bản dịch tiếng Việt của tiểu thuyết Trung-Việt để nâng cao chất lượng, độ tự nhiên và đặc biệt sửa các lỗi không nhất quán về tên riêng/tên nhân vật và các đại từ xưng hô nhân xưng giữa các nhân vật.
+${relevantNamesPrompt}${pronounPrompt}
 # Quy tắc sửa lỗi (BẮT BUỘC):
 1. **Kiểm tra và sửa đổi tên riêng**:
    - Đối chiếu tên gốc (tiếng Trung) và tên dịch chuẩn trong Bảng tên riêng.
    - Nếu trong văn bản dịch chưa tinh chỉnh xuất hiện tên bị dịch sai, bị biến âm, sai dấu hoặc không đồng bộ với từ điển (ví dụ: "Lâm Phong" bị viết/dịch nhầm thành "Lâm Phóng", "Lâm Phọng", "Lam Phong", v.v.), bạn BẮT BUỘC phải sửa lại câu văn đó cho đúng tên dịch chuẩn trong bảng (ở ví dụ này là "Lâm Phong").
-2. **Hành văn & Chính tả**:
+2. **Đồng bộ hóa đại từ nhân xưng và cách xưng hô**:
+   - Đối chiếu quy tắc xưng hô trong phần "Quy tắc xưng hô nhân vật bắt buộc tuân thủ" hoặc "Quy tắc xưng hô & Bối cảnh bắt buộc tuân thủ" (nếu có).
+   - Đảm bảo cách xưng hô giữa hai nhân vật phải nhất quán xuyên suốt chương truyện. Tránh tình trạng loạn xưng hô (ví dụ: đoạn đầu nhân vật A gọi B là "cô" xưng "tôi", đoạn sau lại đổi thành "em" xưng "anh" mà không có lý do hợp lý hoặc không có sự thay đổi về quan hệ/bối cảnh hội thoại).
+   - Nếu phát hiện xưng hô bị thay đổi tùy tiện hoặc không khớp với quy tắc xưng hô, hãy sửa các câu văn đó để đồng bộ cách xưng hô nhất quán nhất.
+3. **Hành văn & Chính tả**:
    - Tinh chỉnh các câu từ thô cứng, lặp từ, lỗi chính tả hoặc diễn đạt Hán Việt quá đà để câu văn tự nhiên chuẩn thuần Việt.
-3. **Định dạng câu trả lời tiết kiệm Token**:
+4. **Định dạng câu trả lời tiết kiệm Token**:
    - Bạn chỉ cần trả về các dòng có lỗi cần sửa đổi kèm theo số dòng tương ứng.
    - Tuyệt đối KHÔNG viết lại toàn bộ văn bản hay các câu không có lỗi, KHÔNG chèn thêm nhận xét, giải thích hay lời thoại phụ.
    - Định dạng đầu ra bắt buộc cho mỗi dòng sửa đổi: \`L[Số dòng]: [Nội dung câu đã sửa lại hoàn chỉnh]\`

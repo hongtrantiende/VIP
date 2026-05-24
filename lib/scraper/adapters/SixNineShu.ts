@@ -5,7 +5,9 @@ export const SixNineShuAdapter: SiteAdapter = {
   name: "69书吧",
   group: "cn",
   urlPattern: /69shuba\.com|69shu\.me|69shu\.com/i,
+  novelWaitSelector: ".booknav2, .bookname, .bookinfo, .more-btn, ul li a[href*='/txt/']",
   chapterWaitSelector: ".txtnav",
+  useSequentialTab: true,
 
   async getNovelInfo(html, url) {
     let doc = new DOMParser().parseFromString(html, "text/html");
@@ -39,10 +41,10 @@ export const SixNineShuAdapter: SiteAdapter = {
       }
     }
 
-    const title = doc.querySelector("h1, .bookname h1")?.textContent?.trim() || "";
-    const author = doc.querySelector(".booknav2 a[href*='author']")?.textContent?.trim() || "";
+    const title = doc.querySelector("h1, .bookname h1, .bookinfo h1, .book-title")?.textContent?.trim() || "";
+    const author = doc.querySelector(".booknav2 a[href*='author'], .author a, .bookinfo .author")?.textContent?.trim() || "";
     
-    const coverImg = doc.querySelector(".bookimg2 img, .bookimg img");
+    const coverImg = doc.querySelector(".bookimg2 img, .bookimg img, .book-cover img, .imgbox img, img[src*='p.69shuba'], img[src*='69shuba']");
     const coverImage = coverImg ? new URL(coverImg.getAttribute("src") || "", currentBase).href : undefined;
 
     // Chapters are in <ul><li><a> - use a Map to deduplicate by URL
@@ -61,6 +63,16 @@ export const SixNineShuAdapter: SiteAdapter = {
         order: chapters.length,
       });
     });
+
+    // Reverse chapter list if it is in descending order (highest chapter number first)
+    if (chapters.length >= 2) {
+      const order1 = parseInt(chapters[0].title.match(/\d+/)?.[0] || '1', 10);
+      const order2 = parseInt(chapters[chapters.length - 1].title.match(/\d+/)?.[0] || '999', 10);
+      if (order1 > order2) {
+        chapters.reverse();
+        chapters.forEach((c, idx) => c.order = idx);
+      }
+    }
 
     return { title, author, chapters, coverImage };
   },
@@ -94,6 +106,16 @@ export const SixNineShuAdapter: SiteAdapter = {
       .replace(/\n{3,}/g, "\n\n")
       .trim();
 
-    return { title: chapterTitle, content: text };
+    let nextChapterUrl: string | undefined = undefined;
+    const nextLink = Array.from(doc.querySelectorAll("a")).find(a => 
+      a.textContent?.includes("下一章") || 
+      a.textContent?.includes("Sau") || 
+      a.textContent?.includes("Next")
+    );
+    if (nextLink) {
+      nextChapterUrl = new URL(nextLink.getAttribute("href") || "", _url).href;
+    }
+
+    return { title: chapterTitle, content: text, nextChapterUrl };
   },
 };

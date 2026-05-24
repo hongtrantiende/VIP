@@ -172,7 +172,7 @@ export default function ScraperLibraryPage() {
 
         const res = await extensionFetch(finalUrl, {
           waitSelector: adapter.novelWaitSelector,
-          reuseTab: adapter.name === "STV" || adapter.name === "69书吧" || adapter.name === "Fanqie Novel"
+          reuseTab: adapter.name === "STV" || adapter.name.startsWith("69书吧") || adapter.name === "Fanqie Novel"
         });
         html = res.html;
         novelInfo = await adapter.getNovelInfo(html, finalUrl, (count) => {
@@ -400,6 +400,7 @@ export default function ScraperLibraryPage() {
                       <Button variant="outline" size="sm" asChild><a href="https://czbooks.net/" target="_blank" rel="noreferrer"><GlobeIcon className="mr-1.5 w-3 h-3 text-blue-600" /> Czbooks</a></Button>
                       <Button variant="outline" size="sm" asChild><a href="https://www.po18.tw/" target="_blank" rel="noreferrer"><GlobeIcon className="mr-1.5 w-3 h-3 text-pink-500" /> PO18</a></Button>
                       <Button variant="outline" size="sm" asChild><a href="https://novel543.com/" target="_blank" rel="noreferrer"><GlobeIcon className="mr-1.5 w-3 h-3 text-purple-500" /> Novel543</a></Button>
+                      <Button variant="outline" size="sm" asChild><a href="https://hetushu.com/" target="_blank" rel="noreferrer"><GlobeIcon className="mr-1.5 w-3 h-3 text-purple-600" /> HeTuShu</a></Button>
                       <Button variant="outline" size="sm" asChild><a href="https://www.52shuku.net/yanqing/" target="_blank" rel="noreferrer"><GlobeIcon className="mr-1.5 w-3 h-3 text-cyan-600" /> 52Shuku</a></Button>
                       <Button variant="outline" size="sm" asChild><a href="https://www.popo.tw/" target="_blank" rel="noreferrer"><GlobeIcon className="mr-1.5 w-3 h-3 text-pink-400" /> POPO</a></Button>
                       <Button variant="outline" size="sm" className="border-amber-200 bg-amber-50 dark:bg-amber-950/20" asChild>

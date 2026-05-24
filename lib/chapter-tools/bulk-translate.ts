@@ -14,7 +14,7 @@ import {
 } from "./prompts";
 import { cleanGarbageLines, splitBySceneBreak, splitTextIntoParts } from "@/lib/text-utils";
 import { useBulkTranslateStore, type TranslateChapterResult, type TranslateError } from "@/lib/stores/bulk-translate";
-import { scanNewNames, autoAddNames } from "./name-scanner";
+import { scanNewNames, autoAddNames, scanPronounRelations, autoUpdatePronounPrompt } from "./name-scanner";
 import { isSceneTranslated } from "@/lib/novel-io";
 import { checkAndIncrementUsage } from "../usage-limits";
 import { checkIsVipStandalone } from "../hooks/use-profile";
@@ -310,6 +310,20 @@ export async function runBulkTranslate(opts: BulkTranslateOptions): Promise<void
             console.log(`[Lookahead] Chương tiếp theo: phát hiện ${added} tên mới`);
           }
         }
+
+        try {
+          const newlyScannedPronouns = await scanPronounRelations({
+            model: nameScanModel,
+            sourceText: joinedContent,
+            existingDict: nameDictMap,
+            signal,
+          });
+          if (newlyScannedPronouns.length > 0) {
+            await autoUpdatePronounPrompt(novelId, newlyScannedPronouns);
+          }
+        } catch (scanPronounErr) {
+          console.warn("[Lookahead] Lỗi quét xưng hô ngầm:", scanPronounErr);
+        }
       } catch {
         // Non-critical — translation will still work, just without pre-scanned names
       }
@@ -388,6 +402,20 @@ export async function runBulkTranslate(opts: BulkTranslateOptions): Promise<void
               }
               console.log(`[NameScan] Chương "${chapter.title}": phát hiện ${added} tên mới`);
             }
+          }
+
+          try {
+            const newlyScannedPronouns = await scanPronounRelations({
+              model: nameScanModel,
+              sourceText: joinedContent,
+              existingDict: nameDictMap,
+              signal,
+            });
+            if (newlyScannedPronouns.length > 0) {
+              await autoUpdatePronounPrompt(novelId, newlyScannedPronouns);
+            }
+          } catch (scanPronounErr) {
+            console.warn(`[NameScan] Chương "${chapter.title}": Lỗi quét xưng hô:`, scanPronounErr);
           }
         } catch {
           // Non-critical — continue translating even if name scan fails

@@ -7,7 +7,7 @@ import { convertText } from "@/lib/hooks/use-qt-engine";
 import { chunkText, cleanGarbageLines, isVietnameseText, splitBySceneBreak, splitTextIntoParts } from "@/lib/text-utils";
 import { useBulkTranslateStore } from "@/lib/stores/bulk-translate";
 import { isSceneTranslated } from "@/lib/novel-io";
-import { scanNewNames, autoAddNames } from "./name-scanner";
+import { scanNewNames, autoAddNames, scanPronounRelations, autoUpdatePronounPrompt } from "./name-scanner";
 import { buildQaSystemPrompt, buildQaUserPrompt, parseQaAndApply } from "./qa-helper";
 import { checkAndIncrementUsage } from "../usage-limits";
 import { checkIsVipStandalone } from "../hooks/use-profile";
@@ -380,6 +380,26 @@ export async function runComprehensiveTranslate(opts: ComprehensiveTranslateOpti
                 if (newlyScannedNames.length > 0) {
                     const addedCount = await autoAddNames(novelId, newlyScannedNames);
                     console.log(`[3-Model Concurrent Pipeline] AI 2 hoàn thành: Đã tự động thêm ${addedCount} từ mới.`);
+                    // Cập nhật existingDictMap với các từ vừa quét được
+                    for (const n of newlyScannedNames) {
+                        existingDictMap.set(n.chinese, n.vietnamese);
+                    }
+                }
+
+                // Model 2 quét thêm cả xưng hô của các nhân vật nói với nhau
+                try {
+                    const newlyScannedPronouns = await scanPronounRelations({
+                        model: dictModel || model,
+                        sourceText: cleanedContent,
+                        existingDict: existingDictMap,
+                        signal,
+                    });
+                    if (newlyScannedPronouns.length > 0) {
+                        const addedPronounCount = await autoUpdatePronounPrompt(novelId, newlyScannedPronouns);
+                        console.log(`[3-Model Concurrent Pipeline] AI 2 hoàn thành: Đã tự động thêm ${addedPronounCount} quy tắc xưng hô mới.`);
+                    }
+                } catch (scanPronounErr) {
+                    console.warn(`[3-Model Concurrent Pipeline] Lỗi quét xưng hô:`, scanPronounErr);
                 }
             } catch (scanErr) {
                 console.warn(`[3-Model Concurrent Pipeline] Lỗi quét từ điển tại AI 2:`, scanErr);
@@ -768,7 +788,7 @@ export async function runComprehensiveTranslate(opts: ComprehensiveTranslateOpti
                     if (qaEnabled && qaModel) {
                         onPhase(chapter.id, "model3");
                         console.log(`[3-Model Pipeline] Đang chạy QA Bot tối ưu hóa đoạn ${chunkIdx + 1}/${chunks.length}...`);
-                        const qaSystemPrompt = buildQaSystemPrompt(chunk, nameDict, qaPrompt);
+                        const qaSystemPrompt = buildQaSystemPrompt(chunk, nameDict, qaPrompt, customPronounPrompt);
                         const qaUserPrompt = buildQaUserPrompt(chunk, chunkDictTranslated, finalChunkContent);
 
                         let qaResult = "";

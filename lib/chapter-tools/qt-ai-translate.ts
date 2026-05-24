@@ -16,7 +16,7 @@ import { createSceneVersion, ensureInitialVersion, getOriginalContent } from "@/
 import { getMergedNameDict, bulkImportNameEntries } from "@/lib/hooks/use-name-entries";
 import { convertText } from "@/lib/hooks/use-qt-engine";
 import { cleanGarbageLines, chunkText, splitBySceneBreak, splitTextIntoParts } from "@/lib/text-utils";
-import { scanNewNames, autoAddNames } from "./name-scanner";
+import { scanNewNames, autoAddNames, scanPronounRelations, autoUpdatePronounPrompt } from "./name-scanner";
 import { buildQaSystemPrompt, buildQaUserPrompt, parseQaAndApply } from "./qa-helper";
 import { useBulkTranslateStore } from "@/lib/stores/bulk-translate";
 import { createClient as createSupabaseClient } from "@/lib/supabase/client";
@@ -649,6 +649,24 @@ ${cleaned}`;
         if (newlyScannedNames.length > 0) {
           const addedCount = await autoAddNames(novelId, newlyScannedNames);
           console.log(`[3-Model Concurrent Pipeline QtAi] AI 2 hoàn thành: Đã tự động thêm ${addedCount} từ mới.`);
+          for (const n of newlyScannedNames) {
+            existingDictMap.set(n.chinese, n.vietnamese);
+          }
+        }
+
+        try {
+          const newlyScannedPronouns = await scanPronounRelations({
+            model: opts.dictModel || workerModels[0],
+            sourceText: cleanedContent,
+            existingDict: existingDictMap,
+            signal,
+          });
+          if (newlyScannedPronouns.length > 0) {
+            const addedPronounCount = await autoUpdatePronounPrompt(novelId, newlyScannedPronouns);
+            console.log(`[3-Model Concurrent Pipeline QtAi] AI 2 hoàn thành: Đã tự động thêm ${addedPronounCount} quy tắc xưng hô mới.`);
+          }
+        } catch (scanPronounErr) {
+          console.warn(`[3-Model Concurrent Pipeline QtAi] Lỗi quét xưng hô:`, scanPronounErr);
         }
       } catch (scanErr) {
         console.warn(`[3-Model Concurrent Pipeline QtAi] Lỗi quét từ điển tại AI 2:`, scanErr);
@@ -1090,7 +1108,8 @@ ${glossarySection}`;
                 if (opts.qaEnabled && opts.qaModel) {
                   onPhase(chapter.id, "model3");
                   console.log(`[3-Model Pipeline QtAi] Đang chạy QA Bot tối ưu hóa đoạn ${chunkIdx + 1}/${chunks.length}...`);
-                  const qaSystemPrompt = buildQaSystemPrompt(chunk, nameDict, opts.qaPrompt);
+                  const latestNovel = await db.novels.get(novelId);
+                  const qaSystemPrompt = buildQaSystemPrompt(chunk, nameDict, opts.qaPrompt, latestNovel?.customPronounPrompt);
                   const qaUserPrompt = buildQaUserPrompt(chunk, dictTranslatedContent, finalChunkContent);
 
                   let qaResult = "";

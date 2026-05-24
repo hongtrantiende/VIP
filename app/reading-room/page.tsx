@@ -28,6 +28,7 @@ import { useProfile } from "@/lib/hooks/use-profile";
 import { toast } from "sonner";
 import { sanitizeFilename, uploadCompressedInChunks } from "@/lib/utils";
 import { extensionFetch, checkExtensionStatus } from "@/lib/scraper/extension-bridge";
+import { nhDownloadStore } from "@/lib/nh-download-store";
 
 const formatViews = (val?: number) => {
     if (!val) return "0";
@@ -3009,25 +3010,29 @@ function NovelHubStoryDetailsView({
     const { isVip } = useProfile();
     const [downloadingFormat, setDownloadingFormat] = useState<"txt" | "epub" | null>(null);
 
-    // Scan for any paused/partially finished downloads in localStorage
+    // Scan for any paused/partially finished downloads in IndexedDB
     useEffect(() => {
         if (!storySlug || !nhSource) return;
-        try {
-            const saved = localStorage.getItem(`rr_download_state_${nhSource}_${storySlug}`);
-            if (saved) {
-                const parsed = JSON.parse(saved);
-                setSavedDownloadState(parsed);
-                setDownloadStatus("paused");
-                setDownloadingFormat(parsed.format);
-                const progressPercent = Math.round((parsed.currentIndex / parsed.chaptersToDownload.length) * 100);
-                setDownloadProgress(progressPercent);
-            } else {
-                setSavedDownloadState(null);
-                setDownloadStatus("idle");
+        let cancelled = false;
+        (async () => {
+            try {
+                const parsed = await nhDownloadStore.get(nhSource, storySlug);
+                if (cancelled) return;
+                if (parsed) {
+                    setSavedDownloadState(parsed);
+                    setDownloadStatus("paused");
+                    setDownloadingFormat(parsed.format);
+                    const progressPercent = Math.round((parsed.currentIndex / parsed.chaptersToDownload.length) * 100);
+                    setDownloadProgress(progressPercent);
+                } else {
+                    setSavedDownloadState(null);
+                    setDownloadStatus("idle");
+                }
+            } catch (e) {
+                console.error("Failed to load saved download state", e);
             }
-        } catch (e) {
-            console.error("Failed to load saved download state", e);
-        }
+        })();
+        return () => { cancelled = true; };
     }, [storySlug, nhSource]);
 
     // Không giới hạn lượt tải VIP nên không cần đếm lượt
@@ -3157,7 +3162,6 @@ function NovelHubStoryDetailsView({
         let downloadedChapters: { title: string; content: string }[] = [];
         let startIndex = 0;
         let didPause = false;
-        const storageKey = `rr_download_state_${nhSource}_${storySlug}`;
 
         const toastId = toast.loading(isResume ? `Đang tiếp tục tải bản ${format.toUpperCase()}...` : `Đang chuẩn bị tải truyện bản ${format.toUpperCase()}...`);
 
@@ -3184,7 +3188,7 @@ function NovelHubStoryDetailsView({
                     currentIndex: 0,
                     timestamp: Date.now()
                 };
-                localStorage.setItem(storageKey, JSON.stringify(initialState));
+                await nhDownloadStore.set(nhSource, storySlug, initialState);
             }
 
             let successCount = downloadedChapters.filter(ch => !ch.content.includes("[Lỗi:")).length;
@@ -3205,7 +3209,7 @@ function NovelHubStoryDetailsView({
                         currentIndex: i,
                         timestamp: Date.now()
                     };
-                    localStorage.setItem(storageKey, JSON.stringify(currentState));
+                    await nhDownloadStore.set(nhSource, storySlug, currentState);
                     setSavedDownloadState(currentState);
                     didPause = true;
                     toast.dismiss(toastId);
@@ -3287,7 +3291,7 @@ function NovelHubStoryDetailsView({
                         currentIndex: i,
                         timestamp: Date.now()
                     };
-                    localStorage.setItem(storageKey, JSON.stringify(currentState));
+                    await nhDownloadStore.set(nhSource, storySlug, currentState);
                     setSavedDownloadState(currentState);
                     didPause = true;
                     toast.dismiss(toastId);
@@ -3312,7 +3316,7 @@ function NovelHubStoryDetailsView({
                     currentIndex: i + 1,
                     timestamp: Date.now()
                 };
-                localStorage.setItem(storageKey, JSON.stringify(currentState));
+                await nhDownloadStore.set(nhSource, storySlug, currentState);
                 setSavedDownloadState(currentState);
 
                 const randomDelay = Math.floor(Math.random() * 1500) + 1500;
@@ -3388,7 +3392,7 @@ function NovelHubStoryDetailsView({
                 URL.revokeObjectURL(url);
             }
 
-            localStorage.removeItem(storageKey);
+            await nhDownloadStore.remove(nhSource, storySlug);
             setSavedDownloadState(null);
             setDownloadStatus("idle");
             setDownloadingFormat(null);
@@ -3424,14 +3428,12 @@ function NovelHubStoryDetailsView({
         toast.info("Đang tạm dừng tiến trình... Vui lòng đợi chương hiện tại tải xong.");
     };
 
-    const handleCancelDownload = () => {
-        const storageKey = `rr_download_state_${nhSource}_${storySlug}`;
-        localStorage.removeItem(storageKey);
+    const handleCancelDownload = async () => {
+        await nhDownloadStore.remove(nhSource, storySlug);
         setSavedDownloadState(null);
         setDownloadStatus("idle");
         setDownloadingFormat(null);
         setDownloadProgress(0);
-        
         toast.success("Đã hủy lượt tải dở dang.");
     };
 

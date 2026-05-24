@@ -70,30 +70,90 @@ ${genreGuidelines}
 function getEditQaSystemPrompt(
     genreText: string,
     nameDict: any[],
-    customQaPrompt?: string
+    chineseText?: string,
+    customQaPrompt?: string,
+    customPronounPrompt?: string
 ) {
+    const relevantNames = nameDict
+        .filter(
+            (n) =>
+                (!chineseText || chineseText.includes(n.chinese)) &&
+                [
+                    "nhân vật",
+                    "names",
+                    "địa danh",
+                    "môn phái",
+                    "bang hội",
+                    "tên riêng",
+                    "thuật ngữ",
+                    "context mapping",
+                    "khác",
+                    "tuvung",
+                    "ngucanh",
+                    "vật phẩm",
+                    "kỹ năng",
+                    "thuật ngữ tu tiên",
+                ].includes(n.category)
+        )
+        .sort((a, b) => b.chinese.length - a.chinese.length);
+
     let relevantNamesPrompt = "";
-    if (nameDict && nameDict.length > 0) {
+    if (relevantNames.length > 0) {
         relevantNamesPrompt = `\n\n# Bảng tên riêng bắt buộc dùng đúng:\n`;
-        for (const n of nameDict.slice(0, 150)) {
+        for (const n of relevantNames.slice(0, 150)) {
             relevantNamesPrompt += `${n.chinese} hoặc phiên âm tương tự → ${n.vietnamese}\n`;
         }
     }
 
+    const pronounRules = nameDict.filter((n) => n.category === "xưng hô");
+    let relevantPronounsPrompt = "";
+    for (const p of pronounRules) {
+        const cnKey = p.chinese; // Định dạng "林枫->楚瑶"
+        const [speakerCn, listenerCn] = cnKey.split("->").map((s: string) => s.trim());
+        const hasChineseMatch = !chineseText || (speakerCn && listenerCn && chineseText.includes(speakerCn) && chineseText.includes(listenerCn));
+        if (hasChineseMatch) {
+            const parts = p.vietnamese.split("|");
+            const pronPart = parts[0];
+            const namePart = parts[1] || "";
+            const [speakerPron, listenerPron] = pronPart.split("->").map((s: string) => s.trim());
+            const [speakerName, listenerName] = namePart.split("->").map((s: string) => s.trim());
+
+            if (speakerName && listenerName && speakerPron && listenerPron) {
+                if (!relevantPronounsPrompt) {
+                    relevantPronounsPrompt = `\n\n# Quy tắc xưng hô nhân vật bắt buộc tuân thủ (Chỉ trích xuất các nhân vật có mặt trong chương):\n`;
+                }
+                relevantPronounsPrompt += `- ${speakerName} nói với ${listenerName}: ${speakerName} xưng "${speakerPron}", gọi ${listenerName} là "${listenerPron}"\n`;
+            }
+        }
+    }
+
+    let pronounPrompt = "";
+    if (relevantPronounsPrompt) {
+        pronounPrompt = relevantPronounsPrompt;
+        if (customPronounPrompt?.trim()) {
+            pronounPrompt += `\n# Quy tắc xưng hô & Bối cảnh bổ sung:\n${customPronounPrompt.trim()}\n`;
+        }
+    } else if (customPronounPrompt?.trim()) {
+        pronounPrompt = `\n\n# Quy tắc xưng hô & Bối cảnh bắt buộc tuân thủ:\n${customPronounPrompt.trim()}\n`;
+    }
+
     if (customQaPrompt?.trim()) {
-        return `${customQaPrompt.trim()}${relevantNamesPrompt}`;
+        return `${customQaPrompt.trim()}${relevantNamesPrompt}${pronounPrompt}`;
     }
 
     return `# Vai trò
 Bạn là Giám sát Chất lượng Biên tập Văn học (QA Bot) chuyên nghiệp. Nhiệm vụ của bạn là rà soát và tinh chỉnh bản dịch tiếng Việt đã biên tập ở bước 1 để nâng cao độ trôi chảy, tự nhiên và đặc biệt sửa các lỗi không nhất quán về tên riêng, đại từ xưng hô và lỗi chính tả/ngữ pháp.
-${relevantNamesPrompt}
+${relevantNamesPrompt}${pronounPrompt}
 # Quy tắc sửa lỗi (BẮT BUỘC):
 1. **Kiểm tra và sửa đổi tên riêng**:
    - Đối chiếu tên nhân vật trong văn bản dịch chưa tinh chỉnh với Bảng tên riêng.
    - Nếu xuất hiện tên bị viết sai hoặc không đồng bộ (ví dụ: "Lâm Phong" bị viết nhầm thành "Lâm Phóng", v.v.), bạn BẮT BUỘC phải sửa lại câu văn đó cho đúng tên dịch chuẩn.
-2. **Hành văn & Chính tả**:
+2. **Đồng bộ hóa đại từ nhân xưng và cách xưng hô**:
+   - Đối chiếu quy tắc xưng hô trong phần "Quy tắc xưng hô & Bối cảnh bắt buộc tuân thủ" (nếu có).
+   - Đảm bảo cách xưng hô giữa hai nhân vật phải nhất quán xuyên suốt chương truyện. Tránh tình trạng loạn xưng hô (ví dụ: đoạn đầu gọi "cô" xưng "tôi", đoạn sau lại đổi thành "em" xưng "anh" mà không có lý do hợp lý hoặc không có sự thay đổi về quan hệ/bối cảnh hội thoại). Nếu phát hiện xưng hô bị loạn hoặc sai quy tắc, hãy sửa các câu văn đó để đồng bộ nhất quán.
+3. **Hành văn & Chính tả**:
    - Tinh chỉnh các câu từ thô cứng, lặp từ hoặc diễn đạt chưa mượt mà để câu văn tự nhiên chuẩn văn học Việt Nam theo thể loại: ${genreText}.
-3. **Định dạng câu trả lời tiết kiệm Token**:
+4. **Định dạng câu trả lời tiết kiệm Token**:
    - Bạn chỉ cần trả về các dòng có lỗi cần sửa đổi kèm theo số dòng tương ứng.
    - Tuyệt đối KHÔNG viết lại toàn bộ văn bản hay các câu không có lỗi, KHÔNG chèn thêm nhận xét, giải thích.
    - Định dạng đầu ra bắt buộc cho mỗi dòng sửa đổi: \`L[Số dòng]: [Nội dung câu đã sửa lại hoàn chỉnh]\`
@@ -235,6 +295,8 @@ export async function runEditTranslate(opts: EditTranslateOptions) {
                 const currentContent = scene.content;
                 if (!currentContent?.trim()) continue;
 
+                const origContent = await getOriginalContent(scene.id).catch(() => "");
+
                 const chunks = chunkText(currentContent, 2000);
                 let editedContent = "";
 
@@ -289,7 +351,8 @@ export async function runEditTranslate(opts: EditTranslateOptions) {
                     // Pass 2: QA Polisher
                     if (qaEnabled && qaModel) {
                         onPhase(chapter.id, "model3");
-                        const qaSystem = getEditQaSystemPrompt(genreText, nameDict, qaPrompt);
+                        const latestNovel = await db.novels.get(novelId);
+                        const qaSystem = getEditQaSystemPrompt(genreText, nameDict, origContent, qaPrompt, latestNovel?.customPronounPrompt);
                         const qaUser = buildEditQaUserPrompt(chunkOutput);
 
                         let qaResult = "";
@@ -320,7 +383,6 @@ export async function runEditTranslate(opts: EditTranslateOptions) {
                 }
 
                 // Save
-                const origContent = await getOriginalContent(scene.id);
                 await ensureInitialVersion(scene.id, novelId, origContent);
                 await createSceneVersion(scene.id, novelId, "edit-translate", editedContent);
                 await db.scenes.update(scene.id, {

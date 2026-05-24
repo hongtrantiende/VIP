@@ -268,9 +268,10 @@ const ICON_MAPPING: Record<string, string> = {
 };
 
 export const ChomeredAdapter: SiteAdapter = {
-  name: "Chomered / Welove / Bjtriz / Parents-Note",
+  name: "Chomered / Welove / Bjtriz / Parents-Note / Fooddier",
   group: "cn",
-  urlPattern: /chomered\.com|welove-gourmet\.com|bjtriz\.com|parents-note\.com/i,
+  urlPattern: /chomered\.com|welove-gourmet\.com|bjtriz\.com|parents-note\.com|fooddier\.com/i,
+  novelWaitSelector: ".bookbox, .bookinfo, #chapterlist, .chapterlist",
   chapterWaitSelector: ".novelcontent, .chapterlist",
 
   getNovelInfo(html, url) {

@@ -282,7 +282,15 @@ export const useScraperStore = create<ScraperState>()(
               logChapterIssue(entry);
             },
             get().chapterDelay * 1000,
-            () => get().isPaused
+            () => get().isPaused,
+            (newChapter) => {
+              set({
+                progress: {
+                  ...get().progress,
+                  total: get().progress.total + 1,
+                },
+              });
+            }
           );
 
           set({
@@ -354,7 +362,15 @@ export const useScraperStore = create<ScraperState>()(
               logChapterIssue(entry);
             },
             get().chapterDelay * 1000,
-            () => get().isPaused
+            () => get().isPaused,
+            (newChapter) => {
+              set({
+                progress: {
+                  ...get().progress,
+                  total: get().progress.total + 1,
+                },
+              });
+            }
           );
 
           set({

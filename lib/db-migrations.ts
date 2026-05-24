@@ -256,4 +256,10 @@ export function registerMigrations(db: NovelStudioDB) {
     writingStepResults: "id, sessionId, role, [sessionId+role]",
     novelCollections: "id, name, createdAt",
   });
+
+  // v15: Add nhDownloadStates table — replaces localStorage for NovelHub
+  //      download state to avoid the 5 MB quota-exceeded error on large novels.
+  db.version(15).stores({
+    nhDownloadStates: "id, nhSource, storySlug, timestamp",
+  });
 }

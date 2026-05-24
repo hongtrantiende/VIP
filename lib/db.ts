@@ -294,6 +294,7 @@ export type NameEntryCategory =
   | "pattern câu"
   | "context mapping"
   | "âm thanh"
+  | "xưng hô"
   | "khác";
 
 export const NAME_ENTRY_CATEGORIES: NameEntryCategory[] = [
@@ -314,6 +315,7 @@ export const NAME_ENTRY_CATEGORIES: NameEntryCategory[] = [
   "pattern câu",
   "context mapping",
   "âm thanh",
+  "xưng hô",
   "khác",
 ];
 
@@ -593,6 +595,29 @@ export interface NovelCollection {
   createdAt: Date;
 }
 
+// ─── NovelHub Download State ─────────────────────────────────
+// Lưu trạng thái download dở dang từ NovelHub trong IndexedDB
+// thay vì localStorage để tránh lỗi quota (~5MB limit).
+
+export interface NhDownloadState {
+  /** `${nhSource}_${storySlug}` */
+  id: string;
+  nhSource: string;
+  storySlug: string;
+  format: "txt" | "epub";
+  storyTitle: string;
+  storyAuthor?: string;
+  storyCover?: string;
+  storyDesc?: string;
+  /** Các chương đã tải xong (có nội dung đầy đủ) */
+  downloadedChapters: { title: string; content: string }[];
+  /** Toàn bộ danh sách chương cần tải */
+  chaptersToDownload: any[];
+  /** Index hiện tại đang dừng lại */
+  currentIndex: number;
+  timestamp: number;
+}
+
 export class NovelStudioDB extends Dexie {
   novels!: EntityTable<Novel, "id">;
   chapters!: EntityTable<Chapter, "id">;
@@ -621,6 +646,7 @@ export class NovelStudioDB extends Dexie {
   writingSessions!: EntityTable<WritingSession, "id">;
   writingStepResults!: EntityTable<WritingStepResult, "id">;
   novelCollections!: EntityTable<NovelCollection, "id">;
+  nhDownloadStates!: EntityTable<NhDownloadState, "id">;
 
   constructor() {
     super("novel-studio");

@@ -240,32 +240,53 @@ export async function scrapeChapters(
       );
     }
 
-    // ── Dynamic Next Chapter Crawling ──
-    // If we just processed the last chapter in our list, and we didn't stop or error out
-    if (i === chapters.length - 1 && !signal?.aborted && adapter.name === "Fanqie Novel" && success && !timedOut && content.content.length > 200) {
-      // For Fanqie, we simulate the next chapter since the extension ALREADY clicked "Next".
-      // The URL in the browser changed, but our `chapter.url` is outdated. That's fine for STV mode.
-      // We just append a dummy chapter to keep the loop going!
-      const nextIdx = chapters.length;
-      const newChapter: ChapterLink = {
-        title: `Chương ${nextIdx + 1}`,
-        url: content.nextChapterUrl || `fanqie-dynamic-next-${nextIdx}`, // placeholder
-        order: nextIdx,
-        id: `fanqie-dynamic-${nextIdx}` // Need an ID for STV mode to trigger
-      };
-      chapters.push(newChapter);
-      onDynamicChapterAdded?.(newChapter);
-    } else if (i === chapters.length - 1 && content.nextChapterUrl) {
-      // Existing logic for other adapters
-      const alreadyExists = chapters.some((ch) => ch.url === content.nextChapterUrl);
-      if (!alreadyExists && content.nextChapterUrl.startsWith("http")) {
-        const newChapter: ChapterLink = {
-          title: `Chương ${chapters.length + 1} (Đang lấy tiêu đề...)`,
-          url: content.nextChapterUrl,
-          order: chapters.length,
-        };
-        chapters.push(newChapter);
-        onDynamicChapterAdded?.(newChapter);
+    // ── Dynamic Next Chapter Crawling & Gap Healing ──
+    if (content.nextChapterUrl && content.nextChapterUrl.startsWith("http") && !signal?.aborted) {
+      const isLast = i === chapters.length - 1;
+      if (isLast) {
+        if (adapter.name === "Fanqie Novel" && success && !timedOut && content.content.length > 200) {
+          const nextIdx = chapters.length;
+          const newChapter: ChapterLink = {
+            title: `Chương ${nextIdx + 1}`,
+            url: content.nextChapterUrl,
+            order: nextIdx,
+            id: `fanqie-dynamic-${nextIdx}`
+          };
+          chapters.push(newChapter);
+          onDynamicChapterAdded?.(newChapter);
+        } else {
+          const alreadyExists = chapters.some((ch) => ch.url === content.nextChapterUrl);
+          if (!alreadyExists) {
+            const newChapter: ChapterLink = {
+              title: `Chương ${chapters.length + 1} (Đang lấy tiêu đề...)`,
+              url: content.nextChapterUrl,
+              order: chapters.length,
+            };
+            chapters.push(newChapter);
+            onDynamicChapterAdded?.(newChapter);
+          }
+        }
+      } else {
+        // Check for gap in the middle
+        const nextInQueue = chapters[i + 1];
+        if (nextInQueue && nextInQueue.url !== content.nextChapterUrl) {
+          const alreadyExists = chapters.some((ch) => ch.url === content.nextChapterUrl);
+          if (!alreadyExists) {
+            // It is a missing chapter! Insert it at index i + 1
+            const newChapter: ChapterLink = {
+              title: `${chapter.title} - Tiếp theo (Đang lấy tiêu đề...)`,
+              url: content.nextChapterUrl,
+              order: chapter.order + 0.5,
+            };
+            chapters.splice(i + 1, 0, newChapter);
+            onDynamicChapterAdded?.(newChapter);
+            
+            // Recalculate orders of subsequent chapters to maintain correct order sequence
+            for (let k = i + 1; k < chapters.length; k++) {
+              chapters[k].order = k;
+            }
+          }
+        }
       }
     }
   }

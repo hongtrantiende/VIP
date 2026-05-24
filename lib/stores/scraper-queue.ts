@@ -407,11 +407,15 @@ export const useScraperQueueStore = create<ScraperQueueState>()(
                   set((s) => {
                     const j = s.jobs[nextJob.id];
                     if (!j) return s;
+                    const updatedChapters = [...j.chaptersToScrape];
+                    // Chèn chương mới ngay sau chương đang chạy để tuần tự hóa đúng
+                    updatedChapters.splice(1, 0, newChapter);
                     return {
                       jobs: {
                         ...s.jobs,
                         [nextJob.id]: {
                           ...j,
+                          chaptersToScrape: updatedChapters,
                           progress: {
                             ...j.progress,
                             total: j.progress.total + 1

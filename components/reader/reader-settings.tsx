@@ -161,12 +161,16 @@ export function ReaderSettings() {
   }, [selectedProvider]);
 
   const handleProviderChange = (providerId: string) => {
-    // Reset voice to first available when switching providers
+    // Reset voice to sensible default when switching providers
     let defaultVoice = "0";
     if (providerId === "PiperTTS") {
       defaultVoice = "Ban Mai";
     } else if (providerId === "GoogleCloudTTS") {
       defaultVoice = "via";
+    } else if (providerId === "WebSpeechTTS") {
+      defaultVoice = "auto";
+    } else if (providerId === "PiperBrowserTTS") {
+      defaultVoice = "Xenova/mms-tts-vie";
     }
     updateSettings({ providerId, voiceId: defaultVoice });
   };
@@ -232,6 +236,25 @@ export function ReaderSettings() {
               ))}
             </NativeSelect>
           </div>
+
+          {/* Status indicator for WebSpeechTTS */}
+          {selectedProvider === "WebSpeechTTS" && (
+            <div className="flex items-center gap-1.5 rounded-lg border border-green-500/30 bg-green-500/10 px-3 py-2 text-xs text-green-600 dark:text-green-400">
+              <CheckIcon className="size-3.5" />
+              Chạy trực tiếp trên trình duyệt — không cần cài đặt gì thêm
+            </div>
+          )}
+
+          {/* Status indicator for PiperBrowserTTS */}
+          {selectedProvider === "PiperBrowserTTS" && (
+            <div className="flex flex-col gap-1 rounded-lg border border-blue-500/30 bg-blue-500/10 px-3 py-2 text-xs text-blue-600 dark:text-blue-400">
+              <span className="font-semibold">Chạy ONNX trong trình duyệt — không cần server</span>
+              <span className="text-muted-foreground">
+                Lần đầu sử dụng sẽ tải model ~50MB vào OPFS (cache tự động, lần sau dùng ngay).
+                Trong khi tải model, giọng đọc sẽ chậm hơn bình thường.
+              </span>
+            </div>
+          )}
 
           {/* Download indicator for Piper TTS */}
           {selectedProvider === "PiperTTS" && ttsSettings.voiceId && (

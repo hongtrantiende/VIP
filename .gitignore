@@ -57,3 +57,10 @@ docs
 !.dev.vars.example
 
 !.env.example
+
+# Local scratch and voice files
+/scratch/
+/voices/
+*.mp3
+*.apks
+untitled.zip

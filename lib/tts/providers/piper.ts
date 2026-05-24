@@ -37,6 +37,15 @@ export class PiperTTS implements TTSProvider {
   private apiUrl = "http://localhost:5000";
   private isInitialized = false;
 
+  private isLocalUrl(url: string): boolean {
+    try {
+      const u = new URL(url);
+      return u.hostname === "localhost" || u.hostname === "127.0.0.1" || u.hostname.startsWith("192.168.") || u.hostname.startsWith("10.");
+    } catch {
+      return url.includes("localhost") || url.includes("127.0.0.1") || url.includes("192.168.");
+    }
+  }
+
   async initialize(): Promise<void> {
     if (this.isInitialized) return;
     this.isInitialized = true;
@@ -97,7 +106,11 @@ export class PiperTTS implements TTSProvider {
           }
         }
       } catch (e) {
-        console.warn("[PiperTTS] Direct client-side voices fetch failed, falling back to Next.js proxy:", e);
+        console.warn("[PiperTTS] Direct client-side voices fetch failed:", e);
+        if (this.isLocalUrl(this.apiUrl)) {
+          // Local server is not running, stop trying to use Next.js proxy to avoid console errors
+          return list;
+        }
       }
     }
 
@@ -195,7 +208,10 @@ export class PiperTTS implements TTSProvider {
         }
         console.warn("[PiperTTS] Direct client-side synthesis failed, falling back to Next.js proxy...");
       } catch (err) {
-        console.warn("[PiperTTS] Direct client-side synthesis error, falling back to Next.js proxy:", err);
+        console.warn("[PiperTTS] Direct client-side synthesis error:", err);
+        if (this.isLocalUrl(this.apiUrl)) {
+          throw new Error(`Không thể kết nối đến máy chủ Piper cục bộ tại ${this.apiUrl}. Hãy chắc chắn rằng bạn đã khởi động server Piper.`);
+        }
       }
     }
 

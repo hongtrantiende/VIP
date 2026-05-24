@@ -17,7 +17,7 @@ export const STVAdapter: SiteAdapter = {
   name: "STV",
   group: "vn",
   urlPattern: /sangtacviet\.\w+/,
-  novelWaitSelector: "a.listchapitem",
+  novelWaitSelector: ".listchapitem",
   chapterWaitSelector: "#content-container .contentbox",
   chapterClickSelector: "#content-container .contentbox",
 
@@ -118,15 +118,30 @@ function extractChapterTitle(html: string): string | null {
   return parts[0]?.trim() || null;
 }
 
-function extractBookInfo(html: string): BookInfo | null {
-  // Match: var bookinfo = {...};
-  const match = html.match(/var\s+bookinfo\s*=\s*(\{[^}]+\})/);
-  if (!match) return null;
+function parseLooseJson(str: string): any {
   try {
-    return JSON.parse(match[1]);
+    return JSON.parse(str);
   } catch {
-    return null;
+    const obj: any = {};
+    // Match unquoted/quoted keys and their string/number values
+    const matches = str.matchAll(/(?:\s*['"]?([\w\-]+)['"]?\s*:\s*['"]?([^'",}]+)['"]?\s*)/g);
+    for (const m of matches) {
+      const key = m[1];
+      let val = m[2].trim();
+      if ((val.startsWith("'") && val.endsWith("'")) || (val.startsWith('"') && val.endsWith('"'))) {
+        val = val.substring(1, val.length - 1);
+      }
+      obj[key] = val;
+    }
+    return Object.keys(obj).length > 0 ? obj : null;
   }
+}
+
+function extractBookInfo(html: string): BookInfo | null {
+  // Match: var bookinfo = {...}; (supporting multiline and ending with semicolon)
+  const match = html.match(/var\s+bookinfo\s*=\s*(\{[\s\S]*?\});/);
+  if (!match) return null;
+  return parseLooseJson(match[1]);
 }
 
 /**

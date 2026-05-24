@@ -31,7 +31,7 @@ async function getOrCreateHiddenTab() {
 }
 
 async function handleFetch(url, options = {}) {
-  const { smartScrape, timeout = 60000 } = options;
+  const { smartScrape, timeout = 60000, waitSelector } = options;
   const logs = [];
   const log = (msg) => logs.push(`[${new Date().toLocaleTimeString()}] ${msg}`);
 
@@ -41,17 +41,78 @@ async function handleFetch(url, options = {}) {
       log(`Attempting silent background fetch for ${url}`);
       const controller = new AbortController();
       const fetchTimeout = setTimeout(() => controller.abort(), 15000);
-      const res = await fetch(url, { signal: controller.signal });
+      const res = await fetch(url, { 
+        signal: controller.signal,
+        headers: {
+          'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'
+        }
+      });
       clearTimeout(fetchTimeout);
       
       if (res.ok) {
-        const text = await res.text();
-        // Check for common Cloudflare / anti-bot signs
-        if (!text.includes("Just a moment...") && !text.includes("Cloudflare") && text.length > 500) {
-          log(`Silent fetch successful (${text.length} bytes)`);
+        const buffer = await res.arrayBuffer();
+        
+        // Detect charset from headers or HTML content
+        let charset = 'utf-8';
+        const headersContentType = res.headers.get('content-type') || '';
+        const charsetMatch = headersContentType.match(/charset=([\w\-]+)/i);
+        if (charsetMatch) {
+          charset = charsetMatch[1].toLowerCase();
+        } else {
+          const firstBytes = new Uint8Array(buffer.slice(0, 2048));
+          let firstBytesStr = '';
+          for (let i = 0; i < firstBytes.length; i++) {
+            firstBytesStr += String.fromCharCode(firstBytes[i]);
+          }
+          const htmlCharsetMatch = firstBytesStr.match(/<meta[^>]*charset=["']?([\w\-]+)["']?/i) 
+                                || firstBytesStr.match(/<meta[^>]*http-equiv=["']?Content-Type["']?[^>]*content=["']?[^"'>]*charset=([\w\-]+)/i);
+          if (htmlCharsetMatch) {
+            charset = htmlCharsetMatch[1].toLowerCase();
+          }
+        }
+        
+        let text;
+        try {
+          const decoder = new TextDecoder(charset);
+          text = decoder.decode(buffer);
+        } catch (e) {
+          log(`TextDecoder failed for charset ${charset}, falling back to utf-8`);
+          const decoder = new TextDecoder('utf-8');
+          text = decoder.decode(buffer);
+        }
+
+        const hasCf = text.includes("Just a moment...") || text.includes("Cloudflare") || text.includes("cf-challenge") || text.includes("cf_challenge") || text.includes("Turnstile") || text.includes("Checking your browser") || text.includes("Attention Required!");
+        
+        let isValid = !hasCf && text.length > 200;
+        if (waitSelector && isValid) {
+          const checkSelectorInText = (txt, selector) => {
+            const parts = selector.split(',').map(s => s.trim());
+            for (const part of parts) {
+              const matches = part.match(/[.#][\w\-]+/g);
+              if (matches && matches.length > 0) {
+                let allFound = true;
+                for (const m of matches) {
+                  const name = m.substring(1);
+                  if (!txt.includes(name)) { allFound = false; break; }
+                }
+                if (allFound) return true;
+              } else {
+                const clean = part.replace(/[^\w\-]/g, '');
+                if (clean && txt.includes(clean)) return true;
+              }
+            }
+            return false;
+          };
+          if (!checkSelectorInText(text, waitSelector)) {
+            isValid = false;
+          }
+        }
+
+        if (isValid) {
+          log(`Silent fetch successful (${text.length} bytes, charset: ${charset})`);
           return { ok: true, html: text, contentText: null, logs };
         }
-        log(`Silent fetch returned anti-bot page, falling back to tab...`);
+        log(`Silent fetch returned anti-bot/invalid page, falling back to tab...`);
       } else {
         log(`Silent fetch failed with status ${res.status}, falling back...`);
       }
@@ -71,6 +132,22 @@ async function handleFetch(url, options = {}) {
 
     // Wait for initial page load
     await delay(3000); 
+
+    // Block automatic browser translation
+    try {
+      await chrome.scripting.executeScript({
+        target: { tabId },
+        func: () => {
+          document.documentElement.classList.add('notranslate');
+          const meta = document.createElement('meta');
+          meta.name = 'google';
+          meta.content = 'notranslate';
+          document.head.appendChild(meta);
+        }
+      });
+    } catch (e) {
+      log(`Failed to inject translate-blocking script: ${e.message}`);
+    }
 
     if (smartScrape === "XTRUYEN") {
       log("XTruyen: Starting 'Open All' phase...");

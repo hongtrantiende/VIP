@@ -4,6 +4,7 @@ export const JjwxcAdapter: SiteAdapter = {
   name: "JJWXC (晋江文学城)",
   group: "cn",
   urlPattern: /jjwxc\.net/i,
+  novelWaitSelector: "tr[itemprop='chapter'], #novelintro",
   chapterWaitSelector: "body",
 
   async getNovelInfo(html, url) {

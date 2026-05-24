@@ -2,6 +2,9 @@
 import "./providers/gemini";
 import "./providers/piper";
 import "./providers/google-cloud";
+import "./providers/web-speech";
+import "./providers/piper-browser";
+
 
 // Provider types & registry
 export type {

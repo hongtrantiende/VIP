@@ -85,7 +85,7 @@ import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 
 // ── Types ──
 type Phase = "idle" | "dict" | "ai" | "done" | "model1" | "model2" | "model3";
-type TranslateMode = "prompt" | "stv-prompt" | "edit" | "comprehensive" | "scan-fix" | "test";
+type TranslateMode = "prompt" | "stv-prompt" | "edit" | "comprehensive" | "scan-fix";
 
 const MODES: { id: TranslateMode; label: string; icon: React.ElementType; color: string; desc: string }[] = [
     { id: "prompt", label: "Dịch Prompt", icon: SparklesIcon, color: "text-blue-600 dark:text-blue-400", desc: "Dịch thuần AI theo system prompt, không dùng từ điển" },
@@ -93,7 +93,6 @@ const MODES: { id: TranslateMode; label: string; icon: React.ElementType; color:
     { id: "edit", label: "Biên Tập AI", icon: PenToolIcon, color: "text-amber-600 dark:text-amber-400", desc: "Biên tập & làm mịn bản dịch tiếng Việt cho trôi chảy, đúng từ điển, mượt mà theo thể loại" },
     { id: "comprehensive", label: "Dịch Toàn Diện", icon: CrownIcon, color: "text-purple-600 dark:text-purple-400", desc: "Pipeline đầy đủ: QT → AI Draft → AI Editor (2-pass)" },
     { id: "scan-fix", label: "Quét & Sửa", icon: ShieldCheckIcon, color: "text-rose-600 dark:text-rose-400", desc: "Quét và phát hiện lỗi chính tả, viết sai tên nhân vật theo từ điển" },
-    { id: "test", label: "Dịch Thử", icon: LanguagesIcon, color: "text-rose-600 dark:text-rose-400", desc: "Dịch thử nghiệm bằng AI 2-pass (Dịch + Biên tập) với văn phong & từ điển tự định nghĩa" },
 ];
 
 const GENRE_DICTS = [
@@ -525,7 +524,7 @@ export function TranslateTabPanel({
         let model2: any = null;
         let model3: any = null;
 
-        if (activeMode === "stv-prompt" || activeMode === "comprehensive" || activeMode === "prompt" || activeMode === "edit" || activeMode === "test") {
+        if (activeMode === "stv-prompt" || activeMode === "comprehensive" || activeMode === "prompt" || activeMode === "edit") {
             const config1 = { providerId: model1ProviderId, modelId: model1ModelId };
             if (!config1.providerId || !config1.modelId) {
                 toast.error(activeMode === "edit" ? "Vui lòng cấu hình đầy đủ Model 1 (Biên tập chính)" : "Vui lòng cấu hình đầy đủ Model 1 (Dịch chính)");
@@ -539,13 +538,13 @@ export function TranslateTabPanel({
 
             const config2 = { providerId: model2ProviderId, modelId: model2ModelId };
             if (activeMode !== "edit" && (!config2.providerId || !config2.modelId)) {
-                toast.error(activeMode === "test" ? "Vui lòng cấu hình đầy đủ Model 2 (Biên tập Pass 2)" : "Vui lòng cấu hình đầy đủ Model 2 (Trích xuất từ điển)");
+                toast.error("Vui lòng cấu hình đầy đủ Model 2 (Trích xuất từ điển)");
                 return;
             }
             if (config2.providerId && config2.modelId) {
                 model2 = await resolveChapterToolModel(config2, defaultProvider, chatSettings);
                 if (!model2 && activeMode !== "edit") {
-                    toast.error(activeMode === "test" ? "Không tìm thấy cấu hình Model 2 (Biên tập Pass 2)" : "Không tìm thấy cấu hình Model 2 (Trích xuất từ điển)");
+                    toast.error("Không tìm thấy cấu hình Model 2 (Trích xuất từ điển)");
                     return;
                 }
             }
@@ -704,25 +703,7 @@ export function TranslateTabPanel({
                     continuousMode: target === "all_untranslated", errorAction,
                     ...commonCallbacks,
                 });
-            } else if (activeMode === "test") {
-                await runQtAiTranslate({
-                    novelId, chapterIds: targetChapterIds, model, models: resolvedModels,
-                    dictModel: model2 || undefined,
-                    editorModel: model2 || undefined,
-                    twoPass: twoPass,
-                    stylePreset: stylePreset,
-                    customStylePrompt: customStylePrompt,
-                    customPronounPrompt: customPronounPrompt,
-                    qaModel: model3 || undefined,
-                    qaEnabled: model3Enabled,
-                    qaPrompt: customModel3Prompt || undefined,
-                    qtDictSources: [],
-                    promptType: "custom" as PromptType,
-                    extractDict: false,
-                    skipTranslated: skipTranslated,
-                    continuousMode: target === "all_untranslated", errorAction,
-                    ...commonCallbacks,
-                });
+
             } else if (activeMode === "edit") {
                 await runEditTranslate({
                     novelId,
@@ -945,78 +926,10 @@ export function TranslateTabPanel({
                         </div>
                     )}
 
-                    {/* Dịch Thử mode configuration */}
-                    {activeMode === "test" && (
-                        <div className="space-y-3.5 border rounded-lg p-3 bg-muted/20 border-dashed border-rose-500/30">
-                            <div className="flex items-center gap-2 pb-1.5 border-b border-muted">
-                                <LanguagesIcon className="size-4 text-rose-500" />
-                                <span className="text-xs font-bold text-rose-600 dark:text-rose-400">Thiết Lập Dịch Thử (AI 2-Pass)</span>
-                            </div>
-                            
-                            {/* Preset Select */}
-                            <div className="space-y-1.5">
-                                <Label className="text-xs font-medium">Văn phong chủ đạo:</Label>
-                                <Select 
-                                    value={stylePreset} 
-                                    onValueChange={async (val) => { 
-                                        setStylePreset(val); 
-                                        await db.novels.update(novelId, { stylePreset: val }); 
-                                    }}
-                                >
-                                    <SelectTrigger className="w-full text-xs h-8 bg-background">
-                                        <SelectValue placeholder="Mặc định (Standard)" />
-                                    </SelectTrigger>
-                                    <SelectContent>
-                                        {STYLE_PRESETS.map(p => (
-                                            <SelectItem key={p.id} value={p.id}>{p.name}</SelectItem>
-                                        ))}
-                                    </SelectContent>
-                                </Select>
-                            </div>
 
-                            {/* Custom Style Rules Textarea */}
-                            <div className="space-y-1.5">
-                                <Label htmlFor="test-style-prompt" className="text-xs font-medium">Quy tắc phong cách tùy chỉnh (tự định nghĩa):</Label>
-                                <Textarea
-                                    id="test-style-prompt"
-                                    placeholder="Ví dụ: Hành văn trôi chảy, sử dụng từ ngữ thuần Việt, mô tả tâm lý nhân vật sâu sắc..."
-                                    value={customStylePrompt}
-                                    onChange={async (e) => {
-                                        setCustomStylePrompt(e.target.value);
-                                        await db.novels.update(novelId, { customStylePrompt: e.target.value });
-                                    }}
-                                    className="text-xs h-16 min-h-[60px] max-h-32 bg-background"
-                                />
-                            </div>
-
-                            {/* Glossary Textarea */}
-                            <div className="space-y-1.5">
-                                <Label htmlFor="test-pronoun-prompt" className="text-xs font-medium">Từ điển & quy tắc xưng hô riêng (Glossary):</Label>
-                                <Textarea
-                                    id="test-pronoun-prompt"
-                                    placeholder="Ví dụ:&#10;Lâm Phong=anh, Sở Dao=cô&#10;Sư phụ -> Người, Đồ nhi -> Con"
-                                    value={customPronounPrompt}
-                                    onChange={async (e) => {
-                                        setCustomPronounPrompt(e.target.value);
-                                        await db.novels.update(novelId, { customPronounPrompt: e.target.value });
-                                    }}
-                                    className="text-xs h-20 min-h-[80px] max-h-40 bg-background"
-                                />
-                            </div>
-
-                            {/* Two-pass Toggle */}
-                            <div className="flex items-center justify-between pt-1">
-                                <div>
-                                    <Label htmlFor="test-two-pass" className="text-xs font-medium cursor-pointer">Biên tập 2-Pass (Khuyên dùng)</Label>
-                                    <p className="text-[10px] text-muted-foreground">Chạy thêm Model 2 để tối ưu hóa văn phong trôi chảy hơn</p>
-                                </div>
-                                <Switch id="test-two-pass" checked={twoPass} onCheckedChange={setTwoPass} />
-                            </div>
-                        </div>
-                    )}
 
                     {/* ── AI Model Configuration ── */}
-                    {activeMode === "stv-prompt" || activeMode === "comprehensive" || activeMode === "prompt" || activeMode === "edit" || activeMode === "test" ? (
+                    {activeMode === "stv-prompt" || activeMode === "comprehensive" || activeMode === "prompt" || activeMode === "edit" ? (
                         <div className="space-y-3.5 border-t pt-3.5">
                             <div className="space-y-1.5">
                                 <div className="flex justify-between items-center text-xs">
@@ -1039,7 +952,7 @@ export function TranslateTabPanel({
                             <div className="space-y-1.5">
                                 <div className="flex justify-between items-center text-xs">
                                     <Label className="text-xs font-bold text-emerald-600 dark:text-emerald-400">
-                                        {activeMode === "test" ? "Model 2: Biên tập Pass 2 (Khuyên dùng Flash/Pro)" : "Model 2: Quét từ điển (Khuyên dùng Flash)"}
+                                        Model 2: Quét từ điển (Khuyên dùng Flash)
                                     </Label>
                                 </div>
                                 <div className="flex gap-2">
@@ -1072,16 +985,6 @@ export function TranslateTabPanel({
                                                 <SelectTrigger className="flex-1 h-8 text-xs"><SelectValue placeholder="Model..." /></SelectTrigger>
                                                 <SelectContent>{model3Models?.map(m => <SelectItem key={m.id} value={m.modelId}>{m.name || m.modelId}</SelectItem>)}</SelectContent>
                                             </Select>
-                                        </div>
-                                        <div className="space-y-1">
-                                            <Label htmlFor="model3-prompt" className="text-[10px] font-medium text-purple-600 dark:text-purple-400">Prompt Cấu Hình QA Bot (Giám sát & Tinh chỉnh)</Label>
-                                            <Textarea
-                                                id="model3-prompt"
-                                                placeholder="Nhập prompt điều chỉnh chất lượng dịch, sửa lỗi ngữ pháp, đại từ xưng hô..."
-                                                value={customModel3Prompt}
-                                                onChange={(e) => handleModel3PromptChange(e.target.value)}
-                                                className="text-xs h-16 min-h-[60px] max-h-32 focus-visible:ring-purple-500"
-                                            />
                                         </div>
                                     </div>
                                 )}
@@ -1119,9 +1022,8 @@ export function TranslateTabPanel({
                         </div>
                     )}
 
-                    {/* ── Common Options ── */}
                     <div className="space-y-2">
-                        {(activeMode === "comprehensive" || activeMode === "prompt" || activeMode === "stv-prompt" || activeMode === "test") && (
+                        {(activeMode === "comprehensive" || activeMode === "prompt" || activeMode === "stv-prompt") && (
                             <label className="flex items-start gap-2 rounded-lg border border-emerald-500/30 bg-emerald-500/5 p-2.5 cursor-pointer hover:bg-emerald-500/10">
                                 <Checkbox checked={extractDict} onCheckedChange={(c) => setExtractDict(!!c)} className="mt-0.5 border-emerald-500 data-[state=checked]:bg-emerald-500" />
                                 <div>
@@ -1182,13 +1084,13 @@ export function TranslateTabPanel({
                             disabled={
                                 selectedProviderId === "admin-provider"
                                     ? (!isAdmin && rawQuota <= 0)
-                                    : ((activeMode === "stv-prompt" || activeMode === "comprehensive" || activeMode === "prompt" || activeMode === "edit" || activeMode === "test")
-                                        ? (!model1ProviderId || !model1ModelId || (activeMode !== "edit" && activeMode !== "test" && (!model2ProviderId || !model2ModelId)) || (model3Enabled && (!model3ProviderId || !model3ModelId)))
+                                    : ((activeMode === "stv-prompt" || activeMode === "comprehensive" || activeMode === "prompt" || activeMode === "edit")
+                                        ? (!model1ProviderId || !model1ModelId || (activeMode !== "edit" && (!model2ProviderId || !model2ModelId)) || (model3Enabled && (!model3ProviderId || !model3ModelId)))
                                         : !currentModel)
                             }
                         >
                             <ActiveIcon className="size-3.5" />
-                            {activeMode === "edit" ? `${chapterIds.length} chương biên tập` : activeMode === "test" ? `${chapterIds.length} chương dịch thử` : `${chapterIds.length} chương đã chọn`}
+                            {activeMode === "edit" ? `${chapterIds.length} chương biên tập` : `${chapterIds.length} chương đã chọn`}
                         </Button>
                         <Button
                             onClick={() => handleStart("all_untranslated")}
@@ -1197,13 +1099,13 @@ export function TranslateTabPanel({
                             disabled={
                                 selectedProviderId === "admin-provider"
                                     ? (!isAdmin && rawQuota <= 0)
-                                    : ((activeMode === "stv-prompt" || activeMode === "comprehensive" || activeMode === "prompt" || activeMode === "edit" || activeMode === "test")
-                                        ? (!model1ProviderId || !model1ModelId || (activeMode !== "edit" && activeMode !== "test" && (!model2ProviderId || !model2ModelId)) || (model3Enabled && (!model3ProviderId || !model3ModelId)))
+                                    : ((activeMode === "stv-prompt" || activeMode === "comprehensive" || activeMode === "prompt" || activeMode === "edit")
+                                        ? (!model1ProviderId || !model1ModelId || (activeMode !== "edit" && (!model2ProviderId || !model2ModelId)) || (model3Enabled && (!model3ProviderId || !model3ModelId)))
                                         : !currentModel)
                             }
                         >
                             <ActiveIcon className="size-3.5" />
-                            {activeMode === "edit" ? "Biên tập đến hết truyện" : activeMode === "test" ? "Dịch thử đến hết truyện" : "Dịch đến hết truyện"}
+                            {activeMode === "edit" ? "Biên tập đến hết truyện" : "Dịch đến hết truyện"}
                         </Button>
                     </div>
                 </>
@@ -1407,15 +1309,9 @@ export function TranslateTabPanel({
                         {currentPhase !== "idle" && (
                             <div className="flex items-center gap-2 rounded-md bg-muted/50 px-3 py-2">
                                 {(currentPhase === "dict" || currentPhase === "model2") && (
-                                    activeMode === "test" && currentPhase === "model2" ? (
-                                        <span className="flex items-center gap-1.5 text-xs text-emerald-600 dark:text-emerald-400 font-medium">
-                                            <PenToolIcon className="size-3.5 animate-pulse text-emerald-500" /> Model 2: Đang chạy biên tập Pass 2...
-                                        </span>
-                                    ) : (
-                                        <span className="flex items-center gap-1.5 text-xs text-emerald-600 dark:text-emerald-400 font-medium">
-                                            <ScanSearchIcon className="size-3.5 animate-pulse text-emerald-500" /> Model 2 [Flash]: Đang quét từ điển & phân tích...
-                                        </span>
-                                    )
+                                    <span className="flex items-center gap-1.5 text-xs text-emerald-600 dark:text-emerald-400 font-medium">
+                                        <ScanSearchIcon className="size-3.5 animate-pulse text-emerald-500" /> Model 2 [Flash]: Đang quét từ điển & phân tích...
+                                    </span>
                                 )}
                                 {(currentPhase === "ai" || currentPhase === "model1") && (
                                     <span className="flex items-center gap-1.5 text-xs text-blue-600 dark:text-blue-400 font-medium">

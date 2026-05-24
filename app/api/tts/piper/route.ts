@@ -1,15 +1,45 @@
 import { NextRequest, NextResponse } from "next/server";
-import fs from "fs";
-import path from "path";
-import https from "https";
 
-export const maxDuration = 120; // Allow up to 120 seconds to allow for model download on first request
+export const maxDuration = 120;
 
-// Concurrency download locks to prevent parallel write errors (ONNX system error number 13 - Permission Denied)
+// ─── Environment Detection ────────────────────────────────────────────────────
+// Cloudflare Workers không có filesystem writable. Ta phát hiện điều này bằng
+// cách import fs/path một cách lazy và bắt lỗi khi gọi các hàm FS cụ thể.
+
+let _fs: typeof import("fs") | null = null;
+let _path: typeof import("path") | null = null;
+let _https: typeof import("https") | null = null;
+let _fsAvailable: boolean | null = null;
+
+/** Trả về true nếu Node.js filesystem có thể ghi (local/VPS). False trên Cloudflare Edge. */
+function isFsAvailable(): boolean {
+  if (_fsAvailable !== null) return _fsAvailable;
+  try {
+    // eslint-disable-next-line @typescript-eslint/no-require-imports
+    const fs = require("fs") as typeof import("fs");
+    // Kiểm tra quyền GHI vào thư mục gốc của app.
+    // Trên Cloudflare Workers/Pages, process.cwd() là read-only → throws EROFS/EACCES.
+    fs.accessSync(process.cwd(), fs.constants.W_OK);
+    _fs = fs;
+    // eslint-disable-next-line @typescript-eslint/no-require-imports
+    _path = require("path") as typeof import("path");
+    // eslint-disable-next-line @typescript-eslint/no-require-imports
+    _https = require("https") as typeof import("https");
+    _fsAvailable = true;
+  } catch {
+    _fsAvailable = false;
+  }
+  return _fsAvailable;
+}
+
+
+// ─── FS Helpers (chỉ dùng khi isFsAvailable() === true) ──────────────────────
+
 const downloadLocks = new Map<string, Promise<void>>();
 
-// Helper function to download file
 function downloadFile(url: string, dest: string): Promise<void> {
+  const fs = _fs!;
+  const https = _https!;
   return new Promise((resolve, reject) => {
     const file = fs.createWriteStream(dest);
     https.get(url, (response) => {
@@ -18,10 +48,7 @@ function downloadFile(url: string, dest: string): Promise<void> {
         return;
       }
       response.pipe(file);
-      file.on("finish", () => {
-        file.close();
-        resolve();
-      });
+      file.on("finish", () => { file.close(); resolve(); });
     }).on("error", (err) => {
       fs.unlink(dest, () => {});
       reject(err);
@@ -29,33 +56,30 @@ function downloadFile(url: string, dest: string): Promise<void> {
   });
 }
 
-// Atomically download model and config files from tts-piper.pages.dev using a mutex lock and temp files
-function getOrCreateDownloadPromise(cleanVoice: string, modelPath: string, jsonPath: string): Promise<void> {
+function getOrCreateDownloadPromise(
+  cleanVoice: string,
+  modelPath: string,
+  jsonPath: string
+): Promise<void> {
+  const fs = _fs!;
   let downloadPromise = downloadLocks.get(cleanVoice);
   if (!downloadPromise) {
     downloadPromise = (async () => {
       try {
         const needsModel = !fs.existsSync(modelPath) || fs.statSync(modelPath).size === 0;
-        const needsJson = !fs.existsSync(jsonPath) || fs.statSync(jsonPath).size === 0;
+        const needsJson  = !fs.existsSync(jsonPath)  || fs.statSync(jsonPath).size  === 0;
 
         if (needsModel) {
-          console.log(`[Piper Proxy] Downloading voice model ${cleanVoice} to temp file...`);
-          const tempModelPath = `${modelPath}.tmp`;
-          const encoded = encodeURIComponent(cleanVoice);
-          const modelUrl = `https://tts-piper.pages.dev/api/model/${encoded}.onnx`;
-          await downloadFile(modelUrl, tempModelPath);
-          fs.renameSync(tempModelPath, modelPath);
-          console.log(`[Piper Proxy] Successfully atomic-saved: ${modelPath}`);
+          const tempPath = `${modelPath}.tmp`;
+          const encoded  = encodeURIComponent(cleanVoice);
+          await downloadFile(`https://tts-piper.pages.dev/api/model/${encoded}.onnx`, tempPath);
+          fs.renameSync(tempPath, modelPath);
         }
-
         if (needsJson) {
-          console.log(`[Piper Proxy] Downloading config for ${cleanVoice} to temp file...`);
-          const tempJsonPath = `${jsonPath}.tmp`;
-          const encoded = encodeURIComponent(cleanVoice);
-          const jsonUrl = `https://tts-piper.pages.dev/api/model/${encoded}.onnx.json`;
-          await downloadFile(jsonUrl, tempJsonPath);
-          fs.renameSync(tempJsonPath, jsonPath);
-          console.log(`[Piper Proxy] Successfully atomic-saved config: ${jsonPath}`);
+          const tempPath = `${jsonPath}.tmp`;
+          const encoded  = encodeURIComponent(cleanVoice);
+          await downloadFile(`https://tts-piper.pages.dev/api/model/${encoded}.onnx.json`, tempPath);
+          fs.renameSync(tempPath, jsonPath);
         }
       } catch (err: any) {
         console.error(`[Piper Proxy] Download failed for ${cleanVoice}:`, err);
@@ -69,6 +93,8 @@ function getOrCreateDownloadPromise(cleanVoice: string, modelPath: string, jsonP
   return downloadPromise;
 }
 
+// ─── POST — Text-to-Speech synthesis ─────────────────────────────────────────
+
 export async function POST(req: NextRequest) {
   const targetUrl = req.headers.get("x-piper-server-url") || "http://localhost:5000";
 
@@ -81,38 +107,38 @@ export async function POST(req: NextRequest) {
     }
 
     let finalVoice = voice;
-    if (voice && typeof voice === "string") {
-      let cleanVoice = voice.replace(/^voices\//, "").replace(/^vi\//, "").replace(/\.onnx$/, "");
-      
-      const modelPath = path.join(process.cwd(), "voices", `${cleanVoice}.onnx`);
-      const jsonPath = path.join(process.cwd(), "voices", `${cleanVoice}.onnx.json`);
 
-      const dir = path.dirname(modelPath);
-      if (!fs.existsSync(dir)) {
-        fs.mkdirSync(dir, { recursive: true });
-      }
-
-      // Synchronize concurrent download requests via the mutex lock
+    // Chỉ thực hiện FS operations khi đang chạy trên môi trường có filesystem
+    if (isFsAvailable() && voice && typeof voice === "string") {
       try {
-        await getOrCreateDownloadPromise(cleanVoice, modelPath, jsonPath);
-      } catch (downloadErr: any) {
-        return NextResponse.json(
-          { error: `Lỗi tải giọng đọc ${cleanVoice}: ${downloadErr.message}` },
-          { status: 502 }
-        );
-      }
+        const fs   = _fs!;
+        const path = _path!;
+        const cleanVoice = voice
+          .replace(/^voices\//, "")
+          .replace(/^vi\//, "")
+          .replace(/\.onnx$/, "");
 
-      finalVoice = `voices/${cleanVoice}`;
+        const modelPath = path.join(process.cwd(), "voices", `${cleanVoice}.onnx`);
+        const jsonPath  = path.join(process.cwd(), "voices", `${cleanVoice}.onnx.json`);
+        const dir       = path.dirname(modelPath);
+
+        if (!fs.existsSync(dir)) {
+          fs.mkdirSync(dir, { recursive: true });
+        }
+
+        await getOrCreateDownloadPromise(cleanVoice, modelPath, jsonPath);
+        finalVoice = `voices/${cleanVoice}`;
+      } catch (fsErr: any) {
+        // Tải model thất bại — vẫn tiếp tục gửi request tới server với voice gốc
+        console.warn("[Piper Proxy] FS model download skipped:", fsErr.message);
+      }
     }
 
     const lengthScale = rate ? 1.0 / rate : 1.0;
 
-    // Send synthesis request to the Piper HTTP server
     const response = await fetch(targetUrl, {
       method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
+      headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         text,
         voice: finalVoice || undefined,
@@ -122,7 +148,7 @@ export async function POST(req: NextRequest) {
 
     if (!response.ok) {
       const errorText = await response.text().catch(() => "Unknown error");
-      console.error(`[Piper Proxy] Server at ${targetUrl} returned status ${response.status}:`, errorText);
+      console.error(`[Piper Proxy] Server at ${targetUrl} returned ${response.status}:`, errorText);
       return NextResponse.json(
         { error: `Máy chủ Piper báo lỗi: ${response.statusText} (${errorText})` },
         { status: response.status }
@@ -130,7 +156,6 @@ export async function POST(req: NextRequest) {
     }
 
     const audioBuffer = await response.arrayBuffer();
-
     return new NextResponse(audioBuffer, {
       status: 200,
       headers: {
@@ -139,35 +164,53 @@ export async function POST(req: NextRequest) {
       },
     });
   } catch (error: any) {
-    console.error("[Piper Proxy] Error processing request:", error);
-    let errorMsg = error.message || "Internal server error connecting to Piper";
+    console.error("[Piper Proxy] Error:", error);
+    let errorMsg = error.message || "Internal server error";
     if (errorMsg.includes("fetch failed") || errorMsg.includes("ECONNREFUSED")) {
-      errorMsg = `Không thể kết nối đến máy chủ Piper TTS. Hãy chắc chắn rằng máy chủ đang chạy tại địa chỉ: ${targetUrl} (mặc định: http://localhost:5000). Chạy máy chủ bằng lệnh: 'py -m piper.http_server -m voices/Ban Mai.onnx --port 5000'`;
+      errorMsg = `Không thể kết nối đến máy chủ Piper TTS tại: ${targetUrl}. Hãy chạy server cục bộ hoặc cấu hình địa chỉ server từ xa trong phần API URL.`;
     }
-    return NextResponse.json(
-      { error: errorMsg },
-      { status: 500 }
-    );
+    return NextResponse.json({ error: errorMsg }, { status: 500 });
   }
 }
 
+// ─── GET — Check / Download voice model / List voices ────────────────────────
+
 export async function GET(req: NextRequest) {
-  const checkVoice = req.nextUrl.searchParams.get("check");
+  const checkVoice    = req.nextUrl.searchParams.get("check");
   const downloadVoice = req.nextUrl.searchParams.get("download");
 
+  // --- ?check=VoiceName ---
   if (checkVoice) {
-    const clean = checkVoice.replace(/^voices\//, "").replace(/^vi\//, "").replace(/\.onnx$/, "");
+    // Trên Cloudflare (không có FS), model không bao giờ tồn tại trên server
+    if (!isFsAvailable()) {
+      return NextResponse.json({ downloaded: false });
+    }
+    const fs   = _fs!;
+    const path = _path!;
+    const clean     = checkVoice.replace(/^voices\//, "").replace(/^vi\//, "").replace(/\.onnx$/, "");
     const modelPath = path.join(process.cwd(), "voices", `${clean}.onnx`);
-    const exists = fs.existsSync(modelPath) && fs.statSync(modelPath).size > 0;
+    const exists    = fs.existsSync(modelPath) && fs.statSync(modelPath).size > 0;
     return NextResponse.json({ downloaded: exists });
   }
 
+  // --- ?download=VoiceName ---
   if (downloadVoice) {
-    const clean = downloadVoice.replace(/^voices\//, "").replace(/^vi\//, "").replace(/\.onnx$/, "");
+    // Trên Cloudflare — không thể ghi file → trả về lỗi 503
+    // Reader-settings.tsx sẽ hiển thị link tải thủ công
+    if (!isFsAvailable()) {
+      return NextResponse.json(
+        { error: "Filesystem read-only (edge/cloud environment). Please download manually." },
+        { status: 503 }
+      );
+    }
+
+    const fs   = _fs!;
+    const path = _path!;
+    const clean     = downloadVoice.replace(/^voices\//, "").replace(/^vi\//, "").replace(/\.onnx$/, "");
     const modelPath = path.join(process.cwd(), "voices", `${clean}.onnx`);
-    const jsonPath = path.join(process.cwd(), "voices", `${clean}.onnx.json`);
-    
-    const dir = path.dirname(modelPath);
+    const jsonPath  = path.join(process.cwd(), "voices", `${clean}.onnx.json`);
+    const dir       = path.dirname(modelPath);
+
     if (!fs.existsSync(dir)) {
       fs.mkdirSync(dir, { recursive: true });
     }
@@ -180,31 +223,26 @@ export async function GET(req: NextRequest) {
     }
   }
 
+  // --- Lấy danh sách voices từ Piper server ---
   const targetUrl = req.headers.get("x-piper-server-url") || "http://localhost:5000";
-
   try {
     const response = await fetch(`${targetUrl}/voices`, {
       method: "GET",
-      headers: {
-        "Accept": "application/json",
-      },
+      headers: { "Accept": "application/json" },
     });
 
     if (!response.ok) {
-      throw new Error(`Failed to fetch voices from Piper server: ${response.statusText}`);
+      throw new Error(`Failed to fetch voices: ${response.statusText}`);
     }
 
     const voices = await response.json();
     return NextResponse.json(voices);
   } catch (error: any) {
-    console.error("[Piper Proxy GET] Error fetching voices:", error);
-    let errorMsg = error.message || "Failed to fetch voices list from Piper";
+    console.error("[Piper Proxy GET] Error:", error);
+    let errorMsg = error.message || "Failed to fetch voices list";
     if (errorMsg.includes("fetch failed") || errorMsg.includes("ECONNREFUSED")) {
-      errorMsg = `Không thể kết nối đến máy chủ Piper TTS tại địa chỉ ${targetUrl} để tải danh sách giọng đọc.`;
+      errorMsg = `Không thể kết nối đến máy chủ Piper TTS tại ${targetUrl}.`;
     }
-    return NextResponse.json(
-      { error: errorMsg },
-      { status: 502 }
-    );
+    return NextResponse.json({ error: errorMsg }, { status: 502 });
   }
 }

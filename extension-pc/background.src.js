@@ -1,6 +1,7 @@
-console.log("%c🚀 Novel Studio Connector v6.0 — Stealth Mode", "color:lime;font-size:16px");
+console.log("%c🚀 Novel Studio Connector v1.0 — Stealth Mode", "color:lime;font-size:16px");
 const contentCache = new Map();
 let stvScrapeActive = true;
+const persistentTabIds = new Set(); // Track background tabs created for reuseTab adapters (cleaned up on stopScrape)
 
 // ══════════════════════════════════════════════════════════════
 // 1. STEALTH: Platform-Consistent Fingerprint Profiles (30+)
@@ -168,6 +169,24 @@ chrome.runtime.onMessageExternal.addListener((request, _sender, sendResponse) =>
   if (request.action === "stopScrape") {
     stvScrapeActive = false;
     clearProxy();
+    // Close any persistent background tabs created for reuseTab adapters
+    (async () => {
+      for (const tid of [...persistentTabIds]) {
+        try { await chrome.tabs.remove(tid); } catch {}
+      }
+      persistentTabIds.clear();
+    })();
+    sendResponse({ success: true });
+    return false;
+  }
+  if (request.action === "closePersistentTab") {
+    // Called by the engine after all chapters are scraped — clean up persistent tabs
+    (async () => {
+      for (const tid of [...persistentTabIds]) {
+        try { await chrome.tabs.remove(tid); } catch {}
+      }
+      persistentTabIds.clear();
+    })();
     sendResponse({ success: true });
     return false;
   }
@@ -176,7 +195,7 @@ chrome.runtime.onMessageExternal.addListener((request, _sender, sendResponse) =>
     return true;
   }
   if (request.type === "FETCH") {
-    handleFetch(request.url, request.waitSelector, request.clickSelector, request.timeout || 15000)
+    handleFetch(request.url, request.waitSelector, request.clickSelector, request.timeout || 15000, request.activeTab, request.reuseTab)
       .then((r) => sendResponse({ ok: true, ...r }))
       .catch((e) => sendResponse({ ok: false, error: e.message }));
     return true;
@@ -188,32 +207,35 @@ chrome.runtime.onMessageExternal.addListener((request, _sender, sendResponse) =>
 // 5. STV CHAPTER FETCHING (unchanged)
 // ══════════════════════════════════════════════════════════════
 async function findSTVTab(targetUrl) {
-  const tabs = await chrome.tabs.query({ url: ["*://sangtacviet.com/*", "*://sangtacviet.app/*", "*://sangtacviet.vip/*", "*://fanqienovel.com/*"] });
+  const allTabs = await chrome.tabs.query({});
+  const tabs = allTabs.filter(t => {
+    if (!t.url) return false;
+    try {
+      const h = new URL(t.url).hostname;
+      return h.includes("sangtacviet") || h.includes("fanqienovel") || h.includes("fanqie");
+    } catch {
+      return false;
+    }
+  });
+  
   if (tabs.length === 0) return null;
   
-  // Try to find the tab that is closest to our target URL (same host + same novel path)
   if (targetUrl) {
     try {
       const targetObj = new URL(targetUrl);
-      const targetPathParts = targetObj.pathname.split('/').filter(Boolean); // e.g. ['truyen', 'uukanshu', '1', 'novelid', 'chapterid']
+      const targetPathParts = targetObj.pathname.split('/').filter(Boolean);
+      const novelId = targetPathParts[3];
       
-      // We assume the first 4 parts usually identify the novel on STV: /truyen/host/1/novelid
-      const targetNovelPrefix = targetPathParts.slice(0, 4).join('/');
-
-      for (const t of tabs) {
-        if (!t.url) continue;
-        const tObj = new URL(t.url);
-        if (tObj.hostname === targetObj.hostname) {
-          if (tObj.pathname.includes(targetNovelPrefix)) {
+      if (novelId) {
+        for (const t of tabs) {
+          if (t.url.includes(novelId)) {
             return t.id;
           }
         }
       }
-      
-      // Fallback: Just match hostname
-      const hostMatch = tabs.find(t => t.url && new URL(t.url).hostname === targetObj.hostname);
-      if (hostMatch) return hostMatch.id;
-    } catch (e) {}
+    } catch (e) {
+      console.error("[STV Tab find] error matching novel ID:", e);
+    }
   }
   
   return tabs[0].id;
@@ -223,6 +245,44 @@ async function stvFetchChapter(payload, sendResponse) {
   try {
     const tabId = await findSTVTab(payload.chapterUrl);
     if (!tabId) { sendResponse({ success: false, error: "Mở 1 tab SangTacViet trước!" }); return; }
+    
+    // Ensure the tab is active and its window is focused!
+    await chrome.tabs.update(tabId, { active: true });
+    try {
+      const tabInfo = await chrome.tabs.get(tabId);
+      if (tabInfo && tabInfo.windowId) {
+        await chrome.windows.update(tabInfo.windowId, { focused: true });
+      }
+    } catch (winErr) {
+      console.warn("[STV] Window focus error:", winErr);
+    }
+
+    // Check if the tab's current URL matches the target chapter URL.
+    // If they differ, navigate the tab to the target chapter URL.
+    let tabInfo;
+    try {
+      tabInfo = await chrome.tabs.get(tabId);
+    } catch {}
+    
+    const normPath = (str) => {
+      try {
+        const uObj = new URL(str);
+        return uObj.pathname.replace(/#.*$/, "").replace(/\?.*$/, "").replace(/\/$/, "");
+      } catch {
+        return str.replace(/#.*$/, "").replace(/\?.*$/, "").replace(/\/$/, "");
+      }
+    };
+
+    if (tabInfo && tabInfo.url && payload.chapterUrl) {
+      const currentNorm = normPath(tabInfo.url);
+      const targetNorm = normPath(payload.chapterUrl);
+      if (currentNorm !== targetNorm) {
+        console.log(`[STV] Tab URL (${tabInfo.url}) differs from target (${payload.chapterUrl}). Navigating...`);
+        await chrome.tabs.update(tabId, { url: payload.chapterUrl, active: true });
+        // Wait for navigation load
+        await waitForTabLoad(tabId, 15000);
+      }
+    }
     
     // 1. Wait for the user-specified delay BEFORE extracting.
     // The user wants to wait e.g. 5 seconds (out of 7) to let the page fully load.
@@ -294,9 +354,101 @@ async function downloadAllSequential({ chapters, delay: d = 1000 }, sendResponse
 // ══════════════════════════════════════════════════════════════
 // 6. CORE FETCH — Stealth Enhanced + Proxy Rotation
 // ══════════════════════════════════════════════════════════════
-async function handleFetch(url, waitSelector, clickSelector, timeout) {
+async function handleFetch(url, waitSelector, clickSelector, timeout, forceActive = false, reuseTab = false) {
   // Rotate proxy before this chapter
   await rotateProxyIfNeeded();
+
+  // 1. Try silent background fetch first if no clicking/special waiting is needed
+  if (!clickSelector) {
+    try {
+      console.log(`[Silent Fetch] Attempting silent background fetch for ${url}`);
+      const controller = new AbortController();
+      const fetchTimeout = setTimeout(() => controller.abort(), 10000); // 10s timeout
+      
+      const response = await fetch(url, {
+        signal: controller.signal,
+        headers: {
+          'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'
+        }
+      });
+      clearTimeout(fetchTimeout);
+
+      if (response.ok) {
+        const buffer = await response.arrayBuffer();
+        
+        // Detect charset from headers or HTML content
+        let charset = 'utf-8';
+        const headersContentType = response.headers.get('content-type') || '';
+        const charsetMatch = headersContentType.match(/charset=([\w\-]+)/i);
+        if (charsetMatch) {
+          charset = charsetMatch[1].toLowerCase();
+        } else {
+          const firstBytes = new Uint8Array(buffer.slice(0, 2048));
+          let firstBytesStr = '';
+          for (let i = 0; i < firstBytes.length; i++) {
+            firstBytesStr += String.fromCharCode(firstBytes[i]);
+          }
+          const htmlCharsetMatch = firstBytesStr.match(/<meta[^>]*charset=["']?([\w\-]+)["']?/i) 
+                                || firstBytesStr.match(/<meta[^>]*http-equiv=["']?Content-Type["']?[^>]*content=["']?[^"'>]*charset=([\w\-]+)/i);
+          if (htmlCharsetMatch) {
+            charset = htmlCharsetMatch[1].toLowerCase();
+          }
+        }
+        
+        let text;
+        try {
+          const decoder = new TextDecoder(charset);
+          text = decoder.decode(buffer);
+        } catch (e) {
+          console.warn(`[Silent Fetch] TextDecoder failed for charset ${charset}, falling back to utf-8`, e);
+          const decoder = new TextDecoder('utf-8');
+          text = decoder.decode(buffer);
+        }
+
+        const hasCf = text.includes("Just a moment...") || text.includes("cf-challenge") || text.includes("cf_challenge") || text.includes("Turnstile") || text.includes("Checking your browser") || text.includes("Attention Required!");
+        
+        let isValid = !hasCf && text.length > 200;
+        if (waitSelector && isValid) {
+          try {
+            const checkSelectorInText = (txt, selector) => {
+              const parts = selector.split(',').map(s => s.trim());
+              for (const part of parts) {
+                const matches = part.match(/[.#][\w\-]+/g);
+                if (matches && matches.length > 0) {
+                  let allFound = true;
+                  for (const m of matches) {
+                    const name = m.substring(1);
+                    if (!txt.includes(name)) { allFound = false; break; }
+                  }
+                  if (allFound) return true;
+                } else {
+                  const clean = part.replace(/[^\w\-]/g, '');
+                  if (clean && txt.includes(clean)) return true;
+                }
+              }
+              return false;
+            };
+            if (!checkSelectorInText(text, waitSelector)) {
+              isValid = false;
+            }
+          } catch (e) {
+            console.error("Selector validation error:", e);
+            isValid = false;
+          }
+        }
+
+        if (isValid) {
+          console.log(`[Silent Fetch] Successful silent fetch (${text.length} bytes, charset: ${charset})`);
+          return { html: text, contentText: "", timedOut: false };
+        }
+        console.log(`[Silent Fetch] Raw HTML did not pass validation or contains anti-bot, falling back to tab...`);
+      } else {
+        console.log(`[Silent Fetch] Failed with status ${response.status}, falling back to tab...`);
+      }
+    } catch (e) {
+      console.log(`[Silent Fetch] Error: ${e.message}, falling back to tab...`);
+    }
+  }
 
   // Remember the current active tab so we can refocus it (important for Android)
   let originalTabId = null;
@@ -305,22 +457,143 @@ async function handleFetch(url, waitSelector, clickSelector, timeout) {
     if (activeTab) originalTabId = activeTab.id;
   } catch {}
 
-  const tab = await chrome.tabs.create({ url, active: false });
-  const tabId = tab.id;
+  let tabId = null;
+  let isReused = false;
+  let didNavigate = false;
+  let createdWindowId = null; // Only set when we open a dedicated minimized window (non-reuseTab)
 
-  // On Android, active:false doesn't work — immediately refocus original tab
-  if (originalTabId) {
+  if (reuseTab) {
+    try {
+      const u = new URL(url);
+      console.log(`[Fetch] reuseTab active. u.hostname: ${u.hostname}`);
+      const allTabs = await chrome.tabs.query({});
+      const tabs = allTabs.filter(t => {
+        if (!t.url) return false;
+        try {
+          const tabUrl = new URL(t.url);
+          if (u.hostname.includes("sangtacviet") && tabUrl.hostname.includes("sangtacviet")) {
+            return true;
+          }
+          if (u.hostname.includes("69shuba") && tabUrl.hostname.includes("69shuba")) {
+            return true;
+          }
+          return tabUrl.hostname === u.hostname;
+        } catch {
+          return false;
+        }
+      });
+      console.log(`[Fetch] Found ${tabs.length} potential tabs for reuse.`);
+      if (tabs.length > 0) {
+        let bestTab = tabs.find(t => t.url && t.url.includes(u.pathname));
+        if (!bestTab) bestTab = tabs[0];
+        tabId = bestTab.id;
+        isReused = true;
+        console.log(`[Fetch] Reusing tabId: ${tabId}, url: ${bestTab.url}`);
+        
+        const normPath = (str) => {
+          try {
+            const uObj = new URL(str);
+            return uObj.pathname.replace(/#.*$/, "").replace(/\?.*$/, "").replace(/\/$/, "");
+          } catch {
+            return str.replace(/#.*$/, "").replace(/\?.*$/, "").replace(/\/$/, "");
+          }
+        };
+        const targetNorm = normPath(url);
+        const bestTabNorm = normPath(bestTab.url || "");
+        console.log(`[Fetch] targetNorm path: ${targetNorm}, bestTabNorm path: ${bestTabNorm}`);
+
+        if (bestTabNorm !== targetNorm) {
+          console.log(`[Fetch] Paths differ. Navigating tab ${tabId} to ${url} (background, no focus steal)`);
+          // Navigate WITHOUT activating — critical to prevent stealing focus from the app window
+          await chrome.tabs.update(tabId, { url });
+          didNavigate = true;
+        } else {
+          console.log(`[Fetch] Paths are identical. No navigation needed.`);
+          // Brief settle delay — page is already loaded, no need to activate
+          await delay(500);
+        }
+      }
+    } catch (e) {
+      console.error("[Fetch] reuseTab error:", e);
+    }
+  }
+
+  if (!isReused) {
+    try {
+      if (reuseTab) {
+        // Persistent-tab adapters (hetushu, 69shuba, etc.): create a background tab inside
+        // the current window — no new window, no popup, no focus steal.
+        // The tab is kept alive across all chapters and cleaned up by stopScrape/closePersistentTab.
+        const tab = await chrome.tabs.create({ url, active: false });
+        tabId = tab.id;
+        persistentTabIds.add(tabId); // register for later cleanup
+        didNavigate = true;
+        console.log(`[Fetch] Created persistent background tab ${tabId} for reuseTab adapter.`);
+      } else {
+        // One-shot fetch: create a minimized window so the tab is fully active (no throttling)
+        // but doesn't interrupt the user's workflow.
+        const win = await chrome.windows.create({ url, state: "minimized" });
+        const tab = win.tabs && win.tabs.length > 0 ? win.tabs[0] : (await chrome.tabs.query({ windowId: win.id }))[0];
+        tabId = tab.id;
+        createdWindowId = win.id; // track so we can refocus and clean up later
+        didNavigate = true;
+      }
+    } catch (winErr) {
+      console.warn("[Fetch] Error creating tab/window, falling back to background tab:", winErr);
+      try {
+        const tab = await chrome.tabs.create({ url, active: false });
+        tabId = tab.id;
+        if (reuseTab) persistentTabIds.add(tabId);
+        didNavigate = true;
+      } catch (tabErr) {
+        console.warn("[Fetch] Error creating background tab, falling back to active tab:", tabErr);
+        const tab = await chrome.tabs.create({ url, active: forceActive });
+        tabId = tab.id;
+        didNavigate = true;
+      }
+    }
+  }
+
+  // Refocus the app tab only when we opened a brand-new separate window (one-shot mode).
+  // For background tabs (reuseTab mode) the app window never lost focus.
+  if (originalTabId && createdWindowId) {
     try { await chrome.tabs.update(originalTabId, { active: true }); } catch {}
   }
 
   try {
-    await waitForTabLoad(tabId, 30000);
-    await injectFullStealth(tabId);
-    // Human-like random delay
-    await delay(getAdaptiveDelay(1500));
+    if (didNavigate) {
+      await waitForTabLoad(tabId, 30000);
+      
+      // Check if Cloudflare is present
+      let hasCf = false;
+      try {
+        const checkRes = await chrome.scripting.executeScript({
+          target: { tabId },
+          func: () => document.body.innerHTML
+        });
+        const bodyHtml = checkRes?.[0]?.result || "";
+        hasCf = bodyHtml.includes("Just a moment...") || bodyHtml.includes("cf-challenge") || bodyHtml.includes("cf_challenge") || bodyHtml.includes("Turnstile") || bodyHtml.includes("Checking your browser") || bodyHtml.includes("Attention Required!");
+      } catch (e) {
+        console.warn("[Fetch] Error checking Cloudflare inside tab:", e);
+      }
 
-    // Simulate human: scroll + mouse
-    await simulateHuman(tabId);
+      if (hasCf) {
+        console.log("[Fetch] Cloudflare challenge detected! Activating tab and focusing window for user solve.");
+        try {
+          await chrome.tabs.update(tabId, { active: true });
+          const tInfo = await chrome.tabs.get(tabId);
+          if (tInfo && tInfo.windowId) {
+            await chrome.windows.update(tInfo.windowId, { focused: true });
+          }
+        } catch (actErr) {
+          console.warn(actErr);
+        }
+      }
+
+      await injectFullStealth(tabId);
+      await delay(getAdaptiveDelay(1500));
+      await simulateHuman(tabId);
+    }
 
     let timedOut = false;
     if (clickSelector && waitSelector) {
@@ -338,7 +611,9 @@ async function handleFetch(url, waitSelector, clickSelector, timeout) {
         await delay(humanDelay(500));
       }
     } else if (waitSelector) {
-      timedOut = await waitForSelector(tabId, waitSelector, timeout, 1);
+      // Just wait for it, don't fail immediately on timeout so captcha solver can work
+      await waitForSelector(tabId, waitSelector, timeout, 1);
+      timedOut = false; // We'll extract whatever is there anyway
     } else {
       await waitForStableContent(tabId, timeout);
     }
@@ -353,7 +628,10 @@ async function handleFetch(url, waitSelector, clickSelector, timeout) {
       },
     });
     const data = results?.[0]?.result;
-    if (!data) throw new Error("Failed to extract");
+    if (!data) {
+      console.warn("Failed to extract data, returning empty");
+      return { html: "", contentText: "", timedOut: true };
+    }
 
     // Success → decrease throttle
     if (data.contentText && data.contentText.length > 100) decreaseThrottle();
@@ -364,10 +642,19 @@ async function handleFetch(url, waitSelector, clickSelector, timeout) {
     increaseThrottle();
     throw err;
   } finally {
-    try { await chrome.tabs.remove(tabId); } catch {}
-    // Refocus original tab again after closing scraper tab
-    if (originalTabId) {
-      try { await chrome.tabs.update(originalTabId, { active: true }); } catch {}
+    if (reuseTab) {
+      // Persistent tab: KEEP the tab alive so the next chapter can reuse it.
+      // If we opened a dedicated window for it, minimize that window.
+      // Background tabs in the main window stay in background automatically.
+      if (createdWindowId) {
+        try { await chrome.windows.update(createdWindowId, { state: "minimized" }); } catch {}
+      }
+    } else {
+      // One-shot: remove the temporary tab and restore app focus.
+      try { await chrome.tabs.remove(tabId); } catch {}
+      if (originalTabId) {
+        try { await chrome.tabs.update(originalTabId, { active: true }); } catch {}
+      }
     }
   }
 }
@@ -390,6 +677,15 @@ async function injectFullStealth(tabId) {
         Object.defineProperty(document, "visibilityState", { get: () => "visible", configurable: true });
         Document.prototype.hasFocus = () => true;
         document.addEventListener("visibilitychange", (e) => e.stopImmediatePropagation(), true);
+
+        // Prevent browser translation (Google Translate, Edge Translate, etc.)
+        try {
+          document.documentElement.classList.add('notranslate');
+          const meta = document.createElement('meta');
+          meta.name = 'google';
+          meta.content = 'notranslate';
+          document.head.appendChild(meta);
+        } catch (e) {}
 
         // 3. Fake User-Agent + platform
         Object.defineProperty(navigator, "userAgent", { get: () => p.ua, configurable: true });

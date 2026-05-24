@@ -63,6 +63,7 @@ export const HaiTangSoShuAdapter: SiteAdapter = {
     name: "HaiTangSoShu",
     group: "cn",
     urlPattern: /haitangsoshu\.org/,
+    novelWaitSelector: ".BGsectionOne, .BCsectionTwo, #catalogList, a.g",
     chapterWaitSelector: "#chapterTitle",
 
     async getNovelInfo(html, url, onProgress) {
@@ -113,7 +114,7 @@ export const HaiTangSoShuAdapter: SiteAdapter = {
             try {
                 let catalogHtml = html;
                 if (page > 1 || !isCatalogUrl) { // Fetch if it's not the initial loaded HTML, or if it's info page
-                    const res = await extensionFetch(catalogUrl);
+                    const res = await extensionFetch(catalogUrl, { waitSelector: ".BCsectionTwo-top" });
                     if (!res || !res.html) {
                         hasNextPage = false;
                         break;
