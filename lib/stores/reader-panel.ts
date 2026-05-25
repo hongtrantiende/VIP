@@ -165,8 +165,8 @@ interface ReaderPanelState {
 
 const DEFAULT_TTS: TTSSettings = {
   id: "default",
-  providerId: "PiperTTS",
-  voiceId: "Ban Mai",
+  providerId: "PiperBrowserTTS",
+  voiceId: "Xenova/mms-tts-vie",
   rate: 1.0,
   pitch: 1.0,
   highlightColor: "#dbeafe",

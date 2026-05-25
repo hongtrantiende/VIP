@@ -93,10 +93,14 @@ export async function POST(req: NextRequest) {
     const voiceCode = resolvePremiumVoiceCode(voiceId);
 
     // Rate and pitch for premium API (native scale, normal is 1.0)
-    const rate = parseFloat(String(rateVal)) || 1.0;
+    // Round to 1 decimal place. Google Premium API only supports increments of 0.1
+    // Values like 1.35 will cause a 400 Bad Request and fallback to the robotic keyless API.
+    let rate = parseFloat(String(rateVal)) || 1.0;
+    rate = Math.round(rate * 10) / 10;
     const speedFactor = Math.min(Math.max(rate, 0.5), 4.0);
 
-    const pitch = parseFloat(String(pitchVal)) || 1.0;
+    let pitch = parseFloat(String(pitchVal)) || 1.0;
+    pitch = Math.round(pitch * 10) / 10;
     const pitchFactor = Math.min(Math.max(pitch, 0.5), 2.0);
 
     // 1. Try fetching from the Premium Google ReadAloud API

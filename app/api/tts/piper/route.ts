@@ -181,8 +181,22 @@ export async function GET(req: NextRequest) {
 
   // --- ?check=VoiceName ---
   if (checkVoice) {
-    // Trên Cloudflare (không có FS), model không bao giờ tồn tại trên server
+    // Trên Cloudflare (không có FS), kiểm tra trực tiếp với Piper server
+    // thay vì kiểm tra filesystem local
     if (!isFsAvailable()) {
+      const serverUrl = req.headers.get("x-piper-server-url") || "http://localhost:5000";
+      try {
+        // Ping server to see if it's reachable and voice is available
+        const voicesRes = await fetch(`${serverUrl}/voices`, {
+          signal: AbortSignal.timeout(5000),
+        });
+        if (voicesRes.ok) {
+          // Server is reachable — voice is available on the server side
+          return NextResponse.json({ downloaded: true });
+        }
+      } catch {
+        // Server unreachable
+      }
       return NextResponse.json({ downloaded: false });
     }
     const fs   = _fs!;
@@ -195,9 +209,32 @@ export async function GET(req: NextRequest) {
 
   // --- ?download=VoiceName ---
   if (downloadVoice) {
-    // Trên Cloudflare — không thể ghi file → trả về lỗi 503
-    // Reader-settings.tsx sẽ hiển thị link tải thủ công
+    // Trên Cloudflare — không thể ghi file, thử kiểm tra xem Piper server
+    // đã có model chưa bằng cách gửi test synthesis
     if (!isFsAvailable()) {
+      const serverUrl = req.headers.get("x-piper-server-url") || "http://localhost:5000";
+      const clean = downloadVoice.replace(/^voices\//, "").replace(/^vi\//, "").replace(/\.onnx$/, "");
+
+      try {
+        // Test synthesis — if server already has the model, this succeeds
+        const testRes = await fetch(serverUrl, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            text: "xin chào",
+            voice: `voices/${clean}`,
+            length_scale: 1.0,
+          }),
+          signal: AbortSignal.timeout(15000),
+        });
+
+        if (testRes.ok) {
+          return NextResponse.json({ success: true });
+        }
+      } catch {
+        // Server unreachable or model not found
+      }
+
       return NextResponse.json(
         { error: "Filesystem read-only (edge/cloud environment). Please download manually." },
         { status: 503 }

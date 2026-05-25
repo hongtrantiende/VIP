@@ -34,9 +34,14 @@ const STATUS_CONFIG: Record<string, { label: string; icon: any; color: string }>
 export default function BulkScraperPage() {
     const { isAdmin, loading: profileLoading } = useProfile();
     const store = useBulkScraperStore();
+    const [mounted, setMounted] = useState(false);
+
+    useEffect(() => {
+        setMounted(true);
+    }, []);
 
     // Admin guard
-    if (!profileLoading && !isAdmin) {
+    if (mounted && !profileLoading && !isAdmin) {
         redirect("/");
     }
 
@@ -54,7 +59,7 @@ export default function BulkScraperPage() {
         toast.success(`Bắt đầu quét tự động ${new URL(targetUrl).hostname} — 5 luồng song song`);
     };
 
-    if (profileLoading) {
+    if (!mounted || profileLoading) {
         return (
             <div className="flex-1 p-6 space-y-6 animate-page-enter">
                 <Skeleton className="h-8 w-64" />
@@ -177,7 +182,6 @@ export default function BulkScraperPage() {
             {/* Mottruyen Scanner */}
             <div className="space-y-6">
                 <MottruyenScannerCard />
-                <MottruyenIdDownloaderCard />
             </div>
 
 

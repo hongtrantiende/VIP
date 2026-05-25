@@ -64,8 +64,6 @@ export class Player {
   // -- Concurrency guard ---------------------------------------------------
   // Incremented on every cancel/jump so in-flight async ops can self-abort.
   private playbackGeneration = 0;
-  // Incremented on every preloadAhead call to cancel stale preloading loops.
-  private preloadGeneration = 0;
 
   // -- Retry state ---------------------------------------------------------
   private sentenceRetryCount = 0;
@@ -199,6 +197,41 @@ export class Player {
     this._currentIndex = startIndex;
     this.sentenceRetryCount = 0;
     this.setState("playing");
+    this.preBufferAndPlay();
+  }
+
+  /**
+   * Pre-buffer the first few sentences before starting playback.
+   * This ensures there's no loading pause on the first sentence and
+   * subsequent sentences are already cached for seamless listening.
+   */
+  private async preBufferAndPlay(): Promise<void> {
+    const gen = this.playbackGeneration;
+
+    // Direct-only providers (e.g. WebSpeech) don't need pre-buffering
+    if (!this.provider?.isDirectOnly && this.maxPreload > 0) {
+      const bufferCount = Math.min(3, this.maxPreload, this.sentences.length - this._currentIndex);
+      const fetches: Promise<Blob>[] = [];
+
+      for (let i = 0; i < bufferCount; i++) {
+        const sentence = this.sentences[this._currentIndex + i];
+        if (sentence) {
+          fetches.push(this.fetchAudioForSentence(sentence));
+        }
+      }
+
+      // Wait for at least the first sentence to be ready (with 8s timeout)
+      if (fetches.length > 0) {
+        await Promise.race([
+          fetches[0].catch(() => {}),
+          this.delay(8000),
+        ]);
+      }
+
+      // Abort if user cancelled/jumped during pre-buffer
+      if (gen !== this.playbackGeneration || this._state !== "playing") return;
+    }
+
     this.playCurrentSentence();
   }
 
@@ -478,8 +511,9 @@ export class Player {
   private async preloadAhead(): Promise<void> {
     if (!this.provider || this.maxPreload <= 0) return;
 
-    this.preloadGeneration++;
-    const pGen = this.preloadGeneration;
+    // Use only playbackGeneration (incremented on cancel/jump) — we no longer
+    // cancel preload loops when a new sentence starts, allowing the preload
+    // to accumulate a proper buffer ahead of playback.
     const gen = this.playbackGeneration;
 
     const start = this._currentIndex + 1;
@@ -488,16 +522,15 @@ export class Player {
     for (let i = start; i < end; i++) {
       const sentence = this.sentences[i];
       if (!sentence) continue;
-      
-      // If already cached or fetching, trigger/reuse instantly without staggering delay
+
+      // Skip already cached or in-flight fetches — no stagger delay needed
       if (this.isSentenceCachedOrFetching(sentence)) {
-        this.fetchAudioForSentence(sentence).catch(() => {});
         continue;
       }
-      
+
       // Stagger fetches to avoid rate limits and connection congestion
       await this.delay(80);
-      if (this._state !== "playing" || gen !== this.playbackGeneration || pGen !== this.preloadGeneration) return;
+      if (this._state !== "playing" || gen !== this.playbackGeneration) return;
 
       this.fetchAudioForSentence(sentence).catch(() => {
         // Preload failure is non-fatal

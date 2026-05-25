@@ -36,9 +36,17 @@ function computeStats(original: string, edited: string): DiffStats {
 /**
  * Compute word-level diff between original and edited text.
  * Uses jsdiff's diffWords for prose-optimized comparison.
+ * Falls back to diffLines for very long texts to prevent UI freezing.
  */
 export function computeDiff(original: string, edited: string): DiffResult {
-  return { changes: diffWords(original, edited), stats: computeStats(original, edited) };
+  const stats = computeStats(original, edited);
+  
+  // diffWords has O(N*M) complexity. For texts > 1000 words, it can freeze the browser for seconds.
+  if (stats.origWords > 1000 || stats.editWords > 1000) {
+    return { changes: diffLines(original, edited), stats };
+  }
+  
+  return { changes: diffWords(original, edited), stats };
 }
 
 /**
