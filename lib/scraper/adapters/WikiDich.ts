@@ -75,7 +75,7 @@ export const WikiDichAdapter: SiteAdapter = {
         const { extensionFetch } = await import("../extension-bridge");
 
         let offset = 56;
-        const offsetMatch = html.match(/text\.substring\((\d+)\)\s*\+/);
+        const offsetMatch = html.match(/\.substring\((\d+)\)\s*\+\s*[a-zA-Z0-9_$]+\.substring\(0,\s*\1\)/);
         if (offsetMatch) {
           offset = parseInt(offsetMatch[1], 10);
         }
@@ -89,7 +89,7 @@ export const WikiDichAdapter: SiteAdapter = {
           return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
         };
 
-        let currentStart = 501; // First page (0-501) is already loaded
+        let currentStart = chapters.length;
         const pageSize = 501;
         let hasMore = true;
 
