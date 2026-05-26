@@ -28,6 +28,7 @@ import {
   RefreshCwIcon,
   SaveIcon,
   SearchCheckIcon,
+  SparklesIcon,
   XCircleIcon,
 } from "lucide-react";
 import { useEffect, useMemo, useRef, useState } from "react";
@@ -62,12 +63,14 @@ export function ReviewPanel({
   onRewriteAction,
   onSaveAction,
   onRegenerateReviewAction,
+  onPromptConfigAction,
   isRewriting,
 }: {
   sessionId: string | undefined;
   onRewriteAction?: (targetIssueIndices?: number[]) => void;
   onSaveAction?: () => void;
   onRegenerateReviewAction?: () => void;
+  onPromptConfigAction?: () => void;
   isRewriting?: boolean;
 }) {
   const reviewResult = useStepResult(sessionId, "review");
@@ -181,6 +184,17 @@ export function ReviewPanel({
           )}
         </div>
         <div className="flex items-center gap-2">
+          {onPromptConfigAction && (
+            <Button
+              variant="ghost"
+              size="icon"
+              className="h-7 w-7 text-violet-600 dark:text-violet-400 hover:bg-violet-50 dark:hover:bg-violet-950/20 hover:text-violet-700"
+              onClick={onPromptConfigAction}
+              title="Chỉnh prompt"
+            >
+              <SparklesIcon className="h-3.5 w-3.5" />
+            </Button>
+          )}
           {onRegenerateReviewAction && (
             <Button
               variant="ghost"

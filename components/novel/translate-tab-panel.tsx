@@ -91,7 +91,6 @@ const MODES: { id: TranslateMode; label: string; icon: React.ElementType; color:
     { id: "prompt", label: "Dịch Prompt", icon: SparklesIcon, color: "text-blue-600 dark:text-blue-400", desc: "Dịch thuần AI theo system prompt, không dùng từ điển" },
     { id: "stv-prompt", label: "STV + Prompt", icon: BookOpenIcon, color: "text-emerald-600 dark:text-emerald-400", desc: "Từ điển STV chuyển đổi thô → AI sửa lỗi theo prompt" },
     { id: "edit", label: "Biên Tập AI", icon: PenToolIcon, color: "text-amber-600 dark:text-amber-400", desc: "Biên tập & làm mịn bản dịch tiếng Việt cho trôi chảy, đúng từ điển, mượt mà theo thể loại" },
-    { id: "comprehensive", label: "Dịch Toàn Diện", icon: CrownIcon, color: "text-purple-600 dark:text-purple-400", desc: "Pipeline đầy đủ: QT → AI Draft → AI Editor (2-pass)" },
     { id: "scan-fix", label: "Quét & Sửa", icon: ShieldCheckIcon, color: "text-rose-600 dark:text-rose-400", desc: "Quét và phát hiện lỗi chính tả, viết sai tên nhân vật theo từ điển" },
 ];
 
@@ -177,7 +176,7 @@ export function TranslateTabPanel({
     const model3Models = useAIModels(model3ProviderId);
 
     // Mode & config state
-    const [activeMode, setActiveMode] = useState<TranslateMode>("comprehensive");
+    const [activeMode, setActiveMode] = useState<TranslateMode>("prompt");
     const [step, setStep] = useState<"config" | "processing" | "done">("config");
     const [processedCount, setProcessedCount] = useState(0);
     const [errors, setErrors] = useState<any[]>([]);
@@ -200,6 +199,7 @@ export function TranslateTabPanel({
     const [pronounMatrix, setPronounMatrix] = useState<string>("");
     const [pronounMatrixEnabled, setPronounMatrixEnabled] = useState(false);
     const [isCleaning, setIsCleaning] = useState(false);
+    const [cleanGarbage, setCleanGarbage] = useState(true);
     const [showStepsInfo, setShowStepsInfo] = useState(false);
     const [totalToProcess, setTotalToProcess] = useState(0);
     const abortRef = useRef<AbortController | null>(null);
@@ -216,7 +216,7 @@ export function TranslateTabPanel({
         loadedNovelIdRef.current = novelId;
 
         // Restore mode tab
-        if (novel.customTranslateMode) {
+        if (novel.customTranslateMode && MODES.some(m => m.id === novel.customTranslateMode)) {
             setActiveMode(novel.customTranslateMode as TranslateMode);
         }
 
@@ -675,6 +675,7 @@ export function TranslateTabPanel({
                     qaEnabled: model3Enabled,
                     qaPrompt: customModel3Prompt || undefined,
                     extractDict,
+                    cleanGarbage,
                     customTranslatePrompt: novel?.customComprehensivePrompt || "",
                     customStylePrompt: customStylePrompt,
                     customPronounPrompt: customPronounPrompt,
@@ -688,7 +689,7 @@ export function TranslateTabPanel({
                     qaModel: model3 || undefined,
                     qaEnabled: model3Enabled,
                     qaPrompt: customModel3Prompt || undefined,
-                    extractDict, skipTranslated, continuousMode: target === "all_untranslated", errorAction,
+                    extractDict, cleanGarbage, skipTranslated, continuousMode: target === "all_untranslated", errorAction,
                     ...commonCallbacks,
                 });
             } else if (activeMode === "prompt") {
@@ -699,7 +700,7 @@ export function TranslateTabPanel({
                     qaEnabled: model3Enabled,
                     qaPrompt: customModel3Prompt || undefined,
                     qtDictSources: [],
-                    promptType: "custom" as PromptType, extractDict, skipTranslated,
+                    promptType: "custom" as PromptType, extractDict, cleanGarbage, skipTranslated,
                     continuousMode: target === "all_untranslated", errorAction,
                     ...commonCallbacks,
                 });
@@ -716,6 +717,7 @@ export function TranslateTabPanel({
                     qaModel: model3 || undefined,
                     qaEnabled: model3Enabled,
                     qaPrompt: customModel3Prompt || undefined,
+                    cleanGarbage: cleanGarbage,
                     skipTranslated: skipTranslated,
                     errorAction: errorAction,
                     ...commonCallbacks,
@@ -762,13 +764,13 @@ export function TranslateTabPanel({
     };
 
     const progress = totalToProcess > 0 ? (processedCount / totalToProcess) * 100 : 0;
-    const activeModeConfig = MODES.find(m => m.id === activeMode)!;
+    const activeModeConfig = MODES.find(m => m.id === activeMode) || MODES[0];
     const ActiveIcon = activeModeConfig.icon;
 
     const bulkConfigContent = (
         <div className="space-y-4 py-2">
             {/* ── Mode Buttons ── */}
-            <div className="grid grid-cols-3 gap-2">
+            <div className="grid grid-cols-4 gap-2">
                 {MODES.map((mode) => {
                     const Icon = mode.icon;
                     const isActive = activeMode === mode.id;
@@ -841,7 +843,7 @@ export function TranslateTabPanel({
                                     <div className="flex items-center gap-2">
                                         <span className="text-xs font-medium flex items-center gap-1.5 select-none">
                                             <ScanSearchIcon className={cn("size-3.5", hasPrompt ? "text-emerald-600" : "text-muted-foreground")} />
-                                            {activeMode === "edit" ? "Cấu hình Prompt Biên Tập" : "Cấu hình Prompt"}
+                                            {activeMode === "edit" ? "Cấu hình Prompt Biên Tập" : "Cấu hình Prompt Dịch"}
                                         </span>
                                         {hasPrompt ? (
                                             <span className="text-[9px] bg-emerald-500/10 text-emerald-700 dark:text-emerald-400 px-1.5 py-0.5 rounded border border-emerald-500/20 font-semibold flex items-center gap-0.5">
@@ -949,7 +951,7 @@ export function TranslateTabPanel({
                                 </div>
                             </div>
 
-                            <div className="space-y-1.5">
+                            <div className="space-y-1.5 pt-2 border-t border-muted/30">
                                 <div className="flex justify-between items-center text-xs">
                                     <Label className="text-xs font-bold text-emerald-600 dark:text-emerald-400">
                                         Model 2: Quét từ điển (Khuyên dùng Flash)
@@ -967,7 +969,7 @@ export function TranslateTabPanel({
                                 </div>
                             </div>
 
-                            <div className="space-y-1.5 pt-1.5 border-t border-muted/30">
+                            <div className="space-y-1.5 pt-2 border-t border-muted/30">
                                 <div className="flex justify-between items-center">
                                     <Label htmlFor="model3-enable" className="text-xs font-bold cursor-pointer text-purple-600 dark:text-purple-400 flex items-center gap-1.5">
                                         <BotIcon className="size-3.5" /> Model 3: QA Bot (Giám sát & Tinh chỉnh)
@@ -1022,7 +1024,7 @@ export function TranslateTabPanel({
                         </div>
                     )}
 
-                    <div className="space-y-2">
+                    <div className="space-y-2 pt-2 border-t border-muted/30">
                         {(activeMode === "comprehensive" || activeMode === "prompt" || activeMode === "stv-prompt") && (
                             <label className="flex items-start gap-2 rounded-lg border border-emerald-500/30 bg-emerald-500/5 p-2.5 cursor-pointer hover:bg-emerald-500/10">
                                 <Checkbox checked={extractDict} onCheckedChange={(c) => setExtractDict(!!c)} className="mt-0.5 border-emerald-500 data-[state=checked]:bg-emerald-500" />
@@ -1032,6 +1034,14 @@ export function TranslateTabPanel({
                                 </div>
                             </label>
                         )}
+                        
+                        <label className="flex items-start gap-2 rounded-lg border border-primary/20 bg-primary/5 p-2.5 cursor-pointer hover:bg-primary/10">
+                            <Checkbox checked={cleanGarbage} onCheckedChange={(c) => setCleanGarbage(!!c)} className="mt-0.5" />
+                            <div>
+                                <span className="text-[11px] font-medium">Xóa bỏ ký tự lỗi (Khuyên dùng)</span>
+                                <p className="text-[10px] text-muted-foreground">Tự động dọn dẹp URL, quảng cáo, ký tự rác trước khi dịch.</p>
+                            </div>
+                        </label>
 
                         <div className="flex items-center gap-2">
                             <Switch id="skip-tl" checked={skipTranslated} onCheckedChange={setSkipTranslated} />
@@ -1052,18 +1062,6 @@ export function TranslateTabPanel({
                             </RadioGroup>
                         </div>
                     </div>
-
-                    {/* Clean error characters button */}
-                    <Button
-                        variant="outline"
-                        size="sm"
-                        className="w-full text-xs gap-1.5 h-8 border-amber-500/30 hover:bg-amber-500/5 hover:text-amber-600 dark:hover:text-amber-400"
-                        onClick={handleCleanErrorChars}
-                        disabled={isCleaning || chapterIds.length === 0}
-                    >
-                        {isCleaning ? <Loader2Icon className="size-3.5 animate-spin" /> : <SparklesIcon className="size-3.5" />}
-                        Làm sạch ký tự lỗi (Emoji, Icon...) trong {chapterIds.length} chương gốc
-                    </Button>
 
                     {/* ── Chapter count & Admin info ── */}
                     <div className="rounded-md bg-muted/50 p-2 space-y-1">

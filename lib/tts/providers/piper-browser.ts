@@ -23,11 +23,6 @@ const BROWSER_VOICES: Voice[] = [
     name: "MMS Tiếng Việt (Phổ thông)",
     fullName: "MMS TTS vie — Facebook (VITS, ~50MB)",
   },
-  {
-    id: "Xenova/mms-tts-vie",
-    name: "MMS Tiếng Việt (Phổ thông) [mặc định]",
-    fullName: "MMS TTS — chạy trong trình duyệt qua ONNX",
-  },
 ];
 
 // ─── WAV encoder helper ────────────────────────────────────────────────────

@@ -318,13 +318,10 @@ export function createNovelReadTools(novelId: string) {
           .optional()
           .describe("Số lượng kết quả tối đa, mặc định 5"),
         types: z
-          .union([
-            z.enum(["novel", "chapter", "character", "note", "scene"]),
-            z.array(z.enum(["novel", "chapter", "character", "note", "scene"])),
-          ])
+          .array(z.enum(["novel", "chapter", "character", "note", "scene"]))
           .optional()
           .describe(
-            'Lọc theo một hoặc nhiều loại kết quả. Ví dụ: "chapter" hoặc ["character", "note"]',
+            'Lọc theo một hoặc nhiều loại kết quả. Ví dụ: ["chapter"] hoặc ["character", "note"]',
           ),
       }),
       execute: async ({ query, limit = 5, types }) => {

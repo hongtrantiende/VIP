@@ -49,6 +49,9 @@ export interface NovelAggregationResult {
   keyLocations: LocationResult[];
   worldRules: string | null;
   technologyLevel: string | null;
+  perspective: string | null;
+  pronouns: string | null;
+  writingStyle: string | null;
 }
 
 // ─── Character Profiling ────────────────────────────────────

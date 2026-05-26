@@ -212,6 +212,7 @@ export interface ComprehensiveTranslateOptions {
     skipTranslated?: boolean;
     continuousMode?: boolean;
     extractDict?: boolean;
+    cleanGarbage?: boolean;
     dictModel?: LanguageModel;
     qaModel?: LanguageModel;
     qaEnabled?: boolean;
@@ -239,6 +240,7 @@ export async function runComprehensiveTranslate(opts: ComprehensiveTranslateOpti
         skipTranslated = true,
         continuousMode = false,
         extractDict = false,
+        cleanGarbage = true,
         dictModel,
         qaModel,
         qaEnabled = false,
@@ -367,7 +369,7 @@ export async function runComprehensiveTranslate(opts: ComprehensiveTranslateOpti
 
                 // Load original scene contents
                 const originalContents = await Promise.all(chapterScenes.map((s) => getOriginalContent(s.id)));
-                const cleanedContent = cleanGarbageLines(originalContents.join(SCENE_BREAK));
+                const cleanedContent = cleanGarbage ? cleanGarbageLines(originalContents.join(SCENE_BREAK)) : originalContents.join(SCENE_BREAK);
 
                 const newlyScannedNames = await scanNewNames({
                     model: dictModel || model,

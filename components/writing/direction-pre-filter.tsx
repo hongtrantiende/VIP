@@ -5,14 +5,46 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { Label } from "@/components/ui/label";
 import type { Character, PlotArc } from "@/lib/db";
 import { useCharacters, usePlotArcs } from "@/lib/hooks";
+import { useChapterPlan } from "@/lib/hooks/use-chapter-plans";
 import { useWritingPipelineStore } from "@/lib/stores/writing-pipeline";
 import { cn } from "@/lib/utils";
 import { MapIcon, UsersIcon } from "lucide-react";
+import { useEffect } from "react";
 
-export function DirectionPreFilter({ novelId }: { novelId: string }) {
+function parseChapterRange(text: string): { start: number; end: number } | null {
+  if (!text) return null;
+  const regexes = [
+    /(?:Chương|Ch\.?|chương)\s*(\d+)\s*(?:[-–—]|đến|tới|to)\s*(\d+)/i,
+    /\((\d+)\s*(?:[-–—]|đến|tới|to)\s*(\d+)\)/i,
+    /(\d+)\s*(?:[-–—]|đến|tới|to)\s*(\d+)\s*(?:chương|ch\.?)/i
+  ];
+
+  for (const regex of regexes) {
+    const match = text.match(regex);
+    if (match) {
+      const start = parseInt(match[1], 10);
+      const end = parseInt(match[2], 10);
+      if (!isNaN(start) && !isNaN(end)) {
+        return { start, end };
+      }
+    }
+  }
+  return null;
+}
+
+export function DirectionPreFilter({
+  novelId,
+  chapterPlanId,
+  hideCharacters = false,
+}: {
+  novelId: string;
+  chapterPlanId?: string;
+  hideCharacters?: boolean;
+}) {
   const characters = useCharacters(novelId);
   const plotArcs = usePlotArcs(novelId);
   const activeArcs = plotArcs?.filter((a) => a.status === "active") ?? [];
+  const plan = useChapterPlan(chapterPlanId);
 
   const selectedArcIds = useWritingPipelineStore((s) => s.directionArcIds);
   const selectedCharIds = useWritingPipelineStore(
@@ -20,6 +52,24 @@ export function DirectionPreFilter({ novelId }: { novelId: string }) {
   );
   const setArcIds = useWritingPipelineStore((s) => s.setDirectionArcIds);
   const setCharIds = useWritingPipelineStore((s) => s.setDirectionCharacterIds);
+
+  // Auto-select relevant MC Trajectory (arc) based on plan's chapterOrder
+  useEffect(() => {
+    if (!plan || !activeArcs.length) return;
+
+    const chapterOrder = plan.chapterOrder;
+    const matchedArc = activeArcs.find((arc) => {
+      const range = parseChapterRange(arc.title) || parseChapterRange(arc.description);
+      if (range) {
+        return chapterOrder >= range.start && chapterOrder <= range.end;
+      }
+      return false;
+    });
+
+    if (matchedArc) {
+      setArcIds([matchedArc.id]);
+    }
+  }, [plan?.id, plan?.chapterOrder, activeArcs.length]);
 
   const toggleArc = (id: string) => {
     setArcIds(
@@ -48,7 +98,7 @@ export function DirectionPreFilter({ novelId }: { novelId: string }) {
       <div>
         <h3 className="text-sm font-semibold">Lọc nội dung cho chương</h3>
         <p className="mt-0.5 text-xs text-muted-foreground">
-          Chọn mạch truyện và nhân vật cần tập trung. Để trống = dùng tất cả.
+          Chọn hướng đi nhân vật và nhân vật cần tập trung. Để trống = dùng tất cả.
         </p>
       </div>
 
@@ -58,7 +108,7 @@ export function DirectionPreFilter({ novelId }: { novelId: string }) {
           <div className="flex items-center gap-1.5">
             <MapIcon className="h-3.5 w-3.5 text-muted-foreground" />
             <Label className="text-xs font-medium">
-              Mạch truyện ({selectedArcIds.length || "tất cả"})
+              Hướng đi nhân vật ({selectedArcIds.length || "tất cả"})
             </Label>
           </div>
           <div className="max-h-[240px] overflow-y-auto overflow-x-hidden space-y-1">
@@ -76,7 +126,7 @@ export function DirectionPreFilter({ novelId }: { novelId: string }) {
       )}
 
       {/* Characters */}
-      {characters && characters.length > 0 && (
+      {!hideCharacters && characters && characters.length > 0 && (
         <div className="space-y-2">
           <div className="flex items-center gap-1.5">
             <UsersIcon className="h-3.5 w-3.5 text-muted-foreground" />
@@ -130,9 +180,9 @@ function ArcItem({
           <span className="text-xs font-medium truncate">{arc.title}</span>
           <Badge
             variant="secondary"
-            className={cn("text-[10px] shrink-0 whitespace-nowrap", typeColor)}
+            className="text-[10px] font-semibold shrink-0 bg-violet-500/10 text-violet-700 dark:bg-violet-500/20 dark:text-violet-300"
           >
-            {arc.type}
+            Lộ trình
           </Badge>
         </div>
         <p className="text-[11px] text-muted-foreground truncate">

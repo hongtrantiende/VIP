@@ -19,6 +19,7 @@ import { ScrollArea } from "@/components/ui/scroll-area";
 import { Slider } from "@/components/ui/slider";
 import { Switch } from "@/components/ui/switch";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { db } from "@/lib/db";
 import type { StepModelConfig, WritingAgentRole } from "@/lib/db";
 import {
   getOrCreateWritingSettings,
@@ -39,8 +40,14 @@ import {
   SearchCheckIcon,
   Settings2Icon,
   SlidersHorizontalIcon,
+  SparklesIcon,
+  Loader2Icon,
 } from "lucide-react";
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
+import { toast } from "sonner";
+import { resolveStep } from "@/lib/ai/resolve-step";
+import { generateStructured } from "@/lib/ai/structured";
+import { jsonSchema } from "ai";
 
 const SMART_WRITER_MIN_STEPS = 5;
 const SMART_WRITER_MAX_STEPS = 20;
@@ -169,33 +176,147 @@ function StepModelPicker({
 }
 
 function PromptEditorField({
+  novelId,
   value,
   isCustom,
   onSave,
   onReset,
 }: {
+  novelId: string;
   value: string;
   isCustom: boolean;
   onSave: (v: string) => void;
   onReset: () => void;
 }) {
   const [text, setText] = useState(value);
+  const [showAiDialog, setShowAiDialog] = useState(false);
+  const [aiIdea, setAiIdea] = useState("");
+  const [isGenerating, setIsGenerating] = useState(false);
+
+  const handleAiEditPrompt = useCallback(async () => {
+    if (!aiIdea.trim()) return;
+    setIsGenerating(true);
+    try {
+      const chatSettings = await db.chatSettings.get("default");
+      let model;
+      if (chatSettings?.providerId && chatSettings?.modelId) {
+        model = await resolveStep({ providerId: chatSettings.providerId, modelId: chatSettings.modelId });
+      }
+      if (!model) throw new Error("Không tìm thấy mô hình AI.");
+
+      const promptEditSchema = jsonSchema<{
+        rewrittenPrompt: string;
+      }>({
+        type: "object",
+        properties: {
+          rewrittenPrompt: {
+            type: "string",
+            description: "Toàn bộ nội dung System Prompt mới đã được sửa đổi và tích hợp đầy đủ ý tưởng bổ sung của người dùng mà vẫn duy trì cấu trúc XML và quy tắc chính."
+          }
+        },
+        required: ["rewrittenPrompt"]
+      });
+
+      const { object } = await generateStructured({
+        model,
+        schema: promptEditSchema,
+        system: `Bạn là một chuyên gia kỹ nghệ prompt (Prompt Engineer) xuất sắc. Nhiệm vụ của bạn là sửa đổi và tối ưu hóa System Prompt hiện tại để tích hợp chính xác ý tưởng/yêu cầu mới của người dùng.
+Quy tắc:
+1. ĐỒNG HÓA ý tưởng mới của người dùng vào prompt một cách tự nhiên và chuyên nghiệp.
+2. DUY TRÌ cấu trúc prompt gốc (giữ các thẻ XML nếu có, giữ các hướng dẫn định dạng kết quả quan trọng).
+3. NÂNG CAO tính rõ ràng, mạch lạc và hiệu quả của prompt.
+4. KHÔNG giải thích, chỉ trả về prompt mới.`,
+        prompt: `System Prompt hiện tại:\n${text}\n\nYêu cầu bổ sung/sửa đổi của người dùng:\n${aiIdea}`,
+      });
+
+      if (object.rewrittenPrompt?.trim()) {
+        const newVal = object.rewrittenPrompt.trim();
+        setText(newVal);
+        onSave(newVal);
+        setShowAiDialog(false);
+        setAiIdea("");
+        toast.success("Đã dùng AI tối ưu hóa Prompt thành công!");
+      } else {
+        toast.warning("AI không trả về prompt hợp lệ.");
+      }
+    } catch (err) {
+      toast.error(err instanceof Error ? err.message : "Lỗi khi dùng AI sửa prompt");
+    } finally {
+      setIsGenerating(false);
+    }
+  }, [novelId, text, aiIdea, onSave]);
+
   return (
-    <div className="space-y-2">
+    <div className="space-y-3">
       <div className="flex items-center justify-between">
         <Label className="text-xs font-medium">System Prompt</Label>
-        {isCustom && (
+        <div className="flex items-center gap-1.5">
           <Button
+            type="button"
             variant="ghost"
             size="sm"
-            className="h-6 text-xs text-muted-foreground"
-            onClick={onReset}
+            className="h-6 text-[10px] text-violet-600 hover:text-violet-700 bg-violet-50 dark:bg-violet-950/20 px-2"
+            onClick={() => setShowAiDialog(!showAiDialog)}
+            disabled={isGenerating}
           >
-            <RotateCcwIcon className="h-3 w-3 mr-1" />
-            Khôi phục mặc định
+            <SparklesIcon className="h-3 w-3 mr-1" />
+            AI Tùy chỉnh
           </Button>
-        )}
+          {isCustom && (
+            <Button
+              variant="ghost"
+              size="sm"
+              className="h-6 text-xs text-muted-foreground"
+              onClick={onReset}
+            >
+              <RotateCcwIcon className="h-3 w-3 mr-1" />
+              Khôi phục mặc định
+            </Button>
+          )}
+        </div>
       </div>
+
+      {showAiDialog && (
+        <div className="rounded-lg border border-violet-100 dark:border-violet-900 bg-violet-50/40 dark:bg-violet-950/10 p-3 space-y-2">
+          <p className="text-[11px] font-semibold text-violet-600 dark:text-violet-400">
+            🪄 Yêu cầu AI sửa System Prompt theo ý muốn
+          </p>
+          <textarea
+            value={aiIdea}
+            onChange={(e) => setAiIdea(e.target.value)}
+            placeholder="Ví dụ: Bổ sung luật không viết hoa tùy tiện, viết giọng điệu cổ trang huyền huyễn u ám, tập trung miêu tả võ học chiêu thức chi tiết..."
+            className="w-full h-16 rounded-md border bg-background px-2.5 py-1.5 text-xs focus:ring-1 focus:ring-primary focus-visible:outline-none"
+            disabled={isGenerating}
+          />
+          <div className="flex gap-2">
+            <Button
+              size="sm"
+              onClick={handleAiEditPrompt}
+              disabled={isGenerating || !aiIdea.trim()}
+              className="h-7 text-xs bg-violet-600 hover:bg-violet-700 text-white"
+            >
+              {isGenerating ? (
+                <>
+                  <Loader2Icon className="h-3 w-3 mr-1 animate-spin" />
+                  Đang sửa...
+                </>
+              ) : (
+                "Áp dụng"
+              )}
+            </Button>
+            <Button
+              variant="ghost"
+              size="sm"
+              onClick={() => setShowAiDialog(false)}
+              disabled={isGenerating}
+              className="h-7 text-xs"
+            >
+              Hủy
+            </Button>
+          </div>
+        </div>
+      )}
+
       <LineEditor
         value={text}
         onChange={(v) => {
@@ -220,17 +341,36 @@ export function WritingSettingsDialog({
   novelId,
   open,
   onOpenChangeAction,
+  initialRole,
 }: {
   novelId: string;
   open: boolean;
   onOpenChangeAction: (open: boolean) => void;
+  initialRole?: WritingAgentRole;
 }) {
   const settings = useWritingSettings(novelId);
   const chapterLength = settings?.chapterLength ?? 3000;
   const smartWritingMode = settings?.smartWritingMode ?? false;
   const smartWriterMaxToolSteps = settings?.smartWriterMaxToolSteps;
   const noAskingMode = settings?.noAskingMode ?? false;
+  const perspective = (settings as any)?.perspective ?? "third-omniscient";
+  const perspectiveCustom = (settings as any)?.perspectiveCustom ?? "";
+
+  const handlePerspectiveChange = async (value: string) => {
+    await updateWritingSettings(novelId, { perspective: value } as any);
+  };
+
+  const handlePerspectiveCustomChange = async (value: string) => {
+    await updateWritingSettings(novelId, { perspectiveCustom: value } as any);
+  };
+
   const [activeRole, setActiveRole] = useState<WritingAgentRole>("context");
+
+  useEffect(() => {
+    if (open && initialRole) {
+      setActiveRole(initialRole);
+    }
+  }, [open, initialRole]);
 
   const sliderSteps = clampSmartWriterSteps(smartWriterMaxToolSteps ?? 12);
 
@@ -438,6 +578,8 @@ export function WritingSettingsDialog({
                     </p>
                   </div>
                 </div>
+
+
               </div>
             </ScrollArea>
           </TabsContent>
@@ -498,6 +640,7 @@ export function WritingSettingsDialog({
 
                   <PromptEditorField
                     key={activeRole}
+                    novelId={novelId}
                     value={getPromptValue(activeRole)}
                     isCustom={isCustomPrompt(activeRole)}
                     onSave={(v) => debouncedPromptChange.run(activeRole, v)}

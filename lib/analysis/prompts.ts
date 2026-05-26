@@ -67,6 +67,15 @@ Tổng hợp tóm tắt các chương để trích xuất 4 nhóm thông tin bê
     <field name="worldRules">Quy luật đặc biệt của thế giới (null nếu không có)</field>
     <field name="technologyLevel">Trình độ công nghệ/văn minh (null nếu không đặc biệt)</field>
   </item>
+  <item id="perspective">
+    Góc nhìn kể chuyện chính của tác phẩm (VD: Ngôi thứ ba toàn tri, ngôi thứ ba hạn tri theo nhân vật chính, ngôi thứ nhất xưng tôi/ta). Phân tích cách tác giả duy trì góc nhìn này qua các chương (hoặc null nếu không xác định được).
+  </item>
+  <item id="pronouns">
+    Đại từ nhân xưng và quy tắc xưng hô chủ đạo được sử dụng trong phần dẫn chuyện và đối thoại (VD: dùng hắn, y, nàng, tôi, ta, anh, cô, chị làm đại từ nhân xưng) (hoặc null nếu không rõ).
+  </item>
+  <item id="writingStyle">
+    Phong cách hành văn và văn phong đặc trưng của tác phẩm (VD: Hán Việt trang trọng cổ kính, tiên hiệp nghiêm trang, kiếm hiệp hoa mỹ, đô thị dí dỏm hiện đại đời thường, đam mỹ ngôn tình lãng mạn lôi cuốn) (hoặc null nếu không rõ).
+  </item>
 </extraction_items>
 
 <null_policy>Đặt null cho các trường không có đủ thông tin trong tóm tắt.</null_policy>
@@ -289,6 +298,9 @@ export function buildNovelUpdatePrompt(
     keyLocations: unknown[];
     worldRules?: string | null;
     technologyLevel?: string | null;
+    perspective?: string | null;
+    pronouns?: string | null;
+    writingStyle?: string | null;
   },
   newSummariesText: string,
 ): string {

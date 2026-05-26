@@ -40,6 +40,15 @@ export async function saveGeneratedChapter(options: {
 
   if (!finalContent) throw new Error("No content to save");
 
+  const novel = await db.novels.get(novelId);
+  const isAiWritten = !novel?.sourceUrl;
+
+  let formattedTitle = outline.chapterTitle.trim();
+  const prefixPattern = /^chương\s+\d+[:\s-]*/i;
+  if (!prefixPattern.test(formattedTitle)) {
+    formattedTitle = `Chương ${chapterPlan.chapterOrder}: ${formattedTitle}`;
+  }
+
   const now = new Date();
 
   // Create Chapter
@@ -47,10 +56,11 @@ export async function saveGeneratedChapter(options: {
   await db.chapters.add({
     id: chapterId,
     novelId,
-    title: outline.chapterTitle,
-    originalTitle: outline.chapterTitle,
+    title: formattedTitle,
+    originalTitle: formattedTitle,
     order: chapterPlan.chapterOrder,
     summary: outline.synopsis,
+    isAiWritten,
     createdAt: now,
     updatedAt: now,
   });
@@ -61,7 +71,7 @@ export async function saveGeneratedChapter(options: {
     id: sceneId,
     chapterId,
     novelId,
-    title: outline.chapterTitle,
+    title: formattedTitle,
     content: finalContent,
     order: 1,
     wordCount: countWords(finalContent),

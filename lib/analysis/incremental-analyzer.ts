@@ -395,6 +395,9 @@ export async function analyzeNovelIncremental({
             keyLocations: currentNovel?.keyLocations ?? [],
             worldRules: currentNovel?.worldRules ?? null,
             technologyLevel: currentNovel?.technologyLevel ?? null,
+            perspective: currentNovel?.perspective ?? null,
+            pronouns: currentNovel?.pronouns ?? null,
+            writingStyle: currentNovel?.writingStyle ?? null,
           },
           newSummariesText,
         ),
@@ -413,6 +416,9 @@ export async function analyzeNovelIncremental({
       let timePeriod = currentNovel?.timePeriod;
       let worldRules = currentNovel?.worldRules;
       let technologyLevel = currentNovel?.technologyLevel;
+      let perspective = currentNovel?.perspective;
+      let pronouns = currentNovel?.pronouns;
+      let writingStyle = currentNovel?.writingStyle;
       let factions = currentNovel?.factions ?? [];
       let keyLocations = currentNovel?.keyLocations ?? [];
 
@@ -437,6 +443,9 @@ export async function analyzeNovelIncremental({
               if (input.timePeriod !== undefined) { timePeriod = input.timePeriod ?? undefined; fields.push("Thời kỳ"); }
               if (input.worldRules !== undefined) { worldRules = input.worldRules ?? undefined; fields.push("Quy luật thế giới"); }
               if (input.technologyLevel !== undefined) { technologyLevel = input.technologyLevel ?? undefined; fields.push("Công nghệ"); }
+              if (input.perspective !== undefined) { perspective = input.perspective ?? undefined; fields.push("Góc nhìn"); }
+              if (input.pronouns !== undefined) { pronouns = input.pronouns ?? undefined; fields.push("Xưng hô"); }
+              if (input.writingStyle !== undefined) { writingStyle = input.writingStyle ?? undefined; fields.push("Phong cách"); }
               summary.updatedFields.push(...fields);
               break;
             }
@@ -473,6 +482,9 @@ export async function analyzeNovelIncremental({
         timePeriod,
         worldRules,
         technologyLevel,
+        perspective,
+        pronouns,
+        writingStyle,
         factions,
         keyLocations,
         updatedAt: new Date(),

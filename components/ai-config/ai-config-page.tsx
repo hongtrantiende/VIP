@@ -19,7 +19,7 @@ const AUTOWRITE_ITEMS = new Set<ConfigItemId>([
 ]);
 
 export function AIConfigPage() {
-  const [selected, setSelected] = useState<ConfigItemId>("chapter-translate");
+  const [selected, setSelected] = useState<ConfigItemId>("chapter-translate-prompt");
 
   // Ensure global-default WritingSettings record exists when navigating to autowrite items
   useEffect(() => {

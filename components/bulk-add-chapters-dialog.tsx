@@ -39,11 +39,13 @@ export function BulkAddChaptersDialog({
   onOpenChange,
   novelId,
   nextOrder,
+  isAiWritten,
 }: {
   open: boolean;
   onOpenChange: (open: boolean) => void;
   novelId: string;
   nextOrder: number;
+  isAiWritten?: boolean;
 }) {
   const fileInputRef = useRef<HTMLInputElement>(null);
 
@@ -143,16 +145,17 @@ export function BulkAddChaptersDialog({
         [db.chapters, db.scenes],
         async () => {
           for (let i = 0; i < chapters.length; i++) {
-            const ch = chapters[i];
-            const chapterId = crypto.randomUUID();
-            await db.chapters.add({
-              id: chapterId,
-              novelId,
-              title: ch.title,
-              order: nextOrder + i,
-              createdAt: now,
-              updatedAt: now,
-            });
+             const ch = chapters[i];
+             const chapterId = crypto.randomUUID();
+             await db.chapters.add({
+               id: chapterId,
+               novelId,
+               title: ch.title,
+               order: nextOrder + i,
+               isAiWritten,
+               createdAt: now,
+               updatedAt: now,
+             });
             await db.scenes.add({
               id: crypto.randomUUID(),
               chapterId,

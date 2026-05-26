@@ -190,6 +190,18 @@ export const novelAggregationSchema = jsonSchema<NovelAggregationResult>({
       description:
         "Trình độ công nghệ của thế giới, hoặc null nếu không áp dụng",
     },
+    perspective: {
+      anyOf: [{ type: "string" }, { type: "null" }],
+      description: "Góc nhìn kể chuyện chính (VD: Ngôi thứ ba toàn tri, ngôi thứ ba hạn tri, ngôi thứ nhất)",
+    },
+    pronouns: {
+      anyOf: [{ type: "string" }, { type: "null" }],
+      description: "Đại từ nhân xưng và quy tắc xưng hô trong dẫn chuyện (VD: hắn, y, nàng, tôi, ta)",
+    },
+    writingStyle: {
+      anyOf: [{ type: "string" }, { type: "null" }],
+      description: "Phong cách hành văn và văn phong đặc trưng của tác phẩm (VD: Hán Việt cổ trang, tiên hiệp trang nghiêm, hiện đại gần gũi)",
+    },
   },
   required: [
     "genres",
@@ -203,6 +215,9 @@ export const novelAggregationSchema = jsonSchema<NovelAggregationResult>({
     "keyLocations",
     "worldRules",
     "technologyLevel",
+    "perspective",
+    "pronouns",
+    "writingStyle",
   ],
   additionalProperties: false,
 });

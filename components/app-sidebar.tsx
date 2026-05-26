@@ -71,11 +71,6 @@ export const miscNav = [
     href: "https://zalo.me/g/53swywolqkq95enm6t7d",
     icon: UsersIcon
   },
-  {
-    title: "Lấy API Key Free",
-    href: "/settings/api-guide",
-    icon: ServerIcon
-  },
 ] as const;
 
 export function AppSidebar() {
@@ -102,19 +97,13 @@ export function AppSidebar() {
   );
 
   const [logoError, setLogoError] = useState(false);
-  const botNavItem = {
-    title: "Bot Dịch",
-    href: "/bot-translate",
-    icon: BotMessageSquareIcon,
-  } as const;
-
   const bulkScraperNavItem = {
     title: "Quét Website",
     href: "/bulk-scraper",
     icon: DatabaseIcon,
   } as const;
 
-  const sidebarNav = isAdmin ? [...mainNav, adminNavItem, botNavItem, bulkScraperNavItem] : mainNav;
+  const sidebarNav = isAdmin ? [...mainNav, adminNavItem, bulkScraperNavItem] : mainNav;
 
   return (
     <Sidebar collapsible="offcanvas" variant="sidebar">

@@ -19,7 +19,7 @@ import {
   LanguagesIcon,
 } from "lucide-react";
 import Link from "next/link";
-import { useParams, useRouter } from "next/navigation";
+import { useParams, useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useState, useMemo } from "react";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 
@@ -110,8 +110,12 @@ function ChapterContent({
 export default function ReadingView() {
   const { id, order } = useParams<{ id: string; order: string }>();
   const router = useRouter();
+  const searchParams = useSearchParams();
+  const mode = searchParams.get("mode");
+  const isAi = mode === "ai";
+
   const novel = useNovel(id);
-  const chapters = useChapters(id);
+  const chapters = useChapters(id, isAi);
   const isReaderOpen = useReaderPanel((s) => s.isOpen);
 
   const [fontSize, setFontSize] = useState(20);
@@ -158,17 +162,17 @@ export default function ReadingView() {
   const hasNext = chapters ? clampedIndex < chapters.length - 1 : false;
 
   const navigateTo = (index: number) => {
-    router.push(`/novels/${id}/read/${index + 1}`);
+    router.push(`/novels/${id}/read/${index + 1}${isAi ? "?mode=ai" : ""}`);
   };
 
   // Redirect to valid order if out of range
   useEffect(() => {
     if (!chapters || chapters.length === 0) return;
     if (isNaN(orderNum) || clampedIndex !== requestedIndex) {
-      router.replace(`/novels/${id}/read/${clampedIndex + 1}`);
+      router.replace(`/novels/${id}/read/${clampedIndex + 1}${isAi ? "?mode=ai" : ""}`);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [chapters?.length, clampedIndex, requestedIndex, orderNum, id, router]);
+  }, [chapters?.length, clampedIndex, requestedIndex, orderNum, id, router, isAi]);
 
   // Sync store whenever the chapter changes (URL is source of truth here)
   useEffect(() => {

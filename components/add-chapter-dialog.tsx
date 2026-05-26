@@ -22,11 +22,13 @@ export function AddChapterDialog({
   onOpenChange,
   novelId,
   nextOrder,
+  isAiWritten,
 }: {
   open: boolean;
   onOpenChange: (open: boolean) => void;
   novelId: string;
   nextOrder: number;
+  isAiWritten?: boolean;
 }) {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
@@ -42,6 +44,7 @@ export function AddChapterDialog({
         novelId,
         title: title.trim(),
         order: nextOrder,
+        isAiWritten,
       });
 
       // Create a single scene with the chapter content

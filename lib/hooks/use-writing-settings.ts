@@ -23,7 +23,14 @@ export async function getOrCreateWritingSettings(
     createdAt: now,
     updatedAt: now,
   };
-  await db.writingSettings.add(settings);
+  try {
+    await db.writingSettings.add(settings);
+  } catch (err) {
+    // If the writing settings were added concurrently by another call, fetch and return them
+    const existingAgain = await db.writingSettings.get(novelId);
+    if (existingAgain) return existingAgain;
+    throw err;
+  }
   return settings;
 }
 

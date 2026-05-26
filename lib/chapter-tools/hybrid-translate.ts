@@ -57,8 +57,9 @@ Lưu ý QUAN TRỌNG: Chỉ trả về nội dung dịch đặt trong thẻ <con
  */
 function buildGenreAwareSystemPrompt(
   novelCustomPrompt?: string,
+  globalTranslatePrompt?: string,
 ): string {
-  let prompt = HYBRID_POST_EDIT_BASE;
+  let prompt = globalTranslatePrompt?.trim() || HYBRID_POST_EDIT_BASE;
 
   if (novelCustomPrompt?.trim()) {
     prompt += `\n\n# BẮT BUỘC TUÂN THỦ TUYỆT ĐỐI PROMPT DỊCH / XƯNG HÔ / THỂ LOẠI SAU (ƯU TIÊN CAO NHẤT, TUYỆT ĐỐI KHÔNG TỰ Ý THÊM BỚT):\n${novelCustomPrompt.trim()}`;
@@ -94,8 +95,10 @@ export interface HybridTranslateOptions {
   qaEnabled?: boolean;         // Check if QA Bot is enabled
   qaPrompt?: string;           // Custom Prompt for QA Bot
   extractDict?: boolean;
+  cleanGarbage?: boolean;
   skipTranslated?: boolean;
   continuousMode?: boolean;
+  globalTranslatePrompt?: string;
   errorAction?: "stop" | "skip"; // "stop" = dừng lại khi lỗi, "skip" = bỏ qua chương lỗi
   signal?: AbortSignal;
   delayMs?: number;
@@ -202,8 +205,9 @@ function buildPostEditPrompt(
   dictTranslation: string,
   nameDict: Array<{ chinese: string; vietnamese: string; category: string }>,
   novelCustomPrompt?: string,
+  globalTranslatePrompt?: string,
 ): string {
-  let prompt = buildGenreAwareSystemPrompt(novelCustomPrompt);
+  let prompt = buildGenreAwareSystemPrompt(novelCustomPrompt, globalTranslatePrompt);
 
   // Add name dictionary context
   const relevantNames = nameDict.filter(
@@ -319,8 +323,10 @@ export async function runHybridTranslate(opts: HybridTranslateOptions): Promise<
     qaModel,
     qaEnabled,
     extractDict,
+    cleanGarbage = true,
     skipTranslated,
     continuousMode,
+    globalTranslatePrompt,
     signal,
     delayMs,
     onPhase,
@@ -362,7 +368,7 @@ export async function runHybridTranslate(opts: HybridTranslateOptions): Promise<
         }
 
         // Quét toàn bộ nội dung chương để đảm bảo không lọt từ vựng
-        const cleaned = cleanGarbageLines(combinedText);
+        const cleaned = cleanGarbage ? cleanGarbageLines(combinedText) : combinedText;
 
         if (cleaned.trim()) {
           const prompt = `Trích xuất toàn bộ tên riêng (nhân vật chính/phụ, địa danh, môn phái) từ văn bản tiếng Trung sau. 
@@ -491,7 +497,7 @@ ${cleaned}`;
         scenes.sort((a, b) => a.order - b.order);
         const originalContents = await Promise.all(scenes.map((s) => getOriginalContent(s.id)));
         const joinedContent = originalContents.join(`\n\n===SCENE_BREAK===\n\n`);
-        const cleanedContent = cleanGarbageLines(joinedContent);
+        const cleanedContent = cleanGarbage ? cleanGarbageLines(joinedContent) : joinedContent;
 
         // Find primary model index
         const chapterIndex = allChapters.findIndex(c => c.id === chapId);
@@ -677,7 +683,7 @@ ${cleaned}`;
         ? originalContents.join(`\n\n${SCENE_BREAK}\n\n`)
         : originalContents[0];
 
-      const cleanedContent = cleanGarbageLines(joinedContent);
+      const cleanedContent = cleanGarbage ? cleanGarbageLines(joinedContent) : joinedContent;
 
       // Check if original content is already Vietnamese
       if (isVietnameseText(cleanedContent)) {
@@ -800,6 +806,7 @@ ${cleaned}`;
               dictTranslatedContent,
               nameDict,
               novelCustomPrompt,
+              globalTranslatePrompt
             );
 
             const userPrompt = buildPostEditUserPrompt(

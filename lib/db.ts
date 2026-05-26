@@ -31,6 +31,9 @@ export interface Novel {
   keyLocations?: NameDescription[];
   worldRules?: string;
   technologyLevel?: string;
+  perspective?: string;
+  pronouns?: string;
+  writingStyle?: string;
   analysisStatus?: "pending" | "analyzing" | "completed" | "failed";
   chaptersAnalyzed?: number;
   totalChapters?: number;
@@ -71,6 +74,7 @@ export interface Novel {
   pronounMatrixEnabled?: boolean;
   /** Keep novel locally (skip bulk upload / auto-cleaning syncing) */
   keepLocal?: boolean;
+  overallEvaluation?: string;
   createdAt: Date;
   updatedAt: Date;
 }
@@ -84,6 +88,7 @@ export interface Chapter {
   summary?: string;
   characterIds?: string[];
   analyzedAt?: Date;
+  isAiWritten?: boolean; // Chương được tự sáng tác/viết bằng AI
   createdAt: Date;
   updatedAt: Date;
 }
@@ -268,6 +273,7 @@ export interface AnalysisSettings {
   reviewModel?: StepModelConfig;
   editModel?: StepModelConfig;
   translatePrompt?: string;
+  translateHybridPrompt?: string;
   reviewPrompt?: string;
   editPrompt?: string;
   translateDelaySeconds?: number;
@@ -556,7 +562,10 @@ export interface WritingSettings {
   worldBuildingPrompt?: string;
   characterGenPrompt?: string;
   plotArcPrompt?: string;
-  chapterPlanPrompt?: string;
+  targetChapterCount?: number;
+  targetParts?: number;
+  isOpenEnded?: boolean;
+  isPartEnding?: boolean;
   createdAt: Date;
   updatedAt: Date;
 }
@@ -694,7 +703,13 @@ db.on("ready", async () => {
     createdAt: now,
     updatedAt: now,
   }));
-  await db.aiProviders.bulkAdd(toAdd);
+
+  try {
+    await db.aiProviders.bulkAdd(toAdd);
+  } catch (err) {
+    // Safely fallback to bulkPut if keys already exist due to concurrent HMR reloads
+    await db.aiProviders.bulkPut(toAdd);
+  }
 });
 export const GENRE_LABELS: Record<string, string> = {
   ngontinh: "Ngôn tình",

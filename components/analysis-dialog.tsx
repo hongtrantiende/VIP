@@ -92,7 +92,7 @@ const STEP_DEFS: StepDef[] = [
   {
     key: "aggregation",
     label: "Tổng hợp tiểu thuyết",
-    description: "Thể loại, tóm tắt, thế giới quan, phe phái",
+    description: "Thể loại, tóm tắt, thế giới quan, phe phái, góc nhìn, xưng hô, phong cách hành văn",
     modelKey: "aggregationModel",
     promptKey: "novelAggregationPrompt",
     promptLabel: "Tổng quan tiểu thuyết",

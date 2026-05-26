@@ -427,22 +427,28 @@ export interface GenerateFromExistingOptions {
   abortSignal?: AbortSignal;
   onPhase?: (phase: "arcs" | "plans") => void;
   userInstruction?: string;
+  /** "continue" = viết tiếp (giữ cũ, tạo thêm), "fresh" = viết lại từ đầu (xóa cũ, tạo mới từ chương 1) */
+  mode?: "continue" | "fresh";
+  planCount?: number;
 }
 
 /**
  * Generate plot arcs and chapter plans from existing novel data.
- * Used for continuation mode (State B).
+ * - mode="continue": tạo thêm arcs/plans tiếp nối (State B).
+ * - mode="fresh": tạo lại toàn bộ arcs/plans từ chương 1.
  */
 export async function generateFromExisting(
   novelId: string,
   options: GenerateFromExistingOptions = {},
 ) {
-  const { abortSignal, onPhase, userInstruction } = options;
+  const { abortSignal, onPhase, userInstruction, mode = "continue", planCount: customPlanCount } = options;
+  const isFresh = mode === "fresh";
 
-  const [novel, chapters, characters] = await Promise.all([
+  const [novel, chapters, characters, existingPlans] = await Promise.all([
     db.novels.get(novelId),
     db.chapters.where("novelId").equals(novelId).sortBy("order"),
     db.characters.where("novelId").equals(novelId).toArray(),
+    db.chapterPlans.where("novelId").equals(novelId).toArray(),
   ]);
 
   if (!novel) throw new Error("Novel not found");
@@ -453,37 +459,179 @@ export async function generateFromExisting(
     characters.length > 0
       ? `Nhân vật: ${characters.map((c) => `${c.name} (${c.role})`).join(", ")}`
       : "",
+    // Khi viết lại từ đầu, vẫn tham khảo chương cũ để AI hiểu mạch truyện
     chapters.length > 0
-      ? `Chương đã có:\n${chapters.map((ch) => `${ch.order}. ${ch.title}${ch.summary ? `: ${ch.summary}` : ""}`).join("\n")}`
+      ? `Chương đã có (tham khảo):\n${chapters.map((ch) => `${ch.order}. ${ch.title}${ch.summary ? `: ${ch.summary}` : ""}`).join("\n")}`
       : "",
   ]
     .filter(Boolean)
     .join("\n\n");
 
   const idea = novel.synopsis || novel.description || novel.title;
-  const nextChapter = chapters.length + 1;
+  // Viết lại → bắt đầu từ chương 1, viết tiếp → bắt đầu từ chương tiếp theo (check maxPlanOrder để tránh trùng lặp)
+  const maxPlanOrder = existingPlans.reduce((max, p) => Math.max(max, p.chapterOrder), 0);
+  const startChapter = isFresh ? 1 : (maxPlanOrder > 0 ? maxPlanOrder + 1 : chapters.length + 1);
+  // Viết lại/Viết tiếp → tạo nhiều chương hơn để cover
+  const planCount = customPlanCount ?? (isFresh ? Math.max(chapters.length, 10) : 5);
 
   onPhase?.("arcs");
   const arcsResult = await generatePlotArcs(
     { novelId, idea, abortSignal, userInstruction },
     context,
   );
-  await savePlotArcs(novelId, arcsResult, { replaceAll: false });
+  await savePlotArcs(novelId, arcsResult, { replaceAll: isFresh });
 
   onPhase?.("plans");
   const arcContext =
     context +
-    `\n\nMạch truyện:\n${arcsResult.arcs.map((a) => `- ${a.title} (${a.type}): ${a.description}`).join("\n")}`;
+    `\n\nMạch truyện:\n${arcsResult.arcs.map((a) => `- ${a.title} (${a.type}): ${a.description}`).join("\n")}` +
+    (isFresh ? `\n\nYÊU CẦU: Tạo kế hoạch chương từ CHƯƠNG 1, bao phủ toàn bộ cốt truyện từ đầu đến cuối. Tổng cộng khoảng ${planCount} chương.` : "");
   const plansResult = await generateChapterPlans(
     { novelId, idea, abortSignal, userInstruction },
     arcContext,
-    5,
+    planCount,
   );
   plansResult.plans = plansResult.plans.map((p, i) => ({
     ...p,
-    chapterOrder: nextChapter + i,
+    chapterOrder: startChapter + i,
   }));
-  await saveChapterPlans(novelId, plansResult, { replaceAll: false });
+  await saveChapterPlans(novelId, plansResult, { replaceAll: isFresh });
 
   return { arcs: arcsResult, plans: plansResult };
+}
+
+/**
+ * Generate the entire novel configuration (World, Characters, Arcs, Plans) from scratch.
+ * Done in a single comprehensive pipeline.
+ */
+export async function generateAllFromScratch(
+  novelId: string,
+  options: {
+    idea: string;
+    targetChapterCount: number;
+    abortSignal?: AbortSignal;
+    onPhase?: (phase: "world" | "characters" | "arcs" | "plans") => void;
+  },
+) {
+  const { idea, targetChapterCount, abortSignal, onPhase } = options;
+  const chaptersPerPart = Math.ceil(targetChapterCount / 3);
+
+  // Clear existing setup data
+  await Promise.all([
+    db.characters.where("novelId").equals(novelId).delete(),
+    db.plotArcs.where("novelId").equals(novelId).delete(),
+    db.chapterPlans.where("novelId").equals(novelId).delete(),
+    db.writingSessions.where("novelId").equals(novelId).delete(),
+  ]);
+
+  // Update writingSettings with targetChapterCount and targetParts, ensuring it exists
+  const existingSettings = await db.writingSettings.get(novelId);
+  if (!existingSettings) {
+    const now = new Date();
+    await db.writingSettings.put({
+      id: novelId,
+      chapterLength: 3000,
+      targetChapterCount,
+      targetParts: 3,
+      isOpenEnded: false,
+      isPartEnding: true,
+      createdAt: now,
+      updatedAt: now,
+    });
+  } else {
+    await db.writingSettings.update(novelId, {
+      targetChapterCount,
+      targetParts: 3, // Default to 3 parts for standard structure
+      isOpenEnded: false,
+      isPartEnding: true,
+    } as any);
+  }
+
+  const genOptions = {
+    novelId,
+    idea,
+    abortSignal,
+  };
+
+  // Phase 1: World-Building
+  onPhase?.("world");
+  const worldResult = await generateWorldBuilding(genOptions);
+  await saveWorldBuilding(novelId, worldResult);
+
+  // Build world context for subsequent steps
+  const worldContext = [
+    worldResult.worldOverview ? `Thế giới: ${worldResult.worldOverview}` : "",
+    worldResult.storySetting ? `Bối cảnh: ${worldResult.storySetting}` : "",
+    worldResult.powerSystem ? `Hệ thống sức mạnh: ${worldResult.powerSystem}` : "",
+    worldResult.factions?.length
+      ? `Thế lực:\n${worldResult.factions.map((f) => `${f.name}: ${f.description}`).join("\n")}`
+      : "",
+    worldResult.keyLocations?.length
+      ? `Địa danh:\n${worldResult.keyLocations.map((l) => `${l.name}: ${l.description}`).join("\n")}`
+      : "",
+  ]
+    .filter(Boolean)
+    .join("\n\n");
+
+  // Phase 2: Characters
+  onPhase?.("characters");
+  const charResult = await generateCharacters(genOptions, worldContext);
+  await saveCharacters(novelId, charResult);
+
+  const charContext = charResult.characters?.length
+    ? `Nhân vật:\n${charResult.characters.map((c) => `${c.name} (${c.role}): ${c.description}`).join("\n")}`
+    : "";
+
+  // Phase 3: Plot Arcs (Hướng đi nhân vật chính - Sequential MC Trajectory Stages)
+  onPhase?.("arcs");
+  const arcContext = [
+    worldContext,
+    charContext,
+    `\n\nYÊU CẦU: Thiết lập HƯỚNG ĐI / LỘ TRÌNH PHÁT TRIỂN của nhân vật chính cho toàn bộ truyện gồm ${targetChapterCount} chương.
+Hãy chia lộ trình này thành các Mạch hành trình tuần tự tiếp nối nhau (Ví dụ: Mạch 1 từ Chương 1 đến Chương 25, Mạch 2 từ Chương 26 đến Chương 60, v.v.).
+Trong mỗi mạch hành trình:
+- Xác định khoảng chương bắt đầu và kết thúc cụ thể.
+- Mô tả rõ sự trưởng thành của nhân vật chính qua thời gian (phát triển tâm lý, sức mạnh từ yếu đuối phế vật lên mạnh mẽ, khôn ngoan).
+- Tạo các điểm mốc cốt truyện (plot points) tương ứng với mạch đó.
+Các mạch phải kế thừa và tiếp nối nhau một cách logic, tạo nên hành trình nhân vật hoàn chỉnh qua ${targetChapterCount} chương.`,
+  ]
+    .filter(Boolean)
+    .join("\n\n");
+
+  const arcsResult = await generatePlotArcs(genOptions, arcContext);
+  await savePlotArcs(novelId, arcsResult);
+
+  const arcContextList = arcsResult.arcs
+    .map((a) => `- ${a.title} (${a.type}): ${a.description}`)
+    .join("\n");
+
+  // Phase 4: Chapter Plans (Generate only the first 5 chapters initially)
+  onPhase?.("plans");
+  const planPartsInfo = Array.from({ length: 3 }, (_, i) => {
+    const p = i + 1;
+    const start = (p - 1) * chaptersPerPart + 1;
+    const end = Math.min(p * chaptersPerPart, targetChapterCount);
+    return `- Phần ${p} (Ch.${start}-${end})`;
+  }).join("\n");
+
+  const planContext = [
+    worldContext,
+    charContext,
+    `\n\nMạch truyện:\n${arcContextList}`,
+    `\n\nCẤU TRÚC TRUYỆN (${targetChapterCount} chương, 3 phần):\n${planPartsInfo}\n\nYÊU CẦU: Chỉ tạo kế hoạch CHI TIẾT cho 5 chương ĐẦU TIÊN (Chương 1 đến Chương 5) của bộ truyện, bao phủ những diễn biến khởi đầu của mạch truyện.`,
+  ]
+    .filter(Boolean)
+    .join("\n\n");
+
+  const plansResult = await generateChapterPlans(
+    genOptions,
+    planContext,
+    5, // Only 5 chapters initially
+  );
+  // Ensure correct chapterOrder
+  plansResult.plans = plansResult.plans.map((p, i) => ({
+    ...p,
+    chapterOrder: i + 1,
+  }));
+  await saveChapterPlans(novelId, plansResult);
 }

@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { ServerIcon, DatabaseIcon, LockIcon } from "lucide-react";
+import { ServerIcon, DatabaseIcon, LockIcon, SparklesIcon } from "lucide-react";
 import { useProfile } from "@/lib/hooks/use-profile";
 
 export default function SettingsLayout({
@@ -14,6 +14,11 @@ export default function SettingsLayout({
     const { isVip, loading } = useProfile();
 
     const tabs = [
+        {
+            name: "Cài đặt AI",
+            href: "/settings/ai-settings",
+            icon: SparklesIcon,
+        },
         {
             name: "Nhà cung cấp AI",
             href: "/settings/providers",

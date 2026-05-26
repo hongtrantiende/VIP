@@ -12,13 +12,17 @@ function getTimestamp(val: any): number {
   return isNaN(parsed) ? 0 : parsed;
 }
 
-export function useChapters(novelId: string | undefined) {
+export function useChapters(novelId: string | undefined, isAiWritten?: boolean) {
   const chapters = useLiveQuery(
-    () =>
-      novelId
-        ? db.chapters.where("novelId").equals(novelId).sortBy("order")
-        : [],
-    [novelId]
+    async () => {
+      if (!novelId) return [];
+      const list = await db.chapters.where("novelId").equals(novelId).sortBy("order");
+      if (isAiWritten !== undefined) {
+        return list.filter((ch) => !!ch.isAiWritten === isAiWritten);
+      }
+      return list;
+    },
+    [novelId, isAiWritten]
   );
   return chapters;
 }

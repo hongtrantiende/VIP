@@ -199,6 +199,38 @@ export async function buildWritingContext(
     parts.push(`## Tóm tắt chương trước\n${summaries}`);
   }
 
+  // ── Exact ending of the previous chapter (for seamless transition) ──
+  if (chapterOrder > 1) {
+    const prevChapter = chapters.find((ch) => ch.order === chapterOrder - 1);
+    if (prevChapter) {
+      const prevScenes = await db.scenes
+        .where("[chapterId+isActive]")
+        .equals([prevChapter.id, 1])
+        .sortBy("order");
+      
+      const lastScene = prevScenes[prevScenes.length - 1];
+      if (lastScene?.content) {
+        // Take the last 1000 characters of the previous chapter for context
+        const endingText = lastScene.content.trim().slice(-1000);
+        parts.push(`## Đoạn kết thúc của Chương ${prevChapter.order} (Bắt buộc dùng đoạn này để viết tiếp nối liền mạch về hành động, hội thoại và bối cảnh, tuyệt đối không tạo khoảng trống thời gian hoặc lặp lại ý):\n...${endingText}`);
+      }
+    }
+  }
+
+  // ── Previous chapter outlines (memory reference for consistency) ──
+  const prevPlans = await db.chapterPlans
+    .where("novelId")
+    .equals(novelId)
+    .filter((p) => p.chapterOrder < chapterOrder && !!p.outline)
+    .toArray();
+  const sortedPrevPlans = prevPlans.sort((a, b) => a.chapterOrder - b.chapterOrder).slice(-3);
+  if (sortedPrevPlans.length > 0) {
+    const outlinesText = sortedPrevPlans
+      .map((p) => `- Chương ${p.chapterOrder}: ${p.title || "Không có tiêu đề"}\n  Giàn ý phân cảnh:\n${p.scenes?.map((s) => `    + Phân cảnh: ${s.title}. Tóm tắt: ${s.summary}`).join("\n") || `    + ${p.outline}`}`)
+      .join("\n\n");
+    parts.push(`## Giàn ý chi tiết các chương trước (Tham khảo đồng bộ)\n${outlinesText}`);
+  }
+
   // ── Chapter plans for upcoming chapter ────────────────────
   const chapterPlan = await db.chapterPlans
     .where("[novelId+chapterOrder]")

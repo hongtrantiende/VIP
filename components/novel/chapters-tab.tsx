@@ -168,6 +168,18 @@ export function ChaptersTab({
   const [visibleCount, setVisibleCount] = useState(CHAPTER_PAGE_SIZE);
   const debouncedQuery = useDebouncedValue(searchQuery, 350);
 
+  const [activeSubTab, setActiveSubTab] = useState<"standard" | "ai">("standard");
+
+  // Reset selection and visible page count when sub-tab changes
+  useEffect(() => {
+    setSelected(new Set());
+    setVisibleCount(CHAPTER_PAGE_SIZE);
+  }, [activeSubTab]);
+
+  const standardChapters = useMemo(() => chapters.filter(c => !c.isAiWritten), [chapters]);
+  const aiChapters = useMemo(() => chapters.filter(c => !!c.isAiWritten), [chapters]);
+  const displayedChaptersList = activeSubTab === "standard" ? standardChapters : aiChapters;
+
   const translateJob = useBulkTranslateStore((s) => s.jobs[novelId]);
 
   const scrollContainerRef = useRef<HTMLDivElement>(null);
@@ -186,16 +198,16 @@ export function ChaptersTab({
   const filteredChapters = useMemo(() => {
     const q = debouncedQuery.trim();
     if (!q) {
-      return chapters.map((ch, i) => ({ chapter: ch, indices: [] as number[], originalIndex: i }));
+      return displayedChaptersList.map((ch, i) => ({ chapter: ch, indices: [] as number[], originalIndex: i }));
     }
     const results: { chapter: Chapter; indices: number[]; originalIndex: number }[] = [];
-    for (let i = 0; i < chapters.length; i++) {
-      const ch = chapters[i];
+    for (let i = 0; i < displayedChaptersList.length; i++) {
+      const ch = displayedChaptersList[i];
       const { matched, indices } = fuzzyMatch(q, ch.title);
       if (matched) results.push({ chapter: ch, indices, originalIndex: i });
     }
     return results;
-  }, [chapters, debouncedQuery]);
+  }, [displayedChaptersList, debouncedQuery]);
 
   // Reset visibleCount when search changes
   useEffect(() => {
@@ -364,6 +376,48 @@ export function ChaptersTab({
 
   return (
     <div className="max-w-full overflow-x-hidden">
+      {/* Sub-tabs for Chapter Types */}
+      <div className="mb-4 flex gap-1 p-0.5 bg-muted/40 rounded-lg border w-full sm:w-fit animate-in fade-in duration-300">
+        <button
+          type="button"
+          onClick={() => setActiveSubTab("standard")}
+          className={`flex-1 sm:flex-initial flex items-center justify-center gap-1.5 px-4 py-1.5 text-xs font-semibold rounded-md transition-all duration-200 ${
+            activeSubTab === "standard"
+              ? "bg-background text-foreground shadow-sm border border-border/40"
+              : "text-muted-foreground hover:bg-muted/30 hover:text-foreground"
+          }`}
+        >
+          <LanguagesIcon className="size-3.5 text-emerald-600 dark:text-emerald-400" />
+          <span>Chương dịch & gốc</span>
+          <span className={`ml-2 inline-flex min-w-5 items-center justify-center rounded-full px-1.5 py-px text-[10px] font-bold ${
+            activeSubTab === "standard"
+              ? "bg-emerald-500/10 text-emerald-700 dark:bg-emerald-500/20 dark:text-emerald-300"
+              : "bg-muted/80 text-muted-foreground"
+          }`}>
+            {standardChapters.length}
+          </span>
+        </button>
+        <button
+          type="button"
+          onClick={() => setActiveSubTab("ai")}
+          className={`flex-1 sm:flex-initial flex items-center justify-center gap-1.5 px-4 py-1.5 text-xs font-semibold rounded-md transition-all duration-200 ${
+            activeSubTab === "ai"
+              ? "bg-background text-foreground shadow-sm border border-border/40"
+              : "text-muted-foreground hover:bg-muted/30 hover:text-foreground"
+          }`}
+        >
+          <SparklesIcon className="size-3.5 text-violet-600 dark:text-violet-400" />
+          <span>Chương viết bằng AI</span>
+          <span className={`ml-2 inline-flex min-w-5 items-center justify-center rounded-full px-1.5 py-px text-[10px] font-bold ${
+            activeSubTab === "ai"
+              ? "bg-violet-500/10 text-violet-700 dark:bg-violet-500/20 dark:text-violet-300"
+              : "bg-muted/80 text-muted-foreground"
+          }`}>
+            {aiChapters.length}
+          </span>
+        </button>
+      </div>
+
       {/* Toolbar */}
       <div className="mb-2 flex flex-wrap items-center gap-1.5 sm:gap-2">
         <Button size="sm" onClick={() => setAddOpen(true)}>
@@ -436,6 +490,13 @@ export function ChaptersTab({
             </PopoverTrigger>
             <PopoverContent align="end" className="w-48 p-1">
               <button
+                className="flex w-full items-center gap-2 rounded-md px-2 py-1.5 text-sm hover:bg-muted"
+                onClick={() => onAnalyze("selected", Array.from(selected))}
+              >
+                <SearchIcon className="size-3.5" />
+                Phân tích đã chọn
+              </button>
+              <button
                 className="flex w-full items-center gap-2 rounded-md px-2 py-1.5 text-sm hover:bg-muted text-destructive"
                 onClick={() => setBulkDeleteOpen(true)}
               >
@@ -496,6 +557,30 @@ export function ChaptersTab({
               )}
             </PopoverContent>
           </Popover>
+
+          {needsAnalysisCount > 0 && (
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={() => onAnalyze("incremental")}
+              title={`Phân tích còn lại (${needsAnalysisCount})`}
+            >
+              <SearchIcon className="size-3.5 sm:mr-1.5" />
+              <span className="hidden sm:inline">
+                Phân tích còn lại ({needsAnalysisCount})
+              </span>
+              <span className="sm:hidden">{needsAnalysisCount}</span>
+            </Button>
+          )}
+          <Button
+            variant="outline"
+            size="sm"
+            onClick={() => onAnalyze("full")}
+            title="Phân tích tất cả"
+          >
+            <SearchIcon className="size-3.5 sm:mr-1.5" />
+            <span className="hidden sm:inline">Phân tích tất cả</span>
+          </Button>
 
           {translateJob && (translateJob.isRunning || translateJob.step === "progress") && (
             <Button
@@ -658,7 +743,7 @@ export function ChaptersTab({
                             <div className="ml-auto flex gap-0.5">
                               <Button variant="ghost" size="icon-xs" asChild>
                                 <Link
-                                  href={`/novels/${novelId}/read/${originalIndex + 1}`}
+                                  href={`/novels/${novelId}/read/${originalIndex + 1}${activeSubTab === "ai" ? "?mode=ai" : ""}`}
                                 >
                                   <BookOpenIcon className="size-3.5" />
                                 </Link>
@@ -765,7 +850,7 @@ export function ChaptersTab({
                           <div className="flex w-[4.5rem] shrink-0 justify-end gap-0.5">
                             <Button variant="ghost" size="icon-xs" asChild title="Đọc">
                               <Link
-                                href={`/novels/${novelId}/read/${originalIndex + 1}`}
+                                href={`/novels/${novelId}/read/${originalIndex + 1}${activeSubTab === "ai" ? "?mode=ai" : ""}`}
                               >
                                 <BookOpenIcon className="size-3.5" />
                               </Link>
@@ -824,14 +909,16 @@ export function ChaptersTab({
         open={addOpen}
         onOpenChange={setAddOpen}
         novelId={novelId}
-        nextOrder={chapters.length}
+        nextOrder={displayedChaptersList.length}
+        isAiWritten={activeSubTab === "ai"}
       />
 
       <BulkAddChaptersDialog
         open={bulkOpen}
         onOpenChange={setBulkOpen}
         novelId={novelId}
-        nextOrder={chapters.length}
+        nextOrder={displayedChaptersList.length}
+        isAiWritten={activeSubTab === "ai"}
       />
 
       <AlertDialog

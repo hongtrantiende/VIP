@@ -40,7 +40,7 @@ const RETRY_BASE_DELAY = 2000;
 
 // ── Post-edit system prompt ──
 
-const HYBRID_POST_EDIT_BASE = `# Vai trò
+export const HYBRID_POST_EDIT_BASE = `# Vai trò
 Bạn là biên tập viên văn học chuyên nghiệp chuyên dịch tiểu thuyết Trung Quốc sang TIẾNG VIỆT. 
 ⚠️ BẮT BUỘC: Toàn bộ đầu ra PHẢI bằng TIẾNG VIỆT. TUYỆT ĐỐI KHÔNG dịch sang tiếng Anh.
 Bạn KHÔNG dịch lại từ đầu, bạn chỉ SỬA LỖI bản dịch từ điển Trung → Việt sẵn có.
@@ -80,8 +80,17 @@ Lưu ý PHÂN LOẠI (TRÍCH XUẤT TỪ ĐIỂN):
 4. TUYỆT ĐỐI KHÔNG trích xuất kiểu tiếng Việt = tiếng Việt (Ví dụ: Nội công=nội công -> SAI NGHIÊM TRỌNG). Phải là: 內功=nội công.
 KHÔNG giải thích thêm. Nếu không có từ nào cần trích xuất, để trống phần <names></names>.`;
 
-
-/**
+export const PURE_TRANSLATE_PROMPT = `# Vai trò
+Bạn là một dịch giả kiêm nhà biên kịch văn học Trung-Việt xuất sắc.
+Nhiệm vụ: Hãy dịch trực tiếp văn bản TIẾNG TRUNG sau sang TIẾNG VIỆT tự nhiên, mượt mà và sinh động nhất.
+Yêu cầu:
+- BẮT BUỘC trả về kết quả bằng TIẾNG VIỆT hoàn chỉnh.
+- Bảo đảm câu văn thuần Việt, trôi chảy, giữ nguyên ngữ cảnh và hồn tác phẩm.
+- Tuân thủ tuyệt đối quy tắc dịch tên riêng từ danh sách được cung cấp.
+- Giữ nguyên cấu trúc dòng, đoạn văn, dấu câu gốc.
+- BẮT BUỘC dịch đầy đủ 100% nội dung, TUYỆT ĐỐI không tóm tắt, lược bỏ hay cắt bớt câu chữ. Giữ nguyên tất cả các dấu phân cảnh (như ===SCENE_BREAK===) ở vị trí gốc.
+- Không tự ý thêm bớt chi tiết cốt truyện.
+- NGHIÊM CẤM chèn bất kỳ định dạng Markdown nào như in đậm **, ###. Chỉ xuất văn bản thuần túy.`;/**
  * Build genre-aware post-edit prompt.
  * If novel has a scanned custom prompt (from scanNovelStyle), use it as context.
  */
@@ -128,8 +137,10 @@ export interface QtAiTranslateOptions {
   qaPrompt?: string;           // Custom Prompt for QA Bot
   promptType?: PromptType;
   extractDict?: boolean; // "Càng dịch càng hay" — extract names + upload to Supabase
+  cleanGarbage?: boolean;
   skipTranslated?: boolean;
   continuousMode?: boolean; // Tự động nạp chương mới nếu có
+  globalTranslatePrompt?: string;
   errorAction?: "stop" | "skip"; // "stop" = dừng lại khi lỗi, "skip" = bỏ qua chương lỗi
   signal?: AbortSignal;
   editorModel?: LanguageModel;
@@ -247,22 +258,13 @@ function buildPostEditPrompt(
   novelCustomPrompt?: string,
   promptType: PromptType = "legacy",
   extractDict: boolean = false,
-  nameDict?: Array<{ chinese: string; vietnamese: string; category: string }>
+  nameDict?: Array<{ chinese: string; vietnamese: string; category: string }>,
+  globalTranslatePrompt?: string,
 ): string {
   let prompt = "";
 
   if (promptType === "custom") {
-    prompt = `# Vai trò
-Bạn là một dịch giả kiêm nhà biên kịch văn học Trung-Việt xuất sắc.
-Nhiệm vụ: Hãy dịch trực tiếp văn bản TIẾNG TRUNG sau sang TIẾNG VIỆT tự nhiên, mượt mà và sinh động nhất.
-Yêu cầu:
-- BẮT BUỘC trả về kết quả bằng TIẾNG VIỆT hoàn chỉnh.
-- Bảo đảm câu văn thuần Việt, trôi chảy, giữ nguyên ngữ cảnh và hồn tác phẩm.
-- Tuân thủ tuyệt đối quy tắc dịch tên riêng từ danh sách được cung cấp.
-- Giữ nguyên cấu trúc dòng, đoạn văn, dấu câu gốc.
-- BẮT BUỘC dịch đầy đủ 100% nội dung, TUYỆT ĐỐI không tóm tắt, lược bỏ hay cắt bớt câu chữ. Giữ nguyên tất cả các dấu phân cảnh (như ===SCENE_BREAK===) ở vị trí gốc.
-- Không tự ý thêm bớt chi tiết cốt truyện.
-- NGHIÊM CẤM chèn bất kỳ định dạng Markdown nào như in đậm **, ###. Chỉ xuất văn bản thuần túy.`;
+    prompt = globalTranslatePrompt?.trim() || PURE_TRANSLATE_PROMPT;
 
     if (extractDict) {
       prompt += `\n\nĐịnh dạng đầu ra BẮT BUỘC:
@@ -451,9 +453,13 @@ export async function runQtAiTranslate(opts: QtAiTranslateOptions): Promise<void
     chapterIds,
     model,
     models,
+    promptType = "legacy",
+    extractDict,
+    cleanGarbage = true,
     qtDictSources,
     skipTranslated,
     continuousMode,
+    globalTranslatePrompt,
     errorAction = "stop",
     signal,
     delayMs,
@@ -493,7 +499,7 @@ export async function runQtAiTranslate(opts: QtAiTranslateOptions): Promise<void
         }
 
         // Quét toàn bộ nội dung chương để đảm bảo không lọt từ vựng
-        const cleaned = cleanGarbageLines(combinedText);
+        const cleaned = cleanGarbage ? cleanGarbageLines(combinedText) : combinedText;
 
         if (cleaned.trim()) {
           const prompt = `Trích xuất toàn bộ tên riêng (nhân vật chính/phụ, địa danh, môn phái) từ văn bản tiếng Trung sau. 
@@ -635,8 +641,8 @@ ${cleaned}`;
         // Load original scene contents
         scenes.sort((a, b) => a.order - b.order);
         const originalContents = await Promise.all(scenes.map((s) => getOriginalContent(s.id)));
-        const combinedText = originalContents.join("\n\n===SCENE_BREAK===\n\n");
-        const cleanedContent = cleanGarbageLines(combinedText);
+        const joinedContent = originalContents.join("\n\n===SCENE_BREAK===\n\n");
+        const cleanedContent = cleanGarbage ? cleanGarbageLines(joinedContent) : joinedContent;
 
         const newlyScannedNames = await scanNewNames({
           model: opts.dictModel || workerModels[0],
@@ -864,7 +870,7 @@ ${cleaned}`;
               ? originalContents.join(`\n\n${SCENE_BREAK}\n\n`)
               : originalContents[0];
 
-            const cleanedContent = cleanGarbageLines(joinedContent);
+            const cleanedContent = cleanGarbage ? cleanGarbageLines(joinedContent) : joinedContent;
 
             // Fetch the latest dictionary (to include words extracted by Lookahead)
             nameDict = await getMergedNameDict(novelId);
@@ -920,7 +926,8 @@ ${cleaned}`;
                 novelCustomPrompt,
                 opts.promptType,
                 effectiveExtractDict,
-                nameDict
+                nameDict,
+                globalTranslatePrompt
               );
 
               const userPrompt = buildPostEditUserPrompt(

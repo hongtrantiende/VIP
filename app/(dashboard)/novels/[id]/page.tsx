@@ -11,6 +11,8 @@ import { SplitChapterDialog } from "@/components/novel/split-chapter-dialog";
 import { MergeChaptersDialog } from "@/components/novel/merge-chapters-dialog";
 import { MergePartsDialog } from "@/components/novel/merge-parts-dialog";
 import { ChaptersTab } from "@/components/novel/chapters-tab";
+import { CharactersTab } from "@/components/novel/characters-tab";
+import { WorldBuildingTab } from "@/components/novel/world-building-tab";
 import { EditableText } from "@/components/novel/editable-text";
 import {
   AlertDialog,
@@ -82,6 +84,8 @@ import {
   BookDownIcon,
   LoaderIcon,
   SparklesIcon,
+  GlobeIcon,
+  UsersIcon,
 } from "lucide-react";
 import {
   useParams,
@@ -221,7 +225,6 @@ export default function NovelDetailPage() {
             reader.readAsDataURL(blob);
           });
         } catch {
-          // Ignore cover fetch error
         }
       }
 
@@ -344,7 +347,6 @@ export default function NovelDetailPage() {
     }
   };
 
-  // Loading
   if (novel === undefined) {
     return (
       <main className="mx-auto w-full max-w-5xl px-6 py-8">
@@ -368,13 +370,10 @@ export default function NovelDetailPage() {
 
   return (
     <main className="mx-auto w-full max-w-5xl px-6 py-8">
-      {/* Header */}
       <div className="mb-6 flex gap-5 items-start">
-        {/* Cover image */}
         {novel.coverImage && (
           <div className="relative w-28 shrink-0 sm:w-36">
             <div className="aspect-3/4 overflow-hidden rounded-lg shadow-md">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 src={novel.coverImage}
                 alt={novel.title}
@@ -406,7 +405,6 @@ export default function NovelDetailPage() {
                 </h1>
               </div>
 
-              {/* Meta line */}
               <div className="mt-1.5 flex flex-wrap items-center gap-2 text-sm text-muted-foreground">
                 {novel.author && <span>{novel.author}</span>}
                 {novel.sourceUrl && novel.author && (
@@ -435,8 +433,16 @@ export default function NovelDetailPage() {
               )}
             </div>
 
-            {/* Action buttons */}
             <div className="flex shrink-0 items-center gap-1">
+              <Button
+                variant="default"
+                size="sm"
+                className="bg-gradient-to-r from-violet-600 to-fuchsia-600 hover:from-violet-500 hover:to-fuchsia-500 text-white mr-2"
+                onClick={() => router.push(`/novels/${novel.id}/auto-write`)}
+              >
+                <SparklesIcon className="size-4 mr-2" />
+                Viết AI
+              </Button>
               <Tooltip>
                 <TooltipTrigger asChild>
                   <Button
@@ -542,7 +548,6 @@ export default function NovelDetailPage() {
             </div>
           </div>
 
-          {/* Synopsis */}
           <div className="mt-3">
             <p className="mb-1 text-xs font-medium text-muted-foreground">
               Tóm tắt
@@ -556,7 +561,6 @@ export default function NovelDetailPage() {
             />
           </div>
 
-          {/* Stats + Genres + Tags */}
           <div className="mt-3 flex flex-wrap items-center gap-1.5">
             <Badge variant="outline">{chapters?.length ?? 0} đã tải</Badge>
             {pendingChaptersCount > 0 && (
@@ -577,7 +581,6 @@ export default function NovelDetailPage() {
         </div>
       </div>
 
-      {/* Tabs */}
       <Tabs
         value={activeTab}
         onValueChange={setActiveTab}
@@ -594,10 +597,41 @@ export default function NovelDetailPage() {
                 {chapters.length}
               </span>
             )}
+            {needsAnalysisCount > 0 && (
+              <span
+                className="inline-flex size-2 rounded-full bg-amber-500"
+                title={`${needsAnalysisCount} chương cần phân tích`}
+              />
+            )}
+          </TabsTrigger>
+          <TabsTrigger
+            value="world-building"
+            className="gap-1.5 px-2 py-1.5 sm:gap-2 sm:px-3"
+          >
+            <GlobeIcon className="size-3.5 text-blue-600 dark:text-blue-400" />
+            <span className="hidden sm:inline">Thế giới quan</span>
+          </TabsTrigger>
+          <TabsTrigger
+            value="characters"
+            className="gap-1.5 px-2 py-1.5 sm:gap-2 sm:px-3"
+          >
+            <UsersIcon className="size-3.5 text-violet-600 dark:text-violet-400" />
+            <span className="hidden sm:inline">Nhân vật</span>
+            {characters && characters.length > 0 && (
+              <span className="inline-flex min-w-5 items-center justify-center rounded-full bg-violet-500/10 px-1.5 py-px text-[10px] font-semibold tabular-nums text-violet-700 dark:bg-violet-500/20 dark:text-violet-300">
+                {characters.length}
+              </span>
+            )}
           </TabsTrigger>
         </TabsList>
 
+        <TabsContent value="world-building" className="mt-4">
+          <WorldBuildingTab novel={novel} />
+        </TabsContent>
 
+        <TabsContent value="characters" className="mt-4">
+          <CharactersTab characters={characters ?? []} novelId={id} />
+        </TabsContent>
 
         <TabsContent value="chapters" className="mt-4">
           <ChaptersTab
@@ -620,7 +654,6 @@ export default function NovelDetailPage() {
         </TabsContent>
       </Tabs>
 
-      {/* Bulk AI translate dialog */}
       <BulkTranslateDialog
         open={translateOpen}
         onOpenChange={setTranslateOpen}
@@ -629,7 +662,6 @@ export default function NovelDetailPage() {
         chapters={chapters ?? []}
       />
 
-      {/* Hybrid Converter AI dialog */}
       <HybridConverterDialog
         open={convertOpen}
         onOpenChange={setConvertOpen}
@@ -638,7 +670,6 @@ export default function NovelDetailPage() {
         chapters={chapters ?? []}
       />
 
-      {/* Pdf Translate dialog */}
       <PdfTranslateDialog
         open={pdfTranslateOpen}
         onOpenChange={setPdfTranslateOpen}

@@ -69,18 +69,19 @@ Tạo 5-10 nhân vật phù hợp với thế giới và ý tưởng đã cung c
 <output_language>Tiếng Việt.</output_language>`;
 
 export const DEFAULT_PLOT_ARC_SYSTEM = `<role>
-Bạn là nhà biên kịch chuyên nghiệp với kinh nghiệm xây dựng cốt truyện cho tiểu thuyết mạng. Nhiệm vụ của bạn là tạo ra các mạch truyện hấp dẫn với cấu trúc rõ ràng.
+Bạn là nhà biên kịch chuyên nghiệp với kinh nghiệm xây dựng cốt truyện và lộ trình phát triển nhân vật cho tiểu thuyết mạng Trung - Việt. Nhiệm vụ của bạn là lập kế hoạch "Hướng đi/Hành trình của nhân vật chính" (Main Character's Trajectory) một cách mạch lạc, cuốn hút, phát triển theo thời gian.
 </role>
 
 <task>
-Tạo mạch truyện chính và phụ với các điểm mốc cụ thể, phù hợp với thế giới và nhân vật đã xây dựng.
+Thiết kế lộ trình phát triển tuần tự của nhân vật chính qua toàn bộ số chương được yêu cầu. Chia câu chuyện thành các "Mạch hành trình" (Stages) kế tiếp nhau (Ví dụ: Mạch 1 ở Phàm nhân giới, Mạch 2 ở Tu tiên giới, Mạch 3 ở Tiên giới). 
+Mỗi mạch hành trình phải có khoảng chương cụ thể, mô tả sự thay đổi, trưởng thành về sức mạnh lẫn tính cách của nhân vật chính theo thời gian, cùng các điểm mốc cốt truyện (plot points) tương ứng.
 </task>
 
 <arc_requirements>
-  <req>Mạch chính: xung đột trung tâm xuyên suốt toàn truyện với leo thang rõ ràng.</req>
-  <req>Mạch phụ: hỗ trợ hoặc tương tác với mạch chính, có thể giải quyết sớm hơn.</req>
-  <req>Mỗi điểm mốc phải cụ thể, có thể đặt vào một khoảng chương nhất định.</req>
-  <req>Các mạch truyện phải liên kết với nhân vật và thế giới đã xây dựng.</req>
+  <req>Chia toàn bộ chương thành 3-5 Mạch hành trình tuần tự, mạch sau tiếp nối mạch trước (Ví dụ: Mạch 1: Ch. 1-25; Mạch 2: Ch. 26-60; Mạch 3: Ch. 61-100).</req>
+  <req>Mô tả rõ sự trưởng thành của nhân vật chính trong từng mạch (từ non nớt phế vật -> cẩn trọng, quyết đoán -> bá đạo, thâm trầm, v.v.).</req>
+  <req>Tạo các điểm mốc (plot points) cụ thể đại diện cho các sự kiện/thử thách cốt lõi mà nhân vật chính trải qua trong mạch đó.</req>
+  <req>Trường "type" của mỗi mạch trong JSON trả về có thể đặt tùy ý ("main" hoặc "character").</req>
 </arc_requirements>
 
 <output_language>Tiếng Việt.</output_language>`;

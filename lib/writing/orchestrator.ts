@@ -49,6 +49,8 @@ export interface WritingPipelineOptions {
    * (except errors). Overrides WritingSettings.noAskingMode when set.
    */
   handsFree?: boolean;
+  /** Stop pipeline after completing this step (e.g. 'writer' for 4-step write) */
+  maxStep?: WritingAgentRole;
 }
 
 const STEP_ORDER: WritingAgentRole[] = [
@@ -89,7 +91,27 @@ async function getAgentConfig(
 
   // Resolve prompt: per-step custom → default
   const stepPromptKey = `${role}Prompt` as const;
-  const systemPrompt = settings?.[stepPromptKey] || getDefaultPrompt(role);
+  let systemPrompt = settings?.[stepPromptKey] || getDefaultPrompt(role);
+
+  // Inject novel style constraints if available
+  const novel = await db.novels.get(novelId);
+  if (novel) {
+    let constraints = "\n\n<STRICT_STYLE_CONSTRAINTS>";
+    if (novel.perspective) {
+      constraints += `\n- Góc nhìn khi viết (Perspective POV): ${novel.perspective}`;
+    }
+    if (novel.pronouns) {
+      constraints += `\n- Đại từ xưng hô chính (Pronouns): ${novel.pronouns}`;
+    }
+    if (novel.writingStyle) {
+      constraints += `\n- Phong cách hành văn (Writing Style): ${novel.writingStyle}`;
+    }
+    constraints += "\nBẮT BUỘC TUÂN THỦ: Đây là các thiết lập bắt buộc về góc nhìn, đại từ xưng hô và phong cách hành văn đã được phân tích. Hãy tuân thủ tuyệt đối trong suốt quá trình viết.";
+    constraints += "\n</STRICT_STYLE_CONSTRAINTS>\n";
+
+    systemPrompt += constraints;
+  }
+
   const globalInstruction = chatSettings?.globalSystemInstruction;
 
   return {
@@ -419,6 +441,38 @@ export async function runWritingPipeline(
         }
 
         case "direction": {
+          if (chapterPlan.directions && chapterPlan.directions.length > 0) {
+            const prePlannedOutput = {
+              options: [
+                {
+                  id: "pre-planned",
+                  title: "Hướng đi định sẵn",
+                  description: chapterPlan.directions.join("; "),
+                  plotImpact: "",
+                  characters: [],
+                  type: "character-development",
+                }
+              ],
+              recommendedOptionIds: ["pre-planned"],
+            };
+            await writeStepResult(
+              sessionId,
+              "direction",
+              "completed",
+              JSON.stringify(prePlannedOutput),
+            );
+            
+            onStepComplete?.("direction");
+            const nextAfterDir = nextStep("direction");
+            if (!nextAfterDir) break;
+            currentStep = nextAfterDir;
+            await db.writingSessions.update(sessionId, {
+              currentStep,
+              updatedAt: new Date(),
+            });
+            continue;
+          }
+
           const contextJson = await getStepOutput(sessionId, "context");
           if (!contextJson) throw new Error("Context output not found");
           const contextOutput: ContextAgentOutput = JSON.parse(contextJson);
@@ -695,6 +749,13 @@ export async function runWritingPipeline(
     // Advance to next step
     const next = nextStep(currentStep);
     if (!next) break;
+    if (options.maxStep && currentStep === options.maxStep) {
+      await db.writingSessions.update(sessionId, {
+        currentStep: next,
+        updatedAt: new Date(),
+      });
+      break;
+    }
     currentStep = next;
     await db.writingSessions.update(sessionId, {
       currentStep,

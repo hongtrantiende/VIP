@@ -15,6 +15,7 @@ import {
   getOrCreateWritingSettings,
   updateNovel,
   useChapterPlans,
+  useChapters,
   useCharacters,
   useNovel,
   usePlotArcs,
@@ -38,8 +39,11 @@ import {
   CheckCircle2Icon,
   ChevronRightIcon,
   GlobeIcon,
+  Loader2Icon,
   MapIcon,
   MapPinIcon,
+  PenIcon,
+  PlusIcon,
   RefreshCwIcon,
   ShieldIcon,
   SparklesIcon,
@@ -51,6 +55,11 @@ import { toast } from "sonner";
 import { PipelineStepConfig } from "./pipeline-step-config";
 import type { IdeaFormData } from "./idea-form";
 import { useWritingPipelineStore } from "@/lib/stores/writing-pipeline";
+import { Textarea } from "@/components/ui/textarea";
+import { generateStructured } from "@/lib/ai/structured";
+import { withGlobalInstruction } from "@/lib/ai/system-prompt";
+import { resolveStep } from "@/lib/ai/resolve-step";
+import { jsonSchema } from "ai";
 import {
   getDefaultSetupPrompt,
   SETUP_PROMPT_KEYS,
@@ -85,8 +94,8 @@ const STEPS: {
   },
   {
     key: "arcs",
-    label: "Mạch truyện",
-    description: "Thiết lập mạch chính, phụ và các điểm mốc",
+    label: "Hướng đi nhân vật",
+    description: "Thiết lập lộ trình phát triển và các mạch hành trình tuần tự của nhân vật chính",
     icon: MapIcon,
   },
   {
@@ -115,15 +124,39 @@ export function SetupWizard({
   );
   const [isGenerating, setIsGenerating] = useState(false);
   const [wantsRegenerate, setWantsRegenerate] = useState(false);
+  const [showSupplement, setShowSupplement] = useState(false);
+  const [supplementIdea, setSupplementIdea] = useState("");
+  const [isSupplementing, setIsSupplementing] = useState(false);
   const abortRef = useRef<AbortController | null>(null);
+  const supplementAbortRef = useRef<AbortController | null>(null);
   const setStepUserInstruction = useWritingPipelineStore(
     (s) => s.setStepUserInstruction,
   );
 
   const novel = useNovel(novelId);
+  const chapters = useChapters(novelId);
   const characters = useCharacters(novelId);
   const plotArcs = usePlotArcs(novelId);
   const chapterPlans = useChapterPlans(novelId);
+  const [targetChapterCount, setTargetChapterCount] = useState<number>(50);
+  const [targetParts, setTargetParts] = useState<number>(3);
+  const [selectedPart, setSelectedPart] = useState<number>(1);
+  const [isOpenEnded, setIsOpenEnded] = useState(false);
+  const [isPartEnding, setIsPartEnding] = useState(false);
+
+  // Tự động chia đều chương cho mỗi phần
+  const chaptersPerPart = Math.ceil(targetChapterCount / targetParts);
+  const getPartRange = (part: number) => {
+    const start = (part - 1) * chaptersPerPart + 1;
+    const end = Math.min(part * chaptersPerPart, targetChapterCount);
+    return { start, end, count: end - start + 1 };
+  };
+  const getPartLabel = (part: number) => {
+    const { start, end } = getPartRange(part);
+    if (part === 1) return `Phần ${part}: Mở đầu (Ch.${start}-${end})`;
+    if (part === targetParts) return `Phần ${part}: Kết thúc (Ch.${start}-${end})`;
+    return `Phần ${part}: Phát triển (Ch.${start}-${end})`;
+  };
 
   const currentStepIndex = STEPS.findIndex((s) => s.key === currentStep);
   const stepDef = STEPS[currentStepIndex];
@@ -131,6 +164,36 @@ export function SetupWizard({
   useEffect(() => {
     void getOrCreateWritingSettings(novelId);
   }, [novelId]);
+
+  // Load existing targetParts and targetChapterCount on mount
+  useEffect(() => {
+    if (novelId) {
+      db.writingSettings.get(novelId).then((ws) => {
+        if (ws) {
+          // Type assertion to bypass strict TS check for custom fields
+          const customWs = ws as any;
+          if (customWs.targetChapterCount) setTargetChapterCount(customWs.targetChapterCount);
+          if (customWs.targetParts) setTargetParts(customWs.targetParts);
+          if (customWs.isPartEnding !== undefined) setIsPartEnding(customWs.isPartEnding);
+          if (customWs.isOpenEnded !== undefined) setIsOpenEnded(customWs.isOpenEnded);
+        }
+      });
+    }
+  }, [novelId]);
+
+  // Save targetParts and targetChapterCount when they change
+  useEffect(() => {
+    if (novelId) {
+      void db.writingSettings.update(novelId, {
+        targetParts,
+        targetChapterCount,
+        isPartEnding,
+        isOpenEnded,
+      } as any);
+    }
+  }, [novelId, targetParts, targetChapterCount, isPartEnding, isOpenEnded]);
+
+
 
   const wizardInstructionKey = `wizard:${currentStep}`;
 
@@ -155,8 +218,13 @@ export function SetupWizard({
   const buildContext = useCallback(() => {
     const parts: string[] = [];
     if (novel?.worldOverview) parts.push(`Thế giới: ${novel.worldOverview}`);
+    if (novel?.storySetting) parts.push(`Bối cảnh: ${novel.storySetting}`);
+    if (novel?.powerSystem) parts.push(`Hệ thống sức mạnh: ${novel.powerSystem}`);
     if (novel?.factions?.length)
-      parts.push(`Thế lực: ${novel.factions.map((f) => f.name).join(", ")}`);
+      parts.push(`Thế lực: ${novel.factions.map((f) => `${f.name}: ${f.description}`).join("\n")}`);
+    if (novel?.keyLocations?.length)
+      parts.push(`Địa danh: ${novel.keyLocations.map((l) => `${l.name}: ${l.description}`).join("\n")}`);
+    
     if (characters?.length)
       parts.push(
         `Nhân vật: ${characters.map((c) => `${c.name} (${c.role}): ${c.description}`).join("\n")}`,
@@ -165,8 +233,13 @@ export function SetupWizard({
       parts.push(
         `Mạch truyện: ${plotArcs.map((a) => `${a.title} (${a.type}): ${a.description}`).join("\n")}`,
       );
+    // Bao gồm cả chương đã viết để AI hiểu mạch truyện hiện tại
+    if (chapters?.length)
+      parts.push(
+        `Chương đã viết (${chapters.length} chương):\n${chapters.map((ch) => `${ch.order}. ${ch.title}${ch.summary ? `: ${ch.summary}` : ""}`).join("\n")}`,
+      );
     return parts.join("\n\n");
-  }, [novel, characters, plotArcs]);
+  }, [novel, characters, plotArcs, chapters, selectedPart]);
 
   const handleGenerate = useCallback(async () => {
     setIsGenerating(true);
@@ -210,12 +283,42 @@ export function SetupWizard({
           break;
         }
         case "arcs": {
-          const result = await generatePlotArcs(options, buildContext());
+          // Xây dựng prompt với thông tin phần/chương
+          const partsInfo = Array.from({ length: targetParts }, (_, i) => {
+            const p = i + 1;
+            const { start, end } = getPartRange(p);
+            const role = p === 1 ? "Mở đầu, giới thiệu thế giới & nhân vật" : p === targetParts ? "Cao trào & Kết thúc" : "Phát triển & Xung đột";
+            return `- Phần ${p} (Ch.${start}-${end}): ${role}`;
+          }).join("\n");
+
+          const arcContext = buildContext() + (isOpenEnded
+            ? `\n\nYÊU CẦU: Tạo mạch truyện cho PHẦN ${selectedPart} của truyện (khoảng ${chaptersPerPart} chương). ${isPartEnding ? "ĐÂY LÀ PHẦN KẾT THÚC của câu chuyện - mạch truyện phải giải quyết mọi xung đột cốt lõi và khép lại trọn vẹn." : "CHƯA KẾT THÚC - mạch truyện phải để ngỏ, tạo tiền đề để tiếp tục sang phần tiếp theo."} Tạo mạch chính, mạch phụ và mạch nhân vật. Các điểm mốc tập trung bám sát vào phần này.`
+            : `\n\nYÊU CẦU: Tạo mạch truyện HOÀN CHỈNH cho truyện có ${targetChapterCount} chương, chia thành ${targetParts} phần:\n${partsInfo}\n\nMỗi mạch truyện phải đi từ BẮT ĐẦU (Phần 1) đến KẾT THÚC (Phần ${targetParts}). Mỗi điểm mốc (plot point) phải ghi rõ thuộc Phần nào và khoảng chương bao nhiêu. Tạo mạch chính, mạch phụ và mạch nhân vật. Các phần phải LIÊN KẾT chặt chẽ với nhau.`
+          );
+          const result = await generatePlotArcs(options, arcContext);
           await savePlotArcs(novelId, result);
           break;
         }
         case "plans": {
-          const result = await generateChapterPlans(options, buildContext());
+          // Tạo kế hoạch chương cho phần được chọn
+          const { start, end, count } = getPartRange(selectedPart);
+          const planPartsInfo = Array.from({ length: targetParts }, (_, i) => {
+            const p = i + 1;
+            const r = getPartRange(p);
+            return `- Phần ${p} (Ch.${r.start}-${r.end})${p === selectedPart ? " ← ĐANG TẠO" : ""}`;
+          }).join("\n");
+
+          // Bao gồm kế hoạch phần trước (nếu có) để đảm bảo liên kết
+          const existingPlansContext = chapterPlans?.length
+            ? `\nKế hoạch chương đã có:\n${chapterPlans.map(p => `Ch.${p.chapterOrder}. ${p.title}: ${p.directions.join("; ")}`).join("\n")}`
+            : "";
+          const planContext = buildContext() + existingPlansContext + `\n\nCẤU TRÚC TRUYỆN (${targetChapterCount} chương, ${targetParts} phần):\n${planPartsInfo}\n\nYÊU CẦU: Tạo kế hoạch CHI TIẾT cho ${count} chương của Phần ${selectedPart} (từ chương ${start} đến chương ${end}).\n${selectedPart > 1 ? `Phần này phải TIẾP NỐI chặt chẽ từ phần trước.` : "Đây là phần MỞ ĐẦU của truyện."}\n${selectedPart < targetParts ? `Phần này phải CHUẨN BỊ cho phần tiếp theo.` : "Đây là phần KẾT THÚC, phải giải quyết mọi xung đột."}`;
+          const result = await generateChapterPlans(options, planContext, count);
+          // Gán đúng chapterOrder cho phần đang tạo
+          result.plans = result.plans.map((p, i) => ({
+            ...p,
+            chapterOrder: start + i,
+          }));
           await saveChapterPlans(novelId, result);
           break;
         }
@@ -237,6 +340,15 @@ export function SetupWizard({
     stepDef,
     wizardInstructionKey,
     setStepUserInstruction,
+    targetChapterCount,
+    targetParts,
+    selectedPart,
+    chapterPlans,
+    isOpenEnded,
+    isPartEnding,
+    chaptersPerPart,
+    getPartRange,
+    getPartLabel,
   ]);
 
   const handleSkipPlans = useCallback(async () => {
@@ -266,6 +378,218 @@ export function SetupWizard({
       onCompleteAction();
     }
   }, [currentStepIndex, onCompleteAction]);
+
+  // ── Supplement handler ─────────────────────────────────────
+
+  const buildFullContext = useCallback(() => {
+    const parts: string[] = [];
+    if (novel?.worldOverview) parts.push(`[Tổng quan thế giới]\n${novel.worldOverview}`);
+    if (novel?.storySetting) parts.push(`[Bối cảnh]\n${novel.storySetting}`);
+    if (novel?.timePeriod) parts.push(`[Thời kỳ]\n${novel.timePeriod}`);
+    if (novel?.powerSystem) parts.push(`[Hệ thống sức mạnh]\n${novel.powerSystem}`);
+    if (novel?.factions?.length)
+      parts.push(`[Thế lực]\n${novel.factions.map(f => `- ${f.name}: ${f.description}`).join("\n")}`);
+    if (novel?.keyLocations?.length)
+      parts.push(`[Địa danh]\n${novel.keyLocations.map(l => `- ${l.name}: ${l.description}`).join("\n")}`);
+    
+    // Bao gồm chương đã viết để AI hiểu mạch truyện tổng thể
+    if (chapters?.length)
+      parts.push(`[Chương đã viết - ${chapters.length} chương]\n${chapters.map(ch => `${ch.order}. ${ch.title}${ch.summary ? `: ${ch.summary}` : ""}`).join("\n")}`);
+    if (characters?.length)
+      parts.push(`[Nhân vật]\n${characters.map(c => `- ${c.name} (${c.role}): ${c.description}`).join("\n")}`);
+    if (plotArcs?.length)
+      parts.push(`[Mạch truyện]\n${plotArcs.map(a => `- ${a.title} (${a.type}): ${a.description}`).join("\n")}`);
+    if (chapterPlans?.length)
+      parts.push(`[Kế hoạch và Giàn ý chương]\n${chapterPlans.map(p => `${p.chapterOrder}. ${p.title ?? "Chưa đặt tên"}${p.outline ? ` - Giàn ý: ${p.outline}` : ""}`).join("\n")}`);
+    return parts.join("\n\n");
+  }, [novel, characters, plotArcs, chapterPlans, chapters, selectedPart]);
+
+  const handleSupplement = useCallback(async () => {
+    if (!supplementIdea.trim()) {
+      toast.error("Vui lòng nhập ý tưởng bổ sung.");
+      return;
+    }
+    setIsSupplementing(true);
+    const controller = new AbortController();
+    supplementAbortRef.current = controller;
+
+    try {
+      const ws = await getOrCreateWritingSettings(novelId);
+      const roleKey = SETUP_MODEL_ROLES[currentStep];
+      const stepConfig = ws[`${roleKey}Model` as keyof WritingSettings];
+      let model;
+      if (stepConfig) model = await resolveStep(stepConfig as any);
+      if (!model) {
+        const chatSettings = await db.chatSettings.get("default");
+        if (chatSettings?.providerId && chatSettings?.modelId) {
+          model = await resolveStep({ providerId: chatSettings.providerId, modelId: chatSettings.modelId });
+        }
+      }
+      if (!model) throw new Error("Không tìm thấy mô hình AI.");
+
+      const chatSettings = await db.chatSettings.get("default");
+      const globalInstruction = chatSettings?.globalSystemInstruction;
+      const fullContext = buildFullContext();
+
+      switch (currentStep) {
+        case "world": {
+          const supplementSchema = jsonSchema<{
+            worldOverview?: string;
+            storySetting?: string;
+            timePeriod?: string;
+            powerSystem?: string;
+            newFactions?: { name: string; description: string }[];
+            newLocations?: { name: string; description: string }[];
+          }>({
+            type: "object",
+            properties: {
+              worldOverview: { type: "string", description: "Nội dung BỔ SUNG thêm cho tổng quan thế giới (chỉ phần mới, sẽ được nối vào cuối)" },
+              storySetting: { type: "string", description: "Nội dung BỔ SUNG cho bối cảnh" },
+              timePeriod: { type: "string", description: "Nội dung BỔ SUNG cho thời kỳ" },
+              powerSystem: { type: "string", description: "Nội dung BỔ SUNG cho hệ thống sức mạnh" },
+              newFactions: { type: "array", items: { type: "object", properties: { name: { type: "string" }, description: { type: "string" } }, required: ["name", "description"] } },
+              newLocations: { type: "array", items: { type: "object", properties: { name: { type: "string" }, description: { type: "string" } }, required: ["name", "description"] } },
+            },
+          });
+          const { object } = await generateStructured({
+            model,
+            schema: supplementSchema,
+            system: withGlobalInstruction(
+              `Bạn là nhà văn chuyên xây dựng thế giới truyện CHUYÊN SÂU. Nhiệm vụ: DỰA TRÊN ý tưởng bổ sung của người dùng, PHÂN TÍCH TOÀN BỘ dữ liệu hiện có (thế giới, nhân vật, mạch truyện, chương đã viết) rồi tạo NỘI DUNG MỚI TOÀN DIỆN để bổ sung. Bổ sung phải:
+1. ĐỒNG NHẤT với mọi yếu tố hiện có (không mâu thuẫn)
+2. LIÊN KẾT chặt chẽ với nhân vật, mạch truyện, chương đã viết
+3. MỞ RỘNG thế giới theo hướng hợp lý
+4. CHỈ trả về phần MỚI, KHÔNG lặp lại nội dung cũ
+5. Nếu một trường không cần bổ sung theo ý tưởng, để trống.`,
+              globalInstruction,
+            ),
+            prompt: `TOÀN BỘ DỮ LIỆU HIỆN CÓ (ĐỌC KỸ ĐỂ BỔ SUNG ĐỒNG NHẤT):\n${fullContext}\n\nÝ TƯỞNG BỔ SUNG CỦA NGƯỜI DÙNG:\n${supplementIdea}`,
+            abortSignal: controller.signal,
+          });
+          // Merge: nối text fields, append list fields
+          const updates: any = { updatedAt: new Date() };
+          if (object.worldOverview?.trim()) updates.worldOverview = ((novel?.worldOverview ?? "") + "\n\n" + object.worldOverview).trim();
+          if (object.storySetting?.trim()) updates.storySetting = ((novel?.storySetting ?? "") + "\n\n" + object.storySetting).trim();
+          if (object.timePeriod?.trim()) updates.timePeriod = ((novel?.timePeriod ?? "") + " " + object.timePeriod).trim();
+          if (object.powerSystem?.trim()) updates.powerSystem = ((novel?.powerSystem ?? "") + "\n\n" + object.powerSystem).trim();
+          if (object.newFactions?.length) updates.factions = [...(novel?.factions ?? []), ...object.newFactions];
+          if (object.newLocations?.length) updates.keyLocations = [...(novel?.keyLocations ?? []), ...object.newLocations];
+          await db.novels.update(novelId, updates);
+          break;
+        }
+        case "characters": {
+          const charSchema = jsonSchema<{ characters: { name: string; role: string; description: string; personality: string; motivations: string; goals: string }[] }>({
+            type: "object",
+            properties: {
+              characters: { type: "array", items: { type: "object", properties: { name: { type: "string" }, role: { type: "string" }, description: { type: "string" }, personality: { type: "string" }, motivations: { type: "string" }, goals: { type: "string" } }, required: ["name", "role", "description", "personality", "motivations", "goals"] } },
+            },
+            required: ["characters"],
+          });
+          const { object } = await generateStructured({
+            model,
+            schema: charSchema,
+            system: withGlobalInstruction(
+              `Bạn là nhà văn chuyên tạo nhân vật CHUYÊN SÂU. Nhiệm vụ: DỰA TRÊN ý tưởng của người dùng, PHÂN TÍCH TOÀN BỘ dữ liệu hiện có (thế giới, nhân vật hiện tại, mạch truyện, chương đã viết) rồi tạo NHÂN VẬT MỚI TOÀN DIỆN. Nhân vật mới phải:
+1. PHÙ HỢP với thế giới quan (hệ thống sức mạnh, thế lực, bối cảnh)
+2. LIÊN KẾT với nhân vật hiện có (quan hệ, xung đột, hợp tác)
+3. ĐÓNG VAI TRÒ trong mạch truyện (thúc đẩy cốt truyện)
+4. CÓ CHIỀU SÂU (tính cách phức tạp, động lực rõ ràng, mục tiêu cụ thể)
+5. CHỈ tạo nhân vật MỚI chưa tồn tại.`,
+              globalInstruction,
+            ),
+            prompt: `TOÀN BỘ DỮ LIỆU HIỆN CÓ (ĐỌC KỸ ĐỂ TẠO NHÂN VẬT PHÙ HỢP):\n${fullContext}\n\nÝ TƯỞNG BỔ SUNG:\n${supplementIdea}`,
+            abortSignal: controller.signal,
+          });
+          if (object.characters?.length) {
+            const now = new Date();
+            await db.characters.bulkAdd(object.characters.map(c => ({
+              id: crypto.randomUUID(), novelId, ...c, notes: "", createdAt: now, updatedAt: now,
+            })));
+          }
+          break;
+        }
+        case "arcs": {
+          const arcSchema = jsonSchema<{ arcs: { title: string; description: string; type: "main" | "subplot" | "character"; plotPoints: { title: string; description: string }[] }[] }>({
+            type: "object",
+            properties: {
+              arcs: { type: "array", items: { type: "object", properties: { title: { type: "string" }, description: { type: "string" }, type: { type: "string", enum: ["main", "subplot", "character"] }, plotPoints: { type: "array", items: { type: "object", properties: { title: { type: "string" }, description: { type: "string" } }, required: ["title", "description"] } } }, required: ["title", "description", "type", "plotPoints"] } },
+            },
+            required: ["arcs"],
+          });
+          const { object } = await generateStructured({
+            model,
+            schema: arcSchema,
+            system: withGlobalInstruction(
+              `Bạn là nhà văn chuyên xây dựng mạch truyện CHUYÊN SÂU. DỰA TRÊN ý tưởng, PHÂN TÍCH TOÀN BỘ dữ liệu rồi tạo MẠCH TRUYỆN MỚI. Truyện có ${targetChapterCount} chương, ${targetParts} phần. Mạch mới phải:
+1. BỔ SUNG cho mạch hiện có (không trùng)
+2. LIÊN KẾT nhân vật + thế giới quan
+3. CÓ ĐIỂM MỐC phân bố qua ${targetParts} phần (ghi rõ thuộc Phần nào)
+4. TẠO XUNG ĐỘT + cao trào
+5. CHỈ tạo mạch MỚI.`,
+              globalInstruction,
+            ),
+            prompt: `TOÀN BỘ DỮ LIỆU HIỆN CÓ:\n${fullContext}\n\nCẤU TRÚC: ${targetChapterCount} chương, ${targetParts} phần.\n${Array.from({ length: targetParts }, (_, i) => { const p = i + 1; const r = getPartRange(p); return `- Phần ${p} (Ch.${r.start}-${r.end})`; }).join("\n")}\n\nÝ TƯỞNG BỔ SUNG:\n${supplementIdea}`,
+            abortSignal: controller.signal,
+          });
+          if (object.arcs?.length) {
+            const now = new Date();
+            await db.plotArcs.bulkAdd(object.arcs.map(a => ({
+              id: crypto.randomUUID(), novelId, ...a,
+              plotPoints: a.plotPoints.map(p => ({ ...p, id: crypto.randomUUID(), status: "planned" as const })),
+              status: "active" as const, createdAt: now, updatedAt: now,
+            })));
+          }
+          break;
+        }
+        case "plans": {
+          const planSchema = jsonSchema<{ plans: { chapterOrder: number; title: string; directions: string[] }[] }>({
+            type: "object",
+            properties: {
+              plans: { type: "array", items: { type: "object", properties: { chapterOrder: { type: "number" }, title: { type: "string" }, directions: { type: "array", items: { type: "string" } } }, required: ["chapterOrder", "title", "directions"] } },
+            },
+            required: ["plans"],
+          });
+          const { start: pStart, end: pEnd, count: pCount } = getPartRange(selectedPart);
+          const { object } = await generateStructured({
+            model,
+            schema: planSchema,
+            system: withGlobalInstruction(
+              `Bạn là nhà văn chuyên lên kế hoạch chương CHUYÊN SÂU. Truyện có ${targetChapterCount} chương, ${targetParts} phần. Đang tạo cho Phần ${selectedPart} (Ch.${pStart}-${pEnd}). Kế hoạch phải:
+1. NẰM TRONG phạm vi chương ${pStart}-${pEnd}
+2. THEO SÁT mạch truyện và điểm mốc
+3. PHÁT TRIỂN nhân vật
+4. ${selectedPart > 1 ? "TIẾP NỐI từ phần trước" : "MỞ ĐẦU truyện"}
+5. ${selectedPart < targetParts ? "CHUẨN BỊ cho phần sau" : "KẾT THÚC, giải quyết mọi xung đột"}
+6. CHỈ tạo kế hoạch MỚI.`,
+              globalInstruction,
+            ),
+            prompt: `TOÀN BỘ DỮ LIỆU HIỆN CÓ:\n${fullContext}\n\nCẤU TRÚC: ${targetChapterCount} chương, ${targetParts} phần. Đang tạo Phần ${selectedPart} (Ch.${pStart}-${pEnd}).\n\nÝ TƯỞNG BỔ SUNG:\n${supplementIdea}`,
+            abortSignal: controller.signal,
+          });
+          if (object.plans?.length) {
+            const now = new Date();
+            await db.chapterPlans.bulkAdd(object.plans.map((p, i) => ({
+              id: crypto.randomUUID(), novelId,
+              chapterOrder: pStart + i,
+              title: p.title, directions: p.directions,
+              outline: "", scenes: [] as any[], status: "planned" as const,
+              createdAt: now, updatedAt: now,
+            })));
+          }
+          break;
+        }
+      }
+
+      toast.success(`Đã bổ sung ${stepDef.label} thành công!`);
+      setSupplementIdea("");
+      setShowSupplement(false);
+    } catch (err) {
+      if (err instanceof Error && err.name === "AbortError") return;
+      toast.error(err instanceof Error ? err.message : "Lỗi không xác định");
+    } finally {
+      setIsSupplementing(false);
+    }
+  }, [novelId, currentStep, supplementIdea, novel, characters, plotArcs, chapterPlans, chapters, stepDef, buildFullContext, targetChapterCount, targetParts, selectedPart]);
 
   // ── Render step results ───────────────────────────────────
 
@@ -357,6 +681,13 @@ export function SetupWizard({
             </div>
             {sectionCard(MapIcon, "text-emerald-600 dark:text-emerald-400", "Bối cảnh", novel.storySetting ?? "", (v) => updateNovel(novelId, { storySetting: v }))}
             {sectionCard(BookOpenIcon, "text-amber-600 dark:text-amber-400", "Thời kỳ", novel.timePeriod ?? "", (v) => updateNovel(novelId, { timePeriod: v }), false)}
+            
+            {sectionCard(BookOpenIcon, "text-indigo-600 dark:text-indigo-400", "Góc nhìn", novel.perspective ?? "", (v) => updateNovel(novelId, { perspective: v }))}
+            {sectionCard(SparklesIcon, "text-teal-600 dark:text-teal-400", "Xưng hô", novel.pronouns ?? "", (v) => updateNovel(novelId, { pronouns: v }))}
+            <div className="col-span-1">
+              {sectionCard(PenIcon, "text-rose-600 dark:text-rose-400", "Phong cách hành văn", novel.writingStyle ?? "", (v) => updateNovel(novelId, { writingStyle: v }))}
+            </div>
+
             <div className="col-span-1">
               {sectionCard(SparklesIcon, "text-red-600 dark:text-red-400", "Hệ thống sức mạnh", novel.powerSystem ?? "", (v) => updateNovel(novelId, { powerSystem: v }))}
             </div>
@@ -405,65 +736,257 @@ export function SetupWizard({
 
       case "arcs":
         return plotArcs && plotArcs.length > 0 ? (
-          <div className="space-y-2">
-            {plotArcs.map((a) => {
-              const arcColor = a.type === "main" ? "text-red-600 dark:text-red-400" : a.type === "character" ? "text-violet-600 dark:text-violet-400" : "text-amber-600 dark:text-amber-400";
-              return (
-                <div key={a.id} className="rounded-xl border p-4">
-                  <div className="flex items-center gap-2 mb-2">
-                    <span className={cn("inline-flex size-7 items-center justify-center rounded-lg bg-muted", arcColor)}>
-                      <MapIcon className="size-3.5" />
-                    </span>
-                    <EditableText value={a.title} onSave={(v) => db.plotArcs.update(a.id, { title: v, updatedAt: new Date() })} displayClassName="text-sm font-semibold" />
-                    <Badge variant="secondary" className="text-[10px] font-normal shrink-0">{a.type}</Badge>
-                  </div>
-                  <EditableText value={a.description} multiline onSave={(v) => db.plotArcs.update(a.id, { description: v, updatedAt: new Date() })} placeholder="Thêm mô tả..." displayClassName="text-sm leading-relaxed text-muted-foreground" />
-                  {a.plotPoints.length > 0 && (
-                    <div className="mt-3 space-y-1.5">
-                      <p className="text-[10px] font-semibold uppercase tracking-wider text-muted-foreground/70">Điểm mốc</p>
-                      {a.plotPoints.map((p, pi) => (
-                        <div key={p.id} className="flex items-start gap-2 rounded-lg border border-border/50 bg-background/60 px-3 py-2">
-                          <span className={cn("mt-0.5 inline-flex size-4 shrink-0 items-center justify-center rounded text-[9px] font-bold bg-muted", arcColor)}>
-                            {pi + 1}
-                          </span>
-                          <EditableText value={p.title} onSave={(v) => { const pts = [...a.plotPoints]; pts[pi] = { ...pts[pi], title: v }; db.plotArcs.update(a.id, { plotPoints: pts, updatedAt: new Date() }); }} displayClassName="text-xs" />
-                        </div>
-                      ))}
+          <div className="space-y-4">
+            {renderConfigPanel()}
+            <div className="space-y-2">
+              {plotArcs.map((a) => {
+                const arcColor = a.type === "main" ? "text-red-600 dark:text-red-400" : a.type === "character" ? "text-violet-600 dark:text-violet-400" : "text-amber-600 dark:text-amber-400";
+                return (
+                  <div key={a.id} className="rounded-xl border p-4">
+                    <div className="flex items-center gap-2 mb-2">
+                      <span className={cn("inline-flex size-7 items-center justify-center rounded-lg bg-muted", arcColor)}>
+                        <MapIcon className="size-3.5" />
+                      </span>
+                      <EditableText value={a.title} onSave={(v) => db.plotArcs.update(a.id, { title: v, updatedAt: new Date() })} displayClassName="text-sm font-semibold" />
+                      <Badge variant="secondary" className="text-[10px] font-semibold shrink-0 bg-violet-500/10 text-violet-700 dark:bg-violet-500/20 dark:text-violet-300">Lộ trình</Badge>
                     </div>
-                  )}
-                </div>
-              );
-            })}
+                    <EditableText value={a.description} multiline onSave={(v) => db.plotArcs.update(a.id, { description: v, updatedAt: new Date() })} placeholder="Thêm mô tả..." displayClassName="text-sm leading-relaxed text-muted-foreground" />
+                    {a.plotPoints.length > 0 && (
+                      <div className="mt-3 space-y-1.5">
+                        <p className="text-[10px] font-semibold uppercase tracking-wider text-muted-foreground/70">Điểm mốc</p>
+                        {a.plotPoints.map((p, pi) => (
+                          <div key={p.id} className="flex items-start gap-2 rounded-lg border border-border/50 bg-background/60 px-3 py-2">
+                            <span className={cn("mt-0.5 inline-flex size-4 shrink-0 items-center justify-center rounded text-[9px] font-bold bg-muted", arcColor)}>
+                              {pi + 1}
+                            </span>
+                            <EditableText value={p.title} onSave={(v) => { const pts = [...a.plotPoints]; pts[pi] = { ...pts[pi], title: v }; db.plotArcs.update(a.id, { plotPoints: pts, updatedAt: new Date() }); }} displayClassName="text-xs" />
+                          </div>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                );
+              })}
+            </div>
+            <div className="flex justify-start pt-2">
+              <Button
+                type="button"
+                variant="outline"
+                size="sm"
+                onClick={() => {
+                  setShowSupplement(true);
+                }}
+                className="w-full flex items-center justify-center gap-1.5 rounded-lg border border-dashed py-3 text-xs font-semibold bg-violet-500/5 border-violet-500/30 text-violet-600 hover:bg-violet-500/10 hover:text-violet-700 dark:bg-violet-500/10 dark:border-violet-500/20 dark:text-violet-300 dark:hover:bg-violet-500/20 transition-all shadow-sm"
+              >
+                <PlusIcon className="size-3.5" />
+                Tạo thêm hướng đi mới dựa trên ý tưởng mới và tham khảo mạch cũ
+              </Button>
+            </div>
           </div>
         ) : null;
 
       case "plans":
         return chapterPlans && chapterPlans.length > 0 ? (
-          <div className="space-y-2">
-            {chapterPlans.map((p) => (
-              <div key={p.id} className="group flex items-start gap-3 rounded-xl border p-4 transition-colors hover:bg-accent/30">
-                <span className="mt-0.5 inline-flex size-7 shrink-0 items-center justify-center rounded-lg text-xs font-bold bg-muted text-emerald-600 dark:text-emerald-400">
-                  {p.chapterOrder}
-                </span>
-                <div className="min-w-0 flex-1 space-y-1">
-                  <EditableText value={p.title ?? ""} onSave={(v) => db.chapterPlans.update(p.id, { title: v, updatedAt: new Date() })} placeholder="Chưa đặt tên..." displayClassName="text-sm font-semibold" />
-                  <EditableText
-                    value={p.directions.join("\n")}
-                    multiline
-                    onSave={(v) => db.chapterPlans.update(p.id, { directions: v.split("\n").map((d) => d.trim()).filter(Boolean), updatedAt: new Date() })}
-                    placeholder="Thêm hướng đi..."
-                    displayClassName="text-xs leading-relaxed text-muted-foreground"
-                  />
+          <div className="space-y-4">
+            {renderConfigPanel()}
+            <div className="space-y-2">
+              {chapterPlans.map((p) => (
+                <div key={p.id} className="group flex items-start gap-3 rounded-xl border p-4 transition-colors hover:bg-accent/30">
+                  <span className="mt-0.5 inline-flex size-7 shrink-0 items-center justify-center rounded-lg text-xs font-bold bg-muted text-emerald-600 dark:text-emerald-400">
+                    {p.chapterOrder}
+                  </span>
+                  <div className="min-w-0 flex-1 space-y-1">
+                    <EditableText value={p.title ?? ""} onSave={(v) => db.chapterPlans.update(p.id, { title: v, updatedAt: new Date() })} placeholder="Chưa đặt tên..." displayClassName="text-sm font-semibold" />
+                    <EditableText
+                      value={p.directions.join("\n")}
+                      multiline
+                      onSave={(v) => db.chapterPlans.update(p.id, { directions: v.split("\n").map((d) => d.trim()).filter(Boolean), updatedAt: new Date() })}
+                      placeholder="Thêm hướng đi..."
+                      displayClassName="text-xs leading-relaxed text-muted-foreground"
+                    />
+                  </div>
                 </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
         ) : null;
     }
   };
 
-  // ── Empty state with inline config ────────────────────────
+  // ── Reusable Config Panel ──────────────────────────────────
+  const renderConfigPanel = () => {
+    if (currentStep === "arcs") {
+      return (
+        <div className="w-full rounded-xl border bg-muted/20 p-4 space-y-4 shadow-sm mb-4">
+          <div className="flex items-center justify-between border-b pb-2">
+            <h4 className="text-xs font-bold uppercase tracking-wider text-muted-foreground flex items-center gap-1.5">
+              ⚙️ Cấu hình Phần & Chương (Volume Settings)
+            </h4>
+            {isOpenEnded && (
+              <Badge variant="outline" className="text-[10px] bg-blue-500/10 text-blue-600 dark:text-blue-400 border-blue-200">
+                Chưa kết chương (Open-ended)
+              </Badge>
+            )}
+          </div>
+          
+          <div className="grid grid-cols-2 gap-3">
+            <div>
+              <label className="text-xs font-semibold text-foreground mb-1 block">
+                Tổng số chương mong muốn
+              </label>
+              <input
+                type="number"
+                min={5}
+                max={500}
+                value={targetChapterCount}
+                onChange={(e) => setTargetChapterCount(Math.max(5, parseInt(e.target.value) || 50))}
+                className="w-full rounded-md border bg-background px-3 py-1.5 text-sm focus:ring-1 focus:ring-primary focus-visible:outline-none"
+              />
+            </div>
+            <div>
+              <label className="text-xs font-semibold text-foreground mb-1 block">
+                Số phần (Volume)
+              </label>
+              <div className="flex gap-1.5">
+                <input
+                  type="number"
+                  min={1}
+                  max={10}
+                  value={targetParts}
+                  onChange={(e) => setTargetParts(Math.max(1, Math.min(10, parseInt(e.target.value) || 3)))}
+                  className="flex-1 rounded-md border bg-background px-2.5 py-1.5 text-sm focus:ring-1 focus:ring-primary focus-visible:outline-none"
+                />
+                {isOpenEnded && (
+                  <Button
+                    type="button"
+                    variant="outline"
+                    size="sm"
+                    onClick={() => {
+                      const nextParts = Math.min(10, targetParts + 1);
+                      setTargetParts(nextParts);
+                      setTargetChapterCount(nextParts * chaptersPerPart);
+                      toast.success(`Đã thêm Phần ${nextParts}!`);
+                    }}
+                    className="px-2 text-xs h-auto shrink-0 border-blue-200 text-blue-600 hover:text-blue-700 hover:bg-blue-50 dark:hover:bg-blue-950/20"
+                    title="Thêm phần mới"
+                  >
+                    + Thêm phần
+                  </Button>
+                )}
+              </div>
+            </div>
+          </div>
 
+          <div className="rounded-md bg-background/60 border p-2.5 space-y-1">
+            <p className="text-[10px] font-bold text-muted-foreground uppercase tracking-wider">Cấu trúc phân bổ:</p>
+            <div className="grid grid-cols-2 gap-x-4 gap-y-1">
+              {Array.from({ length: targetParts }, (_, i) => (
+                <p key={i} className="text-[10px] text-muted-foreground/80 flex items-center gap-1">
+                  <span className="size-1 bg-muted-foreground/40 rounded-full" />
+                  {getPartLabel(i + 1)}
+                </p>
+              ))}
+            </div>
+          </div>
+
+          {/* Toggle: Chưa kết chương */}
+          <div className="flex items-center justify-between gap-4 rounded-lg border bg-background/60 p-3">
+            <div className="flex items-start gap-2.5">
+              <input
+                type="checkbox"
+                id="openEnded"
+                checked={isOpenEnded}
+                onChange={(e) => setIsOpenEnded(e.target.checked)}
+                className="mt-0.5 rounded border-muted-foreground/30 size-4 text-primary focus:ring-primary"
+              />
+              <label htmlFor="openEnded" className="text-xs cursor-pointer select-none">
+                <span className="font-semibold block text-foreground">Chưa kết chương (Open-ended)</span>
+                <span className="text-muted-foreground text-[10px]">
+                  Chỉ tạo mạch phần đầu trước, sau khi viết xong sẽ bổ sung thêm các phần tiếp theo.
+                </span>
+              </label>
+            </div>
+          </div>
+
+          <p className="text-[10px] text-muted-foreground/75 italic">
+            {isOpenEnded
+              ? `💡 AI sẽ tạo mạch truyện cho PHẦN ${selectedPart} (~${chaptersPerPart} chương), giữ cấu trúc mở để bạn thoải mái bổ sung sau.`
+              : `💡 AI sẽ tạo mạch truyện hoàn chỉnh xuyên suốt từ Phần 1 (mở đầu) đến Phần ${targetParts} (kết thúc) qua ${targetChapterCount} chương.`}
+          </p>
+
+          {/* Cấu hình bổ sung riêng cho phần đang chọn (nếu là openEnded) */}
+          {isOpenEnded && (
+            <div className="space-y-3 rounded-lg border bg-background/40 p-3">
+              <div className="flex items-center gap-2">
+                <input
+                  type="checkbox"
+                  id="isPartEnding"
+                  checked={isPartEnding}
+                  onChange={(e) => setIsPartEnding(e.target.checked)}
+                  className="rounded border-muted-foreground/30 size-4 text-primary focus:ring-primary"
+                />
+                <label htmlFor="isPartEnding" className="text-xs cursor-pointer select-none font-semibold">
+                  Phần này kết chương (Đây là phần kết thúc toàn bộ truyện)
+                </label>
+              </div>
+            </div>
+          )}
+        </div>
+      );
+    }
+
+    if (currentStep === "plans") {
+      return (
+        <div className="w-full rounded-xl border bg-muted/20 p-4 space-y-4 shadow-sm mb-4">
+          <div className="flex items-center justify-between border-b pb-2">
+            <h4 className="text-xs font-bold uppercase tracking-wider text-muted-foreground">
+              📝 Kế hoạch chương theo Phần (Volume Plans)
+            </h4>
+          </div>
+
+          <div className="grid grid-cols-2 gap-3">
+            <div>
+              <label className="text-xs font-semibold text-foreground mb-1 block">
+                Chọn phần lên kế hoạch
+              </label>
+              <select
+                value={selectedPart}
+                onChange={(e) => setSelectedPart(parseInt(e.target.value))}
+                className="w-full rounded-md border bg-background px-3 py-1.5 text-sm focus:ring-1 focus:ring-primary"
+              >
+                {Array.from({ length: targetParts }, (_, i) => (
+                  <option key={i + 1} value={i + 1}>
+                    {getPartLabel(i + 1)}
+                  </option>
+                ))}
+              </select>
+            </div>
+            <div>
+              <label className="text-xs font-semibold text-foreground mb-1 block">
+                Số chương của phần này
+              </label>
+              <input
+                type="number"
+                value={getPartRange(selectedPart).count}
+                disabled
+                className="w-full rounded-md border bg-background/50 px-3 py-1.5 text-sm text-muted-foreground"
+              />
+            </div>
+          </div>
+          <p className="text-[10px] text-muted-foreground/80 italic">
+            Tạo {getPartRange(selectedPart).count} chương cho {getPartLabel(selectedPart)}.
+            {selectedPart > 1 && " AI sẽ đọc kế hoạch phần trước để duy trì tính liên kết chặt chẽ."}
+            {selectedPart < targetParts && " AI sẽ sắp đặt các đầu mối gợi ý cho các phần sau."}
+          </p>
+
+
+        </div>
+      );
+    }
+    return null;
+  };
+
+  // ── Empty state with inline config ────────────────────────
   const renderEmptyState = () => {
     const Icon = stepDef.icon;
     return (
@@ -477,6 +1000,8 @@ export function SetupWizard({
             <EmptyDescription>{stepDef.description}</EmptyDescription>
           </EmptyHeader>
         </Empty>
+
+        {renderConfigPanel()}
 
         <PipelineStepConfig
           novelId={novelId}
@@ -594,16 +1119,26 @@ export function SetupWizard({
                 variant="outline"
                 size="sm"
                 onClick={() => setWantsRegenerate(true)}
-                disabled={isGenerating}
+                disabled={isGenerating || isSupplementing}
               >
                 <RefreshCwIcon className="h-3.5 w-3.5 mr-1" />
                 Tạo lại
+              </Button>
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={() => setShowSupplement(!showSupplement)}
+                disabled={isGenerating || isSupplementing}
+                className={showSupplement ? "border-primary text-primary" : ""}
+              >
+                <PlusIcon className="h-3.5 w-3.5 mr-1" />
+                Bổ sung bằng AI
               </Button>
             </div>
 
             <div className="flex-1" />
 
-            <Button onClick={handleNext}>
+            <Button onClick={handleNext} disabled={isSupplementing}>
               {currentStepIndex < STEPS.length - 1 ? (
                 <>
                   Tiếp theo
@@ -614,6 +1149,45 @@ export function SetupWizard({
               )}
             </Button>
           </div>
+
+          {/* Supplement section */}
+          {showSupplement && (
+            <div className="max-w-2xl mx-auto mt-3 rounded-lg border border-primary/20 bg-primary/5 p-3 space-y-2">
+              <p className="text-xs font-medium flex items-center gap-1.5">
+                <SparklesIcon className="h-3.5 w-3.5 text-primary" />
+                Bổ sung {stepDef.label} bằng AI
+              </p>
+              <p className="text-[10px] text-muted-foreground">
+                Nhập ý tưởng bổ sung. AI sẽ tạo nội dung mới phù hợp với dữ liệu hiện có (thế giới, nhân vật, mạch truyện...).
+              </p>
+              <Textarea
+                value={supplementIdea}
+                onChange={(e) => setSupplementIdea(e.target.value)}
+                placeholder={`Ví dụ: Thêm một hệ thống ma thuật cổ đại, thêm nhân vật phản diện mới...`}
+                className="h-20 text-sm resize-none bg-background"
+                disabled={isSupplementing}
+              />
+              <div className="flex gap-2">
+                <Button
+                  size="sm"
+                  onClick={handleSupplement}
+                  disabled={isSupplementing || !supplementIdea.trim()}
+                  className="gap-1.5"
+                >
+                  {isSupplementing ? (
+                    <><Loader2Icon className="h-3.5 w-3.5 animate-spin" /> Đang bổ sung...</>
+                  ) : (
+                    <><SparklesIcon className="h-3.5 w-3.5" /> Bổ sung bằng AI</>
+                  )}
+                </Button>
+                {isSupplementing && (
+                  <Button variant="ghost" size="sm" onClick={() => { supplementAbortRef.current?.abort(); setIsSupplementing(false); }}>
+                    <XIcon className="h-3.5 w-3.5 mr-1" /> Hủy
+                  </Button>
+                )}
+              </div>
+            </div>
+          )}
         </div>
       )}
     </div>

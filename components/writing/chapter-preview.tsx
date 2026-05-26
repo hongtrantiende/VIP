@@ -11,7 +11,7 @@ import {
 import { useStepResult } from "@/lib/hooks";
 import { useWritingPipelineStore } from "@/lib/stores/writing-pipeline";
 import { countWords } from "@/lib/utils";
-import { LoaderIcon, PenLineIcon, RefreshCwIcon } from "lucide-react";
+import { LoaderIcon, PenLineIcon, RefreshCwIcon, SaveIcon, SparklesIcon } from "lucide-react";
 import { useLayoutEffect } from "react";
 import { StickToBottom, useStickToBottomContext } from "use-stick-to-bottom";
 
@@ -39,6 +39,8 @@ function StreamingScrollFollow({
 export function ChapterPreview({
   sessionId,
   onRegenerateAction,
+  onSaveAction,
+  onPromptConfigAction,
   /** True while writer step is active but DB row may not be "running" yet (avoids empty flash). */
   assumeStreaming,
   /** True while standalone rewrite runs (uses same store streaming buffer as pipeline writer). */
@@ -46,6 +48,8 @@ export function ChapterPreview({
 }: {
   sessionId: string | undefined;
   onRegenerateAction?: () => void;
+  onSaveAction?: () => void;
+  onPromptConfigAction?: () => void;
   assumeStreaming?: boolean;
   isRewriting?: boolean;
 }) {
@@ -111,16 +115,38 @@ export function ChapterPreview({
               <span className="h-1.5 w-1.5 rounded-full bg-primary animate-bounce [animation-delay:300ms]" />
             </div>
           ) : (
-            onRegenerateAction && (
-              <button
-                onClick={onRegenerateAction}
-                className="flex items-center gap-1 rounded-md px-2 py-1 text-xs text-muted-foreground hover:bg-accent hover:text-foreground transition-colors"
-                title="Viết lại nội dung"
-              >
-                <RefreshCwIcon className="h-3 w-3" />
-                Viết lại
-              </button>
-            )
+            <div className="flex items-center gap-2">
+              {onPromptConfigAction && (
+                <button
+                  onClick={onPromptConfigAction}
+                  className="flex items-center gap-1 rounded-md px-2 py-1 text-xs text-violet-600 dark:text-violet-400 hover:bg-violet-50 dark:hover:bg-violet-950/20 hover:text-violet-700 transition-colors border border-violet-200 dark:border-violet-800 font-semibold"
+                  title="Tùy chỉnh Prompt của AI bằng ý tưởng"
+                >
+                  <SparklesIcon className="h-3 w-3" />
+                  Chỉnh prompt
+                </button>
+              )}
+              {onSaveAction && (
+                <button
+                  onClick={onSaveAction}
+                  className="flex items-center gap-1 rounded-md bg-green-600 hover:bg-green-700 text-white px-2.5 py-1 text-xs font-semibold shadow-sm transition-all duration-150"
+                  title="Lưu chương này vào truyện chính thức"
+                >
+                  <SaveIcon className="h-3 w-3" />
+                  Lưu vào truyện
+                </button>
+              )}
+              {onRegenerateAction && (
+                <button
+                  onClick={onRegenerateAction}
+                  className="flex items-center gap-1 rounded-md px-2 py-1 text-xs text-muted-foreground hover:bg-accent hover:text-foreground transition-colors border border-border"
+                  title="Viết lại nội dung"
+                >
+                  <RefreshCwIcon className="h-3 w-3" />
+                  Viết lại
+                </button>
+              )}
+            </div>
           )}
         </div>
       </div>

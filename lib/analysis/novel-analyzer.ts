@@ -379,6 +379,9 @@ export async function analyzeNovel({
         keyLocations: agg.keyLocations ?? [],
         worldRules: agg.worldRules ?? undefined,
         technologyLevel: agg.technologyLevel ?? undefined,
+        perspective: agg.perspective ?? undefined,
+        pronouns: agg.pronouns ?? undefined,
+        writingStyle: agg.writingStyle ?? undefined,
         updatedAt: new Date(),
       });
 

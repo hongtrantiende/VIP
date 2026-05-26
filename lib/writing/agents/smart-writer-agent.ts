@@ -1,6 +1,6 @@
 import { createNovelReadTools } from "@/lib/ai/novel-read-tools";
 import { withGlobalInstruction } from "@/lib/ai/system-prompt";
-import { db } from "@/lib/db";
+import { db, GENRE_LABELS } from "@/lib/db";
 import { appendUserInstructionToPrompt } from "@/lib/writing/append-user-instruction";
 import {
   buildSmartWriterUserPrompt,
@@ -38,12 +38,14 @@ export async function runSmartWriterAgent(
 ): Promise<string> {
   const { novelId, chapterOrder, contextOutput, outline } = input;
 
-  const [chapterPlan, allCharacters] = await Promise.all([
+  const [chapterPlan, allCharacters, settings, novel] = await Promise.all([
     db.chapterPlans
       .where("[novelId+chapterOrder]")
       .equals([novelId, chapterOrder])
       .first(),
     db.characters.where("novelId").equals(novelId).toArray(),
+    db.writingSettings.get(novelId),
+    db.novels.get(novelId),
   ]);
 
   const characterNameList =
@@ -90,6 +92,32 @@ Số từ: ~${s.wordCountTarget} từ`,
       ? `Bạn có tổng cộng ~${maxToolSteps} lần gọi công cụ. Phân bổ hợp lý (~${Math.ceil(maxToolSteps / outline.scenes.length)} lần/phân cảnh) để đủ tra cứu trước khi viết.\n`
       : "";
 
+  const perspectiveVal = novel?.perspective?.toLowerCase() || "";
+  let perspectiveReq = "";
+  if (novel?.perspective) {
+    perspectiveReq = `Góc nhìn kể chuyện (POV) bắt buộc: ${novel.perspective}.`;
+    if (perspectiveVal.includes("ba") || perspectiveVal.includes("ẩn") || perspectiveVal.includes("giấu")) {
+      perspectiveReq += ` Bắt buộc dùng đại từ nhân xưng chuẩn dịch thuật Trung-Việt: dùng 'hắn' hoặc 'y' cho nam giới, 'nàng' hoặc 'y' cho nữ giới. Tuyệt đối KHÔNG dùng 'anh', 'cô', 'chị' để kể chuyện hay làm đại từ dẫn chuyện.`;
+    }
+  } else {
+    perspectiveReq = `Góc nhìn kể chuyện (POV) bắt buộc: Ngôi thứ ba toàn tri. Bắt buộc dùng đại từ nhân xưng chuẩn dịch thuật Trung-Việt: dùng 'hắn' hoặc 'y' cho nam giới, 'nàng' hoặc 'y' cho nữ giới. Tuyệt đối KHÔNG dùng 'anh', 'cô', 'chị' để kể chuyện hay làm đại từ dẫn chuyện.`;
+  }
+
+  if (novel?.genre) {
+    const genreLabel = GENRE_LABELS[novel.genre] || novel.genre;
+    perspectiveReq += ` Thể loại truyện bắt buộc tuân thủ phong cách: ${genreLabel}.`;
+  } else if (novel?.genres && novel.genres.length > 0) {
+    const genreLabels = novel.genres.map((g) => GENRE_LABELS[g] || g).join(", ");
+    perspectiveReq += ` Thể loại truyện bắt buộc tuân thủ phong cách: ${genreLabels}.`;
+  }
+
+  if (novel?.pronouns) {
+    perspectiveReq += ` Quy tắc xưng hô và đại từ nhân xưng: ${novel.pronouns}.`;
+  }
+  if (novel?.writingStyle) {
+    perspectiveReq += ` Văn phong và phong cách hành văn bắt buộc: ${novel.writingStyle}.`;
+  }
+
   const baseUser = buildSmartWriterUserPrompt({
     chapterTitle: outline.chapterTitle,
     chapterOrder,
@@ -101,6 +129,7 @@ Số từ: ~${s.wordCountTarget} từ`,
     outlineText,
     totalWordCountTarget: outline.totalWordCountTarget,
     chapterLength,
+    perspectiveReq,
   });
 
   const systemPrompt = config.systemPrompt.replace(

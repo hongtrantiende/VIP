@@ -43,6 +43,21 @@ export const updateWorldBuildingTool = tool({
       .nullable()
       .optional()
       .describe("Trình độ công nghệ đã cập nhật"),
+    perspective: z
+      .string()
+      .nullable()
+      .optional()
+      .describe("Góc nhìn kể chuyện chính đã cập nhật"),
+    pronouns: z
+      .string()
+      .nullable()
+      .optional()
+      .describe("Đại từ nhân xưng và quy tắc xưng hô đã cập nhật"),
+    writingStyle: z
+      .string()
+      .nullable()
+      .optional()
+      .describe("Phong cách hành văn đã cập nhật"),
   }),
 });
 

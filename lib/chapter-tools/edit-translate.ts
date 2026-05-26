@@ -9,7 +9,7 @@ import type { LanguageModel } from "ai";
 import { db, GENRE_LABELS } from "@/lib/db";
 import { createSceneVersion, ensureInitialVersion, getOriginalContent } from "@/lib/hooks/use-scene-versions";
 import { useBulkTranslateStore } from "@/lib/stores/bulk-translate";
-import { chunkText } from "@/lib/text-utils";
+import { chunkText, cleanGarbageLines } from "@/lib/text-utils";
 import { getMergedNameDict } from "@/lib/hooks/use-name-entries";
 import { parseQaAndApply } from "./qa-helper";
 
@@ -23,6 +23,7 @@ function getEditSystemPrompt(
     stylePreset?: string,
     customStylePrompt?: string,
     customPronounPrompt?: string,
+    globalEditPrompt?: string,
 ) {
     let styleInstruction = "";
     if (stylePreset === "epic") {
@@ -46,7 +47,9 @@ function getEditSystemPrompt(
         customInstructions += `\n\n# QUY TẮC XƯNG HÔ & BỐI CẢNH (BẮT BUỘC): \n${customPronounPrompt.trim()}`;
     }
 
-    return `# Vai trò
+    return globalEditPrompt?.trim() 
+        ? `${globalEditPrompt.trim()}\n\n# CHỈ DẪN BIÊN TẬP (BẮT BUỘC TUÂN THỦ TUYỆT ĐỐI):\n${genreText}${styleInstruction}\n${genreGuidelines}${customInstructions}`
+        : `# Vai trò
 Bạn là tổng biên tập văn học kì cựu chuyên biên tập tiểu thuyết dịch tại Việt Nam.
 Nhiệm vụ: Đọc bản dịch Tiếng Việt dưới đây và biên tập lại cho văn phong trôi chảy, tự nhiên, giàu cảm xúc văn học.
 
@@ -195,7 +198,9 @@ export interface EditTranslateOptions {
     qaModel?: LanguageModel;
     qaEnabled?: boolean;
     qaPrompt?: string;
+    globalEditPrompt?: string;
     skipTranslated?: boolean;
+    cleanGarbage?: boolean;
     errorAction?: "stop" | "skip";
     signal?: AbortSignal;
     delayMs?: number;
@@ -218,7 +223,9 @@ export async function runEditTranslate(opts: EditTranslateOptions) {
         qaModel,
         qaEnabled = false,
         qaPrompt,
+        globalEditPrompt,
         skipTranslated = true,
+        cleanGarbage = true,
         errorAction = "stop",
         signal,
         delayMs = 0,
@@ -251,7 +258,7 @@ export async function runEditTranslate(opts: EditTranslateOptions) {
     }
 
     const nameDict = await getMergedNameDict(novelId);
-    const systemPrompt = getEditSystemPrompt(genreText, genreGuidelines, novelCustomPrompt, novel?.stylePreset, customStylePrompt, customPronounPrompt);
+    const systemPrompt = getEditSystemPrompt(genreText, genreGuidelines, novelCustomPrompt, novel?.stylePreset, customStylePrompt, customPronounPrompt, globalEditPrompt);
 
     for (const chapterId of chapterIds) {
         if (signal?.aborted) break;
@@ -292,8 +299,12 @@ export async function runEditTranslate(opts: EditTranslateOptions) {
             for (const scene of chapterScenes) {
                 if (signal?.aborted) throw new Error("Aborted");
 
-                const currentContent = scene.content;
+                let currentContent = scene.content;
                 if (!currentContent?.trim()) continue;
+
+                if (cleanGarbage) {
+                    currentContent = cleanGarbageLines(currentContent);
+                }
 
                 const origContent = await getOriginalContent(scene.id).catch(() => "");
 

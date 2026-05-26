@@ -10,6 +10,13 @@ import {
   AlertDialogHeader,
   AlertDialogTitle,
 } from "@/components/ui/alert-dialog";
+import {
+  Dialog,
+  DialogContent,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import {
   Empty,
@@ -63,10 +70,11 @@ import {
   PlayIcon,
   RotateCcwIcon,
   SettingsIcon,
+  PlusIcon,
 } from "lucide-react";
 import Link from "next/link";
 import { useParams } from "next/navigation";
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { toast } from "sonner";
 
 import { ContextStepPanel } from "@/components/writing/context-step-panel";
@@ -83,6 +91,7 @@ import { SetupWizard } from "@/components/writing/setup-wizard";
 import { EditChapterPlanDialog } from "@/components/writing/edit-chapter-plan-dialog";
 import { GenerateMorePlansDialog } from "@/components/writing/generate-more-plans-dialog";
 import { WritingSettingsDialog } from "@/components/writing/writing-settings-dialog";
+import { EditableText } from "@/components/novel/editable-text";
 
 // ─── State Detection ────────────────────────────────────────
 
@@ -122,6 +131,12 @@ export default function AutoWritePage() {
   const stepResults = useStepResults(activeSession?.id);
   const writingSettings = useWritingSettings(novelId);
 
+  const currentPlan = useMemo(
+    () => chapterPlans?.find((p) => p.id === effectivePlanId) ?? null,
+    [chapterPlans, effectivePlanId],
+  );
+  const isSaved = currentPlan?.status === "saved";
+
   const writingTabsScrollClass =
     "h-[calc(100dvh-144px)] min-h-[240px] w-full";
 
@@ -141,6 +156,7 @@ export default function AutoWritePage() {
   } = useWritingPipelineStore();
 
   const [settingsOpen, setSettingsOpen] = useState(false);
+  const [selectedSettingsRole, setSelectedSettingsRole] = useState<WritingAgentRole | undefined>(undefined);
   const [refreshSessionOpen, setRefreshSessionOpen] = useState(false);
   const [staleWarning, setStaleWarning] = useState(false);
   const [ideaData, setIdeaData] = useState<IdeaFormData | null>(null);
@@ -148,6 +164,215 @@ export default function AutoWritePage() {
   const [isGeneratingPlans, setIsGeneratingPlans] = useState(false);
   const [generateMorePlansOpen, setGenerateMorePlansOpen] = useState(false);
   const [editPlanId, setEditPlanId] = useState<string | null>(null);
+  const [wizardStartStep, setWizardStartStep] = useState<"world" | "characters" | "arcs" | "plans" | null>(null);
+
+  const [selectedPartFilter, setSelectedPartFilter] = useState<number | "all">("all");
+  const [isAutoWriting, setIsAutoWriting] = useState(false);
+  const runAutoWriteLoopRef = useRef<boolean>(false);
+
+  const [isEvaluatingOverall, setIsEvaluatingOverall] = useState(false);
+  const [overallEvalResult, setOverallEvalResult] = useState<string | null>(null);
+  const [overallEvalChapters, setOverallEvalChapters] = useState<string[]>([]);
+  const [showOverallEvalDialog, setShowOverallEvalDialog] = useState(false);
+  const [overallEvalFeedback, setOverallEvalFeedback] = useState("");
+  const [isApplyingOverallFixes, setIsApplyingOverallFixes] = useState(false);
+  const [overallFixesProgress, setOverallFixesProgress] = useState("");
+
+  const targetChapterCount = (writingSettings as any)?.targetChapterCount ?? chapterPlans?.length ?? 50;
+  const targetParts = (writingSettings as any)?.targetParts ?? 3;
+  const chaptersPerPart = Math.ceil(targetChapterCount / targetParts);
+
+  const getPartRange = useCallback((part: number) => {
+    const start = (part - 1) * chaptersPerPart + 1;
+    const end = Math.min(part * chaptersPerPart, targetChapterCount);
+    return { start, end, count: end - start + 1 };
+  }, [chaptersPerPart, targetChapterCount]);
+
+  const getPartLabel = useCallback((part: number) => {
+    const { start, end } = getPartRange(part);
+    if (part === 1) return `Phần ${part}: Mở đầu (Ch.${start}-${end})`;
+    if (part === targetParts) return `Phần ${part}: Kết thúc (Ch.${start}-${end})`;
+    return `Phần ${part}: Phát triển (Ch.${start}-${end})`;
+  }, [getPartRange, targetParts]);
+
+  const startAutoWriting = useCallback(async (part: number | "all") => {
+    if (!chapterPlans) return;
+    setIsAutoWriting(true);
+    runAutoWriteLoopRef.current = true;
+    
+    toast.info(`Bắt đầu tự động viết ${part === "all" ? "toàn bộ các phần" : `Phần ${part}`}. Hệ thống sẽ tự động chạy 4 bước đầu.`);
+
+    const writtenChapterPlanIds: string[] = [];
+    let currentPart = part;
+    while (runAutoWriteLoopRef.current) {
+      // Tải lại kế hoạch chương để có trạng thái mới nhất
+      const plans = await db.chapterPlans.where("novelId").equals(novelId).sortBy("chapterOrder");
+      
+      // Tìm chương chưa viết đầu tiên trong phạm vi phần được chọn
+      let targetPlans = plans;
+      if (currentPart !== "all") {
+        const { start, end } = getPartRange(Number(currentPart));
+        targetPlans = plans.filter(p => p.chapterOrder >= start && p.chapterOrder <= end);
+      }
+      
+      const nextPlanToRun = targetPlans.find(p => p.status !== "saved");
+      if (!nextPlanToRun) {
+        if (currentPart === "all" && plans.length < targetChapterCount) {
+          const nextCount = Math.min(2 * chaptersPerPart, targetChapterCount - plans.length);
+          if (nextCount > 0) {
+            toast.info(`Đã viết hết các chương hiện có. Đang tự động lên kế hoạch cho 2 Phần tiếp theo (${nextCount} chương)...`);
+            setIsGeneratingPlans(true);
+            try {
+              const { generateFromExisting } = await import("@/lib/writing/auto-generate");
+              await generateFromExisting(novelId, {
+                planCount: nextCount,
+              });
+              toast.success("Đã tự động lên kế hoạch thành công! Tiếp tục viết...");
+              setIsGeneratingPlans(false);
+              continue;
+            } catch (err) {
+              toast.error("Lỗi khi tự động lên kế hoạch tiếp theo: " + (err instanceof Error ? err.message : String(err)));
+              setIsGeneratingPlans(false);
+              break;
+            }
+          }
+        }
+        toast.success(`Đã hoàn thành viết tự động toàn bộ ${currentPart === "all" ? "các chương" : `Phần ${currentPart}`}!`);
+        break;
+      }
+
+      setSelectedPlanId(nextPlanToRun.id);
+      
+      // Chờ giao diện cập nhật và focus vào chương mới
+      await new Promise(resolve => setTimeout(resolve, 500));
+      if (!runAutoWriteLoopRef.current) break;
+
+      try {
+        let session = await db.writingSessions
+          .where("chapterPlanId")
+          .equals(nextPlanToRun.id)
+          .first();
+        
+        let sessionId = session?.id;
+        if (!sessionId) {
+          await getOrCreateWritingSettings(novelId);
+          sessionId = await createWritingSession({
+            novelId,
+            chapterPlanId: nextPlanToRun.id,
+            currentStep: "context",
+            status: "active",
+          });
+        } else {
+          await db.writingSessions.update(sessionId, { status: "active" });
+        }
+
+        if (nextPlanToRun.status !== "written" && nextPlanToRun.status !== "saved") {
+          const controller = startPipeline(sessionId!);
+          clearStreamingContent();
+          
+          const ins = useWritingPipelineStore.getState().stepUserInstructions;
+          const stepUserInstructions: Partial<Record<WritingAgentRole, string>> = {};
+          for (const role of ["context", "direction", "outline", "writer"] as const) {
+            const v = ins[role]?.trim();
+            if (v) stepUserInstructions[role] = v;
+          }
+          const { directionArcIds, directionCharacterIds } = useWritingPipelineStore.getState();
+
+          const pipelineResult = await runWritingPipeline({
+            novelId,
+            sessionId: sessionId!,
+            abortSignal: controller.signal,
+            stepUserInstructions,
+            directionArcIds,
+            directionCharacterIds,
+            handsFree: true, // Ép buộc chạy hands-free tự động hoàn toàn
+            maxStep: "writer", // Bốn bước thôi
+            onStepStart: (role) => {
+              if (role === "context") setActivePanel("context");
+              if (role === "writer") setActivePanel("content");
+            },
+            onStepComplete: (role) => {
+              if (role === "context") setActivePanel("context");
+              if (role === "direction") setActivePanel("pipeline");
+              if (role === "outline") setActivePanel("outline");
+              if (role === "writer") setActivePanel("review");
+            },
+            onWriterChunk: (chunk) => appendStreamingContent(chunk),
+            onWriterActivity: (label) => useWritingPipelineStore.getState().setWriterActivityLabel(label),
+          });
+
+          useWritingPipelineStore.getState().abortController = null;
+          useWritingPipelineStore.getState().clearWriterActivityLabel();
+          useWritingPipelineStore.setState({ isRunning: false });
+
+          if (pipelineResult !== "completed") {
+            toast.error(`Dừng tự động viết tại chương ${nextPlanToRun.chapterOrder} do pipeline không hoàn thành (${pipelineResult})`);
+            break;
+          }
+        }
+
+        // 2. Lưu chương
+        if (runAutoWriteLoopRef.current) {
+          const outlineJson = await db.writingStepResults
+            .where("[sessionId+role]")
+            .equals([sessionId!, "outline"])
+            .first();
+          
+          if (!outlineJson?.output) {
+            toast.error(`Không tìm thấy giàn ý để lưu chương ${nextPlanToRun.chapterOrder}`);
+            break;
+          }
+
+          const { saveGeneratedChapter } = await import("@/lib/writing/save-chapter");
+          const outline = JSON.parse(outlineJson.output);
+          await saveGeneratedChapter({
+            novelId,
+            sessionId: sessionId!,
+            chapterPlanId: nextPlanToRun.id,
+            outline,
+          });
+          
+          writtenChapterPlanIds.push(nextPlanToRun.id);
+          toast.success(`Đã tự động lưu chương ${nextPlanToRun.chapterOrder}`);
+        }
+      } catch (err) {
+        toast.error(`Lỗi tại chương ${nextPlanToRun.chapterOrder}: ${err instanceof Error ? err.message : String(err)}`);
+        break;
+      }
+      
+      // Khoảng nghỉ nhỏ giữa các chương
+      await new Promise(resolve => setTimeout(resolve, 1000));
+    }
+    
+    // Tự động chạy đánh giá tổng quát sau khi hoàn thành
+    if (writtenChapterPlanIds.length > 0 && runAutoWriteLoopRef.current) {
+      setIsEvaluatingOverall(true);
+      toast.info("Đang tự động thực hiện đánh giá tổng quát các chương mới viết...");
+      try {
+        const { generateOverallEvaluation } = await import("@/lib/writing/overall-eval");
+        const evalResult = await generateOverallEvaluation(novelId, writtenChapterPlanIds);
+        await db.novels.update(novelId, { overallEvaluation: evalResult });
+        setOverallEvalChapters(writtenChapterPlanIds);
+        setOverallEvalResult(evalResult);
+        setShowOverallEvalDialog(true);
+        toast.success("Đã hoàn tất báo cáo đánh giá tổng quát!");
+      } catch (err) {
+        toast.error("Lỗi khi tự động đánh giá tổng quát: " + (err instanceof Error ? err.message : String(err)));
+      } finally {
+        setIsEvaluatingOverall(false);
+      }
+    }
+
+    setIsAutoWriting(false);
+    runAutoWriteLoopRef.current = false;
+  }, [novelId, chapterPlans, getPartRange, startPipeline, clearStreamingContent, setActivePanel, appendStreamingContent]);
+
+  const stopAutoWriting = useCallback(() => {
+    runAutoWriteLoopRef.current = false;
+    setIsAutoWriting(false);
+    pausePipeline();
+    toast.info("Đã gửi yêu cầu dừng tự động viết.");
+  }, [pausePipeline]);
 
   // ── 3-State Routing ───────────────────────────────────────
 
@@ -165,9 +390,9 @@ export default function AutoWritePage() {
 
   const mode = modeOverride ?? autoMode;
 
-  // Reset override when data changes enough to move to pipeline
+  // Reset override when data changes enough to move to pipeline, ONLY from wizard
   useEffect(() => {
-    if (hasChapterPlans && hasPlotArcs && modeOverride !== "pipeline") {
+    if (hasChapterPlans && hasPlotArcs && modeOverride === "wizard") {
       setModeOverride(null);
     }
   }, [hasChapterPlans, hasPlotArcs, modeOverride]);
@@ -218,6 +443,7 @@ export default function AutoWritePage() {
   useEffect(() => {
     return () => {
       cancelPipeline();
+      runAutoWriteLoopRef.current = false;
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -627,25 +853,44 @@ export default function AutoWritePage() {
   // ── Dashboard Actions ─────────────────────────────────────
 
   const handleDashboardAction = useCallback(
-    (action: "auto-generate" | "chat" | "skip") => {
+    async (action: "auto-generate" | "chat" | "rewrite" | "skip", startStep?: string) => {
       switch (action) {
         case "skip":
           setModeOverride("pipeline");
           break;
         case "chat":
-          // Open wizard at the first missing step
+          // Open wizard at the specified step or first missing step
           setIdeaData({
             genre: novel?.genre ?? "",
             setting: novel?.storySetting ?? "",
             idea: novel?.synopsis ?? novel?.description ?? "",
             style: "",
           });
+          if (startStep) {
+            setWizardStartStep(startStep as any);
+          } else {
+            setWizardStartStep(null);
+          }
+          setModeOverride("wizard");
+          break;
+        case "rewrite":
+          // Xóa kế hoạch chương cũ + writing sessions, giữ nguyên arcs để user xem/sửa
+          await db.chapterPlans.where("novelId").equals(novelId).delete();
+          await db.writingSessions.where("novelId").equals(novelId).delete();
+          // Mở wizard bắt đầu từ bước "arcs" để user xem/sửa mạch truyện
+          setIdeaData({
+            genre: novel?.genre ?? "",
+            setting: novel?.storySetting ?? "",
+            idea: novel?.synopsis ?? novel?.description ?? "",
+            style: "",
+          });
+          setWizardStartStep("world");
           setModeOverride("wizard");
           break;
         // auto-generate is handled inside NovelSetup itself
       }
     },
-    [novel],
+    [novel, novelId],
   );
 
   // ── Render ────────────────────────────────────────────────
@@ -690,6 +935,35 @@ export default function AutoWritePage() {
         <div className="flex items-center gap-1">
           {mode === "pipeline" && (
             <>
+              <Button
+                variant="outline"
+                size="sm"
+                className="mr-2"
+                onClick={() => setModeOverride("dashboard")}
+                title="Quay lại khu vực Setup ban đầu"
+              >
+                <CompassIcon className="h-4 w-4 mr-1" />
+                Bảng Setup
+              </Button>
+              <Button
+                variant="outline"
+                size="sm"
+                className="mr-2 border-amber-500/30 text-amber-600 hover:bg-amber-500/10 hover:text-amber-700"
+                onClick={async () => {
+                  if (!confirm("Bạn có chắc muốn làm lại? Thao tác này sẽ xóa toàn bộ Mạch truyện và Kế hoạch chương (giữ nguyên Thế giới quan, Nhân vật).")) return;
+                  // Xóa mạch truyện và kế hoạch chương, giữ nguyên thế giới quan + nhân vật
+                  await db.plotArcs.where("novelId").equals(novelId).delete();
+                  await db.chapterPlans.where("novelId").equals(novelId).delete();
+                  // Xóa các writing sessions liên quan
+                  await db.writingSessions.where("novelId").equals(novelId).delete();
+                  toast.success("Đã xóa Mạch truyện & Kế hoạch chương. Bạn có thể setup lại.");
+                  setModeOverride(null); // autoMode sẽ tự detect → dashboard
+                }}
+                title="Xóa Mạch truyện & Kế hoạch chương để setup lại"
+              >
+                <RotateCcwIcon className="h-4 w-4 mr-1" />
+                Làm lại từ đầu
+              </Button>
               {isRunning ? (
                 <Button variant="ghost" size="sm" onClick={pausePipeline}>
                   <PauseIcon className="h-4 w-4 mr-1" />
@@ -700,6 +974,7 @@ export default function AutoWritePage() {
                   variant="ghost"
                   size="sm"
                   onClick={() => handleStartPipeline()}
+                  disabled={isAutoWriting}
                 >
                   <PlayIcon className="h-4 w-4 mr-1" />
                   Tiếp tục
@@ -709,12 +984,32 @@ export default function AutoWritePage() {
                   variant="default"
                   size="sm"
                   onClick={() => handleStartPipeline(nextPlan.id)}
+                  disabled={isAutoWriting}
                 >
                   <PlayIcon className="h-4 w-4 mr-1" />
                   Viết chương {nextPlan.chapterOrder}
                 </Button>
               ) : null}
             </>
+          )}
+          {mode === "dashboard" && (
+            <Button
+              variant="outline"
+              size="sm"
+              className="mr-2 border-amber-500/30 text-amber-600 hover:bg-amber-500/10 hover:text-amber-700"
+              onClick={async () => {
+                if (!confirm("Bạn có chắc muốn làm lại? Thao tác này sẽ xóa toàn bộ Mạch truyện và Kế hoạch chương (giữ nguyên Thế giới quan, Nhân vật).")) return;
+                await db.plotArcs.where("novelId").equals(novelId).delete();
+                await db.chapterPlans.where("novelId").equals(novelId).delete();
+                await db.writingSessions.where("novelId").equals(novelId).delete();
+                toast.success("Đã xóa Mạch truyện & Kế hoạch chương. Bạn có thể setup lại.");
+                setModeOverride(null);
+              }}
+              title="Xóa Mạch truyện & Kế hoạch chương để setup lại"
+            >
+              <RotateCcwIcon className="h-4 w-4 mr-1" />
+              Làm lại từ đầu
+            </Button>
           )}
           {activeSession && (
             <Button
@@ -732,7 +1027,10 @@ export default function AutoWritePage() {
             variant="ghost"
             size="icon"
             className="h-8 w-8 shrink-0"
-            onClick={() => setSettingsOpen(true)}
+            onClick={() => {
+              setSelectedSettingsRole(undefined);
+              setSettingsOpen(true);
+            }}
             title="Cài đặt viết truyện"
           >
             <SettingsIcon className="h-4 w-4" />
@@ -755,18 +1053,20 @@ export default function AutoWritePage() {
       {mode === "wizard" && ideaData && (
         <div className="flex-1">
           <SetupWizard
+            key={wizardStartStep ?? "default"}
             novelId={novelId}
             ideaData={ideaData}
             startAtStep={
-              hasWorld
+              wizardStartStep ??
+              (hasWorld
                 ? hasCharacters
                   ? hasPlotArcs
                     ? "plans"
                     : "arcs"
                   : "characters"
-                : "world"
+                : "world")
             }
-            onCompleteAction={() => setModeOverride("pipeline")}
+            onCompleteAction={() => { setModeOverride("pipeline"); setWizardStartStep(null); }}
           />
         </div>
       )}
@@ -810,6 +1110,81 @@ export default function AutoWritePage() {
                 />
               </div>
               <ScrollArea className="flex-1 border-t p-3">
+                {/* Chọn phần và Tự động viết */}
+                {chapterPlans && chapterPlans.length > 0 && (
+                  <div className="mb-4 space-y-2 border-b pb-3">
+                    <div className="space-y-1">
+                      <label className="text-[10px] font-semibold text-muted-foreground uppercase tracking-wider">
+                        Chọn Phần (Volume)
+                      </label>
+                      <select
+                        value={selectedPartFilter}
+                        onChange={(e) => {
+                          const val = e.target.value;
+                          setSelectedPartFilter(val === "all" ? "all" : Number(val));
+                        }}
+                        disabled={isAutoWriting}
+                        className="w-full rounded-md border border-input bg-background px-2.5 py-1.5 text-xs ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+                      >
+                        <option value="all">Tất cả các phần</option>
+                        {Array.from({ length: targetParts }, (_, i) => {
+                          const p = i + 1;
+                          return (
+                            <option key={p} value={p}>
+                              {getPartLabel(p)}
+                            </option>
+                          );
+                        })}
+                      </select>
+                    </div>
+
+                    {isAutoWriting ? (
+                      <Button
+                        type="button"
+                        variant="destructive"
+                        size="sm"
+                        className="w-full text-xs font-medium flex items-center justify-center gap-1.5 py-1.5"
+                        onClick={stopAutoWriting}
+                      >
+                        <span className="relative flex h-2 w-2 mr-1">
+                          <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-75"></span>
+                          <span className="relative inline-flex rounded-full h-2 w-2 bg-red-100"></span>
+                        </span>
+                        Dừng tự động viết
+                      </Button>
+                    ) : (
+                      <div className="space-y-1.5">
+                        <Button
+                          type="button"
+                          variant="default"
+                          size="sm"
+                          className="w-full text-xs font-semibold bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white shadow-sm flex items-center justify-center gap-1.5 py-1.5 transition-all duration-200 hover:shadow-md"
+                          onClick={() => startAutoWriting(selectedPartFilter)}
+                        >
+                          <PlayIcon className="h-3 w-3 fill-current" />
+                          Tự động viết {selectedPartFilter === "all" ? "hết truyện" : `Phần ${selectedPartFilter}`}
+                        </Button>
+                        {novel?.overallEvaluation && (
+                          <Button
+                            type="button"
+                            variant="outline"
+                            size="sm"
+                            className="w-full text-xs font-semibold border-violet-500/30 text-violet-600 dark:text-violet-400 hover:bg-violet-500/5 flex items-center justify-center gap-1.5 py-1.5 transition-all mt-1"
+                            onClick={async () => {
+                              setOverallEvalResult(novel.overallEvaluation || "");
+                              const savedPlans = chapterPlans?.filter(p => p.status === "saved").map(p => p.id) || [];
+                              setOverallEvalChapters(savedPlans);
+                              setShowOverallEvalDialog(true);
+                            }}
+                          >
+                            📊 Xem đánh giá tổng quát ({chapterPlans?.filter(p => p.status === "saved").length} chương)
+                          </Button>
+                        )}
+                      </div>
+                    )}
+                  </div>
+                )}
+
                 <div className="flex items-center justify-between mb-2">
                   <h3 className="text-sm font-medium text-muted-foreground">
                     Kế hoạch chương
@@ -822,63 +1197,71 @@ export default function AutoWritePage() {
                   )}
                 </div>
                 <div className="space-y-1">
-                  {chapterPlans?.map((plan, idx) => {
-                    const prevPlan = idx > 0 ? chapterPlans[idx - 1] : null;
-                    const prevDone = !prevPlan || prevPlan.status === "saved";
-                    const isLocked = !prevDone && plan.status === "planned";
-                    return (
-                      <div key={plan.id} className="group/plan-item relative">
-                        <button
-                          onClick={() =>
-                            !isLocked && setSelectedPlanId(plan.id)
-                          }
-                          disabled={isLocked}
-                          className={`w-full text-left rounded-md px-3 py-1 pr-7 text-xs transition-colors flex ${
-                            isLocked
-                              ? "opacity-40 cursor-not-allowed"
-                              : effectivePlanId === plan.id
-                                ? "bg-accent"
-                                : "hover:bg-accent/50"
-                          }`}
-                        >
-                          <span className="font-medium">
-                            {plan.chapterOrder}.
-                          </span>
-                          {plan.title && (
-                            <span className="text-muted-foreground ml-1 line-clamp-1 flex-1">
-                              {plan.title}
-                            </span>
-                          )}
-                          <span
-                            className={`ml-2 shrink-0 inline-block rounded-full px-1.5 py-0.5 text-[10px] ${
-                              plan.status === "saved"
-                                ? "bg-green-500/10 text-green-600"
-                                : plan.status === "reviewed"
-                                  ? "bg-orange-500/10 text-orange-600"
-                                  : plan.status === "written"
-                                    ? "bg-amber-500/10 text-amber-600"
-                                    : plan.status === "writing"
-                                      ? "bg-blue-500/10 text-blue-600"
-                                      : "bg-secondary text-muted-foreground"
+                  {chapterPlans
+                    ?.filter((plan) => {
+                      if (selectedPartFilter === "all") return true;
+                      const { start, end } = getPartRange(Number(selectedPartFilter));
+                      return plan.chapterOrder >= start && plan.chapterOrder <= end;
+                    })
+                    ?.map((plan) => {
+                      const originalIdx = chapterPlans.findIndex((p) => p.id === plan.id);
+                      const prevPlan = originalIdx > 0 ? chapterPlans[originalIdx - 1] : null;
+                      const prevDone = !prevPlan || prevPlan.status === "saved";
+                      const isLocked = !prevDone && plan.status === "planned";
+                      return (
+                        <div key={plan.id} className="group/plan-item relative">
+                          <button
+                            onClick={() =>
+                              !isLocked && setSelectedPlanId(plan.id)
+                            }
+                            disabled={isLocked || isAutoWriting}
+                            className={`w-full text-left rounded-md px-3 py-1 pr-7 text-xs transition-colors flex ${
+                              isLocked
+                                ? "opacity-40 cursor-not-allowed"
+                                : effectivePlanId === plan.id
+                                  ? "bg-accent"
+                                  : "hover:bg-accent/50"
                             }`}
                           >
-                            {StatusLabelMap[plan.status]?.text}
-                          </span>
-                        </button>
-                        <button
-                          type="button"
-                          onClick={(e) => {
-                            e.stopPropagation();
-                            setEditPlanId(plan.id);
-                          }}
-                          className="absolute right-1 top-1/2 -translate-y-1/2 p-1 rounded opacity-0 group-hover/plan-item:opacity-100 hover:bg-muted transition-opacity"
-                          title="Chỉnh sửa kế hoạch chương"
-                        >
-                          <PencilIcon className="h-3 w-3 text-muted-foreground" />
-                        </button>
-                      </div>
-                    );
-                  })}
+                            <span className="font-medium">
+                              {plan.chapterOrder}.
+                            </span>
+                            {plan.title && (
+                              <span className="text-muted-foreground ml-1 line-clamp-1 flex-1">
+                                {plan.title}
+                              </span>
+                            )}
+                            <span
+                              className={`ml-2 shrink-0 inline-block rounded-full px-1.5 py-0.5 text-[10px] ${
+                                plan.status === "saved"
+                                  ? "bg-green-500/10 text-green-600"
+                                  : plan.status === "reviewed"
+                                    ? "bg-orange-500/10 text-orange-600"
+                                    : plan.status === "written"
+                                      ? "bg-amber-500/10 text-amber-600"
+                                      : plan.status === "writing"
+                                        ? "bg-blue-500/10 text-blue-600"
+                                        : "bg-secondary text-muted-foreground"
+                              }`}
+                            >
+                              {StatusLabelMap[plan.status]?.text}
+                            </span>
+                          </button>
+                          <button
+                            type="button"
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              setEditPlanId(plan.id);
+                            }}
+                            disabled={isAutoWriting}
+                            className="absolute right-1 top-1/2 -translate-y-1/2 p-1 rounded opacity-0 group-hover/plan-item:opacity-100 hover:bg-muted transition-opacity disabled:opacity-30 disabled:cursor-not-allowed"
+                            title="Chỉnh sửa kế hoạch chương"
+                          >
+                            <PencilIcon className="h-3 w-3 text-muted-foreground" />
+                          </button>
+                        </div>
+                      );
+                    })}
                 </div>
                 {/* Generate more chapter plans button */}
               </ScrollArea>
@@ -887,7 +1270,7 @@ export default function AutoWritePage() {
                   <button
                     type="button"
                     onClick={() => setGenerateMorePlansOpen(true)}
-                    disabled={isGeneratingPlans}
+                    disabled={isGeneratingPlans || isAutoWriting}
                     className="flex-1 rounded-md border border-dashed px-3 py-2 text-xs text-muted-foreground hover:bg-accent/50 hover:text-foreground transition-colors disabled:opacity-50"
                   >
                     {isGeneratingPlans
@@ -907,7 +1290,8 @@ export default function AutoWritePage() {
                         status: "planned",
                       });
                     }}
-                    className="rounded-md border border-dashed px-3 py-2 text-xs text-muted-foreground hover:bg-accent/50 hover:text-foreground transition-colors"
+                    disabled={isAutoWriting}
+                    className="rounded-md border border-dashed px-3 py-2 text-xs text-muted-foreground hover:bg-accent/50 hover:text-foreground transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
                   >
                     + Thêm trống
                   </button>
@@ -962,12 +1346,68 @@ export default function AutoWritePage() {
                 >
                   <ScrollArea className={writingTabsScrollClass}>
                     <div className="p-4 min-w-0">
-                      {pipelinePreRunRole === "direction" ||
+                      {currentPlan?.directions && currentPlan.directions.length > 0 ? (
+                        <div className="space-y-4 mx-auto max-w-lg">
+                          <DirectionPreFilter novelId={novelId} chapterPlanId={effectivePlanId || undefined} hideCharacters={true} />
+
+
+                          <Button
+                            type="button"
+                            size="sm"
+                            className="w-full text-xs font-bold bg-violet-600 hover:bg-violet-700 text-white py-2 flex items-center justify-center gap-1.5 shadow-sm transition-all"
+                            onClick={async () => {
+                              let sessionId = activeSession?.id;
+                              if (!sessionId) {
+                                await getOrCreateWritingSettings(novelId);
+                                sessionId = await createWritingSession({
+                                  novelId,
+                                  chapterPlanId: currentPlan.id,
+                                  currentStep: "context",
+                                  status: "active",
+                                });
+                              }
+
+                              const prePlannedOutput = {
+                                options: [
+                                  {
+                                    id: "pre-planned",
+                                    title: "Hướng đi định sẵn",
+                                    description: currentPlan.directions.join("; "),
+                                    plotImpact: "",
+                                    characters: [],
+                                    type: "character-development",
+                                  }
+                                ],
+                                recommendedOptionIds: ["pre-planned"],
+                              };
+
+                              await db.writingStepResults.put({
+                                id: crypto.randomUUID(),
+                                sessionId,
+                                role: "direction",
+                                status: "completed",
+                                output: JSON.stringify(prePlannedOutput),
+                                startedAt: new Date(),
+                                completedAt: new Date(),
+                              });
+
+                              await db.writingSessions.update(sessionId, {
+                                currentStep: "outline",
+                                updatedAt: new Date(),
+                              });
+
+                              void handleStartPipeline(currentPlan.id);
+                            }}
+                          >
+                            Tiếp tục chạy Pipeline (Tạo Giàn ý)
+                          </Button>
+                        </div>
+                      ) : pipelinePreRunRole === "direction" ||
                       (sessionNeedsResume &&
                         activeSession?.currentStep === "direction" &&
                         resultMap.get("direction")?.status !== "completed") ? (
                         <div className="space-y-4 mx-auto max-w-lg">
-                          <DirectionPreFilter novelId={novelId} />
+                          <DirectionPreFilter novelId={novelId} chapterPlanId={effectivePlanId || undefined} />
                           <PipelineStepConfig
                             novelId={novelId}
                             role="direction"
@@ -1044,7 +1484,7 @@ export default function AutoWritePage() {
                         </Empty>
                       ) : activeSession && effectivePlanId && !isRunning ? (
                         <div className="space-y-4 mx-auto max-w-lg">
-                          <DirectionPreFilter novelId={novelId} />
+                          <DirectionPreFilter novelId={novelId} chapterPlanId={effectivePlanId || undefined} />
                           <PipelineStepConfig
                             novelId={novelId}
                             role="direction"
@@ -1174,6 +1614,11 @@ export default function AutoWritePage() {
                           isRunning && activeSession?.currentStep === "writer"
                         }
                         isRewriting={isRewriting}
+                        onSaveAction={handleSaveChapter}
+                        onPromptConfigAction={() => {
+                          setSelectedSettingsRole("writer");
+                          setSettingsOpen(true);
+                        }}
                         onRegenerateAction={
                           activeSession && !isRunning && !isRewriting
                             ? handleRerunWriter
@@ -1220,6 +1665,10 @@ export default function AutoWritePage() {
                           sessionId={activeSession?.id}
                           onRewriteAction={handleRewrite}
                           onSaveAction={handleSaveChapter}
+                          onPromptConfigAction={() => {
+                            setSelectedSettingsRole("review");
+                            setSettingsOpen(true);
+                          }}
                           onRegenerateReviewAction={
                             activeSession && !isRunning
                               ? handleRerunReview
@@ -1242,6 +1691,7 @@ export default function AutoWritePage() {
         novelId={novelId}
         open={settingsOpen}
         onOpenChangeAction={setSettingsOpen}
+        initialRole={selectedSettingsRole}
       />
 
       <AlertDialog
@@ -1322,6 +1772,104 @@ export default function AutoWritePage() {
           </AlertDialogFooter>
         </AlertDialogContent>
       </AlertDialog>
+
+      {/* Overall Evaluation Dialog */}
+      <Dialog open={showOverallEvalDialog} onOpenChange={setShowOverallEvalDialog}>
+        <DialogContent className="sm:max-w-3xl max-h-[90vh] flex flex-col p-0 overflow-hidden bg-background">
+          <DialogHeader className="px-6 py-5 border-b shrink-0 bg-muted/20">
+            <DialogTitle className="flex items-center gap-2 text-lg font-bold text-violet-600 dark:text-violet-400">
+              📊 Đánh giá tổng quát các chương mới viết
+            </DialogTitle>
+          </DialogHeader>
+          <div className="flex-1 overflow-y-auto p-6 space-y-6">
+            <div className="rounded-xl border bg-muted/10 p-5 leading-relaxed text-sm prose dark:prose-invert max-w-none">
+              {overallEvalResult ? (
+                <div className="whitespace-pre-wrap">{overallEvalResult}</div>
+              ) : (
+                <div className="text-center text-muted-foreground py-10 flex flex-col items-center gap-2">
+                  <Loader2Icon className="size-8 animate-spin text-violet-500" />
+                  <p>Đang chuẩn bị báo cáo đánh giá tổng quát...</p>
+                </div>
+              )}
+            </div>
+
+            <div className="space-y-3">
+              <label className="text-sm font-bold text-foreground block">
+                ✍️ Chỉ dẫn chỉnh sửa từ người dùng
+              </label>
+              <textarea
+                value={overallEvalFeedback}
+                onChange={(e) => setOverallEvalFeedback(e.target.value)}
+                placeholder="Ví dụ: Chương 1 hơi nhanh, hãy bổ sung thêm đoạn hội thoại giữa nhân vật A và B để làm rõ động cơ. Hoặc: Đổi xưng hô của nhân vật C thành 'y'..."
+                className="w-full min-h-[100px] rounded-lg border bg-background p-3 text-sm focus:ring-1 focus:ring-violet-500 focus-visible:outline-none leading-relaxed"
+                disabled={isApplyingOverallFixes}
+              />
+            </div>
+
+            {isApplyingOverallFixes && (
+              <div className="rounded-lg bg-violet-500/5 border border-violet-500/20 p-4 space-y-2">
+                <div className="flex items-center gap-2 text-xs font-semibold text-violet-600 dark:text-violet-400">
+                  <Loader2Icon className="size-4 animate-spin" />
+                  <span>AI đang tiến hành sửa đổi hàng loạt...</span>
+                </div>
+                <p className="text-xs text-muted-foreground leading-normal">{overallFixesProgress}</p>
+              </div>
+            )}
+          </div>
+          <DialogFooter className="px-6 py-4 border-t shrink-0 flex !justify-between bg-muted/20">
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={() => setShowOverallEvalDialog(false)}
+              disabled={isApplyingOverallFixes}
+              className="text-xs"
+            >
+              Đóng
+            </Button>
+            <Button
+              type="button"
+              size="sm"
+              onClick={async () => {
+                if (!overallEvalFeedback.trim()) {
+                  toast.error("Vui lòng nhập chỉ dẫn chỉnh sửa.");
+                  return;
+                }
+                setIsApplyingOverallFixes(true);
+                setOverallFixesProgress("Bắt đầu khởi chạy quá trình sửa đổi...");
+                try {
+                  const { applyOverallEvaluationFixes } = await import("@/lib/writing/overall-eval");
+                  await applyOverallEvaluationFixes(
+                    novelId,
+                    overallEvalChapters,
+                    overallEvalFeedback,
+                    (msg) => setOverallFixesProgress(msg)
+                  );
+                  toast.success("Đã hoàn tất tự động chỉnh sửa hàng loạt!");
+                  setShowOverallEvalDialog(false);
+                  setOverallEvalFeedback("");
+                } catch (err) {
+                  toast.error("Lỗi khi chỉnh sửa: " + (err instanceof Error ? err.message : String(err)));
+                } finally {
+                  setIsApplyingOverallFixes(false);
+                }
+              }}
+              disabled={isApplyingOverallFixes || !overallEvalResult}
+              className="text-xs bg-violet-600 hover:bg-violet-700 text-white font-semibold flex items-center gap-1.5"
+            >
+              {isApplyingOverallFixes ? (
+                <>
+                  <Loader2Icon className="size-3 animate-spin" />
+                  Đang sửa đổi...
+                </>
+              ) : (
+                <>
+                  ⚡ Chỉnh sửa theo ý kiến người dùng
+                </>
+              )}
+            </Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 }

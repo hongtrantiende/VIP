@@ -17,8 +17,11 @@ import {
 import {
   DEFAULT_EDIT_SYSTEM,
   DEFAULT_REVIEW_SYSTEM,
-  DEFAULT_TRANSLATE_SYSTEM,
 } from "@/lib/chapter-tools/prompts";
+import {
+  HYBRID_POST_EDIT_BASE,
+  PURE_TRANSLATE_PROMPT,
+} from "@/lib/chapter-tools/qt-ai-translate";
 import type { StepModelConfig, WritingAgentRole } from "@/lib/db";
 import {
   getOrCreateWritingSettings,
@@ -313,12 +316,26 @@ const ANALYSIS_CONFIG: Record<string, FieldConfig> = {
 };
 
 const CHAPTER_TOOL_CONFIG: Record<string, FieldConfig> = {
-  "chapter-translate": {
-    title: "Dịch thuật",
-    description: "Dịch chương từ tiếng Trung sang tiếng Việt.",
+  "chapter-translate-prompt": {
+    title: "Dịch Thuần AI",
+    description: "System Prompt dành riêng cho tab Dịch Prompt (Dịch 100% bằng AI).",
     modelKey: "translateModel",
     promptKey: "translatePrompt",
-    defaultPrompt: DEFAULT_TRANSLATE_SYSTEM,
+    defaultPrompt: PURE_TRANSLATE_PROMPT,
+  },
+  "chapter-translate-hybrid": {
+    title: "Dịch STV + AI",
+    description: "System Prompt dành cho tab STV + Prompt (Dịch qua từ điển, AI chỉ sửa lỗi).",
+    modelKey: "translateModel",
+    promptKey: "translateHybridPrompt",
+    defaultPrompt: HYBRID_POST_EDIT_BASE,
+  },
+  "chapter-translate-edit": {
+    title: "Biên Tập AI",
+    description: "System Prompt dành cho tab Biên Tập AI (AI chuốt lại bản dịch đã có).",
+    modelKey: "editModel",
+    promptKey: "editPrompt",
+    defaultPrompt: DEFAULT_EDIT_SYSTEM,
   },
   "chapter-review": {
     title: "Đánh giá",
@@ -949,7 +966,9 @@ export function ConfigEditor({ item }: { item: ConfigItemId }) {
       case "analysis-aggregation":
       case "analysis-character":
         return <AnalysisPhaseEditor item={item} />;
-      case "chapter-translate":
+      case "chapter-translate-prompt":
+      case "chapter-translate-hybrid":
+      case "chapter-translate-edit":
       case "chapter-review":
       case "chapter-rewrite":
         return <ChapterToolEditor item={item} />;

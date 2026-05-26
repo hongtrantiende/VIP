@@ -30,5 +30,5 @@
     ".next/dev/types/**/*.ts",
     "**/*.mts"
   ],
-  "exclude": ["node_modules", "story-web-scraper-extracted", "scratch"]
+  "exclude": ["node_modules", "story-web-scraper-extracted", "scratch", "untitled-preview"]
 }

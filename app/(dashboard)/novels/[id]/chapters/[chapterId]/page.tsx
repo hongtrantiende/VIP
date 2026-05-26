@@ -323,7 +323,7 @@ export default function ChapterEditorPage() {
               </Link>
             </Button>
             <Button variant="ghost" size="icon-sm" asChild title="Chế độ đọc">
-              <Link href={`/novels/${novelId}/read/${chapter.order + 1}`}>
+              <Link href={`/novels/${novelId}/read/${chapter.order + 1}${chapter.isAiWritten ? "?mode=ai" : ""}`}>
                 <BookOpenIcon className="size-4" />
               </Link>
             </Button>
