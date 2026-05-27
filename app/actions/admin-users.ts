@@ -4,6 +4,33 @@ import { createClient } from "@/lib/supabase/server";
 import { isAdmin } from "@/lib/utils";
 import { createClient as createAdminClient } from "@supabase/supabase-js";
 
+/**
+ * Giải quyết biến môi trường cho cả localhost (process.env)
+ * và Cloudflare Workers (getCloudflareContext).
+ */
+function resolveEnv() {
+  let supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || "";
+  let serviceKey = process.env.SUPABASE_SERVICE_ROLE_KEY || "";
+  let anonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || "";
+
+  // Trên Cloudflare Workers, process.env chỉ có NEXT_PUBLIC_*
+  // Các secret (SUPABASE_SERVICE_ROLE_KEY) phải lấy qua getCloudflareContext()
+  try {
+    const { getCloudflareContext } = require("@opennextjs/cloudflare");
+    const ctx = getCloudflareContext();
+    if (ctx?.env) {
+      const env = ctx.env as any;
+      supabaseUrl = supabaseUrl || env.NEXT_PUBLIC_SUPABASE_URL || "";
+      serviceKey = serviceKey || env.SUPABASE_SERVICE_ROLE_KEY || "";
+      anonKey = anonKey || env.NEXT_PUBLIC_SUPABASE_ANON_KEY || "";
+    }
+  } catch {
+    // Không phải Cloudflare — bỏ qua
+  }
+
+  return { supabaseUrl, serviceKey, anonKey };
+}
+
 export async function getAllProfilesAction() {
   try {
     const supabase = await createClient();
@@ -13,9 +40,11 @@ export async function getAllProfilesAction() {
       return { success: false, error: "Unauthorized" };
     }
 
+    const { supabaseUrl, serviceKey, anonKey } = resolveEnv();
+
     const adminDb = createAdminClient(
-      process.env.NEXT_PUBLIC_SUPABASE_URL!,
-      process.env.SUPABASE_SERVICE_ROLE_KEY || process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
+      supabaseUrl,
+      serviceKey || anonKey
     );
 
     const { data, error } = await adminDb
@@ -28,7 +57,7 @@ export async function getAllProfilesAction() {
       return { success: false, error: error.message };
     }
     
-    console.log(`getAllProfilesAction: Fetched ${data?.length} profiles. Using Service Key: ${!!process.env.SUPABASE_SERVICE_ROLE_KEY}`);
+    console.log(`getAllProfilesAction: Fetched ${data?.length} profiles. Using Service Key: ${!!serviceKey}`);
     return { success: true, data };
   } catch (err: any) {
     return { success: false, error: err.message };
@@ -52,9 +81,11 @@ export async function saveUserAdminAction(updatedData: {
       return { success: false, error: "Unauthorized" };
     }
 
+    const { supabaseUrl, serviceKey, anonKey } = resolveEnv();
+
     const adminDb = createAdminClient(
-      process.env.NEXT_PUBLIC_SUPABASE_URL!,
-      process.env.SUPABASE_SERVICE_ROLE_KEY || process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
+      supabaseUrl,
+      serviceKey || anonKey
     );
 
     const { error } = await adminDb
