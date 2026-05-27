@@ -1,4 +1,4 @@
-# Novel Studio
+# VIP
 
 A local-first creative writing workspace built for Vietnamese writers and translators. All data lives in the browser — no account required, no server-side storage.
 
@@ -35,8 +35,8 @@ A local-first creative writing workspace built for Vietnamese writers and transl
 ### Installation
 
 ```bash
-git clone https://github.com/ldblckrs-258/novel-studio.git
-cd novel-studio
+git clone https://github.com/hongtrantiende/VIP.git
+cd VIP
 pnpm install
 ```
 
@@ -99,7 +99,7 @@ lib/
 
 ## AI Configuration
 
-Novel Studio requires you to bring your own API keys. Go to **Settings → AI Providers** to add providers:
+VIP requires you to bring your own API keys. Go to **Settings → AI Providers** to add providers:
 
 | Provider | Type |
 |---|---|
@@ -127,4 +127,4 @@ See [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines on how to contribute.
 
 ## License
 
-[MIT](LICENSE) - Le Duc Bao
+[MIT](LICENSE) - hongtrantiende
