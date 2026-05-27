@@ -2,8 +2,19 @@
 
 import { createClient } from "@/lib/supabase/server";
 import { isAdmin } from "@/lib/utils";
-
 import { createClient as createAdminClient } from "@supabase/supabase-js";
+import { getEnv } from "@/lib/env";
+
+/**
+ * Tạo Supabase admin client dùng Service Role Key (bypass RLS).
+ */
+function createServiceRoleClient() {
+  const supabaseUrl = getEnv("NEXT_PUBLIC_SUPABASE_URL");
+  const serviceKey = getEnv("SUPABASE_SERVICE_ROLE_KEY");
+  const anonKey = getEnv("NEXT_PUBLIC_SUPABASE_ANON_KEY");
+
+  return createAdminClient(supabaseUrl, serviceKey || anonKey);
+}
 
 export async function saveAdminSettingsAction(url: string, apiKey: string) {
   const supabase = await createClient();
@@ -14,10 +25,7 @@ export async function saveAdminSettingsAction(url: string, apiKey: string) {
   }
 
   // Create admin client to bypass RLS for app_settings
-  const adminDb = createAdminClient(
-    process.env.NEXT_PUBLIC_SUPABASE_URL!,
-    process.env.SUPABASE_SERVICE_ROLE_KEY || process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
-  );
+  const adminDb = createServiceRoleClient();
 
   // Clean strings
   const cleanUrl = url.trim().replace(/[^\x20-\x7E]/g, '');
@@ -65,10 +73,7 @@ export async function saveAutoClassifySettingAction(enabled: boolean) {
       return { success: false, error: "Unauthorized" };
     }
 
-    const adminDb = createAdminClient(
-      process.env.NEXT_PUBLIC_SUPABASE_URL!,
-      process.env.SUPABASE_SERVICE_ROLE_KEY || process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
-    );
+    const adminDb = createServiceRoleClient();
 
     const { error } = await adminDb
       .from("app_settings")
@@ -80,4 +85,3 @@ export async function saveAutoClassifySettingAction(enabled: boolean) {
     return { success: false, error: err.message };
   }
 }
-
