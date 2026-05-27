@@ -133,8 +133,7 @@ export function isLocalhost(): boolean {
 export function isAdmin(email: string | null | undefined): boolean {
   if (!email) return false;
   const adminEmails = [
-    "nthanhnam2005@gmail.com",
-    "thanhxnam2005@gmail.com"
+    "nthanhnam@gmail.com"
   ];
   return adminEmails.includes(email.toLowerCase());
 }

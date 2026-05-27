@@ -64,7 +64,7 @@ export async function middleware(request: NextRequest) {
     }
 
     const email = user.email?.toLowerCase() || "";
-    const isAdmin = email === "nthanhnam2005@gmail.com" || email === "thanhxnam2005@gmail.com";
+    const isAdmin = email === "nthanhnam@gmail.com";
 
     let isVip = isAdmin;
 

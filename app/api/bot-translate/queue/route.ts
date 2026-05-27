@@ -3,7 +3,7 @@ import { createClient } from "@/lib/supabase/server";
 
 export const dynamic = "force-dynamic";
 
-const ADMIN_EMAILS = ["nthanhnam2005@gmail.com", "thanhxnam2005@gmail.com"];
+const ADMIN_EMAILS = ["nthanhnam@gmail.com"];
 function isAdmin(email?: string | null) {
   return !!email && ADMIN_EMAILS.includes(email.toLowerCase());
 }

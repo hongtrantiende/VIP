@@ -352,8 +352,7 @@ export default function AdminPage() {
     
     const email = user?.email?.toLowerCase();
     const admins = [
-      "nthanhnam2005@gmail.com",
-      "thanhxnam2005@gmail.com"
+      "nthanhnam@gmail.com"
     ];
     if (!admins.includes(email || "")) {
       setIsAdmin(false);

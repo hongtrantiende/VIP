@@ -7,7 +7,7 @@ export async function POST(req: Request) {
   const supabase = await createClient();
   const { data: { user } } = await supabase.auth.getUser();
 
-  if (user?.email !== "nthanhnam2005@gmail.com" && user?.email !== "thanhxnam2005@gmail.com") {
+  if (user?.email !== "nthanhnam@gmail.com" && user?.email !== "nthanhnam@gmail.com") {
     return NextResponse.json({ error: "Chỉ Admin mới có quyền lưu file vào mã nguồn" }, { status: 403 });
   }
   

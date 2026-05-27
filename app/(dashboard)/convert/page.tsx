@@ -114,7 +114,7 @@ export default function ConvertPage() {
     const supabase = createClient();
     supabase.auth.getUser().then(({ data }) => {
       const email = data.user?.email?.toLowerCase();
-      if (email === "nthanhnam2005@gmail.com" || email === "thanhxnam2005@gmail.com") {
+      if (email === "nthanhnam@gmail.com") {
         setIsAdmin(true);
       }
     });

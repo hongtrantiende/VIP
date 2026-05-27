@@ -157,7 +157,7 @@ async function searchDuckDuckGo(query: string): Promise<string> {
 async function verifyVipAccess(supabase: any, user: any): Promise<boolean> {
     if (!user) return false;
     const email = user.email?.toLowerCase();
-    const isAdmin = ["nthanhnam2005@gmail.com", "thanhxnam2005@gmail.com", "test@example.com"].includes(email || "");
+    const isAdmin = ["nthanhnam@gmail.com", "test@example.com"].includes(email || "");
     if (isAdmin) return true;
 
     // Check app_settings free_mode
@@ -234,7 +234,7 @@ export async function GET(req: Request) {
             const { data: { user } } = await supabase.auth.getUser();
             if (!user) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
 
-            const admins = ["nthanhnam2005@gmail.com", "thanhxnam2005@gmail.com", "test@example.com"];
+            const admins = ["nthanhnam@gmail.com", "test@example.com"];
             if (!admins.includes(user.email || '')) {
                 return NextResponse.json({ error: 'Unauthorized. Chỉ dành cho Admin.' }, { status: 403 });
             }
@@ -316,7 +316,7 @@ export async function GET(req: Request) {
             const { data: { user } } = await supabase.auth.getUser();
             if (!user) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
 
-            const admins = ["nthanhnam2005@gmail.com", "thanhxnam2005@gmail.com", "test@example.com"];
+            const admins = ["nthanhnam@gmail.com", "test@example.com"];
             if (!admins.includes(user.email || '')) {
                 return NextResponse.json({ error: 'Unauthorized. Chỉ dành cho Admin.' }, { status: 403 });
             }
@@ -1070,7 +1070,7 @@ export async function POST(req: Request) {
                 return NextResponse.json({ error: 'Invalid JSON body' }, { status: 400 });
             }
 
-            const admins = ["nthanhnam2005@gmail.com", "thanhxnam2005@gmail.com", "test@example.com"];
+            const admins = ["nthanhnam@gmail.com", "test@example.com"];
             const isUserAdmin = admins.includes(user.email || '');
 
             if (forceAutoClassify) {
@@ -1161,7 +1161,7 @@ export async function POST(req: Request) {
             const indexMeta = index.find(n => n.id === novelId);
             const uploaderId = indexMeta?.uploaderId;
 
-            const admins = ["nthanhnam2005@gmail.com", "thanhxnam2005@gmail.com", "test@example.com"];
+            const admins = ["nthanhnam@gmail.com", "test@example.com"];
             const isUserAdmin = admins.includes(user.email || '');
 
             if (!isUserAdmin && uploaderId && user.id !== uploaderId) {
@@ -1183,7 +1183,7 @@ export async function POST(req: Request) {
         }
 
         if (action === 'batch_classify') {
-            const admins = ["nthanhnam2005@gmail.com", "thanhxnam2005@gmail.com", "test@example.com"];
+            const admins = ["nthanhnam@gmail.com", "test@example.com"];
             if (!admins.includes(user.email || '')) {
                 return NextResponse.json({ error: 'Unauthorized. Chỉ dành cho Admin.' }, { status: 403 });
             }
@@ -1248,7 +1248,7 @@ export async function POST(req: Request) {
         }
 
         if (action === 'get_available_models') {
-            const admins = ["nthanhnam2005@gmail.com", "thanhxnam2005@gmail.com", "test@example.com"];
+            const admins = ["nthanhnam@gmail.com", "test@example.com"];
             if (!admins.includes(user.email || '')) {
                 return NextResponse.json({ error: 'Unauthorized. Chỉ dành cho Admin.' }, { status: 403 });
             }
@@ -1306,7 +1306,7 @@ export async function POST(req: Request) {
         }
 
         if (action === 'save_classify_config') {
-            const admins = ["nthanhnam2005@gmail.com", "thanhxnam2005@gmail.com", "test@example.com"];
+            const admins = ["nthanhnam@gmail.com", "test@example.com"];
             if (!admins.includes(user.email || '')) {
                 return NextResponse.json({ error: 'Unauthorized. Chỉ dành cho Admin.' }, { status: 403 });
             }

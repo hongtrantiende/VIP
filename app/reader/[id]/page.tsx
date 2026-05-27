@@ -415,7 +415,7 @@ export default function StandaloneReaderNovelDetailsPage(props: { params: Promis
         );
     }
 
-    const isAdmin = profile && ["nthanhnam2005@gmail.com", "thanhxnam2005@gmail.com"].includes(profile.email?.toLowerCase());
+    const isAdmin = profile && ["nthanhnam@gmail.com"].includes(profile.email?.toLowerCase());
     const isUploader = profile && (isAdmin || (novel as any).uploaderId === profile.id);
 
     const handleSaveTitle = async () => {

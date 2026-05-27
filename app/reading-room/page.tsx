@@ -1236,7 +1236,7 @@ export default function StandaloneReadingRoomApp() {
     }, [novels]);
 
     // Admin/Uploader checks
-    const isAdmin = true; // profile && ["nthanhnam2005@gmail.com", "thanhxnam2005@gmail.com"].includes(profile.email?.toLowerCase());
+    const isAdmin = true; // profile && ["nthanhnam@gmail.com"].includes(profile.email?.toLowerCase());
 
     const handleRunBatchClassification = async (all: boolean = false) => {
         if (isClassifying) return;

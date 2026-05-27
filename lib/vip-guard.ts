@@ -17,7 +17,7 @@ export async function enforceVipAccess() {
 
   // 2. Check Admin status
   const email = user.email?.toLowerCase() || "";
-  const isAdmin = email === "nthanhnam2005@gmail.com" || email === "thanhxnam2005@gmail.com";
+  const isAdmin = email === "nthanhnam@gmail.com";
 
   if (isAdmin) {
     return { user, isVip: true };

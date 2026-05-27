@@ -9,8 +9,7 @@ export async function revokeAllModelAssignmentsAction() {
     if (!user) throw new Error("Unauthorized");
 
     const isAdmin = [
-      "nthanhnam2005@gmail.com",
-      "thanhxnam2005@gmail.com"
+      "nthanhnam@gmail.com"
     ].includes(user.email || "");
 
     if (!isAdmin) throw new Error("Permission denied. Admin only.");
