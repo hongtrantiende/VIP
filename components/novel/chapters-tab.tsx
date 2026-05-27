@@ -966,6 +966,7 @@ export function ChaptersTab({
           <div className="p-4 pt-0">
             <NovelSetup 
               novelId={novelId} 
+              forceRewriteMode={true}
               onActionAction={(action, step) => {
                 setRewriteOpen(false);
                 router.push(`/novels/${novelId}/auto-write${step ? `?step=${step}` : ''}`);

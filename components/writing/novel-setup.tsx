@@ -42,9 +42,11 @@ type DashboardAction = "auto-generate" | "chat" | "rewrite" | "skip";
 export function NovelSetup({
   novelId,
   onActionAction,
+  forceRewriteMode,
 }: {
   novelId: string;
   onActionAction?: (action: DashboardAction, startStep?: string) => void;
+  forceRewriteMode?: boolean;
 }) {
   const novel = useNovel(novelId);
   const chapters = useChapters(novelId);
@@ -57,7 +59,7 @@ export function NovelSetup({
     [novelId]
   ) ?? 0;
 
-  const isRewriteProject = !!novel?.referenceNovelId || standardChaptersCount > 0;
+  const isRewriteProject = forceRewriteMode || !!novel?.referenceNovelId || standardChaptersCount > 0;
   const { isGenerating: isRewriting, setGenerating: setRewriting, phase: rewritePhase, setPhase: setRewritePhase, abort: abortRewrite } = useRewriteStore();
   const [isGenerating, setIsGenerating] = useState(false);
   const [genPhase, setGenPhase] = useState<string>("");
