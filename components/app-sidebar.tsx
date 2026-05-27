@@ -43,12 +43,15 @@ import {
   SparklesIcon,
   BotMessageSquareIcon,
   UsersIcon,
+  BugIcon,
+  HistoryIcon,
 } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { useProfile } from "@/lib/hooks/use-profile";
 import { UserProfileDialog } from "@/components/user-profile-dialog";
+import { SupportAndChangelogDialog } from "@/components/support-and-changelog-dialog";
 import { signOutAction } from "@/app/actions/auth";
 import {
   isTrainingRunning,
@@ -67,7 +70,7 @@ export const navConfig = [
 
 export const miscNav = [
   {
-    title: "Nhóm Zalo (Báo Lỗi / Support)",
+    title: "Nhóm Zalo (Support)",
     href: "https://zalo.me/g/53swywolqkq95enm6t7d",
     icon: UsersIcon
   },
@@ -78,6 +81,7 @@ export function AppSidebar() {
   const router = useRouter();
   const { profile, loadProfile, isVip, isAdmin } = useProfile();
   const [profileDialogOpen, setProfileDialogOpen] = useState(false);
+  const [supportOpen, setSupportOpen] = useState(false);
 
   const handleLogout = async () => {
     await signOutAction();
@@ -243,9 +247,6 @@ export function AppSidebar() {
                   <Link href="/settings/providers">
                     <SettingsIcon className="size-5" />
                     <span className="flex-1">Cài đặt hệ thống</span>
-                    {!isVip && (
-                      <LockIcon className="size-4 ml-auto text-yellow-600/70" />
-                    )}
                   </Link>
                 </SidebarMenuButton>
               </SidebarMenuItem>
@@ -270,6 +271,17 @@ export function AppSidebar() {
                   </SidebarMenuButton>
                 </SidebarMenuItem>
               ))}
+
+              <SidebarMenuItem>
+                <SidebarMenuButton
+                  tooltip="Cập nhật & Báo lỗi"
+                  className="text-base font-medium py-2.5 h-auto hover:text-blue-500 transition-colors w-full justify-start gap-3 cursor-pointer"
+                  onClick={() => setSupportOpen(true)}
+                >
+                  <HistoryIcon className="size-5 shrink-0" />
+                  <span>Cập nhật & Báo lỗi</span>
+                </SidebarMenuButton>
+              </SidebarMenuItem>
             </SidebarMenu>
           </SidebarGroupContent>
         </SidebarGroup>
@@ -278,6 +290,8 @@ export function AppSidebar() {
       <TrainingStatusFooter />
       <DictLoadingFooter />
       <SidebarRail />
+
+      <SupportAndChangelogDialog open={supportOpen} onOpenChange={setSupportOpen} />
     </Sidebar>
   );
 }

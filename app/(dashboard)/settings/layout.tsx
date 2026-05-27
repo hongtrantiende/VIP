@@ -1,5 +1,6 @@
 "use client";
 
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { ServerIcon, DatabaseIcon, LockIcon, SparklesIcon } from "lucide-react";
@@ -12,6 +13,11 @@ export default function SettingsLayout({
 }) {
     const pathname = usePathname();
     const { isVip, loading } = useProfile();
+    const [mounted, setMounted] = useState(false);
+
+    useEffect(() => {
+        setMounted(true);
+    }, []);
 
     const tabs = [
         {
@@ -31,7 +37,7 @@ export default function SettingsLayout({
         },
     ];
 
-    if (loading) {
+    if (!mounted || loading) {
         return (
             <div className="mx-auto w-full max-w-4xl px-6 py-12 flex justify-center items-center">
                 <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary" />
@@ -39,19 +45,7 @@ export default function SettingsLayout({
         );
     }
 
-    if (!isVip) {
-        return (
-            <div className="mx-auto w-full max-w-4xl px-6 py-16 text-center">
-                <div className="inline-flex items-center justify-center size-16 rounded-full bg-yellow-500/10 text-yellow-550 mb-4">
-                    <LockIcon className="size-8 text-yellow-600" />
-                </div>
-                <h2 className="text-2xl font-bold mb-2">Tính năng giới hạn VIP</h2>
-                <p className="text-muted-foreground max-w-md mx-auto mb-6">
-                    Vui lòng nâng cấp tài khoản lên VIP để cấu hình nhà cung cấp AI và quản lý dữ liệu hệ thống.
-                </p>
-            </div>
-        );
-    }
+
 
     return (
         <main className="mx-auto w-full max-w-4xl px-6 py-8">

@@ -8,14 +8,7 @@ import { Button } from "./ui/button";
 export function VipGuard({ children, pathname }: { children: React.ReactNode, pathname: string }) {
   const { isVip, loading } = useProfile();
 
-  // Allow api-guide page for everyone (informational only)
-  const isExempt = pathname === "/settings/api-guide";
-
-  const isRestrictedPath =
-    !isExempt && (
-      pathname.startsWith("/settings") ||
-      pathname === "/admin"
-    );
+  const isRestrictedPath = pathname === "/admin";
 
   if (!isRestrictedPath) {
     return <>{children}</>;

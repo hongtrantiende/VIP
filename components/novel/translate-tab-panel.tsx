@@ -152,7 +152,7 @@ export function TranslateTabPanel({
     chapters: Chapter[];
 }) {
     const providers = useApiInferenceProviders();
-    const { profile, isAdmin } = useProfile();
+    const { profile, isVip, isAdmin } = useProfile();
 
     // AI Model state
     const [selectedProviderId, setSelectedProviderId] = useState<string | undefined>();
@@ -1052,13 +1052,15 @@ export function TranslateTabPanel({
                             </div>
                         </label>
 
-                        <label className="flex items-start gap-2 rounded-lg border border-red-500/20 bg-red-500/5 p-2.5 cursor-pointer hover:bg-red-500/10">
-                            <Checkbox checked={nsfwMode} onCheckedChange={(c) => setNsfwMode(!!c)} className="mt-0.5 border-red-500 data-[state=checked]:bg-red-500" />
-                            <div>
-                                <span className="text-[11px] font-medium text-red-700 dark:text-red-400">Dịch NSFW (Cảnh H / R-18+) 🔞</span>
-                                <p className="text-[10px] text-muted-foreground">Kích hoạt bộ từ vựng và văn phong đặc tả cảnh nóng táo bạo.</p>
-                            </div>
-                        </label>
+                        {(isVip || isAdmin) && (
+                            <label className="flex items-start gap-2 rounded-lg border border-red-500/20 bg-red-500/5 p-2.5 cursor-pointer hover:bg-red-500/10">
+                                <Checkbox checked={nsfwMode} onCheckedChange={(c) => setNsfwMode(!!c)} className="mt-0.5 border-red-500 data-[state=checked]:bg-red-500" />
+                                <div>
+                                    <span className="text-[11px] font-medium text-red-700 dark:text-red-400">Dịch NSFW (Cảnh H / R-18+) 🔞</span>
+                                    <p className="text-[10px] text-muted-foreground">Kích hoạt bộ từ vựng và văn phong đặc tả cảnh nóng táo bạo.</p>
+                                </div>
+                            </label>
+                        )}
 
                         <div className="flex items-center gap-2">
                             <Switch id="skip-tl" checked={skipTranslated} onCheckedChange={setSkipTranslated} />
