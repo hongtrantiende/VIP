@@ -30,8 +30,6 @@ const SECTION_THEMES = {
   powerSystem: { icon: SwordsIcon, color: "text-red-600 dark:text-red-400" },
   factions: { icon: ShieldIcon, color: "text-violet-600 dark:text-violet-400" },
   locations: { icon: MapPinIcon, color: "text-cyan-600 dark:text-cyan-400" },
-  worldRules: { icon: ScrollTextIcon, color: "text-orange-600 dark:text-orange-400" },
-  technologyLevel: { icon: CpuIcon, color: "text-pink-600 dark:text-pink-400" },
   perspective: { icon: BookOpenIcon, color: "text-indigo-600 dark:text-indigo-400" },
   pronouns: { icon: ScrollTextIcon, color: "text-teal-600 dark:text-teal-400" },
   writingStyle: { icon: PencilIcon, color: "text-rose-600 dark:text-rose-400" },
@@ -222,8 +220,6 @@ export function WorldBuildingTab({
     novel.powerSystem,
     novel.factions?.length,
     novel.keyLocations?.length,
-    novel.worldRules,
-    novel.technologyLevel,
     novel.perspective,
     novel.pronouns,
     novel.writingStyle,
@@ -235,10 +231,10 @@ export function WorldBuildingTab({
       <div className="mb-4 flex items-center gap-2">
         <BookOpenIcon className="size-4 text-muted-foreground/50" />
         <span className="text-xs text-muted-foreground">
-          {filledCount}/11 mục đã điền
+          {filledCount}/9 mục đã điền
         </span>
         <div className="flex gap-0.5">
-          {Array.from({ length: 11 }, (_, i) => (
+          {Array.from({ length: 9 }, (_, i) => (
             <div
               key={i}
               className={cn(
@@ -287,9 +283,6 @@ export function WorldBuildingTab({
             onUpdate={(v) => save("keyLocations", v)}
           />
         </div>
-
-        {section("worldRules", "Quy luật thế giới", "worldRules")}
-        {section("technologyLevel", "Trình độ công nghệ", "technologyLevel", false)}
       </div>
     </div>
   );
