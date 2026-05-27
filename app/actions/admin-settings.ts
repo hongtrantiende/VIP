@@ -9,11 +9,11 @@ import { getEnv } from "@/lib/env";
  * Tạo Supabase admin client dùng Service Role Key (bypass RLS).
  */
 function createServiceRoleClient() {
-  const supabaseUrl = getEnv("NEXT_PUBLIC_SUPABASE_URL");
+  const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || getEnv("NEXT_PUBLIC_SUPABASE_URL");
   const serviceKey = getEnv("SUPABASE_SERVICE_ROLE_KEY");
-  const anonKey = getEnv("NEXT_PUBLIC_SUPABASE_ANON_KEY");
+  const anonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || getEnv("NEXT_PUBLIC_SUPABASE_ANON_KEY");
 
-  return createAdminClient(supabaseUrl, serviceKey || anonKey);
+  return createAdminClient(supabaseUrl!, serviceKey || anonKey!);
 }
 
 export async function saveAdminSettingsAction(url: string, apiKey: string) {
