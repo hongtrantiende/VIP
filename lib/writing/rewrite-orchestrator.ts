@@ -243,9 +243,13 @@ Hãy viết bản phóng tác mới cho chương này.`;
           required: ["entities"]
         });
 
-        const extProvider = settings.models?.rewrite_extract?.provider || provider;
-        const extModelId = settings.models?.rewrite_extract?.modelId || modelId;
-        const extractorModel = getAIModel(extProvider, extModelId);
+        const extProviderId = (settings as any).rewrite_extractModel?.providerId || providerId;
+        const extModelId = (settings as any).rewrite_extractModel?.modelId || modelId;
+        const extractorModel = await resolveStep({ providerId: extProviderId, modelId: extModelId });
+
+        if (!extractorModel) {
+          throw new Error("Không thể khởi tạo mô hình AI cho trích xuất.");
+        }
 
         const extractRes = await generateStructured({
           model: extractorModel,
