@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "8945",
+        "NAME": "Vu Thụ Nhạc Viên",
+        "CHAPTER": [
+            {
+                "id": "3043396",
+                "name": "Chương 1: Tiểu nhân quốc gia"
+            }
+        ],
+        "TOTALCHAPTER": "70",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo, Xuyên Không",
+        "AUTHOR": "Nhược tinh không xán lạn",
+        "TRANS": "Hồng Trần Lạc Tiên",
+        "DESC": "Đây là một cái tu hành bí mật vu phương pháp, mang theo vài con chiến sủng, tại tất cả Đại Thế Giới trải qua nguy hiểm chuyện xưa.<br />\r\n<br />\r\nTác giả giới thiệu vắn tắt quá nên mình cũng ko còn cách nào, truyện có vote, view khá cao bên qidian. Mọi người thích thì like fb , vote truyện nhé ^^<br />\r\n<br />\r\nP/s: truyện có khuynh hướng hắc ám lưu nhé XD",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "2248",
+        "NAME": "Bạt Ma",
+        "CHAPTER": [
+            {
+                "id": "757153",
+                "name": "Chương 1: Quyết định của thiếu niên - Quyển 1"
+            }
+        ],
+        "TOTALCHAPTER": "982",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp, Kiếm Hiệp",
+        "AUTHOR": "Băng Lâm Thần Hạ",
+        "TRANS": "Kinzie",
+        "DESC": "Đạo hỏa kh&ocirc;ng tắt, ma chủng vĩnh truyền.<br /><br />Nghịch thi&ecirc;n chi tu, thuận thi&ecirc;n th&agrave;nh đan.<br /><br />******<br /><br />Đ&acirc;y l&agrave; một bị ma chủng x&acirc;m nhập qua thiếu ni&ecirc;n, tại xem ma l&agrave; sinh tử đại địch Đạo M&ocirc;n b&ecirc;n trong tu h&agrave;nh trưởng th&agrave;nh cố sự.<br /><br />Hắn bị đ&aacute;nh l&ecirc;n &ldquo;Cần cảnh gi&aacute;c&rdquo; nh&atilde;n, ch&uacute; định nh&acirc;n sinh quỹ t&iacute;ch của hắn kh&ocirc;ng giống b&igrave;nh thường.<br /><br />*******<br /><br />Đạo M&ocirc;n cảnh giới: Mở rộng thất khiếu, th&ocirc;ng suốt tam điền, Hấp Kh&iacute;, Xan H&agrave;, Th&ocirc;n Y&ecirc;n, Tinh Lạc, Ch&uacute; Thần, Phục Nguyệt Mang, Phục Nhật Mang",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "2814",
+        "NAME": "Tam Quốc Chi Tối Phong Lưu",
+        "CHAPTER": [
+            {
+                "id": "936159",
+                "name": "Chương 1: Tiền nhiệm"
+            }
+        ],
+        "TOTALCHAPTER": "156",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Quân Sự, Lịch Sử",
+        "AUTHOR": "Triệu Tử Viết",
+        "TRANS": "Tiêu Dao Thán",
+        "DESC": "Một người trẻ tuổi xuy&ecirc;n qua cuối thời nh&agrave; H&aacute;n, từ đ&igrave;nh trưởng l&agrave;m l&ecirc;n, tranh h&ugrave;ng thi&ecirc;n hạ. Mấy người phong lưu, c&ograve;n xem h&ocirc;m nay.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

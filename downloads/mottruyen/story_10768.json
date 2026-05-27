@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "10768",
+        "NAME": "Throne Of The World",
+        "CHAPTER": [
+            {
+                "id": "3574429",
+                "name": "CHƯƠNG MỞ ĐẦU : NGAI VÀNG CỦA THẾ GIỚI"
+            }
+        ],
+        "TOTALCHAPTER": "2",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đô Thị, Quân Sự",
+        "AUTHOR": "JDespair",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Trong lúc các game thực tế ảo đang phát triển vượt bậc, một nhà sản xuất tung ra một trò chơi với lối chơi cổ điển bằng chuột và bàn phím thu hút số lượng người chơi kỷ lục trên toàn cầu trong 3 năm... một game thủ đã từng là người chơi chuyên nghiệp đối kháng thực tế ảo đối kháng bắt đầu tham gia sau 3 năm biến cố... câu chuyện bắt đầu...",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

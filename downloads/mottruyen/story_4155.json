@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "4155",
+        "NAME": "Hắc Đạo Tà Hoàng",
+        "CHAPTER": [
+            {
+                "id": "1517020",
+                "name": "Chương 1: Một đêm huyết sát"
+            }
+        ],
+        "TOTALCHAPTER": "25",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đô Thị, Dị Năng",
+        "AUTHOR": "Thí Nghiệm Chuột Bạch",
+        "TRANS": "LordDragon",
+        "DESC": "Một cái còn trẻ võ học tông sư; một khỏa áp lực thị Huyết Linh hồn; một hồi người yêu chết thảm bi kịch; một bả vung lên nổi giận dao mổ.<br />\r\n<br />\r\n\tThành yêu tình, bình thản thiếu niên điên cuồng giết chóc! Vì sinh tồn, phục sinh dục vọng nộ chế lao tù!<br />\r\n<br />\r\n\tVì thân nhân, không cam lòng linh hồn vượt nhập hắc đạo! Vì vinh quang, cường hãn nhân vật chính vì nước mà chiến!<br />\r\n<br />\r\n\tHắn, ngoại hiệu Huyết Ưng, một cái có được tám mươi tên cả nước đáng sợ nhất tử tù thiếu niên, một cái mang theo quốc gia mật lệnh chế bá hắc đạo tử tù, một người thống lĩnh đỉnh phong tập đoàn sát thủ chinh chiến thế giới vương giả. Hắc trên đường, tánh mạng bên trong, cùng nhau đi tới, một đường Phiêu Huyết!",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

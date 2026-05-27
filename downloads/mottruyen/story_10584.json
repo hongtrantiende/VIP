@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "10584",
+        "NAME": "Cửu Thiên Tiên Giới",
+        "CHAPTER": [
+            {
+                "id": "3521402",
+                "name": "Chương 1 Luân Hồi"
+            }
+        ],
+        "TOTALCHAPTER": "7",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp, Huyền Ảo",
+        "AUTHOR": "Quangxctl",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Chỉ tay Thiên run rẩy<br />\r\n Dẫm chân đại Địa toái<br />\r\n Nhất niệm hóa vĩnh hằng<br />\r\n Duy ta là chí tôn",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

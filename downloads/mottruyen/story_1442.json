@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "1442",
+        "NAME": "Huyết Trùng Tiên Khung",
+        "CHAPTER": [
+            {
+                "id": "598919",
+                "name": "Chương 1: Vân Sái Sơn"
+            }
+        ],
+        "TOTALCHAPTER": "1138",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp",
+        "AUTHOR": "Yếm bút tiêu sinh",
+        "TRANS": "La La",
+        "DESC": "Bầu trời c&oacute; ti&ecirc;n, ta tất nấu chi! \"Thần Thoại Thời Đại\" Yến Thập Tam xuy&ecirc;n vi&ecirc;̣t trăm vạn năm sau tu ch&acirc;n thời đại! L&ograve;ng mang mu&ocirc;n đời b&iacute; mật Yến Thập Tam s&aacute;ng tạo ra v&ocirc; số kỳ t&iacute;ch, loại Dược Vương, luyện Ti&ecirc;n Đan, đ&agrave;o Ti&ecirc;n Nh&acirc;n động phủ, m&oacute;c phong ấn ti&ecirc;n nữ chi thi, dưỡng chuyển thế y&ecirc;u ma b&eacute; g&aacute;i, ngự thần th&uacute; tỷ muội song sinh! Đoạt v&ocirc; địch ti&ecirc;n binh! Một c&aacute;i v&ocirc; danh tiểu nh&acirc;n vật đi l&ecirc;n ch&ocirc;n giết thập địa b&aacute;t hoang Thần Ma v&ocirc; địch chi đạo! <br /><br />",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

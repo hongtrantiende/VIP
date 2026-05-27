@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "8037",
+        "NAME": "Tà Mị Tiên Chủ, Mệnh Phạm Hoa Đào",
+        "CHAPTER": [
+            {
+                "id": "3067786",
+                "name": "Chương 1"
+            }
+        ],
+        "TOTALCHAPTER": "990",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Dị Giới, Nữ Hiệp",
+        "AUTHOR": "q",
+        "TRANS": "Master YI",
+        "DESC": "q",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

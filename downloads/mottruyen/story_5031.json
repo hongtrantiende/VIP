@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "5031",
+        "NAME": "Tống Giang Đại Truyện",
+        "CHAPTER": [
+            {
+                "id": "1766488",
+                "name": "Chương 1: Vận Thành Tống Giang"
+            }
+        ],
+        "TOTALCHAPTER": "231",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo, Quân Sự, Lịch Sử, Đồng Nhân",
+        "AUTHOR": "Phương Đan Bạc La",
+        "TRANS": "Hiếu Vũ",
+        "DESC": "Ng&agrave;y sau như thỏa lăng v&acirc;n ch&iacute;, d&aacute;m cười Ho&agrave;ng S&agrave;o bất trượng phu.<br /> <br /> Chi&ecirc;u an vẫn l&agrave; tạo phản?<br /> <br /> Ngu trung người vẫn l&agrave; bất khuất đấu sĩ?<br /> <br /> Lịch sử hệ sinh vi&ecirc;n chưa tốt nghiệp hồn du Bắc Tống, phụ thể Tống Giang, cho c&aacute;c ngươi diễn dịch một c&aacute;i kh&ocirc;ng giống nhau ho&agrave;n to&agrave;n mới Tống Giang.<br /> <br /> Tạm thời nh&igrave;n hắn: Rồng cuộn Thanh Ch&acirc;u, binh l&ecirc;n Kinh Đ&ocirc;ng, tranh h&ugrave;ng Lưỡng Ho&agrave;i, H&agrave; Tế bi ca, bao phủ Giang Chiết, &aacute;c chiến Kinh Kỳ, Bắc Phạt H&agrave; S&oacute;c, nam thu Kinh Quảng, lật đổ Ho&agrave;ng Long, binh &eacute;p Quan Lũng, Xuy&ecirc;n Thục t&aacute;ng Tống, dương uy T&acirc;y Thổ.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

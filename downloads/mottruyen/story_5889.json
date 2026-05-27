@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "5889",
+        "NAME": "Trường cao đẳng Tử Vong",
+        "CHAPTER": [
+            {
+                "id": "2117225",
+                "name": "Chương 1: Thư thông báo trúng tuyển"
+            }
+        ],
+        "TOTALCHAPTER": "140",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Dị Năng, Khoa Huyễn",
+        "AUTHOR": "Chung kết cải trắng",
+        "TRANS": "levismanh",
+        "DESC": "Tử Vong trường cao đẳng giới thiệu tóm tắt:  một phong thần bí thông báo trúng tuyển, để cho Tiêu Lâm bị buộc tiến vào Thự Quang học viện, đây là một tòa lấy Thực Dân Dị Giới làm mục tiêu học viện, Tiêu Lâm ở chỗ này bắt đầu một đoạn hoàn toàn bất đồng đại học lữ trình.<br />\r\n<br />\r\n\tMôn học tự chọn trình: Cơ sở cảm giác, cơ sở kiếm thuật nắm giữ, Sơ Cấp dược tề chế tác... Cái gì? Còn có Long Ngữ Sơ Cấp chương trình học, Thú Nhân ngữ bốn sáu cấp thi? Đây là cái gì quỷ, chẳng lẽ không biết ta thống hận nhất ngoại ngữ sao!<br />\r\n<br />\r\n\tHọc kỳ thi: Thiên Không Chi Thành công phòng chiến, Tử Vong lâu đài lính gác chiến đấu, đủ loại bắt chước cảnh tượng thực chiến... Cái gì? Tử Vong muốn trừ tuổi thọ giá trị! Tiêu Lâm biểu thị áp lực núi lớn!<br />\r\n<br />\r\n\tNghỉ hè thực hành: Mở ra đi thông Dị Thế Giới đại môn, bắt đầu Thực Dân cùng thống trị đi!",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

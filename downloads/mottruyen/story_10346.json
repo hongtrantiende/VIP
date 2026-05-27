@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "10346",
+        "NAME": "Tiên Hoàng Chi Lộ",
+        "CHAPTER": [
+            {
+                "id": "3476628",
+                "name": "Chương 1: Trần Sơn"
+            }
+        ],
+        "TOTALCHAPTER": "21",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp, Huyền Ảo",
+        "AUTHOR": "Autismer",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Trần Sơn một cái phế vật trong Trần gia gia tộc. Không có được sự bảo bọc của song thân vậy Trần Sơn sẽ sống và từng bước trở thành thiên hạ đệ nhất nhân đồng thời lập địa thành tiên như thế nào trong một cái thế giới \"Vũ Đạo Vi Tôn\" đầy bạo lực, đầy cạm bẫy.<br />\r\n---------------------------------------------------------------------------------------------------------------------------<br />\r\nTác phẩm này là tác phẩm đầu tay của mình. Hy vọng mọi người xem và đưa ra những góp ý cho sự sai xót của mình.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

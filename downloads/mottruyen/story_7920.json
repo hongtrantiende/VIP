@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "7920",
+        "NAME": "Hóa Tiên",
+        "CHAPTER": [
+            {
+                "id": "2767446",
+                "name": "Chương 1: Mở đầu"
+            }
+        ],
+        "TOTALCHAPTER": "12",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp, Huyền Ảo, Dị Giới",
+        "AUTHOR": "Tâm Mộng Tư Thiên",
+        "TRANS": "thanhoang",
+        "DESC": "Cỏ cây là Linh Giả, trăm năm dưỡng tinh, ngàn năm đản đọc, 3000 năm mới có thể biến ảo thân thể con người! Viễn Cổ sau đại chiến, Nhân Tộc hưng thịnh, Yêu Tộc sa sút, Linh Thú tỉ tỉ (trillion hay 1000 tỉ) cũng không hóa hình thành yêu... Đông Linh đất đai, Kiếm Tổ Bá Thế. Nam hoàn nơi, Mộc gia ngang dọc. Tây Lăng hiểm địa, tàn yêu trải rộng. Bắc Hàn Cực đất, Băng Ma Phong Đế. Thăng Tiên điện hùng cứ lưng chừng thiên linh địa nhất thống thiên hạ, Thất Thải Thăng Tiên cầu ngưng tụ nhân gian tiên Mạch, khống chế  chuyện Thăng Tiên ! Thăng Tiên khó khăn, thành tiên khó khăn, Hóa Tiên càng khó hơn... Lại nhìn thiếu niên cả đời người  như mê , như thế nào đi đại tranh chi thế, đi ra thuộc về hắn Tiên Lộ.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "10284",
+        "NAME": "Mỹ Quốc Siêu Cấp Mục Tràng Chủ",
+        "CHAPTER": [
+            {
+                "id": "3446397",
+                "name": "Chương 1: Trò chơi chiếm hữu"
+            }
+        ],
+        "TOTALCHAPTER": "660",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đô Thị",
+        "AUTHOR": "Lưu Vân Sơn Trang",
+        "TRANS": "1",
+        "DESC": "muốn trồng nước Mỹ. Cô nàng, muốn phao tóc vàng. Một cái đô thị lãnh đạo biến thân thổ hào, rong ruổi tại nước Mỹ đại lục ở bên trên.<br />\r\n<br />\r\n\tTa không phải Columbus, ta không giết người Anh-điêng, ta chỉ là ưa thích mỹ tửu mỹ nhân.<br />\r\n<br />\r\n\tRộng lớn nông trường bên trên, tuấn mã chạy như bay, bát ngát trong hải dương, kình mãng làm bạn.<br />\r\n<br />\r\n\tKhông phải Mãnh Long không qua sông.<br />\r\n<br />\r\n\tNước Mỹ -- ca đến!",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

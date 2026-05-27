@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "3767",
+        "NAME": "Thanh Liên Kiếm Tiên",
+        "CHAPTER": [
+            {
+                "id": "1296324",
+                "name": "Chương 1: Thanh Liên Kiếm Ca"
+            }
+        ],
+        "TOTALCHAPTER": "583",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đô Thị",
+        "AUTHOR": "Hương Thôn Thiểu Niên",
+        "TRANS": "Yến Virus",
+        "DESC": "V&agrave;i ng&agrave;n năm trước, Thanh Li&ecirc;n cư sĩ dung hợp Phật, Đạo, Kiếm ba đại c&ocirc;ng ph&aacute;p m&agrave; s&aacute;ng lập Thanh Li&ecirc;n kiếm điển, tu luyện hơn ba mươi t&aacute;i, liền một kiếm oanh ph&aacute; được xưng thập tử v&ocirc; sinh Cửu Trọng Tử L&ocirc;i kiếp, h&oacute;a vũ phi thăng m&agrave; đi.<br /><br />Mấy ng&agrave;n năm về sau, một c&aacute;i người mang Ti&ecirc;n Thi&ecirc;n đạo thể thế tục h&agrave;o ph&uacute; thiếu ni&ecirc;n, nh&acirc;n duy&ecirc;n b&aacute;i nhập Thanh Li&ecirc;n t&ocirc;ng c&aacute;i n&agrave;y mỗi đời chỉ c&oacute; một người Kiếm Tu m&ocirc;n hạ. Đ&atilde; bắt đầu hắn tung ho&agrave;nh đ&ocirc; thị, tung ho&agrave;nh c&aacute;c giới kiếm ti&ecirc;n chi lộ!<br /><br />Hung hăng càn qu&acirc;́y l&agrave; muốn đấy! Thực lực l&agrave; c&oacute;! T&igrave;nh y&ecirc;u l&agrave; phải đấy! Sinh hoạt l&agrave; Ti&ecirc;u Dao đấy!<br /><br />Ai, v&igrave; sao tất cả mọi người sợ ta đ&acirc;u n&agrave;y? Kỳ thật ta ngận đ&ecirc; điều đấy!",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

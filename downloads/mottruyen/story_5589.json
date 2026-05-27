@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "5589",
+        "NAME": "Cửu Long Chiến Thiên Quyết",
+        "CHAPTER": [
+            {
+                "id": "1987407",
+                "name": "Chương 01: Đánh lén"
+            }
+        ],
+        "TOTALCHAPTER": "40",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo",
+        "AUTHOR": "Hồng Thự Sao Địa Qua",
+        "TRANS": "Thu Hường",
+        "DESC": "Thân có cửu long, đã có tiên căn, lại có ma huyết, mỹ nữ vĩnh viễn làm bạn, người yêu vĩnh viễn tương theo, một đường hành trình, trộm lấy thiên hạ cổ mộ, thuận ta thì sống, nghịch ta thì chết, thiên hạ duy ngã độc tôn",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

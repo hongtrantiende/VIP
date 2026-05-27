@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "5304",
+        "NAME": "Tam Quốc Quân Thần",
+        "CHAPTER": [
+            {
+                "id": "1875911",
+                "name": "Chương 1: Hồn vào Hán Mạt"
+            }
+        ],
+        "TOTALCHAPTER": "1096",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Quân Sự, Lịch Sử, Xuyên Không, Trùng Sinh",
+        "AUTHOR": "Băng Tuyết Trần",
+        "TRANS": "Phong Pháp Sư",
+        "DESC": "Tam Quốc Qu&acirc;n Thần giới thiệu t&oacute;m tắt: www. uukanshu. com chuyển kiếp Đ&ocirc;ng H&aacute;n năm cuối Trần H&uacute;c, th&acirc;n phận của hắn chẳng qua l&agrave; nhất giới b&igrave;nh d&acirc;n. Ở c&aacute;i thế gia n&agrave;y mọc như rừng thời đại, hắn vốn l&agrave; chỉ muốn khiến người nh&agrave; m&igrave;nh sinh hoạt được (phải) tốt hơn. Nhưng m&agrave;, trời kh&ocirc;ng ch&igrave;u nh&acirc;n nguyện, bị ch&egrave;n &eacute;p Trần H&uacute;c, cuối c&ugrave;ng bực tức nhờ cậy nhất định thất bại Ho&agrave;ng C&acirc;n Qu&acirc;n, phổ tả ra ngo&agrave;i ra một đoạn lịch sử. Ở m&aacute;u v&agrave; lửa lịch luyện trung, hắn từ một c&aacute;i Bi Thi&ecirc;n Mẫn Nh&acirc;n hạng người, dần dần lột x&aacute;c trở th&agrave;nh Đệ nhất ki&ecirc;u h&ugrave;ng, c&ugrave;ng với chiến v&ocirc; bất thắng Qu&acirc;n Thần.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

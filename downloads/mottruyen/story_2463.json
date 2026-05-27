@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "2463",
+        "NAME": "Thiên Thư Kỳ Đàm",
+        "CHAPTER": [
+            {
+                "id": "809320",
+                "name": "Chương 1: Vận mệnh ngày (thượng) - Quyển 1"
+            }
+        ],
+        "TOTALCHAPTER": "29",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp",
+        "AUTHOR": "Sở Bạch",
+        "TRANS": "Xin Cái Tên",
+        "DESC": "\"Đạo m&ocirc;n muốn d&ugrave;ng thanh thủy chưng, mập mạp mềm mại rất nuốt phật m&ocirc;n n&ecirc;n d&ugrave;ng dầu s&ocirc;i nấu, bạo ti&ecirc;n xốp gi&ograve;n một c&aacute;i buồn bực Ma m&ocirc;n đồng đạo nghi sống quả, l&aacute;ch t&aacute;ch tinh huyết thơm ng&aacute;t ph&agrave;m nh&acirc;n kh&ocirc;ng vị cần ướp muối, ba phao (ng&acirc;m) ba phơi nắng xứng m&oacute;n sốt. . .\"<br /><br />\"Mạt Lỵ! B&agrave;i h&aacute;t n&agrave;y từ qu&aacute; kỳ qu&aacute;i! Của ngươi ba quan c&oacute; vấn đề à!\" Lập Ch&iacute; cải t&agrave; quy ch&iacute;nh một lần nữa l&agrave;m người Ng&ocirc; Giải la lớn, \"Ch&uacute;ng ta quyển s&aacute;ch n&agrave;y l&agrave; ch&iacute;nh ph&aacute;i ti&ecirc;n hiệp tiểu thuyết, kh&ocirc;ng phải hắc &aacute;m lưu à!\"",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

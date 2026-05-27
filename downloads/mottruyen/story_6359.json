@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "6359",
+        "NAME": "Siêu Cấp Hải Tặc Thuyền",
+        "CHAPTER": [
+            {
+                "id": "2260920",
+                "name": "Chương 1:  Hải tặc thuyền"
+            }
+        ],
+        "TOTALCHAPTER": "13",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đô Thị, Dị Năng",
+        "AUTHOR": "ba thái sơn",
+        "TRANS": "nobitapro9530@yahoo.com.vn",
+        "DESC": "ta nghề chính là hải tặc , Mỹ quốc 、 Anh quốc 、 Ấn Độ bao gồm tác mã trong đồng hành đều là của ta đánh cướp đối tượng ； <br />\r\n<br />\r\n     bộ cá 、 đánh mò 、 buôn lậu 、 hộ hàng ta cũng thừa nhận . <br />\r\n<br />\r\n     bởi vì ta có một chiếc siêu cấp hải tặc thuyền ! <br />\r\n<br />\r\n     đồng thời ta nuôi một con đại long tôm , một tháng tăng tăng đi lên trường , bây giờ đã thành đại dương cự vô phách , cả ngày đi gieo họa các biển rộng dương , đem các quốc đô làm thần kinh hề hề",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

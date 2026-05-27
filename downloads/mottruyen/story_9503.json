@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "9503",
+        "NAME": "Siêu Cấp Truyền Công",
+        "CHAPTER": [
+            {
+                "id": "3647908",
+                "name": "Chương 1: Mở ra"
+            }
+        ],
+        "TOTALCHAPTER": "1396",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo, Xuyên Không",
+        "AUTHOR": "Manh Thanh",
+        "TRANS": "๖ۣۜTiếu ๖ۣۜHồng ๖ۣۜTrần",
+        "DESC": "tô ứng xuyên qua, được đến siêu cấp truyền công hệ thống.  Cái gì kêu siêu cấp truyền công? Chính là rút ra đến một nhân vật, ngươi có thể đạt được hắn suốt đời công lực tuyệt học.  Tỷ như, kiều phong Đoàn Dự hư trúc, tỷ như hùng bá phong vân tuyệt không thần, lại tỷ như khấu trọng Từ Tử Lăng Tà Vương thạch chi hiên. Đương nhiên, ngươi nếu là muốn thần thoại nhân vật, kia cũng không phải không có khả năng.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

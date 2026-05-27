@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "6589",
+        "NAME": "Huyền Thoại Ma Pháp Sư",
+        "CHAPTER": [
+            {
+                "id": "2344335",
+                "name": "Chương 1: Thuật Chú Hội"
+            }
+        ],
+        "TOTALCHAPTER": "20",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Dị Giới",
+        "AUTHOR": "cobonlanho",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Đây là một thế giới nơi có các ma pháp sư tồn tại<br />\r\n Yuki, một cậu bé mồ côi từ nhỏ, không biết cha mẹ mình như thế nào. Thứ duy nhất mà cậu có chính là sợi dây chuyền có mặt là ngọc thạch đeo trên cổ lúc bị bỏ rơi....Vốn từ nhỏ cơ thể ốm yếu nên tu luyện ma pháp vô cùng chậm chạp, cộng thêm thân hình vốn đẹp hơn con gái nên luôn bị mấy bọn con trai trong xóm gọi là tiểu \"cô nương\".....<br />\r\n Tình cờ trong một lần tới thuật chú hội cậu mua được một chiếc nhẫn thần bí và nó đã thay đổi cuộc đời của cậu. <br />\r\n Trước khi chết, ba mẹ nuôi của cậu đã tiết lộ bí mật về nguồn gốc sợi dây chuyền và thân thế của cậu...Rốt cuộc thì thân thế cậu như thế nào, kẻ thù của cha mẹ cậu là ai, vì sao họ lại bị truy sát ? Mời bạn đọc truyện",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

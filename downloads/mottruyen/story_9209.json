@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "9209",
+        "NAME": "Thôn Thiên Quy",
+        "CHAPTER": [
+            {
+                "id": "3136083",
+                "name": "Chương 1: Vụ nổ hạt nhân"
+            }
+        ],
+        "TOTALCHAPTER": "11",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp, Dị Giới, Xuyên Không",
+        "AUTHOR": "longmanh40@",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Xuyên qua thành một con ô quy, nhân sinh thật bi thảm, Lý Long với trí tuệ siêu phàm của tiến sĩ vật lý sẽ lý giải về tu hành ra sao hãy đón xem...",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

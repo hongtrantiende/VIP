@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "4263",
+        "NAME": "Long huyết Vũ Thần",
+        "CHAPTER": [
+            {
+                "id": "1545202",
+                "name": "Chương 1: Ta cùng người ta yêu"
+            }
+        ],
+        "TOTALCHAPTER": "260",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp, Huyền Ảo, Khoa Huyễn",
+        "AUTHOR": "Điền Lập Nhân",
+        "TRANS": "phanhuy181",
+        "DESC": "Ba thanh đao xuất phẩm tất chúc tinh phẩm. Mãng Hoang Đại Lục, đây là vạn tộc tranh đấu thế giới, tiên, thần, yêu, Phật, ma, người, quỷ, tinh, quái. . . Quan hệ đan xen chằng chịt, rung chuyển không ngừng. Rộng lớn thế gian, bi kịch võ giả Tần Nam, là từ bỏ Giáp Tán Công, thi giải Nhập môn? Cũng hoặc sát sinh trăm vạn, cam nhập ma đạo, đạp đầy rẫy hài cốt, khai sáng thần thoại, ích một cái Thông Thiên con đường.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

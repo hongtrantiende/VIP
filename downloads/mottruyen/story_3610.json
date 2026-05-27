@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "3610",
+        "NAME": "Thư Tiên Truyện",
+        "CHAPTER": [
+            {
+                "id": "1247862",
+                "name": "Chương 1: Chuyển kiếp"
+            }
+        ],
+        "TOTALCHAPTER": "30",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo",
+        "AUTHOR": "Lâm Trung Hữu Hổ",
+        "TRANS": "Người Qua Đường Giáp",
+        "DESC": "Chuyển kiếp, 3000 Đại Đạo, thi&ecirc;n t&ocirc;ng vạn m&ocirc;n, Chư Tử B&aacute;ch gia. Đ&acirc;y l&agrave; một c&aacute;i thế giới kỳ dị, Thi&ecirc;n Địa ph&eacute;p tắc tan vỡ, Thi&ecirc;n Đ&igrave;nh Địa Phủ đều đ&atilde; ch&ocirc;n v&ugrave;i tại trong con s&ocirc;ng d&agrave;i lịch sử, Thi&ecirc;n Đạo kh&ocirc;ng hiện, người tu luyện con đường ph&iacute;a trước đ&atilde; đứt, tốt nghiệp đại học kh&ocirc;ng l&acirc;u trạch nam L&acirc;m Hổ mang theo trong tr&iacute; nhớ v&ocirc; số tiểu thuyết c&ugrave;ng với c&aacute;c loại kinh điển từ nay đi l&ecirc;n một c&aacute;i lấy s&aacute;ch tu luyện th&ocirc;ng thi&ecirc;n chi lộ!",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

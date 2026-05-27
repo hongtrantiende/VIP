@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "1057",
+        "NAME": "Ma Ngân",
+        "CHAPTER": [
+            {
+                "id": "362691",
+                "name": "Chương 1: Ta không muốn chết"
+            }
+        ],
+        "TOTALCHAPTER": "1233",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo",
+        "AUTHOR": "Đình Vũ",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Ti&ecirc;u Hoằng th&acirc;n bị bệnh nan y, chỉ c&oacute; Ma Văn tại đầu ng&oacute;n tay của hắn trở th&agrave;nh phương ph&aacute;p tự cứu duy nhất. V&igrave; mạng sống, hắn chỉ c&oacute; thể kh&ocirc;ng ngừng trở n&ecirc;n mạnh mẽ, kết quả từng bước từ một thợ mỏ h&egrave;n mọn, đi tới hướng khinh thường hết thảy người quyền thế... Tất cả hết thảy kỳ thật chỉ v&igrave;... hắn muốn c&ograve;n sống!",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

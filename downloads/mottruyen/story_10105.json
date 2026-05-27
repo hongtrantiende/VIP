@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "10105",
+        "NAME": "Yêu Đao",
+        "CHAPTER": [
+            {
+                "id": "3395713",
+                "name": "Chương 1: Hiến tế"
+            }
+        ],
+        "TOTALCHAPTER": "1366",
+        "IMG": "https://static.cdnno.com/poster/yeu-dao/150.jpg",
+        "CAT": "Huyền Ảo, Dị Giới",
+        "AUTHOR": "Thanh Dực Bức Vương",
+        "TRANS": "khaox8896",
+        "DESC": "Ở Thiên Yêu bộ tộc hiến tế đại điển trên, Chu Lộ triệu hoán đến một ngọn lửa chiến hồn, hắn chỉ triệu hoán đến một ngọn lửa chiến hồn. Thịnh nộ đại trưởng lão vung tay lên đem hắn đi đày đến Ưng Dực quân bên trong. Vốn cho là cái tên mập mạp này không còn gì khác Ưng Dực thợ săn môn, lại đột nhiên phát hiện, cái tên mập mạp này cường đại đến làm người ta giật mình, hèn mọn đến khiến người ta mặt đỏ.",
+        "THUMB": "https://static.cdnno.com/poster/yeu-dao/150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

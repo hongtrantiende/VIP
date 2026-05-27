@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "10604",
+        "NAME": "Đại Sát Lục Hệ Thống",
+        "CHAPTER": [
+            {
+                "id": "3526288",
+                "name": "Chương thứ nhất Thiên Long 8 âm"
+            }
+        ],
+        "TOTALCHAPTER": "729",
+        "IMG": "https://static.cdnno.com/poster/dai-sat-luc-he-thong/150.jpg",
+        "CAT": "Tiên Hiệp, Kiếm Hiệp, Xuyên Không",
+        "AUTHOR": "Nhất Mộng Dĩ Thành Thần",
+        "TRANS": "hui235235",
+        "DESC": "Một bài giang hồ khúc, đã dẫn phát một đoạn giang hồ truyền thuyết.<br />\r\n<br />\r\n\tThẩm Lãng dẫn đầu võ hiệp đại quân, tung hoành một thế, thần cản giết thần, phật cản giết phật.<br />\r\n<br />\r\n\tCự phách, kiêu hùng?<br />\r\n<br />\r\n\tThế gian ai có thể nói rõ ràng.<br />\r\n----------------------------------------------------------------------------------------<br />\r\n        Lv:  Hậu Thiên, Tiên Nhiên, Hư cảnh( Hóa Hư, Luyện Hư, Động Hư), Tiên Võ, Phá Toái( nhất cảnh, nhị cảnh, Chân thần,...)",
+        "THUMB": "https://static.cdnno.com/poster/dai-sat-luc-he-thong/150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

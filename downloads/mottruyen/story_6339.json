@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "6339",
+        "NAME": "Nhất Tán Tiên",
+        "CHAPTER": [
+            {
+                "id": "2252663",
+                "name": "Theo lòng đất bò ra tới Tán tiên"
+            }
+        ],
+        "TOTALCHAPTER": "30",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp",
+        "AUTHOR": "Cửu Hanh",
+        "TRANS": "Adayroi",
+        "DESC": "Với tư cách một gã Tán tiên, Đường Kình cảm thấy áp lực rất lớn, bởi vì ngươi vĩnh viễn không biết tiếp theo thiên kiếp hội (sẽ) lúc nào hàng lâm, cũng không biết độ qua bao nhiêu lần thiên kiếp mới xem như phần cuối, vừa mới vượt qua đệ cửu trọng thiên kiếp, Đường Kình thân thể bị biến thái thiên kiếp oanh suy yếu không chịu nổi, theo phế tích trong leo ra về sau, một lần không hiểu thấu ngẫu nhiên, hắn đã thành một đám thiên chi kiều nữ đạo lữ...<br />\r\nSách cũ \" Thuẫn Kích \" hơn hai trăm vạn chữ, đã bản hoàn tất, hoan nghênh quan sát, tiểu đệ nhân phẩm có cam đoan, người giang hồ xưng ‘cũng không đoạn càng nhân phẩm đế’",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "1283",
+        "NAME": "Tử Vong Nhai Cơ Thính",
+        "CHAPTER": [
+            {
+                "id": "512068",
+                "name": "Chương 1: Thẻ mời kỳ quái (1)"
+            }
+        ],
+        "TOTALCHAPTER": "204",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Khoa Huyễn",
+        "AUTHOR": "Yêm Hữu Lưỡng Can Đại Thư",
+        "TRANS": "Kinzie",
+        "DESC": "Hỏa kế, nếu c&oacute; một khoản nhai cơ, khiến ngươi d&ugrave;ng sinh mệnh đến chơi, ngươi nguyện &yacute; chứ?<br /><br />Mặc kệ Dịch Hi&ecirc;n c&oacute; nguyện &yacute; hay kh&ocirc;ng, nhưng kh&ocirc;ng ai hỏi qua hắn &yacute; tứ, trực tiếp liền bị gạt đi v&agrave;o.<br /><br />Giống nhau l&agrave; bị người gạt, v&igrave; c&aacute;i g&igrave; hắn bị gạt cố t&igrave;nh l&agrave; mệnh?<br /><br />Từ lần đầu ti&ecirc;n đặt ch&acirc;n n&agrave;y nhai cơ th&iacute;nh, hắn liền ch&uacute; định tho&aacute;t khỏi kh&ocirc;ng được mỗi ng&agrave;y du tẩu ở sinh tử b&ecirc;n cạnh ho&agrave;n cảnh.<br /><br />Bởi v&igrave; nơi n&agrave;y l&agrave; -- tử vong nhai cơ th&iacute;nh.<br /><br />T&aacute;c phẩm nh&atilde;n: Thăng cấp văn, hệ thống lưu, thẻ b&agrave;i, s&aacute;t phạt quyết đo&aacute;n",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

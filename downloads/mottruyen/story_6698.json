@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "6698",
+        "NAME": "Tường Bá Tam Quốc",
+        "CHAPTER": [
+            {
+                "id": "2379070",
+                "name": "Chương 1:   tìm cho mình cái mẹ kế"
+            }
+        ],
+        "TOTALCHAPTER": "645",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Quân Sự, Lịch Sử, Xuyên Không",
+        "AUTHOR": "Cơ Giới Hóa Thô Thực Tài",
+        "TRANS": "Hùng Bá Thiên Hạ",
+        "DESC": "Tường Bá Tam Quốc giới thiệu tóm tắt:  .  uukanshu.  com   Trương Tường,   một người bình thường chờ đi làm thanh niên,   chuyển kiếp đến Đông Hán năm cuối,   lại trở thành Trương Phi em trai,   kia Đại Nhĩ Tặc Lưu Bị mộng đẹp cũng đừng nghĩ thực hiện,   tưởng gạt ta Ca ngươi không có cửa.   xem Trương Tường như thế nào Đông Hán năm cuối quật khởi,   cúi xem đỉnh phong vẻ.  h T Tp:W.  uuKanShu.  Com",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

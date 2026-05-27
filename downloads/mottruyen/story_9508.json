@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "9508",
+        "NAME": "Không Đề",
+        "CHAPTER": [
+            {
+                "id": "3212199",
+                "name": "Chương 1: Cô gái của gió"
+            }
+        ],
+        "TOTALCHAPTER": "1",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đô Thị, Huyền Ảo, Ngôn Tình, Dị Năng",
+        "AUTHOR": "Lacnhathoanghon",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Một người bình thường, nhưng không tầm thường bắt đầu bước đi trên con đường trải đầy máu và nước mắt, nhưng cũng tràn ngập hoa tươi cỏ lạ.<br />\r\n----Mặt trời vốn rực rỡ, nhưng lại ít ai biết được, mặt trời rất cô độc, rất lạnh lẽo.<br />\r\n    Ánh trăng vốn lạnh lẽo, nhưng ít nhất, có được những vì sao bên cạnh.<br />\r\n    Mặt trời và ánh trăng, một sự kết hợp hoàn mỹ, phải không?-----<br />\r\n <br />\r\nTruyện đầu tay, còn nhiều thiếu xót, mong mọi người thông cảm. Nếu có nhận xét cứ thoải mái, cảm tạ.<br />\r\nÀ ngoài ra thì lịch ra chương mình chưa có rõ ràng lắm, mọi người ai đọc thấy sao thì cho cái nhận xét, vì viết lần đầu nên rất non tay, giơ cao đánh khẽ giúp mình ạ.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

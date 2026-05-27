@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "6345",
+        "NAME": "Thủ Hộ Tương Lai",
+        "CHAPTER": [
+            {
+                "id": "2255538",
+                "name": "Chương 1: Xuyên việt đến tương lai"
+            }
+        ],
+        "TOTALCHAPTER": "40",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đô Thị, Kiếm Hiệp",
+        "AUTHOR": "Phong Vân",
+        "TRANS": "phongthanh",
+        "DESC": "Trần dạ ngoài ý muốn xuyên việt đã đến 2030 năm, bắt đầu ở âm thầm yên lặng thủ hộ người nhà  tương lai ——<br />\r\n<br />\r\nVi thủ hộ 20 năm sau gia đình, ta dám lên núi đao!",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

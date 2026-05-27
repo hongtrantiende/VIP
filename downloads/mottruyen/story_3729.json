@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "3729",
+        "NAME": "Thần Tiên Siêu Thị",
+        "CHAPTER": [
+            {
+                "id": "1284520",
+                "name": "Chương 1: Thần Tiên Siêu Thị"
+            }
+        ],
+        "TOTALCHAPTER": "264",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đô Thị",
+        "AUTHOR": "Linh Đang",
+        "TRANS": "Missguns",
+        "DESC": "T&iacute;nh to&aacute;n l&agrave;m việc ngo&agrave;i giờ H&agrave;n L&acirc;m ngo&agrave;i &yacute; muốn nhận lời mời  thượng(tr&ecirc;n) một nh&agrave; si&ecirc;u thị thu ng&acirc;n vi&ecirc;n, ai ngờ nh&agrave; n&agrave;y si&ecirc;u thị  kh&ocirc;ng giống tầm thường, mua đồ kh&aacute;ch h&agrave;ng lại đều l&agrave; thần ti&ecirc;n tr&ecirc;n  trời!",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "8768",
+        "NAME": "Biển Khóc",
+        "CHAPTER": [
+            {
+                "id": "3006052",
+                "name": "Chương 1: Biển Khóc"
+            }
+        ],
+        "TOTALCHAPTER": "1",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Ngôn Tình",
+        "AUTHOR": "soitieutu",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Trong cuộc sống chúng ta vẫn thường phạm sai lầm và học cách lớn lên từ đó nhưng cũng có những sai lầm mà một khi mắc phải thì cuộc đời của chúng ta sẽ rẽ sang một hướng khác.<br />\r\n<br />\r\nĐó là một câu chuyện buồn mà tôi từng được nghe kể từ một người bạn, tôi đã từng day dứt khá lâu khi câu chuyện kết thúc, có lẽ vì men say cũng có lẽ vì tôi đa cảm, cái day dứt khi tôi đặt mình vào hoàn cảnh của anh bạn đó, bất giác tôi đã khóc...",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

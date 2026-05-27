@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "11905",
+        "NAME": "Thần Vực Ma Hoàng",
+        "CHAPTER": [
+            {
+                "id": "3907242",
+                "name": "Chương 1: Trọng sinh, Vương Giả trở về"
+            }
+        ],
+        "TOTALCHAPTER": "6",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo, Dị Giới, Trùng Sinh",
+        "AUTHOR": "Lăng Nguyệt Bạch",
+        "TRANS": "Chịch đế",
+        "DESC": "Thế gian thê lương, duy ngã tâm không thay đổi.<br />\r\n<br />\r\n\tVương Giả trọng sinh, ắt sẽ đứng tại thế giới đỉnh phong, nhìn xuống đất đai.<br />\r\n<br />\r\n\tSi tâm hồng nhan, vạn dặm tìm quân, chỉ vì một câu cam kết.<br />\r\n<br />\r\n\tĐạp Phá Thương Khung, chỉ vì viết ra, thuộc về ta thiên chương.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

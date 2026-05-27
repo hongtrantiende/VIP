@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "7743",
+        "NAME": "Vô Địch Thánh Đế",
+        "CHAPTER": [
+            {
+                "id": "2719729",
+                "name": "Chương 1: Sống lại!"
+            }
+        ],
+        "TOTALCHAPTER": "493",
+        "IMG": "https://static.cdnno.com/poster/vo-dich-thanh-de/150.jpg",
+        "CAT": "Huyền Ảo",
+        "AUTHOR": "Cổ Thuần Dương",
+        "TRANS": "Hoàng Châu",
+        "DESC": "Võ học tông sư sống lại thời đại thiếu niên! Mang theo trăm năm kinh nghiệm lại tu luyện từ đầu!  Ý chí võ đạo vượt qua thiên tài yêu nghiệt! Các loại võ học công pháp một học liền tinh!  Kiếp trước trong lòng tiếc nuối toàn bộ bù đắp! Kiếp này nghịch thiên quật khởi thành tựu Thánh Đế!  Kiếp trước Chân long chân phượng vang danh thiên hạ! Kiếp này từ ta Long Thành kể ra vô địch!  Truyện mới của ông EK, lấy bút danh khác là Cổ Thuần Dương viết.",
+        "THUMB": "https://static.cdnno.com/poster/vo-dich-thanh-de/150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

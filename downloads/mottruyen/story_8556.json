@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "8556",
+        "NAME": "Lục Đạo Ma Thần",
+        "CHAPTER": [
+            {
+                "id": "2931392",
+                "name": "Chương 1: Huyền Thiên động phủ (1)"
+            }
+        ],
+        "TOTALCHAPTER": "20",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp, Huyền Ảo",
+        "AUTHOR": "Ngọ Dạ U Hồn",
+        "TRANS": "U Hồn",
+        "DESC": "Tán tiên tán ma tính toán cái gì? Lão tử thủ hạ mấy chục vạn! Tiên Đế Tiên Tôn thì thế nào? Lão tử trực tiếp miểu sát! Thần Vương Thần Hoàng thì như thế nào? Lão tử đánh cho ba mẹ ngươi cũng không nhận ra! Kỳ thi Đại Học thất bại quân Lục Đạo, mang theo cái kia một thân vô lại xuyên việt đã đến Tu Chân giới, ngoài ý muốn đã nhận được một bản nghịch thiên công pháp ——《 nghịch đạo tu thần lục 》, vì vậy, Ma Tôn Lục Đạo uy danh truyền khắp toàn bộ Tu Chân giới...",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

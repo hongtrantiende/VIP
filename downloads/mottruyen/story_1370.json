@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "1370",
+        "NAME": "Thú Huyết Phí Đằng 2",
+        "CHAPTER": [
+            {
+                "id": "569675",
+                "name": "Chương 1: Thất bại xuyên việt"
+            }
+        ],
+        "TOTALCHAPTER": "37",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo",
+        "AUTHOR": "Tĩnh Quan",
+        "TRANS": "Ốc Rạ",
+        "DESC": "Hồ Cao mang theo n&agrave;o đ&oacute; linh hồn người mảnh vỡ đ&atilde; vượt qua... C&aacute;i n&agrave;y l&agrave; một khối thần kỳ đại lục, d&ugrave;ng \"Đồ đằng\" vi danh!",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

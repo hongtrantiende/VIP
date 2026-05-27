@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "2448",
+        "NAME": "Tam Quốc Chi Giang Sơn Mỹ Nhân",
+        "CHAPTER": [
+            {
+                "id": "807180",
+                "name": "Chương 1: Quỷ Dị Nhật Thực"
+            }
+        ],
+        "TOTALCHAPTER": "835",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Quân Sự, Lịch Sử",
+        "AUTHOR": "Nghị Minh Tình",
+        "TRANS": "Nhu Phong, Hoàng Luân",
+        "DESC": "Yêu dị nhật thực, quỷ dị xuyên việt!  Đối mặt rộng lớn mạnh mẽ, ầm ầm sóng dậy hán mạt Giang Sơn, danh chấn thiên cổ anh hùng mỹ nhân, mạnh mẽ mà thần bí đối thủ, Vương húc nên đi nơi nào...   Em mới đăng lần đầu có gì sai sót các bác thông cảm cho e :D.... truyện về thời tam quốc, nội dung thì cũng khá hay, người cover thì rõ ràng liền mạch truyện đang tiếp tục ra lên mọi người cứ yên tâm !!!",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

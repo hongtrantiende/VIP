@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "2536",
+        "NAME": "Kiếm Phật",
+        "CHAPTER": [
+            {
+                "id": "832973",
+                "name": "Chương 01: Đông chí, Bạch Thạch sau này chi lộ"
+            }
+        ],
+        "TOTALCHAPTER": "270",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp",
+        "AUTHOR": "Chung Quy Hoang Ngôn",
+        "TRANS": "Chanlinh",
+        "DESC": "Hư kh&ocirc;ng ở trong, ch&iacute;n kiếm ph&ugrave; ở kh&ocirc;ng trung, h&agrave;o quang lập lo&egrave;, như rồng ng&acirc;m giống như k&ecirc;u to kh&ocirc;ng ngừng ph&aacute;t ra...<br /><br />M&acirc;y đen ph&iacute;a dưới, một người nhắm mắt đứng thẳng, v&ocirc; số Linh Hồn chuyển động, đến từ trong địa ngục k&ecirc;u r&ecirc;n...<br /><br />M&ecirc;nh m&ocirc;ng đại địa, quần h&ugrave;ng tranh gi&agrave;nh, làm ki&ecirc;́m m&agrave; sinh, cũng l&agrave; kiếm m&agrave; chết.<br /><br />Đ&aacute; trắng, d&ugrave;ng cất rượu chi thi&ecirc;n ph&uacute;, bước l&ecirc;n Kiếm tu chi lộ, rồi sau đ&oacute; lấy kiếm danh tiếng, lập địa th&agrave;nh Phật.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

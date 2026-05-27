@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "7880",
+        "NAME": "Siêu Cấp Hồng Bao Hệ Thống",
+        "CHAPTER": [
+            {
+                "id": "2756583",
+                "name": "Chương 1: Thần kỳ hệ thống"
+            }
+        ],
+        "TOTALCHAPTER": "48",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp, Đô Thị, Huyền Ảo, Dị Năng",
+        "AUTHOR": "Phong Quyển Tàn Vân",
+        "TRANS": "Tịch Văn Tịch Mịch",
+        "DESC": "Tùy thân mang theo cướp Hồng Bao Hệ Thống, không cần lo lắng không cướp được hồng bao.<br />\r\nCòn có thể gia nhập một ít đặc thù bầy, tỷ như Tu chân bầy, Yêu tộc bầy, Ma tộc bầy, Linh thú bầy. . . , nếu như lẻn vào những này bầy cướp hồng bao thì như thế nào? Bọn họ hồng bao liền không giới hạn kim tiền.<br />\r\nLâm Ảnh còn phát hiện một đôi một phát hồng bao cũng có thể cướp.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

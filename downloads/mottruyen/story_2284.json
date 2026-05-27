@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "2284",
+        "NAME": "Ngự Thú Đạo",
+        "CHAPTER": [
+            {
+                "id": "767863",
+                "name": "Chương 01: Hắc Dạ hội nghị"
+            }
+        ],
+        "TOTALCHAPTER": "1391",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Dị Giới",
+        "AUTHOR": "Khán Hoa Vọng Vân",
+        "TRANS": "Chó, Mèo, Heo",
+        "DESC": "Dạy dỗ Địa Th&uacute;, đem vua của rừng rậm biến th&agrave;nh m&egrave;o nhỏ... Tuyệt đối kh&ocirc;ng rời đầu! Thỉnh kh&ocirc;ng muốn đem c&aacute;i n&agrave;y bản Huyền Huyễn c&ugrave;ng mặt kh&aacute;c Huyền Huyễn đối lập, như chăm ch&uacute; ngươi tựu nhức cả trứng",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

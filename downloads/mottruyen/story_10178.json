@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "10178",
+        "NAME": "Không Lo Tiểu Minh Tinh",
+        "CHAPTER": [
+            {
+                "id": "3415246",
+                "name": "Chương 1 ta sống lại"
+            }
+        ],
+        "TOTALCHAPTER": "10",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đô Thị",
+        "AUTHOR": "Đồng ruộng đường nhỏ",
+        "TRANS": "jIN",
+        "DESC": "Một giấc ngủ dậy, thế giới thay đổi. Hoàn cảnh lạ lẫm xa lạ người, Điện ảnh ca khúc cũng là xa lạ, Tính tính, tốt xấu còn sống. Nhưng là, địa cầu điện ảnh tác phẩm không lấy ra tới khoe ra một chút thật sự là lãng phí a. …… Ta không lo tiểu minh tinh, phải làm coi như đại minh tinh.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

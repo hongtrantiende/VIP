@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "2436",
+        "NAME": "Kỷ Nguyên Lê Minh",
+        "CHAPTER": [
+            {
+                "id": "803701",
+                "name": "Chương 1: Nhiệm vụ xuất hiện"
+            }
+        ],
+        "TOTALCHAPTER": "325",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Khoa Huyễn",
+        "AUTHOR": "Nhân Vật Ngoạn Nhân",
+        "TRANS": "Đại Mộng",
+        "DESC": "Kh&iacute; hậu dị biến, theo thực vật vi phạm lẽ thường sinh trưởng, nh&acirc;n loại sinh tồn ho&agrave;n cảnh bắt đầu nhanh ch&oacute;ng chuyển biến xấu, vỏn vẹn một năm thời gian, c&aacute;c t&ograve;a th&agrave;nh thị b&ecirc;n ngo&agrave;i đ&atilde; bị s&acirc;m l&acirc;m v&acirc;y quanh, h&oacute;a th&agrave;nh một đ&aacute;m c&ocirc; đảo, c&agrave;ng nghi&ecirc;m trọng l&agrave;......",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

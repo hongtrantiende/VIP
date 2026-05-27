@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "1705",
+        "NAME": "Đao Bút Lại",
+        "CHAPTER": [
+            {
+                "id": "704078",
+                "name": "Chương 1: Mạc đãi vô hoa không chiết chi"
+            }
+        ],
+        "TOTALCHAPTER": "290",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Lịch Sử",
+        "AUTHOR": "Mộc Dật",
+        "TRANS": "Tiểu La, Vking",
+        "DESC": "Ph&aacute;p chế sử nghi&ecirc;n cứu sinh xuy&ecirc;n vi&ecirc;̣t Đường Cao T&ocirc;ng Vĩnh Huy trong năm, trở th&agrave;nh nha m&ocirc;n h&igrave;nh ph&ograve;ng thư lại, dựa v&agrave;o giỏi về suy luận kh&ocirc;n kh&eacute;o &yacute; nghĩ c&ugrave;ng đối với 《 Đường luật sơ nghị 》 tinh nghi&ecirc;n, vận dụng trong tay nhất chi sinh tốn b&uacute;t ph&aacute;p thần kỳ, thẩm h&igrave;nh danh, b&igrave;nh đ&uacute;ng sai, rửa oan ngục, ph&aacute; kỳ &aacute;n, trừ bạo gi&uacute;p kẻ yếu, đi&ecirc;n đảo c&agrave;n kh&ocirc;n, c&oacute; được mỹ nữ v&agrave;o l&ograve;ng, tiếu ngạo quan đạo phong lưu.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "12111",
+        "NAME": "Bảo Bối Và Em Sẽ Chờ",
+        "CHAPTER": [
+            {
+                "id": "3950563",
+                "name": "Đêm Cuối."
+            }
+        ],
+        "TOTALCHAPTER": "7",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Ngôn Tình",
+        "AUTHOR": "anhthu06042k3@",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Đây là một câu chuyện khá buồn... nữ chính sau 5 năm chờ đời người đàn ông mà mình yêu đã phải chịu biết bao khổ sở. \" Bảo bối và em sẽ chờ\" là câu chuyện ngắn do mình nghĩ ra. Câu chuyện này đề cao lòng tự tôn của một người phụ nữ và tình yêu cao đẹp của người dành cho người mình yêu. Truyện phù hợp cho những bạn nữ yêu xa,và những bạn nữ kiên cường. Mong các độc giả đón đọc^•^",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

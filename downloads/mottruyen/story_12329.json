@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "12329",
+        "NAME": "Điểm Tinh Thánh Thủ",
+        "CHAPTER": [
+            {
+                "id": "4011464",
+                "name": "Chương 1: Chuyển kiếp"
+            }
+        ],
+        "TOTALCHAPTER": "929",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đô Thị, Dị Năng, Xuyên Không",
+        "AUTHOR": "Quan Tam Hải",
+        "TRANS": "Dzung Kiều",
+        "DESC": "Chương Tiểu Vĩ rớt sông chết, rồi trọng sinh lại ở thế giới song song với trái đất. Anh bắt đầu hành trình khi được hệ thống nhập vào.Nhờ gởi gắm mà vào được đài truyền hình, nhờ hệ thống mà anh bước vào con đường tác giả . Kể từ bây giờ anh bước chân vào giới showbiz<br />\r\nCác bạn đón đọc và ủng hộ converter Dzung Kiều nhé",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

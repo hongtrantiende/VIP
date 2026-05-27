@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "7519",
+        "NAME": "Hệ Thống Chi Thăng Cấp Thành Thần",
+        "CHAPTER": [
+            {
+                "id": "2658618",
+                "name": "Chương1: Thông báo của tác giả"
+            }
+        ],
+        "TOTALCHAPTER": "4",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp, Huyền Ảo, Dị Giới, Khoa Huyễn, Xuyên Không, Đồng Nhân, Trùng Sinh",
+        "AUTHOR": "Uchihamakako",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Phạm Ninh ,Một thiếu niên 16 tuổi vô tình bị xoáy vào một bí mật vô cùng đáng sợ sau nhiều lần đánh cược giữa mạng sống và cái chết,  cuối cùng cậu cũng đã vượt qua hết mọi khó khăn thành công ngồi lên vương chi thần tọa của chính cậu.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

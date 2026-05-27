@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "6064",
+        "NAME": "Thiên Tử Huyền Tôn",
+        "CHAPTER": [
+            {
+                "id": "2176912",
+                "name": "Chương 1 : Xuất Thế"
+            }
+        ],
+        "TOTALCHAPTER": "43",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo",
+        "AUTHOR": "Billhandsome",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Thông Báo : Truyện này mình đã dừng bạn nào muốn đọc tiếp qua đây.<br />\r\ntruyencv.com/than-tich/",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

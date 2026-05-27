@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "3976",
+        "NAME": "Mạt Thế Chi Hành Đại Vận",
+        "CHAPTER": [
+            {
+                "id": "1447168",
+                "name": "Chương 1: Sinh hoạt tại tận thế"
+            }
+        ],
+        "TOTALCHAPTER": "670",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Nhiều Converter",
+        "AUTHOR": "Tử Tô Tiểu Tiểu",
+        "TRANS": "Yến Virus",
+        "DESC": "Thần m&atilde; tận thế? Tỷ ở nh&agrave; chỗ ở gặp; phản ứng chậm nửa nhịp? Tỷ kh&ocirc;ng lo lắng sợ h&atilde;i; thiếu thực thiểu y? Tỷ c&oacute; kh&ocirc;ng gian; người ta c&ugrave;ng Zombie trốn Mi&ecirc;u Mi&ecirc;u, tỷ mang theo người nh&agrave; bạn b&egrave; sống c&agrave;ng đặc sắc...",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

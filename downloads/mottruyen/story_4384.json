@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "4384",
+        "NAME": "Conan chi hôi dực thiên sứ",
+        "CHAPTER": [
+            {
+                "id": "1575529",
+                "name": "Chương 1: Yamazaki gia chủ chết"
+            }
+        ],
+        "TOTALCHAPTER": "5",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đồng Nhân",
+        "AUTHOR": "Cô Phong tịch",
+        "TRANS": "☣☠ NightWalker ☠☣",
+        "DESC": "Truy t&igrave;m chung cực sinh mệnh, giấc mộng nam kha trong thế giới Conan<br /> khoảng 20 chương đầu chỉ l&agrave; dẫn truyện n&ecirc;n mọi người chỉ cần lướt qua th&ocirc;i",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

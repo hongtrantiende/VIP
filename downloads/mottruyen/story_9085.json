@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "9085",
+        "NAME": "Hokage Tia Chớp Vàng",
+        "CHAPTER": [
+            {
+                "id": "3087299",
+                "name": "Chương 1 : Xuyên việt"
+            }
+        ],
+        "TOTALCHAPTER": "2",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Xuyên Không, Đồng Nhân",
+        "AUTHOR": "Hoa Khai Vô Nguyệt",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Bình thường Ninja câu chuyện.<br />\r\n<br />\r\nKhông có có thần khí, không có thần thú, không có nội công, hay vẫn là ba không.<br />\r\n<br />\r\nXuyên việt nhân sĩ tựu là lớn nhất BUG, tư tưởng tối thiểu không bị trói buộc.<br />\r\n<br />\r\nMục tiêu của chúng ta là đem bình thường tiến hành đến cùng.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

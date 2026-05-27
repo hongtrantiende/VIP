@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "4765",
+        "NAME": "Ngân Hồ",
+        "CHAPTER": [
+            {
+                "id": "1688850",
+                "name": "Chương 1: Thiết Tâm Nguyên thuyền cứu nạn"
+            }
+        ],
+        "TOTALCHAPTER": "919",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Quân Sự",
+        "AUTHOR": "Kiết Dữ 2",
+        "TRANS": "dinhnhan",
+        "DESC": "Người đệ một yêu cầu chính là sống sót, đệ nhị yêu cầu vẫn là sống sót, đệ tam yêu cầu như trước là sống sót... Ở một số hoàn cảnh đặc định dưới, sống sót liền thành một loại hy vọng xa vời.  Ở trong địa ngục chúng ta ngước nhìn Thiên Đường, đưa tay ra, tuy rằng không thể chạm được Thiên Đường, nhưng có thể để chúng ta khoảng cách Thiên Đường càng gần hơn một ít.  Ở trong địa ngục ca xướng, ở trong địa ngục cảm ơn, ở trong địa ngục yêu nhau, ở trong địa ngục tướng giết, chúng ta chảy nước mắt lẫn nhau chen chúc mà sau sẽ chủy thủ đâm vào đối phương ngực bụng, không vì cái gì khác, chỉ là vì cái nào từng tia một như có như không cảm ơn.  Đại Tống thế giới là ta ràng buộc, cũng là ta bầu trời, chỉ có đập cánh bay lượn chim nhỏ mới hiểu được bầu trời hàm nghĩa.  Hoàng đế nói —— cho ta mượn hoàng gia rộng rãi hạ một góc, cùng ngươi mẹ con an thân.  Quyết tâm nguyên nói —— tích thủy chi ân ta khi (làm) dũng tuyền báo đáp, bất quá ngươi không thể yêu cầu, ta cho ngươi ra sao báo đáp, ngươi tiếp thu là được rồi.  Ta khả năng so với các ngươi tất cả mọi người đều thông minh, nói theo một ý nghĩa nào đó, ta chính là tiên tri, ta chính là triết nhân, ta chính là thần!",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "3457",
+        "NAME": "Vô Thượng Huyền Hoàng",
+        "CHAPTER": [
+            {
+                "id": "1198714",
+                "name": "Chương 1: Cho tiểu gia ta thoát giày"
+            }
+        ],
+        "TOTALCHAPTER": "55",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo",
+        "AUTHOR": "Nguyệt Như Cung",
+        "TRANS": "Tranhaongok",
+        "DESC": "Kh&ocirc;ng hiểu đi tới dị thế, linh hồn chiếm cứ một c&aacute;i kẻ ngu si th&acirc;n thể, lập tức &acirc;m mưu, đố kị, m&aacute;u tanh hướng về hắn phong tu&ocirc;n ra m&agrave; tới.<br /><br />Trong xương lang t&iacute;nh để hắn gặp chi&ecirc;u ph&aacute; chi&ecirc;u, lấy m&aacute;u trả m&aacute;u, lấy cứng chọi cứng!<br /><br />Tại bằng hữu trong mắt, hắn l&agrave; c&oacute; thể lấy tướng mệnh nắm huynh đệ; tại địch nh&acirc;n trong mắt hắn l&agrave; Phệ Huyết S&aacute;t Thần, l&agrave; v&agrave;o đ&ecirc;m kh&ocirc;ng d&aacute;m y&ecirc;n giấc &aacute;c mộng; c&ograve;n c&oacute; c&aacute;i kia chín c&aacute;i mệnh y hệt ngoan cường sức sống, c&ugrave;ng t&ugrave;y theo m&agrave; đến m&aacute;u tanh trả th&ugrave;; tại t&igrave;nh nh&acirc;n trong mắt, hắn ho&agrave;n mỹ, hiệp cốt nhu tr&agrave;ng m&agrave; lại kh&ocirc;ng g&igrave; kh&ocirc;ng l&agrave;m được.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

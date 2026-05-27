@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "8848",
+        "NAME": "Chí Tôn Cuồng Đế",
+        "CHAPTER": [
+            {
+                "id": "3021981",
+                "name": "Chương 1: Cuồng Đế sống lại"
+            }
+        ],
+        "TOTALCHAPTER": "700",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo, Dị Giới, Trùng Sinh",
+        "AUTHOR": "Bạch Bào Khách",
+        "TRANS": "khaox8896",
+        "DESC": "Một kiếm đoạn thi&ecirc;n địa, một quyền diệt quỷ thần, xoay tay c&oacute; thể che trời, lật tay diệt vạn giới.<br /> <br /> Đ&acirc;y l&agrave; cường giả thế giới, nhiệt huyết s&ocirc;i tr&agrave;o, cảm x&uacute;c m&atilde;nh liệt v&ocirc; hạn.<br /> <br /> Thi&ecirc;n Giới Cuồng Đế sống lại ch&aacute;n nản thiếu ni&ecirc;n, thức tỉnh Th&aacute;i Dương Thần Thể, tu mạnh nh&acirc;́t long t&iacute;, đạp khắp chư thi&ecirc;n vạn giới.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

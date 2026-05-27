@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "2787",
+        "NAME": "Hồng Hoang Chi Minh Ngọc",
+        "CHAPTER": [
+            {
+                "id": "919118",
+                "name": "Chương 1: Bàn Cổ Khai Thiên vạn vật diễn sinh"
+            }
+        ],
+        "TOTALCHAPTER": "446",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp",
+        "AUTHOR": "Minh Thiên Tu Đạo",
+        "TRANS": "trang4mat",
+        "DESC": "Tự B&agrave;n Cổ Khai Thi&ecirc;n Địa, Long Phượng thi&ecirc;n kiếp về sau, v&ocirc; số Đại Thần Th&ocirc;ng Giả đ&uacute;ng thời cơ m&agrave; sinh, tại trong hồng hoang để lại ch&iacute;nh m&igrave;nh dấu ch&acirc;n.\r\n&nbsp;\r\nThi&ecirc;n Địa sơ khai, c&oacute; một đ&aacute;m h&agrave;o quang H&oacute;a H&igrave;nh tại Đ&ocirc;ng Hải cực địa, tại Hồng Hoang đại địa thư hạ nồng đậm một số, đạo nh&acirc;n n&agrave;y tự xưng: Minh Ngọc",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

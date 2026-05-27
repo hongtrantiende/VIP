@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "1349",
+        "NAME": "Bách Mỹ Dạ Hành",
+        "CHAPTER": [
+            {
+                "id": "559665",
+                "name": "Chương 1: Động Huyền mỹ nhân cười"
+            }
+        ],
+        "TOTALCHAPTER": "52",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo",
+        "AUTHOR": "Hải Phái Sơn Nhân",
+        "TRANS": "naruto23021",
+        "DESC": "Đã chết tại mỹ nữ tay, th&agrave;nh quỷ cũng phong lưu. Một c&aacute;i kh&ocirc;ng học vấn kh&ocirc;ng nghề nghiệp sinh vi&ecirc;n, ngo&agrave;i &yacute; muốn trở th&agrave;nh nữ tử tập đo&agrave;n s&aacute;t thủ thủ lĩnh. Ban ng&agrave;y, c&aacute;c n&agrave;ng l&agrave; quần &aacute;o ngăn nắp tuyệt đại giai nh&acirc;n, quỳnh tư hoa mạo, mạnh v&igrave; gạo, bạo v&igrave; tiền. Ban đ&ecirc;m, c&aacute;c n&agrave;ng l&agrave; t&aacute;c hồn đoạt mệnh &aacute;m dạ tinh linh, lấy đầu người cấp, đoạn t&aacute;nh mạng người. M&agrave; hắn, tắc th&igrave; sắm vai lấy người trung gian nh&acirc;n vật, dựa thế m&agrave; l&ecirc;n, cố gắng tam thế vinh hoa.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

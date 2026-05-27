@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "1412",
+        "NAME": "Số Liệu Tu Luyện Hệ Thống",
+        "CHAPTER": [
+            {
+                "id": "587259",
+                "name": " Chương 1:: Đáy hồ kỳ ngộ số liệu hệ thống"
+            }
+        ],
+        "TOTALCHAPTER": "856",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Võng Du",
+        "AUTHOR": "Độc Dực Khách",
+        "TRANS": "Túy Kiếm Phong Trần",
+        "DESC": "Gia C&aacute;t Tường vốn l&agrave; Tu La t&ocirc;ng dự bị đệ tử, v&igrave; lĩnh ngộ k&igrave;nh kh&iacute;, trở th&agrave;nh Tu La T&ocirc;ng Ch&iacute;nh thức đệ tử m&agrave; nỗ lực.<br /><br />Một lần ngẫu nhi&ecirc;n cơ hội, để hắn đạt được si&ecirc;u cấp tr&ograve; chơi hệ thống \"Ph&aacute;p bảo\" .<br /><br />Ph&aacute;p bảo n&agrave;y ở tay, theo Gia C&aacute;t Tường thực lực tăng l&ecirc;n, c&aacute;c loại thần kỳ c&ocirc;ng năng cũng nhất nhất vạch trần.<br /><br />Nh&acirc;n vật trang bị , EXP hệ thống, điểm skill, trữ vật kh&ocirc;ng gian, nhiệm vụ hệ thống, bản đồ khu vực, sinh hoạt skill...<br /><br />M&agrave; lại nh&igrave;n hắn dựa v&agrave;o trong tay tr&ograve; chơi hệ thống, l&agrave;m sao một bước l&ecirc;n trời, vang danh thi&ecirc;n hạ...",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

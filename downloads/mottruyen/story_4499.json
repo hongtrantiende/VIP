@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "4499",
+        "NAME": "Tứ Đại Mỹ Nhân Và Tứ Đại Hoáng Tử",
+        "CHAPTER": [
+            {
+                "id": "1600636",
+                "name": "Casting"
+            }
+        ],
+        "TOTALCHAPTER": "2",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Ngôn Tình",
+        "AUTHOR": "Tuberose",
+        "TRANS": "Tuberose",
+        "DESC": "kể về 8 bạn học sinh từ nước ngoài trở về học ở VN và cũng là hai bang chủ là Angel và Davil",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

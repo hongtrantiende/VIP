@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "7579",
+        "NAME": "Ngưu Bút",
+        "CHAPTER": [
+            {
+                "id": "2681880",
+                "name": "Chương 1: Hảo ô thỏ ngọc"
+            }
+        ],
+        "TOTALCHAPTER": "292",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đô Thị, Dị Năng",
+        "AUTHOR": "Kiếm Tây Lai",
+        "TRANS": "Hoàng Châu",
+        "DESC": "Đ&ecirc;m trước kỳ thi tốt nghiệp trung học, một nh&aacute;nh lai lịch kh&ocirc;ng r&otilde; b&uacute;t m&aacute;y, sửa một c&aacute;i học sinh phổ th&ocirc;ng vận mệnh.<br /> <br /> Thỏ ngọc bị biếm nh&acirc;n gian bị phạt, Th&aacute;i Thượng L&atilde;o Qu&acirc;n ở trần thế r&egrave;n luyện, T&ocirc; Đ&aacute;t Kỷ lại vẫn ở b&ecirc;n người, Bạch Tố Trinh kỳ thực từ l&acirc;u chạy ra L&ocirc;i Phong Th&aacute;p. . .<br /> <br /> Ở Lưu Minh dưới ng&ograve;i b&uacute;t, trong tam giới lại kh&ocirc;ng b&iacute; mật.<br /> <br /> Sau đ&oacute; hắn ph&aacute;t hiện, n&agrave;y chi b&uacute;t thậm ch&iacute; c&oacute; thể họa địa vi lao, nghịch thi&ecirc;n cải mệnh, đại Ngọc Đế hạ chỉ, thay Di&ecirc;m Vương c&acirc;u hồn!<br /> <br /> Như vậy vấn đề đến rồi, đ&acirc;y rốt cuộc l&agrave; một nh&aacute;nh. . . Cái gì b&uacute;t?<br /> <br /> Đ&uacute;ng, n&agrave;y rất tr&acirc;u b&uacute;t.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

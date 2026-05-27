@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "3994",
+        "NAME": "Thiên Hạ Hữu Địch",
+        "CHAPTER": [
+            {
+                "id": "1460147",
+                "name": "Chương 1 – Ngươi có nghe thấy tiếng sấm không"
+            }
+        ],
+        "TOTALCHAPTER": "40",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đô Thị",
+        "AUTHOR": "Ôn Thuỵ An",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Luận Anh Hùng hệ liệt:<br />\r\n<br />\r\n1. Ôn Nhu Nhất Đao<br />\r\n2. Nhất Nộ Bạt Kiếm<br />\r\n3. Kinh Diễm Nhất Thương<br />\r\n4. Thương Tâm Tiểu Tiễn<br />\r\n5. Triều Thiên Nhất Côn<br />\r\n6. Quần Long Chi Thủ<br />\r\n7. Thiên Hạ Hữu Địch",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

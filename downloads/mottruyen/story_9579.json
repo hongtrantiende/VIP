@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "9579",
+        "NAME": "Thiên Vẫn Lạc Truyện",
+        "CHAPTER": [
+            {
+                "id": "3235817",
+                "name": "Chương 1 :  Mặc Thần"
+            }
+        ],
+        "TOTALCHAPTER": "1",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp",
+        "AUTHOR": "Đại Lý Đoạn Hoàng",
+        "TRANS": "longthanpq1997",
+        "DESC": "@_@  <br />\r\n   (*_*)    Mặc Thần",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

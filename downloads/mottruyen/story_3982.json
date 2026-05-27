@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "3982",
+        "NAME": "Võng Du Chi Danh Động Giang Hồ",
+        "CHAPTER": [
+            {
+                "id": "1451897",
+                "name": "Chương 1: Mới vào giang hồ"
+            }
+        ],
+        "TOTALCHAPTER": "598",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Võng Du",
+        "AUTHOR": "Quân Mạc",
+        "TRANS": "Greenphoenix28",
+        "DESC": "Thi&ecirc;n hạ anh h&ugrave;ng ra đời ta,<br /><br />Vừa v&agrave;o giang hồ tuế nguyệt th&uacute;c.<br /><br />Vương Triều sự thống trị quay đầu kh&ocirc;ng,<br /><br />Kh&ocirc;ng bằng nh&acirc;n sinh một hồi say.<br /><br />Một c&aacute;i h&agrave;o h&ugrave;ng giang hồ, một đ&aacute;m trọng nghĩa hiệp kh&aacute;ch, một kh&uacute;c rung động đến t&acirc;m can giang hồ ca dao!<br /><br />Theo giang hồ bạch đinh đến một đời T&ocirc;ng Sư, theo trụ cột v&otilde; c&ocirc;ng đến Cửu &Acirc;m Cửu Dương Thần C&ocirc;ng. Thế gia, bang ph&aacute;i, t&igrave;nh bạn, t&igrave;nh y&ecirc;u. Ti&ecirc;u Ng&acirc;n kinh nghiệm một hồi lột x&aacute;c, cuối c&ugrave;ng nhất danh chấn giang hồ...",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

@@ -33,14 +33,15 @@ export interface NovelExportData {
 
 export async function exportNovel(
   novelId: string,
-  options?: { includeVersions?: boolean },
+  options?: { includeVersions?: boolean; subTab?: "standard" | "ai" },
 ): Promise<NovelExportData> {
   const novel = await db.novels.get(novelId);
   if (!novel) throw new Error("Novel not found");
 
   const includeVersions = options?.includeVersions ?? false;
+  const subTab = options?.subTab;
 
-  const [chapters, scenes, characters, notes, nameEntries, replaceRules, excludedNames] =
+  const [allChapters, allScenes, characters, notes, nameEntries, replaceRules, excludedNames] =
     await Promise.all([
       db.chapters.where("novelId").equals(novelId).toArray(),
       includeVersions
@@ -55,6 +56,15 @@ export async function exportNovel(
       db.replaceRules.where("scope").equals(novelId).toArray(),
       db.excludedNames.where("scope").equals(novelId).toArray(),
     ]);
+
+  const chapters = subTab === "ai"
+    ? allChapters.filter(c => !!c.isAiWritten)
+    : subTab === "standard"
+      ? allChapters.filter(c => !c.isAiWritten)
+      : allChapters;
+
+  const chapterIds = new Set(chapters.map(c => c.id));
+  const scenes = allScenes.filter(s => chapterIds.has(s.chapterId));
 
   return {
     version: 2,
@@ -94,11 +104,12 @@ export function isSceneTranslated(s: Scene): boolean {
 export async function downloadNovelChaptersZip(
   novelId: string,
   mode: "translated" | "original" = "translated",
+  subTab?: "standard" | "ai",
 ) {
   const novel = await db.novels.get(novelId);
   if (!novel) throw new Error("Novel not found");
 
-  const [chapters, scenes] = await Promise.all([
+  const [allChapters, scenes] = await Promise.all([
     db.chapters.where("novelId").equals(novelId).sortBy("order"),
     mode === "translated"
       ? db.scenes.where("[novelId+isActive]").equals([novelId, 1]).toArray()
@@ -120,6 +131,12 @@ export async function downloadNovelChaptersZip(
         })(),
   ]);
 
+  const chapters = subTab === "ai"
+    ? allChapters.filter(c => !!c.isAiWritten)
+    : subTab === "standard"
+      ? allChapters.filter(c => !c.isAiWritten)
+      : allChapters;
+
   const zip = new JSZip();
   const folderName = `${novel.title.replace(/[/\\?%*:|"<>]/g, "_")}${mode === "original" ? "_GOC" : ""}`;
   const folder = zip.folder(folderName);
@@ -132,7 +149,7 @@ export async function downloadNovelChaptersZip(
       .filter((s) => s.chapterId === chapter.id)
       .sort((a, b) => a.order - b.order);
 
-    if (mode === "translated") {
+    if (mode === "translated" && subTab !== "ai") {
       const hasTranslatedContent = chapterScenes.some(isSceneTranslated);
       if (!hasTranslatedContent) continue;
     }
@@ -159,11 +176,12 @@ export async function downloadNovelChaptersZip(
 export async function downloadNovelTxt(
   novelId: string,
   mode: "translated" | "original" = "translated",
+  subTab?: "standard" | "ai",
 ) {
   const novel = await db.novels.get(novelId);
   if (!novel) throw new Error("Novel not found");
 
-  const [chapters, scenes] = await Promise.all([
+  const [allChapters, scenes] = await Promise.all([
     db.chapters.where("novelId").equals(novelId).sortBy("order"),
     mode === "translated"
       ? db.scenes.where("[novelId+isActive]").equals([novelId, 1]).toArray()
@@ -185,6 +203,12 @@ export async function downloadNovelTxt(
         })(),
   ]);
 
+  const chapters = subTab === "ai"
+    ? allChapters.filter(c => !!c.isAiWritten)
+    : subTab === "standard"
+      ? allChapters.filter(c => !c.isAiWritten)
+      : allChapters;
+
   let content = `${novel.title}${mode === "original" ? " (Bản Gốc)" : ""}\n${novel.author ? `Tác giả: ${novel.author}\n` : ""}\n`;
 
   const UNWANTED_TEXT =
@@ -196,7 +220,7 @@ export async function downloadNovelTxt(
       .filter((s) => s.chapterId === chapter.id)
       .sort((a, b) => a.order - b.order);
 
-    if (mode === "translated") {
+    if (mode === "translated" && subTab !== "ai") {
       const hasTranslatedContent = chapterScenes.some(isSceneTranslated);
       if (!hasTranslatedContent) continue;
     }

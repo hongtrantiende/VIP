@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "12624",
+        "NAME": "Võng Du Tam Quốc Chi Thiên Hạ",
+        "CHAPTER": [
+            {
+                "id": "4085067",
+                "name": "Chương 1: Lại vào trò chơi"
+            }
+        ],
+        "TOTALCHAPTER": "10",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Võng Du, Quân Sự, Lịch Sử",
+        "AUTHOR": "Phi ca ở nơi nào",
+        "TRANS": "Beep",
+        "DESC": "Đối mặt trò chơi, trong hiện thực thế lực tranh phân, nhìn Vu Khiêm như thế nào bằng vào kinh nghiệm của mình cùng đầu não, thành thạo điêu luyện ở giữa, thực hiện kia lại dần dần dấy lên dã tâm!<br />\r\nTác giả định nghĩa: Làm ruộng, tranh bá, mỹ nữ, sự nghiệp, quốc gia. . .",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

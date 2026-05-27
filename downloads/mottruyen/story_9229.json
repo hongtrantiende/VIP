@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "9229",
+        "NAME": "Biến Thân Nữ Tướng Sư",
+        "CHAPTER": [
+            {
+                "id": "3138936",
+                "name": "Chương 1: Chiến"
+            }
+        ],
+        "TOTALCHAPTER": "55",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đô Thị, Dị Năng, Xuyên Không, Trùng Sinh",
+        "AUTHOR": "Mặc Huyền Quân",
+        "TRANS": "Al",
+        "DESC": "Tắc Thiên bệ hạ khâm điểm Thái Sử cục giám chính, đường đường tám thước nam nhi, lại xuyên qua đến hiện đại thành một cái tiểu kiều nương.<br />\r\n<br />\r\n\tMở trực tiếp, chơi weibo?<br />\r\n<br />\r\n\tCái quỷ gì, hoàn toàn không biết là cái gì đồ chơi.<br />\r\n<br />\r\n\tNhưng mà, lập chí dùng thần côn kỹ năng kiếm tiền làm giải phẫu, nghĩ biến thành thân nam nhi nàng (hắn), không cẩn thận tại mới truyền thông phát hỏa~~<br />\r\n<br />\r\n\tTô Ly: \"Chúng ta, vẫn là đến tính một quẻ đi!\"",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

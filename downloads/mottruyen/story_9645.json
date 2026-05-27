@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "9645",
+        "NAME": "Chiêu Vãn Chi Truyện",
+        "CHAPTER": [
+            {
+                "id": "3256554",
+                "name": "Chương 1 : Tàn Hồn Kì Bí"
+            }
+        ],
+        "TOTALCHAPTER": "3",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo, Ngôn Tình, Dị Giới",
+        "AUTHOR": "tieulam402",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Sinh ra đã là phượng hoàng, dù không còn bộ lông rực rỡ như ánh lửa trong đêm tối thì trong máu vẫn có huyết thống của giống loài cao quý ấy, chết cũng không thay đổi.<br />\r\n<br />\r\nKhi Khả Nhĩ Đại Lục chìm vào bóng đêm vô tận, suối tóc bạch kim sáng rực dưới ánh nắng mặt trời hoá đen huyền, đôi đồng tử màu bạc hoá màu đỏ thị huyết yêu mị, sâu như mười tám tầng địa ngục thì ngày tàn của nhân loại đã đến......<br />\r\n<br />\r\nMười sáu năm, với tôi, thực sự nó rất ngắn......",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

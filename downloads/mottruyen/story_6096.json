@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "6096",
+        "NAME": "Anh hùng liên minh: Mỹ nữ quân đoàn",
+        "CHAPTER": [
+            {
+                "id": "2185078",
+                "name": "Chương 21: Teemo quá ô"
+            }
+        ],
+        "TOTALCHAPTER": "14",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đô Thị, Võng Du, Xuyên Không",
+        "AUTHOR": "Thiên Vạn Độ",
+        "TRANS": "Thánh Lưu",
+        "DESC": "Đây là một cái kiếp trước bán chà bông bính Kim Cương chủ bá Lý An Xuyên Việt đến một cái Anh Hùng Liên Minh Thống Trị thế giới thời không song song, Xưng Bá Anh Hùng Liên Minh giới, Hồi Sinh thu mỹ cố sự.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

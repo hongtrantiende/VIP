@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "8817",
+        "NAME": "Tà Y Ngạo Thiên",
+        "CHAPTER": [
+            {
+                "id": "3016109",
+                "name": "Chương 1: Vẫn Lạc"
+            }
+        ],
+        "TOTALCHAPTER": "8",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp, Đồng Nhân, Trùng Sinh",
+        "AUTHOR": "thangbr147@",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Thêm sau nhé",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "12051",
+        "NAME": "Không Hai Đại Đạo",
+        "CHAPTER": [
+            {
+                "id": "3937626",
+                "name": "Chương 1: Vân Ẩn tông quét viện người"
+            }
+        ],
+        "TOTALCHAPTER": "405",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp",
+        "AUTHOR": "Văn Đao Thủ Dư",
+        "TRANS": "hui235235",
+        "DESC": "Từ góc độ nào đó tới nói, đây là một cái liên quan tới nhân vật chính Ngụy Bất Nhị cùng một đống mở các loại kim thủ chỉ máy gian lận phối hợp diễn cố sự.<br />\r\n<br />\r\n\tNói nghiêm chỉnh: Thiên Địa Huyền Hoàng, Vũ Trụ Hồng Hoang; nhật nguyệt doanh trắc, thần túc liệt trương.<br />\r\n<br />\r\n\tDuy ý chí thiên địa, bụng giấu nhật nguyệt, là vì Không Hai Đại Đạo.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

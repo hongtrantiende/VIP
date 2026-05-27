@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "7925",
+        "NAME": "Vạn Cổ Giai Yêu",
+        "CHAPTER": [
+            {
+                "id": "2770181",
+                "name": "Chương 1:  Hồ Yêu"
+            }
+        ],
+        "TOTALCHAPTER": "102",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp",
+        "AUTHOR": "Tịch Chanh",
+        "TRANS": "Time",
+        "DESC": "[ 【 2016 Tinh sáng tạo thưởng tiên hiệp dự thi tác phẩm 】]    -Một số bình luận bên TQ, vote hàng tuần đạt hơn 1 vạn 2.   [ bình luận ] khó gặp sách hay!  [Bình luận] Ta vẫn là ưa Nhâm Bắc [ Fn=4] cảm tình chiến tuyến cố sự chiến tuyến cũng rất tốt  - Chủ giác hẳn là Đế Tuấn, hoặc là Thái Nhất.  --\tKhen ngợi! ! Tại Thư Hoang bên trong tìm tới dạng này một quyển sách không dễ dàng. Quyển sách áp dụng hồng hoang bối cảnh",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

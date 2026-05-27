@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "983",
+        "NAME": "Quyền Tài",
+        "CHAPTER": [
+            {
+                "id": "277073",
+                "name": "Chương 1: Một trường tai nạn giao thông cùng quay ngược thời gian"
+            }
+        ],
+        "TOTALCHAPTER": "2029",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đô Thị",
+        "AUTHOR": "Thường Dụ",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Trong cuộc đời ai m&agrave; chẳng c&oacute; những l&uacute;c hối tiếc, ai m&agrave; chẳng c&oacute; những l&uacute;c ước g&igrave;... gi&aacute; m&agrave;...\r\n<br />Đ&aacute;ng tiếc thay, cuộc đời lại kh&ocirc;ng c&oacute; b&aacute;n thuốc hối hận.<br /><br />Nhưng...  nếu như ta c&oacute; thể quay trở lại một ph&uacute;t th&igrave; sao, một ph&uacute;t tức l&agrave; s&aacute;u  mươi gi&acirc;y đ&oacute;. C&oacute; biết bao nhi&ecirc;u chuyện ta c&oacute; thể l&agrave;m lại trong s&aacute;u mươi  gi&acirc;y đ&oacute;.<br /><br />Vậy ch&uacute;ng ta c&oacute; thể thay đổi được g&igrave;?<br /><br />Đổng Học B&acirc;n n&oacute;i, nếu t&ocirc;i c&oacute; thể quay trở lại s&aacute;u mươi gi&acirc;y, t&ocirc;i sẽ v&agrave;o Bộ Ch&iacute;nh trị Trung Ương...<br /><br />C&oacute; nổ qu&aacute; kh&ocirc;ng? Mời bạn theo d&otilde;i sẽ r&otilde;...",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

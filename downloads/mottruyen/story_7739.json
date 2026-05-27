@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "7739",
+        "NAME": "Địa Cầu Duy Nhất Tu Sĩ",
+        "CHAPTER": [
+            {
+                "id": "3051513",
+                "name": "Chương 1: Bất khuất Từ Chí"
+            }
+        ],
+        "TOTALCHAPTER": "1081",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp, Đô Thị",
+        "AUTHOR": "Tiểu Đoạn Thám Hoa",
+        "TRANS": "๖ۜVân ๖ۜPhong™",
+        "DESC": "Đây là một chư tinh vực lần thứ năm Phong Thần sau khi , tân Phong Thần khiến trưởng thành cố sự !<br />\r\n<br />\r\n\tĐịa Cầu Duy Nhất Tu Sĩ Từ Chí nhiệm vụ chính là chấp chưởng hình phạt , mở ra lần thứ sáu tinh vực đại Phong Thần !!<br />\r\n<br />\r\n\tTiểu Đoạn Tham Hoa đô thị sách mới , đã hoàn thành 16 triệu chữ khởi điểm tiên hiệp đệ nhất trường thiên 《 Tu Thần Ngoại Truyện 》",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

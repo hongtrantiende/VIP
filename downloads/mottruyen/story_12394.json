@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "12394",
+        "NAME": "Nguyệt Sắc",
+        "CHAPTER": [
+            {
+                "id": "4050651",
+                "name": "Chương 1.  Xuất phát"
+            }
+        ],
+        "TOTALCHAPTER": "2",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Dị Giới, Xuyên Không, Đồng Nhân",
+        "AUTHOR": "nguyetthan_duonglam",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Ichiko Ryo là công chúa của Long tộc, cô đc sinh vào đêm trăng tròn và cô ra đời lúc mặt trời mọc vì vậy cô vừa có thể tu luyện linh lực  lại vừa có khả năng vận dụng yêu lực. Cô có phụ thân là tộc trưởng,-Bạch Long mẹ là 1 Kim Long - là rồng bảo hộ Long tộc, được Long Thần ban cho sức mạnh. Vì vậy cô có mái tóc trắng nhưng lại có đôi mắt màu vàng kim.<br />\r\n    Khi cô được 100t chiếu theo tộc quy cô có thể rời khỏi tộc ra thế giới xung quanh.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

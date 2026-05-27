@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "7859",
+        "NAME": "Long Hồn Chiến Thần",
+        "CHAPTER": [
+            {
+                "id": "2750858",
+                "name": "Chương 1: Võ Đế trọng sinh"
+            }
+        ],
+        "TOTALCHAPTER": "430",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo, Trùng Sinh",
+        "AUTHOR": "Già phê đậu động",
+        "TRANS": "808",
+        "DESC": "Đó là một võ hồn thế giới. Võ hồn có bảy đẳng cấp, từ thấp đến cao phân biệt hiện ra xích, chanh, hoàng, lục, thanh, lam, tử thất chủng nhan sắc. Một đời Võ Đế Lưu Phong, ở trong kinh thiên âm mưu bị giết, tại nghịch thiên cơ duyên dưới trọng sinh. Hắn trọng sinh kèm theo một đạo có thể nói nghịch thiên khí võ hồn, Thiên Cơ đao, còn chiếm được một đạo có thể nói nghịch thiên siêu cấp Thú võ hồn, Tử Kim Thần Long. Này hai đạo võ hồn chẳng những có thể giúp hắn tu luyện, có thể giúp đỡ hắn tầm bảo, còn có thể giúp hắn đánh nhau tán gái, từ đó bước trên nhiệt huyết vô địch con đường báo thù, mở ra bá đạo tuyệt luân Chiến Thần kiếp sống.  . .",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

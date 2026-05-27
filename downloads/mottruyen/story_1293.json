@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "1293",
+        "NAME": "Toàn Chức Cao Thủ",
+        "CHAPTER": [
+            {
+                "id": "520350",
+                "name": "Chương 1: Bị khu trục cao thủ"
+            }
+        ],
+        "TOTALCHAPTER": "1730",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Võng Du",
+        "AUTHOR": "Hồ Điệp Lam",
+        "TRANS": "tuthan7388, Mộ Dung Ý Nhy, bakanekosb",
+        "DESC": "V&otilde;ng Du Vinh Diệu trong được vinh dự s&aacute;ch gi&aacute;o khoa cấp bậc ch&iacute;nh l&agrave; cao thủ đứng đầu, bởi v&igrave; c&aacute;c loại nguy&ecirc;n nh&acirc;n lọt v&agrave;o c&acirc;u lạc bộ khu trục, rời đi chức nghiệp quyển hắn gửi th&acirc;n tại một nh&agrave; v&otilde;ng a th&agrave;nh một c&aacute;i nho nhỏ v&otilde;ng tr&ocirc;ng nom, nhưng l&agrave;, c&oacute; được mười năm du h&iacute; kinh nghiệm hắn, tại vinh quang mới mở thứ mười khu một lần nữa đầu nhập v&agrave;o du h&iacute;, mang theo đối trước kia nhớ lại, c&ugrave;ng một bả vẫn chưa xong tự chế vũ kh&iacute;, bắt đầu rồi trở về đỉnh phong chi lộ. Thỉnh xem c&aacute;nh hoa:<br /><br />Tất cả bức hoạ cuộn tr&ograve;n, đem trong n&agrave;y từ từ triển khai. L&agrave;m cho người ta thất vọng, kh&ocirc;ng chỉ l&agrave; phản bội; l&agrave;m cho người ta huy ho&agrave;ng, kh&ocirc;ng chỉ l&agrave; vinh quang.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

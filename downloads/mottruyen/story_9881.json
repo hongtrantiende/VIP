@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "9881",
+        "NAME": "Actor Dị Hương Nhân",
+        "CHAPTER": [
+            {
+                "id": "3333907",
+                "name": "Đệ 001 chương Oguri? Ngủ yên?"
+            }
+        ],
+        "TOTALCHAPTER": "265",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đô Thị",
+        "AUTHOR": "Lại Nọa De Thiên",
+        "TRANS": "Luciper",
+        "DESC": "Đây là một cái diễn viên quần chúng diễn viên xuyên qua đến thế giới song song Hàn quốc Seoul cố sự, làm một cái diễn viên quần chúng trở thành cao tiện soái, sẽ ở Hàn quốc phát sinh ra sao cố sự đây?<br />\r\n<br />\r\n\tBae Suzy: \"OPPA, hẹn sao?\"<br />\r\n<br />\r\n\tLee Ji Eun: \"Tiền bối, thời gian điểm, điện thoại di động thu cẩn thận, tay của ta có chút trơn.\"<br />\r\n<br />\r\n\tPark Cho Rong: \"Tiện nhân, đi chết đi.\"",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

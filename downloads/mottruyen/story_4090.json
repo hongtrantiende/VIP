@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "4090",
+        "NAME": "Dị giới sủng vật điếm",
+        "CHAPTER": [
+            {
+                "id": "1500786",
+                "name": "Chương 1 + 2 : Siêu thần thú"
+            }
+        ],
+        "TOTALCHAPTER": "309",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Võng Du, Dị Giới",
+        "AUTHOR": "Phì Ngư Ngận Phì",
+        "TRANS": "loveCV",
+        "DESC": "Mang cá hệ thống qua dị giới bán linh thú <br />\r\n<br />\r\nP/s : Mong Các bạn bỏ ra khoảng 10s để cảm ơn mỗi chap truyện và thoáng đánh giá \"tốt \" 1 phát , bảng xếp hạng cvt dựa trên 2 tiêu chí đó , TKS~",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

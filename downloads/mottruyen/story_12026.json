@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "12026",
+        "NAME": "Diệu Thủ Đại Tiên Nông",
+        "CHAPTER": [
+            {
+                "id": "3936203",
+                "name": "Chương 1:  ai nói ngươi chết"
+            }
+        ],
+        "TOTALCHAPTER": "363",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đô Thị",
+        "AUTHOR": "Phiêu miểu mộng",
+        "TRANS": "๖ۣۜTiếu ๖ۣۜHồng ๖ۣۜTrần",
+        "DESC": "Thiếu niên ở sơn thôn được tam hoàng chi địa hoàng Thần Nông chi truyền thừa , sẽ tu chân , thông võ thuật , tinh luyện đan , vẽ phù triện , sẽ trồng trọt , sẽ tán gái , mở ra một đoạn con đường nghịch thiên.<br />\r\n<br />\r\n\t\"Ta muốn đem ta đủ nhớ trải rộng Tam Giới.\" Lâm Thiếu Dương nhìn lên trời xanh phát ra rống giận.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "1583",
+        "NAME": "Hỗn Độn Thần Kiếp",
+        "CHAPTER": [
+            {
+                "id": "647700",
+                "name": "Chương 1:  Thiên Sát truyền thừa"
+            }
+        ],
+        "TOTALCHAPTER": "403",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo, Dị Giới",
+        "AUTHOR": "Vân Lưu Vũ",
+        "TRANS": "Seberus",
+        "DESC": "Thi&ecirc;n T&acirc;m, một c&aacute;i tại diệt thần sơn mạch b&ecirc;n trong, đi theo c&ograve;n s&oacute;t lại một tia t&agrave;n hồn sư ph&oacute; lớn l&ecirc;n tiểu tử. Tại ch&iacute;nh m&igrave;nh t&aacute;m tuổi năm đ&oacute;, rốt cục về tới u lam đại lục. Nhưng m&agrave; t&igrave;nh cảnh trước mắt, lại sớm d&ugrave;ng người v&agrave; vật kh&ocirc;ng c&ograve;n!<br /><br />Cha mẹ chi th&ugrave;, gia tộc mối hận, ch&iacute;nh m&igrave;nh Thi&ecirc;n S&aacute;t chi tinh lại cất dấu như thế n&agrave;o b&iacute; mật?<br /><br />Mang qu&aacute; nhiều nghi hoặc c&ugrave;ng kh&oacute; hiểu, Thi&ecirc;n T&acirc;m cuối c&ugrave;ng nhất bước l&ecirc;n c&aacute;i kia giả tưởng lữ tr&igrave;nh, trở th&agrave;nh tiếu ngạo tam giới Ch&iacute; T&ocirc;n! Ngũ H&agrave;nh năng lượng Thần Vương, nguy&ecirc;n tố ph&aacute;p tắc chủ thần, hết thảy đều ở hắn khống chế ph&iacute;a dưới...",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

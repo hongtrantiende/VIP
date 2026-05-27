@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "1758",
+        "NAME": "Tử Vong Cạnh Kỹ Tràng",
+        "CHAPTER": [
+            {
+                "id": "726045",
+                "name": "Chương 1: Thần bí khế ước"
+            }
+        ],
+        "TOTALCHAPTER": "133",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Khoa Huyễn",
+        "AUTHOR": "Tam Cân Đại Mễ",
+        "TRANS": "Manh Manh",
+        "DESC": "Một phong thần b&iacute; khế ước, để Ti&ecirc;u Dật tiến v&agrave;o tử vong s&acirc;n đấu, ở đ&acirc;y, Thi&ecirc;n Thần c&ugrave;ng &Aacute;c ma chia l&agrave;m hai đại trận doanh ch&eacute;m giết lẫn nhau.<br /><br />&Aacute;c Ma th&agrave;nh, Zombie th&agrave;nh, Ma Quỷ hải vực, Thi&ecirc;n Kh&ocirc;ng th&agrave;nh... Ở v&ocirc; số tấm bản đồ b&ecirc;n trong, hai đại trận doanh liều mạng vật lộn với nhau<br /><br />Người thắng, c&oacute; thể thắng được điểm Vinh Dự, thậm ch&iacute; c&oacute; cơ hội đem trang bị c&ugrave;ng skill mang về thế giới hiện thực, h&ocirc; mưa gọi gi&oacute;, kh&ocirc;ng g&igrave; kh&ocirc;ng l&agrave;m được<br /><br />Bại giả, đều sẽ vĩnh viễn tử vong, linh hồn bị ở lại lạnh lẽo Địa ngục",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

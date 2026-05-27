@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "12819",
+        "NAME": "Khống Giới",
+        "CHAPTER": [
+            {
+                "id": "4138905",
+                "name": "Chương  1 : Khống Giới"
+            }
+        ],
+        "TOTALCHAPTER": "3",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Xuyên Không, Mạt Thế",
+        "AUTHOR": "kugsock@",
+        "TRANS": "Nhiều Converter",
+        "DESC": "trạch nam Vô Danh vì cứu người mà chết trước khi chết vô tình cầm được chiếc của 1 mỹ nữ gần đó... rồi anh ấy xuyên qua câu chuyện bắt đầu :D chiếc nhẫn sẽ là mấu chốt câu chuyện.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

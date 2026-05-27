@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "3498",
+        "NAME": "Võng Du Chi Vong Linh Triệu Hoán",
+        "CHAPTER": [
+            {
+                "id": "1212070",
+                "name": "Chương 1: Tần Văn"
+            }
+        ],
+        "TOTALCHAPTER": "816",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Võng Du, Dị Giới",
+        "AUTHOR": "Nhất Dạ Chi Thu",
+        "TRANS": "Alone4u, Little Lucifer",
+        "DESC": "Vốn chỉ muốn biết ch&uacute;t m&oacute;n tiền nhỏ hỗn [lăn l&ocirc;̣n] c&aacute;i ấm no, lại trong l&uacute;c v&ocirc; t&igrave;nh chuyển chức trở th&agrave;nh vong linh vu sư<br /> <br /> Xem th&acirc;m ni&ecirc;n người chơi Tần văn, như thế n&agrave;o nương tựa theo một tay Vong Linh triệu ho&aacute;n, tại 《 đỉnh phong 》 trong m&acirc;y mưa thất thường!<br /> <br /> V&ecirc;nh v&aacute;o h&ograve; h&eacute;t tr&ograve; chơi sinh hoạt, sắp k&eacute;o ra mở m&agrave;n...",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

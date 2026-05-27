@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "3854",
+        "NAME": "Tiên Phủ Đạo Đồ",
+        "CHAPTER": [
+            {
+                "id": "1352444",
+                "name": "Chương 1:  Thạch Cảm Đương"
+            }
+        ],
+        "TOTALCHAPTER": "1375",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Khoa Huyễn",
+        "AUTHOR": "Vân Hạc Chân Nhân",
+        "TRANS": "trang4mat",
+        "DESC": "Kiếm mẻ n&aacute;t bảo, nguy&ecirc;n thạch phế liệu, c&oacute; bao nhi&ecirc;u muốn bao nhi&ecirc;u!<br /><br />Tại Ti&ecirc;n Phủ ở b&ecirc;n trong, những cũng c&oacute; thể n&agrave;y chuyển h&oacute;a th&agrave;nh đắt đỏ t&agrave;i liệu luyện kh&iacute;.<br /><br />... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ...<br /><br />Một l&ograve;ng ti&ecirc;n đồ, c&ugrave;ng trời tranh mệnh!",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

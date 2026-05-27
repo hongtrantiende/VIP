@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "7917",
+        "NAME": "Phượng Vũ Giang Sơn",
+        "CHAPTER": [
+            {
+                "id": "2766491",
+                "name": "Chương 1 : xuyên qua"
+            }
+        ],
+        "TOTALCHAPTER": "2",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Ngôn Tình, Dị Giới, Xuyên Không, Nữ Hiệp",
+        "AUTHOR": "Lộ Phi",
+        "TRANS": "Nhiều Converter",
+        "DESC": "n&agrave;ng kim b&agrave;i s&aacute;t thủ 21 thế kỉ, xuy&ecirc;n qua l&agrave;m phế s&agrave;i th&aacute;i tử <br /> nữ giả nam trang ho&agrave;nh ho&agrave;nh thi&ecirc;n hạ<br /> thần th&uacute; nơi tay trọng bao ko lo, y&ecirc;u nghiệt mỹ nam, muốn cướp liền thưởng<br /> n&agrave;y nửa đường s&aacute;t ra y&ecirc;u nghiệt mỹ nam, bản th&aacute;i tử liền tuyển ngươi l&agrave;m th&aacute;i tử phi",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

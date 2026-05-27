@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "3476",
+        "NAME": "Trọng Kiến Thiên Đình",
+        "CHAPTER": [
+            {
+                "id": "1203977",
+                "name": "Chương 1: Phong Thần bảng"
+            }
+        ],
+        "TOTALCHAPTER": "62",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo",
+        "AUTHOR": "Đông Đằng",
+        "TRANS": "Người Qua Đường Giáp",
+        "DESC": "Thi&ecirc;n Địa chợt ph&aacute;t sinh đại biến, Thi&ecirc;n Đ&igrave;nh băng liệt, Địa Phủ bể tan t&agrave;nh, &acirc;m hồn kh&ocirc;ng về, y&ecirc;u vật t&agrave;n ph&aacute;, ma l&acirc;m thế gian, thế gian sinh linh chinh chiến kh&ocirc;ng nghỉ, Hỗn Loạn v&ocirc; c&ugrave;ng, đưa đến v&ocirc; số tử thương, o&aacute;n kh&iacute; ngưng tụ, Thi&ecirc;n Địa Hỗn Loạn v&ocirc; tự, sắp tan biến, l&agrave; cứu Thi&ecirc;n Địa ch&uacute;ng sinh, Đổng Vũ mang theo Phong Thần bảng đột nhi&ecirc;n xuất hiện, thay thi&ecirc;n Phong Thần, x&acirc;y lại Thi&ecirc;n Đ&igrave;nh, dẫn dắt Thi&ecirc;n Địa vạn vật về lại trật tự, giải t&aacute;n o&aacute;n kh&iacute;, khiến cho Vu Y&ecirc;u người quỷ ma đều quy vị, lại xuất hiện Thượng Cổ phồn vinh!",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

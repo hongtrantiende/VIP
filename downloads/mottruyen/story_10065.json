@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "10065",
+        "NAME": "Mỹ Thực Phiêu Lưu Ký",
+        "CHAPTER": [
+            {
+                "id": "3383689",
+                "name": "Chương 1: Xuyên Lên Thuyền Tặc"
+            }
+        ],
+        "TOTALCHAPTER": "1",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Xuyên Không",
+        "AUTHOR": "keodua",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Một phụ bếp mê truyện online, trong đêm giao đồ ăn bị xe cán, đột nhiên phát hiện xuyên qua một thế giới hoàn toàn xa lạ.<br />\r\nMừng rơi nước mắt, quyết tâm tung hoành dị giới, biến mộng tưởng tiền bạc như mây, gái theo thành bầy thành hiện thực.<br />\r\nBao kinh nghiệm xuyên việt tích cóp từ các bậc tiền bối trên mạng chưa kịp phát huy, hắn bỗng nhận ra sự thật phũ phàng mình xuyên nhầm lên thuyền giặc. Từ đây, hắn bắt đầu lênh đênh tam châu tứ hải tìm kiếm ý nghĩa đích thực cho cuộc sống của mình.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

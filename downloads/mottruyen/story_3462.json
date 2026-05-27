@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "3462",
+        "NAME": "Thiên Nhãn",
+        "CHAPTER": [
+            {
+                "id": "1200921",
+                "name": "Chương 1: Đổ người không được ngược lại bị ngược"
+            }
+        ],
+        "TOTALCHAPTER": "1435",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đô Thị",
+        "AUTHOR": "Phao Bất Khởi Nữu Đích Tàn Lang",
+        "TRANS": "Suntran",
+        "DESC": "Hộ hoa cao thủ , mỹ nữ to&agrave;n bộ thu . Thi&ecirc;n Nh&atilde;n thiếu ni&ecirc;n , bưu h&atilde;n b&aacute; đạo .\r\n<br /> Đổ thạch , Lưu Đ&agrave;o v&ocirc; địch thi&ecirc;n hạ . C&aacute; độ , đổ vương đột nhi&ecirc;n xuất hiện !\r\n<br /> Miểu s&aacute;t địch nh&acirc;n v&ocirc;́n có , nhanh nhất đẩy ng&atilde; , nh&acirc;n sinh liền l&agrave; sảng kho&aacute;i như vậy !",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

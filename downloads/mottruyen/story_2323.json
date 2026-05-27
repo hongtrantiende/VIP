@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "2323",
+        "NAME": "Hạnh Phúc Hệ Thống",
+        "CHAPTER": [
+            {
+                "id": "775599",
+                "name": "Chương 1: Hệ thống tiến đến"
+            }
+        ],
+        "TOTALCHAPTER": "25",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đô Thị",
+        "AUTHOR": "Vô Huyết Dạ Ảnh",
+        "TRANS": "danhsv",
+        "DESC": "Hạnh phúc hệ thống phát bố đệ một hạng nhiệm vụ, hãm hiếp phía trước nữ tử này, kiền đáo nàng cầu xin tha thứ vi chỉ.<br />\r\n<br />\r\ncái gì hãm hiếp từng thuyên, yếu tọa lao đích, vân đào dọa một thân mồ hôi lạnh.<br />\r\n<br />\r\nĐây là hạnh phúc hệ thống lần đầu tiên phát bố nhiệm vụ, túc chủ vân đào nếu tại15 phút bên trong không chấp hành nhiệm vụ nói, vì tránh cho hạnh phúc hệ thống tin tức tiết ra ngoài, hệ thống tương trực tiếp để cho túc chủ não tử vong, hệ thống tương trọng tân tìm kiếm tân túc chủ…….<br />\r\n<br />\r\nhệ thống này bá đạo lắm ,coi vừa yy vừa hài ...",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

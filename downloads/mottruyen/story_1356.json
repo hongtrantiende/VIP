@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "1356",
+        "NAME": "Vạn Quốc Binh Giản",
+        "CHAPTER": [
+            {
+                "id": "565711",
+                "name": "Chương 1: Thiếu niên chi chí (thượng) - Q1"
+            }
+        ],
+        "TOTALCHAPTER": "555",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo",
+        "AUTHOR": "Hoa Sơn Cận",
+        "TRANS": "Kinta",
+        "DESC": "Một c&aacute;i kh&ocirc;ng r&otilde; lai lịch thiếu ni&ecirc;n, tr&iacute; nhớ của hắn bị phong ấn, hắn người mang ch&iacute; bảo, lại kh&ocirc;ng người biết n&oacute;i th&acirc;n thế của hắn.<br /><br />Một c&aacute;i vạn quốc tranh b&aacute; thế giới, biến mất cổ đại văn minh, từng đoạn trống kh&ocirc;ng lịch sử, c&aacute;i g&igrave; mới l&agrave; ch&acirc;n tướng?<br /><br />Một c&aacute;i quần h&ugrave;ng hội tụ thời đại, v&ocirc; số &acirc;m mưu dương mưu, đan xen chằng chịt, thiếu ni&ecirc;n n&ecirc;n l&agrave;m g&igrave; nghịch thi&ecirc;n kh&aacute;ng mệnh, t&igrave;nh cảm của hắn n&ecirc;n l&agrave;m g&igrave; lấy hay bỏ, thế giới n&agrave;y đến c&ugrave;ng l&agrave; hư vẫn l&agrave; thực...",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

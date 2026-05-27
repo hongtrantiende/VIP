@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "11724",
+        "NAME": "Ta Tiểu Thế Giới Có Thể Xuyên Việt",
+        "CHAPTER": [
+            {
+                "id": "3861808",
+                "name": "Chương 1: Trên trời hạ xuống kỳ ngộ"
+            }
+        ],
+        "TOTALCHAPTER": "30",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Kiếm Hiệp, Huyền Ảo, Dị Giới",
+        "AUTHOR": "Cuồng Tiêu Bao Tử",
+        "TRANS": "Mặc Sa",
+        "DESC": "Vương Bằng tại trên đỉnh nhân sinh thời điểm lại mắc phải làm cho người ta tuyệt vọng chứng bệnh, đầu nhập đạo quán, tĩnh tâm ngộ đạo. Cũng không biết là may mắn vẫn là bất hạnh, hắn bị một viên vẫn thạch đập chết, cũng nhờ đó hội ngộ Thế Giới Toái Phiến, mang hắn xuyên qua các loại khác biệt thế giới, nhân sinh chính là như thế trở nên đa dạng....",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

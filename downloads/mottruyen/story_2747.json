@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "2747",
+        "NAME": "Thương Thần",
+        "CHAPTER": [
+            {
+                "id": "901278",
+                "name": "Chương 1 Cướp giết"
+            }
+        ],
+        "TOTALCHAPTER": "149",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo",
+        "AUTHOR": "Thụ Lão Nhị",
+        "TRANS": "Tanikaze",
+        "DESC": "Xuy&ecirc;n qua thương nh&acirc;n thế giới, từ thi&ecirc;n đạo b&ecirc;n trong đổi lấy thương lực, quật khởi dị giới.<br /><br />Một c&aacute;i kh&ocirc;ng c&oacute; tiếng tăm g&igrave; tiểu thương v&ocirc; &yacute; đến, thị trường doanh ti&ecirc;u người ngoại lai, dẫn dắt thương nh&acirc;n bước l&ecirc;n thương n&oacute;i con đường.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

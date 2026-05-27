@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "9626",
+        "NAME": "Long Hỏa Chiến Thần",
+        "CHAPTER": [
+            {
+                "id": "3251366",
+                "name": "Chương 1: Long Hỏa đại lục"
+            }
+        ],
+        "TOTALCHAPTER": "315",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo, Xuyên Không, Trùng Sinh",
+        "AUTHOR": "Phấn Mạt",
+        "TRANS": "808",
+        "DESC": "Long Thần, trên địa cầu tối cường giả, đánh khắp thiên hạ không có đối thủ Thiên Long Viêm Đế. Cũng tại một ngày nào đó, tiến nhập đến một chỗ thần bí không gian, để cho hắn từ Địa Cầu xuyên việt đến Long Hỏa đại lục...",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

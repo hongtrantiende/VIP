@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "12054",
+        "NAME": "Ta Thế Giới Người Tí Hon",
+        "CHAPTER": [
+            {
+                "id": "3937926",
+                "name": "Chương 1: Ngài tồn tại"
+            }
+        ],
+        "TOTALCHAPTER": "580",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đô Thị, Xuyên Không",
+        "AUTHOR": "Thanh Sam Tiểu Bạch",
+        "TRANS": "hui235235",
+        "DESC": "Giới thiệu vắn tắt: Nha, đây chính là giảng thuật nào đó người tới thế giới người tí hon về sau, phát hiện mình có thể một quyền trấn sơn hà, một cước đá ngàn quân, một người địch vạn quốc sau tại hiện thực cùng thế giới người tí hon đều hoành hành Vô Kỵ cố sự.<br />\r\n<br />\r\n\tTổng kết: Đây chính là cái bạn gái nơi đó có thế giới người tí hon chơi vui cố sự.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "10257",
+        "NAME": "Phong Lưu Tam Quốc",
+        "CHAPTER": [
+            {
+                "id": "3438396",
+                "name": "Chương 1: Mưa sao băng"
+            }
+        ],
+        "TOTALCHAPTER": "8",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Kiếm Hiệp, Quân Sự",
+        "AUTHOR": "Dục Hỏa Trọng Sinh",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Nhân vật chính mê say chơi trò Tam Quốc Chí trên mạng, bất ngờ cùng với tình nhân của mình trong một lần đi chơi bị sao băng rớt trúng người xuyên việt về cuối thời Đông Hán.<br />\r\n<br />\r\n- Nhìn thấy người chết đói nghìn dặm xã tắc phiêu linh minh dân như con sâu cái kiến mệnh giống như cọng rơm cái rác.<br />\r\n<br />\r\n- Dấn thân vào dưới trướng Tào Tháo, mong có đại thụ che ấm, đem lòng son chiếu sáng minh nguyệt nhưng công cao chấn chủ bị người ghen, du long thức tỉnh khiến thiên hạ sợ.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "1070",
+        "NAME": "Tri Huyện Giả Mạo",
+        "CHAPTER": [
+            {
+                "id": "340030",
+                "name": "Chương 1: Tri Huyện thắt cổ"
+            }
+        ],
+        "TOTALCHAPTER": "624",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Lịch Sử, Xuyên Không",
+        "AUTHOR": "Mộc Dật",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Một cảnh s&aacute;t đang l&agrave;m nhiệm vụ th&igrave; bị h&ocirc;n m&ecirc; đến khi anh ta tỉnh dậy th&igrave; bản th&acirc;n đ&atilde; ở trong một t&ograve;a th&agrave;nh v&agrave;o những năm đầu của triều đại Bắc Tống.\r\n<br />Ngẫu nhi&ecirc;n bắt gặp một vị quan trẻ yếu đuối tự s&aacute;t trong kh&aacute;ch điếm, thật đặc biệt l&agrave; dung mạo của hai người lại giống nhau như hai giọt nước. <br /><br />Anh ta liền nghĩ ra một kế hoạch để sinh tồn đ&oacute; l&agrave; giả mạo vị quan n&agrave;y.<br /><br />Người n&agrave;y ch&iacute;nh l&agrave; Tri Huyện một huyện, dựa v&agrave;o sự cơ tr&iacute; v&agrave; th&acirc;n thủ nhanh nhẹn liệu anh ta c&oacute; thể để lại một giai thoại như c&aacute;c vị tiền bối xuy&ecirc;n kh&ocirc;ng kh&aacute;c kh&ocirc;ng ch&uacute;ng ta c&ugrave;ng d&otilde;i theo những bước ch&acirc;n của anh nh&eacute;.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

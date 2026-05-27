@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "4422",
+        "NAME": "Võ Hiệp Ôm Mỹ Tiêu Dao",
+        "CHAPTER": [
+            {
+                "id": "1581162",
+                "name": "Chương 1: Nam nhân Thần khí"
+            }
+        ],
+        "TOTALCHAPTER": "127",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp, Kiếm Hiệp, Huyền Ảo, Đồng Nhân",
+        "AUTHOR": "Tiêu Sái Tiểu Ngũ",
+        "TRANS": "๖ۣۜArt of ๖ۣۜTime",
+        "DESC": "Bị nện xuyên qua, nghịch thiên vận may! Thế giới võ hiệp hành, ôm hôn người đẹp tiêu dao, du ngoạn! <br />\r\n<br />\r\nVương Ngữ Yên, A Bích, A Chu, Tiểu Long Nữ, Tây Thi, võ hiệp mỹ nữ ngươi biết bao nhiêu?................ Võ Hiệp Ôm Mỹ Tiêu Dao!",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "7173",
+        "NAME": "Hàn Ngu Chi Tinh Quang Long Lanh Nhất",
+        "CHAPTER": [
+            {
+                "id": "2563052",
+                "name": "Chương 1:năm 98"
+            }
+        ],
+        "TOTALCHAPTER": "40",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đô Thị",
+        "AUTHOR": "鱼了- Ngư",
+        "TRANS": "tuma_votinh",
+        "DESC": "PS: Quyển s&aacute;ch đi l&agrave; thuần khiết, phấn đấu hướng l&ecirc;n, ch&iacute;nh năng lượng tiểu thuyết, nhẹ nh&otilde;m lộ tuyến, nh&igrave;n quyển s&aacute;ch n&agrave;y mời bu&ocirc;ng lỏng t&acirc;m t&igrave;nh, trời tối người y&ecirc;n thời điểm nh&igrave;n hiệu quả c&agrave;ng tốt.<br /> Đấy, của t&aacute;c giả đấy, giờ l&agrave; của ta. Đ&acirc;y l&agrave; 1 hố nh&eacute; ae, m&igrave;nh vừa l&agrave;m vừa đọc th&agrave;nh ra m&igrave;nh đọc bạn cũng đọc n&ecirc;n đừng y&ecirc;u cầu chương l&agrave;m g&igrave;. L&atilde;o n&agrave;o th&iacute;ch th&igrave; n&oacute;i v&agrave;i c&acirc;u dễ nghe, vote sao cho ta để tăng cảm hứng cho ta l&agrave;m",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

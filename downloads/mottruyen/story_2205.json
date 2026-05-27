@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "2205",
+        "NAME": "Tuyệt Phẩm Thiên Vương",
+        "CHAPTER": [
+            {
+                "id": "749484",
+                "name": "Chương 1: Dị thế linh hồn"
+            }
+        ],
+        "TOTALCHAPTER": "538",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đô Thị",
+        "AUTHOR": "Ngư Luân",
+        "TRANS": "Hàn Dạ",
+        "DESC": "Một lần bất ngờ, để phổ thông sinh viên đại học Lâm Huy dung hợp một cái đến từ dị thế linh hồn.<br />\r\n<br />\r\nTheo linh hồn ký ức toái phiến từng bước dung hợp, các loại bản lĩnh kỹ năng lần lượt bày ra, thân thủ, dịch dung, ám khí, đổ thuật... Đây chỉ là những ký ức ấy bên trong một phần mà thôi.<br />\r\n<br />\r\nHơn nữa Lâm Huy phát hiện, nguyên bản những kia nhìn như chuyện khó khăn đột nhiên biến đơn giản lên.<br />\r\n<br />\r\nTừ đây, cuộc đời của hắn nhất định sẽ không còn bình phàm, tiền tài? Mỹ nữ? Quyền thế?<br />\r\n<br />\r\nYêu nghiệt loại năng lực học tập, nghịch thiên Thần khí, Lâm Huy cuộc sống tốt đẹp liền triển khai như vậy.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "3820",
+        "NAME": "Lập Đạo Đình",
+        "CHAPTER": [
+            {
+                "id": "1322211",
+                "name": "Chương 1:  xấu hổ vì trong ví tiền rỗng tuếch Quán chủ"
+            }
+        ],
+        "TOTALCHAPTER": "803",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Khoa Huyễn",
+        "AUTHOR": "Mãnh Hổ Đạo Trường",
+        "TRANS": "trang4mat",
+        "DESC": "Đại đạo v&ocirc; h&igrave;nh, sinh dục Thi&ecirc;n Địa; đại đạo v&ocirc; t&igrave;nh, vận h&agrave;nh Nhật Nguyệt; đại đạo v&ocirc; danh, trường dưỡng vạn vật; ta kh&ocirc;ng biết kỳ danh, cường t&ecirc;n viết đạo.<br /><br />Một ng&agrave;n Đại Thế Giới, 3000 Tiểu Thế Giới.<br /><br />Nơi n&agrave;y l&agrave; mạt ph&aacute;p ni&ecirc;n đại, Thi&ecirc;n Đạo đem sụp đổ, ch&uacute;ng ta Luyện Kh&iacute; chi sĩ, ứng thuận l&ograve;ng trời l&agrave;m việc, kh&ocirc;ng thể nghịch chi.<br /><br />Đạo đ&igrave;nh uy nghi&ecirc;m, ch&uacute;ng ta lập chi!<br /><br />Cầu kh&ocirc;ng muốn vẽ mặt đ&aacute;nh cho qu&aacute; &aacute;c, bần n&oacute;i sao n&oacute;i cũng l&agrave; Th&acirc;n C&ocirc;ng B&aacute;o đệ một trăm lẻ t&aacute;m đời đệ tử đ&iacute;ch truyền, cho ta tổ sư gia lưu ch&uacute;t mặt mũi, hai ch&acirc;n hai tay trước ngực đầu rạp xuống đất c&aacute;m ơn.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

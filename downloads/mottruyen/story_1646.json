@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "1646",
+        "NAME": "Hoa Đô Tu Tiên",
+        "CHAPTER": [
+            {
+                "id": "675499",
+                "name": "Chương 1: Dị Giới khách tới"
+            }
+        ],
+        "TOTALCHAPTER": "18",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp, Đô Thị, Dị Năng",
+        "AUTHOR": "Đinh Đạo",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Tu Chân giả Hàn Húc , chuyển kiếp đến địa cầu , trở thành một bình thường bảo an .<br />\r\n<br />\r\n\tTiểu nhân vật cũng phải đột kích ngược , Hàn Húc lại đạp tiên lộ , từ ngang dọc đô thị bắt đầu , trái ôm phải ấp ở bên trong, mang theo các lộ nữ thần , từng bước một leo lên tu luyện đỉnh cao . . .",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

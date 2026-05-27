@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "12378",
+        "NAME": "Trùng Sinh Thành Thiên Tài",
+        "CHAPTER": [
+            {
+                "id": "4027224",
+                "name": "Chương 1 - Tôi được tái sinh vào thế giới phép thuật"
+            }
+        ],
+        "TOTALCHAPTER": "1",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo, Dị Giới, Trùng Sinh",
+        "AUTHOR": "Shu",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Luật pháp của rừng rậm, người mạnh sẽ phát triển và hưng thịnh trong khi người yếu đuối sẽ bị thối rữa, <br />\r\nluật này áp dụng cho tất cả thế giới mà tôi đã bị giết bởi chị gái quý giá nhất mà tôi chưa bao giờ <br />\r\nmơ đến những giấc mơ hoang dã nhất của tôi, tôi nghĩ sẽ làm những gì cô ấy làm hôm nay, Tôi yêu cô ấy,<br />\r\n tôi làm hỏng cô ấy, có lẽ là một chút quá sức dẫn cô đến khát quyền lực. Đây là câu chuyện của một chiến <br />\r\nbinh bất khả chiến bại rơi trở lại để được một đứa trẻ nhưng trong thế giới phép thuật huyền diệu của anh ta<br />\r\n sẽ phát triển mạnh hoặc anh sẽ rơi như anh đã từng làm trước đây?<br />\r\nTất cả các giai đoạn sẽ được thêm vào chương: D",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

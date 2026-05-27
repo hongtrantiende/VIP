@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "6321",
+        "NAME": "Minh Tinh Dưỡng Thành Hệ Thống",
+        "CHAPTER": [
+            {
+                "id": "2247806",
+                "name": "Chương 01: Hệ thống mở ra!"
+            }
+        ],
+        "TOTALCHAPTER": "80",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đô Thị, Ngôn Tình",
+        "AUTHOR": "Tinh Sầm",
+        "TRANS": "Long Ma Thiên",
+        "DESC": "Cáo biệt áo rồng, thành tựu siêu sao!<br />\r\n<br />\r\nTiểu áo rồng Dương lâm không hiểu trọng sinh rồi, tùy thân mang theo một cái minh tinh dưỡng thành hệ thống.<br />\r\n<br />\r\nHành động? Ngón giọng? Biên kịch? Đạo diễn? Chủ trì? Chúng ta có chuyên môn lớp huấn luyện!<br />\r\n<br />\r\nKịch bản? Ca khúc? Kỹ thuật? Chúng ta có các loại tài nguyên có thể cung cấp download!<br />\r\n<br />\r\nDiễn kịch là yêu nhất, ca hát là kiêm chức, ngẫu nhiên còn nói đùa một chút người chủ trì.<br />\r\n<br />\r\nĐây là một bộ tiểu áo rồng quật khởi sử.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

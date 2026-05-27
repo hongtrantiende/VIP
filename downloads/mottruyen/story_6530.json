@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "6530",
+        "NAME": "Bạo Thực Vu Chủ",
+        "CHAPTER": [
+            {
+                "id": "2324906",
+                "name": "Chương 1: Con của bá tước"
+            }
+        ],
+        "TOTALCHAPTER": "146",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Dị Giới",
+        "AUTHOR": "Quan Hải Công Tử",
+        "TRANS": "H.Nam Phương",
+        "DESC": "Thao Thiết nhập mộng, bạo thực chi chủ!<br />\r\nLàm La Hạ lần thứ nhất mơ tới 'Thao Thiết' nhập mộng về sau, không hiểu xuyên qua đến cái này thần bí khó lường Vu sư thế giới, đi lên một đầu 'Ăn ăn ăn' không đường về!<br />\r\n\"Địch nhân? Quá để ý mình đi, bất quá là đồ ăn mà thôi.\" La Hạ bĩu môi.<br />\r\nTại 'Mỹ thực Vu sư' trong từ điển, coi như là thần linh, cũng bất quá là một loại thức ăn mà thôi!",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

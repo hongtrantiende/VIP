@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "7779",
+        "NAME": "Hùng Bá Thiên Hạ",
+        "CHAPTER": [
+            {
+                "id": "2726581",
+                "name": "Chương 1: Ta Là Bear!"
+            }
+        ],
+        "TOTALCHAPTER": "5",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo",
+        "AUTHOR": "♥ Củ Chuối Vô Tỳnh ♥",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Một game thủ đam mê các trò chơi đối kháng ôm bao hy vọng xuyên việt tới một thế giới do thú tộc thống trị.Vũ lực tối cao? Không có!Người đẹp bốc lửa? Không có!Sao ka lại thảm như vậy? Chẳng lẽ phải ép một người văn minh như ka nổi bão sao?Trâu thần côn bắt đầu hành trình tàn phá không hề kiêng nể tại đại lục thần thú Almond.Quy củ? Không có quy củ!Nguyên tắc? Những gì ka làm chính là nguyên tắc!Thế giới khác nhau, cảm xúc giống nhau, một câu chuyện về một nhân vật nhỏ từng bước hùng bá thiên hạ. Phong cách Khô Lâu, cảm động, bùng nổ, máu nóng còn mãi!",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

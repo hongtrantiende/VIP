@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "12574",
+        "NAME": "One Piece Chi Bộ Mặt Hệ Thống",
+        "CHAPTER": [
+            {
+                "id": "4076367",
+                "name": "Chương 6: Xuất Phát."
+            }
+        ],
+        "TOTALCHAPTER": "17",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Xuyên Không, Đồng Nhân",
+        "AUTHOR": "给我个面子",
+        "TRANS": "Mới Tập",
+        "DESC": "Một Loại khác Shank có hệ thống.<br />\r\n<br />\r\nlần đầu cv có gì sai xót mong dk góp ý.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

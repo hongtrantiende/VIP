@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "10542",
+        "NAME": "Cổ Long Hoàng Thiên",
+        "CHAPTER": [
+            {
+                "id": "3513648",
+                "name": "Chương 1  :   Xuyên Không"
+            }
+        ],
+        "TOTALCHAPTER": "1",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp, Kiếm Hiệp, Huyền Ảo, Xuyên Không",
+        "AUTHOR": "fireor10@",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Đọc rồi Biết",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

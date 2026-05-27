@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "2309",
+        "NAME": "Vạn Cổ Thần Hoàng",
+        "CHAPTER": [
+            {
+                "id": "773239",
+                "name": "Chương 1: Thiên Phú Thần Thông"
+            }
+        ],
+        "TOTALCHAPTER": "667",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo",
+        "AUTHOR": "Tàn Thương",
+        "TRANS": "№.1ŤiểußạchKiểm",
+        "DESC": "Đế Lạc Tinh H&agrave;, Vạn Cổ Tịch Diệt! Tuy&ecirc;n cổ Lu&acirc;n Hồi, Đại Đạo Tang Thương! Hắn Thần Th&ocirc;ng, Dũng Động Tinh H&agrave;, Kinh Chấn B&aacute;t Hoang, Kh&iacute; Lăng Cửu Ti&ecirc;u, Hoa Ph&aacute; Thương Khung! Hắn từ thấp k&eacute;m b&ecirc;n trong đến, thừa kế tuy&ecirc;n cổ bất hủ &yacute; ch&iacute;, cứu vớt vạn cổ đại đạo, ph&aacute; tan số mệnh Lu&acirc;n Hồi, th&agrave;nh tựu V&ocirc; Thượng Thần Th&ocirc;ng! Đ&acirc;y l&agrave; một lấy Thần Th&ocirc;ng tu luyện m&ecirc;nh m&ocirc;ng thế giới, sinh s&ocirc;i đến cực điểm c&aacute;c loại thần th&ocirc;ng, chưởng khống V&ocirc; Thượng Thần Th&ocirc;ng giả, mới c&oacute; thể th&agrave;nh tựu v&ocirc; thượng đại đạo!",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

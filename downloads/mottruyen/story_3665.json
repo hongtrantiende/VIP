@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "3665",
+        "NAME": "Tuyệt Thế Thần Hoàng",
+        "CHAPTER": [
+            {
+                "id": "1263500",
+                "name": "Chương 01: Phù Kinh thiếu niên"
+            }
+        ],
+        "TOTALCHAPTER": "1355",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo",
+        "AUTHOR": "Bất Tín Tà",
+        "TRANS": "Phuongbe1987",
+        "DESC": "Thi&ecirc;n Vực một Đại Y&ecirc;u Ho&agrave;ng vẫn lạc, di trứng trong l&uacute;c v&ocirc; t&igrave;nh bị h&agrave;n m&ocirc;n thiếu ni&ecirc;n Khương Hi&ecirc;n nhặt đến, từ nay về sau đ&atilde; c&oacute; được đạm huyền binh, đoạt thi&ecirc;n địa tạo h&oacute;a chi năng lực.<br /><br />M&ecirc;nh m&ocirc;ng 3000 thế giới, s&oacute;ng cả m&atilde;nh liệt, thần b&iacute; v&ocirc; tận. Y&ecirc;u Phật Thần Ma, can qua kh&ocirc;ng chỉ!<br /><br />Thiếu ni&ecirc;n từ v&acirc;n hải giới m&agrave; ra, trong b&oacute;ng tối đạp tr&ecirc;n từng đống thi cốt đi về ph&iacute;a trước, tiếp nhận t&iacute;n ngưỡng, l&ecirc;n ng&ocirc;i vi ho&agrave;ng!",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

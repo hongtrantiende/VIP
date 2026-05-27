@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "6052",
+        "NAME": "Huyền Thoại Vô Danh",
+        "CHAPTER": [
+            {
+                "id": "2175241",
+                "name": "Chương 1: Huyền thoại bắt đầu"
+            }
+        ],
+        "TOTALCHAPTER": "25",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Võng Du",
+        "AUTHOR": "quanmoriarty@",
+        "TRANS": "Nhiều Converter",
+        "DESC": "một thanh niên tạo nên huyền thoại trong game Khát Vọng Vinh Quang nhưng mà rốt cục game phải đóng cửa . Hắn quyết tâm tạo nên một huyền thoại thứ hai trong game 666. <br />\r\n<br />\r\nĐây là lần đầu tiên mình viết truyện cho nên mong mọi người đọc và góp ý cho mình, tiện thể đọc xong truyện bạn kích vào nút cảm ơn để cho mình động lực viết tiếp được không. Mình xin cảm ơn",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

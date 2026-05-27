@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "11921",
+        "NAME": "Võ Đạo Thần Đế",
+        "CHAPTER": [
+            {
+                "id": "3909893",
+                "name": "Chương 1: Vũ Đạo 9 Đoạn"
+            }
+        ],
+        "TOTALCHAPTER": "80",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo",
+        "AUTHOR": "Vĩnh Bất Diệt",
+        "TRANS": "Việt Anh",
+        "DESC": "Trái tim bong ra từng màng, cải biến khương thần số phận, từ nay về sau đi lên con đường vô địch.<br />\r\n<br />\r\n\tTrăm năm khó gặp thiên tài? Trấn áp!<br />\r\n<br />\r\n\tThiên niên khó gặp kỳ tài? Trấn áp!<br />\r\n<br />\r\n\tChỉ cần không phục ta, hết thảy trấn áp",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

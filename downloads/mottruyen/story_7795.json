@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "7795",
+        "NAME": "Tranh Bá Tu Tiên Giới",
+        "CHAPTER": [
+            {
+                "id": "2729553",
+                "name": "Chương 1: Ngọc Khê Môn"
+            }
+        ],
+        "TOTALCHAPTER": "9",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp",
+        "AUTHOR": "Oa vương ngu sư phó",
+        "TRANS": "๖ۣۜCó๖ۣۜLẽ๖ۣۜTôi๖ۣۜYêu๖ۣۜEm",
+        "DESC": "giới thiệu truyện<br />\r\nTu Tiên cũng muốn đoạt địa bàn? Các ngươi đã nói như vậy, ta đây sẽ tới cùng các ngươi hảo hảo vui đùa một chút. Thôn, huyện, châu, nước, thiên hạ. Bổn vương muốn xưng bá nhân gian, làm kia đệ nhất thiên hạ Tu Tiên đại phái.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

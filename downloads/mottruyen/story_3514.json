@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "3514",
+        "NAME": "Tuyệt Phẩm Thiếu Chủ",
+        "CHAPTER": [
+            {
+                "id": "1219458",
+                "name": "001 chương ta mới không nên bị cô gái bắt nạt ni"
+            }
+        ],
+        "TOTALCHAPTER": "120",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo",
+        "AUTHOR": "Vương Đại Chuy",
+        "TRANS": "ChucMung",
+        "DESC": "Bắt nạt bổn thiếu gia năm năm ti&ecirc;u thiền lại muốn lập gia đ&igrave;nh? N&agrave;o c&oacute; như vậy chuyện dễ d&agrave;ng, thiếu gia thật vất vả mạnh hơn ngươi, ngươi lại muốn chạy, m&ocirc;n đều kh&ocirc;ng c&oacute;, ai d&aacute;m cưới ngươi, l&atilde;o tử liền đ&aacute;nh ai! Cho đến l&atilde;o đem ngươi bắt nạt được rồi mới th&ocirc;i!",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

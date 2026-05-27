@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "2274",
+        "NAME": "Sách Thánh Hiền",
+        "CHAPTER": [
+            {
+                "id": "766572",
+                "name": "Chương 1: Tổ địa phục sinh"
+            }
+        ],
+        "TOTALCHAPTER": "132",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo",
+        "AUTHOR": "Vi Thiếu Thúc Thúc",
+        "TRANS": "QuocViet11",
+        "DESC": "\"Nh&agrave; gi&agrave;u kh&ocirc;ng cần mua ruộng tốt, thư trong tự c&oacute; ngàn chung t&uacute;c;<br /><br />An cư kh&ocirc;ng cần gi&aacute; cao đường, thư trong tự c&oacute; Ho&agrave;ng Kim ốc;<br /><br />Ra ngo&agrave;i mạc hận kh&ocirc;ng người theo, thư trong xa m&atilde; nhiều như thốc;<br /><br />Cưới vợ mạc hận bất lương m&ocirc;i, thư trong tự c&oacute; Nhan Như Ngọc.\"<br /><br />Văn khoa trạng nguy&ecirc;n Chu Kh&ocirc;n bất ngờ xuy&ecirc;n qua đến dị thế, hắn kinh ngạc ph&aacute;t hiện, tr&ecirc;n địa cầu Bắc Tống ho&agrave;ng đế một đoạn văn, c&agrave;ng ở thế giới n&agrave;y bị t&ocirc;n s&ugrave;ng l&agrave; ch&iacute; cao, đoạn n&agrave;y vốn l&agrave; bị định nghĩa v&igrave; l&agrave; chủ nghĩa duy t&acirc;m, ở thế giới n&agrave;y lại bị thực hiện, thư trong thật sự c&oacute; Ho&agrave;ng Kim ốc c&ugrave;ng Nhan Như Ngọc.<br /><br />Ở đ&acirc;y, m&atilde;n mười tr&ograve;n tuổi đứa nhỏ liền quy định muốn tiếp x&uacute;c một loại gọi Cấm Thư thư tịch.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "3240",
+        "NAME": "Tận Thế Trùng Tộc Đế Quân",
+        "CHAPTER": [
+            {
+                "id": "1127833",
+                "name": "Chương 1: Trùng tộc truyền thừa"
+            }
+        ],
+        "TOTALCHAPTER": "528",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Khoa Huyễn",
+        "AUTHOR": "Kỵ Lư Tác Chiến",
+        "TRANS": "Kuro",
+        "DESC": "Tận thế phủ xuống về sau, nhận được StarCraft Tr&ugrave;ng tộc truyền thừa Vương Tiến bắt đầu quật khởi!<br /><br />Tr&ugrave;ng bầy c&ugrave;ng thi biển va chạm!<br /><br />Tr&ugrave;ng bầy c&ugrave;ng biến dị th&uacute; đối quyết!<br /><br />Tr&ugrave;ng bầy c&ugrave;ng kim loại triều d&acirc;ng giao phong!<br /><br />Nơi n&agrave;y l&agrave; d&atilde; t&acirc;m nh&agrave; v&otilde; đ&agrave;i, cường giả Thi&ecirc;n Đường, người yếu Địa Ngục, Vương Tiến . . . nơi nu&ocirc;i nhốt!",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

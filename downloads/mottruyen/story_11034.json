@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "11034",
+        "NAME": "Trọng Sinh Chi Ngạo Tuyết",
+        "CHAPTER": [
+            {
+                "id": "3644380",
+                "name": "Chương 1 Trọng sinh"
+            }
+        ],
+        "TOTALCHAPTER": "6",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đô Thị, Ngôn Tình, Xuyên Không",
+        "AUTHOR": "phonglinh1710",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Nữ chính: Ngạo Tuyết<br />\r\nNam chính: Lăng Hạo<br />\r\nKết thúc: HE<br />\r\nNữ chính là một cô gái tài mạo bình thường, bị người yêu ruồng bỏ, quen một tổng tài lãnh khốc lại gặp sự phản đối của gia đình tổng tài cuối cùng chết trong một tai nạn giao thông chỉ vì một sai sót của ngưu đầu mã diện. Trọng sinh về năm 17 tuổi, cô mạnh mẽ thay đổi bản thân, trở thành nữ cường, đạp bay mọi chướng ngại để đứng bên cạnh tổng tài.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

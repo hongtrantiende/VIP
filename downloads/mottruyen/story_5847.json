@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "5847",
+        "NAME": "Đô Thị Vương Bài Bảo Phiêu",
+        "CHAPTER": [
+            {
+                "id": "2830184",
+                "name": "Chương 1:   yêu nghiệt trở về"
+            }
+        ],
+        "TOTALCHAPTER": "588",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đô Thị",
+        "AUTHOR": "Mạc thất sơ tâm",
+        "TRANS": "Nhiều Converter",
+        "DESC": "C&oacute; chiến trường thu gặt ky, nghiền &eacute;p chi vương hiện đại mạnh nh&acirc;́t l&iacute;nh đ&aacute;nh thu&ecirc; vương, bị v&ocirc; số cường giả t&ocirc;n s&ugrave;ng l&agrave; truyền kỳ tồn tại  biển rừng, bất ngờ nắm giữ một mỹ nữ tổng gi&aacute;m đốc vị h&ocirc;n th&ecirc;, một b&ecirc;n trở th&agrave;nh vị h&ocirc;n th&ecirc; xem thường c&ocirc;ng ty tiểu bảo an, một b&ecirc;n lại l&agrave; mỹ nữ tổng gi&aacute;m đốc qu&yacute; mến thần b&iacute; cận vệ, đều sẽ ở nàng xuất hiện nguy cơ thời khắc, lấy thần b&iacute; kh&oacute; lường h&igrave;nh tượng gi&aacute;ng l&acirc;m, nghiền &eacute;p qu&eacute;t ngang tất cả",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

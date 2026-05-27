@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "6681",
+        "NAME": "Vĩnh Hằng Chí Tôn",
+        "CHAPTER": [
+            {
+                "id": "2478370",
+                "name": "Chương 1: Lý Phù Trần"
+            }
+        ],
+        "TOTALCHAPTER": "1316",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo",
+        "AUTHOR": "Kiếm Du Thái Hư",
+        "TRANS": "Nhiều Converter",
+        "DESC": "vũ đỉnh ngọn núi , di sơn đảo hải , bắt tinh cầm tháng , nghịch loạn thời không !   kiếm hết sức cảnh , một kiếm thành đạo , một kiếm thông thần , một kiếm phá vạn pháp !   thiếu niên lý phù trần , thỉnh thoảng phải màu vàng tiểu phù , linh hồn không ngừng tiến hóa , ở nơi này thiên tài như mưa , cường giả như vân đích thế giới , lấy tay trung chi kiếm , đăng lâm tuyệt điên .   thiên địa cuối cùng có rơi xuống , ta muốn vĩnh hằng bất hủ .",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

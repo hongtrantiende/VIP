@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "3672",
+        "NAME": "Đô Thị Chí Tôn Hệ Thống",
+        "CHAPTER": [
+            {
+                "id": "1264672",
+                "name": "Chương 1: Nửa game thủ chuyên nghiệp"
+            }
+        ],
+        "TOTALCHAPTER": "1693",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đô Thị",
+        "AUTHOR": "Nhất Mộng Nhất Giới",
+        "TRANS": "Nvccanh",
+        "DESC": "Kim Đầu Bế X&aacute;c Quy<br /><br />Sulcata lục quy<br /><br />Đấu c&aacute; thi đấu<br /><br />Lam Tử Kim Cương Anh Vũ<br /><br />Đủ loại đủ kiểu sủng vật một vừa xuất hiện<br /><br />Ch&iacute; T&ocirc;n Hệ Thống cũng c&oacute; thể cho ngươi nắm giữ<br /><br />Đ&ocirc; thị th&agrave;nh tựu Ch&iacute; T&ocirc;n con đường",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "8212",
+        "NAME": "Tu Phật Truyện Ký",
+        "CHAPTER": [
+            {
+                "id": "2830499",
+                "name": "Chương 1: Tâm thuộc về Phật"
+            }
+        ],
+        "TOTALCHAPTER": "15",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo",
+        "AUTHOR": "Alex Trịnh",
+        "TRANS": "SmallDG",
+        "DESC": "Hằng Phật một cái tã lót trẻ sơ sinh, dựa vào Trụ Trì mấy năm nuôi lớn, bắt đầu hắn Phật Tu Chiến Thần Kim Cương nghịch thiên hành trình",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

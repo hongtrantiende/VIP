@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "2777",
+        "NAME": "Tiên Khí",
+        "CHAPTER": [
+            {
+                "id": "910512",
+                "name": "Chương 1: Bước vào tu chân lộ"
+            }
+        ],
+        "TOTALCHAPTER": "1116",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp, Huyền Ảo",
+        "AUTHOR": "Hồng Trần Tiểu Oa Ngưu",
+        "TRANS": "trang4mat",
+        "DESC": "Sơn d&atilde; thiếu ni&ecirc;n Vương Hiền đ&atilde; nhận được một quả Hỗn Nguy&ecirc;n ch&acirc;u, Hỗn Nguy&ecirc;n ch&acirc;u nội phong ấn lấy một c&aacute;i khổng lồ thế giới Hỗn Nguy&ecirc;n giới, dưới c&oacute; Di&ecirc;m La ch&iacute;n điện, b&ecirc;n tr&ecirc;n c&oacute; ba mươi ba trọng thi&ecirc;n.<br /><br />Thăng cấp ph&aacute;p bảo Huyết Tr&igrave;, luyện phế đan cho thỏa đ&aacute;ng đan đan tr&igrave;, linh kh&iacute; nồng đậm linh tuyền tr&igrave;, từng khối chỗ thần b&iacute; chờ đi khai khẩn...<br /><br />Tu ch&acirc;n đẳng cấp: Qu&aacute;n Đỉnh, Ch&acirc;n Cương, Hiển Tổ, Nguy&ecirc;n Thần ( bao h&agrave;m Kim Đan, Nguy&ecirc;n Anh, H&oacute;a Thần ), Thần Th&ocirc;ng, Vấn Đạo, Phong Thần, Ti&ecirc;n Nh&acirc;n, Ti&ecirc;n T&ocirc;n, Ti&ecirc;n Đế...",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "3066",
+        "NAME": "Võ Định Sơn Hà",
+        "CHAPTER": [
+            {
+                "id": "1049369",
+                "name": "Chương 1: Tiêu gia Dật Phong"
+            }
+        ],
+        "TOTALCHAPTER": "274",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo",
+        "AUTHOR": "Hải Đạo Thuyền Trưởng",
+        "TRANS": "Kinta",
+        "DESC": "Chỉ ph&iacute;a xa trời cao ngưỡng Thi&ecirc;n Tiếu, vũ động C&agrave;n Kh&ocirc;n định Sơn H&agrave;!<br /><br />Ti&ecirc;u gia con trai thứ ba Ti&ecirc;u Dật Phong từ nhỏ bị người coi l&agrave; ngoại tộc, v&otilde; giả trong phế vật, thừa nhận như vậy dưới &aacute;p lực, nhưng cũng để cho hắn mong muốn trở n&ecirc;n mạnh mẻ t&acirc;m c&agrave;ng ph&aacute;t ki&ecirc;n định, con đường cường giả h&aacute; l&agrave; dễ d&agrave;ng như vậy, thả nh&igrave;n hắn l&agrave;m sao đột ph&aacute; m&igrave;nh, bước v&agrave;o đỉnh phong.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

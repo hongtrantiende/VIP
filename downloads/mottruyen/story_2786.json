@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "2786",
+        "NAME": "Trấn Áp Chư Thiên",
+        "CHAPTER": [
+            {
+                "id": "918277",
+                "name": "Chương 1: Có trang Lục Liễu - Tập 1: có trang Lục Liễu"
+            }
+        ],
+        "TOTALCHAPTER": "749",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo",
+        "AUTHOR": "Trấn Áp Chư Thiên",
+        "TRANS": "trang4mat",
+        "DESC": "Mở Vương Triều: tay tr&aacute;i x&atilde; tắc thần kh&iacute;, tay phải trấn quốc thần kh&iacute; ( ngọc tỷ ), bẩm thi&ecirc;n c&aacute;o địa định quốc hiệu! Từ đ&oacute;, v&acirc;ng mệnh với thi&ecirc;n, đ&atilde; thọ Vĩnh Xương!<br /><br />Tấn cấp ho&agrave;ng triều: khai cương kho&aacute;ch thổ, bẩm thi&ecirc;n c&aacute;o đấy, sử lý quần thần, c&aacute;o th&aacute;i b&igrave;nh khắp thi&ecirc;n hạ, Vương Triều cực hạn, chưa đủ chịu tải!<br /><br />Tấn cấp đế quốc: bẩm thi&ecirc;n c&aacute;o đấy, chi&ecirc;u lộ ra thịnh thế, ngưng tụ số mệnh Kim Long!<br /><br />Tấn cấp Thi&ecirc;n Triều: diệt s&aacute;t Thương Thi&ecirc;n, tự lập vi thi&ecirc;n, trẫm tức l&agrave; thi&ecirc;n, thi&ecirc;n tức l&agrave; trẫm!",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

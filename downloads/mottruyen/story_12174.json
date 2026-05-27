@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "12174",
+        "NAME": "Chí Tôn Lược Đoạt Hệ Thống",
+        "CHAPTER": [
+            {
+                "id": "3970941",
+                "name": "Chương 1: Chu Dịch"
+            }
+        ],
+        "TOTALCHAPTER": "501",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Xuyên Không, Đồng Nhân",
+        "AUTHOR": "Vũ Văn Lộng Mặc",
+        "TRANS": "ThieuNhanGian",
+        "DESC": "Sâu sắc nhóm phê bình, tiểu Vũ giới thiệu vắn tắt không được, ta phải hướng sâu sắc nhóm cúi đầu học tập, vì vậy ngàn thúy trăm luyến sâu sắc có ngôn, tên sách là giới thiệu vắn tắt. Vì vậy:<br />\r\n<br />\r\n\tChu Dịch được chí tôn cướp đoạt hệ thống, từ đó đi đến nhân sinh đỉnh phong, nhất định trâu bò trời cao thông thiên đại đạo.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

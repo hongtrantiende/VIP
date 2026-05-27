@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "11254",
+        "NAME": "Sự Thật Về Truyện Cổ Tích Việt Nam",
+        "CHAPTER": [
+            {
+                "id": "3724143",
+                "name": "Chương 1:Hãy đặt tên con là Tấm"
+            }
+        ],
+        "TOTALCHAPTER": "8",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo, Lịch Sử, Linh Dị",
+        "AUTHOR": "Phan Việt",
+        "TRANS": "Đạt Đẹp Zai",
+        "DESC": "Kể về các câu chuyện cổ tích của Việt Nam được kể theo thể loại kinh dị",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

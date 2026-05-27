@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "4874",
+        "NAME": "Thái Cổ Yêu Thần",
+        "CHAPTER": [
+            {
+                "id": "1713432",
+                "name": "Chương 1: Bất Diệt Yêu Thần Điển"
+            }
+        ],
+        "TOTALCHAPTER": "15",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp, Huyền Ảo",
+        "AUTHOR": "Du trần",
+        "TRANS": "tknguyen",
+        "DESC": "Tu luyện giả tăng lên máu tươi chi lực, do đó ngưng tụ yêu mạch, đạp vào con đường tu luyện!<br />\r\n<br />\r\n\tThiên vứt bỏ người Chu Viêm, tắm rửa long huyết, được Yêu Thần truyền thừa, mang theo 《 Bất Diệt Yêu Thần điển 》, ngưng tụ thiên mạch, trở thành trời xanh Chi Chủ!<br />\r\n<br />\r\n\tYêu đã tuyệt, cái kia liền chinh chiến Thái Cổ, lại để cho yêu tái nhập thế gian!<br />\r\n<br />\r\n\tThiên Địa là mê hoặc, ta chính là Yêu Thần, có thể chưởng chúng sinh! Cũng có thể diệt Thần Ma!",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "1294",
+        "NAME": "Túy Chẩm Giang Sơn",
+        "CHAPTER": [
+            {
+                "id": "519078",
+                "name": "Chương 1 : Người trong chốn đào nguyên"
+            }
+        ],
+        "TOTALCHAPTER": "1221",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Lịch Sử",
+        "AUTHOR": "Nguyệt Quan",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Nữ Đế Vũ Chiếu nhật nguyệt lăng kh&ocirc;ng, Thượng Quan Uyển Nhi ước lượng thi&ecirc;n hạ,<br /><br />L&yacute; Khỏa Nhi diễm so hoa kiều, năm t&iacute;nh tử lục đục với nhau,<br /><br />Th&aacute;i B&igrave;nh c&ocirc;ng ch&uacute;a kh&oacute; th&aacute;i b&igrave;nh, L&yacute; gia tam lang thật Long Cơ,<br /><br />Địch Nh&acirc;n Kiệt, Trương Dịch Chi, Ph&ugrave;ng Tiểu Bảo. . . ,<br /><br />T&agrave;i tử, giai nh&acirc;n, giết lũ cẩu!<br /><br />Hồng tụ chi&ecirc;u, du hiệp nhi, du tẩu Đại Đường bầu trời dưới,<br /><br />T&uacute;y ngọa chẩm giang sơn, đ&agrave;m tiếu vọng c&agrave;n kh&ocirc;n!",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

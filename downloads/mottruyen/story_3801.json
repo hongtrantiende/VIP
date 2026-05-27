@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "3801",
+        "NAME": "Cửu Viêm Thần Mạch",
+        "CHAPTER": [
+            {
+                "id": "1313142",
+                "name": "Chương 1: Có thể đứng tuyệt không quỳ"
+            }
+        ],
+        "TOTALCHAPTER": "126",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo",
+        "AUTHOR": "Tử Lăng Long Thiếu",
+        "TRANS": "Trung421",
+        "DESC": "H&oacute;a th&acirc;n Tu La n&acirc;ng ph&aacute;ch đao, ta bằng v&agrave;o ta huyết phạt thi&ecirc;n đạo!<br /><br />Ngàn vạn huyết nhục, đ&uacute;c một vị Tu La giết Thần Ma thể? Truyền thuyết n&agrave;y lại mẹ kiếp l&agrave; thật sự &middot;&middot;<br /><br />Truyền thuyết Tu La Ma Đồng, kh&aacute;m ph&aacute; vạn vật, một đ&ograve;n m&agrave; ph&aacute;; Tu La Ma Thần, con mắt vừa mở, ti&ecirc;u diệt vạn tộc Chư Thi&ecirc;n cường giả.<br /><br />Từ nhỏ bị thi thất tuyệt phong hải phong ấn Tu La Ma thể &mdash;&mdash; Trần Khiếu Thi&ecirc;n, tự đột ph&aacute; phong ấn thức tỉnh bắt đầu từ giờ khắc đ&oacute;, Chư Thi&ecirc;n vạn giới bắt đầu ở dưới ch&acirc;n hắn run rẩy! ! !<br /><br />Cảnh giới ph&acirc;n chia: Kh&iacute; Hải, B&iacute; Huyết, Kỳ T&agrave;ng, Tứ Cực, B&aacute; Thể, Du Long, Nhập Th&aacute;nh, Si&ecirc;u Th&aacute;nh, H&oacute;a Ti&ecirc;n",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "4128",
+        "NAME": "Đường Triêu Bại Gia",
+        "CHAPTER": [
+            {
+                "id": "1507603",
+                "name": "Chương 1: Lúng túng bại gia tử"
+            }
+        ],
+        "TOTALCHAPTER": "303",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Lịch Sử",
+        "AUTHOR": "Doãn Tam Vấn",
+        "TRANS": "TrinhTuanAnh",
+        "DESC": "Cửu Thi&ecirc;n cổng trời mở cung điện, vạn quốc y quan b&aacute;i chuỗi ngọc tr&ecirc;n mũ miện;<br /><br />Đại Đường Trinh Qu&aacute;n, th&agrave;nh tựu về văn ho&aacute; gi&aacute;o dục x&aacute;n lạn, Sơn H&agrave; cẩm t&uacute;; v&otilde; c&ocirc;ng c&aacute;i thế; uy th&ecirc;m tứ hải.<br /><br />Th&aacute;i Cực tr&ecirc;n điện, L&yacute; Thế D&acirc;n uy phong hiển h&aacute;ch, qu&acirc;n l&acirc;m thi&ecirc;n hạ; Lăng kh&oacute;i c&aacute;c hạ, văn thần Vũ Tướng trải qua bang tế thế, mở cương th&aacute;c Thổ.<br /><br />Thịnh thế rực rỡ chi năm, cuộn s&oacute;ng phập phồng trong l&uacute;c đ&oacute;, thiếu ni&ecirc;n tạ dật hoảng hốt ngh&igrave;n năm, trở th&agrave;nh một vừa thua sạch to&agrave;n bộ gia nghiệp bại gia tử...",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

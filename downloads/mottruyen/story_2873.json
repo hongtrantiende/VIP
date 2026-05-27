@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "2873",
+        "NAME": "Tiên Đạo Lăng Vân",
+        "CHAPTER": [
+            {
+                "id": "966363",
+                "name": "Chương 1: Bán tiên không phải Thần Tiên - 1"
+            }
+        ],
+        "TOTALCHAPTER": "2437",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp",
+        "AUTHOR": "Tiểu Vô Tướng Công",
+        "TRANS": "trang4mat",
+        "DESC": "Thi&ecirc;n Địa b&ecirc;n ngo&agrave;i, ng&ocirc;i sao cuối c&ugrave;ng, huyền c&oacute; Tam Thi&ecirc;n Đại Đạo, mười vạn thần th&ocirc;ng, trăm vạn tu h&agrave;nh ph&aacute;p m&ocirc;n. . . .<br /><br />L&yacute; Thần Ti&ecirc;u l&uacute;c ban đầu chỉ l&agrave; một c&aacute;i thầy b&oacute;i, cuối c&ugrave;ng nhất vẫn đứng ở Ti&ecirc;n đạo cuối c&ugrave;ng, chỉ thi&ecirc;n họa địa lời n&oacute;i:<br /><br />\"Đại đạo giống như s&ocirc;ng, c&ugrave;ng sở hữu 3000, quy một m&igrave;nh ta độc chiếm, thi&ecirc;n hạ ch&uacute;ng sinh chỉ lấy trong đ&oacute; một hồ l&ocirc; l&agrave; đủ...\"",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

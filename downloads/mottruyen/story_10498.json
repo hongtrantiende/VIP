@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "10498",
+        "NAME": "Độ Ách Tiêu Diêu Tiên",
+        "CHAPTER": [
+            {
+                "id": "3500258",
+                "name": "Chương 1: 'Hỗn Độn trạm'"
+            }
+        ],
+        "TOTALCHAPTER": "878",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp, Huyền Ảo, Dị Giới, Xuyên Không, Trùng Sinh",
+        "AUTHOR": "Phong Tuyết",
+        "TRANS": "s",
+        "DESC": "Độ Ách Tiêu Diêu Tiên giới thiệu tóm tắt Độ Ách Chân Nhân, tây Côn Luân tán tiên, nhà ở chín đỉnh thiết sát sơn Bát Bảo vân quang động. Linh cát Bồ Tát, Tây Phương Phật Môn tám Bồ Tát một trong, pháp lực quảng đại, nhà ở tiểu Tu Di sơn. Tiêu dao tiên nhân, ạch, cái này đại gia chưa từng nghe nói? Nha, được rồi! Lý Tiếu Phong, cái gì? Đại gia vẫn là chưa từng nghe nói? Các ngươi đương nhiên chưa từng nghe nói, ta vừa mới viết không phải. Kỳ thực a! Bọn họ đều là cố sự này nhân vật chính, đều là một người. Tại sao nói như vậy chứ? Nhìn quyển sách các ngươi dĩ nhiên là rõ ràng. Xuyên qua đến Hồng Hoang, làm cái tiêu dao tiên!",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

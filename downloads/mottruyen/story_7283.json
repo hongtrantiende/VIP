@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "7283",
+        "NAME": "Ta Đến Từ Trên Trời",
+        "CHAPTER": [
+            {
+                "id": "2592656",
+                "name": "Chương 1: Ngu xuẩn người phàm"
+            }
+        ],
+        "TOTALCHAPTER": "351",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp",
+        "AUTHOR": "Thiên Lâu",
+        "TRANS": "Hoàng Châu",
+        "DESC": "Tr&ecirc;n trời rơi xuống một vị ti&ecirc;n nh&acirc;n, ph&aacute;t hiện ti&ecirc;n lực bị phong.<br /> <br /> Tục xưng c&ugrave;ng sơn &aacute;c thủy ra đi&ecirc;u d&acirc;n, biết cả người hắn l&agrave; bảo.<br /> <br /> Tham lam v&ocirc; độ địa chủ, đần độn muội muội, kh&aacute;t vọng vươn m&igrave;nh kh&ocirc;ng l&agrave;m n&ocirc; hương th&acirc;n, c&ugrave;ng với tr&ecirc;n n&uacute;i một tổ giựt tiền kh&ocirc;ng kiếp mệnh thổ phỉ.<br /> <br /> Đao thương bất nhập, lấy một địch một trăm, tu sĩ tập hợp, l&agrave;m một d&ograve;m ng&oacute; ti&ecirc;n dung!<br /> <br /> Nhỏ m&aacute;u v&ocirc; gi&aacute;, danh dương ngàn dặm, ho&agrave;ng thất n&aacute;o động, l&agrave;m một luận trường sinh!",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

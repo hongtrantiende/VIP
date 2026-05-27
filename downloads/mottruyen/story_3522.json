@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "3522",
+        "NAME": "Siêu Cấp Thổ Hào Hệ Thống",
+        "CHAPTER": [
+            {
+                "id": "6779122",
+                "name": "Chương 1: Đã nghèo còn gặp cái eo, hắn nói hắn là Sáng Thế Thần"
+            }
+        ],
+        "TOTALCHAPTER": "333",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo",
+        "AUTHOR": "Vạn Kiếm Linh",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Một cái bị thực tế nghiền ép thiếu niên, trong lúc vô tình dùng ba tô mì đổi lấy Sáng Thế thần đưa tặng di vật, sau đó liền bắt đầu hắn cường hào kiểu quật khởi con đường... Đây là một cái chuẩn Nhân Dân tệ player tu tiên cố sự.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

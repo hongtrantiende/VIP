@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "7183",
+        "NAME": "Nghịch Nguyên Thế Giới",
+        "CHAPTER": [
+            {
+                "id": "2566526",
+                "name": "Chương 1: 2 chu mục"
+            }
+        ],
+        "TOTALCHAPTER": "105",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo",
+        "AUTHOR": "M Lê Lạc Thu Khê",
+        "TRANS": "Hoàng Châu",
+        "DESC": "Nghịch nguy&ecirc;n Ch&acirc;n Vương, qu&acirc;n l&acirc;m thi&ecirc;n hạ!<br /> <br /> Diệt thế Hư Hậu, đ&oacute;ng băng năm th&aacute;ng!<br /> <br /> Vĩnh dạ Kỵ Sĩ , m&aacute;u nhuộm &aacute;nh b&igrave;nh minh!<br /> <br /> Th&aacute;nh quang Chủ Gi&aacute;o, khinh nhờn thần &acirc;n!<br /> <br /> Lẫm đ&ocirc;ng Th&agrave;nh Tường, cắt ngang Ma giới!<br /> <br /> Bất khuất Sĩ Binh, trấn thủ nh&acirc;n gian!<br /> <br /> Ngu xuẩn người ph&agrave;m a, hoan ngh&ecirc;nh đi tới nghịch nguy&ecirc;n thế giới!",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

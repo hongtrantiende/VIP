@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "3569",
+        "NAME": "Giết chúa",
+        "CHAPTER": [
+            {
+                "id": "1236490",
+                "name": "Chương 1:Tái sinh thế giới khác"
+            }
+        ],
+        "TOTALCHAPTER": "17",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo, Dị Giới, Xuyên Không",
+        "AUTHOR": "Nghịch đảo bầu trời",
+        "TRANS": "Vô danh",
+        "DESC": "Trong thế giới này điên cuồng ăn thịt đồng loại. Chúa là bất lực, hãy để tôi thành thần của...",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

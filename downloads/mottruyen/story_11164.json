@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "11164",
+        "NAME": "Hậu Tam Quốc",
+        "CHAPTER": [
+            {
+                "id": "3693588",
+                "name": "Chương 1 : An Bình Vương Phủ"
+            }
+        ],
+        "TOTALCHAPTER": "250",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Quân Sự, Lịch Sử, Trùng Sinh",
+        "AUTHOR": "Phong Chi Thanh Dương - 风之清扬",
+        "TRANS": "dotunglamntt",
+        "DESC": "Nhân vật chính là đặc công<br />\r\nTrong một lần thi hành nhiệm vụ, anh dũng hi sinh<br />\r\nTrọng sinh thành cháu của Lưu Bị dòng dõi Hán Thất, nhưng đen thay anh lại vào ngay thời kì đen tối của Thục, chỉ còn nửa năm nữa là sự kiện Thục bị Ngụy diệt diễn ra,<br />\r\nMain sẽ làm gì, theo chú A Đấu vào kinh ăn rồi chờ chết hay là làm một tuyệt thế kiêu hùng<br />\r\nLet's find out ^.^!",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

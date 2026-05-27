@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "6317",
+        "NAME": "Tối Chung Hàng Lâm",
+        "CHAPTER": [
+            {
+                "id": "2246628",
+                "name": "Chương 1:  chuyển kiếp bắt đầu"
+            }
+        ],
+        "TOTALCHAPTER": "3",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Trùng Sinh",
+        "AUTHOR": "Phi Nhan",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Cuối cùng hạ xuống thời gian, nghe ta hiệu lệnh! Dừng lại thế gian này tà ác.<br />\r\n<br />\r\n\tKhông gian, theo ta ý động! Bóp méo thế gian này dơ bẩn.<br />\r\n<br />\r\n\tQuyền năng, để cho ta điều động! Xông phá thế gian này bình chướng.<br />\r\n<br />\r\n\tNếu tà ma ngăn trở, vậy liền bóp méo nó. Nếu chính nghĩa trở ngại, vậy liền hủy diệt nó.<br />\r\n<br />\r\n\tTa sẽ đi về phía phía trước, đi theo cuối cùng hạ xuống con đường, nguyên tố vì ta hộ tống!",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

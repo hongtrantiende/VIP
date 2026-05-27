@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "5224",
+        "NAME": "Dân Quốc Đại Hanh",
+        "CHAPTER": [
+            {
+                "id": "1847032",
+                "name": "Chương 01:"
+            }
+        ],
+        "TOTALCHAPTER": "24",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Lịch Sử",
+        "AUTHOR": "Hùng Đại Đẳng Đẳng Yêm",
+        "TRANS": "MrBladeOz",
+        "DESC": "D&acirc;n Quốc ch&iacute;n năm C&ocirc;ng nguy&ecirc;n 1920 năm, H&agrave; Bắc, Sơn T&acirc;y, Thiểm T&acirc;y, Sơn Đ&ocirc;ng, H&agrave; Nam ph&aacute;t sinh hiếm thấy nạn hạn h&aacute;n, t&igrave;nh h&igrave;nh tai nạn khắp năm tỉnh hơn 300 c&aacute;i huyện, mấy trăm vạn nạn d&acirc;n rời xa nơi ch&ocirc;n rau cắt rốn, chạy nạn chạy nạn. Tr&ugrave;ng hợp thi&ecirc;n tai lại c&oacute; nh&acirc;n họa, Nam Bắc qu&acirc;n phiệt hỗn chiến, cục diện ch&iacute;nh trị rung chuyển bất an, binh tai, phỉ tai, nạn hạn h&aacute;n khiến cho bấp b&ecirc;nh D&acirc;n Quốc c&agrave;ng ph&aacute;t l&acirc;m v&agrave;o hắc &aacute;m.<br /><br />Một th&aacute;ng trước đ&ecirc;m khuya, L&acirc;m Tử K&iacute;nh tỉnh lại từ trong mộng, đập v&agrave;o mắt liền thấy được ngọn đ&egrave;n, r&aacute;ch n&aacute;t ph&ograve;ng đất c&ugrave;ng nằm ở tr&ecirc;n kh&aacute;ng một đầu thương ch&acirc;n. A, đ&uacute;ng, c&ograve;n c&oacute; một c&aacute;i sơn th&ocirc;n đại nữu n&oacute;i l&agrave; hắn con d&acirc;u nu&ocirc;i từ b&eacute;.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "9336",
+        "NAME": "Đô Thị Thần Cấp Tông Sư",
+        "CHAPTER": [
+            {
+                "id": "3159408",
+                "name": "Chương 1: Đồ đần"
+            }
+        ],
+        "TOTALCHAPTER": "696",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đô Thị",
+        "AUTHOR": "Du Nhàn Phong",
+        "TRANS": "๖ۜVân ๖ۜPhong™",
+        "DESC": "Tu chân cao thủ Thiên Cơ Tông Tông chủ Diệp Thiên Cơ Độ Kiếp thất bại, lại trùng sinh tại một cái kẻ ngu trên thân, từ đây mở ra trang bức con đường.<br />\r\n<br />\r\n\tBất luận kẻ nào dám cản ở trước mặt ta, một quyền làm bạo!<br />\r\n<br />\r\n\tTông môn, hào môn, đều là giun dế!<br />\r\n<br />\r\n\t※※※※※※※※※※※※※※※※※※<br />\r\n<br />\r\n\tPs: Sách mới công bố, cầu đề cử, cầu cất giữ!",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

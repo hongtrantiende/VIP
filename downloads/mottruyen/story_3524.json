@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "3524",
+        "NAME": "Vạn Năng Cao Thủ",
+        "CHAPTER": [
+            {
+                "id": "1220583",
+                "name": "Chương 1: Thứ nhất Võ đạo cao trung"
+            }
+        ],
+        "TOTALCHAPTER": "80",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo",
+        "AUTHOR": "Mạt Vũ",
+        "TRANS": "Thái Cổ Phách Kiếm",
+        "DESC": "L&agrave;m một cường giả đi ở tr&ecirc;n đường cao thủ, T&ocirc; Dương nghĩ, tự m&igrave;nh phải c&oacute; đặc th&ugrave; đ&aacute;nh qu&aacute;i kỹ xảo mới được.<br /><br />Cho n&ecirc;n mặc kệ phương diện g&igrave;, T&ocirc; Dương đều cảm gi&aacute;c m&igrave;nh phải li&ecirc;n quan đến một ch&uacute;t.<br /><br />Kết quả. . .",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

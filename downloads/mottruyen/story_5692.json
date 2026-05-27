@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "5692",
+        "NAME": "Cô gái dạy ta yêu thuật",
+        "CHAPTER": [
+            {
+                "id": "2035887",
+                "name": "Chương 1:  tuyên cổ bất biến chân lý"
+            }
+        ],
+        "TOTALCHAPTER": "653",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đô Thị, Huyền Ảo",
+        "AUTHOR": "Lân đàm",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Điểu ty thanh ni&ecirc;n dưới cơ duy&ecirc;n xảo hợp t&igrave;nh cờ gặp gỡ c&ocirc; em y&ecirc;u qu&aacute;i, coi như bị chọn Y&ecirc;u Giới cứu thế giả, từ nay bước l&ecirc;n Tu Y&ecirc;u con đường.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

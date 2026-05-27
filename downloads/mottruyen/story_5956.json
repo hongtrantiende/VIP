@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "5956",
+        "NAME": "Ta La Cực Phẩm Lô Đỉnh",
+        "CHAPTER": [
+            {
+                "id": "3338101",
+                "name": "Chương 1: Bẩn thỉu đan dược"
+            }
+        ],
+        "TOTALCHAPTER": "1",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp",
+        "AUTHOR": "Tháng Giêng Sơ Tứ",
+        "TRANS": "Thienhoang9z",
+        "DESC": "Một đỉnh nơi tay, muốn gì đều có.<br />\r\n<br />\r\n<br />\r\nMuốn đan dược? Tinh quả tới đổi; Wuốn ngạnh đoạt? Sư tỷ mau thượng! Muốn cùng ta song tu? Thật sự là mù ngươi mắt chó! Ta chính là cực phẩm lô đỉnh, chọc giận ta, ta lập tức luyện hóa ngươi!",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

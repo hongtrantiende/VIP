@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "12950",
+        "NAME": "Thế Giới Mỹ Mỹ",
+        "CHAPTER": [
+            {
+                "id": "4181604",
+                "name": "Chương 1: Garena Hệ Thống!"
+            }
+        ],
+        "TOTALCHAPTER": "4",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Dị Giới, Đồng Nhân, Trùng Sinh",
+        "AUTHOR": "SorakamAi",
+        "TRANS": "Nhiều Converter",
+        "DESC": "",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

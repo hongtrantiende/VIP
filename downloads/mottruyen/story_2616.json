@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "2616",
+        "NAME": "Vô Hạn Anh Linh Thần Tọa",
+        "CHAPTER": [
+            {
+                "id": "851495",
+                "name": "Tự Chương"
+            }
+        ],
+        "TOTALCHAPTER": "773",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Khoa Huyễn",
+        "AUTHOR": "Thành Chi Thiên",
+        "TRANS": "Kensin_Kaoru",
+        "DESC": "V&ocirc; tận vị diện, v&ocirc; hạn thời kh&ocirc;ng, cuối c&ugrave;ng Thần kh&iacute;, mạnh nhất anh linh.\r\n<br />Một c&aacute;i tại bất đồng thế giới qua lại, thu thập mỹ nữ c&ugrave;ng bảo vật cố sự.\r\n<br />Hiện nay thế giới: Harry Potter -- Diablo 2-- Kim Dung v&otilde; hiệp --? ? ?",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

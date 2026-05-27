@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "12010",
+        "NAME": "Có Thể Xuyên Việt Tu Hành Giả",
+        "CHAPTER": [
+            {
+                "id": "3933934",
+                "name": "Chương 1: Dị Giới quý tử"
+            }
+        ],
+        "TOTALCHAPTER": "914",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp, Dị Giới, Xuyên Không",
+        "AUTHOR": "Thần Bí Nam Nhân",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Tác giả bình bình đạm đạm kể chuyện xưa, chư vị thật vui vẻ nhìn<br />\r\n<br />\r\nCảnh giới: Luyện khí, Tiên Thiên, Nhập Đạo, Kim Đan, Nguyên Thần, Tiên (... update sau )",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

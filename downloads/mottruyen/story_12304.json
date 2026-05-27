@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "12304",
+        "NAME": "Người Chết Kinh",
+        "CHAPTER": [
+            {
+                "id": "4003119",
+                "name": "Chương 1: Rời trang"
+            }
+        ],
+        "TOTALCHAPTER": "103",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Kiếm Hiệp",
+        "AUTHOR": "Băng Lâm Thần Hạ",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Một bản Tử Nhân kinh, nửa bộ Vô Đạo thư.<br />\r\n<br />\r\n\tChém hết ngàn người đầu, ăn nuốt trăm thân cốt.<br />\r\n<br />\r\n-------<br />\r\n<br />\r\nHố mới, ngày 15c, np 3c, kim đậu 15c",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

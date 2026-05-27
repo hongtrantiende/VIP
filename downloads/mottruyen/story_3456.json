@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "3456",
+        "NAME": "Lăng Thiên Chiến Tôn",
+        "CHAPTER": [
+            {
+                "id": "1198669",
+                "name": "Chương 1: Binh Vương 'Lăng Thiên '"
+            }
+        ],
+        "TOTALCHAPTER": "3332",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp, Kiếm Hiệp, Huyền Ảo, Dị Giới, Xuyên Không, Trùng Sinh",
+        "AUTHOR": "Phong Khinh Dương",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Địa Cầu mạnh nhất Binh Vương hồn xuyên dị thế, dung Luân Hồi Võ Đế ký ức, tu 《 Cửu Long Chiến Tôn Quyết 》, đánh đâu thắng đó không gì cản nổi, chiến uy không thể địch!Sẽ luyện dược, có thể luyện khí, hiểu Minh văn. . .Sinh hoạt chức nghiệp, toàn năng mới là Vương Đạo! ----------------",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

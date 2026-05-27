@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "2565",
+        "NAME": "Y Thống Giang Sơn",
+        "CHAPTER": [
+            {
+                "id": "841943",
+                "name": "Chương 1 : Gian thần chi tử (thượng) - Quyển 1"
+            }
+        ],
+        "TOTALCHAPTER": "1780",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Lịch Sử",
+        "AUTHOR": "Thạch Chương Ngư",
+        "TRANS": "Hungprods",
+        "DESC": "Kiếp trước qua lao m&agrave; chết thầy thuốc chuyển thế Đại Khang đệ nhất gian thần nh&agrave;, phụ th&acirc;n v&agrave;o c&acirc;m đi&ecirc;́c mười s&aacute;u năm ngu ngốc tr&ecirc;n người thiếu ni&ecirc;n, đến tột c&ugrave;ng l&agrave; vận may của hắn hay vẫn l&agrave; bất hạnh, kiếp trước qu&aacute; mệt mỏi, đời n&agrave;y thầm nghĩ kiều th&ecirc; mỹ quyến, con ch&aacute;u lượn quanh đ&acirc;̀u g&ocirc;́i, thư thư phục phục m&agrave; l&agrave;m một c&aacute;i lừa dối sống qua ng&agrave;y ph&uacute; nhị đại, lại chưa từng nhớ nh&agrave; đạo sa s&uacute;t, cửu phẩm quan t&eacute;p riu như thế n&agrave;o bằng v&agrave;o y thuật quyền mưu, đ&ugrave;a bỡn giang hồ triều đ&igrave;nh, m&agrave; lại xem ta y tay che bầu trời, nhất thống n&uacute;i s&ocirc;ng!",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

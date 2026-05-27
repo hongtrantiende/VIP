@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "7637",
+        "NAME": "Xuyên Không Nhân Tạo",
+        "CHAPTER": [
+            {
+                "id": "2692357",
+                "name": "01.Xuyên không"
+            }
+        ],
+        "TOTALCHAPTER": "9",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo, Xuyên Không",
+        "AUTHOR": "loveme2010",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Xuyên không mang theo trí thông minh nhân tạo. <br />\r\nCải tạo thân thể , khám phá  thế giới",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "8806",
+        "NAME": "Đại Hiệp Bạch Cốt Là Ta",
+        "CHAPTER": [
+            {
+                "id": "3024196",
+                "name": "Chương 1: Bạch Quá"
+            }
+        ],
+        "TOTALCHAPTER": "137",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp, Kiếm Hiệp, Xuyên Không",
+        "AUTHOR": "Thần Khái",
+        "TRANS": "Boss99zk",
+        "DESC": "Bạch Quá làm hào môn thiếu gia, mạc danh hoạn thượng bệnh nan y.<br />\r\n<br />\r\nSau khi chết linh hồn xuyên qua đến một khối tiên nhân cốt hài trung, từ đây hắn đi lên một cái cùng thường nhân không giống bình thường lộ.<br />\r\n<br />\r\nBạch cốt lại như thế nào? Ta tự tiên cốt nhậm tiêu dao!",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

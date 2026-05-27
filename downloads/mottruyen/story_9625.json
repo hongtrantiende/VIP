@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "9625",
+        "NAME": "Vạn Giới Thông Đạo",
+        "CHAPTER": [
+            {
+                "id": "3251339",
+                "name": "Chương 01: Vẫn chưa xong"
+            }
+        ],
+        "TOTALCHAPTER": "155",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp, Đô Thị, Xuyên Không, Linh Dị",
+        "AUTHOR": "Giá Cá Danh Tự",
+        "TRANS": "hui235235",
+        "DESC": "Đây là Vạn Giới ở giữa đầu mối then chốt, cấu kết lấy vô số thế giới thông đạo.<br />\r\n<br />\r\n\tPhàm Nhân, Hồng Miêu Lam Thỏ, Cơ Hoang, Transformers, Vũ Lâm Ngoại Truyện, Cương Thi hệ liệt, Thượng Cổ Quyển Trục, Grimm...<br />\r\n<br />\r\n\tĐây là từng cái xuyên qua thế giới tu hành bản thân cố sự.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

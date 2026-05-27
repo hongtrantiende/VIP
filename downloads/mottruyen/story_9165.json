@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "9165",
+        "NAME": "Phá Thiên Hệ Thống",
+        "CHAPTER": [
+            {
+                "id": "3117846",
+                "name": "Chương 1:Thất Tinh hệ thống."
+            }
+        ],
+        "TOTALCHAPTER": "1",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp, Võng Du, Dị Giới, Xuyên Không",
+        "AUTHOR": "Baovuong",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Hắn xuyên qua đạt được hệ thống.Từ đó hắn liên tục đột phá,dần dần nắm giữ toàn bộ Thất Tinh Đại Lục,tiến đến tiên giới.<br />\r\n<br />\r\n -Thiên phú không có,ta chỉ cần 1 viên cải cốt đan.<br />\r\n - Cái gì,tuyệt phẩm thần hồn.Ta là Thất Nguyên thần hồn,ngươi dám cùng ta so.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

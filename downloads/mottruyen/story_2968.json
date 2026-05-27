@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "2968",
+        "NAME": "Thần Linh Khế Ước",
+        "CHAPTER": [
+            {
+                "id": "1006409",
+                "name": "Chương 1:: Đây chính là trong truyền thuyết xuyên qua!"
+            }
+        ],
+        "TOTALCHAPTER": "186",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo, Dị Giới",
+        "AUTHOR": "Phi Mộng Chi Vũ",
+        "TRANS": "Hoa Vô Lệ",
+        "DESC": "Đem thần làm người hầu, ngự long làm nô, trái nắm thánh kiếm, phải nắm ma phong; đây là một cái được gọi là công lược chi thần nam nhân, bị vận mệnh dẫn dắt mà tới các nữ thần, đánh quái thăng cấp chinh phục dị giới cố sự",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "11688",
+        "NAME": "Đại Ngụy Năng Thần",
+        "CHAPTER": [
+            {
+                "id": "3851076",
+                "name": "Chương 1: Lời Dẫn"
+            }
+        ],
+        "TOTALCHAPTER": "1730",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Quân Sự, Lịch Sử, Xuyên Không",
+        "AUTHOR": "Hắc Nam Tước",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Ý trời mênh mang thuộc tiêu lang!<br />\r\nTiêu Dật, tự vô sầu, mệnh phạm Tham Lang, giống một viên mỹ lệ sao băng xẹt qua Đông Hán những năm cuối lịch sử không trung, quấy đầy trời phong vân...<br />\r\nTào Tháo rằng: \"Ngô đến Vô Sầu, thiên hạ vô sầu!\"<br />\r\nLưu Bị rằng: \"Có Tiêu Dật ở, Trung Nguyên vô ngã lập trùy chi...\"<br />\r\n<br />\r\n<br />\r\n<br />\r\nAnh em VOTE sao ủng hộ cho mình có động lực xíu nhé...",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "3469",
+        "NAME": "Mãng Hoang Vương Tọa",
+        "CHAPTER": [
+            {
+                "id": "1202335",
+                "name": "Chương 1: Tuyệt vọng bộ lạc"
+            }
+        ],
+        "TOTALCHAPTER": "320",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo",
+        "AUTHOR": "Kiền Biên Vưu Ngư Tu",
+        "TRANS": "Thái Cổ Phách Kiếm",
+        "DESC": "Th&acirc;n phụ Thần đồ; c&oacute; vạn đạo!<br /><br />Sở V&acirc;n, một t&ecirc;n rơi rớt ở Đại Hoang bộ lạc thiếu ni&ecirc;n, đến tột c&ugrave;ng c&oacute; g&igrave; th&acirc;n thế b&iacute; ẩn?<br /><br />Hắn c&ugrave;ng vạn thời kỳ cổ nh&acirc;n loại \"Tr&iacute;ch Ti&ecirc;n\" c&ugrave;ng dị tộc vạn cổ chi vương lại c&oacute; ngọn ngu&ocirc;̀n?<br /><br />Số mệnh của hắn, lại ch&iacute;nh l&agrave; l&agrave;m sao?<br /><br />Một g&oacute;c Tinh đồ, diễn biến Đại Thi&ecirc;n thế giới; bất diệt ti&ecirc;n khu, chung kết bất hủ lu&acirc;n hồi.<br /><br />Một vị thiếu ni&ecirc;n, hắn từ Đại Hoang đi tới, cuối c&ugrave;ng c&oacute; hay kh&ocirc;ng c&oacute; thể nghiền &eacute;p vạn địch, dẹp y&ecirc;n tất cả, từng bước một bước l&ecirc;n c&aacute;i kia M&atilde;ng Hoang Vương Tọa. . .",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

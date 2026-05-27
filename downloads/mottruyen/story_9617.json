@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "9617",
+        "NAME": "Hokage Họa Hại",
+        "CHAPTER": [
+            {
+                "id": "3248079",
+                "name": "Chương 1 : Yên lặng"
+            }
+        ],
+        "TOTALCHAPTER": "681",
+        "IMG": "https://static.cdnno.com/poster/hokage-hoa-hai/150.jpg",
+        "CAT": "Đồng Nhân",
+        "AUTHOR": "Tử Lam Trư",
+        "TRANS": "๖ۣۜJet ๖ۣۜBlack",
+        "DESC": "Từ hắc ám đến quang minh, Hắn mở mắt thì băng lãnh nước mưa thấm ướt Hắn hai mắt. Tại vĩnh viễn không thôi trong mưa to, Hắn gặp được Orochimaru cùng Tsunade, bị hai người mang về Konoha. Như vậy, Hắn bắt đầu tiếp xúc cái thế giới này... Nhưng là, Hắn muốn về đến nguyên lai thế giới",
+        "THUMB": "https://static.cdnno.com/poster/hokage-hoa-hai/150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

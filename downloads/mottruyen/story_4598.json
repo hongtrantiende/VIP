@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "4598",
+        "NAME": "Lũ Quỹ Học Đường",
+        "CHAPTER": [
+            {
+                "id": "1632643",
+                "name": "Trường mới"
+            }
+        ],
+        "TOTALCHAPTER": "1",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Ngôn Tình",
+        "AUTHOR": "Thanh Huyền",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Cuộc sống đa sắc màu về thời học sinh chưa bao giờ là vấn đề cũ. Những tiếng cười thoải mái, những trò quậy phá vô tư lự sẽ mang đến niềm vui cho các bạn. Nhân vật trong truyện không phải là cậu ấm cô chiêu che giấu thân phận để tìm tình bạn. Cũng sẽ chẳng phải là trường với cách học viên chỉ số IQ cao ngất. Họ chỉ là những học sinh theo học tại một trường công lập đứng ở top cuối của TPHCM. Tất cả thành viên ở các quận lân cận và đc tụ hội tại lớp 10 chuyên thứ 2 của trường: 10A2",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

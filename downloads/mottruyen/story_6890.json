@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "6890",
+        "NAME": "Vô Hạn Hoàng Thiên",
+        "CHAPTER": [
+            {
+                "id": "2448014",
+                "name": "Chương 1 : Hoàng Thiên"
+            }
+        ],
+        "TOTALCHAPTER": "7",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp, Kiếm Hiệp, Xuyên Không, Đồng Nhân",
+        "AUTHOR": "hoangquanstr",
+        "TRANS": "Hoàng Quân",
+        "DESC": "Trạch nam Hoàng Thiên 19t .......vừa rốt tốt nghiệp  nhận được cực châu có thể xuyên không qua các  vi diện.<br />\r\nThế giới đự định đi qua:thần điêu, Hokage, fairy tall, đấu phá....<br />\r\n 1 / chương thứ 3 và 7 đăng.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

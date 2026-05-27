@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "12422",
+        "NAME": "Hảo Nhân Tạp",
+        "CHAPTER": [
+            {
+                "id": "4035480",
+                "name": "Chương 1: Mừng đến người tốt tạp"
+            }
+        ],
+        "TOTALCHAPTER": "5",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đô Thị",
+        "AUTHOR": "Chien0101",
+        "TRANS": "Nguyễn Bi",
+        "DESC": "Tại một cái lãng mạn lễ tình nhân buổi tối, Vương Tiếu dùng một bó hoa hồng thay đổi một trương người tốt tạp, trở lại ký túc xá sau Vương Tiếu phát hiện người tốt tạp có thần kỳ công năng. Đem làm có người xưng tán Vương Tiếu là \"Người tốt\" lúc, người tốt tạp sẽ căn cứ đối phương thành ý độ tăng trưởng điểm số. Người tốt tạp điểm số có thể dùng để đổi lấy vật phẩm cùng năng lực, còn có thể dùng để đem người tốt tạp tiến hành thăng cấp, người tốt tạp thăng cấp sau sẽ có càng mạnh hơn nữa công năng.<br />\r\n<br />\r\nMột trương người tốt kẹt tại tay, thiên hạ Tiêu Dao mặc ta du.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

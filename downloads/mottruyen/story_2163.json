@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "2163",
+        "NAME": "Tịch Diệt Vạn Thừa",
+        "CHAPTER": [
+            {
+                "id": "747138",
+                "name": "Chương 1: Tịch diệt, trùng sinh"
+            }
+        ],
+        "TOTALCHAPTER": "1000",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo",
+        "AUTHOR": "Ảm Nhiên Tiêu Hồn",
+        "TRANS": "Kinzie",
+        "DESC": "Đường cầu Trường Sinh, đăng đỉnh chư thi&ecirc;n; S&aacute;ng mu&ocirc;n đời th&agrave;nh tựu, truyền bất hủ đạo thống.<br /><br /><br />Đ&agrave;m Vị Nhi&ecirc;n chỉ hỏi: Trường Sinh l&agrave;m g&igrave;, kh&ocirc;ng bằng Tịch Diệt.<br /><br /><br />Sau đ&oacute;, tru s&aacute;t ch&uacute;ng sinh, Tịch Diệt vạn thừa !",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

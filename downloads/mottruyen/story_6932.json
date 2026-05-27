@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "6932",
+        "NAME": "Hàn Ngu Tinh Tượng",
+        "CHAPTER": [
+            {
+                "id": "2465660",
+                "name": "Chương 1: Thức tỉnh"
+            }
+        ],
+        "TOTALCHAPTER": "480",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đô Thị, Trùng Sinh",
+        "AUTHOR": "Mộng Ảo",
+        "TRANS": "Botebeto",
+        "DESC": "Cả đời chìm nổi thương trường, không có thiện ác chỉ có sinh tồn, sau khi trọng sinh có được năng lực chi phối thế giới, lại bị mất phương hướng... Thẳng đến khi gặp được những nữ hài kia, cải biến hắn.<br />\r\n<br />\r\nNữ chính: SNSD,....<br />\r\n<br />\r\nP/s: Đừng có troll điểm các bạn ơi!<br />\r\n <br />\r\n   * Dưới 8Đ: 1n/10c<br />\r\n   * 8Đ-8,5Đ: 1n/20c<br />\r\n   * 8,6Đ-9Đ:1n/40c<br />\r\n   * 9,1Đ-9,5Đ:1n/60c <br />\r\n   * 9,6Đ-10Đ: 1n/80c",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

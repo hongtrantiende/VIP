@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "8217",
+        "NAME": "Kình Minh",
+        "CHAPTER": [
+            {
+                "id": "2829678",
+                "name": "Chương 1: Thiếu niên đã từng có điểm ngây người"
+            }
+        ],
+        "TOTALCHAPTER": "853",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Lịch Sử, Xuyên Không",
+        "AUTHOR": "Hồng Sắc Khả Nhạc Trứ",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Thương Châu Phủ thiếu niên lang, vào triều làm quan, trước diệt Đạt Diên Hãn, tái chiến Bát Bạch Thất, tráng ta Đại Minh sơn hà. Hưng thịnh thực nghiệp, mở cấm biển, xây trường quân đội, luyện lính mới, hùng binh bắc vào, dẹp yên thảo nguyên. Chọn tinh binh, vào vùng Trung Nguyên, giết Bạch Liên giáo, tàn sát gian nịnh, xây muôn đời vương triều.<br />\r\n<br />\r\n\tChế tạo cường đại Đại Minh đế quốc, chúng ta có thể không phải chỉ là nói một chút ---- Trần Sinh.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "3101",
+        "NAME": "Vạn Giới Đế Tôn",
+        "CHAPTER": [
+            {
+                "id": "1055628",
+                "name": "Chương 1: Ngay mặt nhục nhã"
+            }
+        ],
+        "TOTALCHAPTER": "66",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo",
+        "AUTHOR": "Ngự Ý",
+        "TRANS": "Suntran",
+        "DESC": "Vạn giới trung ngang dọc, truy t&igrave;m cường giả bước ch&acirc;n.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

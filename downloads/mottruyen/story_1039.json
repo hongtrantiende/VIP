@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "1039",
+        "NAME": "Vũ Pháp Vũ Thiên",
+        "CHAPTER": [
+            {
+                "id": "305120",
+                "name": "Chương 01: Bị lừa đá phá đan điền "
+            }
+        ],
+        "TOTALCHAPTER": "816",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp",
+        "AUTHOR": "Tô Nguyệt Tịch",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Đan điền biến dị cực k&igrave; tr&acirc;u b&ograve;, sở hữu một m&ocirc;n t&acirc;m ph&aacute;p khủng kh&ocirc;ng k&eacute;m, một linh hồn xuy&ecirc;n việt từ Địa Cầu...\r\n<br />Ch&uacute;t bỉ ổi, ch&uacute;t v&ocirc; sỉ pha ch&uacute;t cực phẩm, đ&acirc;y l&agrave; c&acirc;u chuyện xưa của một t&ecirc;n tr&acirc;u b&ograve; nghịch thi&ecirc;n.<br /><br />Kh&ocirc;ng hậu cung, kh&ocirc;ng ngựa giống, thuần t&uacute;y l&agrave; văn phong kh&ocirc;i h&agrave;i! L&uacute;c n&agrave;y kh&ocirc;ng trải nghiệm, c&ograve;n đợi đến khi n&agrave;o? H&atilde;y đến với t&ecirc;n tr&acirc;u b&ograve; ta c&ugrave;ng nhau quậy ph&aacute; th&ocirc;i!",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

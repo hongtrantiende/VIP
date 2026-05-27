@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "916",
+        "NAME": "Bạch Cốt Đạo Cung",
+        "CHAPTER": [
+            {
+                "id": "222491",
+                "name": "Chương 1: Trong Ô Phượng quốc bao hàm đại đạo ( Quyển 1)"
+            }
+        ],
+        "TOTALCHAPTER": "458",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp",
+        "AUTHOR": "Thân Vẫn Chỉ Tiêm",
+        "TRANS": "vipnd2003",
+        "DESC": "&Ocirc; Phượng quốc nước nhỏ lại ngh&egrave;o kh&oacute;, nh&acirc;n khẩu thưa thớt, tuy n&oacute;i l&agrave; một nước, nhưng m&agrave; diện t&iacute;ch chung bất qu&aacute; chỉ bằng một th&agrave;nh th&ecirc;m một ch&uacute;t th&ocirc;n x&oacute;m chung quanh m&agrave; th&ocirc;i. Nhiều năm qua, thường c&oacute; thi&ecirc;n tai y&ecirc;u hoạn, mặc d&ugrave; lịch đại Quốc vương của &Ocirc; Phượng quốc đều muốn quốc gia ph&aacute;t triển lớn mạnh, nhưng vốn kh&ocirc;ng c&aacute;ch n&agrave;o l&agrave;m được.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "2805",
+        "NAME": "Trảm Thiên",
+        "CHAPTER": [
+            {
+                "id": "932792",
+                "name": "Chương 01 - Sống lại"
+            }
+        ],
+        "TOTALCHAPTER": "30",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp, Huyền Ảo",
+        "AUTHOR": "Nhâm Oán",
+        "TRANS": "BóngMaTuLa",
+        "DESC": "Kiếp trước, Dương Thần giúp mọi người làm điều tốt, lại bị ức hiếp suốt đời.<br />\r\nSống lại, Dương Thần tuyển chọn trở thành đao phủ, dưới Quỷ Đầu đao đoạn ân oán, trên Trảm Tiên đài chém hết thương sinh linh.<br />\r\nNhân giới trảm nhân!<br />\r\nYêu giới trảm yêu!<br />\r\nMa giới trảm ma!<br />\r\nTiên giới trảm tiên!<br />\r\nAi có thể cản!!",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

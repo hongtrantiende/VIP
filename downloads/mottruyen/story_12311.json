@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "12311",
+        "NAME": "Thiên Hạ Vô Ma",
+        "CHAPTER": [
+            {
+                "id": "4005402",
+                "name": "Chương 1: Nhân Sinh Như Mộng, Quay Đầu Làm Phàm Nhân"
+            }
+        ],
+        "TOTALCHAPTER": "2",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp",
+        "AUTHOR": "mongvonhai",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Xin lỗi một số đọc giả đã đọc truyện này, ta vẫn đang viết, nhưng vì viết hơi chậm nên chương ra khá lâu, sợ các đạo hữu mất hứng, thôi thì ta khoan hãy đăng, đợi viết được >100 chương rồi ta đăng lần lượt.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

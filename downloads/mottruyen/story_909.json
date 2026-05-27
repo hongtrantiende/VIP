@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "909",
+        "NAME": "Dị Giới Huyền Môn",
+        "CHAPTER": [
+            {
+                "id": "219582",
+                "name": "Chương 1: Cao vũ tân thế giới"
+            }
+        ],
+        "TOTALCHAPTER": "824",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp, Huyền Ảo",
+        "AUTHOR": "Xuyên Qua Hồng Trần",
+        "TRANS": "Tiểu Ngưu, totung",
+        "DESC": "Một c&aacute;i tại mạt ph&aacute;p thời đại huyền m&ocirc;n tu sĩ ngo&agrave;i &yacute; muốn xuất hiện ở một c&aacute;i kh&ocirc;ng đồng dạng như vậy cao ph&aacute;p trong thế giới, đ&acirc;y l&agrave; may mắn c&ograve;n l&agrave; bất hạnh? L&agrave; ngẫu nhi&ecirc;n tr&ugrave;ng hợp c&ograve;n l&agrave; tất nhi&ecirc;n &acirc;m mưu?<br /><br />Một c&aacute;i kinh nghiệm phong ph&uacute; huyền m&ocirc;n tu sĩ, nhưng kh&ocirc;ng c&aacute;ch n&agrave;o sử dụng ma ph&aacute;p, nhưng lại phải tại &acirc;m mưu vờn quanh, ma th&uacute; ho&agrave;nh h&agrave;nh, cường giả như rừng nguy hiểm trong thế giới cầu sinh, hắn lại n&ecirc;n lựa chọn như thế n&agrave;o đạo lộ của m&igrave;nh?<br /><br />Đ&acirc;y l&agrave; một c&oacute; vui c&oacute; buồn b&igrave;nh thường chuyện xưa, đ&acirc;y l&agrave; một mang ki&ecirc;n định t&iacute;n niệm vấn đạo giả chuyện xưa, đ&acirc;y l&agrave; một gian khổ khi lập nghiệp vượt mọi ch&ocirc;ng gai chuyện xưa, đ&acirc;y l&agrave; một dị giới huyền m&ocirc;n đạo đồ khai sơn lập truyện dương danh dị giới chuyện xưa.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "3013",
+        "NAME": "Biết Yêu",
+        "CHAPTER": [
+            {
+                "id": "1028334",
+                "name": "Chap 1"
+            }
+        ],
+        "TOTALCHAPTER": "12",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Ngôn Tình",
+        "AUTHOR": "VAT",
+        "TRANS": "Nhiều Converter",
+        "DESC": "1 c&acirc;u chuyện xoay xung quanh về những ngọt, đắng, chua, cay của t&igrave;nh y&ecirc;u. Nữ nh&acirc;n vật ch&iacute;nh đ&atilde; trải qua biết bao hạnh ph&uacute;c, đắng cay, buồn lo về t&igrave;nh y&ecirc;u của m&igrave;nh.1 c&aacute;i kết kh&aacute; l&agrave; bất ngờ d&agrave;nh cho tất cả c&aacute;c nh&acirc;n vật trong truyện. Mọi chuyện nghi ngờ, hiểu lầm sẽ được đưa ra &aacute;nh s&aacute;ng...",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

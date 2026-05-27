@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "10622",
+        "NAME": "Đô Thị Trúc Cơ Giả",
+        "CHAPTER": [
+            {
+                "id": "3532447",
+                "name": "Chương 1: Sống lại 1 đời người"
+            }
+        ],
+        "TOTALCHAPTER": "138",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đô Thị, Dị Năng, Xuyên Không",
+        "AUTHOR": "Tích Hoa Thệ",
+        "TRANS": "HeartSick",
+        "DESC": "Lý Thần không chỉ là một tên Trúc Cơ tu sĩ, đồng thời còn là một vị Phù Sư. <br />\r\n<br />\r\nChẳng qua là một tấm bẫy cha Cao cấp Độn Phù để cho hắn ngoài ý muốn sống lại tại một cái tên là Trái Đất thế giới. <br />\r\n<br />\r\nNhưng không cam tâm đi nữa cũng không có cái Trứng chiên ăn, và thế là Lý Thần bắt đầu tại trong đô thị hành trình ăn rau xào cỏ!",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

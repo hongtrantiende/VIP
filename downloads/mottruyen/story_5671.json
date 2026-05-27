@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "5671",
+        "NAME": "ngã tựu thị thái bình dương",
+        "CHAPTER": [
+            {
+                "id": "2080241",
+                "name": "Chương 1: Hà đạo công nhân"
+            }
+        ],
+        "TOTALCHAPTER": "721",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Khoa Huyễn",
+        "AUTHOR": "Cảm Vi",
+        "TRANS": "Báo",
+        "DESC": "Đường Hải, một gã nước Mỹ hà đạo công nhân làm vệ sinh,<br />\r\n<br />\r\n\tMột thức tỉnh lại, phát hiện tại chính mình lại có thể phụ thân Giang Hải!<br />\r\n<br />\r\n\tSau đó, Hải Thần cố sự xuất hiện!<br />\r\n<br />\r\n\t\"Mặc dù bây giờ ta chỉ có thể khống chế một cái thành trấn sông nhỏ, nhưng ta sớm muộn phải khống chế hết thảy hải dương!\"<br />\r\n<br />\r\n\t\" Này, lão tổng sao? Ta đây liền đem nước Mỹ Hải Quân bố phòng đồ phát ngươi!\"<br />\r\n<br />\r\n\t\"Chết tiệt hầu tử, đừng ép ta mở đại chiêu Phóng Hải Khiếu!\"<br />\r\n<br />\r\n\t\"Này dài 20 mét cá mập là sủng vật của ta, cái này không bán!\"",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

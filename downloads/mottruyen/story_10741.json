@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "10741",
+        "NAME": "Nông Thôn Tiểu Lang Băm",
+        "CHAPTER": [
+            {
+                "id": "3565058",
+                "name": "Chương 1: Ta không phải châu chấu"
+            }
+        ],
+        "TOTALCHAPTER": "174",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đô Thị",
+        "AUTHOR": "Liễu Liễu Nhất Sinh",
+        "TRANS": "Vân Anh",
+        "DESC": "Một g&atilde; vừa mới tốt nghiệp trường y, xin việc kh&ocirc;ng ai nhận, bất dắc dĩ trở về qu&ecirc; mở ph&ograve;ng kh&aacute;m nhỏ sống qua ng&agrave;y. Ai ngờ ph&ograve;ng kh&aacute;m c&agrave;ng ng&agrave;y c&agrave;ng lớn, mỹ nữ c&agrave;ng ng&agrave;y c&agrave;ng nhiều. Một bộ hương thổ hậu cung vui vẻ.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

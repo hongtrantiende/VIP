@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "5198",
+        "NAME": "Vạn Vực Linh Thần",
+        "CHAPTER": [
+            {
+                "id": "2880494",
+                "name": "Chương 1: Tiếu ngạo thiên hạ, không ai dám không theo"
+            }
+        ],
+        "TOTALCHAPTER": "4377",
+        "IMG": "https://static.cdnno.com/poster/van-vuc-linh-than/150.jpg",
+        "CAT": "Huyền Ảo",
+        "AUTHOR": "Càn Đa Đa",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Một đời bá chủ, thảm bị phản bội, bị bốn mươi chín cái cường giả vây công, chết thảm Vạn Kiếp Sơn, sống lại một lần, hắn lại muốn lên đỉnh phong<br />\n<br />\nQuật khởi mạnh mẽ, giết vào loạn tinh vực, chém hết mười vạn cường giả, ngộ sinh tử Sát đạo, xung kích chí cao bài vị!",
+        "THUMB": "https://static.cdnno.com/poster/van-vuc-linh-than/150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

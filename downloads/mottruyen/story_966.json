@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "966",
+        "NAME": "Ma Tôn",
+        "CHAPTER": [
+            {
+                "id": "248824",
+                "name": "Chương 1: Ông ngoại ngươi là đại lão! (Quyển 1)"
+            }
+        ],
+        "TOTALCHAPTER": "308",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo",
+        "AUTHOR": "Minh Vực Thiên Sứ",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Một th&aacute;ng trước, Khương Ngọc chỉ l&agrave; địa cầu b&ecirc;n tr&ecirc;n một c&aacute;i b&igrave;nh thường thất nghiệp thanh ni&ecirc;n. Một tuần lễ trước, Khương Ngọc th&agrave;nh thế giới kh&aacute;c một người rễ cỏ b&igrave;nh d&acirc;n.\r\n&nbsp;\r\nH&ocirc;m nay, một c&aacute;i l&atilde;o gia gia lại đột nhi&ecirc;n chạy tới trước mặt của hắn n&oacute;i với hắn c&aacute;i g&igrave;:\r\n&nbsp;\r\n\"Ngoại c&ocirc;ng của ngươi l&agrave; ma gi&aacute;o gi&aacute;o chủ!\"\r\n\"&Ocirc;ng ngoại ngươi bị người hại chết.\"\r\n\"Người nọ cũng tới giết ngươi...\"\r\n&nbsp;\r\n\"Ngươi nhất định phải đoạt lại gi&aacute;o chủ vị, v&igrave; &ocirc;ng ngoại ngươi b&aacute;o th&ugrave; a...!\" L&atilde;o gia gia ngửa đầu l&agrave;m triển vọng tương lai h&igrave;nh d&aacute;ng: \"Thuận tiện lại đem Ma gi&aacute;o sự nghiệp vĩ đại cường tr&aacute;ng lớn hơn một ch&uacute;t...\"",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "9659",
+        "NAME": "Tiên Môn Oai Đạo",
+        "CHAPTER": [
+            {
+                "id": "3258806",
+                "name": "Chương 1: Ta TM (con mụ nó) đem đại sư huynh đỗi"
+            }
+        ],
+        "TOTALCHAPTER": "253",
+        "IMG": "https://static.cdnno.com/poster/tien-mon-oai-dao/150.jpg",
+        "CAT": "Tiên Hiệp, Xuyên Không",
+        "AUTHOR": "Sa Mễ Vương Tử",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Thể loại : Tu Chân, Hài hước<br />\r\n<br />\r\nTa, Vương Nhất, sinh ra ở Tương Nam Quốc hoàng thất, sáu tuổi liền được đưa đến thanh Huyền Đạo Tông tu đạo. Dáng dấp ngọc thụ lâm phong, khí chất nhẹ nhàng, chính là Tu Chân Giới trăm năm khó gặp một lần kỳ tài!<br />\r\n<br />\r\nTốt a, thực ta chính là một cái Vai quần chúng A, ta cái kia nổ banh trời đại sư huynh mới là nhân vật chính.<br />\r\n<br />\r\nMột ngày nào đó, ta đem đại sư huynh đâm chết.<br />\r\n<br />\r\nKết quả là, ta trở thành nhân vật phản diện A...<br />\r\n<br />\r\nTest vài chương thấy khá OK!!<br />\r\n<br />\r\nTruyện hài đọc giải trí nhé mọi người!",
+        "THUMB": "https://static.cdnno.com/poster/tien-mon-oai-dao/150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

@@ -1,5 +1,7 @@
 "use client";
 
+import { useLiveQuery } from "dexie-react-hooks";
+
 import {
   AlertDialog,
   AlertDialogAction,
@@ -382,11 +384,16 @@ export default function AutoWritePage() {
   const hasChapterPlans = (chapterPlans?.length ?? 0) > 0;
   const hasPartialData = hasWorld || hasCharacters;
 
+  const standardChaptersCount = useLiveQuery(
+    () => db.chapters.where("novelId").equals(novelId).and(c => !c.isAiWritten).count(),
+    [novelId]
+  ) ?? 0;
+
   const autoMode = useMemo((): PageMode => {
     if (hasChapterPlans && hasPlotArcs) return "pipeline";
-    if (hasPartialData) return "dashboard";
+    if (hasPartialData || novel?.referenceNovelId || standardChaptersCount > 0) return "dashboard";
     return "empty";
-  }, [hasChapterPlans, hasPlotArcs, hasPartialData]);
+  }, [hasChapterPlans, hasPlotArcs, hasPartialData, novel?.referenceNovelId, standardChaptersCount]);
 
   const mode = modeOverride ?? autoMode;
 

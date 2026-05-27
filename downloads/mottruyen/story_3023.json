@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "3023",
+        "NAME": "Phỉ Thúy Chi Tháp",
+        "CHAPTER": [
+            {
+                "id": "1035616",
+                "name": "Chương 0-1: Bắt đầu sau chung kết"
+            }
+        ],
+        "TOTALCHAPTER": "1048",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo, Võng Du, Dị Giới, Trùng Sinh",
+        "AUTHOR": "Con Rồng Chán Chường",
+        "TRANS": "Kuden",
+        "DESC": "Trước mắt hắc &aacute;m, dường như vực s&acirc;u giống như vậy, l&agrave;m người run rẩy.<br /> <br /> M&aacute;u tươi n&oacute;ng rực, dường như Địa ngục lưu huỳnh bờ s&ocirc;ng dung nham, nuốt sống người ta.<br /> <br /> Tử vong c&ugrave;ng sống lại đan dệt , khiến cho Dean xin thề phải đem ch&iacute;nh m&igrave;nh hết thảy kẻ địch, đều đ&aacute; xuống vực s&acirc;u, n&eacute;m v&agrave;o Địa ngục &mdash;&mdash; nhường vực s&acirc;u hắc &aacute;m nhấn ch&igrave;m bọn họ , khiến cho bọn họ run sợ run sợ run, nhường trong Địa ngục s&ocirc;ng lưu huỳnh nổ tung th&ocirc;n phệ bọn họ , khiến cho bọn họ tan xương n&aacute;t thịt!<br /> <br /> Ta mang đến sợ h&atilde;i v&ocirc; ngần, tử vong, tai &aacute;ch!<br /> <br /> Của ta vương miện, do đầy rẫy thi h&agrave;i, m&aacute;u tươi tưới x&acirc;y m&agrave; th&agrave;nh!<br /> <br /> &mdash;&mdash; Dean Ken",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

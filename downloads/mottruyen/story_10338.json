@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "10338",
+        "NAME": "Xưng Bá Vạn Giới",
+        "CHAPTER": [
+            {
+                "id": "3463126",
+                "name": "Chương 1: Phá vỡ ảo cảnh. Gặp mặt. Xuyên qua"
+            }
+        ],
+        "TOTALCHAPTER": "1",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Kiếm Hiệp, Đồng Nhân",
+        "AUTHOR": "ntc299",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Lý Ưng sau khi phá được ảo cảnh, thì găp được một người đàn ông, người đã tạo  ra ảo cảnh cho cuộc đời của cậu. Ông ta để lại một chiếc đồng hồ khiến cho cậu có thể đi qua nhiều thế giới khác nhau. Lý Ưng quyết tâm trở nên mạnh hơn để tìm ra được người đàn ông này và hỏi ông ta những gì mình nghi hoặc, tại sao ông ta lại tạo ra ảo cảnh cuộc đời cho mình và tại sao ông ta lại chọn mình",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

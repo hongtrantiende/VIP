@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "5591",
+        "NAME": "Pokemon chi Băng Vũ Trạch",
+        "CHAPTER": [
+            {
+                "id": "1988069",
+                "name": "Chương 1: Xuyên qua  - Quyển 1: Kanto Thạch Anh đại hội"
+            }
+        ],
+        "TOTALCHAPTER": "131",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đồng Nhân",
+        "AUTHOR": "Cô Độc Nấm",
+        "TRANS": "Thienhoang9z",
+        "DESC": "Vốn không phải thế giới này người lại ngoài ý muốn đi tới thế giới này.<br />\n<br />\nNếu đi tới nơi này, vậy nỗ lực biến cường.<br />\n<br />\nNhư thế nào lực lượng?<br />\n<br />\nLực lượng,<br />\n<br />\nKhông phải vì chinh phục.<br />\n<br />\nMà là vì bảo hộ!",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

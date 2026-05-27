@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "6637",
+        "NAME": "Tâm Ma",
+        "CHAPTER": [
+            {
+                "id": "2357096",
+                "name": "Chương 1: Cửu công tử"
+            }
+        ],
+        "TOTALCHAPTER": "240",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp, Kiếm Hiệp",
+        "AUTHOR": "Thấm Chỉ Hoa Thanh",
+        "TRANS": "๖ۣۜKiếm๖ۣۜVô๖ۣۜTình",
+        "DESC": "Có lẽ tại cái nào đó mùa đông đêm lạnh, ngươi nghe được một tường bên ngoài có người nhẹ giọng man hát:<br />\r\n<br />\r\n\tHuyền Môn vũ y mây trắng tâm, một cầm Nhất Kiếm một Đan Thanh.<br />\r\n<br />\r\n\tThiển Tuyết Hồng Lô Hoàng Nha tửu, đêm Tử Vi Động Đình trải qua.<br />\r\n<br />\r\n\tDư âm lượn lờ, giống như âm thanh thiên nhiên.<br />\r\n<br />\r\n\tNgươi liền Đạp Tuyết theo tiếng mà đi, chợt thấy phương xa đèn đuốc yếu ớt.<br />\r\n<br />\r\n\tPhục được một khắc đồng hồ, thẳng vào trúc lâm, trước mắt rộng mở trong sáng, ấm áp đập vào mặt. Liền nhìn thấy một cái Bạch Hạc nhanh nhẹn nhảy múa, một hồng y Long Nữ đánh đàn phụ xướng.<br />\r\n<br />\r\n\tTrong lòng ngươi kinh ngạc, liền xoa xoa Nhãn.<br />\r\n<br />\r\n\tLại định thần nhìn lại, chỉ phát hiện mình đứng tại nhà mình ngoài cửa, trên đường cây cỏ đìu hiu.<br />\r\n<br />\r\n\tThế nhân đều là đàm thần tiên, lại không biết có lẽ bọn họ, ngay tại bên cạnh ngươi",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

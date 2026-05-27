@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "6928",
+        "NAME": "Tiên Phệ",
+        "CHAPTER": [
+            {
+                "id": "3671838",
+                "name": "Chương 1: Hàng lâm"
+            }
+        ],
+        "TOTALCHAPTER": "398",
+        "IMG": "https://static.cdnno.com/poster/tien-phe/150.jpg",
+        "CAT": "Tiên Hiệp, Xuyên Không",
+        "AUTHOR": "Đồi Phế Đích Yên 121",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Nghịch thiên Pháp thân, thôn phệ Chư Thiên!  Người hiện đại Linh hồn, Vô thượng Tiên thể, tạo nên Tu Chân Giới chi hiếm thấy!  Ngươi là thiên tài? Linh căn? Thiên linh căn? Xem ta nuốt ngươi linh căn, thiên tài biến phế vật!   Khai sơn lập phái, xé rách Tinh không, hết thảy pháp bảo đều quy ta, hết thảy chỗ tốt ta tới bắt! Ta là người văn minh, nhưng văn minh bắt đầu không phải người!",
+        "THUMB": "https://static.cdnno.com/poster/tien-phe/150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

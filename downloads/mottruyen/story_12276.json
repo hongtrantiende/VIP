@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "12276",
+        "NAME": "Hokage Chi Hoạt Cửu Kiến",
+        "CHAPTER": [
+            {
+                "id": "4039024",
+                "name": "Chương 1: Hệ thống chính xác mở ra phương thức"
+            }
+        ],
+        "TOTALCHAPTER": "555",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đồng Nhân",
+        "AUTHOR": "Lý Tứ Dương",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Xuyên việt đến Hokage thời đại chiến quốc Uzumaki Amakasu tổng cảm giác mình thu hoạch được một cái giả hệ thống, tầm thường vô vi vượt qua 48 năm . Thẳng đến 49 tuổi ngày đó, mới phát hiện hệ thống chính xác mở ra phương thức ...",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

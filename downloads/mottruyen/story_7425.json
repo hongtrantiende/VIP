@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "7425",
+        "NAME": "Bất Bại Kiếm Thần",
+        "CHAPTER": [
+            {
+                "id": "2627596",
+                "name": "Chương 1: Hàn môn thiếu niên"
+            }
+        ],
+        "TOTALCHAPTER": "60",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp, Huyền Ảo",
+        "AUTHOR": "Đoạn Kiếm",
+        "TRANS": "๖ۣۜKing๖ۣۜKiller",
+        "DESC": "Hàn môn thiếu niên , luyện thần binh , bố trí thần trận . Kiếm thần bất bại , một kiếm nghịch cửu thiên!",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

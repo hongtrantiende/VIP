@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "2247",
+        "NAME": "Tàn Đao Trảm Thiên",
+        "CHAPTER": [
+            {
+                "id": "757329",
+                "name": "Chương 01: Mệnh đồ làm nhiều điều sai trái"
+            }
+        ],
+        "TOTALCHAPTER": "100",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo",
+        "AUTHOR": "Ta Là Người Hào Sảng",
+        "TRANS": "Shu",
+        "DESC": "Một đao lên, vạn niệm đều huyễn. . .<br />\r\n<br />\r\nÁc mộng tái thanh sam, táp xấp như lưu tinh.<br />\r\n<br />\r\nVõ Tử Phong, mệnh đồ làm nhiều điều sai trái, nhưng mà làm trong lòng một phần chấp niệm, từng bước một đi đến tu luyện đỉnh phong,<br />\r\n<br />\r\nĐương hắn thanh đao gác ở Ma tộc trên cổ lúc, vốn là tưởng tượng lại phá thành mảnh nhỏ,<br />\r\n<br />\r\nNguyên lai hết thảy tất cả đều sai rồi, chính thức địch nhân vẫn còn tàn sát bừa bãi,",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

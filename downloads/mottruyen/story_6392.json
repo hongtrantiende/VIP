@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "6392",
+        "NAME": "Dương Quang Đại Tần",
+        "CHAPTER": [
+            {
+                "id": "2271984",
+                "name": "Chương 1:  cố sự bên trong sự"
+            }
+        ],
+        "TOTALCHAPTER": "42",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Lịch Sử",
+        "AUTHOR": "Quang ám chi tâm",
+        "TRANS": "Caster",
+        "DESC": "Hắn xuyên qua khi đến, thương ưởng còn chưa biến pháp, Đại Tần còn là một điểu tia đế quốc. Vì trải qua ngày thật tốt, vì ăn thứ tốt, liền, trong đầu hắn tri thức bắt đầu vụ nổ lớn!",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

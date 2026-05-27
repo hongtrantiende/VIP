@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "2440",
+        "NAME": "Hồng Hoang Chi Hồng Mông Đại đạo",
+        "CHAPTER": [
+            {
+                "id": "804638",
+                "name": "Chương 1: Lâm Phong thân phản giữa hỗn độn , Bàn Cổ Khai Thiên thành Huyền Quy"
+            }
+        ],
+        "TOTALCHAPTER": "352",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp, Khoa Huyễn",
+        "AUTHOR": "Tà Viêm Chi Yêu",
+        "TRANS": "Cối Xay",
+        "DESC": "Thánh Nhân thế giới chẳng lẽ chỉ cảm lan tràn đến Tây Du sao? Tây Du về sau , tranh đoạt Thiên Đạo khống chế quyền lực đã trở thành Thánh Nhân mục tiêu , đến cùng ai có thể trở thành là giống như Hồng Quân đích thiên đạo người phát ngôn .",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "3531",
+        "NAME": "Thần Tại Trái Đất Sinh Hoạt",
+        "CHAPTER": [
+            {
+                "id": "1222641",
+                "name": "Chương 1 : Phán xét"
+            }
+        ],
+        "TOTALCHAPTER": "3",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đô Thị, Huyền Ảo, Ngôn Tình",
+        "AUTHOR": "Pơ Sì Phon",
+        "TRANS": "Pơ Sì phon",
+        "DESC": "Truyện nói về cuộc lưu đày của một vị đại thần cực mạnh trên thần giới.<br />\r\n<br />\r\nTruyện mang tính chất  tạp thể loại.<br />\r\n<br />\r\nTruyện cũng mang tính chất chính trị ( có thể).<br />\r\n<br />\r\nVà ..... đọc đi rồi sẽ rõ !!!<br />\r\n<br />\r\n( Cầu góp ý để ko bị tối ý - Drop- như những bộ khác).",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

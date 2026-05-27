@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "10068",
+        "NAME": "Vạn Giới Rút Thưởng Cầm Đồ",
+        "CHAPTER": [
+            {
+                "id": "3384038",
+                "name": "Chương 1: Ấm áp An Nghi ngõ hẻm"
+            }
+        ],
+        "TOTALCHAPTER": "100",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo",
+        "AUTHOR": "Thất Nguyệt Tàn Huyết",
+        "TRANS": "nguyen_dinh_nguyen111_kkk@yahoo.com",
+        "DESC": "Lăng Vân Quật bên trong, Niếp Phong cầm trong tay Tuyết Ẩm Đao: \"Sở chưởng quỹ, ngài nhìn cái này có thể cầm cố sao \"<br />\r\n<br />\r\n\tNgũ Hành Sơn hạ, Hầu Tử móc móc lỗ tai, tế ra Như Ý Kim Cô Bổng: \"Sở chưởng quỹ, ngài nhìn cái này có thể cầm cố sao \"<br />\r\n<br />\r\n\tHoa Sơn hạ, Trầm Hương không chút do dự xuất ra Bảo Liên Đăng: \"Sở chưởng quỹ, ngài nhìn cái này có thể cầm cố sao \"",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "5260",
+        "NAME": "Hỗn Độn Ma Tôn",
+        "CHAPTER": [
+            {
+                "id": "1859957",
+                "name": "Chương 1: Tự"
+            }
+        ],
+        "TOTALCHAPTER": "2141",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo",
+        "AUTHOR": "Ất Nhất Ất",
+        "TRANS": "Klorsky",
+        "DESC": "Một theo nấm mồ giữa đào ra trẻ con, thân tàng kinh thiên bí mật, lấy Thiên kiêu chi tư cường thế quật khởi, đi bước một vạch trần thân thể giấu diếm đáng sợ chân tướng. Lưng đeo gia tộc huyết cừu, lòng mang bảo vệ chí thân tín niệm, đẫm máu giết chóc, chấp kích mà đi, cùng trời tranh mệnh, quả thật bộ dạng trồi lên mặt nước, rồi lại là sấm sét giữa trời quang.<br />\r\n<br />\r\nCảnh giới Vũ lực, Tẩy tủy, Thoát thai , Niết bàn, Tố nha ,Ngưng căn ,Sinh tu ,Bàn cốt, Hồng hóa .",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

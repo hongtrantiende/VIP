@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "11751",
+        "NAME": "Thiên Ky Kiếm Khúc",
+        "CHAPTER": [
+            {
+                "id": "3870032",
+                "name": "Chương 1: Thanh Hà quận Yên Ba bên hồ. (Quyển 1: Thành Đô phong vân)"
+            }
+        ],
+        "TOTALCHAPTER": "10",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp",
+        "AUTHOR": "Côn Lôn Tử Ngọc",
+        "TRANS": "ThienVuDe",
+        "DESC": "Thiên đạo ky phong tàng, kiếm quá khúc lưu hương. Tích nhật phiên vương tôn, trì kiếm phá thiên ky, hiệp đảm tru tiêu tiểu. Mà lại nhìn Thần Châu ai tiếu ngạo, trượng kiếm phá vân tiêu! Hành, cũng ở ta; Tàng, cũng ở ta.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

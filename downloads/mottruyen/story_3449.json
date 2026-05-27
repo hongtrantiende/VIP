@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "3449",
+        "NAME": "Vĩnh Trấn Tiên Ma",
+        "CHAPTER": [
+            {
+                "id": "1194636",
+                "name": "Chương 1: Ta thử xem"
+            }
+        ],
+        "TOTALCHAPTER": "893",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo",
+        "AUTHOR": "Tri Bạch",
+        "TRANS": "Hoa Vô Lệ, LucasTran",
+        "DESC": "Người trong thi&ecirc;n hạ chuyện thi&ecirc;n hạ, Thần Ma ti&ecirc;n phật, đều tại ta thần tọa b&ecirc;n dưới.&nbsp;",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

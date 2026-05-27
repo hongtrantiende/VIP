@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "3364",
+        "NAME": "Mịch Tiên",
+        "CHAPTER": [
+            {
+                "id": "1165824",
+                "name": "Chương 01: Khai Quang Phù - Quyển 1: Khuông lư tứ thánh"
+            }
+        ],
+        "TOTALCHAPTER": "1592",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp",
+        "AUTHOR": "Hà Bất Ngữ",
+        "TRANS": "Chanlinh, Tuan_a2",
+        "DESC": "Mịt mù mịt mù kiếm ti&ecirc;n lộ, ung dung hỏi t&acirc;m. Một c&aacute;i kh&ocirc;ng phải l&agrave; phế vật cũng kh&ocirc;ng phải thi&ecirc;n t&agrave;i Truy Mộng thiếu ni&ecirc;n, c&ugrave;ng một mặt gương đồng c&ugrave;ng l&ecirc;n đến Dị Giới, bắt đầu hắn kỳ ngộ kh&ocirc;ng ngừng, rung động đến t&acirc;m can kiếm ti&ecirc;n chi lộ.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

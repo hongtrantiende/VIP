@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "10959",
+        "NAME": "Tiểu Tu Hành",
+        "CHAPTER": [
+            {
+                "id": "3640619",
+                "name": "Chương 1: Phan Ngũ"
+            }
+        ],
+        "TOTALCHAPTER": "751",
+        "IMG": "https://static.cdnno.com/poster/tieu-tu-hanh/150.jpg",
+        "CAT": "Huyền Ảo",
+        "AUTHOR": "Điền Thập",
+        "TRANS": "Hoàng Châu",
+        "DESC": "Cảm xúc dâng trào, vô hạn huyễn tưởng, đón gió huy kích ngàn cơn sóng, thiếu niên bất bại nhiệt huyết!<br />\r\n<br />\r\nHố cực sâu Hoàng Châu mới đào.",
+        "THUMB": "https://static.cdnno.com/poster/tieu-tu-hanh/150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

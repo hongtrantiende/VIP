@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "9338",
+        "NAME": "Vạn Thế Yêu Tôn",
+        "CHAPTER": [
+            {
+                "id": "3158755",
+                "name": "Chương 1: Sở Lăng"
+            }
+        ],
+        "TOTALCHAPTER": "1483",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp, Kiếm Hiệp",
+        "AUTHOR": "Tương Hồng Minh",
+        "TRANS": "thuy070996",
+        "DESC": "Cửu U Chi Hạ, Yêu Hải khổng lồ.<br />\r\n<br />\r\n\tThiếu niên thân phụ Cổ Yêu huyết mạch, ra huyết vực, đạp thiên đồ.<br />\r\n<br />\r\n\tBằng thực lực bay thẳng lên cửu thiên vạn dặm, ta mệnh là rít gào trời xanh!",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

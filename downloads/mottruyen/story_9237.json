@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "9237",
+        "NAME": "Hệ Thống Liên Minh Tại Tu Chân Giới",
+        "CHAPTER": [
+            {
+                "id": "3140987",
+                "name": "Chương 1: Thế giới mới"
+            }
+        ],
+        "TOTALCHAPTER": "2",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp, Đô Thị, Dị Giới, Xuyên Không",
+        "AUTHOR": "hungdaik",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Thanh niên Hùng là một người nghiện lol đến mức không chỉ chơi game, anh còn tìm những câu chuyện ngoài lề và khoa huyễn về lol. Ai ngờ một ngày cậu đã bị cuốn vào một thế giới tu chân, lấy cường giả làm đầu. cậu có một hệ thống tên là Bí thần hệ thống, mang cho cậu mọi thứ cậu cần. Quyết tâm thành một du tiên. cậu đã tu luyện không cần hệ thống. Liệu cậu có thành công.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

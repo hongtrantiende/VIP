@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "1428",
+        "NAME": "Thánh Đạo Tà Tôn",
+        "CHAPTER": [
+            {
+                "id": "590742",
+                "name": "Chương 1: Bị heo mưu sát!"
+            }
+        ],
+        "TOTALCHAPTER": "594",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Võng Du, Dị Giới, Xuyên Không",
+        "AUTHOR": "Tinh Thần Tuyệt Thế",
+        "TRANS": "trang4mat",
+        "DESC": "Xuy&ecirc;n việt qua dị giới, người mang nghịch thi&ecirc;n Thăng Cấp Hệ Thống, Si&ecirc;u cấp h&egrave;n mọn bỉ ổi hệ thống.<br /><br />N&oacute;i ta kh&ocirc;ng linh căn, kh&ocirc;ng linh thuộc t&iacute;nh, kh&ocirc;ng c&aacute;ch n&agrave;o tu luyện? Phế vật một c&aacute;i? Ta c&oacute; tr&ograve; chơi Thăng Cấp Hệ Thống, c&aacute;i g&igrave; vạn năm kh&oacute; được nhất ngộ tư chất, tuyệt thế thi&ecirc;n t&agrave;i, ở trước mặt ta hết thảy đều l&agrave; cặn b&atilde;.<br /><br />Nh&agrave;m ch&aacute;n chi tế nh&igrave;n xem mỹ nữ tắm rửa, đạt được h&egrave;n mọn bỉ ổi gi&aacute; trị, nhẹ nh&otilde;m thăng cấp.<br /><br />Hệ thống: Chủ nh&acirc;n, chủ nh&acirc;n, b&ecirc;n cạnh c&oacute; mỹ nữ đang tắm, phải chăng mở ra Thấu Thị Thuật?<br /><br />M&oacute;a! Ngươi chủ nh&acirc;n ta l&agrave; c&aacute;i loại nầy l&eacute;n l&uacute;t người sao? Mở ra Ẩn Th&acirc;n Thuật, Xuy&ecirc;n Thấu Thuật, ta tự m&igrave;nh đi xem.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

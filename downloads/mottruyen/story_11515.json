@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "11515",
+        "NAME": "Hỏa Ảnh Chi Thanh Xuân Nhiệt Huyết",
+        "CHAPTER": [
+            {
+                "id": "3814714",
+                "name": "Chương thứ nhất: Ninja tốt nghiệp khảo thí"
+            }
+        ],
+        "TOTALCHAPTER": "200",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đồng Nhân",
+        "AUTHOR": "Vĩnh trú sinh cơ",
+        "TRANS": "Devileyes357",
+        "DESC": "Tóm Tắt:<br />\r\nBát Môn Độn Giáp Khai!",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

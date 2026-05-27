@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "3282",
+        "NAME": "Y Tiên Thiểu",
+        "CHAPTER": [
+            {
+                "id": "1146815",
+                "name": "Ngự tỷ đau chân."
+            }
+        ],
+        "TOTALCHAPTER": "170",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đô Thị",
+        "AUTHOR": "Vô Trục",
+        "TRANS": "( Nguồn: ST)",
+        "DESC": "Truyện Y Tiên Thiểu của tác giả Vô Trục viết về một sinh viên ngành dược đã tốt nghiệp và có được con đường công danh rực rỡ khiến ai trong xã hội cũng phải kính nể. <br />\r\n<br />\r\nKhông như bao sinh viên khác hắn chọn đi theo còn đường ngành thảo dược chứ không phải thuốc Tây y, con đường này còn khó khăn gấp bội. <br />\r\n<br />\r\nNhưng nhờ có một bí quyết tiên thuật đã thất truyền từ lâu mà bệnh gì vào tay hắn cũng trở nên dễ dàng. Từ những vị có quyền chức hay những tay anh chị cũng phải nể nang hắn vài phần…",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

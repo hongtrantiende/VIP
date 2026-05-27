@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "8769",
+        "NAME": "Máu Lai",
+        "CHAPTER": [
+            {
+                "id": "3001100",
+                "name": "Chương 1: Đứa bé được sinh ra."
+            }
+        ],
+        "TOTALCHAPTER": "64",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo",
+        "AUTHOR": "soitieutu",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Bạn có biết tới một chủng loài gọi là ma cà rồng?<br />\r\nCó lẽ ma cà rồng không xa lạ với bạn vậy hẳn là bạn cũng biết ma cà rồng không thể sinh con, họ sống rất rất lâu gần như là bất tử thế nhưng tự nhiên đã tước đi quyền sinh con của họ, có lẽ là sự trừng phạt dành cho kẻ bất tử thế nhưng nếu một ngày nào đó có một đứa bé được sinh ra nằm ngoài mọi quy luật vậy liệu thế giới có vì nó mà thay đổi?",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

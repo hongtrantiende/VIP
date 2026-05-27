@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "1732",
+        "NAME": "Mạt Nhật Tinh Thần Bệnh Viện",
+        "CHAPTER": [
+            {
+                "id": "720911",
+                "name": "Chương 1 - Tận thế"
+            }
+        ],
+        "TOTALCHAPTER": "593",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Khoa Huyễn",
+        "AUTHOR": "Thanh Vân Chi Lộ Vô Chung Điểm",
+        "TRANS": "Kinzie",
+        "DESC": "Bệnh viện t&acirc;m thần thực tập thầy thuốc Thời Nhược Vũ duy nhất nguyện vọng ch&iacute;nh l&agrave;:<br /><br /><br />N&agrave;y đ&oacute; đi theo hắn tại mạt thế cầu sinh đ&aacute;m bệnh nh&acirc;n, cho d&ugrave; thế giới sụp đổ, cũng đừng bu&ocirc;ng tay trị liệu a !",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

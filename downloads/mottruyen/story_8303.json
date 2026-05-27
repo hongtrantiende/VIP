@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "8303",
+        "NAME": "Tu Chân Giới Tại Đô Thị",
+        "CHAPTER": [
+            {
+                "id": "2853841",
+                "name": "Chương 1: Ngẫu đắc tiên duyên"
+            }
+        ],
+        "TOTALCHAPTER": "12",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp, Đô Thị, Võng Du, Khoa Huyễn",
+        "AUTHOR": "dieu97tn@",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Ngọc Huy là một người có đại nghị lực nhưng đồng thời cũng là một kẻ có tư chất thấp kém không một tu chân thế lực nào muốn thu nhận.<br />\r\nHắn Trong một lần tình cờ mà lại được bước lên tiên lộ. Chúng ta cùng xem rốt cục hắn có thể tiến bao xa trên hành trình này.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

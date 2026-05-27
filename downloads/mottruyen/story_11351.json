@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "11351",
+        "NAME": "One Piece : Trọng Sinh Từ Địa Ngục",
+        "CHAPTER": [
+            {
+                "id": "3764317",
+                "name": "Chương 1 : One Piece"
+            }
+        ],
+        "TOTALCHAPTER": "2",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đồng Nhân",
+        "AUTHOR": "♰ܨ๖ۣۜLạc ๖ۣۜTử ᴸᵉᵍᵉᶯᵈ ♰",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Bộ mà mình tập viết , bạn nào đọc thì vào đọc và góp ý , mình viết với thời gian rảnh nên sẽ cố gắng ra chương . nếu bạn nào ko đọc thì có thể đi ra ngoài , không nên cmt chửi với chê đủ các thể loại vậy",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

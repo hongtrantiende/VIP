@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "11320",
+        "NAME": "Ma Vương Vật Ngữ Truyện",
+        "CHAPTER": [
+            {
+                "id": "3755091",
+                "name": "Chương 1: Mạnh nhất Thí Thần Giả - Campione sinh ra"
+            }
+        ],
+        "TOTALCHAPTER": "3",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đô Thị, Huyền Ảo",
+        "AUTHOR": "Nhị Phương Manh Thần",
+        "TRANS": "๖ۣۜ Âm ๖ۣۜCửu ๖ۣۜU",
+        "DESC": "Mất đi đi trí nhớ, trong đầu hỗn độn một mảnh thiếu niên, lại như khắc họa nắm giữ lấy thần thoại chúng thần tri thức.<br />\r\n<br />\r\n\tThế là làm ảo tưởng cùng hiện thực giao thoa, thiếu niên cùng chúng thần gặp nhau thời điểm, thế giới —— cải biến!<br />\r\n<br />\r\n\t Manh Thần bất tử, đổi mới không chỉ!<br />\r\n<br />\r\n\tMuốn nói vì sao lời nói, bởi vì ta yêu các ngươi!",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

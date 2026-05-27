@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "9063",
+        "NAME": "Đô Thị Ảnh Giả",
+        "CHAPTER": [
+            {
+                "id": "3080224",
+                "name": "Chương 1 sự cố bất ngờ"
+            }
+        ],
+        "TOTALCHAPTER": "4",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đô Thị, Huyền Ảo",
+        "AUTHOR": "avatams",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Hài về đô thị ae đọc giải trí ) ,hơi bá",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

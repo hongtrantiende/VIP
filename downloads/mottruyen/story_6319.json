@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "6319",
+        "NAME": "Triệu Hoán Chi Tam Quốc Bá Nghiệp",
+        "CHAPTER": [
+            {
+                "id": "2267571",
+                "name": "Chương 1: Siêu cấp trò chơi"
+            }
+        ],
+        "TOTALCHAPTER": "910",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Lịch Sử, Đồng Nhân",
+        "AUTHOR": "Tuyết Luyến 1988",
+        "TRANS": "๖ۣۜThiên๖ۣۜThử",
+        "DESC": "Trương Phi đánh Nhạc Phi? Này thật không phải truyền thuyết, này hai hóa thường xuyên ở nhà của ta hậu hoa viên xé bức; <br />\r\nQuan Công chiến Tần quỳnh? Triều đại thiệt tình không loạn, này chẳng nhiều biên hai người chính đấu đến khí thế ngất trời; <br />\r\nKhổng Minh đối mậu công? Điểm này không buồn cười, nhìn xem đình hóng gió chọi gà mắt hai người là ai? <br />\r\nTay cầm siêu cấp hệ thống, triệu hoán lịch đại mưu thần lương tướng, này tam quốc ta làm chủ!",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

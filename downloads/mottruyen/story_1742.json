@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "1742",
+        "NAME": "Mạt Thế Luân Hồi Hệ Thống",
+        "CHAPTER": [
+            {
+                "id": "722240",
+                "name": "Chương 1: Sống lại"
+            }
+        ],
+        "TOTALCHAPTER": "243",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Khoa Huyễn",
+        "AUTHOR": "Tàn Tuyết Ngưng Huy Lãnh",
+        "TRANS": "Dao Nguyệt",
+        "DESC": "Mạt thế đến chi tế, lu&acirc;n hồi hệ thống phủ xuống. Ở mạt thế đấu tranh hai năm Sở Kh&ocirc;n sống lại đến rồi mạt thế bắt đầu trước...",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

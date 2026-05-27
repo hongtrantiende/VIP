@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "8412",
+        "NAME": "Thất Hiệp Truyền Kỳ",
+        "CHAPTER": [
+            {
+                "id": "2883462",
+                "name": "Chương 1: Tự cởi đồ hay chờ ta ra tay?"
+            }
+        ],
+        "TOTALCHAPTER": "21",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Kiếm Hiệp, Quân Sự, Lịch Sử",
+        "AUTHOR": "TieuBachLong90",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Võ đạo kỳ bí, nhân sinh đa sự, những chuyện ân oán trên thế gian này vốn không bao giờ chấm dứt. Từ xưa đến nay, mỗi khi trời đất tăm tối, cái ác chuyển mình thì luôn có những tuyệt thế cao thủ xuất hiện đập tan cái xấu, cứu thiên hạ thoát khỏi cảnh khổ ải lầm than. <br />\r\n<br />\r\nNhững tuyệt thế cao thủ này gồm bảy người, cũng là bảy truyền kỳ trong giới tu luyện võ. Họ hành tung bí ẩn, như thần long thấy đầu mà không thấy đuôi. Cuộc đời của họ chính là một bản hùng ca xen lẫn những nốt trầm đầy nước mắt… <br />\r\n<br />\r\nThích khách vô danh, hòa thượng điên bí ẩn, Nhân Phi Nhân có nhan sắc chim sa cá lặn, hay thanh Sát Kiếm nhuốm đầy máu tươi khiến mọi người phải run sợ…  Mọi thứ bắt đầu từ đây, từ một đêm đầy mưa gió ở Đông Đô Túy Vũ lâu, với nàng danh kỹ đẹp nhất trần đời Mị Nguyệt…",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

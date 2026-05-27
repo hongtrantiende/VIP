@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "7677",
+        "NAME": "Lạc Hồng Tiên Hiệp Truyện",
+        "CHAPTER": [
+            {
+                "id": "2701589",
+                "name": "Chương 1: Tình và máu - Chính và tà​"
+            }
+        ],
+        "TOTALCHAPTER": "103",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp",
+        "AUTHOR": "LongGiang",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Tu đạo, trường sinh, thần tiên là gì? Hiểu được bản chất của thiên địa, ngộ ra thâm ý của vạn vật, vượt qua được ranh giới của sinh – lão – bệnh – tử rồi sẽ ra sao? Biết tận căn cơ, xương tủy của đạo, trở thành thần tiên, thọ ngang trời đất cuối cùng cũng không rũ bỏ được quá khứ của một phàm phu tục tử. Hỏi trời đất, có thèm không cảm giác hỷ - nộ - ái - ố? Có thèm không một cảm giác được yêu thương, mong ngóng?<br />\r\n<br />\r\nKhi người ta đạt được đến cảnh giới cuối cùng mới nhận ra rằng, điều quan trọng không phải là sự trường sinh bất tử mà là cảm xúc của một con người bình dị, sống một cuộc sống vô ưu bên cạnh người mà mình thương yêu nhất.<br />\r\n<br />\r\nThế nhưng, cho dù một người ngộ ra, trăm triệu người khác vẫn tranh đấu khốc liệt, vẫn ôm giấc mộng một lần bước đến ngưỡng cửa thần thánh. Trong cuộc ganh đua ấy, có mưu ma chước quỷ, có thủ đoạn tàn khốc, có máu, có nước mắt, có những thiên anh hùng ca được viết lên không phải bởi những thần tiên đắc đạo mà từ chính những con người phàm trần, nhỏ bé.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

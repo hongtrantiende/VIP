@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "5049",
+        "NAME": "Tu La Chiến Hoàng",
+        "CHAPTER": [
+            {
+                "id": "1777203",
+                "name": "Chương 1: Tạ đồng tới Thiên học viện"
+            }
+        ],
+        "TOTALCHAPTER": "333",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo",
+        "AUTHOR": "Con Cua Hướng Thiên Tiếu",
+        "TRANS": "kabigons",
+        "DESC": "Thiếu ni&ecirc;n v&agrave;o học viện bị lừa l&agrave;m culi<br /> Thiếu ni&ecirc;n Tạ Đồng l&agrave;m thế n&agrave;o chiến thắng học viện khi&ecirc;u chiến cường giả thi&ecirc;n t&agrave;i<br /> Bắt sống tr&aacute;i tim mỹ nữ ! <br /> Số mệnh Tu La, con đường Chiến Ho&agrave;ng!<br /> <br /> ( truyện đ&aacute;nh theo kiểu v&otilde; đ&agrave;i solo 1vs1)",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "11280",
+        "NAME": "Biến Thân Chi Máu Tươi Chúa Tể",
+        "CHAPTER": [
+            {
+                "id": "3734445",
+                "name": "Chương 1: Bánh mì hay lại là con chuột"
+            }
+        ],
+        "TOTALCHAPTER": "259",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo, Dị Giới, Xuyên Không",
+        "AUTHOR": "Tây Du Đại Bạch",
+        "TRANS": "hacthuyyeu",
+        "DESC": "Biến thân chi máu tươi Chúa tể giới thiệu tóm tắt:  chuyển kiếp Dị Giới, còn bi kịch thành một nữ nhân, hơn nữa còn gặp phải một cái có thể nói là bi thảm mở đầu, lại nhìn nhân vật chính coi như Dị Thế Giới duy nhất một chỉ Hấp Huyết Quỷ là giãy giụa như thế nào đến sống được.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

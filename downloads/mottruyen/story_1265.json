@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "1265",
+        "NAME": "Cửu Diễm Chí Tôn",
+        "CHAPTER": [
+            {
+                "id": "500445",
+                "name": "Chương 1: Hàn Phong! - Quyển 1"
+            }
+        ],
+        "TOTALCHAPTER": "2611",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo, Xuyên Không",
+        "AUTHOR": "Ái Cật Bạch Thái",
+        "TRANS": "Mộ Dung Ý Nhy",
+        "DESC": "Xuy&ecirc;n việt Dị Thế, mang theo Cửu Diễm Thi&ecirc;n Hỏa Th&aacute;p, H&agrave;n Phong bắt đầu rồi cường giả h&agrave;nh tr&igrave;nh!<br /><br />Tu luyện Cửu Diễm Dị Hỏa Quyết, đốt ch&acirc;n nguy&ecirc;n, ph&aacute; thực tinh, ti&ecirc;u lĩnh vực, diệt ph&aacute;p tắc!<br /><br />M&agrave; lại xem thiếu ni&ecirc;n H&agrave;n Phong, như thế n&agrave;o Dị Thế c&aacute;c đại thi&ecirc;n t&agrave;i ch&iacute;nh giữa một bước l&ecirc;n trời, đạp ph&aacute; Thương Khung, th&agrave;nh tựu ch&iacute; t&ocirc;n vị!",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

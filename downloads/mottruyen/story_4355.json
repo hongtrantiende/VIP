@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "4355",
+        "NAME": "Kinh Thiên Vũ Tổ",
+        "CHAPTER": [
+            {
+                "id": "3794065",
+                "name": "Chương 1: Đào vong thiếu niên"
+            }
+        ],
+        "TOTALCHAPTER": "665",
+        "IMG": "https://static.cdnno.com/poster/kinh-thien-vu-to/150.jpg",
+        "CAT": "Tiên Hiệp, Huyền Ảo",
+        "AUTHOR": "Cửu Sí Ô Nha",
+        "TRANS": "Tiêu Dao",
+        "DESC": "thiếu niên Sở Kinh Thiên, gia tộc bị diệt, độc thân đào vong, nhưng lại bị bằng hữu tốt nhất, huynh đệ bức hạ núi lửa.<br />\r\n<br />\r\n\tKhông ngờ lại nhân họa đắc phúc, giải khai tuyệt thế chí bảo 'Thiên Đố Tháp' Huyền Bí.<br />\r\n<br />\r\n\tThiên Đố Tháp, Thương Thiên ghen chi!<br />\r\n<br />\r\n\tLại nhìn thiếu niên, cầm trong tay Thiên Đố Tháp, giết cừu địch, Diệt Tà ma, thành tựu một đoạn kinh thiên Võ Tổ tuyệt thế truyền kỳ!",
+        "THUMB": "https://static.cdnno.com/poster/kinh-thien-vu-to/150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

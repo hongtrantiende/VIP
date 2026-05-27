@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "12674",
+        "NAME": "Tiên Hoàng Đạo Tổ",
+        "CHAPTER": [
+            {
+                "id": "4098345",
+                "name": "Chương 1: Củi mục Tần đại thiếu (một)"
+            }
+        ],
+        "TOTALCHAPTER": "572",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo, Dị Giới",
+        "AUTHOR": "Mính trạch",
+        "TRANS": "๖ۣۜTiếu ๖ۣۜHồng ๖ۣۜTrần",
+        "DESC": "Vừa mới xuyên qua liền bị buộc khai sơn lập mạch , chiêu đồ hoằng pháp.\"Nhờ cậy! Người anh em ta nhất giới phế nhân , thân vô đạo cơ , so với thường nhân còn không bằng!\" Tần Phàm nhất thời cảm thấy áp lực núi lớn. Một đời ngưu nhân xuyên qua dị thế , khai tông lập phái , dẫn dắt một nhóm thiên tài yêu nghiệt , càn quét Bát Hoang thương Vũ , Chư Thiên Vạn Giới! Đây là một cái liên quan tới bao che cho con lão sư truyền kỳ!",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

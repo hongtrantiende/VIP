@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "3981",
+        "NAME": "Tu Tiên Cao Thủ Tại Đô Thị",
+        "CHAPTER": [
+            {
+                "id": "1450764",
+                "name": "Chương 1: Giáo hoa phế vật vị hôn phu"
+            }
+        ],
+        "TOTALCHAPTER": "1016",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đô Thị",
+        "AUTHOR": "Chấp Kiếm Trưởng Lão",
+        "TRANS": "Nvccanh",
+        "DESC": "Tu Ti&ecirc;n cao thủ Độ Kiếp thất bại, linh hồn gi&aacute;ng l&acirc;m Địa cầu, đ&atilde; trở th&agrave;nh một vị gi&aacute;o hoa phế vật vị h&ocirc;n phu. Gi&aacute;o hoa vị h&ocirc;n th&ecirc; muốn &eacute;p hắn từ h&ocirc;n, giả nh&acirc;n giả nghĩa tham tiền c&ocirc; b&aacute; tranh cướp gia sản, từng c&aacute;i lạnh l&ugrave;ng l&ograve;ng dạ &aacute;c độc s&aacute;t thủ mu&ocirc;́n hại t&iacute;nh mạng hắn. . . Bệnh của gia gia muốn trị, đẹp nữ b&aacute;c sĩ bệnh muốn trị. . . Ngạo kiều thế gia thi&ecirc;n kim muốn c&ugrave;ng hắn học v&otilde; thuật, l&atilde;nh diễm cảnh hoa cũng muốn bắt chước. . . Những vấn đề n&agrave;y tại Tu Ti&ecirc;n cao thủ L&acirc;m Mục trước mặt đều kh&ocirc;ng l&agrave; vấn đề!",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

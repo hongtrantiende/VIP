@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "6214",
+        "NAME": "Tiếu Ngạo Thương Khung",
+        "CHAPTER": [
+            {
+                "id": "2211625",
+                "name": "Chương 1: Trấn nhỏ thiếu niên"
+            }
+        ],
+        "TOTALCHAPTER": "9",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo",
+        "AUTHOR": "lieuca1110",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Đại kiếp nạn phủ xuống, thiên tài hiện lên lớp lớp, yêu nghiệt vạn năm mới xuất hiện ùn ùn mọc lên.<br />\r\n<br />\r\nVạn tộc bước lên sân khấu lớn. Long tộc, Phượng tộc nhất tề hiện thế, ngay cả thần bí nhất Thần tộc cũng ra mặt.<br />\r\n<br />\r\nThiếu niên Vũ Hạo, nương theo thịnh thế, một người một thương, chiến khắp thiên hạ, truy tìm vĩnh sinh.<br />\r\n<br />\r\nNgự tinh thần, trích nhật nguyệt, khống hỗn độn, chưởng càn khôn.<br />\r\n<br />\r\nTruyện VN nhé không nghe văn phong thấy Tàu quá lại bảo truyện Tàu =))",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

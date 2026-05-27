@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "5577",
+        "NAME": "Lực Hoàng",
+        "CHAPTER": [
+            {
+                "id": "1983147",
+                "name": "Chương 1: Quật khởi đi, phế vật!"
+            }
+        ],
+        "TOTALCHAPTER": "1077",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo",
+        "AUTHOR": "Thập Tam Giáo Phụ",
+        "TRANS": "Kimkolxe",
+        "DESC": "Muôn vàn thuật pháp, vạn loại thần thông, ta chỉ hỏi một câu, ngươi địch ta lực tử ? Man lực vượt mười ngàn giới, Nhất Lực Hàng Thập Hội, đừng hỏi thực lực ta cao bao nhiêu, ta sẽ nói cho ngươi biết ta khí lực bao lớn! Ta là Lực Hoàng!",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

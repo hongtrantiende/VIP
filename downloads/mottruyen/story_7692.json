@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "7692",
+        "NAME": "Đan Võ Đế Tôn",
+        "CHAPTER": [
+            {
+                "id": "2705066",
+                "name": "Chương 1: Đan hoàng trọng sinh"
+            }
+        ],
+        "TOTALCHAPTER": "744",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo, Trùng Sinh",
+        "AUTHOR": "Ám Điểm",
+        "TRANS": "808",
+        "DESC": "Năm trăm năm trước, Diệp Tinh Thần bị một vị tuyệt sắc mỹ nữ sư phụ đầu nhập lò luyện đan luyện hóa, bị nàng cướp đoạt Đế Vương cấp bổn mạng đan hỏa, cho nên một đời đan hoàng như vậy vẫn lạc. Năm trăm năm, Diệp Tinh Thần trọng sinh tại Lăng Dương trấn Diệp gia đệ tử trên người, cơ duyên thức tỉnh Đế Tôn cấp bổn mạng đan hỏa, mà lúc này Cung Dao đã thành thế nhân kính ngưỡng đan đạo Đại Đế.\"Vậy thì như thế nào? Cung Dao, ngươi đem ta đầu nhập trong lò luyện đan luyện hóa, đoạt ta bổn mạng đan hỏa, đối đãi ta quật khởi ngày, chính là ngươi mất mạng Hoàng Tuyền ngày!\"",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

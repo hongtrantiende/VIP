@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "980",
+        "NAME": "Tài Quyết",
+        "CHAPTER": [
+            {
+                "id": "393968",
+                "name": "Chương 1: Mơ hồ thiếu niên"
+            }
+        ],
+        "TOTALCHAPTER": "689",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo",
+        "AUTHOR": "Thất Thập Nhị Biến",
+        "TRANS": "Bookgrinder, Kenshikage, Bích Dao",
+        "DESC": "Một c&aacute;i bề ngo&agrave;i ng&acirc;y thơ chất ph&aacute;c, vẻ mặt mơ hồ đ&iacute;ch đại đầu nam h&agrave;i, cũng l&agrave; một c&aacute;i đi theo t&aacute;o bạo người l&ugrave;n học rồi hảo t&iacute;nh t&igrave;nh, đi theo ngạo mạn tinh linh học rồi khi&ecirc;m tốn, đi theo y&ecirc;u n&oacute;i dối đ&iacute;ch gnome học xong th&agrave;nh thực, đi theo d&atilde; man nh&acirc;n học xong lễ nghi đ&iacute;ch ph&uacute;c hắc tiểu hỗn đản.<br /><br />L&agrave;m n&agrave;y kh&ocirc;ng thể tu luyện đấu kh&iacute; đ&iacute;ch hương ba l&atilde;o, theo ph&iacute;a nam th&agrave;nh nhỏ đi l&ecirc;n vũ đ&agrave;i đ&iacute;ch thời điểm, hắn muốn th&agrave;nh v&igrave; vĩ đại nhất đ&iacute;ch kỵ sĩ.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

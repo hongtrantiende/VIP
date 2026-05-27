@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "1000",
+        "NAME": "Đan Vũ Càn Khôn",
+        "CHAPTER": [
+            {
+                "id": "263193",
+                "name": "Chương 1: Thân phận mới"
+            }
+        ],
+        "TOTALCHAPTER": "1183",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Dị Giới",
+        "AUTHOR": "Hỏa Thụ",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Thi&ecirc;n ph&uacute; cao đến đ&acirc;u cũng sợ kẻ ăn đan dược như ăn cơm! Chỉ cần c&oacute; c&oacute; đại lượng đan dược kh&ocirc;ng sợ kh&ocirc;ng đ&aacute;nh ng&atilde; được thi&ecirc;n t&agrave;i!\r\n&nbsp;\r\nTần Ph&agrave;m - đệ tử huy nhất của m&ocirc;n ph&aacute;i l&aacute;nh đời Đan M&ocirc;n sau một lần luyện dược thất bại, đan đỉnh nổ tung xuy&ecirc;n việt đến một thế giới v&otilde; giả. Đ&acirc;y l&agrave; một thế giới d&ugrave;ng v&otilde; vi t&ocirc;n v&agrave; l&agrave; thi&ecirc;n đ&agrave;ng của Tần Ph&agrave;m - một kẻ đam m&ecirc; luyện dược nhưng ở Địa Cầu lại kh&ocirc;ng đủ linh dược. Hắn bắt đầu luyện v&otilde;, thu thập linh dược luyện th&agrave;nh thể ph&aacute;ch cường đại nhất thi&ecirc;n hạ. Chiến đấu với thần ma, đột ph&aacute; mệnh c&aacute;ch, tiếu ngạo tam giới, vang danh Đan - Vũ!",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

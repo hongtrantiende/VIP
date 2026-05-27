@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "3780",
+        "NAME": "Miễn là anh yêu em",
+        "CHAPTER": [
+            {
+                "id": "1303580",
+                "name": "Chương 1: Ký ức không vui"
+            }
+        ],
+        "TOTALCHAPTER": "24",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đô Thị, Ngôn Tình",
+        "AUTHOR": "Thái Ny (Phoenix)",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Cô 24 tuổi, xinh đẹp là tiểu thư của một gia đình danh giá.<br />\r\nTuy đã 24 tuổi nhưng vẫn chưa có lấy một mảnh tình vắt vai, luôn bị mẹ mình thúc giục dẫn bạn trai về nhưng cô một mực không quan tâm, đơn giản vì cô không tin vào tình yêu, chính bản thân cô ghê tởm những cuộc tình phụ thuộc vào thể xác vào tiền bạc.<br />\r\nRồi bỗng dưng anh xuất hiện trong cuộc đời cô một cách đột ngột hệt như truyện cổ tích, dần dần thuận lợi lật ngược tình thế vốn đã mặc định, anh đẹp trai như hoàng tử, gia thế không tầm thường.<br />\r\nCô vẫn lạnh lùng dững dưng, không một chút động lòng với anh.<br />\r\nTại sao anh lại đột nhiên đến với cuộc đời cô như vậy? Đó là bởi cô đã quên mất anh, quên mất cách đây 10 năm cô đã từng gặp anh.<br />\r\nCô không tin trên đời này có con người hoàn hảo như anh, nhất định không tin.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

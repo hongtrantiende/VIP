@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "10988",
+        "NAME": "Thần Nông Tiểu Y Tiên",
+        "CHAPTER": [
+            {
+                "id": "3636190",
+                "name": "Chương 1: Thần Nông Kinh"
+            }
+        ],
+        "TOTALCHAPTER": "1401",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đô Thị",
+        "AUTHOR": "Tuyệt thế lăng trần",
+        "TRANS": "๖ۣۜTiếu ๖ۣۜHồng ๖ۣۜTrần",
+        "DESC": "Tại nông thôn , hắn dùng trị nông lương thuật khai khẩn trồng trọt , dẫn dắt thôn dân làm giàu.<br />\r\n<br />\r\n\tTại đô thị , hắn lấy tuyệt thế y phương chăm sóc người bị thương , bị người coi là thần y chuyển thế.<br />\r\n<br />\r\n\tThần nhãn nhìn xuyên tường , điểm kim hay chỉ... Ngay trước mọi người nhiều thần kỹ gia tăng thân mình , lần nào cũng đúng thời khắc , mỹ nữ hết thảy tới dồn dập , làm hắn không chớp mắt.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

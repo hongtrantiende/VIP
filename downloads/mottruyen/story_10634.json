@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "10634",
+        "NAME": "Mạn Du Chư Thiên",
+        "CHAPTER": [
+            {
+                "id": "3539317",
+                "name": "Chương 1: Vạn giới châu"
+            }
+        ],
+        "TOTALCHAPTER": "767",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Kiếm Hiệp, Huyền Ảo, Đồng Nhân",
+        "AUTHOR": "Xuân Tụng Hạ Huyền",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Một hạt cát một thế giới,<br />\r\nMột hoa một thiên quốc,<br />\r\nBước chậm chư thiên đường,<br />\r\nChớp mắt là vĩnh hằng.<br />\r\n<br />\r\nCác MAP đi qua: Tinh Võ Môn, Quỷ Thổi Đèn Tinh Tuyệt Cổ Thành, Kiếm Vũ, Thiên Hạ Đệ Nhất, Thiến Nữ U Hồn, Phong Vân, Phá Toái Hư Không, Dương Thần...<br />\r\n<br />\r\n♦ Cầu Nguyệt Phiếu, Kim Đậu, Hỏa Tinh Châu...",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

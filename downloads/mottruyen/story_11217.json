@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "11217",
+        "NAME": "Tiên Nghịch Hậu Truyện",
+        "CHAPTER": [
+            {
+                "id": "3708075",
+                "name": "Chương 1 : Mộng Hồi Viễn Cổ"
+            }
+        ],
+        "TOTALCHAPTER": "2",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp",
+        "AUTHOR": "Phuongtd",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Viết như một bộ đồng nhân của Tiên Nghịch<br />\r\nCảnh giới và map tu luyện giống 100% Tiên Nghịch<br />\r\n Nhân vật chính Lý Nguyên thực ra là ai?<br />\r\n Liệu hắn có mang nghịch thiên ý chí để gặp những  <br />\r\n Tô Minh, Vương Lâm, Mạnh Hạo bên ngoài hư vô thế giới....?<br />\r\n Liệu Lý Nguyên hắn có thể làm người thứ ba của Nghịch Trần giới đi lên chín bậc Đạp Thiên?<br />\r\n<br />\r\n Nguyên gốc mình viết bộ này lấy tựa Hậu Tiên Nghịch nhưng nay xin được sửa đổi<br />\r\n<br />\r\n Không cầu nguyệt phiếu, không cầu đề cử<br />\r\n Viết vì đam mê mong mọi người ủng hộ",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

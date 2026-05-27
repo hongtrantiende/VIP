@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "9490",
+        "NAME": "Món Đồ Chơi Của Ác Ma - Ma Cà Rồng",
+        "CHAPTER": [
+            {
+                "id": "3205801",
+                "name": "Chương 1: Quá Khứ Đau Khổ"
+            }
+        ],
+        "TOTALCHAPTER": "6",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đô Thị, Ngôn Tình",
+        "AUTHOR": "dttmkg1997@",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Đây là thể loại truyện máu chó dành cho mấy hủ thích nè ",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "10019",
+        "NAME": "Tối Cường Yêu Nghiệt Đường Tăng",
+        "CHAPTER": [
+            {
+                "id": "3374230",
+                "name": "Chương 1: Vân đổi lấy hệ thống cùng Đường Sinh"
+            }
+        ],
+        "TOTALCHAPTER": "207",
+        "IMG": "https://static.cdnno.com/poster/toi-cuong-yeu-nghiet-duong-tang/150.jpg",
+        "CAT": "Tiên Hiệp, Huyền Ảo, Khoa Huyễn",
+        "AUTHOR": "Thành Nam Nhất Bá",
+        "TRANS": "Tiêu Dao",
+        "DESC": "\"Ngộ Không, để đó ta đến!\" Đường Sinh nhất cước Hồi Toàn Thích.<br />\r\n<br />\r\n\t\"Sư phụ bớt giận, người xuất gia không thể như thế tàn bạo a!\" Tôn Ngộ Không đau khổ cầu khẩn.<br />\r\n<br />\r\n\t. . .<br />\r\n<br />\r\n\tSa Tăng: \"Đại sư huynh không tốt rồi, Bạch Cốt Tinh bị sư phụ bắt đi á!\"<br />\r\n<br />\r\n\tBát Giới: \"Tinh Tinh, ta Bạch Tinh Tinh a, sư phụ ngươi là người xuất gia, tuyệt đối không thể mê muội nhan sắc a. . .\"<br />\r\n<br />\r\n\tThanh niên vô nghề nghiệp Đường Sinh biến thân Đường Huyền Trang, tự mang Vân đổi lấy hệ thống, sư đồ bốn người Tây Du loạn hầm, một đường mãnh liệt liệu không ngừng, muốn ngươi",
+        "THUMB": "https://static.cdnno.com/poster/toi-cuong-yeu-nghiet-duong-tang/150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

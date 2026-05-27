@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "1126",
+        "NAME": "Thần Bí Chi Lữ",
+        "CHAPTER": [
+            {
+                "id": "409156",
+                "name": "Chương 1: Mới bắt đầu"
+            }
+        ],
+        "TOTALCHAPTER": "1143",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo, Xuyên Không",
+        "AUTHOR": "Cổn Khai",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Thần B&iacute; Chi Lữ l&agrave; thể loại xuy&ecirc;n kh&ocirc;ng của t&aacute;c giả Cổn Khai\r\n&nbsp;\r\nXuy&ecirc;n vi&ecirc;̣t đến lạc hậu thế giới kh&aacute;c, c&oacute; c&oacute; thể gia tăng thuộc t&iacute;nh thi&ecirc;n ph&uacute; dị năng, La Tĩnh bắt đầu b&igrave;nh thường rồi lại kh&ocirc;ng tầm thường sinh hoạt.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

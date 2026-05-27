@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "5211",
+        "NAME": "Nam Thần Giới Chỉ",
+        "CHAPTER": [
+            {
+                "id": "1843637",
+                "name": "Chương 1: Mỹ nữ cùng cẩu hùng"
+            }
+        ],
+        "TOTALCHAPTER": "61",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đô Thị",
+        "AUTHOR": "Thiếu Vọng Santiago",
+        "TRANS": "Nvccanh",
+        "DESC": "Tr&ecirc;n thế giới lu&ocirc;n c&oacute; một phần nam nh&acirc;n, cao cao tại thượng, nắm giữ khiến người b&ecirc;n ngo&agrave;i h&acirc;m mộ tất cả. Bọn hắn gọi chung l&agrave; &mdash;&mdash; nam thần!<br /><br />Từ khi được rồi Nam Thần Giới Chỉ, Triệu Nhạc kh&ocirc;ng thể kh&ocirc;ng v&igrave; nhiệm vụ nỗ lực. Trở th&agrave;nh học ph&aacute;ch, biến th&acirc;n minh tinh, thăng nhiệm CEO, sở hữu Bạch Ph&uacute; Mỹ!<br /><br />Ai &ocirc;i, cũng kh&ocirc;ng tệ lắm nha!<br /><br />Nam Thần Giới Chỉ, gi&uacute;p ngươi trở th&agrave;nh nam thần!",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

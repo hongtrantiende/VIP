@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "2344",
+        "NAME": "Dị Giới Đại Chưởng Môn",
+        "CHAPTER": [
+            {
+                "id": "781751",
+                "name": "Chương 1: Đại chưởng môn hệ thống"
+            }
+        ],
+        "TOTALCHAPTER": "30",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Dị Giới",
+        "AUTHOR": "Di Sát",
+        "TRANS": "Dellap",
+        "DESC": "\"Ta nguyện lấy tay trong chi kiếm, l&agrave; chưởng m&ocirc;n vượt mọi ch&ocirc;ng gai.\"\r\nVẻ mặt l&atilde;nh khốc  T&acirc;y M&ocirc;n Xuy Tuyết đứng ở phong tuyết trong dương kiếm, ngạo nghễ n&oacute;i.\r\n<br /> <br /> \"Ch&uacute;ng ta n&agrave;y cả đời, chỉ cầu nhất bại.\"\r\nBa thước mộc kiếm cắt qua hư kh&ocirc;ng, thi&ecirc;n địa l&acirc;m v&agrave;o r&ugrave;ng m&igrave;nh.\r\n<br /> <br /> \"Chấp c&ugrave;ng t&igrave;nh, trung c&ugrave;ng t&igrave;nh, thương c&ugrave;ng t&igrave;nh, v&ocirc; t&igrave;nh dịch hữu t&igrave;nh, hữu t&igrave;nh dịch v&ocirc; t&igrave;nh.\"\r\nMột ch&uacute;t tấc mũi nhọn ph&aacute; hư kh&ocirc;ng, một tay bầu rượu một tay g&aacute;nh c&ugrave;ng ph&iacute;a sau, nam tử ngửa mặt l&ecirc;n trời cười d&agrave;i.\r\n<br /> <br /> \"Thuận giả xương, nghịch giả vong, ta chờ nguyện l&agrave; chưởng m&ocirc;n m&aacute;u chảy đầu rơi!\"\r\nTrong hư kh&ocirc;ng, v&ocirc; số người ảnh quỳ s&aacute;t, hoặc cuồn cuộn hoặc xơ x&aacute;c ti&ecirc;u điều hoặc &acirc;m l&atilde;nh, v&ocirc; số kh&aacute;c hẳn bất đồng  kh&iacute; thế quấy phong v&acirc;n, giảo  kia hư kh&ocirc;ng tấc tấc vỡ vụn.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

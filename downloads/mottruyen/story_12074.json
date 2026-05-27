@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "12074",
+        "NAME": "Harry Potter Chi Chồn Cố Sự",
+        "CHAPTER": [
+            {
+                "id": "3942096",
+                "name": "Chương : Ngang ngược người ( tự chương )"
+            }
+        ],
+        "TOTALCHAPTER": "167",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đồng Nhân",
+        "AUTHOR": "Đông vị danh",
+        "TRANS": "๖ۣۜTiếu ๖ۣۜHồng ๖ۣۜTrần",
+        "DESC": "Nhìn tổng quát sở hữu Harry Potter đồng nhân văn trung , nhân vật chính vĩnh viễn là Gryffindor cùng Slytherin học viện , thỉnh thoảng sẽ xuất hiện một hai bộ Ravenclaw Ưng đồng nhân , chẳng lẽ Hogwarts tứ đại học viện một trong Hufflepuff thật là một cái bình thường học viện sao? Hufflepuff bên trong có hay không cất giấu sâu hơn cố sự , chúng ta mỏi mắt mong chờ.<br />\r\n<br />\r\np/s: vừa làm vừa đăng bộ này, phiên bản harry hắc hóa, harry không phải tốt vậy, sly không phải xấu, dum dùng học sinh đánh cờ ...",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

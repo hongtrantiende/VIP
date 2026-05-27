@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "5176",
+        "NAME": "Tinh Hà Vu Yêu",
+        "CHAPTER": [
+            {
+                "id": "1833784",
+                "name": "Chương 1: Va chạm"
+            }
+        ],
+        "TOTALCHAPTER": "591",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Dị Giới, Khoa Huyễn",
+        "AUTHOR": "Tình Chung Lưu Thủy",
+        "TRANS": "๖ۣۜNhox๖ۣۜMix๖",
+        "DESC": "Làm chinh phục một thế giới Vu Yêu Chi Vương, lấy linh hồn chiếm cứ phương thức tiến nhập xã hội loài người, kết hợp nhân loại khoa học kỹ thuật Tinh Hà Vu Yêu chắc chắn tịch quyển Tinh Hà.<br />\r\n<br />\r\n\tNgươi nói ta tiêu diệt toàn bộ nhân loại?<br />\r\n<br />\r\n\tKhông, ta nghĩ ta chắc là ban cho nhân loại vĩnh hằng sinh mệnh.<br />\r\n<br />\r\n----------------------------------------------------<br />\r\nHãy \"Cảm ơn\" và vote \"Tốt\" vào mỗi chương nếu thấy ta cv được",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

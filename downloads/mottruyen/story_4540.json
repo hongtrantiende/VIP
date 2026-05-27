@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "4540",
+        "NAME": "Lang Nhân Vương Tọa",
+        "CHAPTER": [
+            {
+                "id": "1610469",
+                "name": "Chương 1: 'Hắc Quyền chi Vương'"
+            }
+        ],
+        "TOTALCHAPTER": "193",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo",
+        "AUTHOR": "Cửu Môn Đề Đốc",
+        "TRANS": "hanyue",
+        "DESC": "S&oacute;i đi ng&agrave;n dặm ăn thịt, ch&oacute; đi ng&agrave;n dặm đớp cứt. Kiếp trước quốc thuật b&atilde;o đan cao thủ, Bernardo, chuyển thế trở th&agrave;nh một người s&oacute;i, một thế n&agrave;y ch&iacute;nh l&agrave; muốn nhậu nhẹt, đứng đấy sinh, nằm chết, da ngựa bọc th&acirc;y, g&agrave;o th&eacute;t tang thương.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "5573",
+        "NAME": "LIỆP DIỄM GIANG HỒ MỘNG",
+        "CHAPTER": [
+            {
+                "id": "1980734",
+                "name": "Chương 1: Sơn thôn kỳ biến"
+            }
+        ],
+        "TOTALCHAPTER": "5",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Kiếm Hiệp",
+        "AUTHOR": "Trần Khổ",
+        "TRANS": "(^_^)",
+        "DESC": "Liệp Diễm Giang Hồ Mộng là câu chuyện Sắc Hiệp khá nổi tiếng của tác giả Trần Khổ. Truyện kể về anh chàng Hoàng Hy Bình, sống ở Hoàng Sơn Thôn, vốn rất hay đánh nhau, một hôm lên núi hái thuốc vô tình gặp kỳ ngộ là hấp thu được linh khí của Mãng Xà ngàn năm cùng với máu của Hổ Thần, Hy Bình từ đó trong máu có sự thay đổi, sức mạnh tăng lên, vạn độc bất xâm, trâu bò vô cùng. <br />\r\n<br />\r\n- Hy Bình bắt đầu phiêu lưu trong giang hồ và dần dần, đội ngũ lão bà của hắn ngày càng tăng lên đông chóng mặt. Làm bạn với Hy Bình trong các chuyến phiêu lưu còn có người bạn thân Tứ Cẩu, em vợ Hoa Tiểu Ba... đều là những đại thần côn, đại dâm tặc, đi đên đâu reo rắc tinh trùng đến đó...",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

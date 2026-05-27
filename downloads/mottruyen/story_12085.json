@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "12085",
+        "NAME": "Tử Nhân Kinh",
+        "CHAPTER": [
+            {
+                "id": "3944139",
+                "name": "Chương 1 Hồng ảnh tử< hồng bóng dáng>"
+            }
+        ],
+        "TOTALCHAPTER": "297",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Linh Dị",
+        "AUTHOR": "Lạc mang",
+        "TRANS": "AnckSuNamun",
+        "DESC": "Lầm uống lên trước mộ minh rượu, kết quả cùng một quỷ muội chỉ bái thiên địa……",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

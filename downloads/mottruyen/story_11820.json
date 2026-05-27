@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "11820",
+        "NAME": "Nhặt Cái Thiên Hậu Làm Vợ",
+        "CHAPTER": [
+            {
+                "id": "3883341",
+                "name": "Chương 1: Nhặt cái Thiên Hậu"
+            }
+        ],
+        "TOTALCHAPTER": "179",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đô Thị",
+        "AUTHOR": "Cưỡi Ngựa Đạp Thiên Sơn",
+        "TRANS": "๖ۜVân ๖ۜPhong™",
+        "DESC": "Xuyên qua song song thế giới, nhặt được một cái Thiên Hậu về nhà làm vợ, là thời gian hiện ra thực lực chân chính rồi, để các ngươi mở mang kiến thức một chút người ngoài hành tinh thực lực, run rẩy a!",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "10702",
+        "NAME": "Thần Đồ",
+        "CHAPTER": [
+            {
+                "id": "3554785",
+                "name": "Chương 1: Lưu gia con rơi"
+            }
+        ],
+        "TOTALCHAPTER": "77",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp",
+        "AUTHOR": "Bình Phàm Lão Oa Ngưu",
+        "TRANS": "cstdlifecstd",
+        "DESC": "Lưu tinh, Yến kinh đệ nhất thế gia Lưu gia con rơi, trời sinh không nâng, thể nhược nhiều bệnh, gầy trơ xương, vô học, ăn uống đánh cược lấy mẫu dạng tinh thông! Bị trục xuất Lưu gia sau, lưu tinh không chỗ nương tựa, độc ẩn phát tác, hôn mê đầu đường. Cũng còn tốt lưu tinh còn có một người chưa lập gia đình thê, không chỉ có là Yến kinh đệ nhất mỹ nữ, hơn nữa tâm địa thiện lương, cho lưu tinh một cái chỗ an thân, còn để lưu tinh tiến vào yến đại học tập! Có thể thiên ý trêu người, . . .",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

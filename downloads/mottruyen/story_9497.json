@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "9497",
+        "NAME": "Huyết Quyền",
+        "CHAPTER": [
+            {
+                "id": "3208521",
+                "name": "Chương 0: Lời nói đầu của tác giả:"
+            }
+        ],
+        "TOTALCHAPTER": "3",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đô Thị",
+        "AUTHOR": "raymond.bui@",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Huyết quyền truyện kể từ  1 kẻ vô danh sống trong chốn đô thị phồn hoa, cuộc đời của hắn có thể sẽ trở nên tẻ nhạt và vô vị nếu không có những biến cố khác xảy ra. Một lần vô tình bị cuốn vào vòng xoáy của thế giới ngầm, hắn phải đấu tranh để sống, từ đôi bàn tay trắng đánh ra một mảnh giang sơn… Biến cố chồng biến cố, cuộc đời không hề suôn sẻ, cuộc sống là phải tranh đấu. Lội ngược dòng, vượt long môn, cá chép liệu có hóa rồng? Mọi thứ phải từng bước để đi, những cám dỗ, thử thách xã hội biến một thanh niên non nớt và suy nghĩ về thế giới màu hồng sang một trang khác, chỉ trắng đen và máu. Truyện bựa, hài hước, lối viết văn dí dỏm.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

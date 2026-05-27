@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "3007",
+        "NAME": "Long Đằng Vũ Nội",
+        "CHAPTER": [
+            {
+                "id": "1026253",
+                "name": "Chương 1: Cửu Tinh Liên Châu"
+            }
+        ],
+        "TOTALCHAPTER": "4",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đô Thị",
+        "AUTHOR": "Phong Vũ Thiên Hạ",
+        "TRANS": "Nhóm Converter",
+        "DESC": "Một thân thế đau khổ thiếu niên, diện đối với thượng cổ Ma thần truyền thừa, đông đảo thủ hạ đi theo, khuôn mặt đẹp người yêu, đáng yêu tiểu la lợi. . . .<br />\r\n<br />\r\n\tHắn là làm sao thành lập chính mình hắc đạo đế quốc, mạnh mẽ tài chính tập đoàn, như thế nào tìm tìm chính mình thân thế, làm sao tiêu sái nhân sinh! Mời xem Long Đằng Vũ Nội!",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

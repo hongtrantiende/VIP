@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "7271",
+        "NAME": "Tam Quốc Mỹ Nhân Chí",
+        "CHAPTER": [
+            {
+                "id": "2585928",
+                "name": "Chương 1: Ta là Long Ngạo Thiên"
+            }
+        ],
+        "TOTALCHAPTER": "353",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Võng Du",
+        "AUTHOR": "Tối hậu gia tử",
+        "TRANS": "♚๖ۣۜKabigon♌♔",
+        "DESC": "",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

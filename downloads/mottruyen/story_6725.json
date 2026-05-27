@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "6725",
+        "NAME": "Truyện Kỳ Tái Hiện",
+        "CHAPTER": [
+            {
+                "id": "2391083",
+                "name": "Chương 1: Trở về"
+            }
+        ],
+        "TOTALCHAPTER": "130",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đô Thị",
+        "AUTHOR": "Ngụy Giới",
+        "TRANS": "Hienanhtq",
+        "DESC": "Ngây ngô thiếu niên nổi giận rời khỏi quê nhà .<br />\r\n<br />\r\n\tBốn năm đi qua , hắn tỏ rõ vẻ tang thương mang theo vinh quang trở về !<br />\r\n<br />\r\n\tBê tông cốt thép khắc nghiệt trong thành thị , cố nhân không ở , truyền kỳ thoái ẩn . . .<br />\r\n<br />\r\n\tMặt với người nhà chỉ trích , bằng hữu xem thường , hắn đã từng bồi hồi ở ngã tư phố , cùng huynh đệ chỉ vào bầu trời đen nhánh hô: Ngày hôm nay có bao nhiêu người xem thường ta , ngày mai sẽ sẽ có bao nhiêu người ca ngợi ta !<br />\r\n<br />\r\n\tĐây là một bộ phận dùng Thiết Quyền cùng tranh tranh ngạo cốt , phấn khởi chiến đấu ở óng ánh niên hoa cố sự !<br />\r\n<br />\r\n\tHuynh đệ ý gì?<br />\r\n<br />\r\n\tTa với ngươi sóng vai , cái kia ngươi chính là ta huynh đệ !",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "7786",
+        "NAME": "Ngạo Thế Tinh Vân",
+        "CHAPTER": [
+            {
+                "id": "2727623",
+                "name": "Chương 1: Tử hồng lệnh bài"
+            }
+        ],
+        "TOTALCHAPTER": "100",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo",
+        "AUTHOR": "Tuyết Linh Chi Hồn",
+        "TRANS": "ngocdeptrai22041998",
+        "DESC": "Phao Khước Liễu Đại lục đệ nhất thiên tài Đan sư, từ bỏ cơ hội trở thành Cổ kim Đan sư cơ hội, trăm năm như 1 ngày nghiên cứu chỉ vì tông môn hưng thịnh cùng sư Tôn chờ mong. Trung thành tuyệt đối vì tông môn mà lạc đến Sưu hồn đoạt mệnh kết cục.<br />\r\nNhưng thiện hữu thiện báo, chiếc lệnh bài đỏ tím mang theo linh hồn Tinh Vân trọng sinh.<br />\r\nNhưng vận mệnh lại cho Tinh Vân mở ra 1 câu chuyện cười, 1 cái rác rưởi thể chất? Không thể tu hành?<br />\r\nKhông, có ta Tinh Vân nơi này, không có gì gọi là rác rưởi cả!!",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

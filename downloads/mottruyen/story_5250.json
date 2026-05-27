@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "5250",
+        "NAME": "Tuyệt thế vũ hồn",
+        "CHAPTER": [
+            {
+                "id": "1856565",
+                "name": "Chương thứ nhất Thủ Mộ năm năm"
+            }
+        ],
+        "TOTALCHAPTER": "3537",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp, Huyền Ảo, Linh Dị",
+        "AUTHOR": "Lạc Thành Đông",
+        "TRANS": "ngoson227",
+        "DESC": "Long Mạch đại lục, vạn tộc mọc như rừng, tông môn vô số, võ giả vi tôn. Cường giả Hủy Thiên Diệt Địa, người yếu bò lổm ngổm như Kiến. Thiếu niên Trần Phong, Đan Điền như sắt, không cách nào tu luyện, chịu hết mắt lạnh. Ngẫu nhiên được Chí Tôn Long Huyết, thần bí cổ đỉnh, từ nay nghịch thiên quật khởi, đột nhiên xuất hiện! Đáng yêu Yêu Hồ, Lãnh Ngạo Nữ Hoàng, Ma Môn Yêu Nữ, Thần Tộc Công Chúa, tất cả đều vào ta trong ngực. Sửa truyền thừa vô thượng, ngưng mạnh nhất Vũ Hồn, tọa ủng chúng mỹ, ngạo thị",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

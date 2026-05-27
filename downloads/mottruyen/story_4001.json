@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "4001",
+        "NAME": "Giáo Tổ",
+        "CHAPTER": [
+            {
+                "id": "1465686",
+                "name": "Chương 1: Vạn Thi Tông"
+            }
+        ],
+        "TOTALCHAPTER": "800",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp",
+        "AUTHOR": "Tử Lâu",
+        "TRANS": "trang4mat",
+        "DESC": "H&egrave;n mọn t&ecirc;n ăn m&agrave;y nhập ma t&ocirc;ng vi tạp dịch, ngẫu được Th&aacute;i Cổ đến đạo truyền thừa, diệt thế gia, t&agrave;n s&aacute;t h&agrave;ng loạt d&acirc;n trong th&agrave;nh tr&igrave;, th&agrave;nh tựu tuyệt thế hung ma.<br /><br />V&igrave; cầu Trường Sinh, lập V&ocirc; Thượng đại gi&aacute;o, d&ugrave;ng một đời gi&aacute;o tổ t&ocirc;n sư đạp v&agrave;o c&aacute;i kia Th&ocirc;ng Thi&ecirc;n Chi Lộ.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

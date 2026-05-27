@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "10888",
+        "NAME": "Tinh Đồ",
+        "CHAPTER": [
+            {
+                "id": "3612556",
+                "name": "Chương 1: Tinh Vũ tứ cấp"
+            }
+        ],
+        "TOTALCHAPTER": "18",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Khoa Huyễn",
+        "AUTHOR": "Lăng Việt",
+        "TRANS": "Vân Anh",
+        "DESC": "Một cái không có tiếng tăm gì luyện võ thể chất siêu nát tiểu tử, bởi vì được tai bay vạ gió bị ép buộc đến một khỏa hoang tinh cầu, không biết là cơ ngẫu trùng hợp, có lẽ hay là vận mệnh bàn quay vô tình ý ở giữa thác loạn. Siêu việt Tinh Vũ, dung hợp nhân loại thần bí Nguyên Năng lực, hắn dần dần đi vào một cái thần bí thế giới -- tu luyện giới, từ nay về sau bước lên từ từ mờ ảo tu luyện chi đồ.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

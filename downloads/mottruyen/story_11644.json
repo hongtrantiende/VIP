@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "11644",
+        "NAME": "Vị Diện Dị Giới",
+        "CHAPTER": [
+            {
+                "id": "3842962",
+                "name": "Chương 1: Bị Giết!"
+            }
+        ],
+        "TOTALCHAPTER": "1",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo",
+        "AUTHOR": "Egg",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Đọc rồi biết",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

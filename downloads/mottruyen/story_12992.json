@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "12992",
+        "NAME": "Tam Quốc Triệu Hoán Vô Song",
+        "CHAPTER": [
+            {
+                "id": "4201563",
+                "name": "Chương 1: Sáng thế hệ thống"
+            }
+        ],
+        "TOTALCHAPTER": "568",
+        "IMG": "https://static.cdnno.com/poster/tam-quoc-trieu-hoan-vo-song/150.jpg",
+        "CAT": "Dị Năng, Quân Sự, Lịch Sử",
+        "AUTHOR": "Kiếm bắc vọng",
+        "TRANS": "ArchangeL",
+        "DESC": "Đã full bạch bào mang giáp đấu Dược Sư, Tôn Tẫn thống quân phá Trường Khanh,  Bá Vương mạnh mẽ Chiến Thần tướng, Phá Quân hợp lực Trảm Thiên hùng;  Thế Dân dương mưu phá Khổng Minh, Trương Lương thiết kế vũng hố Lưu Cơ,  Lý Tư trợ lực Vi Thúc Đại, song đế dắt tay Định Thần tiểu bang.",
+        "THUMB": "https://static.cdnno.com/poster/tam-quoc-trieu-hoan-vo-song/150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

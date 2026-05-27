@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "4109",
+        "NAME": "Cửu Vũ Thần Tôn",
+        "CHAPTER": [
+            {
+                "id": "1504248",
+                "name": "Chương 1: Thần bí hạt châu"
+            }
+        ],
+        "TOTALCHAPTER": "492",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo",
+        "AUTHOR": "Cửu Khỏa Tùng",
+        "TRANS": "wan zu",
+        "DESC": "Một người võ đạo một đường bị phán án tử hình thiếu niên , ngoài ý muốn đạt được một viên thần bí hạt châu .<br />\r\n<br />\r\n<br />\r\nTừ nay về sau , một người kiên nghị bất khuất thiếu niên , bước lên càng rộng lớn hơn hành trình .<br />\r\n<br />\r\n<br />\r\nThiên tài địa bảo? Ta đấy!<br />\r\n<br />\r\n<br />\r\nTuyệt thế vũ kỹ? Ta đấy!<br />\r\n<br />\r\n<br />\r\nChỉ ... kỹ càng giới thiệu",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

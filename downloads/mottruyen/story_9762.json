@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "9762",
+        "NAME": "Tổng Tài Ở Trên Ta Ở Dưới",
+        "CHAPTER": [
+            {
+                "id": "3292231",
+                "name": "Chương 1: Nàng mang thai con của ta"
+            }
+        ],
+        "TOTALCHAPTER": "40",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đô Thị, Ngôn Tình",
+        "AUTHOR": "Khương Tiểu Nha",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Trộm gien của ta, liền muốn đi?\" <br />\r\n<br />\r\nHắn bắt nàng, buộc nàng giao ra đứa con đã sinh 3 năm trước. <br />\r\n<br />\r\nQuên ư, không sao ta làm cho nàng sẽ nhớ lại<br />\r\n<br />\r\nChưa từng sinh ? Vậy thì sinh lại đứa nữa!",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

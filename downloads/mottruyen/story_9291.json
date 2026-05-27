@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "9291",
+        "NAME": "Ta Nghìn Năm Cương Thi Bạn Gái",
+        "CHAPTER": [
+            {
+                "id": "3150543",
+                "name": "Chương 01: Vợ của ta là Cương Thi ?"
+            }
+        ],
+        "TOTALCHAPTER": "1108",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo, Linh Dị",
+        "AUTHOR": "Thiên Thai Mê Vụ",
+        "TRANS": "Tâm",
+        "DESC": "ta năm tuổi lúc ở trong núi sâu lạc đường, cải biến nhân sinh của ta .<br />\r\n<br />\r\n\tHơn mười năm phía sau, ta thân thủ móc ra bản thân Cương Thi Lão Bà, Nhân Thi phối hợp, làm việc không phiền lụy . Sát Lệ Quỷ, Xông Quỷ Điện, Diệt Thi Vương, Trảm Quỷ Tiên, sinh hoạt dập dờn bồng bềnh phập phồng, Vô Hạn Khủng Bố .<br />\r\n<br />\r\n\tTa gọi Phương Nam, ta là Quỷ Đạo truyền nhân",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

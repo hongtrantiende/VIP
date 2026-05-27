@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "900",
+        "NAME": "Hoàng Kim Đồng",
+        "CHAPTER": [
+            {
+                "id": "384742",
+                "name": "Chương 1 tai họa bất ngờ"
+            }
+        ],
+        "TOTALCHAPTER": "1291",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đô Thị, Dị Giới",
+        "AUTHOR": "Đả Nhãn",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Trang Duệ l&agrave; một nh&acirc;n vi&ecirc;n c&ocirc;ng t&aacute;c của Điển Đương H&agrave;nh, một sự việc ngo&agrave;i &yacute; muốn ph&aacute;t sinh, cặp mắt hắn ph&aacute;t sinh dị biến.\r\n<br />Gốm sứ xa hoa, đồng thau cổ đẹp đẽ, những cuộc đ&aacute;nh cuộc kinh t&acirc;m động ph&aacute;ch, y t&aacute; xinh đẹp huệ chất lan t&acirc;m, thi&ecirc;n kim tiểu thư l&atilde;nh nhược băng sương k&eacute;o đến, cuộc sống của hắn cũng ph&aacute;t sinh những biến h&oacute;a long trời lở đất.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

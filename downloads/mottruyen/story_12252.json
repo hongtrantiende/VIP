@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "12252",
+        "NAME": "Toàn Năng Kiếm Đấu Sĩ Pháp Sư",
+        "CHAPTER": [
+            {
+                "id": "3989453",
+                "name": "Chương 1: Kì Thi Tuyển Sinh Ma Pháp Cao Trung Phong Vũ"
+            }
+        ],
+        "TOTALCHAPTER": "6",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo",
+        "AUTHOR": "lethanhphong027@",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Thế Giới Khoa Học Công Nghệ bị lỗi thời , chuyển sang thời kì Ma Pháp Công Nghệ . Kể từ khi thời đại Ma Pháp được thành lập thì các nước Đế Quốc thường xuyên diễn ra những xung đột khiến các nước nhỏ thuộc Châu Á như Việt Nam trở thành bãi chiến trường cho cuộc chiến tranh tàn khốc, ở rìa biên giới của lãnh thổ Việt Nam giáp với Trung Quốc có một thành trì gọi là Kim Vũ thành được lập ra để làm nơi sinh sống cho người dân tị nạn và nuôi dưỡng các Ma Pháp sư tài năng. Trong thành trì này, có một cậu bé được sinh ra với những thiên phú đặc thù với sứ mệnh bảo vệ đất nước và trở thành Ma Pháp Sư vĩ đại nhất .Và hiện tại cậu đang thi cuối cấp ở một trường cấp 2 với cô bạn gái của cậu.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

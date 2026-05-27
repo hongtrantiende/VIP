@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "5661",
+        "NAME": "Hoàn khố tà hoàng",
+        "CHAPTER": [
+            {
+                "id": "2018162",
+                "name": "Chương 1: An vương Doanh Trùng"
+            }
+        ],
+        "TOTALCHAPTER": "735",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo",
+        "AUTHOR": "Khai hoang",
+        "TRANS": "dinhnhan",
+        "DESC": "Ngày thánh hai mươi bảy năm tháng chín mười bảy, khi (làm) an quốc công Thế tử thắng xông vào Hàm Dương thành câu lan hạng bị thiên ngoại sao băng tạp ngất thời điểm, nước Đại Tần sư thủ chính Đạo Nhân cầm trong tay huyền trụ thiên châu tọa hóa với ngoài thành Bạch Vân Quan bên trong. —— đây là một cái liên quan với công tử bột cố sự, một cái liên quan với vạn cổ Tà hoàng cố sự.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

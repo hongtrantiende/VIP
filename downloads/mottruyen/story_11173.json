@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "11173",
+        "NAME": "Hàn Ngu Chi Trong Tâm Thanh Âm",
+        "CHAPTER": [
+            {
+                "id": "3695176",
+                "name": "Chương 1:   ta sống lại?"
+            }
+        ],
+        "TOTALCHAPTER": "995",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đô Thị",
+        "AUTHOR": "Hạc Thành Phong Nguyệt",
+        "TRANS": "๖ۣۜMin๖ۣۜKSJ",
+        "DESC": "con người khi còn sống,   hoặc sinh vĩ đại,   hoặc chết quang vinh.<br />\r\n<br />\r\n\tKhi hắn quay đầu lại quá khứ quang âm thời gian,   có thể tự hào nói,   cuộc đời của ta cũng không có sống uổng.<br />\r\n<br />\r\n\tBởi vì...<br />\r\n<br />\r\n\tHết  TMD   xui xẻo.<br />\r\n<br />\r\n\tKim Tae Ho,   ngươi đi ra cho ta!<br />\r\n<br />\r\n\tHiện tại ngươi không phải của ta  PD  ,   ta cũng không phải của ngươi con rối.<br />\r\n<br />\r\n\tNgươi đi ra cho ta,   ta muốn hòa ngươi quyết đấu.<br />\r\n<br />\r\n\tLàm Suk Jin So tám mươi tuổi thời gian,   hắn chống quải trượng,   đứng ở Kim Tae Ho cửa nhà,   như vậy gầm thét",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

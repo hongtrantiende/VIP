@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "11128",
+        "NAME": "Ta Điêu Ngoa Hoa Hậu Giảng Đường Lão Bà",
+        "CHAPTER": [
+            {
+                "id": "3678251",
+                "name": "Chương 1: Tiểu lộ thân thủ"
+            }
+        ],
+        "TOTALCHAPTER": "140",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đô Thị",
+        "AUTHOR": "Tào Tam Thiếu",
+        "TRANS": "zuka9977",
+        "DESC": "Hắn xuất thân một cái danh hiệu vì  \"Anh hùng \" bộ đội đặc chủng, bởi vì một lần nhiệm vụ thất lợi, bị cưỡng chế xuất ngũ. Ly khai bộ đội hắn, bắt đầu học qua cuộc sống của người bình thường. Hắn tự học chương trình học, dự thi một khu đại học danh tiếng khảo cổ chuyên nghiệp. Lại đang mở đầu khóa học trước, bị một cái đại tập đoàn coi trọng, trở thành hoa hậu của trường cận vệ, vào ở mỹ nữ như mây nhà trọ, bắt đầu từ đó một cái đoạn tràn đầy truyền kỳ lang thang nhân sinh.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

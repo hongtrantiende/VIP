@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "7143",
+        "NAME": "Lãng Khách Cô Độc",
+        "CHAPTER": [
+            {
+                "id": "2547906",
+                "name": "Ứng Dụng Tử Thần"
+            }
+        ],
+        "TOTALCHAPTER": "3",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Khoa Huyễn, Xuyên Không",
+        "AUTHOR": "haccongtu81",
+        "TRANS": "Nhiều Converter",
+        "DESC": "\" Sống - Chết\" - 2 lựa chọn đơn giản hiện lên. Hắn chọn sống - và bắt đầu 1 cuộc hành trình đi xuyên các thế giới - đi tìm kiếm mục đích của sự sống. Đồng hành với hắn là những đồng đội - những con người khác nhau nhưng có chung 1 mục đích. Vậy sống là gì? Tại sao chúng ta lại sống? Hãy đồng hành cùng tiểu đội 00 trong những thế giới tàn khốc đê tìm ra ý nghĩa của sự sống...",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

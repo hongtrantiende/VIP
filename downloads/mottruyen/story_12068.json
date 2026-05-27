@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "12068",
+        "NAME": "Tầm",
+        "CHAPTER": [
+            {
+                "id": "3997409",
+                "name": "Tiết Tử"
+            }
+        ],
+        "TOTALCHAPTER": "10",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp, Huyền Ảo",
+        "AUTHOR": "thienthienphanxuong",
+        "TRANS": "Nhiều Converter",
+        "DESC": "hành trình trở thành nhân vật phản diện",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

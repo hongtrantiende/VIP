@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "1471",
+        "NAME": "Vĩnh Sinh",
+        "CHAPTER": [
+            {
+                "id": "615830",
+                "name": "Chương 1: Thân thể thập trọng"
+            }
+        ],
+        "TOTALCHAPTER": "75",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp",
+        "AUTHOR": "Mộng Nhập Thần Cơ",
+        "TRANS": "Sưu Tầm",
+        "DESC": "Th&acirc;n thể, thần th&ocirc;ng, trường sinh, th&agrave;nh ti&ecirc;n, vĩnh sinh l&agrave; năm cảnh giới. Một sinh linh nhỏ b&eacute;, thế n&agrave;o c&oacute; thể mở cửa vĩnh sinh?<br /> <br /> Trong thi&ecirc;n địa, kết cấu th&acirc;n thể, thần th&ocirc;ng huyền b&iacute;, trường sinh ti&ecirc;u dao, th&agrave;nh ti&ecirc;n h&ugrave;ng mạnh, hy vọng vĩnh sinh, đều ở trong đ&oacute;.<br /> <br /> V&ocirc; c&ugrave;ng v&ocirc; tận c&aacute;c ph&aacute;p bảo t&acirc;n kỳ, một thế giới kỳ diệu, ti&ecirc;n đạo m&ocirc;n ph&aacute;i, người, y&ecirc;u, thần, ti&ecirc;n, ma, vương, ho&agrave;ng, đế, y&ecirc;u hận t&igrave;nh cừu chốn nh&acirc;n gian . . . .",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

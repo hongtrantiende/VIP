@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "1333",
+        "NAME": "Phạm Thiên Ấn",
+        "CHAPTER": [
+            {
+                "id": "551169",
+                "name": "Chương 1 : Vũ Chiến Hồn"
+            }
+        ],
+        "TOTALCHAPTER": "39",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo",
+        "AUTHOR": "Điên Phong Tam Thiếu",
+        "TRANS": "Thiên Tử Nhi",
+        "DESC": "Nhất Chỉ hồn ti&ecirc;n diệt, nhị chỉ đoạn sinh tử, tam chỉ đọa Lu&acirc;n Hồi, tứ chỉ thi&ecirc;n địa to&aacute;i, tứ chỉ đều xuất hiện ai c&oacute; thể ngăn lại",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

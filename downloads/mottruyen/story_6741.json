@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "6741",
+        "NAME": "Ta  Là Thợ Săn Ẩm Thực",
+        "CHAPTER": [
+            {
+                "id": "2405347",
+                "name": "Chương 0 : Giới thiệu sơ qua về năng lực của main"
+            }
+        ],
+        "TOTALCHAPTER": "5",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đồng Nhân",
+        "AUTHOR": "linh_hon_co_don_97@",
+        "TRANS": "Nhiều Converter",
+        "DESC": "1 thanh niên Việt Nam vô cùng ham ăn và tình cờ thức  tỉnh  tế bào gourmet trong Toriko dưới dạng quái vật hư không có năng lực đi xuyên qua các thế giới.<br />\r\nIan (biệt danh của tác giả) : chỉ cần biết cách chế biến thì tất cả mọi thứ đều có thể ăn.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

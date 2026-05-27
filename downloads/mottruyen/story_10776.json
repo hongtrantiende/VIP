@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "10776",
+        "NAME": "Trọng Sinh Ta Là Raditz",
+        "CHAPTER": [
+            {
+                "id": "3578598",
+                "name": "Chương 1. Đi vào địa cầu"
+            }
+        ],
+        "TOTALCHAPTER": "30",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Xuyên Không, Đồng Nhân, Trùng Sinh",
+        "AUTHOR": "云泽比特高地",
+        "TRANS": "Axeno13",
+        "DESC": "Trọng sinh chi ta là Raditz tóm tắt:  Raditz, nam, người Saiyan xuất thân hạ cấp chiến sĩ,  năm 729  sinh ở hành tinh Vegeta.<br />\r\nHai năm sau, bị người nào đó hồn xuyên……<br />\r\nMới tập cvt có gì ae thông cảm",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

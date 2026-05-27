@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "4491",
+        "NAME": "Đại Thiên Vương",
+        "CHAPTER": [
+            {
+                "id": "1599514",
+                "name": "Chương 1: Thiên Vương Hệ Thống"
+            }
+        ],
+        "TOTALCHAPTER": "20",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đô Thị",
+        "AUTHOR": "Tiếu khê khê",
+        "TRANS": "kohstuki",
+        "DESC": "Bị một bờ mông ném ra có thể trợ chính mình trở thành Thiên Vương siêu sao thần kỳ hệ thống, vốn nên mừng rỡ như điên, lại bởi vì một cái nhiệm vụ cả ngày chờ đợi lo lắng, hoảng loạn<br />\r\n<br />\r\nNhiệm vụ chính tuyến: Mười năm nội trở thành thế giới đỉnh cấp minh tinh<br />\r\n<br />\r\nPS: Nghe nói mỗi quay chụp hết một bộ phim, đều có thể tùy cơ hội rút ra một kiện trong phim ảnh bảo vật?",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

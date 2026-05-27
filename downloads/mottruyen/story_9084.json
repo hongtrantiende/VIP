@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "9084",
+        "NAME": "Thần Thoại Chinh Phục Giả",
+        "CHAPTER": [
+            {
+                "id": "3086771",
+                "name": "Chương 1: Nam Kha Hoàng Lương? Mộng nhập Liêu Trai!"
+            }
+        ],
+        "TOTALCHAPTER": "8",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Khoa Huyễn, Xuyên Không",
+        "AUTHOR": "Vân Từ Lai",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Trần Trọng nhận được một khối thần bí Thạch Cảm Đương, thám hiểm Tại Liêu Trai, Bạch Xà, Tây Du, Phong Thần các loại thần thoại thế giới, không tu tiên, không tu phật, không tu ma, chỉ là phàm nhân thân thể, nghiền ép các lộ quỷ quái, đánh mặt chư thiên thần chi, chinh phục 3000 đại đạo, sáng tạo một đoạn bưu hãn khoái ý, nhẹ nhàng vui vẻ lâm ly thần thoại!<br />\r\n<br />\r\n\tThì sợ gì thần tiên Quỷ Hồ âm thanh, nhướng mày kêu nhỏ lại từ hành.<br />\r\n<br />\r\n\tTây Thiên quỷ Lăng Tiêu điện, thiên địa chính khí mặc cho bình sinh.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

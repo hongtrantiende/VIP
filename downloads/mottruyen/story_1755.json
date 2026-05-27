@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "1755",
+        "NAME": "Đoạt Mệnh Y Tiên",
+        "CHAPTER": [
+            {
+                "id": "724699",
+                "name": "Chương 1: Thấy việc nghĩa  - Quyển 1"
+            }
+        ],
+        "TOTALCHAPTER": "576",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đô Thị",
+        "AUTHOR": "Tân Ảnh Tử",
+        "TRANS": "Manh Manh",
+        "DESC": "S&oacute;ng lớn đ&agrave;o sa, ai chủ ch&igrave;m nổi?<br /><br />Ăn chơi tr&aacute;c t&aacute;ng, xa hoa đồi trụy phồn hoa đ&ocirc; thị, nhưng s&oacute;ng ngầm phun tr&agrave;o, như nộ hải h&agrave;nh chu.<br /><br />C&ugrave;ng khổ xuất th&acirc;n thiếu ni&ecirc;n, khi (l&agrave;m) một cước bước hướng về sắt th&eacute;p ximăng r&egrave;n đ&uacute;c đ&ocirc; thị, l&agrave; h&atilde;m s&acirc;u dục hải? Vẫn l&agrave; theo gi&oacute; vượt s&oacute;ng, b&aacute; tung quang minh?<br /><br />Một c&aacute;i sinh cơ tuyền, một th&acirc;n y thuật, sẽ s&aacute;ng lập cỡ n&agrave;o thần thoại?",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "6105",
+        "NAME": "Thiên Hạ Vô Thượng Tăng Đế",
+        "CHAPTER": [
+            {
+                "id": "2188155",
+                "name": "Xuyên việt ta là ai"
+            }
+        ],
+        "TOTALCHAPTER": "2",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo, Xuyên Không",
+        "AUTHOR": "Con mệt lắm mẹ à",
+        "TRANS": "Tiểu Tà Tăng",
+        "DESC": "Sống thế giới tương lai mệt mỏi ta muốn được sống lại làm con người khác ta muốn được nắm lấy tự sinh tự diết ta muốn tạo ra 1 thế giới vô thượng thống nhất<br />\r\nvà tìm ngươi hắn mang theo Hệ THống Vô Thượng",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

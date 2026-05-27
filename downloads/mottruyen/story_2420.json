@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "2420",
+        "NAME": "Tương Lai Siêu Sao Tại Đô Thị",
+        "CHAPTER": [
+            {
+                "id": "801435",
+                "name": "Chương 1: Trọng sinh hạnh phúc"
+            }
+        ],
+        "TOTALCHAPTER": "334",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đô Thị",
+        "AUTHOR": "Cửu Nguyệt Dương Quang",
+        "TRANS": "kohstuki",
+        "DESC": "Hai trăm năm sau một gã siêu cấp siêu sao, tại công thành danh toại thời điểm bị người đấu súng, linh hồn về tới năm 2010, phụ thân vào một cái quần là áo lượt công tử trên người, đã bắt đầu một đoạn dùng tinh mang bắn ra bốn phía mị lực chinh phục thiên hạ, lướt tươi đẹp tìm phương truyền kỳ.<br />\r\n<br />\r\nQuân hoa, hoa hậu giảng đường, quốc tế bông hoa, sát thủ bông hoa, hắn đi, đương nhiên là một đầu đặc sắc nhân sinh lữ trình.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

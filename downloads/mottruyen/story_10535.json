@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "10535",
+        "NAME": "Võng Du Chi Khác Biệt Trò Chơi",
+        "CHAPTER": [
+            {
+                "id": "3510044",
+                "name": "Chương 1: Vận Mệnh"
+            }
+        ],
+        "TOTALCHAPTER": "1",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Võng Du",
+        "AUTHOR": "Sir",
+        "TRANS": "Nhiều Converter",
+        "DESC": "La Thần bước chân vào Vận Mệnh . Trò chơi online được cho mô phỏng gần như thực tế. Làm từ một loạt các công nghệ vượt thời đại. Truyện là con đường đến đỉnh cao của La Thần.<br />\r\n<br />\r\nLa Thần:\" Hệ thống ngươi đừng hố nữa được không?\"<br />\r\n<br />\r\nViết",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

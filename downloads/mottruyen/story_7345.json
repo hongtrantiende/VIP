@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "7345",
+        "NAME": "Thiên Hà Mới",
+        "CHAPTER": [
+            {
+                "id": "2609316",
+                "name": "Chương 1 :  VietNamese ( Tiếng Việt )"
+            }
+        ],
+        "TOTALCHAPTER": "7",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đô Thị, Huyền Ảo, Võng Du",
+        "AUTHOR": "MiniGhost",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Mỗi năm có hàng ngàn người mất tích không rõ nguyên do . Vậy có ai biết họ đang ở đâu , làm gì ? Có lẽ chính họ cũng không biết mình đang ở đâu ? <br />\r\n-----Thử Cảm Giác Làm Tác Giả Một Lần Coi Sao ?  :)",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

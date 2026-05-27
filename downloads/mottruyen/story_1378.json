@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "1378",
+        "NAME": "Thánh Tiên Vương Đồ",
+        "CHAPTER": [
+            {
+                "id": "571104",
+                "name": "Chương 1:  Đạo không xa người"
+            }
+        ],
+        "TOTALCHAPTER": "300",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp",
+        "AUTHOR": "Thần Hàng Chi Niên",
+        "TRANS": "r_j",
+        "DESC": "Thịnh thế phồn hoa, thư sinh lập th&aacute;nh t&acirc;m. Một tay cầm kiếm, một tay cầm điển, đem l&agrave;m vi thi&ecirc;n địa lập t&acirc;m, v&igrave; sinh d&acirc;n lập mệnh, vi hướng th&aacute;nh kế tuyệt học, vi mu&ocirc;n đời khai mở th&aacute;i b&igrave;nh.<br /><br />T&igrave;m ti&ecirc;n dấu vết , đạp vương đồ, một kẻ thư sinh, tại rộng lớn mạnh mẽ, ầm ầm s&oacute;ng dậy chi thế diễn dịch phong lưu, từng bước một đạp v&agrave;o đỉnh phong đạo nghiệp.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

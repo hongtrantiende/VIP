@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "10811",
+        "NAME": "Marvel Thế Giới The Flash",
+        "CHAPTER": [
+            {
+                "id": "3586372",
+                "name": "Chương 1: Chính nghĩa liên minh điện ảnh"
+            }
+        ],
+        "TOTALCHAPTER": "22",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đồng Nhân",
+        "AUTHOR": "Mạn Ny Tuyết Dạ",
+        "TRANS": "iMeatFish",
+        "DESC": "\"Tên ta là Barry. Ellen, là trên thế giới chạy nhanh nhất người.\"<br />\r\n<br />\r\nCoi như DC thế giới The Flash lại đi tới Marvel thế giới.<br />\r\n<br />\r\nTên ta không gọi Barry cái gì Ellen a, ta cũng không phải The Flash! Ta chẳng qua là xem ti vi trong The Flash một mình say mê thời điểm, lại không giải thích được Xuyên Việt đến Marvel thế giới, còn biến thành The Flash, đây là cái gì tiết tấu!<br />\r\n<br />\r\n⇌⇋⇌⇋⇌⇋⇌⇋⇌⇋⇌⇋⇌⇋⇌⇋⇌⇋⇌⇋<br />\r\n<br />\r\n★ Hãy đề cử 10 sao sau khi đọc truyện nếu thấy hay. <br />\r\n★ Hãy đề cử 9 - 10 ở mỗi chương truyện nếu thấy convert tốt. <br />\r\n★ Hãy đề cử nguyệt phiếu nếu thấy truyện có tiềm năng. <br />\r\n★ Hãy tặng converter 1 - 2 kim đậu vì đó là siêu động lực. <br />\r\n<br />\r\n❋ Nếu thấy không hay hãy đừng nói lời đắng cay và ấn tổ hợp phím : windows + mũi tên chỉ bên phải + enter.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

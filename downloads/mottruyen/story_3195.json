@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "3195",
+        "NAME": "Nhất Thư Phong Thần",
+        "CHAPTER": [
+            {
+                "id": "1096504",
+                "name": "Chương 1: Tác Giả cùng Thư Sinh"
+            }
+        ],
+        "TOTALCHAPTER": "574",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo",
+        "AUTHOR": "Khả Tiếu Thư Tiên",
+        "TRANS": "tuan_a2",
+        "DESC": "Đ&acirc;y l&agrave; một c&aacute;i \"Trong s&aacute;ch tự c&oacute; ho&agrave;ng kim ph&ograve;ng, trong s&aacute;ch tự c&oacute; nhan như ngọc\" thế giới.<br /><br />Ở tr&ecirc;n c&aacute;i thế giới n&agrave;y giới diện, nh&acirc;n loại c&oacute; khả năng chế t&aacute;c Linh Thư, Linh Thư b&ecirc;n trong c&oacute; tiểu thế giới, c&oacute; khả năng th&ocirc;ng qua linh tiền đem tiểu thế giới tất cả vật phẩm đổi đi ra.<br /><br />Chỉ tiếc, tr&ecirc;n c&aacute;i thế giới n&agrave;y cũng kh&ocirc;ng c&oacute; qu&aacute; nhiều danh chế.<br /><br />Thẳng đến c&oacute; một ng&agrave;y, địa cầu internet t&aacute;c giả Dương Dịch sau khi chuyển kiếp, thế giới n&agrave;y mới tiến v&agrave;o một s&aacute;ch c&oacute; thể phong thần thời đại.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "10650",
+        "NAME": "Tà Thiếu Du Thiên",
+        "CHAPTER": [
+            {
+                "id": "3543120",
+                "name": "Chương 1 : Thân phận mới ."
+            }
+        ],
+        "TOTALCHAPTER": "16",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp, Huyền Ảo",
+        "AUTHOR": "tieukhiet",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Bị một lão già cách giới bắt cóc , lại bất ngờ bị động va vào cái thân phận cháu trai của lão . <br />\r\n<br />\r\nVốn không có ý chí gì Mạc Tiểu Khiết <br />\r\nTrên thân gánh vác trách nhiệm dòng độc đinh của cả Mạc gia . <br />\r\n<br />\r\nHắn bị lão đầu dụ dỗ ra ngoài đường không hoàn thành thử luyện là không thể quay lại . Từ đây tai nạn bắt đầu.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

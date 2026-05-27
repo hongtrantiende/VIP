@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "9222",
+        "NAME": "Trọng Sinh Chi Võ Thần Đạo",
+        "CHAPTER": [
+            {
+                "id": "3137727",
+                "name": "Chương 1: Vương giả sống lại"
+            }
+        ],
+        "TOTALCHAPTER": "699",
+        "IMG": "https://static.cdnno.com/poster/trong-sinh-chi-vo-than-dao/150.jpg",
+        "CAT": "Võng Du, Xuyên Không, Đồng Nhân, Trùng Sinh",
+        "AUTHOR": "Đoạn Tuyết Lạc",
+        "TRANS": "khaox8896",
+        "DESC": "Thất lạc kỷ nguyên, đế khuyết niên đại, nhân đạo thiên kiêu đúng thời cơ ra. Mang theo 130 năm ký ức trở lại quá khứ. Đời này, ta, Võ Thiên đem nâng lên Nhân tộc cờ xí, chinh chiến vạn giới.",
+        "THUMB": "https://static.cdnno.com/poster/trong-sinh-chi-vo-than-dao/150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

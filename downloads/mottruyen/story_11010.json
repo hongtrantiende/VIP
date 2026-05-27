@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "11010",
+        "NAME": "Đức Vua Không Ngai",
+        "CHAPTER": [
+            {
+                "id": "3763832",
+                "name": "Chương 1: Ta nguyện ý (1)"
+            }
+        ],
+        "TOTALCHAPTER": "190",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đô Thị",
+        "AUTHOR": "Cách Ngư Trứ",
+        "TRANS": "✫๖ۣۜLãng ๖ۣۜTử ๖ۣۜVô ๖ۣۜTà✫",
+        "DESC": "Báo nghiệp trùm trọng sinh 1999, đứng ở vận mạng bước ngoặt, lấy rễ cỏ danh nghĩa, hoa lệ nghịch tập lại chế nhân sinh đỉnh phong.<br />\r\n<br />\r\n\tHắn là bao hàm toàn diện học phái Tạp Gia, là không chỗ nào không có xã hội nhà quan sát, là siêng năng chân tướng thăm dò người, là rộng lớn mạnh mẽ, ầm ầm sóng dậy đại thời đại kỷ lục người, là hướng phát triển người tiên phong, là công cộng lợi ích người phát ngôn, là quật khởi đô thị Ông Vua Không Ngai!",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

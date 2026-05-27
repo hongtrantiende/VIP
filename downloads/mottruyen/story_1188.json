@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "1188",
+        "NAME": "Kiếm Trang",
+        "CHAPTER": [
+            {
+                "id": "454258",
+                "name": "Chương 1: Cái hộp kiếm"
+            }
+        ],
+        "TOTALCHAPTER": "901",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo",
+        "AUTHOR": "Thập Nhị Dực Hắc Ám Sí Thiên Sử",
+        "TRANS": "Nhiều Converter",
+        "DESC": "L&agrave;m kh&ocirc;ng c&aacute;ch n&agrave;o dự đo&aacute;n tuổi thọ biến th&agrave;nh người người c&oacute; thể thấy được t&aacute;nh mạng khắc độ, mỗi ng&agrave;y nh&igrave;n xem t&aacute;nh mạng dư ngạch một ch&uacute;t giảm bớt, cảm thụ tử vong tới gần, đ&oacute; l&agrave; như thế n&agrave;o một loại đại khủng bố.<br /><br />\"Ng&agrave;i t&aacute;nh mạng dư ngạch đ&atilde; kh&ocirc;ng đủ, mặc v&agrave;o v&otilde; trang đi đ&aacute;nh tiểu qu&aacute;i th&uacute; a.\"<br /><br />Sinh hoạt tại quang giai tầng ch&oacute;t nhất Bạch Thương Đ&ocirc;ng, lại ngo&agrave;i &yacute; muốn được đến một chi kh&ocirc;ng c&oacute; kiếm c&aacute;i hộp kiếm",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

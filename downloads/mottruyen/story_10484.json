@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "10484",
+        "NAME": "Ứng Dụng Thẩm Mỹ",
+        "CHAPTER": [
+            {
+                "id": "3515953",
+                "name": "Chương 1"
+            }
+        ],
+        "TOTALCHAPTER": "1",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đô Thị, Ngôn Tình",
+        "AUTHOR": "tieulam_402",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Xã hội ngày nay thật coi trọng vẻ bề ngoài, có tài năng là một chuyện, nhưng không có ngoại hình bắt mắt thì vẫn sẽ chỉ là một tài năng bị lãng quên. <br />\r\n<br />\r\nLàm hết thảy vì có được gương mặt xinh đẹp, thân hình chuẩn mực, được mọi người tôn sùng. <br />\r\n<br />\r\nNhưng cái gì mà không có giá của nó ? <br />\r\n<br />\r\nPhải trả giá bằng mạng sống của người khác, vươn lên bằng cách chà đạp người khác, thậm chí là vứt bỏ cả tình yêu. Điều đó thực sự có đáng ?<br />\r\n<br />\r\nTruyện viết theo bộ truyện tranh Ứng Dụng Thẩm Mỹ ( hay lắm, có thể đọc thử ) có thể thêm thắt các chi tiết nhưng nội dung sẽ không thay đổi",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

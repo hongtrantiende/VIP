@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "2773",
+        "NAME": "Thái Huyền Độn Tiên",
+        "CHAPTER": [
+            {
+                "id": "908743",
+                "name": "Chương 1: Tiên đạo gập ghềnh"
+            }
+        ],
+        "TOTALCHAPTER": "754",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp, Huyền Ảo",
+        "AUTHOR": "Thậo Cửu Đạo",
+        "TRANS": "trang4mat, Trương Văn Viễn",
+        "DESC": "Thi&ecirc;n ph&aacute;t s&aacute;t cơ, dời tinh dịch t&uacute;c;<br /><br />Địa ph&aacute;t s&aacute;t cơ, long x&agrave; khởi lục;<br /><br />Người ph&aacute;t s&aacute;t cơ, Thi&ecirc;n Địa lật ngược.<br /><br />Thi&ecirc;n Địa lật, quần ti&ecirc;n vẫn lạc, Thi&ecirc;n Đạo c&oacute; thường m&agrave; ti&ecirc;n tịch thường biến, 《 Th&aacute;i Huyền ph&aacute;p lục 》 biến h&oacute;a, l&agrave; b&aacute;o trước Thi&ecirc;n Đạo ph&aacute;p tắc đối với Th&aacute;i Huyền Thi&ecirc;n cảnh chư ti&ecirc;n một lần th&ocirc;ng thường tẩy b&agrave;i, hay l&agrave; đối với Th&aacute;i Huyền Thi&ecirc;n triệt để ph&aacute; vỡ, chỉ c&oacute; tr&ecirc;n lực lượng đỉnh phong quyết đấu về sau, mới c&oacute; cuối c&ugrave;ng đ&aacute;p &aacute;n...",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

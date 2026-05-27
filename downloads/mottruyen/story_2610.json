@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "2610",
+        "NAME": "Vô Địch Nhẫn Trữ Vật",
+        "CHAPTER": [
+            {
+                "id": "850687",
+                "name": "Chương 1: Trúng Thưởng"
+            }
+        ],
+        "TOTALCHAPTER": "12",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đô Thị, Dị Năng",
+        "AUTHOR": "Minh nhật phục minh nhật",
+        "TRANS": "wdragon21",
+        "DESC": "Triệu Đông chiếm được một quả trữ vật giới, ở tiên nhân trong tay chỉ có thể làm kho hàng trữ vật giới đến Triệu Đông trong tay, lại bị hắn phát huy vô cùng nhuần nhuyễn, thành phòng thân, kiếm tiền, tán gái vô thượng lợi khí. Một quả trữ vật giới vô địch bạn chung thân",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

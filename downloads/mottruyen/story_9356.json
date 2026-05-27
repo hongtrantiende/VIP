@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "9356",
+        "NAME": "Vị Đại Đế Đầu Tiên",
+        "CHAPTER": [
+            {
+                "id": "3163947",
+                "name": "Chương 1: Khởi đầu"
+            }
+        ],
+        "TOTALCHAPTER": "7",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Khoa Huyễn",
+        "AUTHOR": "Phamtranquangdung",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Hoàng Anh Kiệt, một nhà nghiên cứu, một nhà phát minh, một kẻ luôn vượt qua nghịch cảnh, tưởng như đã chết sau khi vật thí nghiệm của hắn ta bị phá huỷ! Nhưng khi tỉnh lại, Kiệt lại thấy mình đã đi sang một thế giới khác, lạ lùng và đầy những bí ẩn. Cùng với người bạn đồng hành, một Trí Tuệ Nhân Tạo có tên Android Christina, Hoàng Anh Kiệt bắt đầu việc tìm hiểu về nơi mình vừa tới, để đối mặt với hiểm nguy và sự kích thích lớn lao chưa từng có.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

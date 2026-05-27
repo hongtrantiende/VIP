@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "3896",
+        "NAME": "Ngạo Thế Khôi Lỗi Sư",
+        "CHAPTER": [
+            {
+                "id": "1386093",
+                "name": "Chương 1: Cổ Thần"
+            }
+        ],
+        "TOTALCHAPTER": "60",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo",
+        "AUTHOR": "Vĩnh Tịch Sơn Hà",
+        "TRANS": "Tranhaongok",
+        "DESC": "Thương Cổ Đại Lục, kh&ocirc;ng c&oacute; đấu kh&iacute;, kh&ocirc;ng c&oacute; ma ph&aacute;p,<br /><br />C&oacute; chỉ l&agrave; một t&ocirc;n t&ocirc;n linh t&iacute;nh mười phần kh&ocirc;i lỗi.<br /><br />Tử Vực Thương Long chấn động c&agrave;n kh&ocirc;n,<br /><br />T&acirc;y Cực Y&ecirc;u Phượng Vũ Thương Khung,<br /><br />Băng Sương Th&aacute;i Thản h&aacute;m thi&ecirc;n địa,<br /><br />Cửu Uy&ecirc;n U Kh&ocirc; Bất Tử Đ&agrave;m.<br /><br />Thiếu ni&ecirc;n Cổ Thần, một tịch &aacute;o m&agrave;u bạc ph&oacute;ng l&ecirc;n trời, mười ng&oacute;n vung l&ecirc;n chỉ bạc vũ,<br /><br />Gi&aacute; đầu rồng, phụ liệt Phượng, ngạo thị ho&agrave;n vũ b&acirc;̀u trời. . .",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "6500",
+        "NAME": "Thời Không Kẻ Trộm",
+        "CHAPTER": [
+            {
+                "id": "2317970",
+                "name": "Chương 1: Ta phải làm cho tốt học sinh"
+            }
+        ],
+        "TOTALCHAPTER": "10",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đô Thị, Khoa Huyễn",
+        "AUTHOR": "Lotte cười",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Vĩnh vô chỉ cảnh tinh không, vô tận thế giới, một khu nhà cùng tinh cầu làm căn cứ thời gian và không gian học viện, một đám người điên nhạc viên, bình thường ngày, lại có ở cũng sẽ không bình thường nhân sinh, tùy ý bóp méo lịch sử, sẽ không dừng lại tinh thần cùng điên cuồng, đi qua cùng tương lai thời gian, trong lúc vô ý diễn sinh ra siêu cấp sức mạnh, là làm thần còn là ma, quyết định bởi với mình...",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "9701",
+        "NAME": "Tuổi Đôi Mươi 1",
+        "CHAPTER": [
+            {
+                "id": "3269002",
+                "name": "-  NGU NGƠ -"
+            }
+        ],
+        "TOTALCHAPTER": "6",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Ngôn Tình",
+        "AUTHOR": "caythuong0210@",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Kể về những mối tình đơn phương buồn.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

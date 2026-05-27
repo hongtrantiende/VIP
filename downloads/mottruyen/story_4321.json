@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "4321",
+        "NAME": "Chiến Cơ Vô Hạn",
+        "CHAPTER": [
+            {
+                "id": "1559502",
+                "name": "Chương 01: Vô hạn cứ điểm —— Prometheus"
+            }
+        ],
+        "TOTALCHAPTER": "979",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Khoa Huyễn, Xuyên Không, Đồng Nhân",
+        "AUTHOR": "Diệc Túy",
+        "TRANS": "Mortimer Nguyễn",
+        "DESC": "Prometheus, thứ nguy&ecirc;n kẽ hở v&ocirc; hạn cứ điểm, một c&aacute;i c&aacute;i xuy&ecirc;n toa vu cơ chiến v&ocirc; hạn thế giới<br /> <br /> Với tư c&aacute;ch một người duy nhất thuộc t&iacute;nh kh&ocirc;ng c&oacute; một c&aacute;i đầy 10 địa cầu yếu g&agrave;, Ti&ecirc;u Nhi&ecirc;n cảm gi&aacute;c &aacute;p lực rất lớn<br /> <br /> Nhưng quen thuộc kịch t&igrave;nh, quen thuộc cơ thể tham số, quen thuộc cơ thể bộ kiện, Ti&ecirc;u Nhi&ecirc;n tỏ vẻ c&oacute; thể nghịch thi&ecirc;n<br /> <br /> V&ocirc; hạn cơ chiến, cơ chiến bản v&ocirc; hạn<br /> <br /> Thế giới nhiệm vụ: 《 Gundam SEED》&mdash;&mdash;&gt;《 Macross F》&mdash;&mdash;《 Gundam 00》&mdash;&mdash;&gt; k&iacute;nh thỉnh chờ mong<br /> <br /> Kh&ocirc;ng c&oacute; g&igrave; phải n&oacute;i th&ecirc;m, muốn th&ecirc;m đọc kỹ lại phần giới thiệu. T/g viết được 1.2tr chữ, update chương mới nhất. Fan Mecha hoan ngh&ecirc;nh. Trong truyện sẽ thường xuy&ecirc;n xuất hiện c&aacute;c cơ thể chỉ xuất hiện ở ngoại truyện, c&aacute;c b&aacute;c n&agrave;o lạ mời copy t&ecirc;n google xem h&igrave;nh, c&aacute;c mech đa số đ&atilde; edit đủ t&ecirc;n. <br /> <br /> Ai thắc mắc thằng La? &Aacute;o l&ocirc;ng ngươi trong truyện th&igrave; n&oacute; l&agrave; Lowe. Guele, nh&acirc;n vật ch&iacute;nh trong loạt ngoại truyện Gundam SEED Astray, Mobile Suit Gundam SEED VS Astray, Mobile Suit Gundam SEED Destiny Astray R, v&agrave; nhiều ngoại truyện kh&aacute;c",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

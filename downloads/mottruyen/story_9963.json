@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "9963",
+        "NAME": "Yêu Tinh Đánh Nhau",
+        "CHAPTER": [
+            {
+                "id": "3361394",
+                "name": "Chương 1: Gặp gỡ bất ngờ"
+            }
+        ],
+        "TOTALCHAPTER": "20",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo, Dị Giới, Linh Dị",
+        "AUTHOR": "Sakura1360",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Con đường đẫm máu và nước mắt của Harvey từ một khuyển yêu mồ côi khu dân nghèo đến khuyển tộc chi vương.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

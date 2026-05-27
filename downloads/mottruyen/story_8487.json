@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "8487",
+        "NAME": "Thiên Tài Tuyệt Sắc",
+        "CHAPTER": [
+            {
+                "id": "2940977",
+                "name": "..."
+            }
+        ],
+        "TOTALCHAPTER": "34",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Linh Dị",
+        "AUTHOR": "cunbongcai@",
+        "TRANS": "Nhiều Converter",
+        "DESC": "...",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

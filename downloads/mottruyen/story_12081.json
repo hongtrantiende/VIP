@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "12081",
+        "NAME": "Hokage Chiba Truyền Thuyết",
+        "CHAPTER": [
+            {
+                "id": "3943634",
+                "name": "Chương 1: Bát Môn hình thức, mở!"
+            }
+        ],
+        "TOTALCHAPTER": "550",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đồng Nhân",
+        "AUTHOR": "Linh Thủy",
+        "TRANS": "someday",
+        "DESC": "Xuyên việt hỏa ảnh thế giới, dung nhập rất nhiều Ninja bên trong.<br />\r\n<br />\r\n\tBát Môn Độn Giáp, Nhẫn Thuật áo nghĩa...<br />\r\n<br />\r\n\tNguyên lai xuyên việt cũng không phải là không có mang theo bất luận cái gì thiên phú, mà là, còn chưa phát hiện mà thôi!<br />\r\n<br />\r\n\tKonoha trong lịch sử Tối Cường Nhẫn Giả, truyền kỳ con đường bắt đầu...<br />\r\n<br />\r\n\tÁch... Đừng nói ta khiêm tốn, đê điều a...",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

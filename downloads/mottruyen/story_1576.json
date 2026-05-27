@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "1576",
+        "NAME": "Thanh Đế",
+        "CHAPTER": [
+            {
+                "id": "644858",
+                "name": "Chương 01: Hai hái"
+            }
+        ],
+        "TOTALCHAPTER": "602",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp, Huyền Ảo",
+        "AUTHOR": "Kinh Kha Thủ",
+        "TRANS": "Phuongngaytho",
+        "DESC": "Đại kiếp s&aacute;t cơ, độc h&agrave;nh lữ kh&aacute;ch<br /><br />Coi như l&agrave; tại Ti&ecirc;n đạo thịnh thế, như trước ra sức đi về ph&iacute;a trước",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "8415",
+        "NAME": "Tạp Đồ",
+        "CHAPTER": [
+            {
+                "id": "2884345",
+                "name": "Chương 1: Mưu Sinh Nhờ Tạp"
+            }
+        ],
+        "TOTALCHAPTER": "16",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo, Khoa Huyễn",
+        "AUTHOR": "Phương Tưởng",
+        "TRANS": "lukay_plus",
+        "DESC": "Hệ thống trong truyện hoàn toàn mới lạ: Tấm thẻ được chế tạo và sử dụng với nhiều chức năng đơn giản như nấu ăn, làm lạnh, quảng cáo, chứa năng lượng đến phức tạp: thông tin, bay , chiến đấu, radar, chữa trị.<br />\r\n<br />\r\nHệ thống tạp phiến ( card - thẻ ) phong phú, đa dạng, kém pháp bảo tu tiên chút. Nghề nghiệp trong truyện: Chế tạp sư - Tạp tu ( Y vụ tạp tu, kiến trúc... ), vô tạp lưu ( kiểu cao thủ võ lâm, rèn luyện thân thể đến biến thái ).<br />\r\n<br />\r\nTrong truyện có thể chia làm 3 khu vực chính: Liên Bang - Bách Uyên Phủ - Ma Cáp Địch Vực. Truyện ra hơn 400 chương chỉ mới xoay quanh việc nhân vật chính tìm cách sinh tồn giữa lúc các thế lực trong Liên Bang minh tranh ám đấu.<br />\r\nVài nét về NVC:<br />\r\n- Là người có tình có nghĩa.<br />\r\n- Là chế tạp đại sư kiêm tạp tu ( cái này khá logic, sống chết mới được chứ không phải kiểu sinh ra là thiên tài kiêm tu ma pháp + kiếm sư, 6 hệ ma pháp... )<br />\r\n- Hầu như không có tham vọng chính trị, quyền lực, đa số việc hắn làm là để sinh tồn. Không có kiểu NVC thông minh vô đối, nói hai ba câu người khác cúi đầu đi theo, say mê nghiên cứu tạp phiến.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

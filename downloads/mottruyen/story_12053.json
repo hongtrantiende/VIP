@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "12053",
+        "NAME": "Song Bào Thai Mỹ Nữ Của Ta",
+        "CHAPTER": [
+            {
+                "id": "3937781",
+                "name": "Chương 1: Lão bà không nhận nợ"
+            }
+        ],
+        "TOTALCHAPTER": "1328",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đô Thị",
+        "AUTHOR": "Minh Nhật Phục Minh Nhật",
+        "TRANS": "Lão Hạc",
+        "DESC": "Đệ nhất cường giả trở lại đô thị, lại trêu chọc cực phẩm song bào thai.<br />\r\n<br />\r\n\tTỷ tỷ băng thanh ngọc khiết, muội muội đáng yêu động lòng người, cơ duyên xảo hợp, Tống Hiểu Đông cùng bên trong một cái phát sinh quan hệ.<br />\r\n<br />\r\n\tThế nhưng là, đến cùng là tỷ tỷ vẫn là muội muội",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

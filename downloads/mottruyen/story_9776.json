@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "9776",
+        "NAME": "Ta Là NPC Đại Thúc",
+        "CHAPTER": [
+            {
+                "id": "3299132",
+                "name": "Chương 1 : Lò Rèn Cũ Nát"
+            }
+        ],
+        "TOTALCHAPTER": "113",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Võng Du",
+        "AUTHOR": "一粒小糖豆 著",
+        "TRANS": "am_muu_ba_dao",
+        "DESC": "Doãn Tiểu Thiên tiến vào Aws ( một trò chơi thực tế ảo) ngoài ý muốn biến thành một cái có NPC thân phận thợ rèn phô lão bản.<br />\r\nChế tạo tuyệt thế thần binh, thành tựu nghịch thiên thần thợ!",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "5151",
+        "NAME": "Thánh thủ tôn sư",
+        "CHAPTER": [
+            {
+                "id": "1826835",
+                "name": "Chương 1: Hộ Sĩ Bảo"
+            }
+        ],
+        "TOTALCHAPTER": "493",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đô Thị",
+        "AUTHOR": "Đao phong gian ảnh",
+        "TRANS": "๖ۣۜTiếu ๖ۣۜHồng ๖ۣۜTrần",
+        "DESC": "Ngẫu nhi&ecirc;n được thần kỳ hệ thống, đ&uacute;c th&agrave;nh tuyệt thế thần y.<br /> <br /> Nhưng chữa bệnh cho người kh&ocirc;ng thể chữa t&acirc;m, cho n&ecirc;n cầu trường sinh!",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

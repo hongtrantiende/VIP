@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "7567",
+        "NAME": "Võ Hiệp Hành Trình",
+        "CHAPTER": [
+            {
+                "id": "2680263",
+                "name": "Chương 1: Tiến vào trò chơi 10 phút liền gặp phải Lý Tầm Hoan?"
+            }
+        ],
+        "TOTALCHAPTER": "1086",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp, Đô Thị, Kiếm Hiệp, Huyền Ảo",
+        "AUTHOR": "Vương Ngô",
+        "TRANS": "Liu",
+        "DESC": "là một người game thủ giải trí, Bàng Hiệp không thể nghi ngờ là thất bại.  Bởi vì hắn ở trong game hao hết tâm lực mở tiệm cơm, thường thường có người đến ăn uống chùa.  Càng then chốt chính là, những này người Bàng Hiệp một cái đều đánh không lại.  Lý Tầm Hoan: Bàn Hà, ngươi là bằng hữu của ta, vì lẽ đó ta phải được thường đến xem người, thuận tiện nếm thử người nhưỡng rượu.  Tây Môn Xuy Tuyết: Bằng hữu của ta không nhiều, Bàn Hà người tính một cái, vì lẽ đó tiệm cơm của ngươi ta nhất định phải đến thăm.  Khấu Trọng & Từ Tử Lăng: Bàn Đại ca, ngươi cầm Chân Chân tỷ lừa gạt đến người nhà hàng làm bánh bao, chẳng lẽ còn nhẫn tâm thu tiền của chúng ta sao?  Kiều Phong & Hư Trúc & Đoàn Dự: Tứ đệ, chúng ta tìm ngươi uống rượu đến rồi, vẫn quy củ cũ, uống ít nhất người trả tiền.  Bàng Hiệp (Bàn Hà): các ngươi những người này, đều cho ta xếp hàng tính tiền!",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

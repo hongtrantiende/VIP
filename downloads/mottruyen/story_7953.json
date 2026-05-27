@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "7953",
+        "NAME": "Hội Nghiên Cứu Quái Đàm",
+        "CHAPTER": [
+            {
+                "id": "2777645",
+                "name": "Chương 1: Cỗ máy Tử Vong"
+            }
+        ],
+        "TOTALCHAPTER": "32",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đô Thị, Huyền Ảo, Dị Năng, Khoa Huyễn, Linh Dị",
+        "AUTHOR": "Tĩnh Mật Trường Dạ",
+        "TRANS": "Nguyệt Hắc Phong Cao",
+        "DESC": "Tiểu thuyết: Hội Nghiên Cứu Quái Đàm<br />\r\n     Tác giả: Tĩnh Mật Trường Dạ<br />\r\n<br />\r\n       Giới thiệu tóm tắt:  Nếu như có một ngày, ngươi phát hiện thế giới hắc ám chân tướng.<br />\r\n<br />\r\n\tNhững thứ ngươi vốn tưởng rằng là hư cấu, lưu truyền rộng rãi kỳ quái cố sự cùng đô thị truyền thuyết, lại đều là thật sự tồn tại! Ngươi sẽ như thế nào?<br />\r\n<br />\r\n\t\"Quá tốt!\" Trương Lạc làm một cái thủ thế chữ \"V\" đại biểu \"Thắng lợi\".<br />\r\n<br />\r\n\tĐối với cái này điên cuồng Quái đàm người yêu thích mà nói, cả thế giới phảng phất đều biến thành hoa lệ to lớn công viên.<br />\r\n<br />\r\nNgừng cv",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

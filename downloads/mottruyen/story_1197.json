@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "1197",
+        "NAME": "Hồng Liên Bảo Giám",
+        "CHAPTER": [
+            {
+                "id": "462702",
+                "name": "Chương 01: Vào kinh thành"
+            }
+        ],
+        "TOTALCHAPTER": "1272",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo",
+        "AUTHOR": "Deathstate",
+        "TRANS": "dahuonglan_vnn",
+        "DESC": "Nghi&ecirc;n cứu chế tạo vũ kh&iacute; nh&agrave; khoa học đi v&agrave;o Thần Ch&acirc;u đại lục, bất đắc dĩ trở th&agrave;nh thời đại hỗn loạn đen tối nhẹ nh&agrave;ng tốt c&ocirc;ng tử.\r\n<br />Khoa học v&ocirc; dụng, đường ra duy nhất, tu đạo th&agrave;nh ti&ecirc;n.<br /><br />Thế nhưng m&agrave; b&ecirc;n người một đ&aacute;m lanh lợi khả nh&acirc;n nha ho&agrave;n l&agrave;m sao b&acirc;y giờ? Tiểu sư muội l&agrave;m sao b&acirc;y giờ? Vị h&ocirc;n th&ecirc; l&agrave;m sao b&acirc;y giờ?<br /><br />Một người đắc đạo, g&agrave; ch&oacute; l&ecirc;n trời?<br /><br />Chuyển nh&agrave; tu ti&ecirc;n sinh hoạt vốn cũng rất khổ, chỉ hy vọng c&aacute;c ngươi kh&ocirc;ng muốn tranh gi&agrave;nh t&igrave;nh nh&acirc;n, c&ugrave;ng một chỗ x&acirc;y dựng h&agrave;i h&ograve;a x&atilde; hội, mỹ m&atilde;n gia đ&igrave;nh.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

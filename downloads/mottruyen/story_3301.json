@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "3301",
+        "NAME": "Yêu Thần Ký",
+        "CHAPTER": [
+            {
+                "id": "1152144",
+                "name": "Chương 1: Trùng sinh"
+            }
+        ],
+        "TOTALCHAPTER": "507",
+        "IMG": "https://static.cdnno.com/poster/yeu-than-ky/150.jpg",
+        "CAT": "Huyền Ảo, Trùng Sinh",
+        "AUTHOR": "Phát Tiêu Đích Oa Ngưu",
+        "TRANS": "๖ۣۜSát ๖ۣۜThần, Hungprods",
+        "DESC": "Yêu Thần trùng sinh, ai dám tranh phong.<br />\n<br />\n\tĐây là một cái yêu linh thế giới, mọi người săn giết yêu thú, thu hoạch yêu linh, đem yêu linh dung nhập trong linh hồn hải, liền có thể thu hoạch được lực lượng cường đại.<br />\n<br />\n\tBởi vì một bản Thời Không Yêu Linh Chi Thư, Nhiếp Ly về tới tuổi nhỏ thời đại...",
+        "THUMB": "https://static.cdnno.com/poster/yeu-than-ky/150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

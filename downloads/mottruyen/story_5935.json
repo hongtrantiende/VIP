@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "5935",
+        "NAME": "Hàn Ngu Đại Tiền Bối",
+        "CHAPTER": [
+            {
+                "id": "2135381",
+                "name": "Chương 1: Ta trở về"
+            }
+        ],
+        "TOTALCHAPTER": "1006",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đô Thị, Ngôn Tình",
+        "AUTHOR": "Gấu mèo hồ Lockness",
+        "TRANS": "da94lmh",
+        "DESC": "Lee Jun Hee, năm 1997 lấy tổ hợp h&igrave;nh thức xuất đạo, 2002 năm bởi v&igrave; quản l&yacute; c&ocirc;ng ty cưỡng chế an b&agrave;i nhập ngũ, 2004 năm một lần nữa trở về về sau, hắn quyết định muốn bắt về thuộc tại ch&iacute;nh m&igrave;nh hết thảy!<br /> P/s: Kh&ocirc;ng trọng sinh, chỉ l&agrave; một nh&acirc;n vật debut sớm nhưng nhiều ch&ocirc;ng gai.<br /> P/s 2: Truyện n&agrave;y viết từ thời những năm 2002- 2004 n&ecirc;n sẽ c&oacute; nhiều nh&acirc;n vặt, nh&oacute;m nhạc giờ &iacute;t ng` biết n&ecirc;n d&ugrave; đ&atilde; cố sửa đ&ocirc;i l&uacute;c sẽ lỗi name . Th&ecirc;m nữa, nhiều t&ecirc;n người l&agrave; nv phụ sẽ để dạng h&aacute;n việt",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

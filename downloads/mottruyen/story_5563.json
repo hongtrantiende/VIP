@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "5563",
+        "NAME": "Xạ Điêu Chi Hiên Viên Truyền Nhân",
+        "CHAPTER": [
+            {
+                "id": "1976820",
+                "name": "Chương 1: ‘ cẩu huyết ’ xuyên qua được thần công"
+            }
+        ],
+        "TOTALCHAPTER": "146",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp, Kiếm Hiệp, Võng Du, Xuyên Không, Đồng Nhân",
+        "AUTHOR": "Viết Mộng",
+        "TRANS": "™¥Ly Hận¥™",
+        "DESC": "Một chân heo nam bất ngờ xuyên qua, đạt dược Hoàng Đế Hiên Viên truyền thừa. Hãy xem hắn làm thế nào tung hoành giang hồ.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

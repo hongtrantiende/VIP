@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "911",
+        "NAME": "Cực Phẩm Lão Bà",
+        "CHAPTER": [
+            {
+                "id": "219688",
+                "name": "Chương 1: Mùa xuân là mùa câu kết làm bậy!"
+            }
+        ],
+        "TOTALCHAPTER": "666",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đô Thị",
+        "AUTHOR": "Lý Hưng Vũ",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Một tờ bệnh &aacute;n chẩn đo&aacute;n ung thư n&atilde;o giả mạo, khiến cho Ng&ocirc; Thi&ecirc;n c&ograve;n chưa kịp n&oacute;i y&ecirc;u thương liền nắm tay một nữ nh&acirc;n xa lạ đi v&agrave;o cung điện h&ocirc;n nh&acirc;n.\r\n<br />Lấy một nữ nh&acirc;n lạ lẫm l&agrave;m vợ, l&agrave; một hồi bi kịch. Lấy một nữ nh&acirc;n đem to&agrave;n bộ thế giới đều lừa l&agrave;m vợ, c&agrave;ng l&agrave; bi kịch.<br /><br />\"L&atilde;o b&agrave;, ch&uacute;ng ta ly h&ocirc;n a \"<br /><br />\"Trong từ điển của ta, kh&ocirc;ng c&oacute; ly h&ocirc;n, chỉ c&oacute; thủ tiết.\"<br /><br />\"Vậy ngươi giết chết ta đi.\"<br /><br />\"Kh&ocirc;ng được, ta c&ograve;n kh&ocirc;ng c&oacute; chơi ch&aacute;n.\"<br /><br />C&oacute; l&atilde;o b&agrave; như vậy, thực r&egrave;n luyện người... !<br /><br />... ...<br /><br />L&yacute; Hưng Vũ sau tam bộ kh&uacute;c \"Mỹ Nữ Tổng Gi&aacute;m Đốc Của Ta\" \"Mỹ Nữ Đại Tiểu Thư Của Ta\" \"Mỹ Nữ T&igrave;nh Kiếp Của Ta\", lại một đ&ocirc; thị t&aacute;c phẩm t&acirc;m huyết, k&iacute;nh thỉnh chờ mong. . . .",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "11767",
+        "NAME": "Đạo Môn Sinh",
+        "CHAPTER": [
+            {
+                "id": "3875857",
+                "name": "Chương 1: Thuyết thư đạo sĩ"
+            }
+        ],
+        "TOTALCHAPTER": "30",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp, Huyền Ảo, Dị Giới",
+        "AUTHOR": "Mặc Ma Công Tử",
+        "TRANS": "devileyes357",
+        "DESC": "Đạo môn sinh giới thiệu vắn tắt: một cái dựa vào thuyết thư mà sống tiểu đạo sĩ, lại một lòng hướng tới tiên đồ, vọng tưởng thành tựu tu tiên mộng tưởng. Trời xui đất khiến phía dưới, vậy mà thật bị hắn dùng \"Tổ truyền\" tiên pháp đả thông linh mạch, từ đó bước vào tu hành đại môn. Lại nhìn hắn như thế nào từng bước một đạp vào mây xanh, chân đạp thanh thiên.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

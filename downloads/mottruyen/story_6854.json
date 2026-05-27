@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "6854",
+        "NAME": "Hỗn Độn Thánh Tôn",
+        "CHAPTER": [
+            {
+                "id": "2439070",
+                "name": "Chương 01: Phóng Nghỉ Đông Hồi Quê Quán"
+            }
+        ],
+        "TOTALCHAPTER": "130",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp, Đô Thị",
+        "AUTHOR": "Thiên Không Quang Minh",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Thể loại: Hiện đại tu chân<br />\r\n<br />\r\nThần Thoại sẽ không còn là Thần Thoại, Trần Hoành đem đạp phá Thần Thoại!<br />\r\n<br />\r\nBình thường hắn, dưới cơ duyên xảo hợp đã lấy được Tiên Thiên Chí Bảo Hỗn Độn Chung, thì như thế nào từng bước một đi về hướng Thần Thoại đỉnh phong, đứng tại chí cao chi điểm tiếu ngạo thiên hạ!!!",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

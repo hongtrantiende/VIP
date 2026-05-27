@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "10387",
+        "NAME": "Võ Đạo Thần Tôn",
+        "CHAPTER": [
+            {
+                "id": "3488204",
+                "name": "Chương 1: Trong cơ thể lỗ đen"
+            }
+        ],
+        "TOTALCHAPTER": "1447",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo, Dị Giới",
+        "AUTHOR": "Tiếu Tiếu Thư Sinh",
+        "TRANS": "808",
+        "DESC": "Tam Thánh chết, Ngũ Đế diệt, Long Thần vẫn, nhân tộc thương! Đại đạo nứt vỡ, tận thế hàng lâm, mặc ngươi tài so với Cổ Đế, cũng đạo đường ảm đạm, phong hoa tuyệt đại, cuối cùng hóa thành bụi đất! Thôn Thiên Ma Thể tái sinh, ăn thiên tài, hóa địa bảo, luyện thương khung, cắn tinh không. Chân đạp thiên kiêu, quyền đánh Chân Thần, trên trời dưới đất, vì ta xưng tôn!",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "11805",
+        "NAME": "Dòng Sông Lông Gà",
+        "CHAPTER": [
+            {
+                "id": "3880075",
+                "name": "1. Ovillyra-Laris (Skeehope) Mafouchusy"
+            }
+        ],
+        "TOTALCHAPTER": "4",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo, Xuyên Không, Đồng Nhân",
+        "AUTHOR": "meotuyettim0101001@",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Một câu chuyện nhàm chán! Đừng quá mong chờ, tác giả là kẻ không giỏi về mọi mặt!",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

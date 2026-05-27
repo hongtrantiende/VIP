@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "3653",
+        "NAME": "Cuồng Võ Chiến Đế",
+        "CHAPTER": [
+            {
+                "id": "1261673",
+                "name": "Chương 1: Kiếp sau sao không giết hết bọn ngươi"
+            }
+        ],
+        "TOTALCHAPTER": "3109",
+        "IMG": "https://static.cdnno.com/poster/cuong-vo-chien-de/150.jpg",
+        "CAT": "Huyền Ảo",
+        "AUTHOR": "Bị Phạt Trạm Đích Đậu Đậu",
+        "TRANS": "Mahoukuku",
+        "DESC": "Kiếp trước, gặp phản bội, trăm vị Võ Tôn vây công, chết thảm Kiêu Chiến tinh, ma xui quỷ khiến, trời cao cho Diệp Khinh Hàn một cơ hội làm lại.Hắn quật khởi mạnh mẽ, giết vào Cửu U địa phủ, chiến tận thiên chi kiêu tử, chân đạp chư hùng vạn tôn, thành tựu cuồng võ chiến đế, kiến cửu phẩm thần triều! Làm vạn thế người số một!",
+        "THUMB": "https://static.cdnno.com/poster/cuong-vo-chien-de/150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

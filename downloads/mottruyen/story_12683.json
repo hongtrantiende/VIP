@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "12683",
+        "NAME": "Ta Vì Nguyên Thủy Đại Thiên Tôn",
+        "CHAPTER": [
+            {
+                "id": "4099192",
+                "name": "Chương 1: Lý Huyền Sinh"
+            }
+        ],
+        "TOTALCHAPTER": "1060",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp, Huyền Ảo",
+        "AUTHOR": "Ngẫu Mễ Phấn",
+        "TRANS": "hui235235",
+        "DESC": "Mọi loại đều Hạ phẩm, chỉ có tiên nhân cao.<br />\r\n<br />\r\n\tLuyện Tinh Hóa Khí, Luyện Khí Hóa Thần, Luyện Thần Hoàn Hư, Luyện Hư Hợp Đạo, đạo hợp cửu chuyển, bắt đầu chứng vô thượng Chân tiên.<br />\r\n<br />\r\n\tHoang Cổ đại lục, Lý Huyền Sinh đến đến nơi này, chú định lưu lại một đoạn truyền thuyết...",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

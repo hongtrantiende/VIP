@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "8150",
+        "NAME": "Nghịch Thiên Huyền Đế",
+        "CHAPTER": [
+            {
+                "id": "2818269",
+                "name": "Chương 1: Giác Tỉnh Ngày"
+            }
+        ],
+        "TOTALCHAPTER": "7",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo, Dị Giới",
+        "AUTHOR": "Cổ Thành Yên Vũ",
+        "TRANS": "Anh Tuấn Vô Song",
+        "DESC": "Trăm ngàn năm trước, Thiên Húc Đại Lục, Chúa tể thiên đạo Chư Thiên Thần Ma giữa đêm thần bí biến mất. Mười vạn năm sau, Thương Minh đông cảnh, một cái giác tỉnh thiên thiếu Mệnh Bài thiếu niên đột nhiên xuất hiện. Với hồng trần trong loạn thế cạnh tranh , thiếu niên lập chí Nghịch Thiên Cải Mệnh, xông cấm khu, vào Minh Giới, Đấu Ma Tôn, Chiến Thiên Vương. Nhân hoàng, Thánh Quân, có phải là hắn điểm cuối, hay là chỉ chẳng qua là Võ Đạo Chi Lộ bắt đầu. Lại nhìn hắn tay cầm Tam Xích Thanh Phong, giết ...",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

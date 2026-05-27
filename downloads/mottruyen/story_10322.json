@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "10322",
+        "NAME": "Tận Thế",
+        "CHAPTER": [
+            {
+                "id": "3459020",
+                "name": "Chương 1: Lần đầu vào Tận thế"
+            }
+        ],
+        "TOTALCHAPTER": "2",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Võng Du, Mạt Thế",
+        "AUTHOR": "trapyss",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Tận thế, cho dù chỉ là trò chơi, ngươi nghĩ mình có thể tồn tại bao lâu. Theo chân Diệp Lam để khám phá chân tướng của trò chơi kỳ vĩ, tàn bạo và bí ẩn nhất địa cầu này",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "4825",
+        "NAME": "Chung Cực Giáo Quan",
+        "CHAPTER": [
+            {
+                "id": "1700720",
+                "name": "Chương 1: Ma vương trở về!"
+            }
+        ],
+        "TOTALCHAPTER": "360",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đô Thị, Dị Năng",
+        "AUTHOR": "Lương Thất Thiếu",
+        "TRANS": "Trương Cáp",
+        "DESC": "Thiết quyền Sở Hướng , thử hỏi ai có thể tranh phong?Nghĩa đảm nhu tình , các loại mỹ nhân tranh thủ tình cảm !Hắn , chính là cuối cùng giáo quan , đương thời Đại Ma Vương !Vì người đẹp không người nào hạn Trương Cuồng (liều lĩnh); vì huynh đệ giúp bạn không tiếc cả mạng sống; làm thân nhân thề sống chết thủ hộ !Núi thây biển máu trung sát phạt , từng chồng bạch cốt trung giẫm chận tại chỗ , bỗng nhiên quay đầu , đã đứng ngạo nghễ đỉnh , thành tựu truyền kỳ sự thống trị !",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

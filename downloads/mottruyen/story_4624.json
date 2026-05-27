@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "4624",
+        "NAME": "tàng hình vệ sĩ",
+        "CHAPTER": [
+            {
+                "id": "1640772",
+                "name": "Đệ 1 chương : Một chén bún thập cẩm cay câu chuyện"
+            }
+        ],
+        "TOTALCHAPTER": "60",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đô Thị, Dị Năng",
+        "AUTHOR": "Đào tử mại một liễu",
+        "TRANS": "vô danh",
+        "DESC": "Trong lúc vô tình điện giật sau Đích Trương dễ dàng, phát hiện chính mình vậy mà có thể biến mất thân thể, biến thành một cái {người trong suốt}, ngoài ý muốn kinh hỉ lại để cho hắn mở ra nhân sinh mới. Một cái hội (sẽ) tàng hình mà đi đi tại trong đô thị kỳ nhân. Ngươi nhìn không thấy ta, ngươi nhìn không thấy ta, ngươi nhìn không thấy ta...... Bảo tiêu mới",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

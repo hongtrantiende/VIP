@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "7044",
+        "NAME": "Hàn Ngu Tông Sư",
+        "CHAPTER": [
+            {
+                "id": "2508660",
+                "name": "Chương 1: Sơ ngộ"
+            }
+        ],
+        "TOTALCHAPTER": "97",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đô Thị",
+        "AUTHOR": "Nhiều Converter",
+        "TRANS": "kencool",
+        "DESC": "Một năm kia, 11 tuổi, gặp phải như thiên sứ tiểu Kim Taeyeon, mà còn bị Kim gia thu dưỡng, cô nhi sinh mệnh trong bắt đầu có ánh sáng.<br />\r\n<br />\r\n\tChính là một năm kia, sáu tuổi Kim Tae Yeon ngữ xuất kinh nhân: \"Ta muốn gả cho Sung Hi oppa.\"<br />\r\n<br />\r\n\tMột đứa cô nhi, bị Kim Tae Yeon gia đình thu dưỡng, sau khi lớn lên tiến nhập vòng giải trí, tinh quang lóng lánh, trở thành hàn ngu tông sư.<br />\r\n<br />\r\n\tCó mộng tưởng, có thủ hộ, có ôn nhu.<br />\r\n<br />\r\n\tCó Girl's Generation, có nữ đoàn, có tống nghệ, có nhiệt nhiệt nháo nháo Hàn Quốc vòng giải trí.<br />\r\n<br />\r\n\tThuở nhỏ không chết, hàn ngu vĩnh tồn!",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

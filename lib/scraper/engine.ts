@@ -48,6 +48,52 @@ function contentSimilarity(a: string, b: string): number {
   return matches / 2;
 }
 
+function isEquivalentUrl(url1: string | undefined, url2: string | undefined): boolean {
+  if (!url1 || !url2) return false;
+  try {
+    const u1 = new URL(url1);
+    const u2 = new URL(url2);
+    
+    const cleanPath = (p: string) => {
+      try {
+        return decodeURIComponent(p.replace(/\/$/, "")).toLowerCase();
+      } catch {
+        return p.replace(/\/$/, "").toLowerCase();
+      }
+    };
+    const path1 = cleanPath(u1.pathname);
+    const path2 = cleanPath(u2.pathname);
+    
+    // Check if it's a known mirror of wikidich or other sites
+    const isWikiMirror = (host: string) => 
+      /wiki(dich|cv|cvnet|dichvip|dich3|dich4|dich5|dich6)/i.test(host);
+      
+    let result = false;
+    if (isWikiMirror(u1.hostname) && isWikiMirror(u2.hostname)) {
+      const getWikiChapterId = (path: string) => {
+        const parts = path.split("/");
+        const lastSegment = parts[parts.length - 1] || "";
+        const slugParts = lastSegment.split("-");
+        const lastToken = slugParts[slugParts.length - 1] || "";
+        if (lastToken.length >= 8) {
+          return lastToken;
+        }
+        return lastSegment;
+      };
+      result = getWikiChapterId(path1) === getWikiChapterId(path2);
+    } else {
+      result = u1.hostname.replace("www.", "") === u2.hostname.replace("www.", "") && path1 === path2;
+    }
+    
+    console.log("[isEquivalentUrl]", { url1, url2, result });
+    return result;
+  } catch {
+    const res = url1.toLowerCase().replace(/\/$/, "") === url2.toLowerCase().replace(/\/$/, "");
+    console.log("[isEquivalentUrl catch]", { url1, url2, res });
+    return res;
+  }
+}
+
 export function sanitizeChapterContent(c: ChapterContent): ChapterContent {
   return {
     ...c,
@@ -255,7 +301,7 @@ export async function scrapeChapters(
           chapters.push(newChapter);
           onDynamicChapterAdded?.(newChapter);
         } else {
-          const alreadyExists = chapters.some((ch) => ch.url === content.nextChapterUrl);
+          const alreadyExists = chapters.some((ch) => isEquivalentUrl(ch.url, content.nextChapterUrl));
           if (!alreadyExists) {
             const newChapter: ChapterLink = {
               title: `Chương ${chapters.length + 1} (Đang lấy tiêu đề...)`,
@@ -269,8 +315,8 @@ export async function scrapeChapters(
       } else {
         // Check for gap in the middle
         const nextInQueue = chapters[i + 1];
-        if (nextInQueue && nextInQueue.url !== content.nextChapterUrl) {
-          const alreadyExists = chapters.some((ch) => ch.url === content.nextChapterUrl);
+        if (nextInQueue && !isEquivalentUrl(nextInQueue.url, content.nextChapterUrl)) {
+          const alreadyExists = chapters.some((ch) => isEquivalentUrl(ch.url, content.nextChapterUrl));
           if (!alreadyExists) {
             // It is a missing chapter! Insert it at index i + 1
             const newChapter: ChapterLink = {
@@ -500,7 +546,7 @@ export async function serverScrapeChapters(
 
     // ── Dynamic Next Chapter Crawling ──
     if (i === chapters.length - 1 && content.nextChapterUrl) {
-      const alreadyExists = chapters.some((ch) => ch.url === content.nextChapterUrl);
+      const alreadyExists = chapters.some((ch) => isEquivalentUrl(ch.url, content.nextChapterUrl));
       if (!alreadyExists && content.nextChapterUrl.startsWith("http")) {
         const newChapter: ChapterLink = {
           title: `Chương ${chapters.length + 1} (Đang lấy tiêu đề...)`,

@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "12116",
+        "NAME": "Conan Chi Khai Môn Ta Là Cảnh Sát",
+        "CHAPTER": [
+            {
+                "id": "5546111",
+                "name": "Chương 1: Ta là cảnh sát"
+            }
+        ],
+        "TOTALCHAPTER": "459",
+        "IMG": "https://static.cdnno.com/poster/conan-chi-khai-mon-ta-la-canh-sat/150.jpg",
+        "CAT": "Đồng Nhân",
+        "AUTHOR": "Chiết Chỉ Tinh Nhân",
+        "TRANS": "HacTamx",
+        "DESC": "Tóm tắt : Ta là cảnh sát, hiện trường vụ án chúng ta tiếp quản, người không liên quan hết thảy lóe người! <br />\r\n<br />\r\nNgươi là trinh thám? Có chính quy giấy phép sao? Thuộc về cảnh vụ hệ thống sao? Ta có thể đem ngươi liệt vào hiềm nghi người sao? <br />\r\n<br />\r\nDanh trinh thám? Thực xin lỗi chưa từng nghe qua. Ngươi muốn trinh thám? Thực xin lỗi không có hứng thú, một bên đứng xem chúng ta phá án! Hắc! Hiện trường vụ án không thể lộn xộn, nói chính là ngươi, bên kia cái kia tiểu hài tử! —— tân nhân tra làm, cung nghe dạy dỗ",
+        "THUMB": "https://static.cdnno.com/poster/conan-chi-khai-mon-ta-la-canh-sat/150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

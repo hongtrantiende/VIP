@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "1604",
+        "NAME": "Võ Động Càn Khôn",
+        "CHAPTER": [
+            {
+                "id": "657625",
+                "name": "Chương 1: Lâm Động"
+            }
+        ],
+        "TOTALCHAPTER": "1307",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo",
+        "AUTHOR": "Thiên Tàm Thổ Đậu",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Tr&iacute;ch:<br /> Con đường tu luyện, l&agrave; trộm &Acirc;m Dương, đoạt Tạo H&oacute;a, xoay chuyển Niết B&agrave;n, nắm giữ Sinh Tử, chưởng quản Lu&acirc;n Hồi. Cực hạn của v&otilde; học l&agrave; ph&aacute; Thương Khung, đổi C&agrave;n Kh&ocirc;n.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

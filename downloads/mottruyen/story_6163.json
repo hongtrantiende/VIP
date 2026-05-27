@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "6163",
+        "NAME": "Tốc Độ Chi Thần",
+        "CHAPTER": [
+            {
+                "id": "2200284",
+                "name": "Chương 1: Đùa?"
+            }
+        ],
+        "TOTALCHAPTER": "18",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Khoa Huyễn, Xuyên Không",
+        "AUTHOR": "BooKooMan",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Truyện đơn giản kể về 1 thằng main bựa lòi bị teleport đến một thế giới khác<br />\r\n<br />\r\nNhững phần kể về các yếu tố quan trọng sẽ có trong series Kiến tạo thế giới.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "7200",
+        "NAME": "Hi Linh Đế Quốc",
+        "CHAPTER": [
+            {
+                "id": "2568344",
+                "name": "Chương 1: Mộng"
+            }
+        ],
+        "TOTALCHAPTER": "733",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Dị Năng, Khoa Huyễn",
+        "AUTHOR": "Viễn Đồng",
+        "TRANS": "Báo",
+        "DESC": "Không phải Đế Quốc tranh phách, không phải Dị Giới Phong Vân, càng không phải là thăng cấp luyện công, kỳ thực, đây là một quyển phi thường nghiêm túc chính kinh nghiêm túc cứng rắn Khoa Huyễn cứu thế văn —— Các ngươi liền phải coi là thật nghe  =))<br />\r\n<br />\r\n\tĐược rồi, kỳ thực đây chính là một đám không có chạy thủ lĩnh cùng một cái hố cha nguyên thủ sung sướng vô liêm sỉ cứu thế hằng ngày mà thôi .<br />\r\n<br />\r\n\tĂn no chờ chết ngụy trạch biến hóa nhanh chóng thành Đế Quốc nguyên thủ, sở hữu nãi ba hào quang đại thúc nhận nuôi la lỵ vô số, đây chính là nào đó trạch ở thu được một cái tòng thiên nhi xuống chùa cơm binh đoàn sau đó sở phát sinh đại tiếu cố sự....<br />\r\n Lần nữa trịnh trọng nêu lên: Đây là một quyển phi thường nghiêm túc chính kinh nghiêm túc Khoa Huyễn (hẳn là thật sự nghiêm túc :v)",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

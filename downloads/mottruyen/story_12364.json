@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "12364",
+        "NAME": "Hành Trình Tìm Hệ Thống",
+        "CHAPTER": [
+            {
+                "id": "4021536",
+                "name": "Chương 1: Một ngày bình thường."
+            }
+        ],
+        "TOTALCHAPTER": "4",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Dị Năng, Dị Giới, Mạt Thế",
+        "AUTHOR": "iamwin",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Ước mơ của những game thủ trở thành hiện thực. Thế giới xảy ra biến đổi lớn, loài người đứng bên bờ diệt vong trước sự tấn công của các \"sinh vật lạ\" không đến từ trái đất nhưng nhờ khả năng đặc biệt được ban cho nhờ Hệ Thống, họ có những khả năng đặc biệt.<br />\r\nKết quả của cuộc chiến như thế nào, sự thật đằng sau tất cả là gì?<br />\r\nMời các bạn đọc thử tác phẩm đầu tay của mình, cứ ném gạch thoải mái nhá, nhờ đống gạch bạn ném mình mới xây nhà đẹp được, mới viết hay hơn được.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

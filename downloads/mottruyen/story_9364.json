@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "9364",
+        "NAME": "Mang Theo Kho Hàng Đến Đại Minh",
+        "CHAPTER": [
+            {
+                "id": "3165931",
+                "name": "Chương 1: Ca phát đạt!"
+            }
+        ],
+        "TOTALCHAPTER": "61",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Lịch Sử",
+        "AUTHOR": "Địch Ba Lạp Tước Sĩ",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Truyện dừng do vi phạm nội quy web: Chương 126 nói xấu VN.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

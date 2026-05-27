@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "4402",
+        "NAME": "Ngũ Đại Nghịch Thiên",
+        "CHAPTER": [
+            {
+                "id": "1577589",
+                "name": "Chương 1: Đần độn u mê Xuyên Việt"
+            }
+        ],
+        "TOTALCHAPTER": "95",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Quân Sự, Lịch Sử",
+        "AUTHOR": "Không Động 007",
+        "TRANS": "Chanh",
+        "DESC": "Phòng ngừa Lưỡng Tống chi chán chường, tái hiện Hán Đường quá lớn thế, hết thảy đều ở Ngũ Đại Nghịch Thiên.<br />\r\n<br />\r\nVốn định làm khoái hoạt Ngũ vương gia, ai từng muốn thu cái Gia Tướng, con của hắn gọi Tào Bân; chiêu cái nhân viên thu chi, chính hắn cải danh tự gọi Triệu Phổ; cứu cái Cường Đạo, hắn Tiểu Cữu Tử lại là Phan Mỹ...<br />\r\n<br />\r\nThành Biện Kinh ở bên trong, mắng choáng luôn Vương Phác, đả thương Thạch Thủ Tín, còn tàn nhẫn mà đá Triệu Khuông Dận cái mông. Không có Đầu Hàng con đường, chỉ có thể đi Tranh Bá lộ!",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

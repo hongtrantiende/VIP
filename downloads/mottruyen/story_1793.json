@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "1793",
+        "NAME": "Toàn Cầu Quái Vật Tại Tuyến",
+        "CHAPTER": [
+            {
+                "id": "739503",
+                "name": "Chương 1: Toàn cầu quái vật OL chính thức login"
+            }
+        ],
+        "TOTALCHAPTER": "1230",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Khoa Huyễn",
+        "AUTHOR": "Tái Lai Nhất Chi Đại Tuyết Gia",
+        "TRANS": "Nhoktials",
+        "DESC": "Thần b&iacute; hệ thống x&acirc;m lấn, hai c&aacute;i thế giới v&igrave; vậy m&agrave; tr&ugrave;ng điệp.<br /><br />L&agrave;m vận mệnh lại một lần nữa hợp tấu thời điểm, đặt tại Triệu Nam trước mặt, l&agrave; một c&aacute;i kh&ocirc;ng thể đo&aacute;n, kh&ocirc;ng thể biết, ho&agrave;n to&agrave;n bất đồng con đường.<br /><br />...",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

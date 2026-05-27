@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "2484",
+        "NAME": "Siêu Cấp Trạch Nam Hệ Thống",
+        "CHAPTER": [
+            {
+                "id": "816341",
+                "name": "Chương 1: Ngoài ý muốn"
+            }
+        ],
+        "TOTALCHAPTER": "185",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đô Thị",
+        "AUTHOR": "Tứ Thánh Ngân Tệ",
+        "TRANS": "Al",
+        "DESC": "Vương Đ&ocirc;ng, một c&aacute;i tr&ecirc;n thế gian nho nhỏ trạch nam, v&ocirc; duy&ecirc;n v&ocirc; cố đạt được một si&ecirc;u cấp trạch nam hệ thống, cuộc đời của hắn sẽ ph&aacute;t sinh c&aacute;i g&igrave; biến h&oacute;a đ&acirc;y?<br /><br />\"C&aacute;i g&igrave;, trạch nam nhất định phải 36 nghệ? ?\"<br /><br />\"C&aacute;i g&igrave;, trạch nam muốn tr&ecirc;n th&ocirc;ng thi&ecirc;n văn, dưới r&agrave;nh địa l&yacute;, ph&acirc;n bốn m&ugrave;a ngũ cốc, hiểu b&aacute;t qu&aacute;i C&agrave;n Kh&ocirc;n? ?\"<br /><br />\"C&aacute;i n&agrave;y c&ograve;n l&agrave; trạch nam sao? ?\"",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

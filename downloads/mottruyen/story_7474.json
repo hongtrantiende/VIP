@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "7474",
+        "NAME": "Chí Tôn Trọng Sinh",
+        "CHAPTER": [
+            {
+                "id": "2641721",
+                "name": "Chương 1: Trọng sinh thời niên thiếu"
+            }
+        ],
+        "TOTALCHAPTER": "2740",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo, Trùng Sinh",
+        "AUTHOR": "Thảo Căn",
+        "TRANS": "808",
+        "DESC": "Một đời chí cường Võ Đế Trần Lôi, độ tối cường thiên kiếp, không hiểu trở lại thiếu niên thời đại, từ đó mở ra nghịch thiên vô địch hành trình. Địch nhân toàn bộ nghiền ép, cừu nhân toàn bộ thanh toán, Dị tộc toàn bộ trấn áp, bảo vật toàn bộ tới tay, mỹ nữ vây quanh, quyền khuynh thiên hạ, thành một đời chí tôn, vô địch Cổ Đế.<br />\r\n<br />\r\n<br />\r\n<br />\r\n<br />\r\nCảnh giới: Võ Cơ cảnh (Võ Đồ), Chân Khí cảnh (Võ Giả), Ngưng Nguyên cảnh (Võ Sư), Cương Sát cảnh (?), Hóa Hình cảnh (Võ Vương), Nạp Hải cảnh (Võ Tôn), Hồn Chủng cảnh (Võ Thánh), Võ Hồn cảnh (Võ Tổ), Niết Bàn cảnh(Võ Đế),...",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

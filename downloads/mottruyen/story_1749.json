@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "1749",
+        "NAME": "Võng Du Chi Địa Cầu Lĩnh Chủ",
+        "CHAPTER": [
+            {
+                "id": "724153",
+                "name": "Chương 1: ---- Tận thế luận cùng nhân loại"
+            }
+        ],
+        "TOTALCHAPTER": "182",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Võng Du",
+        "AUTHOR": "Hà Vĩnh Hưng",
+        "TRANS": "Jun",
+        "DESC": "Ở trong game chiến đấu hăng h&aacute;i , ở trong hiện thực t&ocirc;i luyện; một c&aacute;i b&igrave;nh d&acirc;n , một đo&agrave;n sương m&ugrave; cổ , một c&aacute;i danh xưng; đang thủ hộ địa cầu c&ugrave;ng nh&acirc;n loại đồng thời , bước về ph&iacute;a v&ocirc; tận trong vũ trụ , thơ viết ra một đoạn truyền kỳ !",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

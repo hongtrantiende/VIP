@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "2371",
+        "NAME": "Tuyệt Thế Kiếm Tôn",
+        "CHAPTER": [
+            {
+                "id": "789296",
+                "name": "Chương 1: Minh kiếm quỷ bộ"
+            }
+        ],
+        "TOTALCHAPTER": "36",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo",
+        "AUTHOR": "Bạch Mộ Thanh",
+        "TRANS": "Vuongls",
+        "DESC": "Thật to lớn lục cường giả tuyệt thế độ kiếp phi thăng th&igrave; bị người &aacute;m hại ng&atilde; xuống, bất ngờ ở Kiếm Trần đại lục một vị r&aacute;c rưởi thiếu gia tr&ecirc;n người sống lại, m&agrave; nh&igrave;n hắn cầm trong tay Thần kh&iacute; Thi&ecirc;n L&ocirc;i kiếm, ở kiếm đạo thế giới mở ra một c&aacute;i con đường cường giả. Vượt cấp giết người, giả làm heo ăn thịt h&ocirc;̉, khinh thường quần h&ugrave;ng, một chi&ecirc;u kiếm ở tay, thi&ecirc;n hạ ta c&oacute;!&nbsp;",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

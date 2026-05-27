@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "11416",
+        "NAME": "Siêu Cấp Nông Tràng",
+        "CHAPTER": [
+            {
+                "id": "3786239",
+                "name": "Chương 1: : Tích Huyết Châu"
+            }
+        ],
+        "TOTALCHAPTER": "952",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đô Thị",
+        "AUTHOR": "Mạc lý ô đế",
+        "TRANS": "๖ۣۜTiếu ๖ۣۜHồng ๖ۣۜTrần",
+        "DESC": "Chán nản thanh niên Lâm Ngôn , tình cờ được đến Tích Huyết Không Gian. Hết thảy trở nên không giống nhau... Trồng trọt đủ loại cực phẩm rau cải , nuôi dưỡng các loại hiếm quý dã thú , cùng thế giới phòng ăn năm trăm cường hợp tác , trở thành trường học lớn nhất rau cải giao hàng thương , tạo dựng cơ quan từ thiện... . . . Lưu ly cải xanh , thủy tinh dưa leo , tinh hồng trái cà chua , Trung Hoa trứng cá muối , Chí Tôn Thịt bò Kobe , bạch kim rượu bồ đào , những thứ này đều là Lâm Ngôn đồng học sản phẩm. Thế nhưng , nói cho các ngươi biết một cái bí mật , Lâm Ngôn đồng học tài chính thiếu nghiêm trọng , cho nên đem trong tay các ngươi kim đậu , đề cử đập về phía Lâm Ngôn đi!",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

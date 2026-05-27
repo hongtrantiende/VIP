@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "1102",
+        "NAME": "Tam Thái Tử",
+        "CHAPTER": [
+            {
+                "id": "358035",
+                "name": "Chương 1: Này ăn thịt người xã hội"
+            }
+        ],
+        "TOTALCHAPTER": "852",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo",
+        "AUTHOR": "Thụy Tỉnh Thỏ",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Th&acirc;n mang Ti&ecirc;n Thi&ecirc;n nhất kh&iacute; quyết c&ugrave;ng Kim Cương Bất Hoại thần c&ocirc;ng,  l&iacute;nh đ&aacute;nh thu&ecirc; quốc tế Triệu V&ocirc; Cực chuyển thế tới Thương Long đại lục,  trở th&agrave;nh Tam ho&agrave;ng tử L&yacute; L&acirc;n kh&ocirc;ng quyền kh&ocirc;ng thế của trung cấp ho&agrave;ng  triều Đại Đường.\r\n&nbsp;\r\nL&yacute;  L&acirc;n mang theo hai đại huyền c&ocirc;ng Phật Đạo Hoa Hạ, trong thời buổi loạn  lạc đại ph&aacute;t thần uy! Đ&aacute;nh đập ho&agrave;ng tử, lừa gạt thiếu nữ, &aacute;p bức thiếu  chủ, tr&ecirc;u đ&ugrave;a Th&aacute;nh nữ, cậy thực lực mạnh mẽ, chẳng ki&ecirc;ng nể thế lực  khắp nơi, L&yacute; L&acirc;n d&ugrave;ng m&aacute;u tươi c&ugrave;ng h&agrave;i cốt để tạo n&ecirc;n một con đường  truyền kỳ.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "5957",
+        "NAME": "dị giới mang theo internet",
+        "CHAPTER": [
+            {
+                "id": "2145006",
+                "name": "Chương 1: : Dị Giới cũng có thể network? Phát đạt"
+            }
+        ],
+        "TOTALCHAPTER": "210",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Dị Giới, Khoa Huyễn, Xuyên Không",
+        "AUTHOR": "Phong vũ ( tân thủ)",
+        "TRANS": "phongthanh",
+        "DESC": "vượt không gian, qua thời gian, internet có thể xuyên qua cả dị giới, thử xem một thanh niên sống thế nào ở dị giới khi mang theo laptop kết nối internet free",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "11908",
+        "NAME": "Võng Du Chiến Tu Tiên Giới",
+        "CHAPTER": [
+            {
+                "id": "3907874",
+                "name": "Chương 1 : Hệ Thống Cho Ta Xuyên"
+            }
+        ],
+        "TOTALCHAPTER": "3",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp, Võng Du, Xuyên Không",
+        "AUTHOR": "miumiulkd",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Mặc dù đã đọc qua nhiều tiểu thuyết xuyên không.Nhưng Bách Lý Hàn xuyên không chỉ vì lý do Hack game thất bại.<br />\r\nMột thân nô lệ hạ cấp, không nơi nương tựa .Phế phẩm linh căn không thể tu luyện.<br />\r\nBách Lý Hàn nhập vào, có được ấn kí game , cái mà thế giới tu chân gọi là ấn kí pháp bảo.<br />\r\nTrong khi tu chân giới vẫn đang ngồi ngây ngốc tu luyện, một mình Bách Lý Hàn đánh quái thăng cấp, trở thành đệ nhất nhân trong thế giới game.<br />\r\nĐẳng cấp tu vi ngoài đời và trong game<br />\r\n    Luyện Khí = 1->10<br />\r\n    Khai Quang = 11->20<br />\r\n    Trúc Cơ = 21->30<br />\r\n    Ích Cốc= 31->40<br />\r\n    Kết Đan (Kim Đan)= 41->50<br />\r\n    Nguyên Anh= 51->60<br />\r\n    Hóa Thần (Phân Thần)= 61->70<br />\r\n    Hợp Thể= 71->80<br />\r\n    Độ Kiếp= 81->90<br />\r\n    Đại Thừa=91->99<br />\r\n    Thiên Tiên=100",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

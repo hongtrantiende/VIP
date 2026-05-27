@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "9860",
+        "NAME": "Ngạo Kiếm Đế Tôn",
+        "CHAPTER": [
+            {
+                "id": "3326418",
+                "name": "Chương 1: Thanh Đế Hứa Thần"
+            }
+        ],
+        "TOTALCHAPTER": "1049",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo, Trùng Sinh",
+        "AUTHOR": "Hồng Phù Đồ",
+        "TRANS": "808",
+        "DESC": "Chí Tôn Đại Đế Hứa Thần, mang theo chứng đạo chí bảo 'Thái Thượng Hỗn Nguyên Chí Tôn Đỉnh' trọng sinh tại năm trăm năm sau. Tu hoàn mỹ công pháp, lột xác Chí Tôn Đạo Thể, cuồng xông trước đó chưa từng có Nhân Hoàng cảnh giới...",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "7527",
+        "NAME": "Sát Thần Kiếm Đế",
+        "CHAPTER": [
+            {
+                "id": "2675894",
+                "name": "Chương 1: Đế Kiếm Hàng Lâm(1)"
+            }
+        ],
+        "TOTALCHAPTER": "1",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp, Kiếm Hiệp",
+        "AUTHOR": "satthankiemde",
+        "TRANS": "Nhiều Converter",
+        "DESC": "truyện lần đầu viết, mọng các bạn góp ý, ném gạch ( đang xây nhà) :v",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

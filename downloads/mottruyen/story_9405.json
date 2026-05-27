@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "9405",
+        "NAME": "Thần Nghịch Cửu Tiêu",
+        "CHAPTER": [
+            {
+                "id": "3179274",
+                "name": "Chương 1: Hổ rơi đồng bằng"
+            }
+        ],
+        "TOTALCHAPTER": "955",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo, Trùng Sinh",
+        "AUTHOR": "Hồng Nê Hỏa Lô",
+        "TRANS": "808",
+        "DESC": "Một đời thiên chi kiêu tử, lại bị chí thân ám hại! Thiếu niên Đinh Thần trọng sinh hoang vu học viện, lấy cái thế thần công, nghịch thiên cải mệnh! Vô luận loại nào trở ngại, đều sẽ trở thành ta con đường quật khởi trên trợ lực! Ta như cửu thiên thần nhật, một ngày kia, tất để cho trời cao bị run rẩy!",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

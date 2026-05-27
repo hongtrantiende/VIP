@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "12525",
+        "NAME": "Đại Đế Cơ",
+        "CHAPTER": [
+            {
+                "id": "4073309",
+                "name": "Chương 1 tân sinh"
+            }
+        ],
+        "TOTALCHAPTER": "26",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Ngôn Tình, Xuyên Không, Nữ Hiệp",
+        "AUTHOR": "Hi hành",
+        "TRANS": "AnckSuNamun",
+        "DESC": "Xuyên qua Tiết Thanh phát hiện chính mình nữ giả nam trang ở lừa hôn.<br />\r\n<br />\r\nKhông chỉ có như thế<br />\r\n<br />\r\nNàng còn có một cái lớn hơn nữa âm mưu.<br />\r\n<br />\r\n--------<br />\r\n<br />\r\nĐây là chuyện về một người có rất nhiều bí mật.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

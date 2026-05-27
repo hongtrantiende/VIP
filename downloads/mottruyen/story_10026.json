@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "10026",
+        "NAME": "Chúa Tể Marvel",
+        "CHAPTER": [
+            {
+                "id": "3375917",
+                "name": "Chương 1: Đoạt vận hệ thống chung cực nhiệm vụ"
+            }
+        ],
+        "TOTALCHAPTER": "170",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp, Xuyên Không",
+        "AUTHOR": "Độ Phương",
+        "TRANS": "๖ۜVân ๖ۜPhong™",
+        "DESC": "Siêu anh hùng, siêu cấp nhân vật phản diện, Tiên Ma Yêu tà đại loạn đấu.<br />\r\n<br />\r\n\tPháp thuật thần thông, pháp bảo phi kiếm, phù lục đại trận động thiên địa điểm.<br />\r\n<br />\r\n\tTiên vì dương, ma vì âm, cùng cực tính toán, hai vị một thể.<br />\r\n<br />\r\n\tLuyện Thân thể, hợp Nguyên Thần, trấn áp thần chi, định lập Thiên Đạo.<br />\r\n<br />\r\n\tLập giáo môn, định giáo nghĩa, Khai Sơn thu đồ đệ, xưng tông Đạo Tổ.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

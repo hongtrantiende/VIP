@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "1740",
+        "NAME": "Bất Diệt Linh Sơn",
+        "CHAPTER": [
+            {
+                "id": "722019",
+                "name": "Chương 1:. Thoát khốn núi Ngũ Chỉ"
+            }
+        ],
+        "TOTALCHAPTER": "111",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo",
+        "AUTHOR": "Yêu Thiên Quan Chú",
+        "TRANS": "Mỹ Mến",
+        "DESC": "Phật viết: nh&acirc;n thể l&agrave; một t&ograve;a n&uacute;i lớn,<br /><br />Trong cơ thể b&iacute; cảnh l&agrave; đường n&uacute;i gập ghềnh,<br /><br />Đem l&agrave;m mở ra trong cơ thể t&acirc;́t cả b&iacute; cảnh,<br /><br />Người sẽ h&oacute;a th&agrave;nh một t&ograve;a bất diệt linh sơn.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

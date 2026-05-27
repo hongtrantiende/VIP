@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "3843",
+        "NAME": "Phong Vân Tiêu Dao Tiên",
+        "CHAPTER": [
+            {
+                "id": "1342407",
+                "name": "Chương 1:  Ngây thơ thiếu niên"
+            }
+        ],
+        "TOTALCHAPTER": "1442",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Khoa Huyễn",
+        "AUTHOR": "Nhâm Tây Phong",
+        "TRANS": "trang4mat",
+        "DESC": "Th&acirc;n thế thần b&iacute; nh&agrave; n&ocirc;ng thiếu ni&ecirc;n như thế n&agrave;o trở th&agrave;nh Bất Tử Tiểu Cường? Tại ngươi lừa ta gạt, mạnh được yếu thua Tu Ch&acirc;n giới, c&aacute;i n&agrave;y thuần ph&aacute;c thiếu ni&ecirc;n dựa v&agrave;o c&aacute;i g&igrave; từng bước một đạp v&agrave;o Tu Ch&acirc;n giới thậm ch&iacute; Ti&ecirc;n Giới đỉnh phong? Ta mệnh do ta kh&ocirc;ng do trời, xem c&aacute;i n&agrave;y sơn d&atilde; thiếu ni&ecirc;n như thế n&agrave;o c&ugrave;ng trời tranh mệnh!<br /><br />Ưa th&iacute;ch mỹ nữ, trong quyển s&aacute;ch c&oacute; tuyệt đại Giai Lệ, xinh đẹp mỹ nữ.<br /><br />Ưa th&iacute;ch cảm t&igrave;nh, trong quyển s&aacute;ch c&oacute; sầu triền mi&ecirc;n, thiết cốt nhu t&igrave;nh.<br /><br />Ưa th&iacute;ch YY, vậy th&igrave; c&ugrave;ng đi trong s&aacute;ch thi&ecirc;u đốt k&iacute;ch t&igrave;nh, hưởng thụ kho&aacute;i cảm a! !",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

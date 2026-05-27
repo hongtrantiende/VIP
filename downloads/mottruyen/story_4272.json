@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "4272",
+        "NAME": "Đao Tà",
+        "CHAPTER": [
+            {
+                "id": "1547633",
+                "name": "CHƯƠNG 1 Thiếu niên phế vật"
+            }
+        ],
+        "TOTALCHAPTER": "8",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo, Trùng Sinh",
+        "AUTHOR": "Phong Thiếu",
+        "TRANS": "VN",
+        "DESC": "NVC trọng sinh vào 1 phế vật , kinh mạch tắc nghẽn dẫn đến tu luyện chậm chạp<br />\r\nNhờ cơ duyên cùng cố gắng , từng bước đi lên con đường võ đạo ( tất cả đều phải tự tìm kiếm lấy cơ duyên )",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

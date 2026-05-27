@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "1456",
+        "NAME": "Phong Hoa Tuyệt Đại NPC",
+        "CHAPTER": [
+            {
+                "id": "606918",
+                "name": " Chương 1 : Tiến vào trò chơi.   "
+            }
+        ],
+        "TOTALCHAPTER": "118",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Võng Du",
+        "AUTHOR": "Đầu Thượng Hữu Cá Khanh",
+        "TRANS": "Tiểu Quy",
+        "DESC": "Một lần tai nạn xe cộ, khiến cho năm ấy 26 tuổi Ph&ograve;ng Địa Sản T&acirc;n Qu&yacute; rơi v&agrave;o Hắc &Aacute;m nhưng m&agrave; thanh ni&ecirc;n nh&acirc;n n&agrave;y đối với chuyện đ&atilde; xảy ra ho&agrave;n to&agrave;n kh&ocirc;ng biết g&igrave; cả, mang theo tr&agrave;n đầy nhiệt t&igrave;nh tiến nhập đ&atilde; chờ đợi hai năm tr&ograve; chơi, lại ph&aacute;t hiện tr&ograve; chơi b&ecirc;n trong kh&ocirc;ng c&oacute; một ngoạn gia. . . Tr&ograve; chơi n&agrave;y rốt cuộc l&agrave;m sao vậy? Mặc kệ n&oacute;, trước ngoạn đi xuống n&oacute;i sau! ! ! . .",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

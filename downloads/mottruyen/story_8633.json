@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "8633",
+        "NAME": "Bát Phương Truyền Thuyết",
+        "CHAPTER": [
+            {
+                "id": "2958631",
+                "name": "Chương 1: Thượng cổ truyền thuyết nguyên giới đích do lai tiền tự"
+            }
+        ],
+        "TOTALCHAPTER": "54",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo",
+        "AUTHOR": "Tứ Phương Sơn Hải",
+        "TRANS": "Nhiều Converter",
+        "DESC": "B&aacute;t phương Thần ngọc li&ecirc;n lụy tam giới an nguy, b&aacute;t phương thi&ecirc;n kiếp họa loạn thế gian tất cả, t&aacute;m đại chủng tộc chiến sự t&aacute;i khởi, t&aacute;m lớn chức nghiệp ai c&oacute; thể xưng h&ugrave;ng, t&aacute;m đại t&ocirc;ng m&ocirc;n mỗi b&ecirc;n n&agrave;o đ&oacute; m&igrave;nh tư, t&aacute;m đại địa khu vực cuộc đời thăng trầm, t&aacute;m đại hải dương thay đổi bất ngờ. Xem Chiến Hạo như thế n&agrave;o nắm chưởng C&agrave;n Kh&ocirc;n.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

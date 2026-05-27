@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "6268",
+        "NAME": "Tiên Võ Kim Dung",
+        "CHAPTER": [
+            {
+                "id": "2230339",
+                "name": "Chương 1: Biến thái thế giới võ hiệp"
+            }
+        ],
+        "TOTALCHAPTER": "913",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp, Kiếm Hiệp, Huyền Ảo, Trùng Sinh",
+        "AUTHOR": "Sở Kiều",
+        "TRANS": "Hoàng Châu",
+        "DESC": "Bắc Thi&ecirc;n Vương Ti&ecirc;u Phong một chưởng thi&ecirc;n khuynh, Độc C&ocirc; Cầu Bại kiếm ph&acirc;n Cửu Ch&acirc;u, Vương Tr&ugrave;ng Dương lột x&aacute;c ngàn năm bất hủ, Đạo m&ocirc;n ch&acirc;n qu&acirc;n Ho&agrave;ng Thường cửu sinh cửu tử phản l&atilde;o ho&agrave;n đồng, V&ocirc; Danh L&atilde;o Tăng c&oacute; phật quốc v&ocirc; lượng tịnh thổ, đ&acirc;y l&agrave; một biến dị dung hợp Kim Dung thế giới, nắm giữ nội dung vở kịch x&aacute;c thực l&agrave; ưu thế, thế nhưng như triệt để tin tưởng nội dung vở kịch, như vậy nhất định thập tử v&ocirc; sinh.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

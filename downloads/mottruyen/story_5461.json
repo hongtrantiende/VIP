@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "5461",
+        "NAME": "Toàn Cầu Cạnh Kỹ Tràng",
+        "CHAPTER": [
+            {
+                "id": "1941719",
+                "name": "Chương 1: Báo trước! Trước giờ chuẩn bị"
+            }
+        ],
+        "TOTALCHAPTER": "683",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Khoa Huyễn",
+        "AUTHOR": "Tiểu Lệ Nhi Đích Thang Bao Nhi",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Đột nhi&ecirc;n xuất hiện to&agrave;n cầu tr&ograve; chơi h&oacute;a, lo&agrave;i người tiến v&agrave;o một c&aacute;i tr&ograve; chơi thời đại.<br /> <br /> Tang Thi du đ&atilde;ng, Ma Th&uacute; ho&agrave;nh h&agrave;nh, dị qu&aacute;i bộc ph&aacute;t. Trương Nghị, mơ thấy tr&ograve; chơi thời đại đến c&ugrave;ng với ph&aacute;t triển, trước giờ b&aacute;o trước tương lai hướng đi.<br /> <br /> Long Cửu tử Thao Thiết, Cửu Kiếp Kiếm hộp, &aacute;nh huỳnh quang đồng hồ quả qu&yacute;t, Kiến Bang Lệnh, Kiến Th&agrave;nh Lệnh c&aacute;c loại kỳ ngộ đều ở trong tay.<br /> <br /> \"Đ&acirc;y l&agrave; người kh&aacute;c tận thế, ta Thi&ecirc;n Đường.\" Trương Nghị đứng tất cả mọi người đỉnh cao, nh&igrave;n xuống to&agrave;n bộ thế giới.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

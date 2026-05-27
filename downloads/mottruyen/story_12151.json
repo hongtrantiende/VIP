@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "12151",
+        "NAME": "Thần Cấp Khen Thưởng Hệ Thống",
+        "CHAPTER": [
+            {
+                "id": "3961207",
+                "name": "Chương 1: A? Thế giới. . . Thay đổi?"
+            }
+        ],
+        "TOTALCHAPTER": "230",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đô Thị, Ngôn Tình, Xuyên Không",
+        "AUTHOR": "Thương Khố Quản Lý Diêm",
+        "TRANS": "❂Củ❣Chuối❣Vô❣Tình❂",
+        "DESC": "a? Ta bị hệ thống phụ thân?<br />\r\n<br />\r\n\tCái gì? Thế giới bị hệ thống sửa chữa?<br />\r\n<br />\r\n\tNani! Điện ảnh, trò chơi, âm nhạc, tiểu thuyết... Ta biết rõ đều không có?<br />\r\n<br />\r\n\tCái thế giới này quá điên cuồng, bất quá. . .<br />\r\n<br />\r\n\t\"Hắc hắc, ta thích!\"",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

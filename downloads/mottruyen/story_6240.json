@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "6240",
+        "NAME": "Thái Cổ Tuyệt Thần",
+        "CHAPTER": [
+            {
+                "id": "2219658",
+                "name": "Chương 1: Chết mà trọng sinh"
+            }
+        ],
+        "TOTALCHAPTER": "1362",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo",
+        "AUTHOR": "Trần Sa",
+        "TRANS": "Kimkolxe",
+        "DESC": "Thần Võ Đại Lục, tông môn san sát, vạn tộc tranh nhau phát sáng .<br />\r\n<br />\r\n\tMột gã Hoa Hạ Cổ Võ Giả, xuyên qua mà đến, từ gia tộc mình đi ra, bước vào kia đặc sắc tuyệt luân thế giới .<br />\r\n<br />\r\n\tChưởng ngọc ấn, khống vạn hỏa, ngưng tụ Thái Cổ văn diệu, bắt đầu nhấc lên mảnh đại lục này nhiệt huyết bão táp .",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

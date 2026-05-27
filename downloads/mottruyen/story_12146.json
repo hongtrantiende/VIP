@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "12146",
+        "NAME": "Cực Viêm Tiên Tôn",
+        "CHAPTER": [
+            {
+                "id": "3958828",
+                "name": "Chương 1: Nội công"
+            }
+        ],
+        "TOTALCHAPTER": "580",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp, Huyền Ảo, Dị Giới",
+        "AUTHOR": "Hỏa Tinh Thượng Mại Miêu",
+        "TRANS": "1",
+        "DESC": "Cực Viêm Tiên Tôn giới thiệu tóm tắt:  một người thiếu niên ở ngẫu nhiên trong lúc đó thu được vô bổ tu tiên công pháp, do đó bước vào người tu tiên thế giới, mà xem một không sợ hỏa diễm người, là làm sao dùng trong tay mình hỏa thiêu ra thuộc về mình một mảnh trời",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

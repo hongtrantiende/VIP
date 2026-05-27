@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "7111",
+        "NAME": "Marvel Bên Trong Hiệp Khách",
+        "CHAPTER": [
+            {
+                "id": "2535038",
+                "name": "Chương 1: Giáng lâm"
+            }
+        ],
+        "TOTALCHAPTER": "1552",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Kiếm Hiệp, Khoa Huyễn, Xuyên Không",
+        "AUTHOR": "Viêm Định Chung Sinh",
+        "TRANS": "๖ۣۜShi♑tachi",
+        "DESC": "Mang theo trong đầu một bản Kim Dung bách khoa toàn thư bí tịch xuyên qua thế giới Marvel<br />\r\n<br />\r\n\tBắc Minh Thần Công, Duy Ngã Độc Tôn Công, Tiểu Vô Tướng Công, Hàng Long Thập Bát Chưởng, Thiên Sơn Lục Hợp Chưởng<br />\r\n<br />\r\n\tẢm Nhiên Tiêu Hồn Chưởng, Lục Mạch Thần Kiếm, Kim Cương Bất Hoại thần công, Long Tượng Thần Công, Thiên Ngoại Phi Tiên cái này hình như là Cổ Long? Cái kia Quỳ Hoa thế nào?<br />\r\n-----------------------<br />\r\nĐọc mấy chương đầu thấy khá hay :D<br />\r\nĐặt gạch trước 23/8 post :D",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

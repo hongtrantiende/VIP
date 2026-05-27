@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "12883",
+        "NAME": "Đại Tự Tại Thiên Tôn",
+        "CHAPTER": [
+            {
+                "id": "4254215",
+                "name": "Chương 1:: Hòa thượng, Cứu Nạn!"
+            }
+        ],
+        "TOTALCHAPTER": "224",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Khoa Huyễn",
+        "AUTHOR": "Linh Hạ 5 Độ 01",
+        "TRANS": "†๖ۣۜSóiღ†",
+        "DESC": "Lâm Vân vì Thiên Long Tự tục gia đệ tử, lại bị đồng môn vu hãm, thân thể phạm giới luật, bị đánh nhập 'Chỗ chết' kim quang phong.<br />\r\n<br />\r\n\tĐại nạn không chết, đến thần bí 'Diệu Phong' tương trợ, tu thành thiên địa kỳ công.<br />\r\n<br />\r\n\tTừ đó, thoát lồng chim, minh tạo hóa, thành tựu Vô Thượng Đại Đạo!",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

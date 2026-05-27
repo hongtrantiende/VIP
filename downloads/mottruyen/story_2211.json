@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "2211",
+        "NAME": "Thần Cấp Đại Pháp Sư",
+        "CHAPTER": [
+            {
+                "id": "751861",
+                "name": "Chương 1: Dị Giới thuật Đại Triệu Hoán"
+            }
+        ],
+        "TOTALCHAPTER": "650",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo",
+        "AUTHOR": "Thâm Hải Khổng Tước",
+        "TRANS": "Tuyêniapa",
+        "DESC": "Nguy&ecirc;n lai ăn Đ&ocirc;ng Qua, c&oacute; thể gia tốc về Ma .<br /><br />Địa Cầu thanh ni&ecirc;n Cao Phong, bị triệu ho&aacute;n đến Dị Giới &aacute;nh S&aacute;ng đại lục, Sau đ&oacute; ph&aacute;t hiện, tr&ecirc;n Địa Cầu Đ&ocirc;ng Qua có về Ma hiệu quả, ăn Một c&acirc;n Đ&ocirc;ng Qua, về Ma tốc độ tăng l&ecirc;n gấp đ&ocirc;i, Đ&ocirc;ng Qua nhưng là Cao Phong y&ecirc;u nhất, l&agrave; hắn từ nhỏ ăn được đại Mỹ thực, đ&atilde; kh&ocirc;ng biết ăn bao nhi&ecirc;u Đ&ocirc;ng Qua, lần n&agrave;y được rồi, Cao Phong về Ma tốc độ tử&ecirc;u cấp cuồng bạo, cuồng bạo về Ma, th&agrave;nh tựu cấp thần Đại Ph&aacute;p Sư.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

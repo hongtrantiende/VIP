@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "8685",
+        "NAME": "Thôn Thiên Phệ Địa",
+        "CHAPTER": [
+            {
+                "id": "2971048",
+                "name": "Chương 1 : Bất Tử Đạo Nhân."
+            }
+        ],
+        "TOTALCHAPTER": "7",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp, Huyền Ảo",
+        "AUTHOR": "ShatoShen",
+        "TRANS": "Chư Thần Vô Niệm.",
+        "DESC": "Ngoạn mục nhưng không rực rỡ, lên xuống là vô thường.<br />\r\n<br />\r\nVận mệnh của con người là gì? Là do mình tranh đấu hay do trời định sẵn? Không, vận mệnh của con người chỉ có một, đó là chết... vì vậy đừng để khi chết đi vẫn còn tiếc nuối.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

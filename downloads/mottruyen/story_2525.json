@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "2525",
+        "NAME": "Chư Thiên Vạn Giới",
+        "CHAPTER": [
+            {
+                "id": "829930",
+                "name": "Chương 1 : Chuyện ma quái trong thôn"
+            }
+        ],
+        "TOTALCHAPTER": "700",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo",
+        "AUTHOR": "Hà Mễ XL",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Chư Thi&ecirc;n vạn giới, B&aacute;ch gia như rừng!<br /> <br /> Phản nghịch thiếu ni&ecirc;n h&oacute;a th&acirc;n tr&ecirc;n lịch sử mạnh nhất đệ tử, tu đạo gia h&agrave;ng y&ecirc;u trừ ma, luyện binh gia Thần Binh chiến trận, học Nho đạo Hạo Nhi&ecirc;n Ch&iacute;nh Kh&iacute;; một ph&ugrave; hạ thấp ch&iacute; cường Quỷ Thần, một đao trảm n&uacute;i s&ocirc;ng nhật nguyệt, một hồi v&acirc;y khốn vạn Cổ Long Thần, b&agrave;y mưu nghĩ kế h&oacute;a ng&agrave;n vạn binh m&atilde;; Chư Thi&ecirc;n thần th&aacute;nh đều ở dưới ch&acirc;n, vạn &aacute;c c&uacute;i đầu, Ch&uacute;ng Thần Ch&iacute; T&ocirc;n!",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "3157",
+        "NAME": "Bí Tịch Điểm Độc Ky",
+        "CHAPTER": [
+            {
+                "id": "1075802",
+                "name": "Chương 1:Phổ Thông Học Viên"
+            }
+        ],
+        "TOTALCHAPTER": "35",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo, Dị Giới, Khoa Huyễn",
+        "AUTHOR": "Cái tứ",
+        "TRANS": "xemtruyen",
+        "DESC": "Bí Tịch Điểm Độc Ky giới thiệu tóm tắt: nơi nào sẽ không điểm nơi nào, ba mẹ lại cũng không cần lo lắng cho ta học tập!<br />\r\n<br />\r\n\tVõ kỹ quá khó học? Điểm một điểm!<br />\r\n<br />\r\n\tCông pháp không thuần thục? Điểm một điểm!<br />\r\n<br />\r\n\tTâm pháp quá thâm ảo? Điểm một điểm!<br />\r\n<br />\r\n\tViễn Cổ kiểu chữ xem không hiểu? Điểm một điểm!<br />\r\n<br />\r\n\tCái gì gọi là bí tịch? Bí tịch chính là khiến người ta khó coi hiểu gì đó, lần này Cổ dương chỉ cần điểm một điểm, trong nháy mắt giây hiểu!<br />\r\n<br />\r\n\t\"Cái gì? Tổng cộng phải hao phí 30 triệu Linh thạch? Ạch. . . Không mắc, chính là ta không nhiều như vậy Linh thạch mà thôi.\"",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

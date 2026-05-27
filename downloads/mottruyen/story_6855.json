@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "6855",
+        "NAME": "Thiếu Niên Y Tiên",
+        "CHAPTER": [
+            {
+                "id": "2546058",
+                "name": "Chương 1: Trong phòng học một cây đuốc"
+            }
+        ],
+        "TOTALCHAPTER": "648",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Kiếm Hiệp, Huyền Ảo",
+        "AUTHOR": "Trục Không",
+        "TRANS": "๖ۣۜLiu",
+        "DESC": "Diêm Vương phán ngươi canh ba chết, ta có thể bảo đảm ngươi quá năm canh! Thiếu niên Tần Lãng, ngẫu nhiên đạt được Độc Tông truyền thừa, lấy độc giết người, lấy độc cứu người, lấy độc truy mỹ lấy một thân Khoáng Tuyệt Cổ Kim Đích Độc Công cất bước đô thị, ngang dọc giang hồ. Nào đó công phu Tiểu Cường: Ta một thân công phu, đao thương bất nhập! Tần Lãng: Ta được kỳ đầu độc cốt Phệ Hồn! Nào đó giang hồ đại ca: Ta có thể triệu tập tiểu đệ hơn một nghìn! Tần Lãng: Ta có thể triệu tập độc trùng trăm vạn! Nào đó mỹ nữ tuyệt sắc: Hồng nhan họa thủy, mỹ nữ có độc, ngươi không đả thương nổi! Tần Lãng: Ta tu luyện độc công, lấy độc công độc! === xin mọi người chống đỡ.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

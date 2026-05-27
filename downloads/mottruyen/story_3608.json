@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "3608",
+        "NAME": "Truyền Kỳ Đại Anh Hùng",
+        "CHAPTER": [
+            {
+                "id": "1247711",
+                "name": "Chương 1: Trang chu mộng điệp sao?"
+            }
+        ],
+        "TOTALCHAPTER": "779",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Võng Du",
+        "AUTHOR": "Mặc Hương",
+        "TRANS": "KenJii",
+        "DESC": "La L&acirc;m l&agrave; 1 loại người, 1 phi thường nh&acirc;n loại b&igrave;nh thường, nhưng hắn hết lần n&agrave;y tới lần kh&aacute;c coi trọng được khen l&agrave; \"Tinh quang trăng s&aacute;ng của đại lục\" ngọc b&iacute;ch cự long Wei Anna. V&igrave; vậy hắn đi l&ecirc;n 1 c&aacute;i nhảy qua chủng tộc nhảy qua giai tầng h&agrave;nh tr&igrave;nh.\r\n<br />Đ&acirc;y cũng l&agrave; 1 vương giả cố sự, c&oacute; lẽ vậy",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

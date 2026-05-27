@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "3757",
+        "NAME": "Vạn Cổ Kiếm Tiên",
+        "CHAPTER": [
+            {
+                "id": "1292632",
+                "name": "Đệ 001 chương Triệu Ngộ Trần - Quyển 1: Kiếm Lâm Chân Vũ"
+            }
+        ],
+        "TOTALCHAPTER": "884",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo, Dị Giới",
+        "AUTHOR": "Huyết Kỳ",
+        "TRANS": "Thiên Tử Nhi, linhlamdo12",
+        "DESC": "Kiếm giả giết người, kh&ocirc;ng cần n&oacute;i nhảm, chỉ có hai chữ: Ch&eacute;m ngươi.<br /><br />Kiếm giả bạch y, kh&ocirc;ng v&igrave; ti&ecirc;u s&aacute;i, chỉ là d&ugrave;ng m&aacute;u tươi đem n&oacute; nhuộm tận.<br /><br />Triệu Ngộ Trần n&oacute;i, kiếm giả, biết m&uacute;a kiếm, biết giết người.<br /><br />M&uacute;a kiếm lúc, chỉ là một người, kiếm m&uacute;a nghi&ecirc;ng tuyệt thi&ecirc;n dưới, tiện s&aacute;t mu&ocirc;n d&acirc;n.<br /><br />Giết người lúc, phạm ta giả giết, kiếm ch&eacute;m ngh&igrave;n dặm ở ngo&agrave;i, m&aacute;u bắn thương khung.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

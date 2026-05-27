@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "3201",
+        "NAME": "Thần Thư",
+        "CHAPTER": [
+            {
+                "id": "1101310",
+                "name": "Chương 1: Thần thư thế giới"
+            }
+        ],
+        "TOTALCHAPTER": "399",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo",
+        "AUTHOR": "Tân Ý",
+        "TRANS": "๖ۣۜTử Diễm",
+        "DESC": "Thần văn, thượng cổ để lại văn minh, phức tạp vạn ng&agrave;n, mỗi một chữ đều ẩn chứa một phiến thi&ecirc;n địa.<br /><br />Người của thế giới n&agrave;y nghi&ecirc;n cứu thần văn, lấy thần văn khắc thư, v&agrave;o di t&iacute;ch thời thượng cổ, mở ra linh tr&iacute; \"Động thi&ecirc;n\", đi l&ecirc;n con đường tu luyện đặc biệt.<br /><br />Một trang một thi&ecirc;n địa, một thư đựng dục vạn vật.<br /><br />Đ&aacute;ng tiếc bọn họ chỉ hiểu d&ugrave;ng số lượng từ để ph&aacute;t huy lực lượng, l&agrave;m thi từ ca ph&uacute; xuất hiện tr&ecirc;n thế giới n&agrave;y thời điểm, th&igrave; lại như thế n&agrave;o?<br /><br />Đ&acirc;y l&agrave; một quyển thần thư, bởi v&igrave; hắn ghi ch&eacute;p, l&agrave; một thần cố sự, kh&ocirc;ng muốn ho&agrave;i nghi, ngươi mở ra ch&iacute;nh l&agrave; một truyền kỳ.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

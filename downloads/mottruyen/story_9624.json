@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "9624",
+        "NAME": "Starlight: Reign Of Empire",
+        "CHAPTER": [
+            {
+                "id": "3251083",
+                "name": "Chương 1 - Tập 1"
+            }
+        ],
+        "TOTALCHAPTER": "2",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đô Thị, Kiếm Hiệp, Huyền Ảo, Dị Giới, Khoa Huyễn, Quân Sự",
+        "AUTHOR": "WhiteSkull",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Con người – kẻ thống trị Trái Đất.<br />\r\nNhiều nền văn minh loài người đã được khởi đầu đầy huy hoàng nhưng kết thúc cũng đầy bí ẩn, qua hàng triệu năm, con ngừoi đã sớm bước vào giai đoạn hoàn mĩ nhất của công nghệ - kĩ thuật. Và tưởng chừng rằng, một giai đoạn của khoa học chinh phục vũ trụ sớm được mở ra khi những chiếc mẫu hạm vũ trụ mang những thiết bị tinh vi tiên tiến có khả năng vượt qua cả tốc độ ánh sáng bay lượn đến các ngân hà xa xôi thì thật bất ngờ… thời đại hủy diệt cũng bắt đầu.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "12909",
+        "NAME": "Diệu Thủ Thiên Sư Ở Đô Thị",
+        "CHAPTER": [
+            {
+                "id": "4199278",
+                "name": "Chương 1: Tích tích đuổi tà ma"
+            }
+        ],
+        "TOTALCHAPTER": "20",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đô Thị, Dị Năng",
+        "AUTHOR": "Mưu Nghịch",
+        "TRANS": "ddddaaaa",
+        "DESC": "Một giấc ngủ dậy, Trương Vũ phát hiện trên người nhiều một cái tích tích đuổi tà ma hệ thống!<br />\r\n<br />\r\n“Tích tích tích! Nhắc nhở ký chủ, ở khoảng cách ngươi ba mét xa vị trí, có cái nữ quỷ đang ở rình coi ngươi tắm rửa!”<br />\r\n<br />\r\n“Ta sát! Như vậy sắc? Ta thích! Có thể hay không lưu lại ấm cái giường trước?”<br />\r\n<br />\r\nVì thế, một cái không đáng tin cậy đuổi tà ma thiên sư ra đời!",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

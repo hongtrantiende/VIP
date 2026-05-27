@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "2947",
+        "NAME": "Hệ Thống Mạnh Nhất",
+        "CHAPTER": [
+            {
+                "id": "999828",
+                "name": "Chương 1 : Cái chết của Cô thần"
+            }
+        ],
+        "TOTALCHAPTER": "726",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo, Võng Du, Dị Giới, Khoa Huyễn, Linh Dị",
+        "AUTHOR": "Cô Yên Thương Lang",
+        "TRANS": "kenno007",
+        "DESC": "NVC là 1 gamer xuyên việt . Mang theo hệ thống xuyên qua theo.<br />\r\n<br />\r\nPhân cấp tu luyện :<br />\r\nMỗi cảnh giới có 5 tiểu cảnh giới:<br />\r\nSơ kỳ , Trung kỳ  , Hậu kỳ, Đỉnh phong Kỳ , Đột phá kỳ.<br />\r\nVD: Lv6 =Mở linh Sơ kỳ , Lv7 Mở linh trung kỳ ,.....,Lv10 Mở Linh Đốt phá kỳ<br />\r\n<br />\r\n0-5 người bình thường<br />\r\n6-10 Mở linh <br />\r\n11-15 Tụ linh<br />\r\n16-20 Linh Đan<br />\r\n21-25 Linh Anh<br />\r\n.....<br />\r\nMuốn biết tiếp theo là gì thì đọc truyện để biết nha.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

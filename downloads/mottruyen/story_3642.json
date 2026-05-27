@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "3642",
+        "NAME": "Bách Luyện Phi Thăng Lục",
+        "CHAPTER": [
+            {
+                "id": "1258905",
+                "name": "Chương 1: Tần gia thôn"
+            }
+        ],
+        "TOTALCHAPTER": "3129",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp",
+        "AUTHOR": "Hư Chân",
+        "TRANS": "Victor",
+        "DESC": "Tần Phượng Minh , v&ocirc;́n l&agrave; một g&atilde; sơn th&ocirc;n thiếu ni&ecirc;n b&igrave;nh thường , ăn lầm v&ocirc; danh Chu Quả , bước v&agrave;o tu ch&acirc;n đường , lấy luyện kh&iacute; lập nghiệp , bằng v&agrave;o chế ph&ugrave; thi&ecirc;n ph&uacute; , một m&igrave;nh x&ocirc;ng x&aacute;o bụi gai giăng đầy Tu Ti&ecirc;n giới , bản hết thảy đều thuận lợi phi thường , nhưng l&agrave; c&oacute; một việc kh&oacute; liệu ph&aacute;t sinh ở tr&ecirc;n người hắn...",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

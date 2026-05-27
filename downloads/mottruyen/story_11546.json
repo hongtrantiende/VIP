@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "11546",
+        "NAME": "Thiên Tập",
+        "CHAPTER": [
+            {
+                "id": "3821520",
+                "name": "Chương 1 : Túy Tiên Bố Cáo"
+            }
+        ],
+        "TOTALCHAPTER": "1",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp, Đô Thị, Dị Giới",
+        "AUTHOR": "denygame",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Một thanh niên Địa Cầu vô tình lạc đến Thiên Tỏa đại lục.<br />\r\n<br />\r\nTại đây 600 năm hắn đã làm nên \"sự nghiệp\" nổi bật.<br />\r\n<br />\r\nCơ duyên giúp hắn trở về Địa Cầu.<br />\r\n<br />\r\nMang theo tu vi biết không phải mộng.<br />\r\n<br />\r\n<br />\r\n=> Gặp lại người xưa sau 600 năm, liệu bạn còn nhớ?",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

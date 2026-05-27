@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "3807",
+        "NAME": "Vạn Năng Thần Bút",
+        "CHAPTER": [
+            {
+                "id": "1313893",
+                "name": "Chương 1: Thần bút ra đời"
+            }
+        ],
+        "TOTALCHAPTER": "703",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đô Thị",
+        "AUTHOR": "Nguyệt Hạ Thái Hoa Tặc",
+        "TRANS": "Nvccanh",
+        "DESC": "H&agrave;n Đ&agrave;o ch&iacute;nh m&igrave;nh cũng kh&ocirc;ng biết l&agrave; th&agrave;nh c&ocirc;ng, hay l&agrave; đ&atilde; thất bại. Hắn vốn định vẽ một con ch&oacute; giữ cửa, lại ma xui quỷ khiến vẽ ra Hao Thi&ecirc;n Khuyển. H&agrave;n Đ&agrave;o l&uacute;c đ&oacute; liền biết chuyện xấu, quả nhi&ecirc;n, cầm trong tay Tam Ti&ecirc;m Lưỡng Nhận Đao Nhị Lang Thần giết hạ giới r&ocirc;̀i. . .<br /><br />\"Ta c&oacute; một nh&aacute;nh Thần b&uacute;t, c&oacute; thể vẽ núi vẽ nước, vẽ Long vẽ Phượng, vẽ thi&ecirc;n hạ sinh linh.\"<br /><br />Cố sự từ H&agrave;n Đ&agrave;o vẽ ra một th&ugrave;ng \"L&atilde;o đ&agrave;n dưa chua\" m&igrave; ăn liền từ từ n&oacute;i đến. . .",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "4471",
+        "NAME": "Hồng Hoang Phong Thần",
+        "CHAPTER": [
+            {
+                "id": "1595511",
+                "name": "Chương 1 : Trọng sinh Hồng Hoang triệu năm Hóa Hình"
+            }
+        ],
+        "TOTALCHAPTER": "22",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo, Khoa Huyễn",
+        "AUTHOR": "Thập Dực",
+        "TRANS": "terry_1442@yahoo.com",
+        "DESC": "Đương Diệp tỉnh táo lại thì phát hiện mình thân ở một mảnh u tối trong thế giới, không khỏi ngạc nhiên, hắn nhớ rõ hắn độ lần thứ chín Thiên kiếp khi cuối cùng một khắc, bị cửu thiên thần lôi đánh trúng, hiện tại là chuyện gì xảy ra, chính mình còn chưa có chết, hơn nữa để cho hắn kỳ dị là hắn hiện tại chỉ là một đoàn thanh khí, chỉ có nguyên thần.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

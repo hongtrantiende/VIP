@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "9149",
+        "NAME": "Thái Cổ Kiếm Ma",
+        "CHAPTER": [
+            {
+                "id": "3108908",
+                "name": "Chương 1: Nhiếp Thiên"
+            }
+        ],
+        "TOTALCHAPTER": "811",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo",
+        "AUTHOR": "Nhậm Cửu Thiên",
+        "TRANS": "808",
+        "DESC": "Một đời Ma Tôn lúc sắp chết, tự tay phong ấn con hắn đan điền, đồng thời đem bản thân bội kiếm, Phần Thiên Ma Kiếm, cũng phong ấn tại Ma Long trong núi. 16 năm sau, thiếu niên Nhiếp Thiên, đan điền bị phong, tại hắn phá vỡ đan điền phong ấn, nhưng không ngờ dẫn động Ma Long sơn bị phong 16 năm Phần Thiên Ma Kiếm cộng minh, bởi vậy đưa tới không biết thế lực lớn cướp đoạt, người cả thôn gặp tai hoạ ngập đầu, Nhiếp Thiên trong nội tâm dấy lên căm giận ngút trời, tay hắn cầm ma kiếm, thần cản sát thần, phật ngăn cản tru phật, .....",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

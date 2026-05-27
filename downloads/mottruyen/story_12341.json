@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "12341",
+        "NAME": "Phong Thần Chi Triệu Hoán Mãnh Tướng",
+        "CHAPTER": [
+            {
+                "id": "4015033",
+                "name": "Chương 1 : Phong tao Tô Đát Kỷ, Ngọc Nữ Lục Tuyết Kỳ"
+            }
+        ],
+        "TOTALCHAPTER": "1336",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp, Xuyên Không, Đồng Nhân",
+        "AUTHOR": "Liễu Hạ Chích",
+        "TRANS": "๖ۣۜPhong ๖ۣۜLưu ๖ۣۜVô ๖ۣۜTà",
+        "DESC": "Vượt qua trở thành gần bị Đát Kỷ làm thành nhục bính Cơ Khảo, kích hoạt mạnh nhất Triệu Hoán Hệ Thống, bắt đầu loại khác Phong Thần lịch trình.<br />\r\n<br />\r\n\t\"Hầu ca, hôm nay, Cô phong ngươi vì Tề Thiên Đại Thánh.\"<br />\r\n<br />\r\n\t\"Dương Tiễn, con này Hao Thiên Thần Khuyển, Cô ban cho ngươi.\"<br />\r\n<br />\r\n\tHại nước hại dân Tô Đát Kỷ, băng thanh ngọc khiết Lục Tuyết Kỳ, Hằng Nga, Thất Tiên Nữ...<br />\r\n<br />\r\n\tĐại thần dưới ngòi bút nhân vật chính, trong lịch sử mạnh nhất chiến tướng, hội tụ một Đường, tranh phong Phong Thần sa trường, luận thiên hạ ai là anh hùng<br />\r\n<br />\r\n\tThắng làm vua thua làm giặc, nát đất Phong Thần, người, yêu, Tiên tạo thế chân vạc.<br />\r\n<br />\r\n\tCường trong cường, vương trong vương, đều ở Phong Thần chi triệu hoán mãnh tướng!",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

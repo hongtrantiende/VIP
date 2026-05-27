@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "4241",
+        "NAME": "Ngạo Thế Thiên Không",
+        "CHAPTER": [
+            {
+                "id": "1538777",
+                "name": "Chương 1:Xuyên không"
+            }
+        ],
+        "TOTALCHAPTER": "1",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp, Huyền Ảo, Xuyên Không",
+        "AUTHOR": "Huỳnh Phạm",
+        "TRANS": "huynhpd2001",
+        "DESC": "Nhân vật chính của chúng ta đến từ năm 2115 trên cỗ máy thời gian nguyên văn lý do xuyên không:thất tình chán sống liên đi trở thành thí ngiệm cho cỗ máy thời gian sau 1 vài lý do nữa thì xuyên thẳng đến Huyền Thiên đại lục-Thạch Nham Thành-Quang gia-Quang Thiên Hành trình vấn đỉnh thế giới ngạo thế thiên không bắt đầu!",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

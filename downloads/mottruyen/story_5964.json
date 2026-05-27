@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "5964",
+        "NAME": "Anh Hùng Liên Minh Chi Quan Chiến Hệ Thống",
+        "CHAPTER": [
+            {
+                "id": "2147357",
+                "name": "Chương 1: 1000 khối cùng hệ thống"
+            }
+        ],
+        "TOTALCHAPTER": "944",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Võng Du",
+        "AUTHOR": "Vì Tình Thành Sy",
+        "TRANS": "Chết Là Sống",
+        "DESC": "Một cái vô danh người qua đường, lần lượt cực hạn thao tác, từng hồi hoàn mỹ MVP……<br />\r\nHắn là Anh Hùng Liên Minh đệ nhất đùi! Trường kỳ độc bá quốc phục, Hàn phục đệ nhất!<br />\r\nHắn treo lên đánh các lộ vương giả, huyết ngược chức nghiệp tuyển thủ, cuối cùng dẫn dắt đội ngũ đoạt được thế giới quán quân, trở thành vinh quang vạn trượng anh hùng liên minh đệ nhất nhân!<br />\r\nNày hết thảy…… Đều là bởi vì một cái thần kỳ hệ thống xuất hiện!",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

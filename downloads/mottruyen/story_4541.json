@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "4541",
+        "NAME": "Khoa Học Thứ Nguyên Hành Giả",
+        "CHAPTER": [
+            {
+                "id": "1610574",
+                "name": "Chương 1: Cuối cùng nhân sinh"
+            }
+        ],
+        "TOTALCHAPTER": "682",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đồng Nhân",
+        "AUTHOR": "Hiểu Phong Dạ Thấm Nhân",
+        "TRANS": "Ainz Ooal Gown",
+        "DESC": "D&ugrave;ng Chakra sử dụng nhẫn thuật, thay trời đổi đất dễ như ăn ch&aacute;o; bằng linh &aacute;p trường sinh ngăn địch, linh hồn bất hủ c&ograve;n chưa thể biết được; nh&igrave;n kh&iacute; ph&aacute;ch tr&agrave;n ngập thi&ecirc;n địa, uy thế Tứ Hải th&acirc;n thể Bất Diệt... Hả? Ngươi n&oacute;i: \"Ta s&aacute;t th&ocirc;i, đều l&agrave; g&igrave; đ&oacute; quỷ? Điều n&agrave;y kh&ocirc;ng khoa học!\" Kh&ocirc;ng phải vậy, đ&acirc;y ch&iacute;nh l&agrave; khoa học -kun thứ nguy&ecirc;n lữ tr&igrave;nh.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

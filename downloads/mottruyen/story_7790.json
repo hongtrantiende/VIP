@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "7790",
+        "NAME": "LOL Chi Bảy Trăm Năm Sau",
+        "CHAPTER": [
+            {
+                "id": "2728446",
+                "name": "Chương 1"
+            }
+        ],
+        "TOTALCHAPTER": "556",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Võng Du, Dị Giới",
+        "AUTHOR": "Chìm Vào Đáy Biển",
+        "TRANS": "SuperTeam",
+        "DESC": "Diệp triệt đã chết, lại sống lại. 【 thật công lược + anh hùng thần thể + huyết mạch + áo nghĩa chân lý 】 có điểm không biết cái gọi là, nhưng trên thực tế, hắn từ s7 mùa giải trận chung kết ngày đó, tới bảy trăm năm sau, lặng yên không một tiếng động, phảng phất bị cái kia thế kỷ vứt bỏ. Bất quá còn...",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

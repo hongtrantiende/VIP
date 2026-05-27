@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "11871",
+        "NAME": "Dị Giới Chi Quyền Hoàng Phong Vân",
+        "CHAPTER": [
+            {
+                "id": "3897088",
+                "name": "Chương 1: Vương Hạo xuất thế"
+            }
+        ],
+        "TOTALCHAPTER": "6",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Dị Giới",
+        "AUTHOR": "Đằng Nãi---Tiêu Tương Thi Xã",
+        "TRANS": "Bộ Yến Tử",
+        "DESC": "Thiên phú tu luyện cực cao, sinh sống ở một thế giới khác, trải qua không giống bình thường, bảo tàng, mỹ nữ, đan dược, bí pháp kỹ năng, vô số di chỉ thượng cổ, chờ đợi hắn đi khiêu chiến.<br />\r\n<br />\r\nTay cầm Hiên Viên kiếm trong truyền thuyết Thánh đạo chi kiếm, ngang dọc tam giới, vì là Quyền Hoàng đại lục tạo ra thanh danh của chính mình.<br />\r\n<br />\r\nSinh ra ở tứ đại gia tộc, Vương thị gia tộc. Tử tôn trực hệ Hoàng Đế, kế thừa huyết mạch Hoàng Đế,  ở trên thế giới chi bi lại một lần nữa lưu lại tên vinh quang hyu hoàng thuộc về mình.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

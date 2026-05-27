@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "7260",
+        "NAME": "Tà Đế",
+        "CHAPTER": [
+            {
+                "id": "2678080",
+                "name": "Chương 1: Thái Cổ nhất mộng, Âm Dương Tỏa"
+            }
+        ],
+        "TOTALCHAPTER": "3",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp",
+        "AUTHOR": "buih1576@",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Thiên Đạo ba vòng, tu đạo ba bước, hư, thật hai chữ, xuyên suốt từ đầu đến cuối.<br />\r\n<br />\r\nBước thứ nhất, tu chân Thất Cảnh: Ích Mạch, Dung Linh, Kim Đan, Nguyên Anh, Hóa Thần, Luyện Hư, Toái Hư.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

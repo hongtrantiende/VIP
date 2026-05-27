@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "6620",
+        "NAME": "One Piece Chi Thiên Long Bại Gia Tử",
+        "CHAPTER": [
+            {
+                "id": "2352028",
+                "name": "Chương 1: Xuyên Thành Thiên Long Nhân"
+            }
+        ],
+        "TOTALCHAPTER": "417",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đồng Nhân",
+        "AUTHOR": "Ly Miêu ăn trái cây",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Xuyên qua Hải Tặc thế giới, mang theo một cái phá sản hệ thống trở thành Thiên Long người!<br />\r\n<br />\r\n\tThân là Thiên Long người, đạp người sẽ đạp ngưu bức nhất, tùy tùng càng là muốn thu cường đại nhất, liền liền mua đồ cũng liền chỉ mua đắt tiền nhất .<br />\r\n<br />\r\n\tTrên đỉnh chiến tranh, Đường Tranh nhìn gần bị xử hình Ace, hiêu trương bạt hỗ nói ra: \"Người này ta muốn .\"",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

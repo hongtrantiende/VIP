@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "1287",
+        "NAME": "Vương Bài",
+        "CHAPTER": [
+            {
+                "id": "514305",
+                "name": "Chương 1: Phỏng vấn"
+            }
+        ],
+        "TOTALCHAPTER": "843",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đô Thị, Cạnh Kỹ",
+        "AUTHOR": "Hà Tả",
+        "TRANS": "Nhiều Converter",
+        "DESC": "M&aacute;nh kho&eacute; bịp người, kh&ocirc;ng phải t&agrave; thuật, m&agrave; l&agrave; một loại vũ kh&iacute;. D&ugrave;ng tại tốt th&igrave; ch&iacute;nh, d&ugrave;ng tại &aacute;c th&igrave; t&agrave;.<br /><br />Th&aacute;m tử tư, kh&ocirc;ng l&agrave; cảnh s&aacute;t, nhưng tương tự truy cầu ch&acirc;n tướng.<br /><br />Đương t&ecirc;n nh&oacute;c lừa đảo trở th&agrave;nh th&aacute;m tử tư, c&aacute;i kia hết thảy đều thay đổi, bởi v&igrave; ch&acirc;n tướng kh&ocirc;ng hề chỉ c&oacute; một. Mấu chốt kh&ocirc;ng tại ở ch&acirc;n tướng l&agrave; c&aacute;i g&igrave;, m&agrave; ở cho ngươi cần g&igrave; ch&acirc;n tướng.<br /><br />Đ&acirc;y l&agrave; một c&aacute;i t&ecirc;n nh&oacute;c lừa đảo tại trong đ&ocirc; thị ph&aacute;t triển c&ugrave;ng phấn đấu chuyện cũ.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

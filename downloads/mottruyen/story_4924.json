@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "4924",
+        "NAME": "Võng Du kiếm thần lĩnh vực",
+        "CHAPTER": [
+            {
+                "id": "1732130",
+                "name": "Chương 1: Trò chơi Open Beta"
+            }
+        ],
+        "TOTALCHAPTER": "10",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Võng Du",
+        "AUTHOR": "Mộng tưởng lữ hành",
+        "TRANS": "rùa",
+        "DESC": "Đệ nhất bộ — Kiếm Thần lĩnh vực bộ thứ hai — kiếm thế giới bộ 3 — Trùng Tộc bộ thứ tư — Ky Giáp chiến tranh đệ ngũ bộ phận — súng thế giới kiếm vũ giả bộ 6",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

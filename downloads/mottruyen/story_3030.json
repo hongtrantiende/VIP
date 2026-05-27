@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "3030",
+        "NAME": "U Linh Dũng Sĩ",
+        "CHAPTER": [
+            {
+                "id": "1037249",
+                "name": "001 tuyệt vọng bên trong cự thưởng"
+            }
+        ],
+        "TOTALCHAPTER": "135",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Võng Du",
+        "AUTHOR": "Phương Tiêm Tháp",
+        "TRANS": "migen",
+        "DESC": "thân hoạn bệnh nan y Lý Cương, ma xui quỷ khiến dưới chuyển hóa thành mạng lưới u linh số liệu, du lịch võng tế mấy trăm năm, một cái vô tình đi vào võng du 'Sáng thế liên minh' Thế giới, vì giành lấy tân sinh, vì huề mỹ mà về, nhìn hắn làm sao vượt mọi chông gai, soạn nhạc cảm động văn chương!",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

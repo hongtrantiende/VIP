@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "10449",
+        "NAME": "Ta Trang Viên",
+        "CHAPTER": [
+            {
+                "id": "3491817",
+                "name": "Chương 1: : Chân Long tinh phách"
+            }
+        ],
+        "TOTALCHAPTER": "1072",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đô Thị",
+        "AUTHOR": "Chung cấp BOSS phi",
+        "TRANS": "๖ۣۜTiếu ๖ۣۜHồng ๖ۣۜTrần",
+        "DESC": "Trong lúc vô tình lấy được trong truyền thuyết Chân Long tinh phách , ai ? Giống như có một ít huyền huyễn phong cách...<br />\r\n<br />\r\n\tKhông , thật ra thì ngươi nghĩ hơn nhiều, đây là một quyển làm ruộng văn.<br />\r\n<br />\r\n\tCố sự giảng là , một cái lấy được Chân Long tinh phách , hơn nữa có thể dùng huyết dịch sửa đổi vạn vật người bình thường sinh hoạt.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

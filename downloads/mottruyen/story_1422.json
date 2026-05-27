@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "1422",
+        "NAME": "Phù Phong Ca",
+        "CHAPTER": [
+            {
+                "id": "588581",
+                "name": "Chương 1: Bại quân (thượng)"
+            }
+        ],
+        "TOTALCHAPTER": "459",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Lịch Sử",
+        "AUTHOR": "Cua Đích Tâm",
+        "TRANS": "bakanekosb",
+        "DESC": "T&acirc;y Tấn mạt năm, t&aacute;m vương chi loạn phương tức, Ngũ Hồ loạn hoa tương khởi, Trung Hoa năm ng&agrave;n ni&ecirc;n lịch sử thượng hắc &aacute;m nhất đ&iacute;ch ni&ecirc;n đại sắp sửa đi đến.<br /><br />Một c&aacute;i người tuổi trẻ xuy&ecirc;n việt đến c&aacute;i n&agrave;y thời đại, hắn hội triển khai dạng g&igrave; rộng lớn mạnh mẽ đ&iacute;ch nh&acirc;n sinh?<br /><br />Đi gia nhật đ&atilde; xa, an biết tồn c&ugrave;ng vong? Ta muốn cạnh n&agrave;y kh&uacute;c, n&agrave;y kh&uacute;c bi lại trường!",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

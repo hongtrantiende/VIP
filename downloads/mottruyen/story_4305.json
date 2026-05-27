@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "4305",
+        "NAME": "Thất Phu Nghịch Tập",
+        "CHAPTER": [
+            {
+                "id": "1555574",
+                "name": "Chương 1 :Hắc Xe"
+            }
+        ],
+        "TOTALCHAPTER": "1",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đô Thị",
+        "AUTHOR": "kiêu kỵ giáo",
+        "TRANS": "ChiKi",
+        "DESC": "th&acirc;n mắc tuyệt chứng cuối c&ugrave;ng đ&aacute;nh một trận cảnh s&aacute;t th&acirc;m ni&ecirc;n ,  v&igrave; trẻ n&iacute;t n&atilde;i phấn c&ugrave;ng ph&ograve;ng vay kh&ocirc;ng chừa thủ đoạn n&agrave;o th&aacute;m tử tư , <br /> &acirc;m hồn kh&ocirc;ng ti&ecirc;u tan thần b&iacute; s&aacute;t thủ , ba đường nh&acirc;n m&atilde; mục ti&ecirc;u đều l&agrave; mướn ở tại th&agrave;nh hương kết hợp bộ taxi b&ecirc;n trong nh&agrave; đại th&uacute;c c&ugrave;ng la lỵ",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

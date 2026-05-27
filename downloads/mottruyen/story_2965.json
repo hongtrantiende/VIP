@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "2965",
+        "NAME": "Huyết Sát Truyện",
+        "CHAPTER": [
+            {
+                "id": "1004656",
+                "name": "Chương 1: Không thể tu luyện thiếu niên"
+            }
+        ],
+        "TOTALCHAPTER": "50",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo",
+        "AUTHOR": "Kim Sinh Tàn Mộng",
+        "TRANS": "Hoa Vô Lệ",
+        "DESC": "Đây là thực lực chúa tể thế giới, nơi này có kỳ diệu cố sự, huyễn diệu vô song pháp thuật, còn có muôn hình muôn vẻ tu sĩ, khó mà tin nổi yêu ma.\r\n\r\nMột cái không thể tu hành thiếu niên, nguyên bản đã định trước tầm thường vô vi.\r\n\r\nChỉ là tạo hóa thiên ý trêu người, kinh thiên biến cố sau khi lại gặp may đúng dịp đi tới một cái không giống con đường tu hành.\r\n\r\nNắm giữ trước nay chưa từng có pháp thuật, trải qua máu và lửa gột rửa. Không là tại này trên đường tu chân tranh bá xưng hùng, chỉ vì tàn sát cừu hận trong lòng.\r\n\r\nTa tên Huyết Sát, thề dùng tên này chém giết hết thảy oán thù.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

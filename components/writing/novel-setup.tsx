@@ -1,5 +1,7 @@
 "use client";
 
+import { useLiveQuery } from "dexie-react-hooks";
+
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { ScrollArea } from "@/components/ui/scroll-area";
@@ -11,7 +13,9 @@ import {
   usePlotArcs,
 } from "@/lib/hooks";
 import { generateFromExisting, generateAllFromScratch } from "@/lib/writing/auto-generate";
+import { runRewritePipeline } from "@/lib/writing/rewrite-orchestrator";
 import { db } from "@/lib/db";
+import { useRewriteStore } from "@/lib/stores/rewrite-store";
 import {
   AlertTriangleIcon,
   BookOpenIcon,
@@ -25,9 +29,13 @@ import {
   SkipForwardIcon,
   SparklesIcon,
   UsersIcon,
+  StopCircleIcon,
 } from "lucide-react";
 import { useCallback, useRef, useState } from "react";
 import { toast } from "sonner";
+
+import { StepModelPicker } from "./writing-settings-dialog";
+import { Slider } from "@/components/ui/slider";
 
 type DashboardAction = "auto-generate" | "chat" | "rewrite" | "skip";
 
@@ -43,11 +51,21 @@ export function NovelSetup({
   const characters = useCharacters(novelId);
   const plotArcs = usePlotArcs(novelId);
   const chapterPlans = useChapterPlans(novelId);
+  
+  const standardChaptersCount = useLiveQuery(
+    () => db.chapters.where("novelId").equals(novelId).and(c => !c.isAiWritten).count(),
+    [novelId]
+  ) ?? 0;
+
+  const isRewriteProject = !!novel?.referenceNovelId || standardChaptersCount > 0;
+  const { isGenerating: isRewriting, setGenerating: setRewriting, phase: rewritePhase, setPhase: setRewritePhase, abort: abortRewrite } = useRewriteStore();
   const [isGenerating, setIsGenerating] = useState(false);
   const [genPhase, setGenPhase] = useState<string>("");
   const [showAutoOptions, setShowAutoOptions] = useState(false);
   const [idea, setIdea] = useState("");
-  const [chapterCount, setChapterCount] = useState(50);
+  const [adherence, setAdherence] = useState([70]);
+  const [chapterCount, setChapterCount] = useState(10);
+  const [autoExtractNames, setAutoExtractNames] = useState(true);
   const abortRef = useRef<AbortController | null>(null);
 
   const hasWorld = !!(novel?.worldOverview || novel?.factions?.length);
@@ -115,7 +133,10 @@ export function NovelSetup({
         toast.success("Đã tự động tạo toàn bộ nội dung truyện");
       } else {
         if (idea.trim()) {
-          await db.novels.update(novelId, { synopsis: idea, updatedAt: new Date() });
+          const updateData: any = { updatedAt: new Date() };
+          if (isRewriteProject) updateData.rewriteIdea = idea;
+          else updateData.synopsis = idea;
+          await db.novels.update(novelId, updateData);
         }
         await generateFromExisting(novelId, {
           abortSignal: controller.signal,
@@ -133,14 +154,47 @@ export function NovelSetup({
       setIsGenerating(false);
       setGenPhase("");
     }
-  }, [novelId, idea, chapterCount]);
+  }, [novelId, idea, chapterCount, isRewriteProject]);
+
+  const handleAutoRewrite = useCallback(async () => {
+    const controller = new AbortController();
+    setRewriting(true, novelId, controller);
+    abortRef.current = controller;
+
+    try {
+      if (isRewriteProject) {
+        const rewriteIdea = `Yêu cầu viết lại: Mức độ bám sát bản gốc: ${adherence[0]}%. Mức độ sáng tạo, mở rộng nội dung thêm thắt: ${100 - adherence[0]}%.`;
+        await db.novels.update(novelId, { rewriteIdea, updatedAt: new Date() });
+      } else if (idea.trim()) {
+        await db.novels.update(novelId, { rewriteIdea: idea, updatedAt: new Date() });
+      }
+      
+      await runRewritePipeline({
+        novelId,
+        maxChapters: chapterCount > 0 ? chapterCount : undefined,
+        abortSignal: controller.signal,
+        autoExtractNames: autoExtractNames,
+        onPhase: (phase) => setRewritePhase(phase),
+      });
+      
+      toast.success("Đã hoàn tất tiến trình Rewrite truyện!");
+      setShowAutoOptions(false);
+    } catch (err) {
+      if (err instanceof Error && err.name === "AbortError") return;
+      toast.error(err instanceof Error ? err.message : "Lỗi không xác định");
+    } finally {
+      setRewriting(false);
+      setRewritePhase("");
+    }
+  }, [novelId, idea, chapterCount, autoExtractNames]);
 
   return (
     <ScrollArea className="h-full">
       <div className="mx-auto max-w-lg p-6 space-y-6">
         {/* Status cards */}
-        <div>
-          <h3 className="text-sm font-medium mb-3">Trạng thái dữ liệu</h3>
+        {!isRewriteProject && (
+          <div>
+            <h3 className="text-sm font-medium mb-3">Trạng thái dữ liệu</h3>
           <div className="grid grid-cols-2 gap-2">
             {steps.map((step) => {
               const Icon = step.icon;
@@ -176,23 +230,7 @@ export function NovelSetup({
             })}
           </div>
         </div>
-
-        {/* Summary */}
-        {hasChapters && (
-          <div className="rounded-lg border bg-muted/50 p-3">
-            <p className="text-sm">
-              Truyện đã có <strong>{chapters?.length} chương</strong>
-              {hasCharacters && (
-                <>
-                  , <strong>{characters?.length} nhân vật</strong>
-                </>
-              )}
-              {hasWorld && <>, thế giới quan đã thiết lập</>}.
-              {!hasPlotArcs &&
-                " Cần tạo mạch truyện và kế hoạch chương để bắt đầu viết tự động."}
-            </p>
-          </div>
-        )}
+      )}
 
         {/* Actions */}
         {hasEnoughForWriting ? (
@@ -206,7 +244,7 @@ export function NovelSetup({
           </Button>
         ) : (
           <div className="space-y-3">
-            {!showAutoOptions && !isGenerating && (
+            {!showAutoOptions && !isGenerating && !isRewriteProject && (
               <>
                 <Button
                   variant="default"
@@ -220,7 +258,7 @@ export function NovelSetup({
 
                 <Button
                   onClick={() => {
-                    setIdea(novel?.synopsis || novel?.description || "");
+                    setIdea(isRewriteProject ? (novel?.rewriteIdea || "") : (novel?.synopsis || novel?.description || ""));
                     setChapterCount(50);
                     setShowAutoOptions(true);
                   }}
@@ -229,49 +267,141 @@ export function NovelSetup({
                   variant="secondary"
                 >
                   <SparklesIcon className="h-4 w-4 mr-2" />
-                  Tự động tạo toàn bộ
+                  {isRewriteProject ? "Tự động Rewrite toàn bộ" : "Tự động tạo toàn bộ"}
                 </Button>
               </>
             )}
 
+            {!showAutoOptions && !isGenerating && !isRewriting && isRewriteProject && (
+              <Button
+                onClick={() => {
+                  setIdea(novel?.rewriteIdea || "");
+                  setChapterCount(0);
+                  setShowAutoOptions(true);
+                }}
+                className="w-full"
+                size="lg"
+                variant="secondary"
+              >
+                <SparklesIcon className="h-4 w-4 mr-2" />
+                Mở bảng thiết lập Rewrite
+              </Button>
+            )}
+
             {showAutoOptions && !isGenerating && (
               <div className="rounded-xl border bg-card p-4 space-y-4 shadow-sm">
-                <p className="text-xs font-bold text-foreground uppercase tracking-wider text-center text-violet-600 dark:text-violet-400">
-                  🪄 Tự động tạo toàn bộ truyện
+                <p className={`text-xs font-bold uppercase tracking-wider text-center ${isRewriteProject ? 'text-amber-600 dark:text-amber-400' : 'text-violet-600 dark:text-violet-400'}`}>
+                  🪄 {isRewriteProject ? "Tự động Rewrite truyện" : "Tự động tạo toàn bộ truyện"}
                 </p>
                 <p className="text-[11px] text-muted-foreground text-center">
-                  Nhập ý tưởng và số chương. AI sẽ tự động thiết lập Thế giới quan, Nhân vật, Hướng đi nhân vật và Kế hoạch chương trong một lần chạy duy nhất.
+                  {isRewriteProject 
+                    ? "Nhập ý tưởng mới nếu muốn đổi cốt truyện. Nếu để TRỐNG, AI sẽ tự động đọc truyện gốc và phóng tác lại 100% cốt truyện cũ bằng văn phong mới để tránh bản quyền."
+                    : "Nhập ý tưởng và số chương. AI sẽ tự động thiết lập Thế giới quan, Nhân vật, Hướng đi nhân vật và Kế hoạch chương trong một lần chạy duy nhất."}
                 </p>
 
-                <div className="space-y-1.5">
-                  <label className="text-xs font-semibold text-foreground">
-                    Ý tưởng chính / Cốt truyện
+                <div className="space-y-1.5 flex flex-col justify-between">
+                  <label className="text-xs font-semibold text-foreground flex items-center gap-1">
+                    {isRewriteProject ? "Độ bám sát bản gốc (1-100%)" : "Ý tưởng chính / Cốt truyện"}
+                    {isRewriteProject && <span className="text-[10px] font-normal text-muted-foreground">(Tùy chọn)</span>}
                   </label>
-                  <textarea
-                    value={idea}
-                    onChange={(e) => setIdea(e.target.value)}
-                    placeholder="Ví dụ: Một tu sĩ xuyên không vào cơ thể phế vật ở hiện đại, dùng thuật luyện đan để chữa bệnh cứu người và xây dựng tập đoàn dược phẩm..."
-                    rows={4}
-                    className="w-full rounded-md border bg-background px-3 py-2 text-xs focus:ring-1 focus:ring-primary focus-visible:outline-none"
-                  />
+                  
+                  {isRewriteProject ? (
+                    <div className="space-y-4 pt-2">
+                      <Slider 
+                        defaultValue={[70]}
+                        value={adherence}
+                        min={1}
+                        max={100}
+                        step={1}
+                        onValueChange={setAdherence}
+                      />
+                      <div className="flex justify-between text-[10px] text-muted-foreground font-medium">
+                        <span>Sáng tạo nhiều</span>
+                        <span className="text-primary font-bold">{adherence[0]}% bám sát</span>
+                        <span>Giữ y nguyên</span>
+                      </div>
+                    </div>
+                  ) : (
+                    <textarea
+                      value={idea}
+                      onChange={(e) => setIdea(e.target.value)}
+                      placeholder="Ví dụ: Một tu sĩ xuyên không vào cơ thể phế vật ở hiện đại..."
+                      rows={4}
+                      className="w-full rounded-md border bg-background px-3 py-2 text-xs focus:ring-1 focus:ring-primary focus-visible:outline-none resize-none"
+                    />
+                  )}
                 </div>
 
-                <div className="space-y-1.5">
-                  <label className="text-xs font-semibold text-foreground">
-                    Số lượng chương mong muốn
-                  </label>
-                  <input
-                    type="number"
-                    value={chapterCount}
-                    onChange={(e) => setChapterCount(Math.max(5, parseInt(e.target.value) || 5))}
-                    min={5}
-                    max={100}
-                    className="w-full rounded-md border bg-background px-3 py-1.5 text-xs focus:ring-1 focus:ring-primary focus-visible:outline-none"
-                  />
-                </div>
+                  {isRewriteProject && (
+                    <div className="space-y-2">
+                      <p className="text-[10px] font-bold uppercase tracking-wider text-muted-foreground">AI Viết Truyện (Rewrite)</p>
+                      <StepModelPicker novelId={novelId} role="rewrite" />
+                    </div>
+                  )}
+
+                  <div className="space-y-1.5">
+                    <label className="text-xs font-semibold text-foreground">
+                      {isRewriteProject ? "Số chương muốn Rewrite (Nhập 0 để chạy toàn bộ chương có sẵn)" : "Số lượng chương mong muốn"}
+                    </label>
+                    <input
+                      type="number"
+                      value={chapterCount}
+                      onChange={(e) => setChapterCount(Math.max(0, parseInt(e.target.value) || 0))}
+                      min={0}
+                      max={isRewriteProject ? 5000 : 100}
+                      className="w-full rounded-md border bg-background px-3 py-1.5 text-xs focus:ring-1 focus:ring-primary focus-visible:outline-none"
+                    />
+                  </div>
+
+                  {isRewriteProject && (
+                    <div className="space-y-2 pt-2 border-t">
+                      <div className="flex items-start gap-2">
+                        <input 
+                          type="checkbox" 
+                          id="autoExtract" 
+                          checked={autoExtractNames}
+                          onChange={(e) => setAutoExtractNames(e.target.checked)}
+                          className="rounded border-gray-300 text-primary focus:ring-primary h-3.5 w-3.5 mt-0.5"
+                        />
+                        <div className="space-y-0.5">
+                          <label htmlFor="autoExtract" className="text-xs font-semibold cursor-pointer select-none">
+                            Trích xuất Danh từ riêng tự động
+                          </label>
+                          <p className="text-[10px] text-muted-foreground leading-tight">AI sẽ đọc chương vừa viết, nhặt ra Tên nhân vật, Địa danh, Vật phẩm... và lưu vào Thiết lập Truyện.</p>
+                        </div>
+                      </div>
+
+                      {autoExtractNames && (
+                        <div className="pt-2 mt-2">
+                          <p className="text-[10px] font-bold uppercase tracking-wider text-muted-foreground mb-2">AI Trích xuất Dữ liệu</p>
+                          <StepModelPicker novelId={novelId} role="rewrite_extract" />
+                        </div>
+                      )}
+                    </div>
+                  )}
 
                 <div className="space-y-2 pt-2 border-t">
-                  {hasPartialData ? (
+                  {isRewriteProject ? (
+                    <>
+                      <Button
+                        onClick={handleAutoRewrite}
+                        disabled={isRewriting}
+                        className="w-full gap-2 bg-amber-600 hover:bg-amber-700 text-white text-xs py-2"
+                      >
+                        {isRewriting ? (
+                          <>
+                            <Loader2Icon className="mr-2 h-4 w-4 animate-spin" />
+                            {rewritePhase || "Đang viết..."}
+                          </>
+                        ) : (
+                          <>
+                            <SparklesIcon className="h-4 w-4" />
+                            Bắt đầu Rewrite toàn bộ
+                          </>
+                        )}
+                      </Button>
+                    </>
+                  ) : hasPartialData ? (
                     <>
                       <Button
                         onClick={() => handleAutoGenerate("continue")}
@@ -326,6 +456,23 @@ export function NovelSetup({
                 <Loader2Icon className="h-4 w-4 mr-2 animate-spin" />
                 Đang tạo {genPhase}...
               </Button>
+            )}
+
+            {isRewriting && (
+              <div className="space-y-3 mt-4">
+                <Button disabled className="w-full" size="lg" variant="secondary">
+                  <Loader2Icon className="h-4 w-4 mr-2 animate-spin" />
+                  {rewritePhase || "Đang Rewrite..."}
+                </Button>
+                <Button 
+                  onClick={abortRewrite}
+                  variant="destructive"
+                  className="w-full"
+                >
+                  <StopCircleIcon className="h-4 w-4 mr-2" />
+                  Hủy (Dừng lại)
+                </Button>
+              </div>
             )}
 
           </div>

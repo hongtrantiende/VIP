@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "3496",
+        "NAME": "Tiên Vũ Đại Đế",
+        "CHAPTER": [
+            {
+                "id": "1211132",
+                "name": "Chương 1: Dương Phàm"
+            }
+        ],
+        "TOTALCHAPTER": "286",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp",
+        "AUTHOR": "Bò Mở",
+        "TRANS": "ChucMung",
+        "DESC": "Hắn là bị tộc nhân hí xưng \"Cơ sở đại sư\" vô dụng, nhưng bất ngờ được ma đế truyền thừa, tu thôn thiên ma công, vạn vật đều có thể hóa tu vi! Mà lại xem dương phàm quật khởi mạnh mẽ, đã từng nhục nhã, gấp trăm lần xin trả! Mà lại nhìn hắn lấy thân thể Bất tử nghiền ép các lộ chí tôn, bá tuyệt vạn giới!",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

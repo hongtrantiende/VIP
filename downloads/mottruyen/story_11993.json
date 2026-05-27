@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "11993",
+        "NAME": "Tuyệt Thế Đại Tôn",
+        "CHAPTER": [
+            {
+                "id": "3931931",
+                "name": "Chương 1: Thần bí linh hồn"
+            }
+        ],
+        "TOTALCHAPTER": "4",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo",
+        "AUTHOR": "Trúc Bản Thư",
+        "TRANS": "๖ۣۜTử ๖ۣۜÂm༊",
+        "DESC": "Mấy trăm năm trước, thiên địa đại kiếp, cũng làm cho tất cả mọi người nhớ kỹ cái kia tại trong lúc nguy cấp cứu vớt đại lục anh hùng, hắn truyền kỳ cố sự, vĩnh cửu lưu truyền. Mấy trăm năm sau, một cái bình thường thiếu niên, bắt đầu hắn truyền kỳ nhân sinh. Một số năm sau, hắn cùng cái kia đại anh hùng, cùng được xưng là'Thánh Tôn' . Hắn gọi Đường Xa.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

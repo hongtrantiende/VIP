@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "9780",
+        "NAME": "Cuộc Sống Mới",
+        "CHAPTER": [
+            {
+                "id": "3303990",
+                "name": "Chương 1: Nơi Bắt Đầu"
+            }
+        ],
+        "TOTALCHAPTER": "12",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đô Thị, Huyền Ảo, Ngôn Tình, Dị Năng, Quân Sự, Trùng Sinh",
+        "AUTHOR": "kiepdatinhtcs",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Hạo Thiên một thanh niên không tiền, không quyền, không thế nhưng luôn có một ước mơ đổi đời. Và tình yêu đầu xuất hiện những tưởng cuộc sống tươi đẹp sẽ kéo dài.. <br />\r\n<br />\r\nNhưng mọi chuyện bất hạnh cứ liên tiếp kéo đến   ...<br />\r\n<br />\r\nHạo Thiên đã thất vọng tìm cái chết để giải thoát cho mình. Nhưng số phận đã cho Anh làm lại cuộc đời với những điều kỳ diệu....<br />\r\n<br />\r\nMột thân phận mới, một năng lực mới, một suy nghĩ mới cho Hạo Thiên thay đổi thành con người mới để trải \"Nhân chi thường tình\".<br />\r\n<br />\r\nHỷ, Nộ, Ái, Ố với tính cách cương trực, quyết đoán được rèn luyện từ cuộc sống đã tạo nên Hạo Thiên được người khác tôn trọng. <br />\r\n<br />\r\nVới năng lực thiên phú (trời cho) làm cho người người kinh sợ.<br />\r\n<br />\r\nTự sức bản thân giành lại tôn nghiêm của người đàn ông chân chính!",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

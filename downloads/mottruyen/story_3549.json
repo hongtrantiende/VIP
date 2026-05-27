@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "3549",
+        "NAME": "Vạn Kiếm Tà Thần",
+        "CHAPTER": [
+            {
+                "id": "1229531",
+                "name": "Chương 1: Giết vị hôn thê"
+            }
+        ],
+        "TOTALCHAPTER": "573",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo",
+        "AUTHOR": "Không Huyền",
+        "TRANS": "Congtu_nhangheo",
+        "DESC": "Cửu dương tuyệt mạch thiếu ni&ecirc;n L&acirc;m Ti&ecirc;u, khi tuyệt mạch nhất nhất đả th&ocirc;ng, bắt đầu Nghịch Thi&ecirc;n Cải Mệnh, c&aacute; h&oacute;a Thần Long. T&agrave; Thần giận, vạn kếm ra, huyết vũ s&aacute;i, Thi&ecirc;n Địa kh&oacute;c! Cửu &acirc;m cửu dương nghịch loạn Thi&ecirc;n, lấy ta t&agrave; kiếm tắm thanh thi&ecirc;n .",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

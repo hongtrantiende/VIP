@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "10213",
+        "NAME": "Kỳ Diệu Trùng Sinh",
+        "CHAPTER": [
+            {
+                "id": "3425139",
+                "name": "Chương 1: Không người nào có thể thành tiên"
+            }
+        ],
+        "TOTALCHAPTER": "66",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đô Thị",
+        "AUTHOR": "Mộc Tử Tâm",
+        "TRANS": "_N2T_",
+        "DESC": "Thời đại mạt pháp tu hành giới đệ nhất cao thủ Dương Kỳ, đi tới thời không song song năm 2005, nơi này có hắn ấm áp hoàn chỉnh gia, còn có một chút tương tự mặt các minh tinh.<br />\r\n<br />\r\nCần khống chế tốc độ tu luyện Dương Kỳ, quyết định nhập môn tu hành, thử nghiệm thế giới này các loại nghề nghiệp, trải nghiệm người bình thường yêu hận tình cừu, trong lúc lơ đãng, hắn trải qua dấu chân đã tự thành một đoạn truyền kỳ.<br />\r\n<br />\r\nBản cố sự từ Dương Kỳ xung kích Kim Đan cảnh bắt đầu.<br />\r\n<br />\r\nConverter: _N2T_",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

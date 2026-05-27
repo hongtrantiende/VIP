@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "4075",
+        "NAME": "Cao Thủ Thời Đại",
+        "CHAPTER": [
+            {
+                "id": "1499476",
+                "name": "Chương 1: Tuyết sơn chi điên"
+            }
+        ],
+        "TOTALCHAPTER": "1488",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đô Thị",
+        "AUTHOR": "Nhất Nan",
+        "TRANS": "Nvccanh",
+        "DESC": "Tần Mộc, một c&aacute;i ho&agrave;n to&agrave;n t&aacute;ch biệt với thế gian từ Tuyết Sơn đi ra thiếu ni&ecirc;n, v&igrave; t&igrave;m kiếm một c&ocirc; g&aacute;i, một th&acirc;n một m&igrave;nh đi tới c&aacute;i kia ăn chơi tr&aacute;c t&aacute;ng phồn hoa đ&ocirc; thị, bởi v&igrave; sự xuất hiện của hắn, v&ocirc; số l&aacute;nh đời truyền thừa li&ecirc;n tiếp hiện thế, long phượng đua tiếng, thay đổi bất ngờ.<br /><br />L&agrave; trách trời thương người thần y, l&agrave; m&aacute;u lạnh v&ocirc; t&igrave;nh Tu La, vẫn l&agrave; kinh sợ tứ phương &Aacute;m Dạ qu&acirc;n vương! ! !<br /><br />Một cao thủ c&ugrave;ng nổi l&ecirc;n thời đại, một c&aacute;i Nh&acirc;n, Y&ecirc;u, Ma, Ti&ecirc;n thời đại, một người thiếu ni&ecirc;n, l&agrave;m sao từng bước Đăng Phong, vấn đỉnh mu&ocirc;n d&acirc;n!",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

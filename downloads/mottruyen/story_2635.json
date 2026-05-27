@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "2635",
+        "NAME": "Chí Tôn Thần Vị",
+        "CHAPTER": [
+            {
+                "id": "862081",
+                "name": "Chương 01: Hủy Thiên Truyền Thừa"
+            }
+        ],
+        "TOTALCHAPTER": "1797",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo",
+        "AUTHOR": "Linh Độ Ưu Thương",
+        "TRANS": "trang4mat",
+        "DESC": "Tr&iacute; Tuệ Chi Cốt, Kiếm Linh Chi Thể, Đạo Linh Chi Thể, Tổ Long ngọc bội, xưa nay chưa từng c&oacute; bốn mạch c&ugrave;ng tu, V&acirc;n Bất Ph&agrave;m lại sẽ đạt tới như thế n&agrave;o tr&igrave;nh độ! Giẫm kế tiếp c&aacute;i c&aacute;i gọi l&agrave; thi&ecirc;n t&agrave;i, đi đến đỉnh phong chi lộ, s&aacute;ng tạo B&aacute; Vương chi đạo, hắn cuối c&ugrave;ng nhất l&agrave; hay kh&ocirc;ng lại c&oacute; thể th&agrave;nh tựu ch&iacute; cao v&ocirc; thượng Ch&iacute; T&ocirc;n Thần Vị?",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

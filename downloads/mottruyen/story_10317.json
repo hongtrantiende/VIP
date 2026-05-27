@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "10317",
+        "NAME": "Độ Tiên",
+        "CHAPTER": [
+            {
+                "id": "3455820",
+                "name": "Chương 1: Không giết người liền tốt"
+            }
+        ],
+        "TOTALCHAPTER": "10",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp, Kiếm Hiệp",
+        "AUTHOR": "Lễ Bộ Thị Lang",
+        "TRANS": "Nghĩa Phạm",
+        "DESC": "Đại sư huynh có thanh kiếm, trảm thiên địa vô cực, Si Mị Võng Lượng. Nhị sư huynh trong lồng ngực ước lượng thiên hạ, đàn ông tại thế quyét ngang trên trời dưới đất, chiến Bát Hoang, kiếm chỉ Trung Nguyên người nào dám cản. Hai mắt mù Đông Lâu sư huynh muốn bảo vệ Thái Huyền vạn vạn năm, nghiện rượu như mạng Lý Cửu ca thà rằng thanh kiếm cầm lấy đi đổi tửu cũng không muốn học thẳng, cầm một cái trúc xanh nhánh giết người Trần mười sáu nguyện vọng lớn nhất cũng là sau khi chết có thể táng tại trúc xanh Lâm, mà Bạch Vĩnh Xương muốn làm cái kia thiên hạ thứ<br />\r\n<br />\r\nNhiệt huyết trọng sinh",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

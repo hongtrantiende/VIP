@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "8079",
+        "NAME": "Mang Theo App Làm Lĩnh Chủ",
+        "CHAPTER": [
+            {
+                "id": "2801292",
+                "name": "Chương 1: Thế giới chi vương"
+            }
+        ],
+        "TOTALCHAPTER": "459",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo, Võng Du, Dị Giới, Quân Sự, Xuyên Không",
+        "AUTHOR": "牧三河 - Mục Tam Hà",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Trên điện thoại di động đột nhiên bốc lên cái “ Thế giới chi vương” APP, cái gì quỷ, điểm một hồi liền bị đưa đến dị giới, làm cái nho nhỏ lãnh chúa.<br />\r\nTừ đây mở mở khoa học kỹ thuật phần mềm hack, các loại điền, đánh đánh quái, mang tới Ma Linh các thiếu nữ xinh đẹp, chúng ta đi chinh phục thế giới!",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

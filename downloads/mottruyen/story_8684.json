@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "8684",
+        "NAME": "Đào Nguyên Sơn Trang",
+        "CHAPTER": [
+            {
+                "id": "2970767",
+                "name": "Chương 1:  dưới Tứ Cửu Thành thanh niên bình thường"
+            }
+        ],
+        "TOTALCHAPTER": "732",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đô Thị",
+        "AUTHOR": "Đông nhân",
+        "TRANS": "๖ۣۜTiếu ๖ۣۜHồng ๖ۣۜTrần",
+        "DESC": "« Time Magazine »  đánh giá nó là thế giới năm nhà bảo tàng lớn một trong , thế kỷ mới lớn nhất kì tích!<br />\r\n<br />\r\n\tThưởng thức rượu tiểu ly bạc kỵ sĩ sẽ cùng Bordeaux danh tửu hiệp hội đánh giá nó là trên thế giới duy nhất không thuộc về nước Pháp đỉnh cấp tửu trang!<br />\r\n<br />\r\n\tNước Mỹ « quốc gia địa lý »  đánh giá nó là toàn thế giới cao cấp nhất thập đại phong cảnh một trong.<br />\r\n<br />\r\n\tĐồng thời , hắn cũng là toàn thế giới mỹ thực gia đứng đầu hướng tới địa phương , toàn thế giới yêu ngựa bọn phú hào khát vọng nhất địa phương , toàn thế giới người đứng đầu hy vọng có thể dưỡng lão địa phương , hắn chính là Đào Nguyên Sơn Trang , một cái chân chính thế ngoại đào nguyên!",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

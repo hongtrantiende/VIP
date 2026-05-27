@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "1497",
+        "NAME": "Dịch Đoạn Thiên Cơ",
+        "CHAPTER": [
+            {
+                "id": "624338",
+                "name": "Chương 1: Mặc Gia công tử"
+            }
+        ],
+        "TOTALCHAPTER": "12",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo",
+        "AUTHOR": "Dịch Đoạn Thiên Cơ",
+        "TRANS": "Đi_tìm_hạnh_phúc",
+        "DESC": "Tuy rằng xuất th&acirc;n danh m&ocirc;n, nhưng kinh mạch bị phế! Nh&igrave;n thấy c&aacute;c bậc thi&ecirc;n ki&ecirc;u chi tử ca ca, Mặc Thi&ecirc;n Vũ nguy&ecirc;n vốn hẳn l&agrave; b&igrave;nh b&igrave;nh đạm đạm sống hết một đời, nhưng l&agrave; ở trong l&ograve;ng d&ugrave; sao c&oacute; một thanh &acirc;m tự n&oacute;i với m&igrave;nh, ngươi nhất định kh&ocirc;ng c&oacute; khả năng tầm thường v&ocirc; vi sống hết một đời! Nhất định cuộc đời n&agrave;y vận mệnh nhiều chuyển, chẳng sợ bản th&acirc;n tận lực trốn tr&aacute;nh ph&acirc;n tranh, nhưng mệnh trung ch&uacute; định, ai c&oacute; c&oacute; thể trốn qua! Nhất l&agrave; kiếm chỉ ch&iacute; th&acirc;n y&ecirc;u thương người... Mặc Thi&ecirc;n Vũ lựa chọn như thế n&agrave;o, l&agrave; tu&acirc;n theo vận mệnh quỹ t&iacute;ch, vẫn l&agrave; bảo tr&igrave; bản t&acirc;m, ở vận mệnh quỹ t&iacute;ch giữa t&igrave;m kiếm thay đổi vận mệnh của m&igrave;nh cơ hội...",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

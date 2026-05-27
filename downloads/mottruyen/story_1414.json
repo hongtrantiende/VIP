@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "1414",
+        "NAME": "Tối Cường Gia Chủ",
+        "CHAPTER": [
+            {
+                "id": "587277",
+                "name": "Chương 01: Tỉnh lại"
+            }
+        ],
+        "TOTALCHAPTER": "124",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp",
+        "AUTHOR": "Diện Hồng Nhĩ Xích",
+        "TRANS": "Dạ Hương Lan",
+        "DESC": "Sở Nam xuy&ecirc;n vi&ecirc;̣t đ&atilde; đến một c&aacute;i c&ugrave;ng địa cầu tương tự, ngoại trừ khoa học kỹ thuật b&ecirc;n ngo&agrave;i, c&ograve;n nhiều th&ecirc;m một c&aacute;i tu ch&acirc;n chi nh&aacute;nh song song thế giới. Trọng sinh tại một c&aacute;i Si&ecirc;u cấp ho&agrave;n khố, ph&aacute; gia chi tử, mắc nợ buồn thiu lưu manh gia chủ tr&ecirc;n người.<br /><br />C&aacute;i thế giới n&agrave;y rất đi&ecirc;n cuồng, liền bệnh viện tiểu hộ sĩ đều l&agrave; Tu Ch&acirc;n giả. C&agrave;ng l&agrave;m cho Sở Nam đi&ecirc;n cuồng ch&iacute;nh l&agrave;, tại hắn vốn l&agrave; tu ch&acirc;n tinh cầu ph&iacute;a tr&ecirc;n, những hiếm thấy kia linh thảo, thần thảo, lại bị coi l&agrave; gi&aacute; rẻ nhất c&acirc;y n&ocirc;ng nghiệp.<br /><br />L&agrave;m gia chủ?<br /><br />Vậy th&igrave; l&agrave;m mạnh nhất gia chủ!<br /><br />Kết quả l&agrave;, tại nơi n&agrave;y đi&ecirc;n cuồng thế giới, sắp sinh ra đời một vị sử thượng mạnh nhất gia chủ...",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

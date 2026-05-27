@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "4434",
+        "NAME": "Cương Thiết Giới",
+        "CHAPTER": [
+            {
+                "id": "1583692",
+                "name": "Chương 1: Khoa học kỹ thuật, võ đạo, song hồn quy nhất"
+            }
+        ],
+        "TOTALCHAPTER": "140",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Dị Giới, Khoa Huyễn, Trùng Sinh",
+        "AUTHOR": "Tinh Thiên Huỳnh Hỏa",
+        "TRANS": "tangthuvien.com",
+        "DESC": "Thiên tài võ học Đỗ Nam, đột phá cảnh giới thì tao ngộ dị thường sét đánh, linh hồn hòa vào Lam Hải tinh một vị quý tộc cuối cùng hậu duệ trong cơ thể. Vị kia vì Chấn Hưng gia tộc, xúc động cấm kỵ sức mạnh, học thuật thiên tài thất bại tiêu vong, nắm giữ cuồng bạo võ hồn Đỗ Nam, thay vào đó, thành công kích hoạt đệ ngũ ma năng, kế thừa duy nhất 'Lôi' lực lượng lượng.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

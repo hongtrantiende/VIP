@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "4050",
+        "NAME": "Thần Cấp Đại Lão Bản",
+        "CHAPTER": [
+            {
+                "id": "1495193",
+                "name": "Chương 1: Là nghe nhầm, hay là chân thực?"
+            }
+        ],
+        "TOTALCHAPTER": "407",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đô Thị",
+        "AUTHOR": "Hiêu Trương Nông Dân",
+        "TRANS": "Tuannam6688",
+        "DESC": "Ngươi l&agrave; kinh doanh kỳ t&agrave;i? Ngươi l&agrave; nghi&ecirc;n cứu khoa học cuồng nh&acirc;n? Ngươi l&agrave; tu ch&acirc;n nh&acirc;n sĩ? Đừng v&ecirc;nh v&aacute;o! Ta chỉ cần một gi&acirc;y, liền c&oacute; thể đem ngươi biến th&agrave;nh đối ta trung th&agrave;nh một l&ograve;ng thủ hạ. V&igrave; ta nỗ lực c&ocirc;ng t&aacute;c l&agrave; vận mệnh của ngươi, cũng l&agrave; vinh hạnh của ngươi!",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

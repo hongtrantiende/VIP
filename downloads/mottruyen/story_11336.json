@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "11336",
+        "NAME": "Phục Linh Ký",
+        "CHAPTER": [
+            {
+                "id": "3762934",
+                "name": "*Chương 1 : 100 vạn năm sau"
+            }
+        ],
+        "TOTALCHAPTER": "2",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp",
+        "AUTHOR": "minhloren",
+        "TRANS": "Shin",
+        "DESC": "Vạn cổ hồng hoang, hỗn độn sơ khai. Phục Linh, xưng Ám Vương Vô Thường,nâm giữ bản nguyên sức mạnh bóng tối. Có Thập Nhất quỷ thân, được xưng Vạn Cổ vô địch, là Thời này chi Hoàng .<br />\r\nNhưng kẻ mạnh, sẽ luôn bị ghen ghét! <br />\r\nHắn lọt vào phục kích, triệt để bị Cửu tộc quần công, đánh về nguyên hình, đồng thời phong ấn bằng 27 đạo Thiên Tỏa. Phong vào 1 Tấm Thạch Khắc. <br />\r\nHắn nếm trải 100vạn năm cầm tù trong Thạch Khắc, từ điên cuồng, giân dữ, đến tuyệt vọng vô vị. <br />\r\nHắn muốn thoát ra, tự thân tra tấn, trả thù, tàn sát cửu tộc đã phong ấn hắn, muốn uống máu, muốn hành hạ. <br />\r\nRồi 1 ngày cơ hội cũng đến, khi 1 kẻ tìm duoc miếng thạch khắc kia.....",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

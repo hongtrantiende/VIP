@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "4404",
+        "NAME": "Cực Phẩm Qúy Công Tử",
+        "CHAPTER": [
+            {
+                "id": "1577665",
+                "name": "Chương 01: Hải Lam loan hộp đêm"
+            }
+        ],
+        "TOTALCHAPTER": "131",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đô Thị, Dị Năng",
+        "AUTHOR": "Tử thủy thanh",
+        "TRANS": "hanthientuyet",
+        "DESC": "Sáu tuổi bị bí mật đưa tới đảo biệt lập tiếp thu như ma quỷ huấn luyện, mười ba tuổi đặc cách tiến vào sói hoang đặc chủng đại đội, trở về đô thị sau vẫn như cũ không thay đổi cuồng ngạo hung hăng bản tính, tin chắc hỗn loạn thế giới giết chóc mới có thể tự vệ, cái gì chim én bang, Thanh Long hội ở trong mắt hắn không đáng giá một đồng, cái gì tài phiệt thiên kim, ca sĩ Ngọc Nữ, hết thảy thu làm vật trong túi, chỉ cần hắn đồng ý, hắn có thể lật đổ toàn bộ Hoa Hạ quốc thậm chí toàn bộ thế giới, thiên hạ phong vân ra chúng ta, vừa vào giang hồ năm tháng thúc, xem một đô thị xấu công tử làm sao chế tạo ra chính mình huy hoàng ánh bình minh...",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

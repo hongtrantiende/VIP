@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "5885",
+        "NAME": "Thanh Huyền Đạo Chủ",
+        "CHAPTER": [
+            {
+                "id": "2115330",
+                "name": "Chương 1: Thiếu niên đạo giả"
+            }
+        ],
+        "TOTALCHAPTER": "1023",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp, Huyền Ảo",
+        "AUTHOR": "Trung Nguyên Ngũ Bách",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Cái gì gọi là đạo chủ?  Đáp: \"Thập phương không bóng ảnh, lục đạo tuyệt hành tung. Nhảy ra tam giới bên ngoài, không ở trong ngũ hành.\"",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

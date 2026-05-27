@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "4218",
+        "NAME": "Ta Là Vương",
+        "CHAPTER": [
+            {
+                "id": "1530093",
+                "name": "Chương 1: Tỉnh mộng"
+            }
+        ],
+        "TOTALCHAPTER": "1503",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Lịch Sử",
+        "AUTHOR": "Thương Thủ Nhất Hào",
+        "TRANS": "ThanhXàKhách",
+        "DESC": "Vua đ&aacute;nh cận chiến Cao Viễn tại hắn sau khi cuối c&ugrave;ng một chiến dịch, bởi v&igrave; nảy sinh giải ngũ &yacute; tưởng m&agrave; bị &ocirc;ng chủ sau m&agrave;n b&aacute;n đứng, chết oan uổng, lại may mắn sống lại với một c&aacute;i thất h&ugrave;ng tranh b&aacute; đại thời đại trong một c&aacute;i bi&ecirc;n giới huyện th&agrave;nh, từ một c&aacute;i nho nhỏ binh đầu bắt đầu l&agrave;m l&ecirc;n, Cao Viễn ở thất h&ugrave;ng tranh b&aacute; cao ngất ni&ecirc;n đại giết ra một con đường m&aacute;u, nhất thống lục hợp, qu&acirc;n l&acirc;m thi&ecirc;n hạ.<br /><br />Ta d&ugrave;ng thiết huyết c&ugrave;ng lưỡi đao sắc b&eacute;n tới bảo vệ những g&igrave; ta c&oacute;, ta thật sự qu&yacute; trọng, ta thật sự k&iacute;nh y&ecirc;u, bất kỳ đối mặt với ph&ecirc; ph&aacute;n c&ugrave;ng bất trung đều d&ugrave;ng m&aacute;u tươi tới tẩy! Đ&acirc;y l&agrave; thuộc về thế giới của ta, thế giới của ta --- ta l&agrave; Vương!<br /><br />(T&aacute;c Giả ch&uacute; th&iacute;ch: Bổn văn thuần t&uacute;y gi&aacute; kh&ocirc;ng, xin chớ c&ugrave;ng ch&acirc;n thực lịch sử so s&aacute;nh. Nếu c&oacute; tương đồng, đơn thuần chỉ l&agrave; tr&ugrave;ng hợp)",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

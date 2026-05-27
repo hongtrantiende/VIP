@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "11425",
+        "NAME": "Thánh Linh Huyết Hoàng",
+        "CHAPTER": [
+            {
+                "id": "3788766",
+                "name": "Chương 1:. Thần bí Khí Linh"
+            }
+        ],
+        "TOTALCHAPTER": "863",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Dị Giới, Xuyên Không",
+        "AUTHOR": "Ưu Nguyệt",
+        "TRANS": "Lão Hạc",
+        "DESC": "Quỷ dị tai hoạ, tình thế của đại lục cải biến; thần bí thư tịch, vũ khí thiên tài sinh ra tại Dị Giới.<br />\r\n<br />\r\n\tSáu Tộc Tân Bí, cấm kỵ lĩnh vực; Lục Mang Tinh từ trong khe phát ra, như thế nào Chân Ngôn<br />\r\n<br />\r\n\tLực lượng, tôn nghiêm, tổ khúc, vinh quang, kiêu ngạo, Vĩnh Hằng, một cái không biết Hoàng Đạo đường.<br />\r\n<br />\r\n\tThiên đường kính dâng, yêu đến Vĩnh Sinh; trí nhớ mảnh nhỏ,Thánh Đế hàng lâm.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

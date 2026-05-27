@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "8724",
+        "NAME": "Bàn Long Giới",
+        "CHAPTER": [
+            {
+                "id": "2984760",
+                "name": "Chương 0: Phần đệm"
+            }
+        ],
+        "TOTALCHAPTER": "10",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo, Dị Giới",
+        "AUTHOR": "docconhan",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Câu chuyện về một cậu bé trọng sinh bám thân vào một con rồng.<br />\r\n<br />\r\nVăn ngôn ung dung thú vị, có độ YY vừa phải, không tự ngược. Không nên bị phần đệm làm cho lầm tưởng là cốt truyện bi thương. Đây quả thật là một câu chuyện rất ung dung, thoải mái.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

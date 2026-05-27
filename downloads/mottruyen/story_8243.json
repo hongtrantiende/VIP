@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "8243",
+        "NAME": "Hokage Chi Thiên Nhân Truyền Thuyết",
+        "CHAPTER": [
+            {
+                "id": "2836873",
+                "name": "Chương 1 sơ lâm"
+            }
+        ],
+        "TOTALCHAPTER": "56",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Xuyên Không, Đồng Nhân",
+        "AUTHOR": "如此怎样",
+        "TRANS": "trong1994",
+        "DESC": "@@",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "8747",
+        "NAME": "Xuyên Việt Đương Hoàng Đế",
+        "CHAPTER": [
+            {
+                "id": "3003642",
+                "name": "Chương 1:: Xuyên qua thành hoàng đế"
+            }
+        ],
+        "TOTALCHAPTER": "1029",
+        "IMG": "https://static.cdnno.com/poster/xuyen-viet-duong-hoang-de/150.jpg",
+        "CAT": "Huyền Ảo, Dị Giới",
+        "AUTHOR": "Thiên Hoàng Thánh Tổ",
+        "TRANS": "khaox8896",
+        "DESC": "Dắt Tối Cường Long Đế hệ thống, xuyên qua làm hoàng đế.<br />\r\n<br />\r\n\tHậu cung mỹ nhân ba ngàn, thiên hạ quyền bính nắm chắc.<br />\r\n<br />\r\n\tCười nhìn chư thiên vạn giới, treo lên đánh các loại không phục.<br />\r\n<br />\r\n\tNgủ nữ nhân đẹp nhất, giết người đàn ông mạnh mẽ nhất.<br />\r\n<br />\r\n\tKhai sáng sướng rên hoàng đế lưu, kính xin ngâm nga thưởng thức.",
+        "THUMB": "https://static.cdnno.com/poster/xuyen-viet-duong-hoang-de/150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

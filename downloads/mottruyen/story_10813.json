@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "10813",
+        "NAME": "Cổ Võ Chí Tôn Ma Giới",
+        "CHAPTER": [
+            {
+                "id": "3589158",
+                "name": "Chương 1:  Chí Tôn Ma Giới"
+            }
+        ],
+        "TOTALCHAPTER": "10",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo, Xuyên Không",
+        "AUTHOR": "Hiệp Mộng Vũ Hồn",
+        "TRANS": "๖ۣۜPé ๖ۣۜMèo",
+        "DESC": "Bị vùi dập giữa chợ tay bút Tiêu Dạ, ngoài ý muốn thu hoạch được Chí Tôn Cổ Võ Ma Giới, xuyên qua đến năm ngàn năm sau tương lai thế giới võ hiệp, gánh vác thần thánh sứ mệnh, triển khai một đoạn ầm ầm sóng dậy nhiệt huyết hành trình. Trảm cừu địch, khu cường lỗ, diệt Thần Ma, chiến tinh hà, đạp trên từng chồng bạch cốt, vấn đỉnh võ đạo đỉnh phong, ta như thành thần, Chư Thần đều là diệt",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

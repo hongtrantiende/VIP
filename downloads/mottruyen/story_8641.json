@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "8641",
+        "NAME": "Cầm Thiên Chiến Ký",
+        "CHAPTER": [
+            {
+                "id": "2959776",
+                "name": "Chương 1: Cẩu tạp chủng"
+            }
+        ],
+        "TOTALCHAPTER": "1",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo",
+        "AUTHOR": "hoa tửu thư sinh",
+        "TRANS": "tranvanphung",
+        "DESC": "cầm Thiên Đạo, chém Luân Hồi, tru vạn tiên, vì yêu giết tới Cửu Trọng Thiên, chúng ta há lại là rau cúc người.<br />\r\n<br />\r\n\tMột cái  thiếu niên bị người gọi là cẩu tạp chủng  , không chịu cam lòng bình thường, liền hắn bước lên   võ đạo hành trình, thành tựu không tầm thường   tiên lộ! Đan điền bị phế, không có chuyện gì tái tạo một cái vô tận đan điền! Vũ Đạo Thánh Địa, mặc ta rong ruổi tung hoành. Lục Tiên Kiếm Linh, muội chỉ cho ca làm ấm giường!",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

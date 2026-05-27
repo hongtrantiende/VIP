@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "2165",
+        "NAME": "Pháp Sư Chi Nhãn",
+        "CHAPTER": [
+            {
+                "id": "747751",
+                "name": "Chương 1: Thỏ nữ lang"
+            }
+        ],
+        "TOTALCHAPTER": "143",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo",
+        "AUTHOR": "Nhị Đấu Hàm Ngư",
+        "TRANS": "Tuyêniapa",
+        "DESC": "Ph&aacute;p Sư thế giới ch&uacute;a tể,ph&eacute;p thuật văn Minh cao thấp, đem quyết định to&agrave;n bộ chủng tộc địa vị<br /><br />L&acirc;m Pham ớ th&uacute; nh&acirc;n, thống trị ở b&ecirc;n trong thế giới tỉnh lại, th&acirc;n l&agrave; M&ocirc;t nh&acirc;n loại b&igrave;nh thường, ph&aacute;t hi&ecirc;n M&igrave;nh nắm giử phục chế người kh&aacute;c ph&eacute;p thu&acirc;t n&acirc;ng lực . . .<br /><br />H&aacute;n Mang theo đạo văn Thần Kh&iacute; m&agrave; đến, hướng đi Ph&aacute;p Sư ch&iacute; cao Vương Tọa",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "6700",
+        "NAME": "Tử Thần Hệ Thống",
+        "CHAPTER": [
+            {
+                "id": "2379450",
+                "name": "Xuyên Việt"
+            }
+        ],
+        "TOTALCHAPTER": "1",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Dị Giới, Xuyên Không, Đồng Nhân",
+        "AUTHOR": "Lucas22",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Trong một lần đi chơi với bạn gái ,Lâm Chấn Thiên bị thiên lôi đánh xuyên việt tới Thiên thần đại lục.Nắm trong tay Tử Thần Hệ Thống liệu hắn có bước trên con đường thành Tử Thần không ?",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

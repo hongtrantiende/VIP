@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "5564",
+        "NAME": "hôkage chi siêu cấp bọc ngoài",
+        "CHAPTER": [
+            {
+                "id": "1980742",
+                "name": "Chương 1 : tên là UZUMAKI NARUTO"
+            }
+        ],
+        "TOTALCHAPTER": "37",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Xuyên Không, Đồng Nhân",
+        "AUTHOR": "trung trắng trẻo",
+        "TRANS": "nguyễn bá trung",
+        "DESC": "Chương 1 : tên là uzumaki naruto<br />\r\nlăng vân ngơ ngác ngồi trước máy vi tính diện, tẻ nhạt ngáp 1 cái<br />\r\n\"Loại này tháng ngày thật nhàm chán !\"<br />\r\n<br />\r\nTốt nghiệp đại học đã sắp hơn nữa năm , từ nhỏ không yêu vận động hắn  thế nhược nhiều bệnh , thật vất vả tốt nghiệp đại học  nhưng bởi vì lười biếng tính cách không muốn đi tìm việc làm, cho nên vẫn trạch ở nhà  không được trạch xuất bản sự.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

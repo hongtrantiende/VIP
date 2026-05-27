@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "10655",
+        "NAME": "Đan Vũ Đế Quân",
+        "CHAPTER": [
+            {
+                "id": "3540829",
+                "name": "Chương 1: Tùy thân Tiên Sơn"
+            }
+        ],
+        "TOTALCHAPTER": "350",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp, Huyền Ảo, Dị Giới",
+        "AUTHOR": "Ôn Noãn Lưu Niên",
+        "TRANS": "︻ ╦̵̵╤───",
+        "DESC": "【 2017 năm nóng nảy nhất huyền huyễn 】<br />\r\n<br />\r\n\tThiếu niên Vân Hạo sắp chết thời điểm, thu hoạch được một cái chứa chín con rồng lớn thi thể cùng vô tận bảo tàng tùy thân Tiên Sơn.<br />\r\n<br />\r\n\tTừ đó, trên tiên sơn Tinh Quáng Linh dược, Thượng Cổ Truyền Thừa, Quảng Hàn Cung, Cửu Long Tỏa Thiên Quan, càng có tiểu la lỵ đồng dạng Thượng Cổ khí linh đều để cho hắn sử dụng!<br />\r\n<br />\r\n\tLại nhìn Vân Hạo võ càn khôn, Phá Thương Khung, Phần Tiên nấu Ma, nghịch thiên quật khởi, trở thành Vạn Cổ mạnh nhất Đế Quân!",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

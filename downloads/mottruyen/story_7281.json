@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "7281",
+        "NAME": "Thần Cấp Nông Trường",
+        "CHAPTER": [
+            {
+                "id": "2589831",
+                "name": "Chương 1: Binh vương trở về"
+            }
+        ],
+        "TOTALCHAPTER": "1625",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đô Thị, Huyền Ảo",
+        "AUTHOR": "Cương Thương Lý Đích Ôn Nhu",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Truyện THIÊN ĐẠO PHẠT ÁC LỆNH cầu phiếu tháng 6.<br />\r\n<br />\r\nLink truyện: https://truyencv.com/thien-dao-phat-ac-lenh/<br />\r\n<br />\r\nTruyện thể loại trinh thám bối cảnh võ hiệp mix huyền huyễn. Main lý trí tình tiết gay cấn hồi hộp. Bút lực tác giả chắc tay. Mời các bạn đọc  ủng hộ mình!",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

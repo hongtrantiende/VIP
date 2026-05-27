@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "9283",
+        "NAME": "Huyễn Tưởng Chi Thần Thoại",
+        "CHAPTER": [
+            {
+                "id": "4486661",
+                "name": "Liên quan với Matou Zouken cường độ"
+            }
+        ],
+        "TOTALCHAPTER": "268",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Xuyên Không, Đồng Nhân",
+        "AUTHOR": "Mộng lệ",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Ở một c&aacute;i lại một c&aacute;i tr&ecirc;n thế giới Lu&acirc;n Hồi r&egrave;n luyện. . .<br /> <br /> Ở một c&aacute;i lại một c&aacute;i tr&ecirc;n thế giới đạt được thuế biến. . .<br /> <br /> Ở một c&aacute;i lại một c&aacute;i tr&ecirc;n thế giới trở n&ecirc;n mạnh mẻ th&agrave;nh thục. . .<br /> <br /> Cuối c&ugrave;ng hắn trở th&agrave;nh thần thoại, đứng ở hết thảy huyễn tưởng thế giới đỉnh.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

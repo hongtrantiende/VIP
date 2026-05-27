@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "8013",
+        "NAME": "Đấu Chuyển Cửu Trọng Thiên",
+        "CHAPTER": [
+            {
+                "id": "2785947",
+                "name": "Chương 1:: Quẫn cảnh"
+            }
+        ],
+        "TOTALCHAPTER": "164",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo, Dị Giới",
+        "AUTHOR": "Ngưu Vân",
+        "TRANS": "→๖ۣۜNgôi",
+        "DESC": "Đấu Hồn đại lục, tông môn san sát, cường giả vi tôn.<br />\r\n<br />\r\n\tMột vị gia cảnh nghèo khó thấp kém thiếu niên, bất ngờ thức tỉnh chí cao vô thượng Hoàng Kim Đấu Hồn, từ đó về sau, thiên kiêu một đời đột nhiên xuất hiện. . .<br />\r\n<br />\r\n\tRèn luyện bất khuất ý chí, thức tỉnh nghịch thiên đấu hồn, cảm ngộ Thiên Đạo Luân Hồi, chinh chiến bát hoang cửu tiêu.<br />\r\n<br />\r\n\tNày, là thuộc về Vương Giả nhiệt huyết hành trình!",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

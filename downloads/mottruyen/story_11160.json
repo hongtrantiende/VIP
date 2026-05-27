@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "11160",
+        "NAME": "Hắc Ám Siêu Thần",
+        "CHAPTER": [
+            {
+                "id": "3696304",
+                "name": "001, Cố Hành"
+            }
+        ],
+        "TOTALCHAPTER": "293",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đô Thị, Dị Năng, Khoa Huyễn",
+        "AUTHOR": "Tả Hữu X",
+        "TRANS": "khaox8896",
+        "DESC": "Sinh mà bàng hoàng, thường có mê man.<br />\r\n<br />\r\n\tTừ đâu tới đây, đi nơi nào, ta là ai?<br />\r\n<br />\r\n\tCố Hành bởi vì từ nhỏ kỳ lạ trải qua đối với nhân sinh thường thường cảm thấy nghi hoặc, mãi đến tận một phần tên là ( Tiến Hóa Của Sinh Mệnh ) tin tức tràn vào đầu óc của hắn, liền, hắn bắt đầu rồi không giống nhau truy tìm lữ trình.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "2864",
+        "NAME": "Chí Tôn Nguyên Đế",
+        "CHAPTER": [
+            {
+                "id": "962858",
+                "name": "Chương 1: Sống lại - Quyển 1"
+            }
+        ],
+        "TOTALCHAPTER": "32",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo",
+        "AUTHOR": "Đông Nam Hồng Trung",
+        "TRANS": "Irkndd",
+        "DESC": "Bị tộc nh&acirc;n coi l&agrave; r&aacute;c rưởi thiếu ni&ecirc;n, sau khi sống lại một đường Nghịch Thi&ecirc;n ch&eacute;m vận, h&atilde;nh diện, dựa v&agrave;o một vi&ecirc;n tuỳ t&ugrave;ng ch&iacute;nh m&igrave;nh xuy&ecirc;n qua m&agrave; th&igrave; ngọc bội thần b&iacute; c&ugrave;ng với mạnh mẽ bản mệnh Nguy&ecirc;n Lực, ở c&aacute;i n&agrave;y Nguy&ecirc;n Lực tu h&agrave;nh thế giới một đường vượt mọi ch&ocirc;ng gai, hướng đi Ch&iacute; T&ocirc;n!",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "3207",
+        "NAME": "Tuyệt Thế Dược Hoàng",
+        "CHAPTER": [
+            {
+                "id": "1104080",
+                "name": "Chương 1: Vũ Hồn thức tỉnh"
+            }
+        ],
+        "TOTALCHAPTER": "660",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo, Dị Giới, Trùng Sinh",
+        "AUTHOR": "Vĩnh Viễn Thiên Nhai - 永远天涯",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Bộ đội đặc chủng vương Dương Phong chuyển thế trọng sinh ở trên người một tên phế vật  Tam đại Vũ Hồn thức tỉnh hơn nữa Hoa Hạ tuyệt học vô cùng kỳ diệu luyện dược thuật tại cái nơi mà cường giả vi tôn Vũ Hồn đại thế giới này quật khởi mạnh mẽ thành tựu một đời Hồn Đế Tuyệt Thế Dược Hoàng !.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

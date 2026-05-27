@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "7738",
+        "NAME": "Vô Lương Kiếm Tiên",
+        "CHAPTER": [
+            {
+                "id": "2717851",
+                "name": "Chương 1: Hai khối Ngọc Tinh"
+            }
+        ],
+        "TOTALCHAPTER": "63",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp, Huyền Ảo",
+        "AUTHOR": "Vương Thiếu Thiếu",
+        "TRANS": "Ẩn Sĩ Cao Nhân",
+        "DESC": "Các ngươi luyện kiếm, ta đem chính mình luyện thành kiếm người.<br />\r\n<br />\r\nCác ngươi đùa giỡn lưu manh, ta so các ngươi càng vô lương.<br />\r\n<br />\r\nNgười khác trong mắt đích phế vật, nhưng là kiếm tu thiên tài, càng giai sát nhân, không hề áp lực.<br />\r\n<br />\r\nMột cái hỗn loạn Tu Chân Giới, tạo nên một vị vô lương kiếm tiên, hàng tỉ kiếm tu, vì đó điên cuồng.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

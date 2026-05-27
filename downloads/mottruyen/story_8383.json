@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "8383",
+        "NAME": "Đô Thị Tối Cường Trang Bức Hệ Thống",
+        "CHAPTER": [
+            {
+                "id": "2878242",
+                "name": "Chương 1: Trang bức hệ thống? Ta yêu thích!"
+            }
+        ],
+        "TOTALCHAPTER": "646",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đô Thị",
+        "AUTHOR": "Tất Hỏa",
+        "TRANS": "Liu",
+        "DESC": "Bộ đội đặc chủng Diệp Thu sau khi sống lại, thu được trang bức hệ thống, nhập chức công ty giải trí làm mỹ nữ đại minh tinh thiếp thân bảo an. <br />\r\n<br />\r\nTa một ngày không trang bức liền cả người không thoải mái, các loại tư thế trang bức toàn bộ đều đến. <br />\r\n<br />\r\nGọi điện thoại cho ta không tiếp, có lỗi với ta khẳng định chính tại trang bức. <br />\r\n<br />\r\nNếu như ta không phải tại trang bức, chính là ở đi hướng về trang bức trên đường, người sống sót nếu là không trang bức, cùng hàm cá có cái gì khác biệt đâu?<br />\r\n<br />\r\nThu được trang bức hệ thống, kẻ thù toàn bộ nghiền ép! Mỹ nữ toàn bộ đến hoài. <br />\r\n<br />\r\nKhông phục ngươi cũng trang bức à? Chỉ có điều đừng giả bộ bức không được ngược lại bị thảo!",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

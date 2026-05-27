@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "9378",
+        "NAME": "Tu Giả Chư Giới",
+        "CHAPTER": [
+            {
+                "id": "3174387",
+                "name": "Chương 1: Biên Hoang thiếu niên"
+            }
+        ],
+        "TOTALCHAPTER": "56",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp, Huyền Ảo",
+        "AUTHOR": "Khinh Ngữ Vi Âm",
+        "TRANS": "Saya Yuki",
+        "DESC": "Ngàn năm trước đó, một trận hạo kiếp dẫn đến Tu Chân Thế Giới ầm ầm phá toái, hóa thành bây giờ to to nhỏ nhỏ ba ngàn Chư Giới.<br />\r\n<br />\r\n\tHậu thế Tu giả, tu hành đồng thời qua lại Tam Thiên Giới ở giữa, không ngừng lịch luyện cùng tìm tòi bí mật.<br />\r\n<br />\r\n\tTu giả thế giới phá toái chân tướng? Hạo kiếp liệu sẽ lại xuất hiện? Thế giới có thể hay không đúc lại?<br />\r\n<br />\r\nCầu vote 10 cuối mỗi chương.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

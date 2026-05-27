@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "4093",
+        "NAME": "Thi Vương",
+        "CHAPTER": [
+            {
+                "id": "1501835",
+                "name": "Chương 1\tDị khảo"
+            }
+        ],
+        "TOTALCHAPTER": "71",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp",
+        "AUTHOR": "Phiêu Vũ",
+        "TRANS": "loveCV",
+        "DESC": "Truyện xảy ra tr&ecirc;n V&ocirc; Tận giới, l&agrave; thế giới ti&ecirc;n hiệp của bản th&acirc;n t&ocirc;i, thế giới n&agrave;y trong t&aacute;c phẩm kia được nhắc đến tương đối r&otilde; r&agrave;ng ngay từ đầu, c&ograve;n trong t&aacute;c phẩm n&agrave;y, xin để mọi người t&igrave;m hiểu n&oacute; theo từng chương vậy.Tr&ecirc;n V&ocirc; Tận giới c&oacute; rất nhiều tộc loại, n&ecirc;n khi t&ocirc;i nhắc đến con người, ch&iacute;nh l&agrave; nhắc đến tất cả mọi tộc lo&agrave;i, chứ kh&ocirc;ng phải n&oacute;i ri&ecirc;ng nh&acirc;n loại.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

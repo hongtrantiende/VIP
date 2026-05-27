@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "5477",
+        "NAME": "Đấu Y",
+        "CHAPTER": [
+            {
+                "id": "1945831",
+                "name": "Chương 1: Phế vật"
+            }
+        ],
+        "TOTALCHAPTER": "10",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp, Huyền Ảo",
+        "AUTHOR": "Huyền Huyễn",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Lâm Khiếu Đương, một cửu dương chân thể, một phế vật trời sinh, một kẻ được coi là sỉ nhục của Lâm gia.<br />\r\n<br />\r\nChàng, Lâm Khiếu Đường, đã phải chịu biết bao sỉ nhục cay đắng nhưng chàng vẫn lạc quan, vui vẻ, và nhiệt tình giúp đỡ bạn bè bằng hữu!<br />\r\n<br />\r\nChàng sẽ sống bình phàm như bao người khác nếu không có một đại sự xảy ra, một đại sự thay đổi cả cuộc đời chàng!<br />\r\n<br />\r\nTa  Lâm Khiếu Đường  muốn thành cường giả và nhất định sẽ thành cường giả!<br />\r\n<br />\r\nNào chúng ta hãy cùng Lâm Khiếu Đương, cùng chàng đi trên con đường trở thành cường giả, con đường vinh quang nhưng cũng chứa đựng biết bao mồ hôi,nước mắt và máu, con đường tất yếu đi đến đỉnh cao cường giả!",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

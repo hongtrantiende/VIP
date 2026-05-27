@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "10117",
+        "NAME": "Vô Hạn Xuyên Qua",
+        "CHAPTER": [
+            {
+                "id": "3553157",
+                "name": "Chương 1:  Nguyệt Vô Tâm!"
+            }
+        ],
+        "TOTALCHAPTER": "1",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Xuyên Không, Nữ Hiệp",
+        "AUTHOR": "thaonguyen2535",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Nàng xuyên qua!<br />\r\n<br />\r\n\"Thiên a! Đã thế còn cái hệ thống lúc nào cũng bắt ta phải làm nhiệm vụ, nếu không sẽ mạt sát\"<br />\r\n<br />\r\n\"Nhiệm vụ ban phát : Cưỡng hôn Bách Hoa Cốc Thánh Nữ . (Chú * Thất bại: Mạt sát)\"<br />\r\n<br />\r\n\"Nhiệm vụ chung cực: Thành lập hậu cung. (Chú * Thất bại: Mạt sát)\"<br />\r\n<br />\r\n\"Ta là nữ có được không a!!!!\" Nàng bất đắc dĩ nói.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "2627",
+        "NAME": "Siêu Cấp Bật Mã Ôn",
+        "CHAPTER": [
+            {
+                "id": "857503",
+                "name": "Chương 1: Cái nào thời loạn lạc không có ly biệt - Quyển 1"
+            }
+        ],
+        "TOTALCHAPTER": "18",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo",
+        "AUTHOR": "Nhất Chích Tiên",
+        "TRANS": "Hổ",
+        "DESC": "L&ocirc;ng d&agrave;i kh&ocirc;ng nhất định ch&iacute;nh l&agrave; Ngộ Kh&ocirc;ng! ! !",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

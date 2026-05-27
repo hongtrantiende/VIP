@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "11177",
+        "NAME": "Cửu Tiêu Tiên Đồ",
+        "CHAPTER": [
+            {
+                "id": "3697810",
+                "name": "Chương 1: Thiên Hồng hàng thế"
+            }
+        ],
+        "TOTALCHAPTER": "60",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp",
+        "AUTHOR": "Đại Tư Huynh",
+        "TRANS": "thanhtan",
+        "DESC": "Một kiếm nơi tay, hỏi Cửu Tiêu Thiên Ngoại, Đạo ở nơi nào?<br />\r\n<br />\r\n\tĐường dài dài đằng đẵng, tiên đồ vô lượng, Trường Sinh không biết đường về.<br />\r\n<br />\r\n\tChính tà lẫn lộn không rõ, cạm bẫy trải rộng, khi tự lấy thân nhập đạo, khai thiên phách lộ.<br />\r\n<br />\r\n\tChỉ cầu tiên đạo, không hỏi thông thiên lộ trình.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

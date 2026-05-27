@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "2592",
+        "NAME": "Bắc Dương Kiêu Hùng",
+        "CHAPTER": [
+            {
+                "id": "848328",
+                "name": "Chương 1: Tân Sửu năm ánh rạng đông"
+            }
+        ],
+        "TOTALCHAPTER": "362",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Lịch Sử",
+        "AUTHOR": "Vũ Thiên Hạ Vũ",
+        "TRANS": "Tiểu La",
+        "DESC": "1901 năm, Triệu Đ&ocirc;ng V&acirc;n đi tới nơi n&agrave;y c&aacute;i tr&agrave;n đầy khuất nhục lại tr&agrave;n đầy hy vọng thời đại, hơn nữa trở th&agrave;nh Bắc Dương l&iacute;nh mới một g&atilde; quan qu&acirc;n. M&agrave; lại nh&igrave;n hắn như thế n&agrave;o từng bước một đi về hướng đỉnh phong, trở th&agrave;nh một t&ecirc;n tung ho&agrave;nh trong biển b&ecirc;n ngo&agrave;i lớn ki&ecirc;u h&ugrave;ng! L&atilde;o nh&acirc;n s&aacute;ch mới, đ&atilde; bản ho&agrave;n tất",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

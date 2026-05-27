@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "1389",
+        "NAME": "Cộng Tẩm",
+        "CHAPTER": [
+            {
+                "id": "575023",
+                "name": "Chương 1: Cộng tẩm"
+            }
+        ],
+        "TOTALCHAPTER": "119",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Ngôn Tình",
+        "AUTHOR": "Tiếu Giai Nhân",
+        "TRANS": "Rich",
+        "DESC": "Đời n&agrave;y,&nbsp;<br /><br />Đường Hoan đại tiếc: Tr&agrave;nh trước l&atilde;nh buồn nam, gặp hạn.&nbsp;<br /><br />Tống Mạch rất may: Đ&atilde;i đến c&aacute;i hồ ly nữ, bu&ocirc;n b&aacute;n lời.&nbsp;<br /><br />Về phần bọn họ l&agrave; như vậy l&agrave;m sao c&ugrave;ng nhau......&nbsp;<br /><br />Đường Hoan &aacute;m th&iacute;ch, mắt l&eacute; xem l&atilde;nh nam.&nbsp;<br /><br />Tống Mạch cười lạnh, muốn chết ngươi đ&atilde; n&oacute;i.&nbsp;<br /><br />Kỳ thật kia cửu tr&agrave;ng trong mộng gặp nhau, hắn c&ugrave;ng n&agrave;ng, vĩnh viễn đều nhớ r&otilde;.&nbsp;<br /><br /><br />Đường Hoan muốn ăn thịt, cổ bị mạt đem tử chưa chết,&nbsp;<br /><br />Tống Mạch bị k&ecirc; đơn, h&ocirc;n m&ecirc; bất tỉnh nhất trụ k&igrave;nh thi&ecirc;n.&nbsp;<br /><br />L&agrave; hai thi hai mệnh, vẫn l&agrave;...&nbsp;",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

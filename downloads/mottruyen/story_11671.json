@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "11671",
+        "NAME": "Thánh Cảnh Chi chiến",
+        "CHAPTER": [
+            {
+                "id": "3847911",
+                "name": "Bí ẩn đạo ảnh"
+            }
+        ],
+        "TOTALCHAPTER": "15",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Trùng Sinh",
+        "AUTHOR": "hoangthiepvippro@",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Khí lực! Nguyên chi địa, nguyên chi thiên<br />\r\nThiên địa dung hợp, khí lực hoà quyện<br />\r\n<br />\r\nSinh nguyên lực.<br />\r\n<br />\r\nTrên con đường cường giả chí tôn, ai nổi? ai chìm?<br />\r\n\"Ta không quan tâm! Ta là chí tôn<br />\r\nThần cản!ta trảm thần, thánh cản! ta chém thánh.\"",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

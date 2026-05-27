@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "10035",
+        "NAME": "Chiến Thần Chi Vương",
+        "CHAPTER": [
+            {
+                "id": "3545874",
+                "name": "Chương 1: Mưa đêm sát hại"
+            }
+        ],
+        "TOTALCHAPTER": "1290",
+        "IMG": "https://static.cdnno.com/poster/chien-than-chi-vuong/150.jpg",
+        "CAT": "Dị Năng",
+        "AUTHOR": "Tùng Lâm Lang",
+        "TRANS": "Hảo",
+        "DESC": "~~~~Thể loại qu&acirc;n sự hi&ecirc;n đại, dị năng<br /> L&yacute; Duệ, một c&aacute;i Mục D&acirc;n thiếu ni&ecirc;n, nh&acirc;n duy&ecirc;n tế hội, bị cuốn v&agrave;o chiến tranh v&ograve;ng xo&aacute;y, kh&ocirc;ng thể kh&ocirc;ng phấn khởi phản k&iacute;ch, trải qua gặp trắc trở, rốt cục trở th&agrave;nh tối thần b&iacute; Long Nha bộ đội một c&aacute;i sắc b&eacute;n Long Nha, v&igrave; huyết hải th&acirc;m cừu, v&igrave; quốc gia sứ mệnh, vi t&ocirc;n nghi&ecirc;m c&ugrave;ng tự do m&agrave; chiến, viết l&ecirc;n ra một đoạn Chiến Thần Chi Vương Thiết Huyết Truyền Kỳ!",
+        "THUMB": "https://static.cdnno.com/poster/chien-than-chi-vuong/150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

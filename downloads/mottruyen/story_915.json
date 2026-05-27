@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "915",
+        "NAME": "Vị Diện Khai Thác Giả",
+        "CHAPTER": [
+            {
+                "id": "222256",
+                "name": "Chương 1: Hai triệu đồng yên"
+            }
+        ],
+        "TOTALCHAPTER": "615",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Khoa Huyễn",
+        "AUTHOR": "Ôn Nhu",
+        "TRANS": "migen",
+        "DESC": "Bởi v&igrave; vấn đề t&igrave;nh cảm từ chức Ninh Tr&iacute; Viễn, trong l&uacute;c v&ocirc; t&igrave;nh nhưng nắm giữ xuy&ecirc;n qua đến điện ảnh c&ugrave;ng TV vị diện năng lực.\r\n<br />Khi Ninh Tr&iacute; Viễn mang theo vị diện thương nh&acirc;n ban đầu l&yacute; tưởng, cẩn thận từng li từng t&iacute; một địa đem ch&iacute;nh m&igrave;nh chạm tay đưa về ph&iacute;a từng c&aacute;i từng c&aacute;i dị vị diện sau khi. . .\r\n<br />Nh&acirc;n sinh liền như vậy trở n&ecirc;n kh&ocirc;ng phổ th&ocirc;ng hơn nữa! \"Chỉ c&oacute; khai th&aacute;c c&agrave;ng nhiều vị diện, đế quốc mới c&oacute; thể c&agrave;ng th&ecirc;m cường đại!\" Ngồi ở hỗn độn cấp tr&ecirc;n tinh hạm Ninh Tr&iacute; Viễn, n&oacute;i như vậy.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "11613",
+        "NAME": "Thần Cấp Nhã",
+        "CHAPTER": [
+            {
+                "id": "3836116",
+                "name": "Chương 1: Đạn pháo bình thường bay ra ngoài"
+            }
+        ],
+        "TOTALCHAPTER": "95",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Dị Năng",
+        "AUTHOR": "Cửu Tiêu Hồng Hộc",
+        "TRANS": "Augustine",
+        "DESC": "Bất ngờ mà được cổ kỳ thư, luyện thành Thiên Nhãn nhìn xuyên điểu ty thanh niên Trương Dương vận mệnh chạm đáy đàn hồi, kết bạn mỹ nữ lão bản, tuyệt mỹ giáo hoa, nhà giàu thiên kim, bá đạo nữ hoa khôi cảnh sát, nóng bỏng nữ chủ trì, dùng nó đến đổ thạch kiếm tiền, trị bệnh cứu người, trần ác Dương Thiện, tiêu diệt hoạ ngoại xâm, diệt trừ nội ưu, trở thành vô số mỹ nữ bên người hộ hoa sứ giả.<br />\r\n<br />\r\nỦng hộ 1 kim đậu =10c, 1NP=5c",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

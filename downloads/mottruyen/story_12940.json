@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "12940",
+        "NAME": "Ta Tặng Người Một Nhành Hoa",
+        "CHAPTER": [
+            {
+                "id": "4177394",
+                "name": "Chương 1: Bất hối"
+            }
+        ],
+        "TOTALCHAPTER": "2",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Ngôn Tình, Xuyên Không",
+        "AUTHOR": "Diệp Mộc Nhiên",
+        "TRANS": "Sản Sản",
+        "DESC": "Ta tặng người một nhành hoa<br />\r\nNgười tặng lại một trái tim buốt giá<br />\r\nTa hào phóng một trái tim sâu nặng<br />\r\nNgười keo kiệt dù là một ánh nhìn<br />\r\nTa gửi người một đời hạnh phúc<br />\r\nNgười trả lại một kiếp bi ai...",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

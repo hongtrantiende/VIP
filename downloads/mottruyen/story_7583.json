@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "7583",
+        "NAME": "U Minh Trinh Thám",
+        "CHAPTER": [
+            {
+                "id": "2681723",
+                "name": "Chương 1: U Hồn Ngày 14 Tháng 7"
+            }
+        ],
+        "TOTALCHAPTER": "22",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Dị Năng, Khoa Huyễn",
+        "AUTHOR": "Lão Thiên Thúc Thúc",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Một thám tử tư có được huyết mạch bị ô uế, trong nhà lại nuôi dưỡng một đại la lỵ cũng có huyết mạch ô uế tương tự như mình, trong những sự kiện linh dị thần bí của phương đông lẫn phương tây xen lẫn âm mưu thật lớn nằm ẩn sâu trong bóng tối... Quỷ hồn, yêu quái, khu ma sư, tà ác pháp sư, cửu vĩ thiên hồ, yêu vật thời Trung cổ, cương thi ngàn năm, ác ma Minh giới...lần lượt phơi bày trong những vụ án nhìn qua tưởng chừng là kẻ sát nhân điên cuồng biến thái gây ra, nhưng lại ẩn giấu những bí mật kinh thiên động địa như thế nào?",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

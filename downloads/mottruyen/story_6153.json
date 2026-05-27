@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "6153",
+        "NAME": "Hành Trình Pokemon",
+        "CHAPTER": [
+            {
+                "id": "2198882",
+                "name": "Chương 1:nói chuyện"
+            }
+        ],
+        "TOTALCHAPTER": "28",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đồng Nhân",
+        "AUTHOR": "ragon234",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Lần Đầu Mình Viết truyên lên có gì sai xót mong mọi người lượng thứ. Truyên về chuyến hành trình pokemon của một thanh  niên",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

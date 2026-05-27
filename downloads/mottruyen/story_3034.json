@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "3034",
+        "NAME": "Ma Trang",
+        "CHAPTER": [
+            {
+                "id": "1038075",
+                "name": "Chương 1: Lần đầu gặp gỡ -Q1"
+            }
+        ],
+        "TOTALCHAPTER": "1098",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo",
+        "AUTHOR": "Chàng Phá Nam Tường",
+        "TRANS": "Lôi Đế",
+        "DESC": "T&ocirc; Đường, đeo v&agrave;o mặt nạ m&agrave;u v&agrave;ng &oacute;ng, h&oacute;a th&acirc;n ma trang v&otilde; sĩ, lấy tr&iacute; tuệ c&ugrave;ng dũng kh&iacute;, vượt qua v&ocirc; số gian nan hiểm trở, đứng ở Nh&acirc;n giới đỉnh cao.<br /> <br /> Nhi&ecirc;n y&ecirc;u ma thời loạn lạc, Nh&acirc;n giới l&acirc;m nguy, xem T&ocirc; Đường l&agrave;m sao viết một đoạn k&igrave;nh thi&ecirc;n sử thi.<br /> <br /> Văn thao vũ lược b&igrave;nh thi&ecirc;n hạ,<br /> <br /> Khuynh thế hồng nhan chung ta t&acirc;m.<br /> <br /> Đều n&oacute;i v&ocirc; địch tối c&ocirc; quạnh,<br /> <br /> C&oacute; thể nghe thi&ecirc;n lộ vạn cốt kh&ocirc;.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

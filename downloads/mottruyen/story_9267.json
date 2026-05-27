@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "9267",
+        "NAME": "Siêu Phẩm Tiểu Nông Dân",
+        "CHAPTER": [
+            {
+                "id": "3156205",
+                "name": "Chương 1: Dương Đào cái này một nhà"
+            }
+        ],
+        "TOTALCHAPTER": "60",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp, Đô Thị",
+        "AUTHOR": "Mịch Tà",
+        "TRANS": "Saya Yuki",
+        "DESC": "Xuất hiện chút xíu ngoài ý muốn bị khai trừ Trinh Sát Binh vương, trong lúc vô tình đạt được tàn khuyết tu chân truyền thừa; chính mình vốn chính là đủ loại ruộng, luyện luyện đan, theo đuổi theo đuổi cái gì trường sinh các loại, thế nhưng là Ác Bá mỹ nữ các ngươi đến làm cái gì? Ta đan dược cũng không có nhiều...<br />\r\n<br />\r\nCầu vote 10 cuối mỗi chương.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

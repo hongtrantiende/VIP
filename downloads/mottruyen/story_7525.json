@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "7525",
+        "NAME": "Diêm Đế",
+        "CHAPTER": [
+            {
+                "id": "2661644",
+                "name": "Chương 1: Tiêu Dao"
+            }
+        ],
+        "TOTALCHAPTER": "9",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp, Huyền Ảo",
+        "AUTHOR": "kaisfa",
+        "TRANS": "Nhiều Converter",
+        "DESC": "T&aacute;c phẩm đầu tay, tập t&agrave;nh viết truyện mong mọi người cho &yacute; kiến, b&igrave;nh luận......",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

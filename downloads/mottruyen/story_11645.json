@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "11645",
+        "NAME": "Hokage Chi Cân Đối Chi Đạo",
+        "CHAPTER": [
+            {
+                "id": "3843409",
+                "name": "Chương 1: Thế giới Naruto tiểu thuyết: Hokage chi cân đối nhẫn đạo tác giả: Rau giá không đùa"
+            }
+        ],
+        "TOTALCHAPTER": "226",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Xuyên Không, Đồng Nhân",
+        "AUTHOR": "Đậu Nha Bất Đậu",
+        "TRANS": "devileyes357",
+        "DESC": "Tóm tắt : Một cái kế thừa tứ đại Ninja của LoL xong phá Hokage cố sự",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

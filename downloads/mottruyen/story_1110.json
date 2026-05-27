@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "1110",
+        "NAME": "Đại Âm Dương Chân Kinh",
+        "CHAPTER": [
+            {
+                "id": "373820",
+                "name": "Chương 1: Cô Mộ Tô thị"
+            }
+        ],
+        "TOTALCHAPTER": "988",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Dị Giới",
+        "AUTHOR": "Độc Du",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Nh&acirc;n thể 108 khiếu huyệt, th&ocirc;ng thấu người vi Thần khiếu, tắc nghẽn người vi Tử khiếu, trời sinh Cửu Thần khiếu l&agrave; được tu luyện. C&ocirc; Mộ th&agrave;nh thi&ecirc;n t&agrave;i thiếu ni&ecirc;n T&ocirc; Dạ, trời sinh hai mươi t&aacute;m Thần khiếu, kh&ocirc;ng đến t&aacute;m tuổi liền c&oacute; được ba mươi s&aacute;u Thần khiếu, lại thủy chung kh&ocirc;ng thể đạp v&agrave;o ch&iacute;nh thức Linh tu chi lộ.<br /><br />Mười năm ma luyện, ngh&igrave;n lần thất bại, cuối c&ugrave;ng lấy được cơ duy&ecirc;n.<br /><br />Thượng Cổ ch&acirc;n kinh, bất diệt ph&aacute;p ấn, cửu chuyển &Acirc;m Dương, tung ho&agrave;nh vạn giới.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

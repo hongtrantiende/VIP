@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "7997",
+        "NAME": "Bản Khế Ước Hồi Sinh",
+        "CHAPTER": [
+            {
+                "id": "2782311",
+                "name": "Chương 1 Bản Khế Ước"
+            }
+        ],
+        "TOTALCHAPTER": "1",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo, Xuyên Không, Trùng Sinh",
+        "AUTHOR": "lequanglinh",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Bản khế ước hình thành giúp ta sống lại ở thế giới mà ta mong muốn<br />\r\nThế giới này mới là thế giới của ta hahahaha.....<br />\r\nThật như thế<br />\r\n-----------------------------<br />\r\n\"Tỉnh lại đi, nàng chưa chết mà đúng không mở mắt đi...... grào...grào\"<br />\r\nCường giả vi tôn, cái lý thuộc về kẻ mạnh <br />\r\nKhông có năng lực thì mãi chỉ là kẻ bị chà đạp thế giới này là thế đó, nó không phải giấc mơ<br />\r\n-----------------------------------------<br />\r\nLần đầu tui viết nghen mấy bạn",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "7021",
+        "NAME": "Huyết Long Ma Đế",
+        "CHAPTER": [
+            {
+                "id": "2496524",
+                "name": "Chương 1: Chờ đó cho ta"
+            }
+        ],
+        "TOTALCHAPTER": "761",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo",
+        "AUTHOR": "Cửu Long Trì Thủy",
+        "TRANS": "808",
+        "DESC": "Mỹ nữ, tài phú, địa vị, quyền lực, có đôi khi ngươi cùng chúng cự ly chỉ là một mai giới chỉ mà thôi!<br />\r\n<br />\r\n\tTu Chân Đại Thế Giới thiếu niên, đạt được đến từ Tiên giới thần bí giới chỉ, lại bởi vậy đột tử. Bất quá, họa phúc tương y, hắn đeo cái giới chỉ này, vương giả trở về!",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

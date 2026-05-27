@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "4988",
+        "NAME": "Toàn Chức tiên sư",
+        "CHAPTER": [
+            {
+                "id": "1753345",
+                "name": "Chương 1: Hạo Nguyệt truyền thuyết"
+            }
+        ],
+        "TOTALCHAPTER": "64",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp",
+        "AUTHOR": "ngày hữu kiện mà",
+        "TRANS": "๖ۣۜNgố๖ۣۜNgố",
+        "DESC": "Đấu với trời, kỳ nhạc vô cùng;<br />\r\n<br />\r\n\tĐấu với đất, kỳ nhạc vô cùng;<br />\r\n<br />\r\n\tCùng Nhân Đấu, kỳ nhạc vô cùng!<br />\r\n       <br />\r\n       mọi người nhớ thanks sau mỗi chương truyện và ai đang on facebook thì like luôn nhé .",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

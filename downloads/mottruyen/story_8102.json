@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "8102",
+        "NAME": "Trọng Tạp Chiến Xa Tại Mạt Thế 1",
+        "CHAPTER": [
+            {
+                "id": "4211537",
+                "name": "Chương 1: Tận thế sắt thép chiến xa"
+            }
+        ],
+        "TOTALCHAPTER": "10",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Dị Năng, Khoa Huyễn, Cạnh Kỹ, Đồng Nhân, Mạt Thế",
+        "AUTHOR": "Bạch Vũ Hàm",
+        "TRANS": "Đỗ Long Ma Đế",
+        "DESC": "\"Luôn có điêu dân muốn hại trẫm!\"<br />\r\n<br />\r\n\"Tận thế lập tức tới, ta phải sinh tồn được!\"<br />\r\n<br />\r\nBị hại vọng tưởng chứng người bệnh Trầm Thông, từ online thấy người khác tuyên truyền 2022 cuối năm là thế giới tận thế, lập tức tin thuyết pháp này, tránh ở nhà không ra khỏi cửa, nhất tâm chế tạo thuộc về mình tận thế chiến xa, tôi luyện mình sinh tồn năng lực.<br />\r\n<br />\r\nThẳng đến có một ngày.<br />\r\n<br />\r\nTận thế thực sự.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

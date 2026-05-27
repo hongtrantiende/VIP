@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "1328",
+        "NAME": "Phong Lưu Thám Hoa",
+        "CHAPTER": [
+            {
+                "id": "547605",
+                "name": "Chương 1: Minh Nguyệt lâu trong Thám Hoa Lang!"
+            }
+        ],
+        "TOTALCHAPTER": "321",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Lịch Sử",
+        "AUTHOR": "Phong Yên Tịnh",
+        "TRANS": "Kinta",
+        "DESC": "Một đoạn c&acirc;u trầm lịch sử, một loại vượt qua Lu&acirc;n Hồi. Tống Dịch lấy kỳ lạ xuy&ecirc;n qua phương thức đi tới Đại Triệu, cuối c&ugrave;ng lang bạt ra một mảnh bao la thi&ecirc;n hạ. Nhu t&igrave;nh c&ugrave;ng nhiệt huyết, truyền kỳ c&ugrave;ng bất hủ, một c&aacute;i người \"xuy&ecirc;n việt\" giọng ch&iacute;nh chi ca!",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

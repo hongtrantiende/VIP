@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "7284",
+        "NAME": "Tối Cường Y Thánh",
+        "CHAPTER": [
+            {
+                "id": "2592421",
+                "name": "Chương 1: Giúp ngươi bài bài khí"
+            }
+        ],
+        "TOTALCHAPTER": "3864",
+        "IMG": "https://static.cdnno.com/poster/toi-cuong-y-thanh/150.jpg",
+        "CAT": "Đô Thị",
+        "AUTHOR": "Tả Nhĩ Tư Niệm",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Mang theo một thân thông thiên bản lĩnh hung hăng trở về.<br />\n<br />\nBiết chữa bệnh, biết đoán mệnh, biết chế thuốc, biết bày trận, biết luyện phù. . .<br />\n<br />\n\"Phía trên thế giới này không có ta không làm nổi sự tình!\". Trầm Phong.",
+        "THUMB": "https://static.cdnno.com/poster/toi-cuong-y-thanh/150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

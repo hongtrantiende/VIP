@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "6944",
+        "NAME": "Harry Potter Và Phòng Ngự Thuật Khóa Lão Sư",
+        "CHAPTER": [
+            {
+                "id": "2463376",
+                "name": "Chương 1: Ra sân"
+            }
+        ],
+        "TOTALCHAPTER": "442",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Khoa Huyễn, Đồng Nhân",
+        "AUTHOR": "Trương đại gia 01",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Đ&acirc;y l&agrave; 1 bộ HP kh&aacute; hay theo ys kiến của m&igrave;nh. Nội dung cơ bản l&agrave; a 1 a Lockhart thu dc tr&iacute; nhớ của anh TQ n&agrave;o đấy n&ecirc;n biết trước tương lai v&agrave; t&igrave;m c&aacute;ch thay đổi số phận sắp tới của m&igrave;nh. Ph&aacute; vỡ lời nguyền m&ocirc;n ph&ograve;ng chống ph&aacute;p thuật hắc &aacute;m (m&eacute;m chết) v&agrave; tham gia Hội Phượng Ho&agrave;ng.<br /> Hiện tại m&igrave;nh đọc đến chương 200 th&igrave; c&oacute; 2 em, 1 l&agrave; hermione 1 l&agrave; ch&aacute;u bộ trưởng bộ ph&aacute;p thuật.<br /> Truyện đ&atilde; ho&agrave;n th&agrave;nh, hơn 400 chương, hố kh&ocirc;ng s&acirc;u c&aacute;c bạn c&oacute; thể y&ecirc;n t&acirc;m nhảy :v.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

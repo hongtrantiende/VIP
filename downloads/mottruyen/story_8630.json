@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "8630",
+        "NAME": "Cực Lạc Tiên Thổ",
+        "CHAPTER": [
+            {
+                "id": "2958083",
+                "name": "Chương 1: Cổ Thiên Phong"
+            }
+        ],
+        "TOTALCHAPTER": "397",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp",
+        "AUTHOR": "Nhiều Converter",
+        "TRANS": "Nghiện",
+        "DESC": "Nhân Tộc, Ma Thú bộ tộc, Tự cổ trường tồn, tranh đấu không ngớt, vào hoàn cảnh quan trọng này, bao la Hoàng Triều, mây trắng trấn, một cái từ gia tộc suy tàn trung đi ra thiếu niên, hắn Quần Lâm mười ngọn thành trấn, lực áp cùng thời vô địch, nhìn hắn huy hoàng một đời .<br />\r\n<br />\r\n\tĐẳng cấp võ giả: Hậu thiên, Tiên Thiên, Chân Huyền, Thông Linh, phong vương, Hoàng Chủ, Chí Tôn, Thánh Giả, Đế Quân",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

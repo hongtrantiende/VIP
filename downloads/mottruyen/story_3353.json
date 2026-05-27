@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "3353",
+        "NAME": "Cửu Quan",
+        "CHAPTER": [
+            {
+                "id": "1163199",
+                "name": "Chương 1: Liễu trấn Vương gia - Quyển 1"
+            }
+        ],
+        "TOTALCHAPTER": "968",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp",
+        "AUTHOR": "Sơn Hà Vạn Đóa",
+        "TRANS": "Lôi Đế,  La Phong",
+        "DESC": "Vạn cổ trước, tam giới hỗn độn chi lực, thi&ecirc;n địa đại thế thai ngh&eacute;n chín thanh kỳ quan, ph&acirc;n t&aacute;n hạo vũ kh&ocirc;ng bị người biết.<br /><br />Ma quan, quỷ quan, y&ecirc;u quan, thần quan, ti&ecirc;n quan, phật quan. . .<br /><br />Ch&iacute;n quan mỗi người đều mang kỳ dị v&ocirc; thượng uy năng, vạn vạn năm, kh&ocirc;ng người hiểu thấu đ&aacute;o. Hạo vũ truyền thuyết, ch&iacute;n quan đ&ecirc;́n một, c&oacute; thể trấn tam giới!<br /><br />Thần b&iacute; xuy&ecirc;n qua thiếu ni&ecirc;n A Mộc, quan t&agrave;i điếm học đồ. Gặp may đ&uacute;ng dịp, trở th&agrave;nh t&agrave;n tạ ma quan chủ nh&acirc;n, đạp huyết m&agrave; tu, mở ra vạn vạn năm lu&acirc;n hồi chi m&ocirc;n.<br /><br />Ti&ecirc;n tịch, ma diệt, phật niết, y&ecirc;u vong! Nguy&ecirc;n lai, ta l&agrave; ứng kiếp m&agrave; sinh người, vạn vạn năm trước, c&oacute; nhiều như vậy truyền kỳ cố sự. Bởi vậy, ta muốn ch&iacute;n quan hợp nhất, m&igrave;nh ta v&ocirc; địch!",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

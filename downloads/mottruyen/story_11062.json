@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "11062",
+        "NAME": "Tận Thế Dung Sủng Hệ Thống",
+        "CHAPTER": [
+            {
+                "id": "3653006",
+                "name": "Chương1 : trời giáng hệ thống"
+            }
+        ],
+        "TOTALCHAPTER": "510",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Dị Năng, Mạt Thế",
+        "AUTHOR": "Vân Trung Y Phàm",
+        "TRANS": "❂Củ❣Chuối❣Vô❣Tình❂",
+        "DESC": "Y Phàm mang theo dung sủng hệ thống, đi đến một cái Zombie đầy đất, biến dị thú hoành hành thế giới, mời xem Y Phàm tại không thế bên trong mang theo sủng vật của hắn nhóm mạnh mẽ đâm tới, thu phục các loại mỹ nữ, đi đến nhân sinh đỉnh phong.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

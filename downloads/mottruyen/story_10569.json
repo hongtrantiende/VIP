@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "10569",
+        "NAME": "Tối Cường Xuyên Qua",
+        "CHAPTER": [
+            {
+                "id": "3518445",
+                "name": "Chương 1: Đọc nhiều quá cũng xuyên không"
+            }
+        ],
+        "TOTALCHAPTER": "1",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo, Võng Du, Xuyên Không",
+        "AUTHOR": "DT Ren",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Dương Tiểu Quân đọc 5000 chương tiểu thuyết \"Băng Nữ Vô Song\" trong hai tuần.<br />\r\nBất ngờ linh hồn xuyên qua, xuất hiện tại Vô Song Đại Lục.<br />\r\nMắt phải biến dị, xuất hiện Dị Nhãn có thể xem xét thuộc tính, công năng của tất cả mọi thứ.<br />\r\nVới hơn 5000 chương truyện trong đầu, đồng thời Dị Nhãn hỗ trợ, biết trước những sự kiện tương lai<br />\r\nHắn quyết định chà đạp thiên tài, càn quét tam giới.<br />\r\nP/s: Truyện đầu tay viết... mong các bạn quan tâm ủng hộ",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

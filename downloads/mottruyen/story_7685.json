@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "7685",
+        "NAME": "Phong Lưu Long Hoàng",
+        "CHAPTER": [
+            {
+                "id": "2703612",
+                "name": "Chương 1 : Thiên Linh Kiếm Tông"
+            }
+        ],
+        "TOTALCHAPTER": "1",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp, Huyền Ảo, Dị Giới, Xuyên Không",
+        "AUTHOR": "PhongNhiNhi",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Một thanh niên bỉ ổi , lưu manh , vô liêm sỉ xuyên đến dị gới cầm trên tay chí bảo của Long Tộc càn quét dị giới soạn một khúc Cực Phẩm Lưu Manh Truyền Kỳ",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

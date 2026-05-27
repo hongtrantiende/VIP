@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "7400",
+        "NAME": "Chiến Đội Lập Kỳ",
+        "CHAPTER": [
+            {
+                "id": "2619795",
+                "name": "Chương 1: Tạo nhân vật"
+            }
+        ],
+        "TOTALCHAPTER": "52",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Võng Du",
+        "AUTHOR": "MT",
+        "TRANS": "4vn",
+        "DESC": "Truyện kể về một thằng con trai có chút ngốc nghếch tham gia chơi một game giả lập nD. Một thằng ngốc tập chơi game vốn chẳng có gì đáng nói, nhưng kinh khủng thay khi hắn lập ra một tổ đội gồm những người tính cách quái gở, lập dị.<br />\r\n<br />\r\nGiơ cao phương châm: \"Sống là để thoải mái, chơi game là để tìm vui\", tổ đội của họ bước đi trên con đường chinh phục đỉnh cao.<br />\r\n<br />\r\n- Nhiệt huyết.<br />\r\n<br />\r\n- Sáng tạo.<br />\r\n<br />\r\n- Vui vẻ.<br />\r\n<br />\r\n...<br />\r\n<br />\r\nNhưng cũng đầy:<br />\r\n<br />\r\n- Ngu ngốc.<br />\r\n<br />\r\n- Lập dị.<br />\r\n<br />\r\n- Sợ chết.<br />\r\n<br />\r\n...<br />\r\n<br />\r\nHọ sẽ cùng chơi game như thế nào?",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "1785",
+        "NAME": "Hiệp Lam",
+        "CHAPTER": [
+            {
+                "id": "734260",
+                "name": "Chương 1: Ngoạn hư nội trắc"
+            }
+        ],
+        "TOTALCHAPTER": "74",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Võng Du",
+        "AUTHOR": "Tứ Thì Phong Vũ",
+        "TRANS": "Dao Nguyệt",
+        "DESC": "Nổi danh tr&ograve; chơi b&igrave;nh trắc vi&ecirc;n Dư Phong thụ mời tham dự t&acirc;n du 《 hiệp lam 》 nội trắc, bởi v&igrave; tuyển trạch nội dung vở kịch h&igrave;nh thức tiến nhập tr&ograve; chơi, dẫn đến ch&iacute;nh cấp đ&ugrave;a hỏng.<br /><br />Nội trắc một th&aacute;ng qua T&acirc;n thủ th&ocirc;n đều chưa thấy qua thế n&agrave;o ra b&igrave;nh dự b&aacute;o c&aacute;o?<br /><br />Ở v&ocirc; số miến tr&ocirc;ng mong trung, Dư Phong do dự lu&ocirc;n m&atilde;i, như thực chất n&oacute;i: \"Kỳ thực ta l&agrave; tiếp x&uacute;c đến tr&ograve; chơi hạch t&acirc;m nội dung, tương sẽ ảnh hưởng đ&aacute;o tr&ograve; chơi tương lai ph&aacute;t triển, sở dĩ kh&ocirc;ng phải l&agrave; kh&ocirc;ng viết b&igrave;nh dự b&aacute;o c&aacute;o, m&agrave; l&agrave; kh&ocirc;ng thể viết a!\"<br /><br />\"Đại thần, kh&ocirc;ng mạnh đi xuy ngưu thực sự kh&oacute; khăn như vậy sao?\" Ch&uacute;ng người &aacute;i mộ khinh bỉ.<br /><br />\"...\" Dư phong kh&ocirc;ng n&oacute;i g&igrave;, v&igrave; sao n&oacute;i thật đi hội kh&ocirc;ng ai tin ni?",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "1636",
+        "NAME": "Dị Giới Y Tiên",
+        "CHAPTER": [
+            {
+                "id": "670772",
+                "name": "Chương 1: Cử thế giai địch."
+            }
+        ],
+        "TOTALCHAPTER": "1228",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp",
+        "AUTHOR": "Hán Bảo",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Bạn th&iacute;ch truyện xuy&ecirc;n kh&ocirc;ng!<br /> <br /> Bạn th&iacute;ch thế giới tu ch&acirc;n, đạp kiếm phi h&agrave;nh, tranh t&agrave;i bằng ph&aacute;p bảo,&hellip;<br /> <br /> Bạn th&iacute;ch cả sự huyền ảo, với ma ph&aacute;p v&agrave; đấu kh&iacute;.<br /> <br /> Vậy &rdquo; dị thế y ti&ecirc;n &rdquo; kh&ocirc;ng nghi ngờ g&igrave; sẽ l&agrave; t&aacute;c phẩm y&ecirc;u th&iacute;ch của bạn.<br /> <br /> Muốn biết nội dung thế n&agrave;o xin vui l&ograve;ng đọc truyện sẽ r&otilde;&hellip;.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "10694",
+        "NAME": "Tuyệt Đại Huyền Tôn",
+        "CHAPTER": [
+            {
+                "id": "3553493",
+                "name": "Chương 1: Cướp ngưu"
+            }
+        ],
+        "TOTALCHAPTER": "120",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp, Huyền Ảo",
+        "AUTHOR": "Thất Bối Lặc",
+        "TRANS": "cstdlifecstd",
+        "DESC": "Một cái bị người gọi là kẻ ngu si cô nhi, dĩ nhiên là vạn năm trước thần giới Đế tôn chuyển thế! Phong thiên đại thuẫn dưới, quần ma loạn vũ! Huyền bảo huề loan sau cùng mười tám Đế phi, tìm về tam đại thánh bảo, bình ma loạn, quy nguyên một, thống nhất bạch loan, lại lên Đế vị! Đối mặt đến từ thần giới, linh giới, minh giới, nhân giới Tứ Giới chúng sinh đối với thánh bảo cùng thần Đế vị trí mơ ước cùng ngăn cản, huyền bảo huề năm đại binh đoàn, dương Huyền tôn đại kỳ, tung nam nhi nhiệt huyết. . .",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

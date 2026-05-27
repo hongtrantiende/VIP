@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "4338",
+        "NAME": "Long Dữ Liệt Diễm",
+        "CHAPTER": [
+            {
+                "id": "1565054",
+                "name": "Tự chương: Oran hỏa diễm"
+            }
+        ],
+        "TOTALCHAPTER": "181",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp, Huyền Ảo, Dị Giới",
+        "AUTHOR": "Liệt Diễm Chi Ca",
+        "TRANS": "๖ۣۜArt of ๖ۣۜTime",
+        "DESC": "trí tuệ lão thú nhân mang theo hắn nhân loại học sinh bắt đầu một đoạn kỳ diệu lữ trình, đang thi hành nhiệm vụ trên đường trong lúc vô tình chạm tới một đoạn phủ đầy bụi hơn mười năm chuyện cũ. Một lớn lao thế giới liền triển khai như vậy. <br />\r\n<br />\r\nNhân loại thiếu niên cùng Long tộc công chúa. Hắn cùng nàng, một tượng trưng sinh mệnh... một tượng trưng hủy diệt. Thiếu niên làm sao từng bước một sa đọa thành làm ác ma.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

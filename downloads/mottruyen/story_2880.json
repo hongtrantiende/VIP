@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "2880",
+        "NAME": "Võng du chi ngã bất phối",
+        "CHAPTER": [
+            {
+                "id": "973774",
+                "name": "Chương1: Trải nghiệm ban sơ cuộc sống ở chung"
+            }
+        ],
+        "TOTALCHAPTER": "25",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đô Thị, Võng Du",
+        "AUTHOR": "Dịch Tu La",
+        "TRANS": "Dịch Tu La",
+        "DESC": "Giới thiệu: <br />\r\nLăng Dương bỏ 500 đồng mua một acc nữ, nào ngờ acc này còn được khuyến mãi thêm một đức lang quân mua-rồi-miễn-trả-lại, tiếc rẻ 500 đồng, Lăng Dương đành chấp nhận người chồng mới này, dấn thân vào kiếp nhân yêu có chồng đầy sóng gió. Hay nói cách khác đây là cuộc sống đầy náo nhiệt và chộn rộn của các chàng sinh viên trong một làng đại học, thích spam trong box Homosexual của trường ~~~<br />\r\n<br />\r\nNội dung nhãn: vui mừng oan gia khế ước tình nhân thi đấu thể thao âm soa dương thác<br />\r\n<br />\r\nTìm tòi then chốt tự: vai chính: Lăng Dương ( Linh Đang Nhi / Tiểu Linh Dương ), Diệp Lãng ( Dạ Lang ) ┃ phối hợp diễn: Mạnh Hổ, Bạch Lung, Từ Hiền, Vệ Thi, Đường Tư Văn, Thích Phong, Hạ Gia Uy, hồ lê ┃ cái khác: bàn phím võng du, trường cao đẳng sinh, mến giày phích",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

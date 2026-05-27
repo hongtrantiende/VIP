@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "5076",
+        "NAME": "Huyền Thiên Chiến Tôn",
+        "CHAPTER": [
+            {
+                "id": "1791557",
+                "name": "Chương 01: Thần bí điển tịch"
+            }
+        ],
+        "TOTALCHAPTER": "1820",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp, Huyền Ảo",
+        "AUTHOR": "Yêu Nguyệt Dạ",
+        "TRANS": "๖ۣۜKing๖ۣۜKiller",
+        "DESC": "Hắn bị gia tộc kỳ thị, ngẫu nhiên đạt được Linh Châu nhận chủ, từ đó nghịch thiên phá mệnh, rửa sạch nhục nhã! Bằng vào một quyển bí tịch, tu luyện đắc đạo, nhìn hắn đạp phá Cửu Trọng Sinh Thiên, chấp chưởng càn khôn áo nghĩa! Thành tựu vô thượng Huyền Thiên Chiến Tôn! Bất tử Vũ Tôn",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

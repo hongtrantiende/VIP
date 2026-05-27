@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "7661",
+        "NAME": "Đột Kích : Restarted",
+        "CHAPTER": [
+            {
+                "id": "2698380",
+                "name": "Chương 1 : Phản bội"
+            }
+        ],
+        "TOTALCHAPTER": "3",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đô Thị, Dị Năng, Quân Sự, Trùng Sinh",
+        "AUTHOR": "deanandy999",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Một kẻ bị chính người bạn thân , người anh em tốt nhất của mình phản bội , bị giết . Nhưng không ngờ , một sự may mắn lạ thường xảy ra . Hắn cêết , quay trở về quá khứ và viết nên câu chuyện truyền kỳ của chính mình....",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

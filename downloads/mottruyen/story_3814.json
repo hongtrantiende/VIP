@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "3814",
+        "NAME": "Âm Dương Quỷ Thám",
+        "CHAPTER": [
+            {
+                "id": "1318385",
+                "name": "Chương 1:  tổ huấn"
+            }
+        ],
+        "TOTALCHAPTER": "1240",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Nhiều Converter",
+        "AUTHOR": "Thu Phong Hàn",
+        "TRANS": "trang4mat",
+        "DESC": "Tr&ecirc;n đời độc nhất v&ocirc; nhị cửa h&agrave;ng --- quỷ sự t&igrave;nh chuy&ecirc;n m&ocirc;n điếm<br /><br />Tr&ecirc;n đời độc nhất v&ocirc; nhị chức nghiệp --- quỷ sự t&igrave;nh truyền nh&acirc;n<br /><br />C&aacute;i gọi l&agrave; quỷ sự t&igrave;nh, chỉ l&agrave; nhằm v&agrave;o quỷ m&agrave; n&oacute;i, v&ocirc; luận quỷ sinh bệnh bị thương, bị quỷ khi dễ c&ugrave;ng với tại trong cuộc sống đ&atilde; bị hết thảy oan khuất",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

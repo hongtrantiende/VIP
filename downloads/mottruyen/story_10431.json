@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "10431",
+        "NAME": "Vận Mệnh Xiềng Xích",
+        "CHAPTER": [
+            {
+                "id": "3530726",
+                "name": "Đôi lời tác giả"
+            }
+        ],
+        "TOTALCHAPTER": "1",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo, Dị Giới, Nữ Hiệp",
+        "AUTHOR": "lengocthach12@",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Cuốn theo dòng vận mệnh     -Trôi-<br />\r\nLạc giữa vòng luân hồi       -Trùng lặp-<br />\r\n<br />\r\nVà....<br />\r\n     ....Cười<br />\r\n<br />\r\nKhi ánh sáng và bóng tối xuất hiện <br />\r\nChia cắt! Lại xác nhập<br />\r\nXoắn lấy nhau! rồi xoay tròn<br />\r\nPhản chiếu ánh hào quang chưa tắt<br />\r\nNhảy múa trên lưỡi gươm vận mệnh<br />\r\n<br />\r\nCắt nát tất cả....<br />\r\n                        ......Giải phóng<br />\r\nHay...<br />\r\n         ....Lụi tàn!!!!.....<br />\r\n<br />\r\n                                         -Vận Mệnh Xiềng Xích-",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

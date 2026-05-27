@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "12235",
+        "NAME": "Linh Thú Cung Ứng Thương",
+        "CHAPTER": [
+            {
+                "id": "3985181",
+                "name": "Chương 1:: Xuyên qua Thanh Long Quốc"
+            }
+        ],
+        "TOTALCHAPTER": "126",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo",
+        "AUTHOR": "Tường Hòa Thụy Hưng",
+        "TRANS": "luckyldt",
+        "DESC": "Ngươi cho rằng Tu Tiên Giới cường đại nhất linh thú là Long tộc cùng Phượng Hoàng sao?<br />\r\n<br />\r\n\tĐúng vậy, bọn chúng xác thực rất hung hãn, rất cường đại!<br />\r\n<br />\r\n\tChẳng qua kia là trước kia!<br />\r\n<br />\r\n\tBởi vì Tu Tiên Giới đột nhiên xuất hiện một nhà linh thú cửa hàng, bên trong đều là một ít cho tới bây giờ chưa thấy qua kỳ dị linh thú!<br />\r\n<br />\r\n\tTại những thứ này kỳ dị linh thú trước mặt, cường đại Thanh Long đang dọa đến run rẩy lẩy bẩy!<br />\r\n<br />\r\n\tNhìn xem trước mặt dọa đến nằm rạp trên mặt đất Thanh Long, linh thú cửa hàng lão bản \"Lâm Nhất Phàm\" một mặt bất đắc dĩ nói: \"Xin nhờ, đây chỉ là một cái yếu nhất chó Teddy, ngươi tốt xấu cũng là thần long, muốn hay không sợ đến như vậy a?\"",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

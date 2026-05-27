@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "3548",
+        "NAME": "Em Xi Giải Đấu Vô Địch Liên Minh Huyền Thoại",
+        "CHAPTER": [
+            {
+                "id": "1229398",
+                "name": "Chương 1:: Ta muốn làm người dẫn chương trình"
+            }
+        ],
+        "TOTALCHAPTER": "133",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Võng Du",
+        "AUTHOR": "Phi Tường Đích Tử Tử",
+        "TRANS": "Lão Mập",
+        "DESC": "Ta l&agrave;m một giấc mộng, mộng thấy ta được đến một c&aacute;i hệ thống, bằng v&agrave;o c&aacute;i n&agrave;y hệ thống trợ gi&uacute;p, ta theo một c&aacute;i nho nhỏ tr&ograve; chơi người dẫn chương tr&igrave;nh l&agrave;m khởi từng bước một biến th&agrave;nh to&agrave;n d&acirc;n thần tượng, si&ecirc;u cấp tr&ograve; chơi người dẫn chương tr&igrave;nh!\r\n<br />[ nh&acirc;n kh&iacute; tr&aacute;i c&acirc;y ]: Duy nhất một lần ti&ecirc;u hao loại vật phẩm, Nhưng gia tăng người dẫn chương tr&igrave;nh nh&acirc;n kh&iacute;.\r\n<br />[ mị lực tr&aacute;i c&acirc;y ]: Vĩnh cửu t&iacute;nh gia tăng người dẫn chương tr&igrave;nh mị lực gi&aacute; trị.\r\n<br />[ tốc độ tr&aacute;i c&acirc;y ]: Vĩnh cửu t&iacute;nh gia tăng người dẫn chương tr&igrave;nh thần kinh tốc độ phản ứng.\r\n<br />[ đ&agrave;o vận tr&aacute;i c&acirc;y ]: D&ugrave;ng ăn về sau, trong mười ng&agrave;y tăng l&ecirc;n người dẫn chương tr&igrave;nh đ&agrave;o hoa chỉ số",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

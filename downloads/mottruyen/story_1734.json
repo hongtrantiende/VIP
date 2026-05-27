@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "1734",
+        "NAME": "Công Phu Thánh Y",
+        "CHAPTER": [
+            {
+                "id": "720917",
+                "name": "Chương 1: Tuyệt đối đừng nhìn mặt"
+            }
+        ],
+        "TOTALCHAPTER": "842",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đô Thị",
+        "AUTHOR": "Thiên Hạ Thanh Không",
+        "TRANS": "Vịt Con Xấu Xí",
+        "DESC": "Phi&ecirc;n Phi&ecirc;n thiếu ni&ecirc;n, chỉ v&igrave; th&acirc;n thế bần h&agrave;n, nhiều lần bị bạch nh&atilde;n, nếm tận thế gian ấm lạnh, cười th&aacute;n nh&acirc;n sinh kh&ocirc;ng g&igrave; hơn c&aacute;i n&agrave;y, lại ngo&agrave;i &yacute; muốn thức tỉnh cả đời tr&iacute; nhớ. V&igrave; vậy, tam sinh kh&oacute;i lửa, cả đời phồn hoa.<br /><br />Kiếp trước; một đời thi&ecirc;n ki&ecirc;u, tu th&agrave;nh ch&iacute;nh quả, Vấn Đỉnh thi&ecirc;n hạ ch&iacute; t&ocirc;n.<br /><br />Kiếp n&agrave;y; tỉnh chưởng thi&ecirc;n hạ quyền, say nằm mỹ nh&acirc;n đ&acirc;̀u g&ocirc;́i; nh&acirc;n sinh tr&ecirc;n đời, đương cả đời phong lưu",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

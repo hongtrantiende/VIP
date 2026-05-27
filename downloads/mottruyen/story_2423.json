@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "2423",
+        "NAME": "Trảm Tà",
+        "CHAPTER": [
+            {
+                "id": "802137",
+                "name": "Chương 1: Hồng cá rơi lệ, kiếp trước kiếp này"
+            }
+        ],
+        "TOTALCHAPTER": "318",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp",
+        "AUTHOR": "Nam Triều Trần",
+        "TRANS": "The Faint Smile",
+        "DESC": "B&aacute;t phương loạn, nước tương vong.<br /><br />B&aacute;ch t&iacute;nh g&agrave;o kh&oacute;c tại hoang d&atilde; miền qu&ecirc;, y&ecirc;u ma kho&aacute;c y quan cư triều đ&igrave;nh.<br /><br />Nhược qu&aacute;n thư sinh, đi con đường n&agrave;o?<br /><br />Trường kiếm dựng l&ecirc;n giết quỷ mị, cử b&uacute;t tĩnh tọa viết văn.<br /><br />Tay cầm C&agrave;n Kh&ocirc;n, ch&eacute;m t&agrave; lưu ch&iacute;nh &mdash;&mdash;<br /><br />Một kh&uacute;c ( ch&iacute;nh kh&iacute; ca ), cuồn cuộn l&ecirc;n trời m&ecirc;nh m&ocirc;ng.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

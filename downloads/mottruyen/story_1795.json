@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "1795",
+        "NAME": "Đao Kiếm Thần Vực Chi Hoạt Hạ Khứ",
+        "CHAPTER": [
+            {
+                "id": "739694",
+                "name": "Chương 1: Sơ lâm - Quyển 1"
+            }
+        ],
+        "TOTALCHAPTER": "251",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đồng Nhân",
+        "AUTHOR": "Tử Lam Sắc Đích Trư",
+        "TRANS": "Hoàng Luân",
+        "DESC": "Ghen tị, o&aacute;n hận, tuyệt vọng, phẫn nộ, sợ h&atilde;i...<br /><br />Bay t&aacute;n loạn thủy tinh mảnh nhỏ th&agrave;nh nh&acirc;́t t&agrave;n nhẫn một đạo phong cảnh.<br /><br />Nơi n&agrave;y l&agrave; Swort Art Online(Đao Kiếm Thần Vực) thế giới, một c&aacute;i tử vong tr&ograve; chơi.<br /><br />Ở trong n&agrave;y, nụ cười kh&oacute; gặp.<br /><br />Ở trong n&agrave;y, chỉ c&oacute; chiến đấu.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "4653",
+        "NAME": "Lạc Lối Ở Azeroth",
+        "CHAPTER": [
+            {
+                "id": "1646661",
+                "name": "Chương 01: Đột nhiên tỉnh lại"
+            }
+        ],
+        "TOTALCHAPTER": "280",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Võng Du",
+        "AUTHOR": "Y cựu mê võng",
+        "TRANS": "dungcpqn1997",
+        "DESC": "World of Warcraft trong lịch sử c&oacute; qu&aacute; nhiều bi kịch, cũng c&oacute; được qu&aacute; nhiều l&agrave;m người tiếc nuối sự t&igrave;nh.<br /><br />Khi T&ocirc; Thần ngo&agrave;i &yacute; muốn đi tới nơi n&agrave;y c&aacute;i ch&acirc;n thực Azeroth đại lục, hắn liền c&oacute; l&ograve;ng muốn cải biến những n&agrave;y bi thương kết cục, cứu vớt những c&aacute;i kia người đ&aacute;ng thương.<br /><br />Đương nhi&ecirc;n hắn c&aacute;i thứ nhất c&acirc;̀n cứu vớt ch&iacute;nh l&agrave; tự m&igrave;nh, bởi v&igrave; th&acirc;n phận của hắn b&acirc;y giờ l&agrave; Arthas...<br /><br />*******<br /><br />Đ&acirc;y thật ra l&agrave; một c&aacute;i Vu Y&ecirc;u Vương tự m&igrave;nh dẫn đầu một đ&aacute;m mỹ nữ th&ocirc;ng xo&aacute;t c&aacute;c loại ma th&uacute; ph&oacute; bản cố sự.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

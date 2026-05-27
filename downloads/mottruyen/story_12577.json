@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "12577",
+        "NAME": "Trọng Sinh Chi Toàn Dân Thiên Vương",
+        "CHAPTER": [
+            {
+                "id": "4082797",
+                "name": "Chương 1: Trọng sinh"
+            }
+        ],
+        "TOTALCHAPTER": "234",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đô Thị, Trùng Sinh",
+        "AUTHOR": "Văn Hành Viễn",
+        "TRANS": "ddddaaaa",
+        "DESC": "Từ ca sĩ thần tượng đến âm nhạc giáo phụ,<br />\r\n<br />\r\nTừ màn ảnh bình hoa đến thế giới chi vương,<br />\r\n<br />\r\nTrọng sinh lúc sau Dương Dương ở đi thông giải trí thiên vương bảo tọa trên đường bão táp tiến mạnh.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

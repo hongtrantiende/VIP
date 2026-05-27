@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "3641",
+        "NAME": "Người Xuyên Việt Trong Thế Giới Marvel",
+        "CHAPTER": [
+            {
+                "id": "1258534",
+                "name": "Chương 1: Vừa vào Marvel"
+            }
+        ],
+        "TOTALCHAPTER": "849",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Khoa Huyễn, Xuyên Không",
+        "AUTHOR": "Gia có vĩ Tiểu Bảo",
+        "TRANS": "︻ ╦̵̵╤───",
+        "DESC": "Sinh ở Trung Quốc, sinh trưởng dưới hồng kỳ, trạch nam sau năm 90, Lưu Thụy An, không hiểu ra sao đến bên trong thế giới Marvel.  Từ đây, vì có thể sinh tồn xuống, vì có thể tìm đường về nhà, không thể  không dựa vào có thể xuyên việt cái khác thế giới Ngón Tay Vàng, nỗ lực  trở nên mạnh mẽ.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

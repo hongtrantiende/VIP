@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "3956",
+        "NAME": "Dị Thế Đan Cuồng",
+        "CHAPTER": [
+            {
+                "id": "1432452",
+                "name": "Chương 1: Trương gia ma ốm bệnh liên tục"
+            }
+        ],
+        "TOTALCHAPTER": "852",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Dị Giới",
+        "AUTHOR": "Gia Cát Ngọa Long",
+        "TRANS": "Yến Virus",
+        "DESC": "Trương Th&agrave;nh, một c&aacute;i Thanh Hoa Đại Học cao t&agrave;i sinh, lại bởi v&igrave; một hồi nh&igrave;n như ngo&agrave;i &yacute; muốn, đ&atilde; c&oacute; điểm kh&ocirc;ng qu&aacute; tầm thường, thế nhưng m&agrave; lại đang hợp t&igrave;nh l&yacute; tai nạn xe cộ ho&agrave;n tất cả đời.<br /><br />Nhưng l&agrave;, hắn kh&ocirc;ng chết th&agrave;nh hơn nữa đ&atilde; xuy&ecirc;n việt rồi, thế nhưng m&agrave;, kh&ocirc;ng đợi hắn may mắn, liền ph&aacute;t hiện một kiện lại để cho hắn phiền muộn sự t&igrave;nh, hắn xuy&ecirc;n thủng một c&aacute;i ma ốm bệnh li&ecirc;n tục tr&ecirc;n người, thật buồn bực ch&iacute;nh l&agrave;, c&aacute;i n&agrave;y ma ốm bệnh li&ecirc;n tục c&oacute; một si&ecirc;u cấp mỹ nữ vị h&ocirc;n th&ecirc;...",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

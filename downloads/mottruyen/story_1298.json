@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "1298",
+        "NAME": "Độc Tôn Tinh Hà",
+        "CHAPTER": [
+            {
+                "id": "523749",
+                "name": "Chương 1: Lục Phong"
+            }
+        ],
+        "TOTALCHAPTER": "982",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo",
+        "AUTHOR": "Vũ Mộ Phù Đồ",
+        "TRANS": "Thiên Tử Nhi",
+        "DESC": "\"Đ&acirc;y l&agrave; khoa học kỹ thuật tung ho&agrave;nh thời đại, cũng l&agrave; thuộc về của ta thời đại!\"<br /><br />Nếu ch&acirc;n đủ đến địa phương, tinh khung đều muốn run rẩy!<br /><br />C&ugrave;ng c&aacute;nh tay mở ra kh&ocirc;ng gian, tuế nguyệt đều muốn ch&ocirc;n v&ugrave;i!<br /><br />D&ugrave;ng lưng khởi động thời đại, vạn tộc đều muốn thần phục!<br /><br />Mang nắm tay huy vũ phương hướng, vũ trụ đều muốn n&aacute;t bấy!<br /><br />Ti&ecirc;n ma truyền thừa, th&acirc;n thể xưng h&ugrave;ng, đ&aacute;nh n&aacute;t thi&ecirc;n địa; niệm lực độc t&ocirc;n, tung ho&agrave;nh vũ trụ, trấn &aacute;p vạn tộc! Dốc hết tất cả, n&aacute;t bấy hết thảy, chế tạo kinh h&atilde;i Ng&acirc;n h&agrave; vũ trụ mạnh nhất thể!",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

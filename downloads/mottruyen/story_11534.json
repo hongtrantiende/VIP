@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "11534",
+        "NAME": "Hồn Ma Lục",
+        "CHAPTER": [
+            {
+                "id": "3819554",
+                "name": "Chương 1: Phụ Thân rời đi"
+            }
+        ],
+        "TOTALCHAPTER": "10",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp, Huyền Ảo",
+        "AUTHOR": "Viên Toại",
+        "TRANS": "Bàn Tử Phong Lưu",
+        "DESC": "Tiểu thuyết hồn ma lục giới thiệu vắn tắt:<br />\r\n<br />\r\n\tHắn lưng đeo diệt tộc thù, buông tha nhà giàu có tiểu thư hôn nhân, đi lên một cái báo thù đường, quá độ sát niệm, để cho hắn hóa thành ma đầu; trực đến cuối cùng mới biết hết thảy các thứ này từ bắt đầu chính là cục, mà mình bất quá là người khác trong cuộc đích một con cờ<br />\r\n<br />\r\nP/S: 1 NP bạo 2 c, 1 Kim Đậu bạo 10 c<br />\r\n<br />\r\nP/SS: Ngày 10 c cho đến khi nào theo kịp tác giả thì thôi.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

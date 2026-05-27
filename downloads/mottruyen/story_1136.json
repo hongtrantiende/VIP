@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "1136",
+        "NAME": "Mạt Pháp Vương Tọa",
+        "CHAPTER": [
+            {
+                "id": "413759",
+                "name": "Chương 1: Tận thế"
+            }
+        ],
+        "TOTALCHAPTER": "1430",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo",
+        "AUTHOR": "Trang Tất Phàm",
+        "TRANS": "Dardia07, Thuytinhls, Hoàng Hạc",
+        "DESC": "Dựng dục ra đỉnh cao ph&eacute;p thuật văn minh thế giới tức sẽ đi về ph&iacute;a hủy diệt, cuối c&ugrave;ng người may mắn c&ograve;n sống s&oacute;t trở lại mười triệu năm trước, thời điểm n&agrave;y, ph&eacute;p thuật văn minh vừa mới mới vừa nảy sinh, v&ocirc; số ph&aacute;p sư c&ograve;n ở bụi gai trải rộng tr&ecirc;n đường gian nan lục lọi.<br /><br />Hắn tự thời đại mạt ph&aacute;p m&agrave; đến, hướng đi ch&iacute; cao vương tọa.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

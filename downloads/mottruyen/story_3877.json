@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "3877",
+        "NAME": "Hộ Hoa Thánh Thủ",
+        "CHAPTER": [
+            {
+                "id": "1371091",
+                "name": "Chương 1: Trong buồng xe cấp cứu"
+            }
+        ],
+        "TOTALCHAPTER": "767",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Nhiều Converter",
+        "AUTHOR": "Thủ Động Quạt Gió",
+        "TRANS": "hanthientuyet",
+        "DESC": "Th&acirc;m sơn cao nh&acirc;n phụng mệnh hạ sơn t&igrave;m kiếm vị h&ocirc;n th&ecirc;, nhưng nh&acirc;n triển khai y thuật cứu người rơi v&agrave;o c&aacute;c loại ph&acirc;n tranh! Một tay cửu thi&ecirc;n L&atilde;m Nguyệt ch&acirc;m, tr&igrave; bệnh g&igrave;, x&aacute;c chết di động, tung thi&ecirc;n hạ!<br />",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

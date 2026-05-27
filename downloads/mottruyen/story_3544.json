@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "3544",
+        "NAME": "Chấp Chưởng Càn Khôn",
+        "CHAPTER": [
+            {
+                "id": "1227854",
+                "name": "Chương 01: Lâm gia Lâm Nam"
+            }
+        ],
+        "TOTALCHAPTER": "785",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp, Huyền Ảo",
+        "AUTHOR": "Ô Sơn Vân Vũ",
+        "TRANS": "๖ۣۜArt of ๖ۣۜTime",
+        "DESC": "\"Định Hải Thần Châm nơi tay, Càn Khôn Tiên Cung ta có; thiên tài nghiền áp dưới chân, mỹ nữ tranh bạn tả hữu.\" <br />\r\n<br />\r\nLâm Nam vừa lấy được trúng tuyển thư thông báo, còn chưa kịp thực hiện tai họa đại học hoa hậu giảng đường mộng đẹp, liền bị một căn thần bí kim châm đưa đến một cái lấy võ vi tôn thế giới, đã bắt đầu đặc sắc truyền kỳ nhân sinh cuộc sống.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

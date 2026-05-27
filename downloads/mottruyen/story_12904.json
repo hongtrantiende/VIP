@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "12904",
+        "NAME": "Địa Trung Hải Bá Chủ",
+        "CHAPTER": [
+            {
+                "id": "4182016",
+                "name": "Chương 1: Bộc lộ quan điểm"
+            }
+        ],
+        "TOTALCHAPTER": "140",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Quân Sự, Lịch Sử",
+        "AUTHOR": "Nguyệt Ảnh Ngô Đồng",
+        "TRANS": "ddddaaaa",
+        "DESC": "Năm 1922, quân sự chuyên gia Matteo Contini trở lại Italy……<br />\r\n<br />\r\nXuyên qua cao phú soái, nghênh thú bạch điềm mỹ, đi lên nhân sinh đỉnh cao, thả xem hắn như thế nào dẫn dắt Italy quật khởi!",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

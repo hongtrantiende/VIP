@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "4398",
+        "NAME": "Thôn Phệ chi Hỗn Độn",
+        "CHAPTER": [
+            {
+                "id": "1577202",
+                "name": "Chương 1: Mới tới Thôn Phệ Tinh Không (cải)"
+            }
+        ],
+        "TOTALCHAPTER": "142",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đồng Nhân",
+        "AUTHOR": "Hải Chi Hàn Băng",
+        "TRANS": "Mít and Tôm",
+        "DESC": "Một vi&ecirc;n Hỗn Độn Ch&acirc;u , một bộ b&aacute;t cửu huyền c&ocirc;ng , B&agrave;n Cổ cốt tủy luyện thể , tại th&ocirc;n phệ tinh kh&ocirc;ng thế giới lại sẽ diễn dịch bực n&agrave;o đặc sắc ! C&ugrave;ng La Phong c&ugrave;ng xuất hiện c&ugrave;ng một chỗ vi Địa cầu m&agrave; lưu lạc !!!!<br /><br />",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

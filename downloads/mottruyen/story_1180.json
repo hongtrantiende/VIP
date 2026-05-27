@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "1180",
+        "NAME": "Luyện Tiên Vô Song",
+        "CHAPTER": [
+            {
+                "id": "448123",
+                "name": "Chương 1: Đệm"
+            }
+        ],
+        "TOTALCHAPTER": "527",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp",
+        "AUTHOR": "Đại Địa Hoa Nở",
+        "TRANS": "Nhiều Converter",
+        "DESC": "<br />Theo Dương Đại Bằng bị b&aacute;n l&agrave;m n&ocirc; ng&agrave;y n&agrave;o đ&oacute; l&ecirc;n, hắn ph&agrave;m nh&acirc;n Vận Mệnh cải biến.<br /><br />Hắn thể chất củi mục, nhưng hắn tốc độ tu luyện y&ecirc;u nghiệt kinh người,<br /><br />Đầu hắn Hỗn Độn, nhưng hắn c&oacute; được so với thường nh&acirc;n nhiều ra mấy lần th&uacute; sủng,<br /><br />Hắn thật th&agrave; ph&uacute;c hậu trong lộ ra gian tr&aacute;, huyết tinh trong lộ ra thương cảm,<br /><br />Miệng của hắn số l&agrave;, một đao nơi tay, kh&ocirc;ng l&agrave; thịt c&aacute;, tam giới tung ho&agrave;nh, ai anh ta Phong.<br /><br />Hắn luyện đan, luyện kh&iacute;, luyện trận, hắn luyện kh&iacute;, luyện lực, luyện linh,<br /><br />M&agrave; lại xem Dương Đại Bằng, một c&aacute;i b&eacute;o giấy độc dẫn phong tao luyện ti&ecirc;n h&agrave;nh tr&igrave;nh.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

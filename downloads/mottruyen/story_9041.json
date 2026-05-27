@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "9041",
+        "NAME": "Siêu Cấp Nghịch Thiên Thăng Cấp Hệ Thống",
+        "CHAPTER": [
+            {
+                "id": "3070169",
+                "name": "Chương 1: Tốt chơi không lại Chị Dâu"
+            }
+        ],
+        "TOTALCHAPTER": "167",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo",
+        "AUTHOR": "Thất Cá Tử Tiểu Hài",
+        "TRANS": "Tiêu Dao",
+        "DESC": "Đệ nhất tr&ograve; chơi Chiến Thần, ngo&agrave;i &yacute; muốn xuy&ecirc;n việt Luyện Hồn đại lục!<br /> <br /> Nghịch Thi&ecirc;n hệ thống, đạo tặc chức nghiệp, ai d&aacute;m tranh phong!<br /> <br /> Giết người giết qu&aacute;i, một đường thăng cấp, Bản Đại Gia đ&uacute;ng vậy Luyện Hồn đại lục s&acirc;u mọt, dị loại.<br /> <br /> Bảo vật l&agrave; của ta, mỹ nữ cũng l&agrave; ta!<br /> <br /> Diệp H&agrave;n mở ra si&ecirc;u cấp hệ thống tăng cấp, nghịch thi&ecirc;n m&agrave; đi, si&ecirc;u cường triệu ho&aacute;n, tuyệt địa nghiền s&aacute;t, mở ra Đạo Thần thời đại!",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

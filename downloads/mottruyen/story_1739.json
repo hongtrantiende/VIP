@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "1739",
+        "NAME": "Toàn Năng Tu Tiên Hệ Thống",
+        "CHAPTER": [
+            {
+                "id": "722018",
+                "name": "Chương 1: Xuyên qua đến hệ thống"
+            }
+        ],
+        "TOTALCHAPTER": "682",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo",
+        "AUTHOR": "Thu Phong Lãm Nguyệt",
+        "TRANS": "Nhoktials",
+        "DESC": "Trạch nam Ho&agrave;ng Vũ bởi v&igrave; nh&igrave;n l&eacute;n s&aacute;t v&aacute;ch mỹ nữ h&agrave;ng x&oacute;m rửa r&aacute;y m&agrave; xuy&ecirc;n qua Ch&acirc;n Vũ đại lục, cũng thu được to&agrave;n năng tu ti&ecirc;n hệ thống, bắt đầu rồi tu luyện tranh b&aacute; con đường.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

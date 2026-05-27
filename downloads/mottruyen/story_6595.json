@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "6595",
+        "NAME": "Thần Thoại Pokemon",
+        "CHAPTER": [
+            {
+                "id": "2344685",
+                "name": "Chap 1: The Begining"
+            }
+        ],
+        "TOTALCHAPTER": "40",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đồng Nhân",
+        "AUTHOR": "Nescafe (lili)",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Sự bắt đầu và hình thành phát triển của thế giới pokemon.<br />\r\n<br />\r\nNguồn: http://www.poke-mega.org/forum/showthread.php?t=21673",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

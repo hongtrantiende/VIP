@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "5635",
+        "NAME": "Điện ảnh thư sát giả",
+        "CHAPTER": [
+            {
+                "id": "2002717",
+                "name": "Tự chương kỳ ngộ tiểu thuyết: Điện ảnh diễn viên ám sát người tác giả: Tiểu béo cật bà"
+            }
+        ],
+        "TOTALCHAPTER": "20",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đô Thị, Huyền Ảo, Xuyên Không, Đồng Nhân",
+        "AUTHOR": "tác giả: Tiểu béo cật bài cốt",
+        "TRANS": "uy lăng",
+        "DESC": "Lại một bộ xuyên việt điện ảnh <br />\r\nmình lười edit lại bác nào đọc đk thì đọc cũng hay  đang ra 290c rồi<br />\r\nĐiện ảnh diễn viên ám sát người giới thiệu vắn tắt: đây là một cái bình thường nhân, một bình thường cố sự, ở chỗ này ngài sẽ không thoải mái cười to, ở chỗ này ngài sẽ không khóc rống lưu nước mắt, nhưng ở chỗ này, ngươi hội cảm thấy tam phục ngày mặt lạnh, tam cửu thiên canh nóng, đó chính là một chữ:<br />\r\n<br />\r\n\tThoải mái thoải mái thoải mái thoải mái! ! ! !<br />\r\n<br />\r\n\tNếu như ngươi bận rộn một ngày đêm, chạy tới uể oải, cũng không tưởng cười to, khóc lớn, cảm động, xúc động phẫn nộ.<br />\r\n<br />\r\n\tNhư vậy thỉnh mở quyển sách này. Ở đây có thứ mà ngươi cần các loại hành hạ đến chết!",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

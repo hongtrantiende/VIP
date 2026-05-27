@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "1602",
+        "NAME": "Kiếm Phá Tiên Kinh",
+        "CHAPTER": [
+            {
+                "id": "657418",
+                "name": "Chương 1:: Ai là ai phong cảnh !"
+            }
+        ],
+        "TOTALCHAPTER": "1251",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo",
+        "AUTHOR": "Dạ Vân Đoan",
+        "TRANS": "Đông Ky Sốt",
+        "DESC": "Th&acirc;n mang tuyệt thế y thuật thiếu ni&ecirc;n bị &eacute;p v&agrave;o tu ti&ecirc;n trong t&ocirc;ng m&ocirc;n , tại cường giả v&acirc;n lập trong thế giới , hắn lại gi&atilde;y giụa như thế n&agrave;o c&ugrave;ng sinh tồn?<br /> <br /> Tr&ecirc;n c&aacute;i thế giới n&agrave;y c&oacute; bốn loại người chọc kh&ocirc;ng được .<br /> <br /> Cường giả , T&ecirc;n đi&ecirc;n , Y sư , c&ugrave;ng với th&acirc;n mang 'Thực lực cường đại Y sư'!",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "1693",
+        "NAME": "Thi Lộ Truyền Thuyết",
+        "CHAPTER": [
+            {
+                "id": "691822",
+                "name": "Quyển 1 : Bí hiểm minh đăng    Chương 1 : Uẩn Ma Chi Uyên"
+            }
+        ],
+        "TOTALCHAPTER": "124",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo",
+        "AUTHOR": "Sa Oa Phấn",
+        "TRANS": "Hungprods",
+        "DESC": "Mu&ocirc;n đời Hồng Hoang, v&ocirc; số Ti&ecirc;n linh đều vẫn!<br /> <br /> Rậm rạp minh uy&ecirc;n, b&iacute; mật truyền thừa vạn năm!<br /> <br /> Cổ xưa ba đại qu&acirc;n vương, tại v&ocirc; bi&ecirc;n thi h&agrave;i trong ch&igrave;m nổi!<br /> <br /> Thần b&iacute; tứ đại thi thể tổ, mơ hồ lại hiện ra tại ở giữa thi&ecirc;n địa!<br /> <br /> Mu&ocirc;n đời trước trận chiến ấy, bởi v&igrave; Ti&ecirc;u Thần một cuộc ly kỳ xuy&ecirc;n qua m&agrave; kh&oacute;i thuốc s&uacute;ng t&aacute;i khởi...",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

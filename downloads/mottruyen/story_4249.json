@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "4249",
+        "NAME": "Man Hoang Phong Bạo",
+        "CHAPTER": [
+            {
+                "id": "1541801",
+                "name": "Chương 1: Đại sư huynh"
+            }
+        ],
+        "TOTALCHAPTER": "695",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo",
+        "AUTHOR": "Cao Pha",
+        "TRANS": "DarkHero",
+        "DESC": "Gi&agrave; Thi&ecirc;n Đại Th&aacute;nh Diệp Xuy&ecirc;n bị người &aacute;m hại, bị v&acirc;y ở T&aacute;ng Thần Cốc, ở Ch&uacute;ng Thần Chi Mộ b&ecirc;n trong được một m&ocirc;n v&ocirc; thượng c&ocirc;ng ph&aacute;p Luyện Y&ecirc;u Th&ocirc;n Thi&ecirc;n Quyết. <br /> <br /> Trăm ngh&igrave;n vạn năm sau, Diệp Xuy&ecirc;n rốt cục ph&aacute; khốn m&agrave; ra, sống lại ở m&ocirc;n ph&aacute;i nhỏ V&acirc;n Vụ T&ocirc;ng một c&aacute;i đệ tử th&acirc;n truyền tr&ecirc;n người. Đời trước, ta một tay che trời, đời n&agrave;y, ta muốn Luyện Y&ecirc;u Th&ocirc;n Thi&ecirc;n! Từ Thần Mộ đi ra Th&ocirc;n Thi&ecirc;n cường giả.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

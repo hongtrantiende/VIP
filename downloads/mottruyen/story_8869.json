@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "8869",
+        "NAME": "Truyền Thuyết Lạc Thần",
+        "CHAPTER": [
+            {
+                "id": "3025010",
+                "name": "CHƯƠNG 1: NGU NGỐC TIỂU VƯƠNG GIA."
+            }
+        ],
+        "TOTALCHAPTER": "1",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Xuyên Không, Trùng Sinh",
+        "AUTHOR": "daniel93",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Thiếu gia ngốc nghếch ư ? không trái lại ta rất ngốc nghếch ta chính là lạc thần…",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

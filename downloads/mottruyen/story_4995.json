@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "4995",
+        "NAME": "Ma Thần Triệu Hoán Hệ Thống",
+        "CHAPTER": [
+            {
+                "id": "1757889",
+                "name": "Quyển 1 : Ngọa Long Học Viện-Chương 1 : Chuyển Thế"
+            }
+        ],
+        "TOTALCHAPTER": "40",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo, Dị Giới",
+        "AUTHOR": "Liệt Nhận",
+        "TRANS": "mama1232",
+        "DESC": "Ở tinh kh&ocirc;ng vũ trụ chỗ s&acirc;u trong, chiến trận san s&aacute;t, nổi trống thăng thi&ecirc;n, nhất phương hắc y <br /> qu&acirc;n sĩ dữ b&ecirc;n kia dĩ thạch nh&acirc;n l&agrave;m chủ đặc th&ugrave; sinh linh giết ngươi tới ta đi, dị tinh vực x&acirc;m lấn.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

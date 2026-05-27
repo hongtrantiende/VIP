@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "4465",
+        "NAME": "Siêu Cấp Mãnh Quỷ Phân Thân",
+        "CHAPTER": [
+            {
+                "id": "1593783",
+                "name": "Chương 1: Rất không tiết tháo"
+            }
+        ],
+        "TOTALCHAPTER": "40",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đô Thị, Dị Năng, Linh Dị",
+        "AUTHOR": "Áo so gia",
+        "TRANS": "Kinzie",
+        "DESC": "Phát sốt vài ngày, Mạnh Quy ngoài ý muốn đạt được một siêu cường hãn mãnh quỷ phân thân !<br />\r\n<br />\r\n <br />\r\nCái này có việc vui . Mạnh Quy luôn luôn không có gì tiết tháo......<br />\r\n<br />\r\n <br />\r\nHơn nửa đêm không ngủ được, nơi nơi đi hù dọa nhân, ngươi đến cùng muốn nháo loại nào?",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

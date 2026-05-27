@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "7808",
+        "NAME": "G.V.D",
+        "CHAPTER": [
+            {
+                "id": "2732310",
+                "name": "Chương 1: Cuộc hành trình mới bắt đầu"
+            }
+        ],
+        "TOTALCHAPTER": "2",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Ngôn Tình, Võng Du",
+        "AUTHOR": "vudong",
+        "TRANS": "Nhiều Converter",
+        "DESC": "một loại game nổi tiếng được phát hành . Có khả năng đưa người chơi vào thế giới trong game nhưng ai là nhân vật còn ai là người chơi . Cứ đọc đi sẽ biết",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "6665",
+        "NAME": "Võng Du Chi Túng Hoành Thiên Hạ",
+        "CHAPTER": [
+            {
+                "id": "2364890",
+                "name": "Chương 1: Ban thưởng ta mỹ nữ đi!"
+            }
+        ],
+        "TOTALCHAPTER": "230",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Võng Du",
+        "AUTHOR": "Thất Lạc Diệp",
+        "TRANS": "Hôi Lông",
+        "DESC": "《 Túng Hoành Thiên Hạ 》 chính như nó lời quảng cáo thuật: ôn lại lịch sử , thể nghiệm lịch sử , trở về chỗ cũ lịch sử , thay đổi lịch sử . Ở trong game , diễn viên đem cùng đồng bạn của hắn cùng nhau trải qua này tang thương năm tháng , hoặc cùng trong lòng anh hùng rong ruổi sa trường , phân cương nát đất; hoặc cùng nổi tiếng nhân vật lịch sử ngay mặt đối chọi , không phân cao thấp . Người thắng không chỉ có thể thống nhất hoàn vũ , càng có thể thắng được trong hiện thực dày tiền thưởng . Đến tột cùng chẳng biết hươu chết về tay ai? Hoan nghênh ngươi đọc lịch sử loại tiểu thuyết võng du ---- Võng Du Chi Túng Hoành Thiên Hạ .",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

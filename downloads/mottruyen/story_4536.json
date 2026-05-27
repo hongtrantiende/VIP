@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "4536",
+        "NAME": "Vô Hạn Tây Du",
+        "CHAPTER": [
+            {
+                "id": "1610028",
+                "name": "Chương 1: GDP nhiệm vụ"
+            }
+        ],
+        "TOTALCHAPTER": "607",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Võng Du",
+        "AUTHOR": "Sái sái Nhị lang",
+        "TRANS": "dungcpqn1997",
+        "DESC": "Kh&ocirc;ng giết xong y&ecirc;u, qua kh&ocirc;ng xong quan, đ&oacute; l&agrave; c&aacute;i v&ocirc; hạn thế giới\r\nMột trăm linh t&aacute;m tướng giận b&ecirc;n tr&ecirc;n Hỏa Diệm sơn, B&aacute;t Ti&ecirc;n qu&aacute; hải thủ kinh đ&ocirc;ng, mười t&aacute;m hảo h&aacute;n đối đầu mười t&aacute;m vị La H&aacute;n, Th&ocirc;ng Thi&ecirc;n gi&aacute;o chủ khi&ecirc;u chiến T&acirc;y Phương gi&aacute;o chủ, Nhạc Phi giương c&aacute;nh ch&iacute;n vạn dặm, Bao c&ocirc;ng dạ thẩm Hắc H&ugrave;ng Tinh, Phiền L&ecirc; Hoa dũng cứu sư th&uacute;c T&ocirc;n Ngộ Kh&ocirc;ng, Đăng Thảo H&ograve;a Thượng thầm mến Tử H&agrave; ti&ecirc;n tử tốt a, trở l&ecirc;n kh&ocirc;ng tiết th&aacute;o nội dung cốt truyện, c&oacute; thể l&agrave; kh&ocirc;ng c&oacute;",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "7256",
+        "NAME": "Y Võ Cao Thủ",
+        "CHAPTER": [
+            {
+                "id": "2580287",
+                "name": "Chương 1: Vạn khóm hoa trong một điểm lục!"
+            }
+        ],
+        "TOTALCHAPTER": "1012",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đô Thị",
+        "AUTHOR": "Lạc Thủy Hà Đồ",
+        "TRANS": "Liu",
+        "DESC": "Th&acirc;n thế như c&acirc;u đố T&ocirc; Thần, từ nhỏ ở Nga Mi Sơn lớn l&ecirc;n, bởi nh&igrave;n l&eacute;n c&aacute;c sư tỷ muội rửa r&aacute;y, bị đuổi xuống sơn đi. Đ&aacute;ng tiếc đạo trời kh&ocirc;ng tha &agrave;, trước xem qua nhiều lần như vậy c&aacute;c ngươi l&agrave;m sao liền kh&ocirc;ng động với. . . .",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

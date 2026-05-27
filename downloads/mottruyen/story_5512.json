@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "5512",
+        "NAME": "Văn hào ngu nhạc gia",
+        "CHAPTER": [
+            {
+                "id": "1955255",
+                "name": "Chương 1: Xạ điêu anh hùng truyện"
+            }
+        ],
+        "TOTALCHAPTER": "330",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đô Thị, Trùng Sinh",
+        "AUTHOR": "白王上朝",
+        "TRANS": "Nghĩa Đặng",
+        "DESC": "Phi Tuyết Liên Thiên Xạ Bạch Lộc, Tiểu Lý Phi Đao thành thất truyền.<br />\r\n<br />\r\n\tTiếu Thư Thần Hiệp Ỷ Bích Uyên, Thế Gian không còn Sở Lưu Hương.<br />\r\n<br />\r\n\tĐây là một cái Khoa Học Kỹ Thuật vô cùng phát đạt, thế nhưng Ngu Nhạc Hành Nghiệp cực kỳ lạc hậu Thế Giới.<br />\r\n<br />\r\n\tĐây là một cái Quyền tài sản bảo hộ vô cùng tốt, nhưng lại cực kỳ khuyết thiếu Ngu Nhạc Hành Nghiệp Bản Quyền Thế Giới.<br />\r\n<br />\r\n\tNơi này không có \"Kim Cổ Hoàng Lương Mộng \"<br />\r\n<br />\r\n\tNơi này cũng không có \" trở về đi \"\" ai là Đại Anh Hùng \"\" Thiết Huyết Đan Tâm \"\" Thương Hải Nhất Thanh Tiếu \" đợi Danh Khúc.<br />\r\n<br />\r\n\tNơi này càng không có Châu Tinh Trì Vô Ly Đầu Điện Ảnh, không có Lý Tiểu Long Thành Long Lý Liên Kiệt Công Phu Điện Ảnh.<br />\r\n<br />\r\n\tMang theo trên địa cầu tối nổi danh Tiểu Thuyết Âm Nhạc Điện Ảnh và Truyền Hình tin tức Tư Liệu, kỳ rõ ràng Trọng Sinh đến Thế Giới.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

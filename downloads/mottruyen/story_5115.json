@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "5115",
+        "NAME": "Vạn Pháp Độc Tôn",
+        "CHAPTER": [
+            {
+                "id": "1813063",
+                "name": "Chương 1: Vương Phủ gã sai vặt"
+            }
+        ],
+        "TOTALCHAPTER": "590",
+        "IMG": "https://static.cdnno.com/poster/van-phap-doc-ton/150.jpg",
+        "CAT": "Tiên Hiệp, Huyền Ảo",
+        "AUTHOR": "Tịch Diệt Tiền Trần",
+        "TRANS": "DarkHero",
+        "DESC": "Đại Thi&ecirc;n thế giới trăm t&agrave;u tranh lưu, vạn tộc tranh phong, Vấn Đạo Giả chưởng thần th&ocirc;ng, Vấn T&acirc;m Giả th&agrave;nh Thần Ma. <br /> <br /> Chưởng vạn ph&aacute;p, diệt Thần Ma, đoạn thuật ph&aacute;p, n&aacute;t thần th&ocirc;ng, đoạt Thi&ecirc;n Đạo! Đ&acirc;y l&agrave; L&acirc;m Th&agrave;nh, một c&aacute;i được Vạn Ph&aacute;p truyền thừa thiếu ni&ecirc;n tại c&aacute;i n&agrave;y Chư Thi&ecirc;n Vạn Giới tu luyện cố sự",
+        "THUMB": "https://static.cdnno.com/poster/van-phap-doc-ton/150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

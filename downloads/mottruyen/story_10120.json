@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "10120",
+        "NAME": "Nhật Ký Chi Thần Ảo Mộng Cuối Cùng",
+        "CHAPTER": [
+            {
+                "id": "4155306",
+                "name": "Chương 1: Hệ thống thức tỉnh"
+            }
+        ],
+        "TOTALCHAPTER": "15",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Võng Du, Khoa Huyễn, Đồng Nhân",
+        "AUTHOR": "NightDragon",
+        "TRANS": "NightDragon",
+        "DESC": "Truyện ta là truyện yy hợp lý buf ko quá mạnh tay nhân vật chính qua thé thế giới khác để trang bức và tán gái<br />\r\nOk giờ đến phần nội dung<br />\r\nChuyện kêt về nhân vật chinh trên con đường trở thành tổ thần .<br />\r\n\"Em chưa có kinh nghiệm viết ném đá nhớ nói lý do để em sửa\"",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

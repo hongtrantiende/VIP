@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "3551",
+        "NAME": "Ma Huyễn Bản Chủ Thần",
+        "CHAPTER": [
+            {
+                "id": "1229738",
+                "name": "Chương 1: Thiên tài! ? - Quyển 1: thiếu niên phát triển cùng chờ đợi"
+            }
+        ],
+        "TOTALCHAPTER": "97",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Võng Du",
+        "AUTHOR": "Mê Mang Đích Xà",
+        "TRANS": "Vô Danh",
+        "DESC": "Chủ thần kh&ocirc;ng gian đ&iacute;ch quang huy bắt đầu bao phủ dị thế giới !\r\n<br /> V&ocirc; số dị thế giới đ&iacute;ch chủng tộc cửa bắt đầu thể nghiệm v&ocirc; hạn kh&ocirc;ng gian đ&iacute;ch v&ocirc; đi chung đường !",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

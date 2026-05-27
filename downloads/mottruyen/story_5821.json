@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "5821",
+        "NAME": "Thái Thượng Hồn Đạo",
+        "CHAPTER": [
+            {
+                "id": "2087229",
+                "name": "Chương 1: Liệt Đằng (())"
+            }
+        ],
+        "TOTALCHAPTER": "673",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp, Huyền Ảo, Dị Giới",
+        "AUTHOR": "Hán Lệ",
+        "TRANS": "Khaox8896",
+        "DESC": "Ta ng&ocirc;ng cuồng thời gian, v&igrave; l&agrave;, thi&ecirc;n chỉ đến như thế, đạo chỉ đến như thế! Hủy t&acirc;̣n sở kiến chi thi&ecirc;n, diệt chi sở kiến chi đạo, toại ta tự xưng Thi&ecirc;n Mệnh, s&aacute;ng tạo b&iacute; thuật \"Thi&ecirc;n\", lấy ta chi sở ngộ, chưởng khống thi&ecirc;n hạ vạn vật, ta niệm chi động, v&igrave; thi&ecirc;n hạ động! Ta niệm chi s&aacute;t, Hủy Thi&ecirc;n Diệt Địa!",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

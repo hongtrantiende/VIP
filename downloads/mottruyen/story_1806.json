@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "1806",
+        "NAME": "I Thanh Đế",
+        "CHAPTER": [
+            {
+                "id": "743402",
+                "name": "Chương 1: Hai lần"
+            }
+        ],
+        "TOTALCHAPTER": "6",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo",
+        "AUTHOR": "Mông Mông Bình Xương",
+        "TRANS": "Kinta",
+        "DESC": "Thi&ecirc;n địa đại kiếp cầm tới, đ&atilde; từng cường giả Diệp Thanh trở lại đại kiếp trước, kỳ ngộ được nho gia bảo điển, tu luyện ch&acirc;n ph&aacute;p, kết sơn thần, x&ocirc;ng long cung, đại chiến chư phương thế lực, gi&agrave;nh trước thi&ecirc;n cơ duyến, th&agrave;nh tựu uy danh hiển h&aacute;ch, đạp vạn ti&ecirc;n, mở thế giới, tam giới duy ta độc t&ocirc;n, th&agrave;nh tựu Thanh Đế chứng đạo!",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

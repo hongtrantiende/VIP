@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "11732",
+        "NAME": "Từ Một Vạn Năm Sau Trở Về",
+        "CHAPTER": [
+            {
+                "id": "3863516",
+                "name": "Chương 1: Trở về"
+            }
+        ],
+        "TOTALCHAPTER": "393",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đô Thị, Trùng Sinh",
+        "AUTHOR": "Văn Chỉ",
+        "TRANS": "808",
+        "DESC": "Vì đột phá bản thân gông cùm xiềng xích, Hàn Trạch nghịch chuyển thời gian, từ một vạn năm sau trở về, tại trong đô thị, một lần nữa quật khởi! Tu vi cao hơn Hàn Trạch, vũ khí không có Hàn Trạch tiên tiến! Vũ khí so với Hàn Trạch tiên tiến? Hàn Trạch dùng thực lực cường đại, trực tiếp nghiền ép!",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

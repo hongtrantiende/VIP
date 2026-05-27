@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "3412",
+        "NAME": "Chuyển Kiếp Chi Tạo Hóa Thần Tọa",
+        "CHAPTER": [
+            {
+                "id": "1183846",
+                "name": "Chương 1: Sống Lại Tiếu Ngạo"
+            }
+        ],
+        "TOTALCHAPTER": "84",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Khoa Huyễn, Xuyên Không",
+        "AUTHOR": "Xuân Thu Vấn Tâm Kiếm",
+        "TRANS": "Hoanglvn",
+        "DESC": "Diệp V&ocirc; Bệnh, một c&aacute;i mọt game, lần thứ nhất anh h&ugrave;ng cứu mỹ nh&acirc;n, lần thứ nhất thất bại, may mắn ch&iacute;nh l&agrave; hắn xuy&ecirc;n qua rồi. Mang theo hắn từ tr&ecirc;n sạp h&agrave;ng trong l&uacute;c v&ocirc; t&igrave;nh mua Tạo H&oacute;a Ngọc Li&ecirc;n Thần Tọa, đầu ti&ecirc;n l&agrave; xuy&ecirc;n qua đến Tiếu Ngạo Giang Hồ trở th&agrave;nh một tiểu khất c&aacute;i, sau đ&oacute; b&aacute;i sư Nhạc Bất Quần, trở th&agrave;nh dưới trướng đệ tử, từ đ&acirc;y lấy Tạo H&oacute;a Ngọc Li&ecirc;n Thần Tọa l&agrave;m căn cơ đ&atilde; xảy ra l&agrave; kh&ocirc;ng thể ngăn cản! Sau đ&oacute; lại xuy&ecirc;n qua Thi&ecirc;n Long, đại Đường song long thế giới chờ ch&uacute;t, ngang dọc v&ocirc; địch, phong v&acirc;n ngạo thế v&ocirc; song!",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

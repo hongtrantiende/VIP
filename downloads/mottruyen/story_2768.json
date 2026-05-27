@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "2768",
+        "NAME": "Hà Thì Thành Tiên",
+        "CHAPTER": [
+            {
+                "id": "907647",
+                "name": "Chương 1: Vân hải sinh triều"
+            }
+        ],
+        "TOTALCHAPTER": "59",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp",
+        "AUTHOR": "Ngốc Tam",
+        "TRANS": "Khoavt",
+        "DESC": "Chuyện n&agrave;y t&aacute;c giả cũng viết theo c&aacute;c thể loại ti&ecirc;n hiệp kh&aacute;c nhưng với phong c&aacute;ch trọng t&igrave;nh hơn so với t&aacute;c phẩm kh&aacute;c v&agrave; mĩ nh&acirc;n củng sẽ c&oacute; 1 em m&agrave; thui... mời mọi người ủng hộ nh&eacute;",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

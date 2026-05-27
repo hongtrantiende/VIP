@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "1684",
+        "NAME": "Sất Trá Phong Vân",
+        "CHAPTER": [
+            {
+                "id": "705883",
+                "name": "Chương 1:  Càn Kình! Tiến lên!"
+            }
+        ],
+        "TOTALCHAPTER": "200",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo",
+        "AUTHOR": "Cao Lâu Đại Hạ",
+        "TRANS": "Vô Danh",
+        "DESC": "Trong lần đầu ti&ecirc;n th&iacute; luyện C&agrave;n K&igrave;nh bị một ... c&aacute;i mũ rơi tr&uacute;ng đầu l&agrave;m hắn h&ocirc;n m&ecirc; tại chỗ. Hắn từ một người được đ&aacute;nh gia cao nhất trong số học vi&ecirc;n đồng học &Aacute;o Lan học viện biến th&agrave;nh một t&ecirc;n \"tướng mạo phạm tội đến mức trời kh&ocirc;ng dung\".\r\n&nbsp;\r\nThế nhưng sự cố đ&oacute; đưa lại cho hắn một b&aacute;u vật, gi&uacute;p hắn c&oacute; thể đi đến V&ocirc; Tận Thế Giới v&agrave;o l&uacute;c ngủ. Tại V&ocirc; Tận Thế Giới hắn c&oacute; thể học được c&aacute;c kỹ năng m&agrave; ngo&agrave;i đời v&ocirc; số người mơ ước v&agrave; từng bước tiến l&ecirc;n con đường cường giả ch&acirc;n ch&iacute;nh",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "6730",
+        "NAME": "Touhou Player Ngoại Truyện",
+        "CHAPTER": [
+            {
+                "id": "2396755",
+                "name": "Quyển 1 - Thế giới tuyến 1 Alice cùng Yakumo Kurenai ôn nhu nhân ngẫu"
+            }
+        ],
+        "TOTALCHAPTER": "89",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đồng Nhân",
+        "AUTHOR": "Mới không phải H Loli",
+        "TRANS": "๖ۣۜLier",
+        "DESC": "Ngoại truyện của bộ Touhou Player<br />\r\n Quyển 1 : tốt đẹp Gensokyo P/s : mấy bác bỏ 4 tuyến đầu của quyển 1 nhá... biến thái lắm ( ráng coi không chịu trách nhiệm) <br />\r\n Quyển 2 : Chi nhánh kịch trường đạo cụ thu về yếu tố<br />\r\n Quyển 3 : Ngoại truyện Fate / Zero",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

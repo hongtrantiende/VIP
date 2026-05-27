@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "1563",
+        "NAME": "Đào Vận Tu Chân Giả",
+        "CHAPTER": [
+            {
+                "id": "641190",
+                "name": "Chương 01: Kết hôn hiệp nghị"
+            }
+        ],
+        "TOTALCHAPTER": "1181",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đô Thị",
+        "AUTHOR": "Phong Thánh Đại Bằng",
+        "TRANS": "trang4mat",
+        "DESC": "Trần Mặc, ở bề ngo&agrave;i l&agrave; phổ th&ocirc;ng y khoa sinh vi&ecirc;n đại học, tr&ecirc;n thực tế nhưng l&agrave; một g&atilde; Tu Ch&acirc;n giả, ở một phần di ch&uacute;c đến đ&acirc;y sau đ&oacute;, nguy&ecirc;n bản cuộc sống y&ecirc;n tĩnh, xảy ra kh&ocirc;ng tưởng tượng được sóng lớn...<br /> <br /> Thuần khiết thiện lương nữ l&atilde;o sư, chất ph&aacute;c xinh đẹp học sinh nữ, cao qu&yacute; trang nh&atilde; nữ l&atilde;o tổng, hồ mị xinh đẹp phần tử khủng bố, quyến rũ m&ecirc; người nữ s&aacute;t thủ, l&atilde;nh tuấn gợi cảm nữ cảnh s&aacute;t chờ ch&uacute;t đều từ từ đi v&agrave;o cuộc sống của hắn ở trong!",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

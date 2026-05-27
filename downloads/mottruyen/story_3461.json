@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "3461",
+        "NAME": "Chí Tôn Chưởng Môn Hệ Thống",
+        "CHAPTER": [
+            {
+                "id": "1199234",
+                "name": "Chương 1: Trong lịch sử yếu nhất chưởng môn"
+            }
+        ],
+        "TOTALCHAPTER": "324",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo",
+        "AUTHOR": "Tuyên Vũ Thần Quân",
+        "TRANS": "Suntran",
+        "DESC": "Xuy&ecirc;n qua đến tu ch&acirc;n thế giới Diệp Lập, kế nhiệm keo kiệt ch&aacute;n nản tam lưu m&ocirc;n ph&aacute;i nhỏ Thanh V&acirc;n m&ocirc;n, trở th&agrave;nh mới Nh&acirc;m chưởng m&ocirc;n, bởi vậy th&agrave;nh c&ocirc;ng ph&aacute;t động xuy&ecirc;n qua mang đến \"Si&ecirc;u cấp chưởng m&ocirc;n game hệ thống\" . Tr&oacute;i chặt hệ thống Diệp Lập, bắt đầu rồi dũng m&atilde;nh v&ocirc; địch si&ecirc;u cấp chưởng m&ocirc;n con đường, lập ch&iacute; đem Thanh V&acirc;n m&ocirc;n kiến thiết th&agrave;nh tu ch&acirc;n thế giới trong lịch sử trước nay chưa từng c&oacute; thế lực b&aacute; chủ m&ocirc;n ph&aacute;i!",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

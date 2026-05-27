@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "4190",
+        "NAME": "Thự Quang Học Viện",
+        "CHAPTER": [
+            {
+                "id": "1521954",
+                "name": "Chương 1: Ánh Rạng Đông học viện"
+            }
+        ],
+        "TOTALCHAPTER": "9",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Khoa Huyễn, Xuyên Không",
+        "AUTHOR": "Chấp bút vẽ thương sanh",
+        "TRANS": "toirathienlanh9x",
+        "DESC": "Cầm tay trung chi bút , vẽ chúng sinh .<br />\r\n<br />\r\nNgắm chư quân cùng hơn cùng nhau lãnh hội người này thần cùng tồn tại thế giới tốt phong quang !<br />\r\nTruyện mới ra không não tàn,không chủ nghĩa dân tộc có chiến đấu nhiệt huyết về sau không biết chứ bây giờ thì cũng được.<br />\r\nLink:http://www.qidian.com/Book/3632767.aspx#bshd",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

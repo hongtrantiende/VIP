@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "2957",
+        "NAME": "Dị Giới Kiếm Thần",
+        "CHAPTER": [
+            {
+                "id": "1002783",
+                "name": "Chương 1: Chuyển Thế Tiêu Thần"
+            }
+        ],
+        "TOTALCHAPTER": "146",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo, Dị Giới",
+        "AUTHOR": "Kiếm Phá Vạn Giới",
+        "TRANS": "satordie",
+        "DESC": "Kiếp trước Đ&uacute;c Kiếm Đại Sư Ti&ecirc;u Thần ngo&agrave;i &yacute; muốn xuy&ecirc;n việt đến Thi&ecirc;n Kiếm Đại Lục, theo t&agrave;i tr&iacute; b&igrave;nh thường biến th&agrave;nh thi&ecirc;n t&agrave;i, chẳng những c&oacute; thể đ&atilde; gặp qua l&agrave; kh&ocirc;ng qu&ecirc;n được, cảm gi&aacute;c nhạy cảm, lực lĩnh ngộ lại c&agrave;ng thẳng l&ecirc;n m&acirc;y xanh, trở th&agrave;nh đồng dạng y&ecirc;u nghiệt tồn tại.<br /><br />V&ocirc; địch thăng cấp, nhiệt huyết quyết đấu, thi&ecirc;n t&agrave;i cạnh tranh, d&agrave;i ba x&iacute;ch kiếm, ng&agrave;n dặm thẳng tới, Chinh Chiến Thi&ecirc;n Hạ, Duy Ng&atilde; Độc T&ocirc;n!",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "2647",
+        "NAME": "Ban Hoa",
+        "CHAPTER": [
+            {
+                "id": "871562",
+                "name": "Chương 1:  không nghĩ tới thật là ngươi"
+            }
+        ],
+        "TOTALCHAPTER": "600",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đô Thị",
+        "AUTHOR": "Thiên triều thư sinh",
+        "TRANS": "trang4mat",
+        "DESC": "Phụ th&acirc;n cưới c&aacute;i mẹ kế, kh&ocirc;ng c&oacute; ngờ tới nhưng lại ta trường cấp 3 l&uacute;c xinh đẹp nữ lớp trưởng, c&aacute;i n&agrave;y c&oacute; tr&ograve; hay để nh&igrave;n.<br /><br />M&ugrave;a h&egrave; n&agrave;y phụ th&acirc;n kh&ocirc;ng ở nh&agrave;, xem ra ta c&ugrave;ng với ta &lsquo; mẹ kế &rsquo; c&ugrave;ng một chỗ sinh hoạt hai th&aacute;ng...",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

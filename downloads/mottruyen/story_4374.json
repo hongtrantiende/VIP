@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "4374",
+        "NAME": "Điền Viên Mục Trường",
+        "CHAPTER": [
+            {
+                "id": "1572596",
+                "name": "Chương 01: Trở về Thôn làm ruộng   sinh viên"
+            }
+        ],
+        "TOTALCHAPTER": "1470",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đô Thị",
+        "AUTHOR": "Nhược Vong Thư",
+        "TRANS": "Rua",
+        "DESC": "Đô thị bạch lĩnh Lưu Vân Hiên được thần kỳ không gian, dứt khoát trở về điền viên.<br />\r\n<br />\r\nLấy hơi mỏng tư bản, lấy nhỏ thắng lớn, một mình xông mỹ đế.<br />\r\n<br />\r\nMua mấy cái bãi chăn nuôi, dưỡng mấy bầy dê bò, lại dưỡng vài con manh sủng.<br />\r\n<br />\r\nThay đổi bãi chăn nuôi, nghiên cứu phát minh phân. Muốn uống rượu đỏ, chính mình nhưỡng.<br />\r\n<br />\r\nĐiền viên bãi chăn nuôi sinh hoạt chính là như thế đơn giản lại nhàn nhã.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

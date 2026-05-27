@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "11858",
+        "NAME": "Hàn Ngu Chi Tống Nghệ Diễn Viên",
+        "CHAPTER": [
+            {
+                "id": "3893502",
+                "name": "Chương 1: Thiếu niên về nhà"
+            }
+        ],
+        "TOTALCHAPTER": "1",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đô Thị",
+        "AUTHOR": "Mộng Mạc Yên",
+        "TRANS": "☠Sá† Ám †hiên☠",
+        "DESC": "Một cái diễn viên, lại dùng âm nhạc nghiền ép Giới ca hát, bị người trở thành Âm Nguyên cường đạo, một cái MC chỉ là ngồi ở chỗ đó liền để Fan thét lên, một cái ca sĩ, dùng không có ý nghĩa diễn kỹ, lại làm cho hắn thu hoạch vô số ánh mắt, đây chính là Kim Myung Ho, một cái Toàn Năng Thiên Tài, nhìn hắn như thế nào đứng tại Hàn Ngu chỗ cao nhất, chỉ huy gia tộc mình trở thành thế giới không thể coi nhẹ quang mang",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

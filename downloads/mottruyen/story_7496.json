@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "7496",
+        "NAME": "Tiêu Dao Chí Tôn Tầm Mỹ ký",
+        "CHAPTER": [
+            {
+                "id": "2655726",
+                "name": "Chương 1: Thoát khốn"
+            }
+        ],
+        "TOTALCHAPTER": "13",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo, Trùng Sinh",
+        "AUTHOR": "lydaik",
+        "TRANS": "lydaik",
+        "DESC": "Vì nhận được Trường Sinh Quả mà Lôi Đế lý phàm bị người vây công, phải trốn vào Thần Ngục ,bị giam ở Thần Ngục  bốn chín kĩ nguyên , cuối cùng thi triển tự mình sáng tạo Chư thiên chuyển sinh bí pháp sống lai.<br />\r\nĐời này hắn thề phải tiêu dao tự tại bước lên đỉnh phong.<br />\r\nTối mình sẽ đăng chương.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

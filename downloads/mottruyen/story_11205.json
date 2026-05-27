@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "11205",
+        "NAME": "Tiểu Thảo Quật Khởi",
+        "CHAPTER": [
+            {
+                "id": "3705951",
+                "name": "Chương 1: Ta Thao! Đúng! Ta Biến Thành Mẹ Kiếp"
+            }
+        ],
+        "TOTALCHAPTER": "74",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo, Dị Giới",
+        "AUTHOR": "Bắc Chỉ",
+        "TRANS": "Tom",
+        "DESC": "2017 nóng nảy nhất sách mới<br />\r\n<br />\r\n\tTrùng sinh trở thành nguyên thủy thế giới một gốc cỏ dại,<br />\r\n<br />\r\n\tTại côn trùng cùng các loại yêu thú ở giữa cầu sinh tồn!<br />\r\n<br />\r\n\tTiến hóa! Tiến hóa! Lại tiến hóa. . .<br />\r\n<br />\r\n\tMạnh lên! Mạnh lên! Lại mạnh lên. . .<br />\r\n<br />\r\n\tCỏ nhỏ, cỏ nhỏ, muốn quật khởi!<br />\r\n<br />\r\n\tTại cái này Man Hoang thời đại, bốn phía đều là địch nhân cùng nguy hiểm.<br />\r\n<br />\r\n\tNgươi không chết, chính là ta vong!<br />\r\n<br />\r\n\t. . .",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

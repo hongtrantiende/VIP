@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "4317",
+        "NAME": "Cửu Chuyển Cuồng Thần",
+        "CHAPTER": [
+            {
+                "id": "1558279",
+                "name": "Chương 01: Thận Hư Công Tử"
+            }
+        ],
+        "TOTALCHAPTER": "60",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo",
+        "AUTHOR": "Lạc Lôi",
+        "TRANS": "trang4mat",
+        "DESC": "Tám thế tu hành đều không quả, ngưu người Tinh Thần Tử nhập vào thân trở thành hoàn khố thiếu gia Tiêu Thần, dùng tám thế tu hành kinh nghiệm nhập võ, tru cường địch thí đối thủ.<br />\r\n<br />\r\nTa cuồng nên ta tại, soán thiên cải mệnh, đều có ta định!",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

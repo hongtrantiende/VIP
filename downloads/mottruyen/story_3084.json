@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "3084",
+        "NAME": "Siêu Cấp Sủng Vật Auto",
+        "CHAPTER": [
+            {
+                "id": "1051886",
+                "name": "Chương 01: Chuyển thế mà đến"
+            }
+        ],
+        "TOTALCHAPTER": "131",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp",
+        "AUTHOR": "Siêu Cấp Auto",
+        "TRANS": "ChanLinh, Tử Diễm",
+        "DESC": "Đại Hoang Ti&ecirc;n đạo, c&aacute;c ph&aacute;i mọc l&ecirc;n san s&aacute;t như rừng, c&ocirc;ng ph&aacute;p c&oacute; tất cả huyền diệu, ph&aacute;p tu, thể tu, y&ecirc;u tu, kh&iacute; tu, quỷ tu, th&uacute; tu, cổ tu, ma tu. Được xưng trăm nh&agrave; đua tiếng, Đại Đạo 3000.<br /><br />Kỹ thuật chỗ ở Vạn Tinh mang theo tự chế Si&ecirc;u Cấp Sủng Vật Auto chuyển thế m&agrave; đến, b&aacute;i sư Ngự Th&uacute; T&ocirc;ng.<br /><br />\"Sủng vật của ta có th&ecirc;̉ thăng cấp. Tăng thực lực l&ecirc;n rất nhanh ch&oacute;ng.\"<br /><br />\"Sủng vật của ta có th&ecirc;̉ huyết mạch tiến h&oacute;a. C&aacute; chạch cũng c&oacute; thể tiến h&oacute;a th&agrave;nh Thần Long \".",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "3297",
+        "NAME": "Đại Tiêu Cục",
+        "CHAPTER": [
+            {
+                "id": "1150500",
+                "name": "Chương 01: Ngoại sự không quyết hỏi thôn trưởng"
+            }
+        ],
+        "TOTALCHAPTER": "690",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Võng Du",
+        "AUTHOR": "Tiểu Ngốc Chiêu",
+        "TRANS": "Thtgiang",
+        "DESC": "N&agrave;o đ&oacute; ti&ecirc;u cục cười vang thường ng&agrave;y ~<br /><br />Li&ecirc;n quan tới một c&aacute;i đậu đen rau muống kỹ năng max trạch nam ngo&agrave;i &yacute; muốn xuy&ecirc;n qua đến dị giới về sau,<br /><br />Như thế n&agrave;o mở ra kim thủ chỉ suất lĩnh một đ&aacute;m bệnh t&acirc;m thần đồng đội một đường nghiền &eacute;p th&ocirc;ng quan cố sự.<br /><br />C&oacute; kh&aacute;c c&aacute;c loại thần kỳ manh vật ẩn hiện ~",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

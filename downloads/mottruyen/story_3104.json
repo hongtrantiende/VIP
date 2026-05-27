@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "3104",
+        "NAME": "Thần Ma Đại Lục",
+        "CHAPTER": [
+            {
+                "id": "1058292",
+                "name": "Chương 1: THẦN MA ĐẠI LỤC"
+            }
+        ],
+        "TOTALCHAPTER": "23",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp, Xuyên Không",
+        "AUTHOR": "LãngKhách610",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Một chàng trai việt nam trọng sinh tới Thần Ma Đại Lục ,tại đây chàng với hoài bão bảo vệ những người thương của mình mà bước lên con đường tu tiên đầy trông gai và hiểm trở . Với tư duy giữa người và ma ,cái thiện và cái ác  của bản thân tôi ( người viết ra cuốn sách này) rất mong sẽ truyền tải cho người đọc một cái nhìn mới mẻ hơn .",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

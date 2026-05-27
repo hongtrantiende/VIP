@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "3254",
+        "NAME": "Ma Ngục",
+        "CHAPTER": [
+            {
+                "id": "1131120",
+                "name": "Chương 1: Mù thiếu niên - Quyển 01: đạo tâm chủng ma"
+            }
+        ],
+        "TOTALCHAPTER": "1221",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp",
+        "AUTHOR": "Tạo Hóa Trai Chủ",
+        "TRANS": "Inoha",
+        "DESC": "Thời đại mạt ph&aacute;p sẽ tới, trong thi&ecirc;n địa tr&agrave;n đầy ngũ suy chi kh&iacute;, cửu ch&acirc;u đại kết giới gần nghiền n&aacute;t, c&ograve;n c&oacute; vực ngoại thi&ecirc;n ma rục rịch,trong b&oacute;ng tối &acirc;m mưu.<br /><br />Tại đ&acirc;y y&ecirc;u nghiệt xuất hiện lớp lớp thời đại rung chuyển, một g&atilde; bạch đồng thiếu ni&ecirc;n lo liệu đạo t&acirc;m, mang theo một quyển c&agrave;u nh&agrave;u ma đạo bảo điển, với t&agrave; sủng trong địa ngục, bước ra một c&aacute;i từ &ocirc; uế đến tinh khiết,do &aacute;m sinh con đường chứng đạo.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

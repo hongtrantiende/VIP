@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "10345",
+        "NAME": "Pháo Hôi Tấn Cấp Thư",
+        "CHAPTER": [
+            {
+                "id": "3468288",
+                "name": "Chương 1 : Thần chọn người"
+            }
+        ],
+        "TOTALCHAPTER": "27",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Xuyên Không",
+        "AUTHOR": "Khoái Nhạc Tiểu Vu Bà",
+        "TRANS": "Tiểu U Linh",
+        "DESC": "Để cho tra nam tra nữ tới mãnh liệt chút đi<br />\r\nPhong Thất Nguyệt đứng ở thật cao sơn cương tay cầm túi thuốc nổ <br />\r\nCác ngươi những kinh nghiệm này điểm, ta muốn đại biểu thượng đế tiêu diệt các ngươi<br />\r\nNhìn ta làm sao đả bại thánh mẫu Bạch Liên Hoa, chân đạp bắc hải tra nam, khi học lưu mạnh khi học phách, các hạng võ nghệ toàn không kém!<br />\r\nXuyên việt các loại thế giới hoàn thành pháo hội ủy thác nhiệm vụ, Phong Thất Nghuyệt bày tỏ: Đời người chính là như vậy nhiều thay đổi",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

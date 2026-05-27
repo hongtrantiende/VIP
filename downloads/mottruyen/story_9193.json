@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "9193",
+        "NAME": "Phong Vân Nguyệt",
+        "CHAPTER": [
+            {
+                "id": "3130259",
+                "name": "Chương 1 : Số phận"
+            }
+        ],
+        "TOTALCHAPTER": "5",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Ngôn Tình",
+        "AUTHOR": "Phong Thiên Nguyệt",
+        "TRANS": "Nhiều Converter",
+        "DESC": "một cô gái mê anime, manhua,.......Cuộc đời của cô gái ấy sẽ xảy ra những chuyện gì khi cô ấy nghĩ thế giới xung quanh mình chỉ là một vùng tối . Người con trai nào sẽ giúp cô ấy đi ra khỏi ánh sáng",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

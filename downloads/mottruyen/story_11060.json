@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "11060",
+        "NAME": "Hải Tặc Vương Chi Thiên Sử Quả Thực",
+        "CHAPTER": [
+            {
+                "id": "3652725",
+                "name": "Chương 1: Thế mà xuyên qua đến hải tặc thế giới"
+            }
+        ],
+        "TOTALCHAPTER": "20",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đồng Nhân",
+        "AUTHOR": "Quân Mạc Hồi Đầu",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Thiên sứ ra mắt, gió nổi mây phun, thế lực khắp nơi cuồn cuộn sóng ngầm.<br />\r\n<br />\r\n\tThế giới cách cục sụp đổ, hải tặc đứng trước quét sạch, chính phủ sắp một lần nữa tẩy bài.<br />\r\n<br />\r\n\tVĩ đại đường thuỷ, đất đỏ đại lục, hết thảy sẽ lại bắt đầu lại từ đầu!",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "8499",
+        "NAME": "Trọng Sinh Chi Tuyệt Thế Võ Thần",
+        "CHAPTER": [
+            {
+                "id": "2913761",
+                "name": "Chương 1: Đế huyết phục sinh"
+            }
+        ],
+        "TOTALCHAPTER": "2194",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo, Trùng Sinh",
+        "AUTHOR": "Phong Nhất Đao",
+        "TRANS": "808",
+        "DESC": "Tuyệt đại Võ Thần Dương Đằng bởi vì đạt được một kiện đế khí, bị người hãm hại đưa tới họa sát thân, trọng sinh tại mười sáu tuổi.<br />\r\n<br />\r\n\tDựa theo ngàn năm lịch duyệt học thức, Dương Đằng nhanh chóng phát triển.<br />\r\n<br />\r\n\tQuyền đánh cường giả, chân đạp thiên tài, danh chấn thiên hạ.<br />\r\n<br />\r\n\tMà lại nhìn Dương Đằng như thế nào chiến đấu kịch liệt bách tộc, thành tựu một phen bá nghiệp!",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

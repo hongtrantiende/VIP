@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "3789",
+        "NAME": "Trọng Trí Thuộc Tính",
+        "CHAPTER": [
+            {
+                "id": "1308565",
+                "name": "Chương 1:  trọng đưa bao cổ tay"
+            }
+        ],
+        "TOTALCHAPTER": "661",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Võng Du",
+        "AUTHOR": "Phi Phong Phi Vân",
+        "TRANS": "trang4mat",
+        "DESC": "BOSS đại bạo đặc bạo, Lăng Thần bởi v&igrave; tạm thời gia nhập đội ngũ, chia trang bị l&uacute;c bị c&aacute;c đội hữu xa l&aacute;nh, chỉ lấy được một kiện t&ecirc;n l&agrave; Trọng Tr&iacute; Hộ Oản Đ&ecirc; Phẩm cấp trang bị.<br /><br />Đến tận đ&acirc;y, Lăng Thần đi l&ecirc;n một đầu kh&ocirc;ng người d&aacute;m tại nếm thử con đường.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

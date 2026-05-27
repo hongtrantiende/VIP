@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "5171",
+        "NAME": "Cổ Tinh chiến thể",
+        "CHAPTER": [
+            {
+                "id": "1831350",
+                "name": "Chương 1: Phần đệm"
+            }
+        ],
+        "TOTALCHAPTER": "60",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo",
+        "AUTHOR": "Tu Huyền",
+        "TRANS": "Phong Tinh Nguyệt",
+        "DESC": "Đây là một cái kỳ dị thế giới, đây là một mảnh đất hoang. Nơi này có thể tu chân, có thể phi thiên độn địa, có thể di sơn đảo hải, có thể trường sinh bất tử. Chúng ta truyền thuyết từ nơi này bắt đầu. . .",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "12160",
+        "NAME": "Thông Minh Sắc Xảo Giới",
+        "CHAPTER": [
+            {
+                "id": "3963435",
+                "name": "Chương 1: Tuyết Băng"
+            }
+        ],
+        "TOTALCHAPTER": "45",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đô Thị, Dị Năng, Trùng Sinh",
+        "AUTHOR": "Tuyết Luyến 1988",
+        "TRANS": "๖ۣۜÁc☼๖ۣۜQuỷ",
+        "DESC": "đội khảo sát địa chất trong một cuộc thám hiểm địa chất trong tuyết, tai nạn sạt lở. Sự xuất hiện đột ngột của một chiếc nhẫn bọc trong tâm hồn mình, qua thời gian và không gian, trở lại khi hắn học ba ngày của mười hai năm trước đây. Do đó, linh hồn cá nhân từ sự pha trộn cùng của hai không gian-thời gian. <br />\r\n    Giang Phong thức tỉnh, không chỉ có những kỷ niệm của cuộc sống trong quá khứ, vẫn có một chiếc nhẫn từ chưa biết thời gian mạnh mẽ và không gian, không chỉ có các nhà lãnh đạo vòng trong thế giới công nghệ nặng công nghiệp, công nghệ thông tin máy tính, công nghệ sinh học, trí tuệ nhân tạo và một loạt các công nghệ cao, cũng như một môn võ thuật rất mạnh mẽ",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

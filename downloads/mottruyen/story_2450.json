@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "2450",
+        "NAME": "Y Thủ Che Thiên",
+        "CHAPTER": [
+            {
+                "id": "807536",
+                "name": "Chương 1: Tỷ thí"
+            }
+        ],
+        "TOTALCHAPTER": "50",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo, Ngôn Tình, Xuyên Không",
+        "AUTHOR": "Mộ Anh Lạc",
+        "TRANS": "Nhóm dịch T2L_3D -  Nguồn tâm vũ nguyệt lâu",
+        "DESC": "Truyện cũng là quá trình xuyên không của cô nàng Mộ Chỉ Ly - một thiên tài y học ở thế kỷ 21, đột nhiên một ngày nàng trở về quá khứ xa xôi, lúc đó có một Mộ Chi Ly khác. Mộ Chỉ Ly, tam tiểu thư của Mộ gia Thiên Huyền Đại Lục, thân thế hiển hách, nhưng lại nổi tiếng với khuôn mặt xấu xí và vô dụng.<br />\r\n<br />\r\nTuy là dòng chính, nhưng địa vị lại ngay cả hạ nhân cũng không bằng, nếu không phải bởi vì thể chất phế vật cùng dung nhan xấu xí của nàng lúc nào cũng nhắc nhở Mộ gia còn có một người sỉ nhục như vậy, sợ là không ai nhớ rõ sự tồn tại của nàng.<br />\r\n<br />\r\nNàng sẽ cứu cô gái đáng thương này, tự tay chữa trị bản thân, âm thầm một ngày lột xác để cho thiên hạ thấy được bản lĩnh của mình, để họ phải tự hổ thẹn “Mộ Chỉ Ly, ta xem ngươi một ngày cảnh giới kia như thế nào so sánh được với ta.” Nam nhân miệt thị nhìn Mộ Chỉ Ly, ngôn ngữ cùng ánh mắt đều là khinh thường. Mộ Chỉ Ly chỉ thản nhiên cười, trong nháy mắt vô tội nói: “Bổn tiểu thư quên nói cho ngươi, bổn tiểu thư lợi hại nhất không phải động võ, mà là dụng độc.”",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

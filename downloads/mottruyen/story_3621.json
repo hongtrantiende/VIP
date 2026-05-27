@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "3621",
+        "NAME": "Lạc Ngữ Cổ Kiếm",
+        "CHAPTER": [
+            {
+                "id": "1252130",
+                "name": "Chương 1 : Bạch Phong"
+            }
+        ],
+        "TOTALCHAPTER": "8",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp, Kiếm Hiệp",
+        "AUTHOR": "Bạch Phụng",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Bạch Phong không chỉ đam mê tu luyện mà còn thể hiện tình cảm ôn nhu của mình qua các đoạn nhân duyên trên bước đường trưởng thành.<br />\r\n<br />\r\nCảnh giới tu luyện : Ngưng Khí. Dưỡng Khí. Kiếm Mạch. Kiếm Mạch. Hóa Cảnh. Hóa Kiếp. Phá Hư. Phá Không. Định Thánh. Định Thần.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "5040",
+        "NAME": "hồng hoang tài thần gia",
+        "CHAPTER": [
+            {
+                "id": "1770633",
+                "name": "Chương 1:  tam tộc tranh bá"
+            }
+        ],
+        "TOTALCHAPTER": "800",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp",
+        "AUTHOR": "Vô ảnh hiệp y",
+        "TRANS": "Tiếu Hồng Trần",
+        "DESC": "main từ đ&ocirc; thị trong sinh về hồng hoang hổ l&agrave;m con của hổ tộc tộc trưởng thời tam tộc tranh b&aacute; v&agrave; truyện bắt đầu từ đ&oacute;....",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

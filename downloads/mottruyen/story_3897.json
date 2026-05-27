@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "3897",
+        "NAME": "Trọng Hoạt 1995",
+        "CHAPTER": [
+            {
+                "id": "1386323",
+                "name": "Chương 1: Sống lại 1995"
+            }
+        ],
+        "TOTALCHAPTER": "545",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đô Thị",
+        "AUTHOR": "Nhất Can 147",
+        "TRANS": "Mọt Sách",
+        "DESC": "Sống lại trở lại năm 1995, hắn Long Đằng 95 mới l&agrave; coi cửa sổ Thao T&aacute;c Hệ Thống đ&oacute; mẫu.<br /><br />Người Trung quốc vừa vặn L&yacute; Phi Đằng l&agrave; Internet Coffee đ&oacute; phụ, Thế Giới vừa vặn hắn l&agrave; Internet Đệ Nhất Gold Strike.<br /><br />21 Thế Kỷ 20 Ni&ecirc;n Đại sau, Địa Cầu Nh&acirc;n Loại kh&ocirc;ng thể kh&ocirc;ng khuất phục thừa nhận sống s&oacute;t L&yacute; Phi Đằng Thanh Ni&ecirc;n đ&atilde; l&agrave; một vị c&oacute; thể ảnh hưởng to&agrave;n bộ Thế Kỷ Vĩ Nh&acirc;n, một vị phong nh&atilde; h&agrave;o hoa mạng lưới Đại Thần.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

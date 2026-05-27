@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "1206",
+        "NAME": "Thiên Giới Lưu Manh",
+        "CHAPTER": [
+            {
+                "id": "468028",
+                "name": "Chương 1: Trên trời có phàm nhân"
+            }
+        ],
+        "TOTALCHAPTER": "826",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo",
+        "AUTHOR": "Lan Kiều",
+        "TRANS": "Tiểu Long Nữ, Hỗn Nguyên Ma Hạc, Dạ Hương Lan",
+        "DESC": "Miệng lưỡi trơn tru, y&ecirc;u tham tiểu tiện nghi, d&agrave;i đến vẫn rất h&egrave;n mọn!<br /><br />Rất sợ chết, c&oacute; sắc t&acirc;m lại kh&ocirc;ng sắc đảm, thấy mỹ nữ đ&atilde; nghĩ gặm!<br /><br />Ta kh&ocirc;ng l&agrave; lưu manh,<br /><br />Ta chỉ l&agrave; một c&aacute;i hội v&otilde; thuật, c&oacute; l&yacute; tưởng lưu manh!",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "5728",
+        "NAME": "Để hoàng đế quỷ",
+        "CHAPTER": [
+            {
+                "id": "2054014",
+                "name": "Chương1Tiếng sấm trầm thấp, không khí trên đám mây đen càng nặng nề hơn."
+            }
+        ],
+        "TOTALCHAPTER": "50",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo",
+        "AUTHOR": "tưởng phương đông",
+        "TRANS": "Đế Gìa",
+        "DESC": "truyện nói về ......................................................................................................................................................................................................................................................",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

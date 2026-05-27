@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "11256",
+        "NAME": "Trọng Sinh Chi Tối Cường Sư Huynh",
+        "CHAPTER": [
+            {
+                "id": "3724520",
+                "name": "Chương 1: Hệ Thống"
+            }
+        ],
+        "TOTALCHAPTER": "13",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo",
+        "AUTHOR": "thaonguyen2535",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Trạch nam Dương Phong ngủ một giấc liền xuyên việt, nhưng trước hết hắn phải giải quyết một vấn đề...<br />\r\n<br />\r\nHắn không phải nhân vật chính ? Mà là cao phú soái sư huynh cạnh tranh muội tử với nhân vật chính...<br />\r\n<br />\r\nCũng may, ông trời thương xót, ban tặng hắn Vô Địch Hệ Thống...<br />\r\n<br />\r\nNgược chân mệnh trăm nghìn khắp cả, phản phái vs chân mệnh! Boss là bằng hữu, quyền đả thiên chi kiêu tử, chân đạp cường giả trọng sinh... <br />\r\n<br />\r\nDương Phong ngước nhìn một đám mỹ nữ sau lưng, biểu thị bất lực<br />\r\n<br />\r\n\"Ta không phải nhân vật chính vì vậy đừng bám theo ta...\"",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

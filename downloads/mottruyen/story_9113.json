@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "9113",
+        "NAME": "Thôn Phệ Tinh Không Hậu Truyện",
+        "CHAPTER": [
+            {
+                "id": "3095908",
+                "name": "Chương 1:  Khởi Nguyên Đại Lục"
+            }
+        ],
+        "TOTALCHAPTER": "168",
+        "IMG": "https://static.cdnno.com/poster/thon-phe-tinh-khong-hau-truyen/150.jpg",
+        "CAT": "Huyền Ảo, Khoa Huyễn",
+        "AUTHOR": "Bất Ngã Cật Tây Hồng Thị",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Ngã Cật Tây Hồng Thị viết đến luân hồi thông đạo đi qua khởi nguyên đại lục liền không có.Nên phải viết phần tiếp theo<br />\r\n<br />\r\nTác giả khác, không phải Cà Chua<br />\r\n<br />\r\nTruyện làm theo yêu cầu!",
+        "THUMB": "https://static.cdnno.com/poster/thon-phe-tinh-khong-hau-truyen/150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

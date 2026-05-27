@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "12571",
+        "NAME": "Siêu Nhân Chế Tạo Thương",
+        "CHAPTER": [
+            {
+                "id": "4074710",
+                "name": "Chương 1: Xuyên đến xuyên đi"
+            }
+        ],
+        "TOTALCHAPTER": "165",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo, Dị Giới, Khoa Huyễn",
+        "AUTHOR": "Mạt Vũ",
+        "TRANS": "ddddaaaa",
+        "DESC": "Xuyên qua lúc sau liền tự sát, vì chính là về đến nhà.<br />\r\n<br />\r\nSau đó Tô Dương thực mau liền phát hiện, tự sát là về không tới nhà, xuyên qua trở về cơ suất quá nhỏ, vì thế hắn không thể không thay đổi sách lược, dứt khoát đem trước mặt thế giới xé thành phấn toái, đánh ra một cái trở lại con đường đi.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

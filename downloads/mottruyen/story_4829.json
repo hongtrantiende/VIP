@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "4829",
+        "NAME": "Thần Chi Đế",
+        "CHAPTER": [
+            {
+                "id": "1701020",
+                "name": "Chương 1: Diệt thôn tai họa"
+            }
+        ],
+        "TOTALCHAPTER": "306",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo",
+        "AUTHOR": "Phong Thần Thiên Hạ",
+        "TRANS": "trung421",
+        "DESC": "Chiến kiếm ph&aacute; thi&ecirc;n ra! Kinh hồng vạn ng&agrave;n thế! Thần c&ograve;n ở! Kh&ocirc;ng biết đi tới nơi n&agrave;o! Ma đ&atilde; qua đời! Kh&ocirc;ng biết như thế n&agrave;o kinh mộng! Thi&ecirc;n Đạo Lu&acirc;n Hồi, ngươi ta đều l&agrave; vận mệnh kh&iacute; nhi, ch&iacute; kh&iacute; l&ecirc;n, r&uacute;t kiếm ra, quyết lăng ti&ecirc;u b&ecirc;n ngo&agrave;i ch&iacute;n tầng trời, chiến vạn cổ lưu thế b&ecirc;n trong! <br /><br />Thần Ma dị, Ti&ecirc;u Phong th&igrave;nh l&igrave;nh ra, chứng kỷ đạo, nhi&ecirc;n kiếm vạn ng&agrave;n b&ecirc;n trong, chỉ v&igrave; c&aacute;i kia một vệt trong mộng kinh sắc. . .",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

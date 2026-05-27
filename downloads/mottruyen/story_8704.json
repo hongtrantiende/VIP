@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "8704",
+        "NAME": "Lục Tiên Phong Thiên",
+        "CHAPTER": [
+            {
+                "id": "2979630",
+                "name": "Chương 1: Nguyên nhân"
+            }
+        ],
+        "TOTALCHAPTER": "210",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp",
+        "AUTHOR": "Băng Lam Tiên Sinh",
+        "TRANS": "Cơn Gió Lạnh",
+        "DESC": "\"Hãy nhớ kỹ, ngươi là một giọt nước.\"<br />\r\n<br />\r\n\t\"Cho dù ngẩng đầu không gặp tiên, trong lòng cũng phải có tiên.\"<br />\r\n<br />\r\n\tThế giới không hoàn chỉnh, nhân sinh mà lưỡng hồn bảy phách, tìm tiên, chính là tìm thiếu nhất hồn, vô mệnh thế gian tiểu dân, chợt được cơ duyên, lần lượt nhắm thẳng vào bản tâm lựa chọn, cuối cùng được viên mãn.<br />\r\n<br />\r\n\t(quyển sách hoàn thành độ 27%)<br />\r\n<br />\r\n\tTác giả tự mình định nghĩa : Sủng vật nhiệt huyết tùy thân lưu.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

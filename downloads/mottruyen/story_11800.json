@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "11800",
+        "NAME": "Có phải chăng là ta yêu nhau?",
+        "CHAPTER": [
+            {
+                "id": "3879267",
+                "name": "Em không thể quên được sao?"
+            }
+        ],
+        "TOTALCHAPTER": "5",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Ngôn Tình",
+        "AUTHOR": "dieplangvotam123",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Có người nói hai đường thằng song song sẽ không bao giờ gặp nhau. Anh và em cũng vậy, mỗi người chúng ta vốn là hai đường thằng song song, nhưng đều tình nguyện vì đối phương mà rẽ hướng, tạo ra bao niềm đau và nước mắt. Cuối cùng, hai ta lại trở về vị trí cũ, tiếp tục là hai đường thằng song song nhưng mãi mãi không chung hướng.<br />\r\nLiệu có người đủ dũng cảm, yêu một người đã từng làm tổn thương mình?<br />\r\nLiệu có ai ngu ngốc chấp nhận làm kẻ xấu chỉ để bên cạnh người mình yêu?<br />\r\nLiệu một ngày nào đó, ta trở về với nhau sau những thăng trầm năm tháng?<br />\r\nEm không biết nữa, anh à...",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

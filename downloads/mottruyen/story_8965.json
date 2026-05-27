@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "8965",
+        "NAME": "Thánh Đạo Cuồng Đồ",
+        "CHAPTER": [
+            {
+                "id": "3103313",
+                "name": "Chương 1:: Hi vọng bất diệt"
+            }
+        ],
+        "TOTALCHAPTER": "382",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo",
+        "AUTHOR": "Ám Dạ U Thương",
+        "TRANS": "Hoàng Châu",
+        "DESC": "Bảo vật? Đan dược? Mỹ nữ? Hết thảy đều l&agrave; của ta! Gặp gia tộc trục xuất, nhận hết ức hiếp L&acirc;m Dương, bất ngờ thu được Hỗn Độn Đạo Đ&agrave;i, tu luyện Hỗn Độn th&aacute;nh điển, từ đ&acirc;y gi&oacute; lốc m&agrave; l&ecirc;n. N&agrave;y v&ugrave;ng thi&ecirc;n địa, cuộc đời thăng trầm? M&agrave; xem L&acirc;m Dương l&agrave;m sao quật khởi mạnh mẽ, bước l&ecirc;n đỉnh phong, qu&acirc;n l&acirc;m thi&ecirc;n hạ!",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

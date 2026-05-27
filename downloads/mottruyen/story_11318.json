@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "11318",
+        "NAME": "Võng Du Chi Cực Phẩm Boss",
+        "CHAPTER": [
+            {
+                "id": "3754443",
+                "name": "Chương 1: Trọng sinh là Boss!"
+            }
+        ],
+        "TOTALCHAPTER": "512",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Võng Du, Trùng Sinh",
+        "AUTHOR": "Nằm Nhìn Mây Bay",
+        "TRANS": "EricGame",
+        "DESC": "Boss vận mệnh từ trước đến giờ đều là bị đẩy ngã, quét mới,lại bị đẩy ngã, lại quét mới. Kim Đồng cứ tưởng qua luân hồi chi môn được khai sức mạnh thần cấp ai ngờ chính mình lại trong sinh làm 1 cái boss, vận mệnh của cậu sẽ như bao con boss bình thường đẩy ngã làm mới rồi đẩy ngã hay viết nên 1 chương sử mới về một thần cấp boss mà mỗi khi người nghe đến đều phải run sợ",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

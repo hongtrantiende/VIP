@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "6466",
+        "NAME": "Thần Võ Chiến Vương",
+        "CHAPTER": [
+            {
+                "id": "2300384",
+                "name": "Chương 1: Thập vạn đại sơn"
+            }
+        ],
+        "TOTALCHAPTER": "4549",
+        "IMG": "https://static.cdnno.com/poster/than-vo-chien-vuong/150.jpg",
+        "CAT": "Huyền Ảo, Trùng Sinh",
+        "AUTHOR": "Trương Mục Chi",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Chúng Thần đại chiến, thắng bại không phân, chỉ lưu lại thiên sang bách khổng thiên địa.<br />\r\n<br />\r\n\tNgàn vạn năm thời gian, Chiến Thần chi hồn trong phế tích thành lập lên tân thế giới.<br />\r\n<br />\r\n\tChín đời luân hồi, toàn tâm toàn ý, chỉ vì một cái niềm tin.<br />\r\n<br />\r\n\tThiếu niên cầm trong tay thanh phong, ngắm nhìn bầu trời nơi sâu xa.<br />\r\n<br />\r\n\tYêu, ma, tà. . . Dám to gan chia sẻ vùng thế giới này người, đều đem ở vùng thế giới này đẫm máu.<br />\r\n<br />\r\n\tMà nhìn một người thiếu niên làm sao từng bước một đi tới thế giới đỉnh cao, kế thừa Chiến Thần chi hồn, bảo vệ thế giới của chính mình!",
+        "THUMB": "https://static.cdnno.com/poster/than-vo-chien-vuong/150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

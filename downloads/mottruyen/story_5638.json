@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "5638",
+        "NAME": "Linh Giới Đế Tôn",
+        "CHAPTER": [
+            {
+                "id": "2004701",
+                "name": "Chương 1::thiên tài hết thời"
+            }
+        ],
+        "TOTALCHAPTER": "85",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo",
+        "AUTHOR": "Một Hữu Sí Bàng",
+        "TRANS": "☠VộTim✪TiểuBạch☠",
+        "DESC": "Thiếu niên Diệp Phong thiên tư trác việt, chỉ vì một hồi bắt cóc án, dẫn đến kinh mạch hủy diệt sạch, tu vi đánh mất. Chỉ có điều,được trời cao đền đáp, hắn ngẫu nhiên thu được Thanh Long thánh hồn, từ đó kinh mạch đúc lại, hóa thành kinh thế tuyệt mới khiếp sợ tứ phương. Khi biết huỷ bỏ chính mình tu vi hung thủ, chính là ngày xưa bạn tốt thời gian, Diệp Phong gánh vác cừu hận, bước lên một đoạn cường giả hành trình",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

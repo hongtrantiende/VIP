@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "8798",
+        "NAME": "Kế Hoạch Tạo Thần",
+        "CHAPTER": [
+            {
+                "id": "3011288",
+                "name": "Chương 1: Thức Tỉnh"
+            }
+        ],
+        "TOTALCHAPTER": "49",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Mạt Thế",
+        "AUTHOR": "soitieutu",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Đây là câu chuyện về một kẻ mang sứ mệnh hủy diệt rồi tái thiết lập thế giới, biến nhân loại thành nô lệ cung cấp tín ngưỡng cho các á thần. Hắn là một kẻ được chọn cùng với nhiều kẻ khác được đưa tới từ một thế giới khác, bọn hắn được gọi là thần sứ.<br />\r\n<br />\r\nHắn và những thần sứ bị biến trở thành những đứa bé sơ sinh rồi người ta ném chúng vào những nơi khác nhau trên thế giới và đợi chúng lớn lên rồi thức tỉnh.<br />\r\n<br />\r\nSau một vụ tai nạn, hắn thức tỉnh sớm nhưng hắn lại bị ý thức của chính hắn ở thế giới mà hắn muốn hủy diệt ảnh hưởng, hắn muốn ngăn những thần sứ khác lại.<br />\r\n<br />\r\nThế giới chìm vào hỗn loạn, sự tuyệt vọng bao trùm lấy tất cả, con đường nào sẽ dành cho nhân loại, thế giới cuối cùng sẽ ra sao?<br />\r\n<br />\r\nTruyện dùng nhiều hình tượng của các vị tướng Liên Minh Huyền Thoại, bạn sẽ bắt gặp được họ trong một thân phận khác thú vị và sống động.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

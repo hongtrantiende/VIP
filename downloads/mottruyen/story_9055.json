@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "9055",
+        "NAME": "Lôi Quyền",
+        "CHAPTER": [
+            {
+                "id": "3078959",
+                "name": "Chương 1. Thế giới mới"
+            }
+        ],
+        "TOTALCHAPTER": "30",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp",
+        "AUTHOR": "cuongoo3",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Một tên siêu nhọ xuyên không. Tưởng mọi truyện tu luyện sẽ suôn sẻ như bao nam chính xác. Thế nhưng mà lăn lộn chật vật mãi mà .Nhiều lúc vẫn bị nhân vật phụ vượt mặt. <br />\r\n Lôi Liệt ' Lựu đạn, tên tác giả vô lương tâm'<br />\r\n Lề: đoạn đầu hơi nhạt mọi người thông cảm về sau độ bẩn bựa tăng đần nhé",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

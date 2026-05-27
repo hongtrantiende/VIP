@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "5206",
+        "NAME": "Marvel Thái Dương Thần",
+        "CHAPTER": [
+            {
+                "id": "1842841",
+                "name": "Chương 1: Tân nhân sinh gia đình vấn đề"
+            }
+        ],
+        "TOTALCHAPTER": "846",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đồng Nhân",
+        "AUTHOR": "Hồng Hải Đại Đề Đốc",
+        "TRANS": "Little Lucifer",
+        "DESC": "Một c&aacute;i c&oacute; Th&aacute;i Dương lực lượng sinh mệnh, xuy&ecirc;n việt đến Marvel thế giới cố sự.<br /><br />Trong thần thoại mặt trời l&agrave; khống chế th&igrave; tự giao thế, Vạn Vật Sinh Trường vĩ đại tồn tại, l&agrave; tất cả hắc &aacute;m tai họa khắc chế người, l&agrave; quang minh c&ugrave;ng hỏa diễm Chưởng Khống Giả.<br /><br />M&agrave; trong thực tế Th&aacute;i Dương, l&agrave; Hằng Tinh một th&agrave;nh vi&ecirc;n. Trong vũ trụ vĩ đại nhất Thi&ecirc;n Thể. C&agrave;ng l&agrave; từ lực lực h&uacute;t tụ hợp chung cực tồn tại.<br /><br />L&agrave;m những sức mạnh n&agrave;y tập trung đến tr&ecirc;n người một người, sẽ ph&aacute;t sinh c&aacute;i g&igrave;.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

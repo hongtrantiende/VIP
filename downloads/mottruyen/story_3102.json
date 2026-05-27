@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "3102",
+        "NAME": "Sách Tiên Truyện",
+        "CHAPTER": [
+            {
+                "id": "1055694",
+                "name": "Chương 1: Xuyên qua"
+            }
+        ],
+        "TOTALCHAPTER": "401",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo",
+        "AUTHOR": "Lâm Trung Hữu Hổ",
+        "TRANS": "Lion_namson, Tử Diễm",
+        "DESC": "\"Xuy&ecirc;n qua rồi, ba ngàn đại đạo, ngàn t&ocirc;ng vạn m&ocirc;n, chư tử b&aacute;ch gia. Đ&acirc;y l&agrave; một kỳ dị thế giới, thi&ecirc;n địa ph&aacute;p tắc tan vỡ, Thi&ecirc;n Đ&igrave;nh Địa Phủ đều đ&atilde; ch&ocirc;n v&ugrave;i ở trong con s&ocirc;ng d&agrave;i lịch sử, thi&ecirc;n đạo kh&ocirc;ng hiện ra, người tu luyện con đường ph&iacute;a trước đ&atilde; đứt, tốt nghiệp đại học kh&ocirc;ng l&acirc;u mọt game L&acirc;m Hổ mang theo trong k&yacute; ức v&ocirc; số tiểu thuyết từ đ&acirc;y đi tới một c&aacute;i thư tu luyện con đường l&ecirc;n trời!\"",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

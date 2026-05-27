@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "5509",
+        "NAME": "Bố Vũ Thiên Hạ hệ thống",
+        "CHAPTER": [
+            {
+                "id": "1954693",
+                "name": "Chương 1:: Thu đồ đệ"
+            }
+        ],
+        "TOTALCHAPTER": "10",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đô Thị, Huyền Ảo",
+        "AUTHOR": "Lạc Phàm Lưu Thanh(落凡留声)",
+        "TRANS": "LanhvoKhuyet",
+        "DESC": "Bố Vũ Thiên Hạ hệ thống một thần bí hệ thống, để Tần bố vũ nắm giữ xuyên toa ở hai cái thế giới năng lực, ở giang hồ thế giới học biết võ công, đến thế giới hiện thực truyền xuống võ công. Thế giới Địa Cầu, giang hồ không gian, hai cái thế giới chân tướng vì sao, hệ thống lại là đến từ đâu",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

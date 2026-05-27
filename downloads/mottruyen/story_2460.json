@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "2460",
+        "NAME": "Ngạo Thế Võ Hoàng",
+        "CHAPTER": [
+            {
+                "id": "809196",
+                "name": "Chương 1: Chỉ bằng ngươi?"
+            }
+        ],
+        "TOTALCHAPTER": "470",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo",
+        "AUTHOR": "Tằng Kinh Ủng Hữu Đích Phương Hướng Cảm",
+        "TRANS": "Kinta",
+        "DESC": "V&igrave; nhập v&otilde; đạo t&ocirc;ng m&ocirc;n xin thuốc cứu cha, Giang Thủ liền b&aacute;i năm mươi sơn m&ocirc;n, chung nhập t&ocirc;ng sau ngẫu được ch&iacute; bảo, kh&iacute; huyết tr&agrave;n đầy, th&acirc;n thể v&ocirc; song, gần hơn hồ c&oacute; th&acirc;n bất tử.\r\n<br />Từ tạp dịch cốc bắt đầu lực giẫm l&ecirc;n ngoại m&ocirc;n nội m&ocirc;n v&ocirc; số thi&ecirc;n t&agrave;i, th&agrave;nh tựu tuyệt thế V&otilde; Ho&agrave;ng! ",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

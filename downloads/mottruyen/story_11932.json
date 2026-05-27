@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "11932",
+        "NAME": "Hào Môn Lão Công Anh Đừng Chạy",
+        "CHAPTER": [
+            {
+                "id": "3916490",
+                "name": "Chương 1: Cô biết tôi ghét những ai nói dối tôi."
+            }
+        ],
+        "TOTALCHAPTER": "1",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đô Thị, Ngôn Tình",
+        "AUTHOR": "彐彐 著",
+        "TRANS": "ShmilyLavender",
+        "DESC": "Họ nhận ra hai tháng, cô đã có thai ba tháng. Cô nói, đứa trẻ là của mình; anh nói, đủ rồi! Cao lãnh VS cao lãnh! Cực phẩm thiên kim PK bá đạo tổng tài! Đứng trước sự tấn công ... trên phòng khách, dưới nhà bếp, chiến đấu với tiểu tam, chiến đấu càng liều mạng, vui mừng càng khôn xiết, ngọt ngào không thôi..",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "8634",
+        "NAME": "Điện Anh Và Truyền Hình Hệ Thống",
+        "CHAPTER": [
+            {
+                "id": "2958615",
+                "name": "Chương 1: Hệ Thống Truyền Hình"
+            }
+        ],
+        "TOTALCHAPTER": "427",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đô Thị, Kiếm Hiệp, Dị Năng, Khoa Huyễn, Đồng Nhân",
+        "AUTHOR": "好长一条鱼: Ngư Trường",
+        "TRANS": "thuylinhkute2395@gmail.com",
+        "DESC": "Điện ảnh và truyền hình hệ thống giới thiệu vắn tắt: Từ đạt được hệ thống, Đinh Dương cuộc sống có biến hóa nghiêng trời lệch đất.<br />\r\n<br />\r\nỞ Tư Quá Nhai cùng Lệnh Hồ Sung uống chút rượu, ở Tuyệt Tình Cốc cùng Tiểu Long Nữ nói chuyện nhân sinh lý tưởng.<br />\r\n<br />\r\nỞ New York cùng Iron Man cùng nhau tán gái , ở Hongkong cùng Transformers tâm sự chiến tổn hại bồi thường.<br />\r\n<br />\r\nĐến Thành Phố Racoon nhìn xem tang thi, đi trước Washington nhìn một cái ngoại tinh nữ hoàng.<br />\r\n<br />\r\nNgươi nhất định xem qua kịch truyền hình cùng điện ảnh, nhưng bất đồng chính là, này kịch truyền hình cùng điện ảnh ta đều có thể đi vào đùa giỡn một chút.<br />\r\n<br />\r\nLần đầu cover có gì sai sót mong các bạn góp ý nhẹ nhàng nhé !!!",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

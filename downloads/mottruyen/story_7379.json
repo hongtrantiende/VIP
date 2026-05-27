@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "7379",
+        "NAME": "Vạn Vực Long Đế",
+        "CHAPTER": [
+            {
+                "id": "2615388",
+                "name": "Chương 1:Diệp hàn"
+            }
+        ],
+        "TOTALCHAPTER": "1",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo",
+        "AUTHOR": "cuộc đời này rơi rơi",
+        "TRANS": "PhamThang",
+        "DESC": "Cửu châu đại lục , lấy võ vi tôn . <br />\r\n<br />\r\nmột đời thiên kiêu lá hàn , bị thanh mai trúc mã đích thương người ám toán , đan điền bể tan tành , trở thành hoạt tử nhân . thỉnh thoảng được với cổ kỳ công tinh thần quyết , giống như tuệ tinh bàn quật khởi , bước lên tu hành cuộc hành trình ! <br />\r\n<br />\r\nnhìn hắn như thế nào say nằm mỹ nhân đầu gối , tỉnh cầm giết người kiếm !",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

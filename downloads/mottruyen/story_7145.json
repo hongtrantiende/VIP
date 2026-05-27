@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "7145",
+        "NAME": "Làm Người Luôn Bên Em",
+        "CHAPTER": [
+            {
+                "id": "2547786",
+                "name": "Mối tình đầu"
+            }
+        ],
+        "TOTALCHAPTER": "3",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Ngôn Tình",
+        "AUTHOR": "vuhoangha5112001@",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Một câu chuyện tình cảm thời học sinh. Nguyễn Nguyệt Dương là một cô gái nhanh nhẹn, hiếu thắng thích Hoàng Minh Phong trầm tính, kiêu ngạo suốt 6 năm. Và rồi  Vũ Bảo Quân nghịch ngợm xuất hiện. Làm đảo lộn cuộc sông của Dương từ đó nhiều bí mật dần dần lộ ra.  Liệu Dương có vượt qua được và có một câu chuyện tình yêu với một kết thúc đẹp ? Đọc đi rồi biết -__-",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

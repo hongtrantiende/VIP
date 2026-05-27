@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "3098",
+        "NAME": "Tử Phố Du Hí",
+        "CHAPTER": [
+            {
+                "id": "1054692",
+                "name": "Chương 1: Thiện vô thiện báo"
+            }
+        ],
+        "TOTALCHAPTER": "289",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Khoa Huyễn",
+        "AUTHOR": "Thâu Khán Thư Đích Lại Miêu",
+        "TRANS": "Liu",
+        "DESC": "Truyền thừa Mao sơn ch&iacute;nh t&ocirc;ng huyền b&iacute; đạo thuật,<br /><br />Điều động kim cương bất hoại tuyệt mệnh phi cương,<br /><br />Nam Minh lửa ph&ugrave; liệt diễm tịnh thế,<br /><br />Quỹ nguy&ecirc;n nước ph&ugrave; s&oacute;ng lớn th&ocirc;n thi&ecirc;n.<br /><br />Cất bước ở sinh tử ngột ngạt y&ecirc;n tĩnh quỷ lĩnh, thiện &aacute;c đan ch&eacute;o, tr&iacute; sinh tử ngo&agrave;i suy x&eacute;t,&nbsp;<br />an t&aacute;ng v&ocirc; tận chết thảm linh hồn.<br /><br />Du đ&atilde;ng với m&aacute;u tanh giết ch&oacute;c khủng bố thi&ecirc;n đường, c&ugrave;ng zombie khi&ecirc;u vũ,<br />thưởng thức một khối mục n&aacute;t sinh thư thịt rữa.<br /><br />Cương thi đạo trưởng, y&ecirc;n tĩnh quỷ lĩnh, giết ch&oacute;c du vi&ecirc;n, Chung Quỳ gi&aacute;ng thế. . . . .<br /><br />Xuy&ecirc;n h&agrave;nh ở khủng bố trong lu&acirc;n hồi,<br /><br />Vượt qua một lần lại một lần mạo hiểm sinh tử tr&ograve; chơi,",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

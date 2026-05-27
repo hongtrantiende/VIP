@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "4717",
+        "NAME": "Võng du nhị thứ nguyên",
+        "CHAPTER": [
+            {
+                "id": "1673070",
+                "name": "Tự chương"
+            }
+        ],
+        "TOTALCHAPTER": "249",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Võng Du, Khoa Huyễn",
+        "AUTHOR": "Liệt xác kê đản",
+        "TRANS": "❀๖ۣۜGitsune❀",
+        "DESC": "Chuyển chức Anime b&ecirc;n trong nghề nghiệp. Tiến v&agrave;o Anime thế giới c&agrave;y ph&oacute; bản. Tr&ecirc;n mặt biển cao tới c&ugrave;ng Hạm Nương đối oanh, hỏa sương m&ugrave; chiến sĩ c&ugrave;ng si&ecirc;u năng lực giả tr&ecirc;n mặt đất quyết chiến, trong bầu trời, tử mụ lặng lẽ k&eacute;o ra một c&aacute;i khe... ...",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

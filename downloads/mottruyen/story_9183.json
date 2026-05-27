@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "9183",
+        "NAME": "Ở One Piece Chơi Vua Hải Tặc",
+        "CHAPTER": [
+            {
+                "id": "3401425",
+                "name": "Ngươi là ai"
+            }
+        ],
+        "TOTALCHAPTER": "1",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Xuyên Không, Đồng Nhân",
+        "AUTHOR": "anhcodo123",
+        "TRANS": "Nhiều Converter",
+        "DESC": "xuyên đến one piece và có hệ thống",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "8571",
+        "NAME": "Trọng Sinh Tùy Mạt Định Giang Sơn",
+        "CHAPTER": [
+            {
+                "id": "2942013",
+                "name": "Chương 1 :thứ tử vận mệnh"
+            }
+        ],
+        "TOTALCHAPTER": "192",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Quân Sự, Lịch Sử, Xuyên Không, Trùng Sinh",
+        "AUTHOR": "Lục Đậu Ngọc Mễ",
+        "TRANS": "ngohoangthanh271195@gmail.com",
+        "DESC": "Thanh Y mặc giáp thề Bình Loạn, Hùng Sư trăm vạn định giang sơn, cười nhìn thiên hạ ai vì người, kiếm chỉ Phong Vân Phá Thương Khung.<br />\r\n<br />\r\n\tVương Bình, Trì Thế Chi Năng Thần, loạn thế kiêu hùng",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

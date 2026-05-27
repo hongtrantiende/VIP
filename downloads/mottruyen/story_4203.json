@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "4203",
+        "NAME": "Dị Giới Đích Tro Cốt Cấp Ngoạn Gia",
+        "CHAPTER": [
+            {
+                "id": "1527588",
+                "name": "Đệ 1 chương anh hùng trì mộ"
+            }
+        ],
+        "TOTALCHAPTER": "149",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Võng Du, Dị Giới",
+        "AUTHOR": "Đơn Thuần Trạch Nam",
+        "TRANS": "LightK",
+        "DESC": "Đ&acirc;y l&agrave; nhất c&aacute;i tro cốt cấp ngoạn gia mang theo 'Mộng ảo' hệ thống xuy&ecirc;n vi&ecirc;̣t đ&iacute;ch cố sự.<br /> <br /> Trở th&agrave;nh nhất c&aacute;i tuyệt Thế Thi&ecirc;n t&agrave;i, muốn kh&ocirc;ng phụ l&ograve;ng c&aacute;i n&agrave;y danh h&agrave;o mới được, v&igrave; vậy, đ&aacute;nh qu&aacute;i thăng cấp, luyện kh&iacute; nấu nướng, ph&ugrave;ng nh&acirc;n luyện dược, trận ph&aacute;p triệu ho&aacute;n, trở th&agrave;nh nhất đại văn đ&agrave;n Th&aacute;nh tử, v&ocirc; sở bất năng, kh&ocirc;ng chỗ n&agrave;o Bất Th&ocirc;ng.<br /> <br /> Hắn, tựu l&agrave; to&agrave;n năng đấy, đương nhi&ecirc;n, chỉ l&agrave; thi&ecirc;n t&agrave;i khẳng định c&ograve;n chưa đủ, tối hậu, ho&agrave;n nhất định phải trở th&agrave;nh c&aacute;i kia ch&iacute; cao V&ocirc; Thượng đ&iacute;ch tồn tại.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

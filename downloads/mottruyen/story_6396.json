@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "6396",
+        "NAME": "Tiên Sư Vô Địch",
+        "CHAPTER": [
+            {
+                "id": "6179993",
+                "name": "Chương 1 : Gặp mặt trong đêm"
+            }
+        ],
+        "TOTALCHAPTER": "496",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đô Thị, Huyền Ảo",
+        "AUTHOR": "Diệp Thiên Nam",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Đô thị thiếu niên, tao ngộ cửu thế ma đầu đoạt xác thất bại, từ đây bàn tay âm dương sắc xảo, tung hoành thiên hạ.<br />\r\n<br />\r\n♥ Cầu nguyệt phiếu ''Đề cử'', ''Vote truyện'', và nhớ click vào ''Cảm ơn'' để lấy tinh thần convert !",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

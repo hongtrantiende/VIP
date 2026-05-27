@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "11699",
+        "NAME": "Ma Pháp Điểm Cuối.",
+        "CHAPTER": [
+            {
+                "id": "3854135",
+                "name": "Chương 1: Ta nhớ ra rồi!"
+            }
+        ],
+        "TOTALCHAPTER": "7",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Kiếm Hiệp, Huyền Ảo, Dị Giới",
+        "AUTHOR": "sieunhanxongchuong",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Vì một nguyên do gì đó mà Hoàng Họa (Họa), một vị Tiên Nhân đỉnh cấp nhất thiên địa đã ký kết giao ước tà ác với \"Kẻ Vô Hình\". Theo ký kết, Họa phải....<br />\r\n<br />\r\nSau khi chết, hồn hắn không biết vì nguyên nhân gì mà đã xuyên đến một thế giới Ma pháp, nhưng bị suy yếu và luôn ẩn tàn trong cơ thể một tiểu tử. Chính vì hồn hắn chiếm 7 phần lớn trong hồn tiểu tử, nên khi sinh ra , tiểu tử vốn đã đần độn cùng trầm mạc lạ thường do hồn hắn đang ngủ say chờ ngày thức tỉnh.<br />\r\n<br />\r\nCho đến một ngày của sáu năm sau, khi tiểu tử vừa tròn 6 tuổi, Họa thức tỉnh, hồn tiểu tử hoàn thiện và mọi chuyện bắt đầu...<br />\r\n<br />\r\nTiên Nhân lại phải đi đến nơi của ma pháp?<br />\r\n<br />\r\nMọi năng lực hầu như mất hết?<br />\r\n<br />\r\nThế giới chỉ có thiên phú, không có các bước tu luyện?<br />\r\n<br />\r\nHắn nên làm thế nào?<br />\r\n<br />\r\nLiệu khế ước còn đeo bám hắn? Hay... chính hắn là kể đeo bám khế ước?<br />\r\n<br />\r\nKẻ Vô Hình là? <br />\r\n<br />\r\nCùng theo dõi một Quái vật giết người không gớm tay phá đảo Ma Pháp thế giới.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

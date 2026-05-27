@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "12777",
+        "NAME": "Thần Cấp Tâm Tình Hệ Thống",
+        "CHAPTER": [
+            {
+                "id": "4122376",
+                "name": "Chương 1: Ngươi còn có thể hay không thể có điểm mộng tưởng ?"
+            }
+        ],
+        "TOTALCHAPTER": "538",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đô Thị, Dị Năng",
+        "AUTHOR": "Ngũ Lăng",
+        "TRANS": "Tinh Tuyết",
+        "DESC": "Kẻ có tiền nói có \"Tiền\" giải quyết không vấn đề, nhưng Bảo Bảo cảm thấy, có \"Tâm tình\" giải quyết không vấn đề .<br />\r\n<br />\r\n\tThu được tâm tình biểu tình bao, từ nay về sau —— ngươi tâm tình ta làm chủ, ngươi hỉ nộ ái ố, ta nói tính!<br />\r\n<br />\r\n\tĐây là một cái người không có đồng nào xuyên qua khách thu được thao túng tâm tình năng lực ung dung sung sướng đùa so với cố sự ...<br />\r\n<br />\r\n\tMỹ nữ: \"Suất ca, tâm tình gì đều có thể thể nghiệm sao?\"<br />\r\n<br />\r\n\tBảo Bảo dương dương đắc ý: \"Đương nhiên, bao ngươi thoả mãn .\"<br />\r\n<br />\r\n\tMỹ nữ: \" cho ta tới một lần ... Vui vẻ .\"<br />\r\n<br />\r\n\tBảo Bảo khóe miệng co giật: \"A ... A ... Loại nào vui vẻ ?\"",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

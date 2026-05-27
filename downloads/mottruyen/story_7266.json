@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "7266",
+        "NAME": "Fairy Chi Chi Ryan",
+        "CHAPTER": [
+            {
+                "id": "2584005",
+                "name": "Chương 1.Khởi Đầu Mới"
+            }
+        ],
+        "TOTALCHAPTER": "2",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Xuyên Không, Đồng Nhân",
+        "AUTHOR": "lucifer_9x",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Thân Gửi..<br />\r\nLần đầu viết truyện nên văn phong còn khá kém và phải đi mượn nhiều truyện..mong m.n ủng hộ nha.<br />\r\nLịch ra chương thứ 3,4,5,6,7 mỗi ngày 1 chương..còn lại sẽ tùy tâm trạng",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

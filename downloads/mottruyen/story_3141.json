@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "3141",
+        "NAME": "Mushoku Tensei",
+        "CHAPTER": [
+            {
+                "id": "1071333",
+                "name": "Tập 1 :Thời thơ ấu - Mở đầu"
+            }
+        ],
+        "TOTALCHAPTER": "117",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Dị Giới, Xuyên Không, Trùng Sinh",
+        "AUTHOR": "Rifujin Na Magonote",
+        "TRANS": "^_^",
+        "DESC": "Đại kh&aacute;i l&agrave; 1 t&ecirc;n Neet 34 tuổi sau khi chết đi th&igrave; được t&aacute;i sinh ở một thế giới mới, nơi tồn tại song h&agrave;nh cả cung kiếm lẫn ma ph&aacute;p với tương lai tươi s&aacute;ng hơn c&ugrave;ng cả d&agrave;n harem<br /> <br /><br />",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "3805",
+        "NAME": "Anh Hùng Liên Minh Xâm Lấn Azeroth",
+        "CHAPTER": [
+            {
+                "id": "1313568",
+                "name": "Chương 1: Thay đổi thế giới bước thứ nhất! - Quyển 1 : Twilight of lordareon"
+            }
+        ],
+        "TOTALCHAPTER": "65",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Võng Du",
+        "AUTHOR": "Lý Tĩnh Đốc",
+        "TRANS": "Frozen96eart",
+        "DESC": "L&agrave;m qua đi c&ugrave;ng tương lai đan xen v&agrave;o nhau th&igrave;, hết thảy thế giới vận mệnh đều sẽ ng&agrave;n c&acirc;n treo sợi t&oacute;c.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

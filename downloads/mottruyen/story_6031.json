@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "6031",
+        "NAME": "đô thị tu chân thần y",
+        "CHAPTER": [
+            {
+                "id": "2171174",
+                "name": "Chương 1: Ta không phải quỷ"
+            }
+        ],
+        "TOTALCHAPTER": "694",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đô Thị",
+        "AUTHOR": "Tống Dịch",
+        "TRANS": "๖ۣۜSuccubus♀",
+        "DESC": "Y thuật thần kỳ, kh&ocirc;ng ch&acirc;m cứu kh&ocirc;ng treo thủy, chỉ cần một tấm Ph&ugrave; Lục một luồng linh kh&iacute;, l&agrave;m người chết sống lại, diệu thủ hồi xu&acirc;n, y thủ gi&agrave; thi&ecirc;n .<br /> <br /> Gia tộc kh&iacute; thiểu L&acirc;m Thi&ecirc;n, v&ocirc; t&igrave;nh gặp được một luồng t&agrave;n hồn, hai người c&oacute; qua c&oacute; lại x&agrave;i chung nhất thể, từ đ&acirc;y triển khai một đoạn ngưu bức rầm rầm Tu Ch&acirc;n cuộc h&agrave;nh tr&igrave;nh ...",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "12582",
+        "NAME": "Hồng Mông Đạo Kinh",
+        "CHAPTER": [
+            {
+                "id": "4076516",
+                "name": "Chương 1: Sự Khởi Đầu Của Hận Thù"
+            }
+        ],
+        "TOTALCHAPTER": "3",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp, Huyền Ảo, Trùng Sinh",
+        "AUTHOR": "akitokabuto@",
+        "TRANS": "Nhiều Converter",
+        "DESC": "100 năm sau, Lăng Tiêu Thánh Quân  trọng sinh trở về.<br />\r\nHắn nhìn lên thiên hét lớn ' Ta  Lăng Tiêu xin thề với trời, những kẻ ám hại ta, ta sẽ trả lại gấp trăm ngàn lần '",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

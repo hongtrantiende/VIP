@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "2622",
+        "NAME": "Đăng Thiên Phù Đồ",
+        "CHAPTER": [
+            {
+                "id": "853667",
+                "name": "Chương 1: Thiết cùng huyết đúc thành!"
+            }
+        ],
+        "TOTALCHAPTER": "375",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Khoa Huyễn",
+        "AUTHOR": "Đại Tống Phúc Hồng Phường",
+        "TRANS": "liusiusiu123, jun",
+        "DESC": "Th&ocirc;ng thi&ecirc;n th&aacute;p, th&aacute;p th&ocirc;ng thi&ecirc;n; nổi t&agrave;n s&aacute;t giới, giới nổi t&agrave;n s&aacute;t. <br /> <br /> Muốn c&ugrave;ng ng&agrave;n dặm xem, n&acirc;ng cao một bước. <br /> <br /> Sẽ khi thẳng tới trời cao đỉnh, vừa xem ch&uacute;ng sinh tiểu!",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

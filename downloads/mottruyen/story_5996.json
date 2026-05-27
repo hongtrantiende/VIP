@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "5996",
+        "NAME": "Vùng đất hi vọng",
+        "CHAPTER": [
+            {
+                "id": "2163385",
+                "name": "Chương 1: Hi vọng"
+            }
+        ],
+        "TOTALCHAPTER": "1",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Dị Năng, Khoa Huyễn",
+        "AUTHOR": "tiennhan9512",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Thế giới đến tận thế. Có thật sự chỉ còn lại tuyệt vọng?",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "7217",
+        "NAME": "Toàn Năng Luyện Kim Sư",
+        "CHAPTER": [
+            {
+                "id": "2572028",
+                "name": "Chương 1 : Luyện Ngục Đảo"
+            }
+        ],
+        "TOTALCHAPTER": "4",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo",
+        "AUTHOR": "Duyên Phận",
+        "TRANS": "Khuynh Thanh",
+        "DESC": "Sau khi thí nghiệm hóa học bị thất bại, linh hồn của nhân viên phòng thí nghiệm Cung Hạo bị xuyên về dị giới, trở thành một thiếu niên bình dân tên Igler Revised. Không may, hắn bị bán vào Ác Mộng đảo ---- căn cứ luyện kim bí mật của đế quốc, làm một nô lệ thấp hèn nhất ở dưới đáy xã hội, bất cứ lúc nào cũng có thể bị làm lấy làm tài liệu thí nghiệm. May mắn chính là hắn vẫn không từ bỏ hi vọng để thay đổi vận mệnh, liều mạng học hỏi các tri thức cùng kỹ năng, học tập cùng cải tạo thuật luyện kim thất truyền, trở thành luyện kim sư toàn năng, tinh thông thật nhiều ma pháp, võ kỹ.<br />\r\n<br />\r\nDùng ma pháp, võ kỹ đạp lên đầu cự long, khiến ma thần nhìn thấy quân đoàn của ta cũng phải run rẩy!",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

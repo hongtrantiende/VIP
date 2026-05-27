@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "2498",
+        "NAME": "Ta Muốn Thành Ma",
+        "CHAPTER": [
+            {
+                "id": "821496",
+                "name": "Chương 1: Tinh đấu pháp trận - Quyển 1"
+            }
+        ],
+        "TOTALCHAPTER": "110",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo",
+        "AUTHOR": "Thần Tâm",
+        "TRANS": "Adayroi",
+        "DESC": "Tr&iacute;ch Tinh cầm Nguyệt, Chưởng Duy&ecirc;n Sinh Diệt.<br /><br />Thuận l&ograve;ng trời vi ti&ecirc;n, kh&ocirc;ng biết l&agrave;m sao thi&ecirc;n v&ocirc; t&igrave;nh.<br /><br />Ta muốn th&agrave;nh ma, nghịch ti&ecirc;n ph&aacute; thi&ecirc;n, chỉ nguyện gặp lại ngươi ngo&aacute;i đầu nh&igrave;n lại cười cười.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

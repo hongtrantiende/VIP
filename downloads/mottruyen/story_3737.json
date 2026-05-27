@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "3737",
+        "NAME": "Hoàng Kim Ngư Trường",
+        "CHAPTER": [
+            {
+                "id": "1287867",
+                "name": "Chương 1: Di chúc đến từ Canada"
+            }
+        ],
+        "TOTALCHAPTER": "1900",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đô Thị",
+        "AUTHOR": "Toàn Kim Chúc Đạn Xác",
+        "TRANS": "Huyết Lệ",
+        "DESC": "Y&ecirc;u trời xanh, y&ecirc;u c&acirc;y xanh, c&agrave;ng y&ecirc;u gợn s&oacute;ng m&ecirc;nh m&ocirc;ng bi&ecirc;̉n cả.<br /><br />C&aacute; nước ngọt, c&aacute; nước mặn, t&ocirc;m h&ugrave;m, cua biển, ăn h&agrave;ng thế giới sao c&oacute; thể thiếu đi hải sản?<br /><br />Ca n&ocirc;, du thuyền, t&agrave;u Boston Whaler, c&ograve;n c&oacute; t&agrave;u du lịch, kỳ thật xa hoa du thuyền mới được l&agrave; vương đạo.<br /><br />Trong nh&agrave; nu&ocirc;i gấu n&acirc;u, gấu trắng c&ugrave;ng gấu m&egrave;o Mỹ, ngư trường c&ograve;n c&oacute; c&aacute; heo, c&aacute; voi trắng c&ugrave;ng r&aacute;i c&aacute; biển, chồn ch&acirc;n đen, hải cẩu Greenland, ngư trường của ta c&aacute;i g&igrave; cần c&oacute; đều c&oacute;!<br /><br />Kh&ocirc;ng c&oacute; việc g&igrave; ngồi chơi Điếu Ngư Đ&agrave;i, h&ocirc; bằng hữu ho&aacute;n hữu đ&aacute;nh bạc tr&acirc;n ch&acirc;u.<br /><br />L&aacute;i du thuyền đi dạo biển lớn, bảo t&agrave;ng từ thuyền đ&aacute;m ta tới vớt.<br /><br />Mọi người khỏe, ta l&agrave; Tần Th&igrave; &Acirc;u, ta ghi lại b&uacute;t k&yacute; cuộc sống nh&agrave;n nh&atilde; tại ngư trường Canada.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

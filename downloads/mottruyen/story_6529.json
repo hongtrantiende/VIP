@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "6529",
+        "NAME": "Harry Potter Chi Tồn Tại",
+        "CHAPTER": [
+            {
+                "id": "2322323",
+                "name": "Chương 1: Đũa Phép"
+            }
+        ],
+        "TOTALCHAPTER": "168",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đồng Nhân",
+        "AUTHOR": "Tấn công De hạt dưa",
+        "TRANS": "ღ๖ۣۜKiếm ๖ۣۜTiền ๖ღ",
+        "DESC": "Nếu bạn l&agrave; fan của truyện harry potter nhảy v&agrave;o hố n&agrave;y . <br /> Lưu &yacute; Nguy Hiểm : hố rất s&acirc;u c&oacute; thể bạn sẽ chết ch&igrave;m trong đ&oacute; !!!<br /> <br /> Mọi người đọc thấy hay th&igrave; h&atilde;y vote 10* v&agrave; cảm ơn cuối mỗi chương gi&uacute;p m&igrave;nh cảm ơn v&agrave; vote view nhiều sẽ c&oacute; bom nha ( Truyện đ&atilde; viết dc 56 6094 chữ )-",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

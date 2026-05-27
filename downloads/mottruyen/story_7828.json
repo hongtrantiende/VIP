@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "7828",
+        "NAME": "Việt Cổ Du Ký",
+        "CHAPTER": [
+            {
+                "id": "2737791",
+                "name": "Chương 1 : Kẻ xuyên không đen đủi nhất trong lịch sử ?"
+            }
+        ],
+        "TOTALCHAPTER": "5",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp, Quân Sự, Lịch Sử, Xuyên Không",
+        "AUTHOR": "mindzhpv1@",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Ai bảo chỉ có trong tiểu thuyết mới có xuyên không??Nếu thể thì ta đang ở nơi quái nào thế này ?Thiênnnnnn a",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

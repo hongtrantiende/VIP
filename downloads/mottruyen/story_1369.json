@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "1369",
+        "NAME": "Đại Thừa Tướng",
+        "CHAPTER": [
+            {
+                "id": "569639",
+                "name": "Chương 1: Hạ Dương Châu"
+            }
+        ],
+        "TOTALCHAPTER": "64",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Lịch Sử",
+        "AUTHOR": "Tuyết Sơn Phi Hồ",
+        "TRANS": "Kinta",
+        "DESC": "Chấp chưởng thi&ecirc;n hạ, như hoa mỹ quyến. Như vậy ng&agrave;y nếu l&agrave; bị v&acirc;y ở tứ tứ phương phương cung trong th&agrave;nh, nhưng cũng đần độn v&ocirc; vị. Đại Yến triều b&igrave;nh tĩnh v&ocirc; số năm th&aacute;ng, trong triều bảy đại m&ocirc;n phiệt c&aacute;c hữu mưu đồ. Hưởng kh&ocirc;ng xong vinh hoa, tranh kh&ocirc;ng đủ quyền thế... Tần m&ocirc;n lớn nhỏ, hiệp thi&ecirc;n tử dĩ lệnh chư hầu! Nắm hết quyền h&agrave;nh l&agrave; thừa tướng! Thịnh thế tao nh&atilde;, k&eacute;o kh&ocirc;ng dứt. Hay Tần Hồng thi&ecirc;n hạ, đất nước của hắn!",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "1546",
+        "NAME": "Quan Tiên",
+        "CHAPTER": [
+            {
+                "id": "630121",
+                "name": "Chương 1: Siêu cường dối trá cao thủ"
+            }
+        ],
+        "TOTALCHAPTER": "1191",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đô Thị, Dị Năng",
+        "AUTHOR": "Trần Phong Tiếu",
+        "TRANS": "Kiến An",
+        "DESC": "La Thi&ecirc;n thượng ti&ecirc;n Trần Qu&aacute; Trung, bởi v&igrave; t&igrave;nh thương qu&aacute; thấp chỉ biết l&agrave; tu luyện, đang tr&ugrave;ng k&iacute;ch Tử Phủ Kim ti&ecirc;n ng&agrave;n c&acirc;n treo sợi t&oacute;c l&uacute;c, bị người &aacute;m to&aacute;n, kh&ocirc;ng cẩn thận bị đ&aacute;nh cho xuy&ecirc;n qua trở về tuổi ấu thơ thời đại.<br /><br />Hắn r&uacute;t kinh nghiệm xương m&aacute;u, quyết định đi hỗn quan trường, lấy r&egrave;n luyện ch&iacute;nh m&igrave;nh t&igrave;nh thương.<br /><br />C&oacute; l&uacute;c sảng kho&aacute;i đến qu&aacute; phận, c&oacute; l&uacute;c đồ ph&aacute; hoại đến qu&aacute; mức, hết lần n&agrave;y tới lần kh&aacute;c trong cơ thể c&ograve;n c&oacute; ch&uacute;t ti&ecirc;n linh kh&iacute;, c&oacute; thể quyết định một &iacute;t tự dưng x&ocirc;ng ra tai họa, như thế một c&aacute;i qu&aacute;i thai, đấu đ&aacute; lung tung địa x&ocirc;ng v&agrave;o theo khu&ocirc;n ph&eacute;p cũ quan trường...",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

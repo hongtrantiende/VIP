@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "5070",
+        "NAME": "Vô lại tẩu hồng hoang",
+        "CHAPTER": [
+            {
+                "id": "1787407",
+                "name": "Chương 1:  mất tất cả"
+            }
+        ],
+        "TOTALCHAPTER": "217",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp",
+        "AUTHOR": "Bôn đằng xích thố",
+        "TRANS": "Tiếu Hồng Trần",
+        "DESC": "Nhất tiếu hồng hoang động<br />\r\n<br />\r\n\tPhất tay phá Thương Khung.<br />\r\n<br />\r\n\tChớp mắt thiên địa bể,<br />\r\n<br />\r\n\tTa vì Hồng Hoang tôn!<br />\r\n<br />\r\n\tHết thảy xuất sắc đều ở « vô lại đi Hồng Hoang »",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

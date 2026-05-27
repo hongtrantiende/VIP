@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "6255",
+        "NAME": "Couples Trường Sunshine",
+        "CHAPTER": [
+            {
+                "id": "2222815",
+                "name": "Chap 1: Khởi đầu"
+            }
+        ],
+        "TOTALCHAPTER": "11",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Ngôn Tình",
+        "AUTHOR": "ngocbaobao",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Tình iu trong sáng tinh nghịch của 8 bạn trẻ cậu ấm cô chiu nhưg cũng ko kém gian nan trắc trở, pha nét ngôn tình và hành động sẽ giúp bạn có thời gian vui vẻ",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "11144",
+        "NAME": "Bất Diệt Cổ Đế",
+        "CHAPTER": [
+            {
+                "id": "3685724",
+                "name": "Chương 1: Rời nhà"
+            }
+        ],
+        "TOTALCHAPTER": "209",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp, Huyền Ảo",
+        "AUTHOR": "Ngạn Chi",
+        "TRANS": "cstdlifecstd",
+        "DESC": "Tại chí tôn không ra, Đạo Vương tàn lụi thời đại, Cổ Tộc thiếu niên Cổ Hiên, Thánh thể ma huyết, tự sơn thôn đi ra, một tranh giành thiên đồ. Âm mưu quỷ kế, tính toán tường tận Thiên Cơ, trăm khó ngàn kiếp như không có gì. Vạn tộc Thiên Kiêu, quần hùng tranh bá, một đường đạp huyết chỉ thiên đi. Ta thề thành Đế, thì sợ gì thiên hạ!",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

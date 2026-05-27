@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "3083",
+        "NAME": "Pháp Bảo Của Ta Là Computer",
+        "CHAPTER": [
+            {
+                "id": "1051733",
+                "name": "Chương 1: Không phải nằm mơ chính là xuyên qua"
+            }
+        ],
+        "TOTALCHAPTER": "385",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp",
+        "AUTHOR": "Trần Di Nhiên",
+        "TRANS": "Ta Là Ai, Nokia",
+        "DESC": "Một c&aacute;i xuy&ecirc;n qua kỹ thuật trạch đem to&agrave;n bộ tu ti&ecirc;n thế giới xem l&agrave; một tr&ograve; chơi tới chơi<br /><br />&Ocirc;ng trời chưa cho mở Kim Thủ Chỉ, nh&acirc;n vật ch&iacute;nh chỉ c&oacute; thể ch&iacute;nh m&igrave;nh viết phần mềm hack<br /><br />V&ocirc; căn cứ giới thiệu ch&iacute;nh l&agrave; như tr&ecirc;n như vậy đi...",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

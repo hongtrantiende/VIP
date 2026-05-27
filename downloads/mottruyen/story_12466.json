@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "12466",
+        "NAME": "Đô Thị Thánh Y",
+        "CHAPTER": [
+            {
+                "id": "4256303",
+                "name": "Chương 1: Ngươi là vị hôn thê của ta"
+            }
+        ],
+        "TOTALCHAPTER": "2000",
+        "IMG": "https://static.cdnno.com/poster/do-thi-thanh-y/150.jpg",
+        "CAT": "Đô Thị",
+        "AUTHOR": "Cà Chua",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Tám năm trước, hắn cửa nát nhà tan, sống lang thang.  Tám năm sau, hắn thiết huyết trở về, đem theo mối hận phần thiên.  Ta muốn cho Thương Thiên đối với ta kính sợ, ta muốn cho mặt đất vì ta run rẩy, ta muốn thế giới này bởi vì ta mà điên cuồng.  Quách Nghĩa!  Một cái nam nhân máu lạnh, ngạo mạn, khinh thường không thèm chú ý đến thiên hạ thương sinh.  Một cái khí phách, uy mãnh, dám khiêu chiến cửu thiên chúng sinh truyền kỳ.  <br />\r\n<br />\r\n= Tác giả định nghĩa từ khóa= <br />\r\n#Đan dược <br />\r\n#Phách lối  <br />\r\n#Cường giả trở về <br />\r\n#Hào môn",
+        "THUMB": "https://static.cdnno.com/poster/do-thi-thanh-y/150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

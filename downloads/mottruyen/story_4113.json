@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "4113",
+        "NAME": "Thái Cổ Tiên Vương",
+        "CHAPTER": [
+            {
+                "id": "1505173",
+                "name": "Chương 1: Long không ở cùng xà"
+            }
+        ],
+        "TOTALCHAPTER": "702",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo",
+        "AUTHOR": "Tiêm Tiêu Kiền Đậu Hủ",
+        "TRANS": "Tangthuvien",
+        "DESC": "Lỡ chạm thái cổ tổ khí, Tiêu Vân xuyên qua tu tiên đại thế giới một cái bị người đánh chết phế vật trên người thiếu niên, thức tỉnh song linh căn, từ tiên môn phế vật một nhảy trở thành siêu cấp thiên tài, hắc động linh căn có thể thôn thiên nhật nguyệt, thanh vân thảo linh căn có thể hóa tạo hóa thần đằng, có thể khóa chư thiên Thần Ma.<br />\r\n<br />\r\nVạn cổ 3 nghìn giới, thiên kiêu như ngân hà cát sỏi một loại đếm không hết, thử hỏi thiếu niên vừa ra, ai cùng tranh phong?",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

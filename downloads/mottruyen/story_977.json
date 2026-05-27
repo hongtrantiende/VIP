@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "977",
+        "NAME": "Nhất Đẳng Gia Đinh",
+        "CHAPTER": [
+            {
+                "id": "377363",
+                "name": "Chương 1: Tự chương"
+            }
+        ],
+        "TOTALCHAPTER": "1877",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo, Dị Giới",
+        "AUTHOR": "Thuần Tình Tê Lợi Ca",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Hứa Phong ch&iacute;nh l&agrave; một người đ&agrave;n &ocirc;ng hiện đại, l&agrave; một kẻ phong hoa tuyết  nguyệt, h&aacute;o sắc h&aacute;m g&aacute;i, nhưng bởi v&igrave; một chuyện ngo&agrave;i &yacute; muốn m&agrave; sống  lại ở dị giới, trở th&agrave;nh gia đinh mặc quần &aacute;o lụa l&agrave;, đấu với qu&yacute; tộc,  giết chết cường giả, đ&ugrave;a giỡn Ti&ecirc;u gia tiểu thư, th&ocirc;ng đồng với h&agrave;o m&ocirc;n  thục nữ, g&acirc;y tại họa h&agrave;ng vạn h&agrave;ng ngh&igrave;n lần.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

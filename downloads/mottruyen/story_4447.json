@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "4447",
+        "NAME": "Siêu Cấp Thiên Khải",
+        "CHAPTER": [
+            {
+                "id": "1588434",
+                "name": "Chương 1: Thiên Khải"
+            }
+        ],
+        "TOTALCHAPTER": "316",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đô Thị",
+        "AUTHOR": "Na nhất mạt phi hồng",
+        "TRANS": "hikhik123, toirathienlanh9x, TrinhTuanAnh",
+        "DESC": "Đ&acirc;y l&agrave; một khoản điểu nổ thi&ecirc;n hệ thống,<br /><br />Đ&acirc;y l&agrave; một phiến k&eacute;o huyễn khốc cửa lớn,<br /><br />Lắp l&ecirc;n hệ thống, mở cửa lớn ra, v&ocirc; hạn cơ duy&ecirc;n tiện tay có th&ecirc;̉ được,<br /><br />Đ&acirc;y l&agrave; một c&aacute;i b&igrave;nh ph&agrave;m thanh ni&ecirc;n kỳ diệu lữ tr&igrave;nh,<br /><br />Lao ra đ&ocirc; thị, Đại Thi&ecirc;n vũ trụ mặc ta ngao du ... .",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

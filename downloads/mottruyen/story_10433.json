@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "10433",
+        "NAME": "Tối Cường Chúa Tể Vũ Trụ Hệ Thống",
+        "CHAPTER": [
+            {
+                "id": "3490165",
+                "name": "Chương 1 : Giới thiệu"
+            }
+        ],
+        "TOTALCHAPTER": "3",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp, Huyền Ảo, Dị Giới",
+        "AUTHOR": "01632485446",
+        "TRANS": "01632485445",
+        "DESC": "\"Ta là người được chọn\"  <br />\r\nHệ Thống: \" Đúng ngươi là người được hệ thống chọn \"<br />\r\n<br />\r\n\"Vậy ngươi làm được gì\"<br />\r\n<br />\r\nHệ Thống:\" Có thể giúp ngươi thống trị Vũ Trụ , Có được nữ nhân đẹp nhất \"<br />\r\n<br />\r\n       { == Truyện ngày 2/5 lên nhé mọi người==}<br />\r\n<br />\r\nCảnh Giới:12 tần , mỗi tần chia làm:<br />\r\n(1-3Sơ kỳ , 4-6 Trung Kỳ , 7-9Hậu kì, 10đỉnh phong)",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "11927",
+        "NAME": "Quý Tộc Vũ Trụ",
+        "CHAPTER": [
+            {
+                "id": "3911953",
+                "name": "Chương 1 : Con riêng xóm nghèo"
+            }
+        ],
+        "TOTALCHAPTER": "40",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đô Thị",
+        "AUTHOR": "Khảo Ngư",
+        "TRANS": "chien3consau",
+        "DESC": "đại thời đại dưới bầu trời sao， mậu dịch xung đột， Starcraft， tài nguyên cạnh tranh， quý tộc giao chiến càng diễn càng ác liệt。<br />\r\nĐây là tốt nhất thời đại， nàng cho phép mọi người nắm giữ giấc mơ。 nhưng cái này cũng là xấu nhất thời đại， tất cả mọi người nghi ngờ mang theo lý tưởng tre già măng mọc bị mai táng。<br />\r\nXóm nghèo thiếu niên biển rừng， lấy không có tim không có phổi điêu dân tư thái， như là một thanh đao nhọn， thoải mái tràn trề chọc thủng cái thời đại này。<br />\r\nMỗi một người đàn ông trong lòng， đều chôn dấu tinh không cùng biển rộng。<br />\r\n lấy thế giới này， là nên có chút anh hùng。",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

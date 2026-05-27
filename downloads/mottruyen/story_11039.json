@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "11039",
+        "NAME": "Yêu Nghiệt Quật Khởi Lục",
+        "CHAPTER": [
+            {
+                "id": "3644824",
+                "name": "Chương 1 :: Thần kỳ đọc sách khí"
+            }
+        ],
+        "TOTALCHAPTER": "196",
+        "IMG": "https://static.cdnno.com/poster/yeu-nghiet-quat-khoi-luc/150.jpg",
+        "CAT": "Huyền Ảo, Đồng Nhân",
+        "AUTHOR": "Mr Giai Nam",
+        "TRANS": "Hảo",
+        "DESC": "Trạng thái nhập ma Nhiếp Phong, có thể hay không làm việc cho ta?<br />\r\n<br />\r\n\tĐấu Sư cảnh giới Tiêu Viêm, có thể nguyện tiếp nhận làm mướn?<br />\r\n<br />\r\n\tLục Chỉ Cầm Ma một khúc, Tiếu Ngạo Cửu Trọng Thiên!<br />\r\n<br />\r\n\tNghịch thiên Thất Ma Đao rơi, khắp trời Thần Phật vẫn!<br />\r\n<br />\r\n\tMuôn vạn Tiểu Thuyết Thế Giới, duy ta một tay che trời.<br />\r\n<br />\r\n\tChân kiêu hùng, huyết tất lãnh!<br />\r\n<br />\r\n\tLại nhìn yêu nghiệt quật khởi!",
+        "THUMB": "https://static.cdnno.com/poster/yeu-nghiet-quat-khoi-luc/150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "4473",
+        "NAME": "Đô Thị Binh Thiếu",
+        "CHAPTER": [
+            {
+                "id": "1595767",
+                "name": "Chương 1: Mỹ nữ chủ tịch mời"
+            }
+        ],
+        "TOTALCHAPTER": "26",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đô Thị",
+        "AUTHOR": "Tiến Kích Đích Nãi Ba",
+        "TRANS": "terry_1442@yahoo.com",
+        "DESC": "Thoát ly ngày xưa tổ chức, hắn vốn định đi qua đơn giản cuộc sống yên tĩnh, nhưng mới vừa vừa bước vào hoa đô bên trong, liền tình cờ gặp gỡ phong hoa tuyệt đại mỹ nữ chủ tịch, trở thành nàng giả bạn trai, bị nàng mang về nhà sau, lại gặp phải nhí nha nhí nhảnh cực phẩm sinh đôi tiểu di tử...<br />\r\n<br />\r\nNhưng mà, đây chỉ là Sở Ca bừa bãi hoa đô bắt đầu, tầng tầng lớp lớp cực phẩm mỹ nữ, chính chờ đợi chúng ta \"Bá Vương\" tới một người cái triệu kiến cùng chinh phục!<br />\r\n<br />\r\nSở Ca: \"Nãi Ba, ngươi sẽ không lừa phỉnh ta chứ? Ta mới vừa về đô thị, ngươi cũng không nên gạt ta.\"<br />\r\n<br />\r\nTiến Kích Đích Nãi Ba: \"Yên tâm đi, vì thân ái các độc giả, cuộc sống của ngươi nhất định phải đặc sắc, mỹ nữ nhất định phải nhiều!\"",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

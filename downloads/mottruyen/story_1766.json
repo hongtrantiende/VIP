@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "1766",
+        "NAME": "Siêu Nhân Trong Thế Giới Marvel",
+        "CHAPTER": [
+            {
+                "id": "727219",
+                "name": "Chương 1: Siêu cấp đồng hồ cùng lừa người đồng hồ"
+            }
+        ],
+        "TOTALCHAPTER": "326",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Khoa Huyễn",
+        "AUTHOR": "Thuần Khiết Đích Trư Đầu",
+        "TRANS": "Truy Hồn, Manh Manh",
+        "DESC": "Hoắc Kỳ mua một chiếc đồng hồ thần kỳ c&oacute; thể xuy&ecirc;n việt đến c&aacute;c loại thế giới điện ảnh, trong nh&aacute;y mắt đi thế giới Si&ecirc;u Nh&acirc;n, bị sấm s&eacute;t từ tr&ecirc;n trời gi&aacute;ng xuống đ&aacute;nh tr&uacute;ng. . .<br /><br />Trời đưa đất đẩy l&agrave;m sao, Hoắc Kỳ đi tới một thế giới kh&aacute;c. . .<br /><br />Trong thế giới n&agrave;y, c&oacute; Iron Man, c&oacute; Hulk, c&oacute; Thor, c&oacute; Captain America. . .<br /><br />C&ograve;n c&oacute; một Hoắc Kỳ c&oacute; được năng lực của Si&ecirc;u Nh&acirc;n. . .\r\n<br />",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

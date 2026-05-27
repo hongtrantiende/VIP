@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "11444",
+        "NAME": "Siêu Thần Tông Sư",
+        "CHAPTER": [
+            {
+                "id": "3805306",
+                "name": "Chương 1: Xui xẻo xuyên việt"
+            }
+        ],
+        "TOTALCHAPTER": "10",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo",
+        "AUTHOR": "Nhất Mộng Kỷ Thiên Thu",
+        "TRANS": "DragonTOP",
+        "DESC": "\"Cuối cùng có một ngày, ta sẽ nhượng cái này mênh mông vô tận Tinh Hà tại ta dưới chân run rẩy, nhượng mỗi một cái sinh mệnh đều nhớ ở tên của ta, nhượng tất cả Tiền Tệ đều in lên my avatar!\" —— dưới trời sao đệ nhất cường giả, lâm vô địch.<br />\r\n<br />\r\n\tNghiêm Chính thông cáo câu chuyện này đơn thuần hư cấu, như có tương đồng, coi như ta chép ngươi.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

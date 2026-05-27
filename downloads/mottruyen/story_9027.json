@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "9027",
+        "NAME": "Siêu cấp hệ thống tại mạt thế",
+        "CHAPTER": [
+            {
+                "id": "3065487",
+                "name": "Chương 1: Mới bắt đầu"
+            }
+        ],
+        "TOTALCHAPTER": "14",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Khoa Huyễn, Mạt Thế",
+        "AUTHOR": "Kỷ bút sổ xuân thu",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Cướp quái bạo trang bị thành lập người may mắn sống sót.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

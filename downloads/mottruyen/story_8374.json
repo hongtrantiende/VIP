@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "8374",
+        "NAME": "Ngày Mai Sẽ Có Nắng !",
+        "CHAPTER": [
+            {
+                "id": "2875186",
+                "name": "Truyện ngắn nên không có chương :))"
+            }
+        ],
+        "TOTALCHAPTER": "1",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Ngôn Tình",
+        "AUTHOR": "hamanhobe123",
+        "TRANS": "Hà Mã",
+        "DESC": "Đây là truyện ngắn mình sáng tác. Lần Đầu viết truyện nên văn phong còn non kém . Mong các bạn ủng hộ :) !",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "2370",
+        "NAME": "Ma Vũ Nhật Nguyệt",
+        "CHAPTER": [
+            {
+                "id": "789291",
+                "name": "Chương 01: Nhặt bảo bối nhặt ra cái xuyên việt"
+            }
+        ],
+        "TOTALCHAPTER": "1201",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo",
+        "AUTHOR": "Thiên Mộ Tuyết",
+        "TRANS": "trang4mat",
+        "DESC": "Tiếc Viễn Cổ nhị đế, Vạn Thế Lu&acirc;n Hồi bất diệt chi hồn!<br /><br />Th&aacute;n kh&ocirc;ng đủ sức xoay chuyển cả đất trời, xem ta h&ocirc;m nay xanh thi&ecirc;n địa, vũ nhật nguyệt!<br /><br />Như thế n&agrave;o ch&iacute;nh? Như thế n&agrave;o t&agrave;?<br /><br />Như thế n&agrave;o Phật? Như thế n&agrave;o Ma?<br /><br />Ta ngạo sảng kho&aacute;i tu luyện, kh&ocirc;ng v&igrave; trường sinh, kh&ocirc;ng l&agrave; đạt được thế nh&acirc;n k&iacute;nh ngưỡng!<br /><br />Chỉ v&igrave; lấy t&ugrave; Thi&ecirc;n chi lực, tr&aacute;nh thoát gồng xiềng của vận mệnh! Để điều n&agrave;y c&oacute; thể che trời b&agrave;n tay khổng lồ, đều phải ở ta Ma Uy dưới, run rẩy!<br /><br />Kiếm chỉ thế gian vạn m&ocirc;n ngàn ph&aacute;i, quần ma loạn vũ cầu bại một lần!",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

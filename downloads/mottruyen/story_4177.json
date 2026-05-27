@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "4177",
+        "NAME": "Thiên Mục",
+        "CHAPTER": [
+            {
+                "id": "1520950",
+                "name": "Chương 1 :Thanh Nguyên Thành"
+            }
+        ],
+        "TOTALCHAPTER": "150",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp, Huyền Ảo",
+        "AUTHOR": "Dị Sát",
+        "TRANS": "motngaythieue",
+        "DESC": "Đây là một thuộc về cường giả thế giới.<br />\r\n<br />\r\nỞ chỗ này, chỉ cần một ngón tay là được hủy thiên diệt địa tồn tại, truy tinh cản nguyệt, tranh giành tứ phương.<br />\r\n<br />\r\nMột ngày nào đó của một năm của một tháng, đến từ Địa Cầu thiếu niên Trần Minh tới nơi này cái thế giới, bắt đầu hắn tràn đầy truyền kỳ sắc thái khi còn sống.<br />\r\n<br />\r\nMang theo một đôi có thể thấy bất luận cái gì quá khứ ánh mắt, Trần Minh từng bước, bước lên chí cao vương tọa.<br />\r\n<br />\r\nRách rưới mảnh giấy vụn? Kia ở Trần Minh trong mắt, chính là một quyển đầy đủ nghịch thiên vũ kỹ.<br />\r\n<br />\r\nVĩnh viễn mở không ra Cơ Quan Môn? Kia ở Trần Minh trong mắt, giống như vào nhà mình đại môn giống nhau đơn giản.<br />\r\n<br />\r\nTìm không được hết đường mê cung? Kia ở Trần Minh trong mắt, quả thực chính là hắn nhà hậu hoa viên, sân vắng tản bộ, là được tự do ra vào.<br />\r\n<br />\r\n\"Đây là trời cao ban cho đôi mắt của ta, đây là một song Thiên Mục!\"",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

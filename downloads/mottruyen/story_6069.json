@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "6069",
+        "NAME": "Mạt Thế Chi Triệu Hoán Vô địch",
+        "CHAPTER": [
+            {
+                "id": "2177463",
+                "name": "Chương 1 : Quái vật xuất hiện"
+            }
+        ],
+        "TOTALCHAPTER": "50",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Khoa Huyễn",
+        "AUTHOR": "Nhiều Converter",
+        "TRANS": "๖ۣۜVô ๖ۣۜCảm",
+        "DESC": "Mạt thế sống còn thời đại, cường giả thời đại, không liều mạng chiến đấu như thế nào đứng ở đỉnh phong",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

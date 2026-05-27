@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "12230",
+        "NAME": "Xích Thố Ký",
+        "CHAPTER": [
+            {
+                "id": "3984343",
+                "name": "1 Tương Dương thành nữ hiệp tìm người, Thủy Vân Gian quần hùng gặp nhau"
+            }
+        ],
+        "TOTALCHAPTER": "44",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Võng Du",
+        "AUTHOR": "Đông Giao Lâm Công Tử",
+        "TRANS": "Ngọc Thiên Long",
+        "DESC": "Tại « Hồng Anh ký » cố sự kết thúc nửa năm sau, Đại Giang Hồ lại nghênh đón mới phong ba. Hoàng hệ võ hiệp, phá toái hư không, tất cả Hoàng hệ cao thủ tụ tập dưới một mái nhà, hướng về võ học cảnh giới tối cao phát khởi khiêu chiến. Lệnh Đông Lai, Truyền Ưng, Bàng Ban, Lệ Nhược Hải, Thạch Chi Hiên, Tần Mộng Dao, Loan Loan, Võ Chiếu... Trăng sáng chiếu mây tía, vô số người phong lưu, ai có thể leo lên cái này như mộng như ảo võ học chi đỉnh?<br />\r\n<br />\r\n\tMà đã là võ lâm minh chủ A Phi, tại cái này trên giang hồ thì tiếp tục lấy thân là người chơi sung sướng cùng phiền não: Là bởi vì Quách Tương cùng Hà Túc Đạo chưa thành nhân duyên, vẫn là Vân Trung Long cùng Đại Kiếm Thần vương tọa khiêu chiến, hoặc là kia xuyên qua võ hiệp lịch sử, kéo dài không thôi hiệp cùng nghĩa xoắn xuýt?<br />\r\n<br />\r\n\t------------<br />\r\n<br />\r\n\tBài này cẩn vì kỷ niệm Huỳnh Dịch đại sư mà viết tuỳ bút, dài ngắn không biết, cẩn thận khi đi vào.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

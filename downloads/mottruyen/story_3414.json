@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "3414",
+        "NAME": "Nhị Thập Tứ Tiểu Thi",
+        "CHAPTER": [
+            {
+                "id": "1184152",
+                "name": "Chương 1: Thâm Uyên Kỳ Địa"
+            }
+        ],
+        "TOTALCHAPTER": "140",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo",
+        "AUTHOR": "Lão Cáo",
+        "TRANS": "ChucMung",
+        "DESC": "Người biển &yacute; thức c&oacute; một to&agrave; b&iacute; t&agrave;ng.<br /> <br /> Quan tưởng biển &yacute; thức c&oacute; thể tu Th&ocirc;ng Thi&ecirc;n ph&aacute;p, dần tho&aacute;t ph&agrave;m tục!<br /> <br /> Thiếu ni&ecirc;n anh tuấn biển &yacute; thức c&oacute; thể tế luyện ra minh &aacute;m hai tấm ph&ugrave; lục, biến h&oacute;a vạn đoan, uy thế kh&ocirc;ng thể đo lường.<br /> <br /> Ở ph&ugrave; lục Trung dưỡng y&ecirc;u thi luyện &aacute;c quỷ, cầm trong tay linh bảo chiếu thi k&iacute;nh, thiếu ni&ecirc;n tu vi ngày càng cao th&acirc;m, bắt đầu tung thi ra hạp, ph&aacute;p h&agrave;nh thi&ecirc;n hạ.<br /> <br /><br />",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

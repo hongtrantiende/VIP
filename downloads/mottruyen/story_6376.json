@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "6376",
+        "NAME": "Thế Giới Thứ Hai (VRMMO)",
+        "CHAPTER": [
+            {
+                "id": "2266790",
+                "name": "Chương 1: Game."
+            }
+        ],
+        "TOTALCHAPTER": "15",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Võng Du",
+        "AUTHOR": "ragon234",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Nói về một game thủ lâu năm tái xuất giang hồ.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

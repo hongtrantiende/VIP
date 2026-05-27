@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "3640",
+        "NAME": "Tuyệt Đối Cleric",
+        "CHAPTER": [
+            {
+                "id": "1258443",
+                "name": "Chương 1:: ( Ánh Rạng Đông )"
+            }
+        ],
+        "TOTALCHAPTER": "180",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Võng Du",
+        "AUTHOR": "Áo Vịnh Chi Huyền",
+        "TRANS": "Dahanhquy",
+        "DESC": "Domain lực lượng gi&uacute;p ta chiến đấu như Wizard<br /><br />Heavy Armor, Shield c&ugrave;ng Flail để ta l&uacute;c vật lộn kh&ocirc;ng c&oacute; g&igrave; phải lo sợ<br /><br />C&oacute; thể gần c&oacute; thể xa<br /><br />Cố định trạng th&aacute;i thần thuật<br /><br />Hỏi ngươi c&oacute; sợ hay kh&ocirc;ng?<br /><br />Một c&aacute;i Cleric ở giả lập D&amp;D thế giới game (&Aacute;nh rạng đ&ocirc;ng) trưởng th&agrave;nh cố sự. Chớ sử dụng quy tắc",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

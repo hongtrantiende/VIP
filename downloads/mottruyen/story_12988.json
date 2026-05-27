@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "12988",
+        "NAME": "Luân Hồi Chuyển Thế",
+        "CHAPTER": [
+            {
+                "id": "4198708",
+                "name": "Chap 1: Khởi Đầu Của Câu Chuyện."
+            }
+        ],
+        "TOTALCHAPTER": "2",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp, Ngôn Tình, Trùng Sinh",
+        "AUTHOR": "maibaco_1998@",
+        "TRANS": "Nhiều Converter",
+        "DESC": "\"Sinh Tử,Luân Hồi,Số Mệnh,...... Lão Tử ta sẽ đánh nát hết các thứ đó\".<br />\r\nCâu truyện về một thanh viên chết đi trong sự vô vọng và nỗi đau mất đi những người thân yêu.Cậu đã được luân hồi để làm lại cuộc đời.Từ đó viết nên một số phận mới cho mình và người thân rồi ghi danh vào lịch sử thế giới về sự nghiệp to lớn sau này.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

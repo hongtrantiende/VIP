@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "10666",
+        "NAME": "Tổng Hợp Truyện Ngắn LMHT",
+        "CHAPTER": [
+            {
+                "id": "3543424",
+                "name": "Chương 1: Giới Thiệu Về Khu Vực (1)"
+            }
+        ],
+        "TOTALCHAPTER": "5",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo, Dị Giới, Khoa Huyễn, Đồng Nhân, Linh Dị",
+        "AUTHOR": "kaiten",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Runetera - một lục địa nơi tràn đầy những ma pháp và pháp thuật được lưu truyền qua nhiều thế hệ. Bên cạnh nó thì: Hư Không - nơi ở của những sinh vật kỳ dị và mạnh mẽ cũng đã bắt đầu sát nhập vào Runetera và một lần nữa cuộc chiến cổ ngữ sắp sửa xảy ra lần thứ hai. Đây không phải là một hay hai mà là nhiều câu chuyện đến từ tất cả mọi nơi trên lục địa này, mỗi chủng tộc, nó làm nên một thế giới tràn đầy màu sắc của phép thuật, chiến tranh, tình yêu hay hồi ức.....<br />\r\nP/S: cầu thank, like hoặc đề cử. thank mọi người",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

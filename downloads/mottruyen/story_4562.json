@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "4562",
+        "NAME": "Cửu Long Thần Đỉnh",
+        "CHAPTER": [
+            {
+                "id": "1619604",
+                "name": "Chương 01: Bạch ngân chi tử"
+            }
+        ],
+        "TOTALCHAPTER": "3245",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo",
+        "AUTHOR": "Thương Thiên Bá Chủ",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Nhất niệm nát Nhật Nguyệt Tinh Thần, một chỉ có thể diệt Thương Thiên bá chủ, trong lúc nói cười, Chư Thiên Thập Giới hôi phi yên diệt. <br />\r\n<br />\r\nMột cái từ khe suối đi ra tiểu tử nghèo, tay cầm Cửu Long Thần Đỉnh, khống chế Vạn Cổ thời không, đạp vào Thái Cổ Thần Đạo, cùng Chư Thiên Đế tử tranh phong, cùng Thần Thoại thời đại va chạm, tại ánh sáng quái rực rỡ đại thiên thế giới bên trong, đi ngược dòng nước.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

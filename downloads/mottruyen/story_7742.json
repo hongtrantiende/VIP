@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "7742",
+        "NAME": "Nhất Quyền Vĩnh Hằng",
+        "CHAPTER": [
+            {
+                "id": "2719251",
+                "name": "Chương 1: Ta ngốc  (aiyou sheng. co M)"
+            }
+        ],
+        "TOTALCHAPTER": "71",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo, Khoa Huyễn",
+        "AUTHOR": "Bút tẩu trung nhị",
+        "TRANS": "an si cao nhan",
+        "DESC": "Một quyền vĩnh hằng tóm tắt: Diệp thiên vốn tưởng rằng bọn họ xuyên qua giả bốn người có thể cùng chung hoạn nạn, ai biết sinh tử nguy cơ trước, vẫn là bị coi như đá kê chân vứt bỏ.<br />\r\nThức tỉnh rồi bàn tay vàng kỹ năng hắn không chết, ba trăm năm lúc sau, hắn một lần nữa bước trên thật võ đại thế giới sân khấu, thế tất muốn cho mặt khác ba người trả giá đại giới, vì vậy……<br />\r\n“Ta trọc, sau đó ta biến cường! “",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

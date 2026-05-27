@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "5879",
+        "NAME": "Nữ Giáo Tiểu Bảo An",
+        "CHAPTER": [
+            {
+                "id": "2110717",
+                "name": "Chương 1: Kiểm tra phòng"
+            }
+        ],
+        "TOTALCHAPTER": "4807",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đô Thị, Dị Năng",
+        "AUTHOR": "Tố Thủ Thiêm Hương",
+        "TRANS": "MrKiss",
+        "DESC": "Bộ đội đặc chủng trở về đô thị, nhận lời mời thành nữ sinh ký túc xá bảo an. Chiến trường giết địch ta ở hành, nhưng là đối phó nhiều như vậy oanh oanh yến yến, nên làm thế nào mới tốt? <br />\r\nBảo vệ mỹ nữ hoa khôi của trường, tìm kiếm chiến hữu muội muội, trở lại đô thị, cường giả cuối cùng rồi sẽ quật khởi!",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

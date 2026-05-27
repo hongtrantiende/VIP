@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "1699",
+        "NAME": "Bách Luyện Thành Yêu",
+        "CHAPTER": [
+            {
+                "id": "699910",
+                "name": "Chương 1: Hai cái newbie"
+            }
+        ],
+        "TOTALCHAPTER": "215",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Võng Du",
+        "AUTHOR": "Lạc Nguyệt Truy Phong",
+        "TRANS": "Kính Hoa Thủy Nguyệt",
+        "DESC": "Quyển s&aacute;ch mục đ&iacute;ch l&agrave; lại để cho nh&igrave;n mọi người vui vẻ.\r\n<br />Quyển s&aacute;ch nh&acirc;n vật ch&iacute;nh h&egrave;n hạ v&ocirc; sỉ, &acirc;m hiểm gian tr&aacute;, lại vừa đ&aacute;ng y&ecirc;u v&ocirc; c&ugrave;ng.\r\n<br />Nh&igrave;n quyển s&aacute;ch nữ nh&acirc;n, hoặc th&iacute;ch nh&acirc;n vật ch&iacute;nh, hoặc huyễn muốn trở th&agrave;nh c&ugrave;ng nh&acirc;n vật ch&iacute;nh đồng dạng.\r\n<br />Nh&igrave;n quyển s&aacute;ch nam nh&acirc;n, hoặc hi vọng t&igrave;m một như vậy bạn g&aacute;i, hoặc hi vọng t&igrave;m một như vậy bạn th&acirc;n.\r\n<br />Một c&aacute;i mới lạ th&uacute; vị Game Online, một c&aacute;i V&ocirc; Địch nữ nh&acirc;n vật ch&iacute;nh Game Online kiếp sống, một c&aacute;i bạo liệu chồng chất Game Online c&acirc;u chuyện.\r\n<br />B&aacute;ch luyện th&agrave;nh y&ecirc;u, khi&ecirc;u chiến thần kinh của ngươi cực hạn.File đ&iacute;nh k&egrave;m File đ&iacute;nh k&egrave;m",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

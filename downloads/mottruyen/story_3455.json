@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "3455",
+        "NAME": "Hokage Hệ Thống Tung Hoành Dị Giới",
+        "CHAPTER": [
+            {
+                "id": "1198309",
+                "name": "Chương 1 : Xuyên Việt Rồi"
+            }
+        ],
+        "TOTALCHAPTER": "317",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Dị Giới, Xuyên Không",
+        "AUTHOR": "Thiếu Lê",
+        "TRANS": "Hanthientuyet",
+        "DESC": "Cẩu huyết xuy&ecirc;n qua nội dung vở kịch đều l&agrave; k&egrave;m theo kỳ ngộ.<br /> Hokage hệ thống ...",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "1277",
+        "NAME": "Ma Đồng Tu La",
+        "CHAPTER": [
+            {
+                "id": "507719",
+                "name": "Chương 01: Cường giả đường tắt, huyết ngục chi môn!"
+            }
+        ],
+        "TOTALCHAPTER": "125",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo",
+        "AUTHOR": "Khô Huyền",
+        "TRANS": "FallenAngels",
+        "DESC": "Huyết ngục thế giới, chư cường cũng l&ecirc;n, huyết thần chấp chưởng.<br /><br />Th&aacute;nh tộc Hoa Hạ, Thi&ecirc;n Thần tề tụ, mu&ocirc;n đời Bất Hủ.<br /><br />Hết thảy, theo thiếu ni&ecirc;n mang theo linh th&uacute; kh&iacute; quan, bước v&agrave;o huyết ngục chi m&ocirc;n &nbsp;một khắc n&agrave;y, nhất định ph&aacute; vỡ. . .<br /><br />Tu thi&ecirc;n diễn, th&agrave;nh thần thể, tay x&eacute; thần binh.<br /><br />Ngộ Lục Đạo, th&agrave;nh thần hồn, thay đổi li&ecirc;n tục Thi&ecirc;n Địa.<br /><br />Đại thế giới, b&aacute;ch tộc thế ch&acirc;n vạc, ta c&oacute; ma đồng, ai d&aacute;m tranh phong!",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

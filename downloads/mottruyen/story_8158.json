@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "8158",
+        "NAME": "Lần Đầu Tiên Thân Mật",
+        "CHAPTER": [
+            {
+                "id": "2819360",
+                "name": "Chương 1 Quen cô ấy trên mạng"
+            }
+        ],
+        "TOTALCHAPTER": "19",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Ngôn Tình",
+        "AUTHOR": "Thái Trí Hằng",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Quen cô ấy trên mạng. Bắt đầu thế nào, tôi cũng chẳng rõ nữa. Có lẽ tại một cái plan của tôi. Plan được viết thế này: \"Nếu tôi có 10 triệu, tôi sẽ mua một ngôi nhà. Tôi có 10 triệu không – không có, tức là tôi vẫn chưa có nhà. Nếu tôi có cánh, tôi sẽ bay được. Tôi có cánh không – không có. Cho nên tôi cũng chẳng có cách gì bay lên. Nếu đổ hết nước của Thái Bình Dương ra cũng sẽ không dập tắt được ngọn lửa tình yêu tôi dành cho em. Có thể đổ hết nước của Thái Bình Dương không – không thể. Tức là tôi không hề yêu em",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

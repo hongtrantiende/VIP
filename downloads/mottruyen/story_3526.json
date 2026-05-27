@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "3526",
+        "NAME": "Tiên Phủ Làm Ruộng",
+        "CHAPTER": [
+            {
+                "id": "1220863",
+                "name": "Chương 1: Thiên hàng Ngọc Bội"
+            }
+        ],
+        "TOTALCHAPTER": "898",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp",
+        "AUTHOR": "Tư Đồ Minh Nguyệt",
+        "TRANS": "Thỏ Non",
+        "DESC": "Diệp Lăng l&agrave; một t&ecirc;n xuất th&acirc;n bần h&agrave;n h&aacute;i thuốc đệ tử, trong l&uacute;c v&ocirc; t&igrave;nh được một c&aacute;i chất chứa Ti&ecirc;n Phủ Ngọc Bội, từ đ&acirc;y bước l&ecirc;n ch&acirc;n ch&iacute;nh con đường tu ti&ecirc;n. Ở t&ograve;a n&agrave;y thần kỳ Ti&ecirc;n Phủ b&ecirc;n trong, c&oacute; một gian nh&agrave; gỗ, v&agrave;i mẫu Linh Điền, c&ugrave;ng m&acirc;y m&ugrave; mờ ảo u cốc đỉnh n&uacute;i. Luyện Kh&iacute;, Tr&uacute;c Cơ, Kim Đan, Nguy&ecirc;n Anh, H&oacute;a Thần. . . Vừa ở trong giới tu ti&ecirc;n h&aacute;i thuốc Luyện Đan, vừa ở Ti&ecirc;n Phủ b&ecirc;n trong l&agrave;m ruộng, nhạc v&ocirc; bi&ecirc;n",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

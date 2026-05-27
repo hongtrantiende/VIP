@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "6516",
+        "NAME": "Đạo Tu Chí Tôn",
+        "CHAPTER": [
+            {
+                "id": "2416130",
+                "name": "Chương 1:  vân thanh song phế"
+            }
+        ],
+        "TOTALCHAPTER": "33",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp",
+        "AUTHOR": "Bác nhã Lan Đài",
+        "TRANS": "duykhanhvn",
+        "DESC": "Nhập môn năm năm, Tô Văn Đỉnh tu vi một mực dừng lại tại dẫn khí trung kỳ, là được xưng là Vân Thanh song phế một trong tu chân phế vật. Mà tại một lần kỳ diệu kinh lịch về sau, hàng loạt khó tin sự tình đều phát sinh ở Tô Văn Đỉnh trên thân. Tu chân công pháp tương hỗ xung đột, Vân Thanh phái cùng Hám Thiên Môn, thậm chí còn có Kim Đặc môn, hắn nên đi nơi nào? Tô Văn Đỉnh đến tột cùng có thể hay không tại con đường tu chân bên trên một đường hát vang tu được chí tôn, tấu vang lịch sử mạnh nhất âm?",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

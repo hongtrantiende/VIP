@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "3963",
+        "NAME": "Cực Phẩm Phòng Đông",
+        "CHAPTER": [
+            {
+                "id": "1437906",
+                "name": "Chương 1: Sơ lâm Xuân Thành"
+            }
+        ],
+        "TOTALCHAPTER": "690",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đô Thị",
+        "AUTHOR": "Đại Đầu",
+        "TRANS": "Yến Virus",
+        "DESC": "\"Xu&acirc;n Th&agrave;nh Phẩm Lan hội\" l&agrave; cả điền t&acirc;y thậm ch&iacute; to&agrave;n bộ Đ&ocirc;ng Nam &Aacute; đều rất nổi danh một c&aacute;i thịnh hội, mỗi ba năm cử h&agrave;nh một lần, mỗi giới đều c&oacute; giới kinh doanh, giới ch&iacute;nh trị, qu&acirc;n giới, c&ugrave;ng với thế giới c&aacute;c nơi hắc đạo l&atilde;o đại tham gia, đến đ&acirc;y người kh&ocirc;ng c&oacute; chỗ n&agrave;o m&agrave; kh&ocirc;ng phải l&agrave; thanh danh hiển h&aacute;ch, t&agrave;i đại kh&iacute; th&ocirc;, đều thuộc nh&acirc;n trung long phượng. Bọn hắn chỗ ở c&aacute;i thế giới n&agrave;y Kim Tự Th&aacute;p đỉnh phong, thống lĩnh lấy từng c&aacute;i lĩnh vực, trấn thủ một phương. Trương Tiểu Long, một c&aacute;i chưa nh&acirc;n thế th&acirc;m sơn d&atilde; th&uacute;...",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

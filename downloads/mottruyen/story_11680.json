@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "11680",
+        "NAME": "Trọng Sinh Làm Vampire Hệ Thống",
+        "CHAPTER": [
+            {
+                "id": "3849892",
+                "name": "Nhất quyển đệ nhất chương kiếp"
+            }
+        ],
+        "TOTALCHAPTER": "20",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Dị Năng, Khoa Huyễn, Trùng Sinh",
+        "AUTHOR": "tinh tinh",
+        "TRANS": "Linh kute",
+        "DESC": "Ăn uống quá độ, sắc dục, tham lam, nổi giận, lười biếng, bi thương, tự phụ chủ ngạo mạn. Hừ, bất quá là Thượng Đế biên chế ra tới nói dối thôi. Còn đánh áp chúng ta không chết tộc, để cho ta cái này chánh nghĩa cùng xinh đẹp đều xem trọng Vampire, vạch trần ngươi mặt nạ, đánh vỡ ngươi thống trị.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

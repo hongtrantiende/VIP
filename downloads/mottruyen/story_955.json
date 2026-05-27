@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "955",
+        "NAME": "Siêu Cấp Sưu Quỷ Nghi",
+        "CHAPTER": [
+            {
+                "id": "243508",
+                "name": "Chương 1: Cao Tiệm phi"
+            }
+        ],
+        "TOTALCHAPTER": "679",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đô Thị",
+        "AUTHOR": "Xấu Tới Linh Hồn",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Cao Tiệm phi đạt được một khoản phần mềm c&oacute; thể t&igrave;m t&ograve;i hiện thực Quỷ Hồn, c&ugrave;ng hư cấu Quỷ Hồn.\r\n<br />Từ nay về sau......<br />Kho&aacute;i &yacute; &acirc;n cừu, phong sinh thủy khởi!\r\n<br />&Aacute;ch, Điền B&aacute; Quang, Bạch Nhật Thử Bạch Thắng (trong nh&oacute;m Ngũ Thử - phim bao thanh thi&ecirc;n), Giang Nam Thất Qu&aacute;i, Hồ Thanh Ngưu...... N&agrave;y cũng chỉ l&agrave; cấp thấp quỷ m&agrave; th&ocirc;i!",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

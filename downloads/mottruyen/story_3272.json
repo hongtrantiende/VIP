@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "3272",
+        "NAME": "Thay đổi thế giới Harry Potter",
+        "CHAPTER": [
+            {
+                "id": "1142112",
+                "name": "Chương 1: \"Thế giới mới\""
+            }
+        ],
+        "TOTALCHAPTER": "1",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đồng Nhân",
+        "AUTHOR": "Daisy",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Vì một số nguyên nhân mà Sharon và anh trai xuyên không đến truyện harry potter. Vậy đã xuyên rồi thì chắc phải làm đảo lộn mọi thứ chứ nhỉ, mọi người hãy chờ xem rồi cuối cùng câu chuyện sẽ trở nên thế nào nhé.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

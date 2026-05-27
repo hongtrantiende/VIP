@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "7190",
+        "NAME": "Vô Hạn Hệ Thống Ăn Hàng",
+        "CHAPTER": [
+            {
+                "id": "2567039",
+                "name": "ăn hàng xuyên qua"
+            }
+        ],
+        "TOTALCHAPTER": "2",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo, Xuyên Không",
+        "AUTHOR": "Nhiều Converter",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Nói về nvc ăn hàng khống chế tất cã những con ăn hàng khác :)))<br />\r\n cảnh giới Võ đồ võ sư, đại võ sư, võ tướng, đại võ tướng, võ Tông  võ quân võ vương võ hoàng võ đế võ thánh or võ đế cảnh giới phân chia theo vị điện nói sau<br />\r\n<br />\r\n1 ngày 2 chương",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

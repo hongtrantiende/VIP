@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "4675",
+        "NAME": "Đại Luyện Sư",
+        "CHAPTER": [
+            {
+                "id": "1657264",
+                "name": "Chương 1: Chết người"
+            }
+        ],
+        "TOTALCHAPTER": "15",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp",
+        "AUTHOR": "Tây Phong Mã",
+        "TRANS": "passers",
+        "DESC": "Quay đầu nhìn, đang ở ngươi bên cạnh ta, yêu, quỷ, Ma, tiên . . . Thực sự, có không ?<br />\r\n<br />\r\n\tLuyện Đan, Luyện Yêu, Luyện Phù, Luyện Tinh . . . Có người nói, cái này Thiên Địa Vạn Vật, Nhật Nguyệt Nguyên Tinh, tất cả, thì ra đều có thể vào luyện .<br />\r\n<br />\r\n\t. . .<br />\r\n<br />\r\n\tMột vị sắp chết phàm nhân, một gã rơi vào tuyệt cảnh tiểu lại, một cái sấm sét chồng chất buổi tối, một cái nhìn như tình cờ cơ duyên . . . Một tiên, một người, cứ như vậy không giải thích được va vào nhau .<br />\r\n<br />\r\n\tMột phần đến từ tiên giới \"Hiệp ước\", nhất tông ăn nhịp với nhau \"Sinh ý\", đột nhiên khiêu động vị này thần kỳ tiểu tử từ từ Tu Tiên cuộc hành trình .<br />\r\n<br />\r\n\tVài phần cơ duyên, vài phần nhanh nhạy, vài phần kiên trì, vài phần quyết tuyệt . . . Thần kỳ tiểu tử siêu phàm thoát tục, rốt cục thành tựu trong thiên địa một trong thay mặt đại luyện sư .",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "9656",
+        "NAME": "Chưởng Ngự Thiên Mệnh",
+        "CHAPTER": [
+            {
+                "id": "3270040",
+                "name": "Chương 1: Tự phế tu vi Người điên"
+            }
+        ],
+        "TOTALCHAPTER": "71",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp, Huyền Ảo",
+        "AUTHOR": "Phiên Cổn Ba Nhân Sinh",
+        "TRANS": "︻ ╦̵̵╤───",
+        "DESC": "nhân có tự thân tư chất, xưng là mệnh cách.<br />\r\n<br />\r\n\tMà Thiên Đồng dạng có, xưng là Thiên Mệnh.<br />\r\n<br />\r\n\tTriệu Mạc trọng sinh mà đến, muốn Chưởng Thiên mệnh, đi ra tự thân con đường<br />\r\n<br />\r\n<br />\r\n------------------------------------------------------------------------",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

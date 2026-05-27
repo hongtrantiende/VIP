@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "3736",
+        "NAME": "Xã Trưởng Thiên Hạ",
+        "CHAPTER": [
+            {
+                "id": "1287515",
+                "name": "Chương 1: Về nhà à! Thiếu Niên"
+            }
+        ],
+        "TOTALCHAPTER": "1895",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đô Thị",
+        "AUTHOR": "Phong Tuyết Thiên Tâm",
+        "TRANS": "Mọt sách",
+        "DESC": "Kiếp trước Entertainment Cao Quản, Trọng Sinh với H&agrave;n Quốc Đỉnh Cấp Thế Gia, tay cầm kinh người Wealth, một lần nữa Khai S&aacute;ng Entertainment Sự Nghiệp, trở th&agrave;nh Thế Giới Đỉnh Cấp Ngu Nhạc Đại Hanh",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

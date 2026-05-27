@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "3171",
+        "NAME": "Phong Vân Đại Sư Huynh",
+        "CHAPTER": [
+            {
+                "id": "1087903",
+                "name": "Chương 1: Tử thần chuyển phát nhanh"
+            }
+        ],
+        "TOTALCHAPTER": "80",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Kiếm Hiệp, Đồng Nhân",
+        "AUTHOR": "Thượng Nguyên Ánh Đèn",
+        "TRANS": "hikhik123",
+        "DESC": "Thu được một c&aacute;i kỳ qu&aacute;i chuyển ph&aacute;t nhanh, Tần Liệt trở th&agrave;nh Tử thần sứ giả.<br /><br />M&agrave; hắn tiếp nhận nhiệm vụ thứ nhất, ch&iacute;nh l&agrave; &aacute;m s&aacute;t \"Phong V&acirc;n\" thế giới Đế Th&iacute;ch Thi&ecirc;n.<br /><br />Một đoạn kh&ocirc;ng đồng nhất ch&uacute;t dạng Phong V&acirc;n cố sự, từ đ&acirc;y nơi triển khai.<br /><br />Giang hồ, mỹ nh&acirc;n, t&igrave;m kiếm kỳ qu&aacute;i m&agrave; thần b&iacute; Tử thần b&iacute; mật, mời trở m&igrave;nh mở quyển s&aacute;ch.<br /><br />",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

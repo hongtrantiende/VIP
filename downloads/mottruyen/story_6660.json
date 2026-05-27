@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "6660",
+        "NAME": "Linh Sư Huyền Thoại",
+        "CHAPTER": [
+            {
+                "id": "2361528",
+                "name": "Chương 1: Té núi."
+            }
+        ],
+        "TOTALCHAPTER": "4",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo, Dị Giới, Xuyên Không",
+        "AUTHOR": "phudo9102000@",
+        "TRANS": "Nhiều Converter",
+        "DESC": "D&agrave;nh cho c&aacute;c nh&agrave; tưởng tượng học, được viết theo phong c&aacute;ch si&ecirc;u thực v&agrave; h&agrave;i hước.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

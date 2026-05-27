@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "1257",
+        "NAME": "Cái Thế Thiên Tôn",
+        "CHAPTER": [
+            {
+                "id": "497769",
+                "name": "Chương 1: Đại Nhật Kim Chung Tráo"
+            }
+        ],
+        "TOTALCHAPTER": "576",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp, Huyền Ảo",
+        "AUTHOR": "Quan Kỳ",
+        "TRANS": "Ốc rạ",
+        "DESC": "Truyện mới của Quan Kỳ, t&aacute;c giả của c&aacute;c si&ecirc;u phẩm: Trường Sinh Bất Tử, Ti&ecirc;n Quốc Đại Đế\r\n&nbsp;\r\nTrăm nước tranh b&aacute;, c&ugrave;ng Thi&ecirc;n Địa tranh vận. Trăm nh&agrave; đua tiếng, c&ugrave;ng Thi&ecirc;n Địa tranh đạo. Kẻ lập quốc, qu&eacute;t ngang B&aacute;t Hoang Lục Hợp, Duy Ng&atilde; Độc T&ocirc;n. Người lập gi&aacute;o, tam giới lục đạo, Duy Ng&atilde; Độc T&ocirc;n. Mu&ocirc;n d&acirc;n trăm họ như con s&acirc;u cái ki&ecirc;́n, th&aacute;nh hiền như rơm r&aacute;c, gi&aacute;o kh&ocirc;ng lập, lưu tinh s&aacute;ng ch&oacute;i, người lập gi&aacute;o, c&ugrave;ng Thi&ecirc;n ngang h&agrave;ng!",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

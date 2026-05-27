@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "7456",
+        "NAME": "Huyền Thoại Mới",
+        "CHAPTER": [
+            {
+                "id": "2637586",
+                "name": "Chương 1"
+            }
+        ],
+        "TOTALCHAPTER": "8",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đồng Nhân",
+        "AUTHOR": "Berren",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Một thế giới phép màu đầy huyền bí và lôi cuốn, những sinh vật phép thuật phi thường, những tàn tích từ thời cổ đại đang chờ người tìm ra và khám phá bí mật. Tình yêu, tình bạn, những chuyến phưu lưu, những trận chiến máu lửa....Tất cả đang chờ đợi Charles, cậu bé mang trong mình dòng máu phép thuật hùng mạnh cùng với một bí mật kinh thiên. NGƯỜI ĐẾN TỪ MỘT THẾ GIỚI KHÁC!!!!<br />\r\nTruyện hơi yy vì em thích nhân vật chính bá bá một tí, với cả đây là truyện đầu tay, đang tập viết ạ nên truyện có thể hơi nhạt và không có cao trào lắm, mong mọi người góp ý để tác phẩm tốt hơn. À, giọng văn thì có hơi...không biết nói thế nào nữa, có thể một số chỗ sẽ hơi Tàu vì em đọc nhiều truyện Tàu quá, có nguy cơ bị nhiễm 1 chút.<br />\r\nCảm ơn mọi người đã đọc và mong được góp ý nhiều hơn.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "8557",
+        "NAME": "Ma Vực",
+        "CHAPTER": [
+            {
+                "id": "2937805",
+                "name": "Khiết tử"
+            }
+        ],
+        "TOTALCHAPTER": "657",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo",
+        "AUTHOR": "Loạn Thế Cuồng Đao",
+        "TRANS": "Hoàng Châu",
+        "DESC": "Một triều anh h&ugrave;ng r&uacute;t kiếm l&ecirc;n, lại l&agrave; mu&ocirc;n d&acirc;n mười năm kiếp. Nhưng phong lưu phồn hoa nhất thế gian n&agrave;y  , sao c&oacute; thể n&agrave;o b&ugrave; đắp được một ch&uacute;t chu sa giữa l&ocirc;ng m&agrave;y  ngươi. <br /> <br /> C&ugrave;ng t&aacute;c giả của Đao Kiếm Thần Ho&agrave;ng, Quốc Vương Vạn Tuế, Ngự Thi&ecirc;n Thần Đế c&aacute;c bạn cứ y&ecirc;n t&acirc;m thưởng thức.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

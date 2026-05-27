@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "12531",
+        "NAME": "Lưu Vĩnh Bản Kỷ",
+        "CHAPTER": [
+            {
+                "id": "4059325",
+                "name": "Chương 1:  có đứa bé tên là Lưu Vĩnh"
+            }
+        ],
+        "TOTALCHAPTER": "30",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Quân Sự, Xuyên Không",
+        "AUTHOR": "Vạn máy --- 万机",
+        "TRANS": "ღCon✬NhoiNhoiღ",
+        "DESC": "Thiên hạ 3 phần kia nước yếu nhất<br />\r\n<br />\r\n\tĐáp: Ích Châu cuối kỳ hán.<br />\r\n<br />\r\n\tXin hỏi: Tam quốc chí bên trong kia Quốc Quân Chúa tối vô năng<br />\r\n<br />\r\n\tĐáp: Cuối kỳ hán Lưu Thiện.<br />\r\n<br />\r\n\tXin hỏi: Hán Chiêu Liệt - Hoàng Đế - Lưu Bị trong những con ruột có một người càng so với Lưu Thiện càng tài giỏi hơn sao ?<br />\r\n<br />\r\n\tCái gì Lưu Bị lại còn có con ruột khác ? sao còn muốn truyền ngôi cho thằng con trai ngốc kia a?<br />\r\n<br />\r\n\tCó lẽ còn ngu hơn cả A Đấu.<br />\r\n<br />\r\n\tÁch...<br />\r\n<br />\r\n\tThiên hạ một phần ba,<br />\r\n<br />\r\n\tMặc ta tới chinh chiến.<br />\r\n<br />\r\n\tChập Long Lăng Vân Chí,<br />\r\n<br />\r\n\tVừa kêu động Thiên Sơn.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

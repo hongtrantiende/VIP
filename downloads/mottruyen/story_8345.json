@@ -1,0 +1,17 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "8345",
+        "NAME": "Cho Em Gần Anh Thêm Chút Nữa",
+        "CHAPTER": [],
+        "TOTALCHAPTER": "0",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Ngôn Tình",
+        "AUTHOR": "DuyenTrinh",
+        "TRANS": "DuyenTrinh",
+        "DESC": "Tình yêu của cô gái đến sau dành cho chàng trai nhà giàu,tài hoa và bị người khác từ chối tình cảm",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

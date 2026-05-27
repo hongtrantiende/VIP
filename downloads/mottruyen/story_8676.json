@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "8676",
+        "NAME": "Siêu Cấp BUG Người Hệ Thống",
+        "CHAPTER": [
+            {
+                "id": "2969409",
+                "name": "Chương 1: Ta Không Thẹn Với Đạo Tâm"
+            }
+        ],
+        "TOTALCHAPTER": "2",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Quân Sự",
+        "AUTHOR": "Book",
+        "TRANS": "Nhiều Converter",
+        "DESC": ".",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

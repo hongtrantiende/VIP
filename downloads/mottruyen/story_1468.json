@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "1468",
+        "NAME": "Cửu U Kiếm Điển",
+        "CHAPTER": [
+            {
+                "id": "612979",
+                "name": "Chương 1: Quỷ dị vòng xoáy - Quyển 1: Cầm kiếm ra Trung Châu"
+            }
+        ],
+        "TOTALCHAPTER": "16",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo",
+        "AUTHOR": "Linh Phân Thập Tam",
+        "TRANS": "ಌღ๖ۣۜNocturne",
+        "DESC": "Thi&ecirc;n địa ho&agrave;n cảnh, th&ocirc;ng thi&ecirc;n Thần Ma l&agrave;m tướng, V&acirc;n V&acirc;n mu&ocirc;n d&acirc;n v&igrave; l&agrave; tử. Thượng Cổ chiến dịch, k&ecirc;́t cục hủy tử vong. Tuy&ecirc;n cổ vội v&atilde;, bất tường chi tử, gi&ecirc;́t tướng ch&eacute;m so&aacute;i hắn l&agrave; vua",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

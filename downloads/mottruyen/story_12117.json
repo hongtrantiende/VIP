@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "12117",
+        "NAME": "Quốc Y Đại Sư",
+        "CHAPTER": [
+            {
+                "id": "3952110",
+                "name": "Chương 1: Bệnh này ta có thể trị"
+            }
+        ],
+        "TOTALCHAPTER": "7",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đô Thị, Huyền Ảo",
+        "AUTHOR": "Cửu Đỉnh Bát Quỹ",
+        "TRANS": "SacLangVuong",
+        "DESC": "Một cái thần kỳ Dưỡng Thực không gian;<br />\r\n<br />\r\n\tMột thân siêu phàm thoát tục y thuật;<br />\r\n<br />\r\n\tMột vị thôn quê vệ sinh viện bác sĩ, Y Nhân, Y Quốc, y tộc!<br />\r\n<br />\r\n\tLấy vô thượng tín ngưỡng lực luyện thành Bất Diệt Kim Thân!<br />\r\n<br />\r\n\tXem Vương Minh như thế nào bằng vào chính mình lực lượng, để cho Hoa Hạ nhất tộc từng bước một đi đến ở trong gầm trời chi đỉnh.<br />\r\n<br />\r\n\tĐể cho Vạn Giới trở thành dưới chân hòn đá tảng!",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

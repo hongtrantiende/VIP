@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "1541",
+        "NAME": "Chấp Chưởng Thiên Kiếp",
+        "CHAPTER": [
+            {
+                "id": "628862",
+                "name": "Chương 001:. Cửu Thiên Lôi Đức"
+            }
+        ],
+        "TOTALCHAPTER": "711",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp",
+        "AUTHOR": "Thất Nguyệt Tuyết Tiên Nhân",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Thi&ecirc;n kiếp về ta quản, kh&ocirc;ng muốn chết chớ chọc ta!",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

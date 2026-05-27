@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "12441",
+        "NAME": "Trọng Sinh Đại Tần Hồ Hợi",
+        "CHAPTER": [
+            {
+                "id": "4039348",
+                "name": "Chương 1: Hôm nay, trẫm vì thế hươu ban tên cho vì"
+            }
+        ],
+        "TOTALCHAPTER": "10",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Quân Sự, Lịch Sử, Trùng Sinh",
+        "AUTHOR": "Tinh phong thần khởi",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Oai h&ugrave;ng L&atilde;o Tần, chung ph&oacute; quốc nạn, Khảng Kh&aacute;i Bi Ca, kh&ocirc;ng qu&aacute; như thế n&agrave;y. Qu&eacute;t ngang B&aacute;t Hoang, nhất thống thi&ecirc;n hạ, Nhị Thế m&agrave; chết, kh&ocirc;ng l&agrave;m g&igrave; được.<br /> <br /> Khảo Cổ chuy&ecirc;n nghiệp sinh vi&ecirc;n năm ba Sở Cuồng Nh&acirc;n tại tham dự Tần Ho&agrave;ng Lăng khảo s&aacute;t c&ocirc;ng t&aacute;c l&uacute;c, trượt ch&acirc;n rơi v&agrave;o hố s&acirc;u, sau khi tỉnh lại lại ph&aacute;t hiện m&igrave;nh ngồi tại tr&ecirc;n đ&agrave;i cao, b&ecirc;n người một c&aacute;i nam tử &aacute;o đen, dưới đ&agrave;i c&oacute; một c&aacute;i hươu... ... ... <br /> -",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

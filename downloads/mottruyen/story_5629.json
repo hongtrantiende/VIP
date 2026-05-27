@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "5629",
+        "NAME": "Thông thiên nhãn",
+        "CHAPTER": [
+            {
+                "id": "2000356",
+                "name": "Sáng thế thời gian đổi mới: 2013-10-28 12:39:48 số lượng từ: 3203"
+            }
+        ],
+        "TOTALCHAPTER": "20",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp, Đô Thị, Dị Năng",
+        "AUTHOR": "Tác giả: Khu việt",
+        "TRANS": "lăng thiên",
+        "DESC": "vào thì biết",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

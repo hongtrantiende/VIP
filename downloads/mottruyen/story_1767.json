@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "1767",
+        "NAME": "Đạo Pháp Hồng Lô",
+        "CHAPTER": [
+            {
+                "id": "727329",
+                "name": "Chương 1: Tô phủ"
+            }
+        ],
+        "TOTALCHAPTER": "33",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp",
+        "AUTHOR": "Hồng Lô Điểm Tuyết",
+        "TRANS": "Kiếm Du Thái Hư",
+        "DESC": "Luyện v&otilde; c&ugrave;ng tu đạo bất đồng.<br /><br />Luyện v&otilde;, luyện l&agrave; ch&acirc;n kh&iacute;, ch&acirc;n kh&iacute; r&egrave;n luyện th&acirc;n thể, m&ocirc; phỏng m&atilde;nh th&uacute;, t&aacute; hắn h&igrave;nh l&agrave; luyện m&igrave;nh th&acirc;n, vừa h&ocirc; chấn sơn khe.<br /><br />Đạo gia, thờ phụng nh&acirc;n thể tứ chi b&aacute;ch h&agrave;i, thậm ch&iacute; đầu, tr&aacute;i tim cũng c&aacute;c c&oacute; thần linh, được xưng l&agrave; 'Dưỡng thần thuật' .<br /><br />Nơi n&agrave;y c&oacute; sai khiến quỷ thần, v&atilde;i đậu th&agrave;nh Binh, sinh t&ecirc; hổ b&aacute;o, tắm rửa long huyết.<br /><br />L&agrave; T&ocirc; Tri, ch&iacute;nh l&agrave; một c&aacute;i cực nhỏ c&oacute; thể đồng thời tu luyện v&otilde; giả c&ugrave;ng đạo gia 'Dưỡng thần thuật' thi&ecirc;n ph&uacute; nh&acirc;n.<br /><br />Tạo h&oacute;a hồng l&ocirc;, truyền kỳ bắt đầu.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

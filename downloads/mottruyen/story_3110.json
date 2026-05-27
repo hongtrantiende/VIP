@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "3110",
+        "NAME": "Hoàng Hậu Té Giếng Xuyên Không",
+        "CHAPTER": [
+            {
+                "id": "1058792",
+                "name": "Chương 1: Tú Linh"
+            }
+        ],
+        "TOTALCHAPTER": "10",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Ngôn Tình, Xuyên Không",
+        "AUTHOR": "Tú Linh",
+        "TRANS": "Hội những người đam mê truyện ngược : Ngược",
+        "DESC": "Tuyển tập 1 loạt confession làm mưa làm gió trên Hội những người đam mê truyện ngược : Ngược ! Ngược nữa ! Ngược mãi, sau đây là câu chuyện ảo tung chảo của bạn Hoàng hậu Tú Linh xuyên không về thời Lê Thánh Tông :v bản quyền trí tưởng tượng thuộc về bạn Tú Linh nhé :3",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

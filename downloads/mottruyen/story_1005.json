@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "1005",
+        "NAME": "Rạp Chiếu Phim Địa Ngục",
+        "CHAPTER": [
+            {
+                "id": "262224",
+                "name": "Chương 1 - Chân thật phim kinh dị -Quyển 1"
+            }
+        ],
+        "TOTALCHAPTER": "1785",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo, Linh Dị",
+        "AUTHOR": "Hắc Sắc Hỏa Chủng",
+        "TRANS": "๖ۣۜĐọa ๖ۣۜLạc",
+        "DESC": "Nếu bạn nhặt được một tờ rơi phim kinh dị của « Rạp Chiếu Phim Địa  Ngục », bạn sẽ phát hiện ra tên của mình xuất hiện trong danh sách các  diễn viên phim kinh dị ! Không những thế, bạn sẽ bị bắt buộc tham gia bộ  phim kinh dị đó.<br />\r\n <br />\r\nSắm vai một nhân vật trong đó, bạn nhất thiết phải  tuân theo yêu cầu của kịch bản phim. Theo sự phát triển của tình tiết  phim, những nguyền rủa kỳ quái khiến người ta rợn tóc gáy, không nơi nào  là không có quỷ ảnh âm u, tất cả sẽ cùng xuất hiện.Hành lang  hắc ám, phòng giữ xác yên ắng đến rợn người, bạn không thể không tiếp  tục đóng lần lượt từng bộ phim. Có đôi khi, bạn là nhân vật chính, cũng  có lúc, có lẽ bạn chỉ là một diễn viên phụ. Chỉ khi tích góp đủ vé chuộc  cái chết, bạn mới có thể thoát ly « Rạp Chiếu Phim Địa Ngục ».Diệp  Tưởng, một nhân viên làm công ăn lương như bao người, sau khi kết thúc  ca đêm một ngày nọ, trong hành lang hắc ám, hắn đã nhặt được một tấm tờ  rơi phim kinh dị như vậy......",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "1903",
+        "NAME": "Luyện Tiên Thiếu Niên",
+        "CHAPTER": [
+            {
+                "id": "746268",
+                "name": "Chương 1: Gặp sét đánh thằng xui xẻo - Quyển 1"
+            }
+        ],
+        "TOTALCHAPTER": "55",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp, Xuyên Không",
+        "AUTHOR": "Lại Đông",
+        "TRANS": "Vivu9xx",
+        "DESC": "Một lần ngo&agrave;i &yacute; muốn, một hồi xuy&ecirc;n việt, một đoạn kh&ocirc;ng đồng dạng như vậy Ti&ecirc;n Ma h&agrave;nh tr&igrave;nh.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

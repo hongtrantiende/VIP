@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "9710",
+        "NAME": "Cực Phẩm Long Đế",
+        "CHAPTER": [
+            {
+                "id": "3275920",
+                "name": "Chương 1: Ta thế nào tàn nhẫn như vậy"
+            }
+        ],
+        "TOTALCHAPTER": "819",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo",
+        "AUTHOR": "Quân Tử Tích Biệt",
+        "TRANS": "mr_ranma_kut3@yahoo.com",
+        "DESC": "Ngũ Trảo Kim Long? Thịt quá thô, nướng ăn là ngon nhất<br />\r\nThần mã ? Còn có Kim Sí Đại Bằng ? Loại chim to này phải xào sả ớt  ăn mới thoải mái<br />\r\nCòn có Côn ? Nhanh cầm cái mâm đến , kiếm ít đồ tối ăn gỏi cá :v<br />\r\nCòn có món đó Thần Khí nhìn tựa hồ cũng không tệ, coi như là sau khi ăn xong đặt đồ ngọt điểm tâm đi.<br />\r\nCùng theo chân anh Kỷ Tử Long  ăn cả thế giới nào :))))",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

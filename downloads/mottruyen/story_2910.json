@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "2910",
+        "NAME": "Thần Y Thánh Thủ",
+        "CHAPTER": [
+            {
+                "id": "986142",
+                "name": "Chương 1 : Trở về quá khứ."
+            }
+        ],
+        "TOTALCHAPTER": "200",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Xuyên Không",
+        "AUTHOR": "Tiểu Tiểu Vũ",
+        "TRANS": "Minh Ngọc",
+        "DESC": "Hắn là danh y, cũng chính là thần y.<br />\r\n<br />\r\nCho dù ai đó đang cận kề cái chết, chỉ cần có hắn thì tử thần cũng phải ngoan ngoãn mà đi đường vòng.<br />\r\n<br />\r\nChỉ cần bạn tin tưởng vào hắn, bất luận là bệnh tật gì đều không phải là vấn đề.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

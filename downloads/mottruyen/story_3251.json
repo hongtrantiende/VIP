@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "3251",
+        "NAME": "Vũ Cực Dược Tôn",
+        "CHAPTER": [
+            {
+                "id": "1130004",
+                "name": "Chương 1: Cùng ta đấu? Ngươi không xứng!"
+            }
+        ],
+        "TOTALCHAPTER": "202",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo",
+        "AUTHOR": "Huyết Ngọc Đồng",
+        "TRANS": "Ducthinh92",
+        "DESC": "Cửu Ch&acirc;u đại lục, vũ đạo vi t&ocirc;n! L&agrave;m tất cả mọi người đầu lấy xem thường &aacute;nh mắt th&igrave;, ai c&oacute; thể ngờ tới, một c&aacute;i c&oacute; vẻ bệnh văn nhược thiếu ni&ecirc;n trong th&acirc;n thể, dĩ nhi&ecirc;n chứa một vi&ecirc;n tuyệt thế Dược Vương linh hồn.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

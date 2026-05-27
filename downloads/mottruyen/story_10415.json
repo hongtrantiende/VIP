@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "10415",
+        "NAME": "Somalia Đại Lãnh Chúa",
+        "CHAPTER": [
+            {
+                "id": "3486556",
+                "name": "001 vị diện đại lãnh chúa hệ thống"
+            }
+        ],
+        "TOTALCHAPTER": "302",
+        "IMG": "https://static.cdnno.com/poster/somalia-dai-lanh-chua/150.jpg",
+        "CAT": "Đô Thị, Khoa Huyễn",
+        "AUTHOR": "Nguyên Thủy Tù Trường",
+        "TRANS": "hui235235",
+        "DESC": "Cơ duyên xảo hợp, Lý Vĩ đạt được đại lãnh chúa hệ thống, tiến về Somalia trồng trọt, chăn thả, bắt cá, khai thác mỏ, phát triển kinh tế, huấn luyện hắc thúc thúc dân binh; còn muốn giáo dục một đám tiểu thí hài nhi! Đạp vào thăng cấp lãnh địa con đường, hết thảy đều là như vậy nhàn nhã, không được hoàn mỹ liền là Châu Phi chỉ có một đám Hắc Nữu, tìm bạn gái rất gian nan a ~",
+        "THUMB": "https://static.cdnno.com/poster/somalia-dai-lanh-chua/150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

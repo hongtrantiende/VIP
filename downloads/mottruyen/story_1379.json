@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "1379",
+        "NAME": "Tiên Thụ",
+        "CHAPTER": [
+            {
+                "id": "571411",
+                "name": "Chương 001: Vận mạng bạt tai"
+            }
+        ],
+        "TOTALCHAPTER": "116",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp",
+        "AUTHOR": "Tiêu Thập Nhất Lang",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Thiếu ni&ecirc;n L&acirc;m Thanh kh&ocirc;ng tin quỷ qu&aacute;i, tao ngộ tai bay vạ gi&oacute;, linh hồn xuy&ecirc;n qua đến một vi&ecirc;n c&acirc;y Bồ Đề hạt giống b&ecirc;n trong, đi tới thần kỳ mỹ lệ Tu Ch&acirc;n giới.\r\n<br />Mang theo tr&iacute; nhớ của kiếp trước c&ugrave;ng gia tộc đồ đằng thụ t&acirc;m, L&acirc;m Thanh l&agrave;m sao từ một th&acirc;n c&acirc;y, tu th&agrave;nh ch&acirc;n l&yacute;, quật khởi với cường giả chi l&acirc;m?\r\nL&acirc;m Thanh ch&iacute; hướng: Trở th&agrave;nh một khỏa c&oacute; tr&iacute; kh&ocirc;n, c&oacute; l&yacute; tưởng, c&oacute; phong c&aacute;ch, c&oacute; tri thức, c&oacute; tiền đồ, phong tao v&ocirc; hạn Thần Ti&ecirc;n c&acirc;y.\r\nSau đ&oacute;. . . Dưới b&oacute;ng đại thụ chỗ n&agrave;o cũng m&aacute;t, ha ha, c&aacute;c lộ y&ecirc;u nữ, thần nữ, ti&ecirc;n nữ, Ma nữ, h&oacute;ng gi&oacute; thời gian, ngàn vạn nhớ tới dọn xong tư thế nha!",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

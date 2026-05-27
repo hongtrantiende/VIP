@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "2412",
+        "NAME": "Mạt Thế Thú Y",
+        "CHAPTER": [
+            {
+                "id": "798444",
+                "name": "Chương 1 - Ác mộng"
+            }
+        ],
+        "TOTALCHAPTER": "534",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Khoa Huyễn",
+        "AUTHOR": "Hắc Đồng Vương",
+        "TRANS": "Kinzie",
+        "DESC": "To&agrave;n cầu động đất, nh&aacute;y mắt ph&aacute; hủy cố hữu văn minh c&ugrave;ng trật tự, người sống s&oacute;t trung gi&aacute;c tỉnh giả, kẻ gặp nạn trung bất tử giả, c&ugrave;ng với khủng bố biến dị chủng, bắt đầu xuất hiện ở n&agrave;y biến th&agrave;nh phế t&iacute;ch thế giới trung, m&agrave; hết thảy n&agrave;y, chẳng qua l&agrave; v&igrave; sắp sửa tuyển ra sinh sản t&acirc;n nh&acirc;n loại Adam c&ugrave;ng Eva......",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

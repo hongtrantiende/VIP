@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "11257",
+        "NAME": "So Much I Love You",
+        "CHAPTER": [
+            {
+                "id": "3724761",
+                "name": "Chương 1:Quá Khứ"
+            }
+        ],
+        "TOTALCHAPTER": "3",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Ngôn Tình",
+        "AUTHOR": "Ryu201",
+        "TRANS": "Nhiều Converter",
+        "DESC": "GTNV:<br />\r\n  Vương Mạc Vi(hay còn gọi là Vy Vy):Con út của công ty đá quý lớn nhất thế giới.Vô cùng xinh đẹp.Tính tình trẻ con(sau nay sẽ hết chỉ còn vẻ ngòi lạnh lùng),ham đọc truyện,nhưng học siêu giỏi,giỏi võ.16 tuổi (vì truyện mình sẽ kể từ độ tuổi này nên viết như thế nha).Có hôn ước từ nhỏ vs nhà họ Hoàng (nhưng không biết)<br />\r\n  Hà Quyên (hay Quyên Tử).Con một của nhà họ Hà-công ty thời trang lớn nhất thế giới.Xinh không kém gì chị Vy nhà ta.Tính tình ôn hòa,dễ mến,học giỏi,nấu ăn ngon(vì thế nên Tiểu Trạch nhà ta mới mê chị),giỏi võ nhưng không bằng Vy Vy.16 tuổi.Có hôn ước từ nhỏ vs nhà họ Trạch.<br />\r\n  Hoàng Thiên Phong(hay Tiểu Phong hoặc Phong Phong):Con trai tập đoàn họ Hoàng-lớn nhất thế giới,vẻ ngoài lạnh lùng nhưng là một tên siêu cấp trẻ con,so cool,học siêu giỏi ngang ngữa chị Vy nhà ta,giỏi võ.16 tuổi.Có hôn ước từ nhỏ vs nhà họ Vương(anh này cx k bít)<br />\r\n  Chu Duệ Trạch(Tiểu Trạch):Con trai tập đoàn họ Chu lớn thứ 2 thế giới.Ga lăng,đẹp trai chỉ mỗi tội đào hoa,văn võ song toàn.16 tuổi. Có hôn ước từ nhỏ vs nhà họ Hà",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

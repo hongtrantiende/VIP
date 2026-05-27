@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "1030",
+        "NAME": "Tiên Vương",
+        "CHAPTER": [
+            {
+                "id": "302933",
+                "name": "Chương 1: Quỷ Minh Phong"
+            }
+        ],
+        "TOTALCHAPTER": "818",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo",
+        "AUTHOR": "Quả Hạch Lý",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Ninh Hi&ecirc;n, mười s&aacute;u tuổi, kh&ocirc;ng may bị bắt l&agrave;m n&ocirc; lệ đưa đến Quỷ Minh Phong hiến tế chế tạo thần binh, nhưng kh&ocirc;ng ngờ kh&ocirc;ng chết lại c&ograve;n được một thanh thần binh nhận chủ, đồng thời trong cơ thể cũng thai ngh&eacute;n ra bổn mạng thần binh Cửu Ho&agrave;ng Ch&acirc;u với sức mạnh kỳ b&iacute;.\r\n&nbsp;\r\nTh&acirc;n phận của Ninh Hi&ecirc;n l&agrave; g&igrave; m&agrave; mang trong m&igrave;nh d&ograve;ng m&aacute;u cao qu&yacute; đến mức thần binh nguyện t&ocirc;n l&agrave;m chủ? Cửu Ho&agrave;ng Ch&acirc;u với ch&iacute;n vi&ecirc;n ch&acirc;u mang trong m&igrave;nh sức mạnh lớn đến đ&acirc;u? Số phận của Ninh Hi&ecirc;n rồi sẽ ra sao? Mọi người h&atilde;y c&ugrave;ng theo d&otilde;i để biết đ&aacute;p &aacute;n.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

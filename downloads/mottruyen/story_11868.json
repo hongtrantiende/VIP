@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "11868",
+        "NAME": "Lôi Bạo Thiên Tôn",
+        "CHAPTER": [
+            {
+                "id": "3896076",
+                "name": "Chương 1: Cướp bóc!"
+            }
+        ],
+        "TOTALCHAPTER": "124",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp",
+        "AUTHOR": "Lạc Đệ Kỵ Sĩ",
+        "TRANS": "๖ۜVân ๖ۜPhong™",
+        "DESC": "Nghèo khổ thiếu niên, nhặt lấy tảng đá, đạp vào con đường cường giả tu tiên hành trình. . .",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

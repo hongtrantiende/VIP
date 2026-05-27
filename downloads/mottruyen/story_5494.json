@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "5494",
+        "NAME": "Hokage Chi Quật Khởi",
+        "CHAPTER": [
+            {
+                "id": "1973506",
+                "name": "Chương 1: Xuất sinh"
+            }
+        ],
+        "TOTALCHAPTER": "367",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đồng Nhân",
+        "AUTHOR": "Lưu Quang Bách Thế",
+        "TRANS": "DarkHero",
+        "DESC": "Một t&ecirc;n gen học chuy&ecirc;n gia ngo&agrave;i &yacute; muốn đi tới c&aacute;i n&agrave;y sinh mệnh như cỏ gian thế giới v&igrave; c&oacute; thể tốt hơn c&ograve;n sống, hắn chỉ c&oacute; cố gắng để cho m&igrave;nh biến cường đại khi gen chuy&ecirc;n gia đến thế giới Hokage sau sẽ c&oacute; biến h&oacute;a như thế n&agrave;o!",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

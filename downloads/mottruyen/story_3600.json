@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "3600",
+        "NAME": "Siêu Cấp Gia Đinh",
+        "CHAPTER": [
+            {
+                "id": "1245341",
+                "name": "Chương 1: Xuyên việt tới một triều đại"
+            }
+        ],
+        "TOTALCHAPTER": "365",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Kiếm Hiệp, Lịch Sử, Xuyên Không",
+        "AUTHOR": "Tử Vi",
+        "TRANS": "Sean",
+        "DESC": "Một tà ác, âm hiểm, làm cười, hoa tâm tiểu gia đinh hỗn loạn phấn đấu sử!<br />\r\n<br />\r\nSiêu cấp gia đinh sách hữu hoạt động quần (500 nhân )107079227<br />\r\n<br />\r\nTại trong từ điển của ta:<br />\r\n<br />\r\nCái bàn không phải cái bàn, thạch đầu không phải thạch đầu.<br />\r\n<br />\r\nMỹ nữ không phải mỹ nữ, Tiểu Bạch không phải Tiểu Bạch.<br />\r\n<br />\r\nTa không phải biến thái, ta chỉ là một IQ cao hái hoa đạo tặc!<br />\r\n<br />\r\nKhiến chúng ta vừa hiện sáng tạo một gia đinh kỳ tích!",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

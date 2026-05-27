@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "7012",
+        "NAME": "Siêu Thần Sư Huynh",
+        "CHAPTER": [
+            {
+                "id": "2490698",
+                "name": "Chương 1: La sư huynh"
+            }
+        ],
+        "TOTALCHAPTER": "61",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Kiếm Hiệp, Huyền Ảo, Dị Năng, Dị Giới, Xuyên Không",
+        "AUTHOR": "Kéo hắc",
+        "TRANS": "salreetai3",
+        "DESC": "Siêu thần sư huynh tóm tắt: Một quyển quỷ dị sách cổ, hóa thành mắt thần dị năng, làm la thiên xuyên qua mà đến.<br />\r\nChỉ điểm người khác tu luyện, liền có thể tăng lên mắt thần năng lực.<br />\r\nMắt thần kham phá tu luyện chướng, kim khẩu chỉ điểm thông thiên đồ.<br />\r\nLa thiên từ đây đi lên một cái có giáo vô loại, trợ công toàn trường bất quy lộ……<br />\r\n“Đúng rồi, kêu ta sư huynh!”",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

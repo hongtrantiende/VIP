@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "6395",
+        "NAME": "Ác Ma Lồng Giam",
+        "CHAPTER": [
+            {
+                "id": "2274283",
+                "name": "Chương 1: Tiến vào"
+            }
+        ],
+        "TOTALCHAPTER": "1857",
+        "IMG": "https://static.cdnno.com/poster/ac-ma-long-giam/150.jpg",
+        "CAT": "Võng Du",
+        "AUTHOR": "Đồi Phế Long",
+        "TRANS": "๖ۣۜJet ๖ۣۜBlack",
+        "DESC": "Một cái không nhận bất luận cái gì bảo hộ lòng đất trò chơi, một đám truy đuổi quyền lợi, tài phú, sinh mệnh người chơi!  Không còn sống lâu nữa Tần Nhiên, lựa chọn tiến vào bên trong —— vì sống sót thời cơ!",
+        "THUMB": "https://static.cdnno.com/poster/ac-ma-long-giam/150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

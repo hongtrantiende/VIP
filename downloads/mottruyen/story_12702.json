@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "12702",
+        "NAME": "Hỏa Phượng Hoàng Chi Ta Là Tối Cường",
+        "CHAPTER": [
+            {
+                "id": "4102538",
+                "name": "Chương 1: Ta không phải là đã chết đi!"
+            }
+        ],
+        "TOTALCHAPTER": "73",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo",
+        "AUTHOR": "Tôn trọng bạo lực nghệ thuật gia",
+        "TRANS": "Kostrya",
+        "DESC": "( phi Loup văn mạng lưới cấp độ A ký kết tác phẩm: Thiết huyết chiến sĩ chi ta vì tối cường ) một trương huyết đường vân khô lâu mặt nạ, một đôi trống rỗng hai mắt, chân đạp lấy Thi Sơn Huyết Hải, lạnh lùng thanh âm rõ ràng tại tất cả mọi người trong đầu quanh quẩn:<br />\r\n<br />\r\n\t( ta muốn hôm nay, lại ngăn không được ta đao! )<br />\r\n<br />\r\n\t( muốn này đấy, rốt cuộc ngăn không được quân ta! )<br />\r\n<br />\r\n\t( muốn thế giới này, cũng biết ta tại! )<br />\r\n<br />\r\n\t( muốn kia các nước, cam nguyện cúi đầu xưng thần! )",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

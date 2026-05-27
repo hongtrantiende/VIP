@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "4141",
+        "NAME": "Tuyệt sắc tổng giám đốc yêu ta",
+        "CHAPTER": [
+            {
+                "id": "1510567",
+                "name": "Chương 1: Sát thủ chi vương"
+            }
+        ],
+        "TOTALCHAPTER": "22",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đô Thị, Quân Sự",
+        "AUTHOR": "Diệu dương tổ sư",
+        "TRANS": "๖ۣۜKing๖ۣۜKiller",
+        "DESC": "Quốc tế s&aacute;t thủ chi vương Trương Thiết Căn rửa tay g&aacute;c kiếm, về nh&agrave; ở Phượng ho&agrave;ng th&ocirc;n trồng trọt l&agrave;m n&ocirc;ng, trong l&uacute;c v&ocirc; t&igrave;nh cứu bạch ph&uacute; mỹ Liễu Như Y&ecirc;n c&ugrave;ng Liễu T&igrave;nh Xu&acirc;n, kết quả bại lộ h&agrave;nh tung. Liền, c&acirc;y muốn lặng m&agrave; gi&oacute; chẳng muốn ngừng. C&aacute;c loại nh&acirc;n vật c&ugrave;ng ph&acirc;n tranh dồn dập đi tới Phượng Ho&agrave;ng th&ocirc;n, Trương Thiết căn bản đ&atilde; c&oacute; cuộc sống gia đ&igrave;nh tạm ổn, thoải m&atilde;i ... .Đ&ecirc; bảo vệ th&ocirc;n trang, cũng v&igrave; bảo vệ Liễu Như Y&ecirc;n c&ugrave;ng Liễu T&igrave;nh Xu&acirc;n, Trương Thiết Căn một lần nữa xuất ph&aacute;t.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

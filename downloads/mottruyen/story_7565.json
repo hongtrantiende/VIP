@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "7565",
+        "NAME": "Conan Chi Quang Ám Giao Thoa",
+        "CHAPTER": [
+            {
+                "id": "2679557",
+                "name": "Chương 1:: Ngươi nói hắn gọi cái gì ?"
+            }
+        ],
+        "TOTALCHAPTER": "160",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đô Thị, Kiếm Hiệp, Khoa Huyễn, Xuyên Không, Đồng Nhân, Trùng Sinh",
+        "AUTHOR": "Dương Tiểu Lâm",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Trên thế giới có quang minh thì có hắc ám, có hắc ám thì có quang minh, cũng không có thuần túy quang minh, cũng không có thuần túy hắc ám, mà là trong ngươi có ta, trong ta có ngươi.<br />\r\n<br />\r\n\tCho nên rốt cuộc là quang minh vẫn là hắc ám, đây là rất khó nói xong vấn đề.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

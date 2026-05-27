@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "3003",
+        "NAME": "Thôn Thiên Chí Tôn",
+        "CHAPTER": [
+            {
+                "id": "1023577",
+                "name": "Chương 1: Phế vật chính là phế vật, ngươi đương mình là thiên tài?"
+            }
+        ],
+        "TOTALCHAPTER": "98",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo",
+        "AUTHOR": "Bán Dạ Vấn Đạo",
+        "TRANS": "EnKaRTa",
+        "DESC": "Th&aacute;i Huyền thế giới, học viện san s&aacute;t, man th&uacute; ho&agrave;nh h&agrave;nh. V&ocirc; luận l&agrave; nh&acirc;n loại c&ograve;n l&agrave; man th&uacute;, ti&ecirc;n thi&ecirc;n tư chất, trời sinh huyết mạch, đều quyết định tương lai th&agrave;nh tựu.<br /> <br /> Trấn nhỏ b&igrave;nh thường thiếu ni&ecirc;n Vương Thần, đạt được kỳ ngộ, c&oacute; thể th&ocirc;n phệ sinh mệnh tinh nguy&ecirc;n, tăng l&ecirc;n tự th&acirc;n thi&ecirc;n ph&uacute; tư chất! Trời sinh tư chất thấp? Tu luyện chậm? N&agrave;y th&igrave; thế n&agrave;o!<br /> <br /> M&agrave; lại xem h&egrave;n mọn huyết mạch như thế n&agrave;o dựa v&agrave;o nuốt nguy&ecirc;n năng lực, si&ecirc;u việt v&ocirc; số ch&iacute; cường huyết mạch, uẩn sinh v&ocirc; thượng thần thể, si&ecirc;u tho&aacute;t lu&acirc;n hồi, vĩnh sinh bất tử, th&agrave;nh tựu đại đạo ch&iacute; t&ocirc;n!",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

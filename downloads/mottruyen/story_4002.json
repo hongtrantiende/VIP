@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "4002",
+        "NAME": "Hóa Thần Giới",
+        "CHAPTER": [
+            {
+                "id": "1466712",
+                "name": "Chương 1: Tề gia khảo thí"
+            }
+        ],
+        "TOTALCHAPTER": "970",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Khoa Huyễn",
+        "AUTHOR": "Hữu Thì Hữu Điểm Tà",
+        "TRANS": "Oll",
+        "DESC": "Một c&aacute;i thế tục đại lục đi ra thiếu ni&ecirc;n, một quả bổ sung 'H&oacute;a Thần đầu cuối' chiếc nhẫn, một đoạn kh&uacute;c chiết hải ngoại Tu Ch&acirc;n giới h&agrave;nh tr&igrave;nh.<br /><br />Cơ duy&ecirc;n, kh&uacute;c chiết, nương theo lấy thiếu ni&ecirc;n từng bước một ph&aacute;t triển.<br /><br />B&ecirc;n tr&ecirc;n tam giới ở b&ecirc;n trong, ti&ecirc;n d&ugrave;ng 'Ti&ecirc;n thuật ', ma d&ugrave;ng 'Ma c&ocirc;ng ', y&ecirc;u d&ugrave;ng 'Y&ecirc;u ph&aacute;p ', mang ngươi thưởng thức kh&ocirc;ng đồng dạng như vậy Ti&ecirc;n Ma Y&ecirc;u giới.<br /><br />Đủ loại ti&ecirc;n thuật, ma c&ocirc;ng, y&ecirc;u ph&aacute;p, cho ngươi hoa mắt.<br /><br />Cho ngươi một c&aacute;i bất đồng Ti&ecirc;n Ma Y&ecirc;u giới h&agrave;nh tr&igrave;nh!<br /><br />---<br /><br />Thế tục đẳng cấp: Hậu Thi&ecirc;n Cửu Trọng một Vi&ecirc;n M&atilde;n, Ti&ecirc;n Thi&ecirc;n Tam Cảnh một Vi&ecirc;n M&atilde;n;<br /><br />Tu ch&acirc;n đẳng cấp: Ngưng Đan cảnh, H&oacute;a Anh cảnh, Khuy Hư cảnh, Nhập Hư cảnh, H&oacute;a Hư cảnh, Ph&aacute; Kiếp cảnh, Hư Ti&ecirc;n cảnh;",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "3703",
+        "NAME": "Dật Tiên",
+        "CHAPTER": [
+            {
+                "id": "1276497",
+                "name": "Chương 1:  Thanh Tùng"
+            }
+        ],
+        "TOTALCHAPTER": "535",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp",
+        "AUTHOR": "Bắc Bá Phù",
+        "TRANS": "trang4mat",
+        "DESC": "",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

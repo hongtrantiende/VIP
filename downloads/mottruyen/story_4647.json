@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "4647",
+        "NAME": "Vô Hạn Tự Do Giả",
+        "CHAPTER": [
+            {
+                "id": "1645899",
+                "name": "Chương 1: Luân hồi đồng Hồ"
+            }
+        ],
+        "TOTALCHAPTER": "775",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp, Kiếm Hiệp",
+        "AUTHOR": "Cách Cáp Tạp",
+        "TRANS": "hauido",
+        "DESC": "Một người tuổi trẻ nhặt được v&ocirc; hạn kinh khủng trung lu&acirc;n hồi đồng hồ , sẽ ph&aacute;t sinh c&aacute;i g&igrave; chuyện xưa đ&acirc;y .",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

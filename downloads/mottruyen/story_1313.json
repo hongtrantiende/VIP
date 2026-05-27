@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "1313",
+        "NAME": "Long Mộ",
+        "CHAPTER": [
+            {
+                "id": "537410",
+                "name": "Chương 1: Tuyệt mỹ Hắc Ám Thiên Sứ"
+            }
+        ],
+        "TOTALCHAPTER": "324",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Võng Du",
+        "AUTHOR": "Long Cốt Vệ",
+        "TRANS": "Kensin",
+        "DESC": "Tại Chu Hiền mười bốn tuổi sinh nhật ng&agrave;y ấy, nhận được một c&aacute;i đồ cổ b&igrave;nh thường cũ kỹ mũ gi&aacute;p. Bởi v&igrave; c&aacute;i n&agrave;y mũ gi&aacute;p, tiến tới hắn nhận được một c&aacute;i vạn người h&acirc;m mộ, nhưng lại nguy cơ tứ ph&iacute;a tr&ograve; chơi nhiệm vụ.<br /><br />Nhiệm vụ th&agrave;nh c&ocirc;ng, hắn sắp trở th&agrave;nh thế giới game người thứ t&aacute;m Đại Đế người chơi, một đời ph&uacute; qu&yacute; c&ugrave;ng vinh quang v&ocirc; song.<br /><br />Đương nhi&ecirc;n, đ&atilde; lấy được chỉ c&oacute; Long tộc mới c&oacute; \"Long Mộ truyền tống\" kỹ năng (skill), c&oacute; thể ra v&agrave;o c&oacute; v&ocirc; số bảo vật c&ugrave;ng ẩn chứa qu&yacute; hiếm Long tộc t&agrave;i liệu Long tộc nghĩa địa chuyện như vậy, Chu Hiền l&agrave; sẽ kh&ocirc;ng n&oacute;i cho người kh&aacute;c...&nbsp;<br /><br />Thanh sơn vũ hậu tiểu b&iacute;ch nhai,<br />Nhất sinh nhất thế lưỡng phi hoa.<br />Qu&acirc;n th&aacute;n lưu thủy tri&ecirc;u tịch thệ,<br />Ng&atilde; tiếu ngoan thạch vạn cổ &aacute;ch.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

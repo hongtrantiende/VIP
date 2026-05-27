@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "1207",
+        "NAME": "Dã Man Vương Tọa",
+        "CHAPTER": [
+            {
+                "id": "468857",
+                "name": "Chương 1: Man chùy hai thế"
+            }
+        ],
+        "TOTALCHAPTER": "297",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Dị Giới",
+        "AUTHOR": "Trạch Trư",
+        "TRANS": "Nhiều Converter",
+        "DESC": "T&ecirc;n Trương Đức Bưu n&agrave;y l&agrave; một người thuộc bộ lạc của Nam Cương, v&oacute;c người cao lớn, mạnh mẽ (người Barbarian), hắn c&oacute; được tr&iacute; nhớ của kiếp trước về c&aacute;c kinh mạch, huyệt đạo n&ecirc;n lợi dụng c&aacute;c kinh mạch huyệt đạo để tu luyện... v&agrave; từ đ&oacute;, con đường để trở n&ecirc;n mạnh mẽ của hắn bắt đầu<br /><br />Truyện đứng h&agrave;ng thứ 10 thể loại huyễn huyễn",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

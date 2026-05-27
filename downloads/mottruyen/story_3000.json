@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "3000",
+        "NAME": "Toàn Chức Vô Song",
+        "CHAPTER": [
+            {
+                "id": "1023121",
+                "name": "Chương 1: Sống lại chính là tùy hứng"
+            }
+        ],
+        "TOTALCHAPTER": "133",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đô Thị, Võng Du",
+        "AUTHOR": "Hắc Mã Hành Không",
+        "TRANS": "Tử Đấu, pép si",
+        "DESC": "Hạ An bởi vì tại trong game sáng tạo ra Vu Sư chức nghiệp: Thần cấp kỹ năng \"Thời gian\", thi triển lần thứ nhất sau, đã bị hệ thống cưỡng chế đá ra game, chờ hắn mở mắt ra, phát hiện chung quanh hết thảy đều thay đổi.  Rõ ràng là cái Thần cấp cao thủ, Hạ An nhưng lại không thể không làm bộ một cái game gà con, hắn chỉ có thể nói, trang thái điểu ~ hảo vất vả a.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

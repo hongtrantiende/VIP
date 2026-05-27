@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "8916",
+        "NAME": "Độ Nhân Thành Ma",
+        "CHAPTER": [
+            {
+                "id": "3034425",
+                "name": "Chương 1: Lạc Hà Sơn"
+            }
+        ],
+        "TOTALCHAPTER": "242",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp, Kiếm Hiệp",
+        "AUTHOR": "Liễu Hận Thuỷ",
+        "TRANS": "congiolanh",
+        "DESC": "Lạc Hà Sơn chân núi có một đứa trẻ bị vứt bỏ, vừa gặp Lạc Hà Môn trưởng lão quay lại môn phái phục mệnh, thấy đáng thương, mang về sơn môn.   <br />\r\n<br />\r\nThoáng một cái mười năm . Dưới núi đứa trẻ bị vứt bỏ đã trưởng thành thiếu niên nhanh nhẹn, chỉ khổ lại một tia nội lực không thể tu luyện được, sư môn phái xuống núi lịch lãm, cũng không biết, đi lần này, lại thay đổi thiếu niên cả đời . .  .<br />\r\n<br />\r\n(*)Cầu bình chọn 10 điểm cho truyện.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

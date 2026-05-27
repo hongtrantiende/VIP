@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "1383",
+        "NAME": "Phàm Nữ Tiên Hồ Lô",
+        "CHAPTER": [
+            {
+                "id": "572678",
+                "name": "Chương 1: Thân thế thán thê lương"
+            }
+        ],
+        "TOTALCHAPTER": "663",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Nữ Hiệp",
+        "AUTHOR": "Đông Thiên Liễu Diệp",
+        "TRANS": "Oll",
+        "DESC": "Ph&agrave;m nh&acirc;n thiếu nữ Mạc Thanh Trần, l&agrave; tư chất thấp bốn hệ Ngụy linh căn, tu ch&acirc;n h&agrave;nh tr&igrave;nh từng bước gian khổ.<br /><br />May mắn t&ugrave;y th&acirc;n hồ l&ocirc; rượu, có th&ecirc;̉ th&uacute;c linh thảo, có th&ecirc;̉... V&igrave; n&agrave;ng mở ra một c&aacute;i Th&ocirc;ng Thi&ecirc;n m&ocirc;n.<br /><br />M&agrave; lại xem b&igrave;nh thường thiếu nữ như thế n&agrave;o mang theo Ti&ecirc;n Hồ L&ocirc;, chơi chuyển tu ch&acirc;n đại lục, đạp v&agrave;o Vấn Thi&ecirc;n h&agrave;nh tr&igrave;nh!",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

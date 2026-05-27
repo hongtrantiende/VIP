@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "3836",
+        "NAME": "Hoàng Cực Thiên Tôn",
+        "CHAPTER": [
+            {
+                "id": "1334673",
+                "name": "Chương 1:  Chôn cất Long hòm quan tài"
+            }
+        ],
+        "TOTALCHAPTER": "1006",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo",
+        "AUTHOR": "Hải Trần",
+        "TRANS": "trang4mat",
+        "DESC": "Thi&ecirc;n chi uy, Cửu Thi&ecirc;n l&ocirc;i phạt. Địa chi uy, Ho&agrave;ng Cực người!<br /><br />Ngũ thải ban lan Tu Ch&acirc;n Thế Giới ở b&ecirc;n trong, chỉ c&oacute; chứng đạo mới c&oacute; thể v&ocirc; địch, chỉ c&oacute; vĩnh sinh bất tử mới c&oacute; thể qu&acirc;n l&acirc;m thi&ecirc;n hạ, nhưng m&agrave; hết thảy n&agrave;y điều kiện ti&ecirc;n quyết l&agrave;, bản th&acirc;n bổn nguy&ecirc;n lực lượng thức tỉnh. Ch&iacute;nh như c&acirc;u kia truyền lưu mu&ocirc;n đời đ&iacute;ch thoại ngữ, đương bổn nguy&ecirc;n lực lượng thức tỉnh, ai c&ograve;n c&oacute; thể ngăn cản ta đạp x&eacute; trời đấy, vĩnh sinh bất tử bước ch&acirc;n?",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

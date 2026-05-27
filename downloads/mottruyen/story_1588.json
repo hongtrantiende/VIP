@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "1588",
+        "NAME": "Vũ Vương",
+        "CHAPTER": [
+            {
+                "id": "650034",
+                "name": "Chương 1: Liệt Sơn Thành"
+            }
+        ],
+        "TOTALCHAPTER": "914",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo",
+        "AUTHOR": "Độc Du",
+        "TRANS": "anhktcn",
+        "DESC": "H&oacute;a v&otilde; nhập đạo, Đạp Hư Lăng Thần, ta ch&iacute;nh l&agrave; Vũ Vương chi Vương!<br /> <br /> Mộ H&agrave;n, Liệt Sơn Th&agrave;nh Mộ gia một c&aacute;i kh&ocirc;ng bị ch&agrave;o đ&oacute;n con ri&ecirc;ng, đột nhi&ecirc;n Tử Hư Thần Cung xuất hiện , v&igrave; hắn mở ra kỳ dị thần th&ocirc;ng đại đạo. Thần b&iacute; ng&agrave;n vạn Thi&ecirc;n Vực thế giới, từ từ b&agrave;y ra.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

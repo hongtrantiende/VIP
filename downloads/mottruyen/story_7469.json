@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "7469",
+        "NAME": "Pokemon Xuyên Không Kỳ Lục",
+        "CHAPTER": [
+            {
+                "id": "2641680",
+                "name": "Chương 1 :  Đồng Môn Tương Tàn - Khởi Đầu Mới"
+            }
+        ],
+        "TOTALCHAPTER": "6",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo, Dị Năng, Dị Giới, Xuyên Không, Đồng Nhân",
+        "AUTHOR": "NoramodetaAiyukita",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Đại khái nv9 là một tu luyện giả ở thời hiện đại, sau đó vì một vài lý do mà xuyên tới thế giới pokemon.<br />\r\nnội dung sau đó thì mời đọc truyện để biêt tiếp.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

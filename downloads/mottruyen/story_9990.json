@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "9990",
+        "NAME": "Siêu Thời Không Phục Vụ",
+        "CHAPTER": [
+            {
+                "id": "3365680",
+                "name": "Chương 1: Phỏng vấn kỳ ngộ"
+            }
+        ],
+        "TOTALCHAPTER": "577",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Khoa Huyễn, Xuyên Không, Đồng Nhân",
+        "AUTHOR": "Tiêu Diêm Đậu Hoa",
+        "TRANS": "๖ۣۜNhox๖ۣۜMix๖",
+        "DESC": "Siêu Thời Không phục vụ công ty tập trung các vị mặt tinh anh nhân tài, vô luận bất luận cái gì trắc trở, bổn công ty đều có thể giúp ngài hoàn mỹ giải quyết.<br />\r\n<br />\r\n\tGiải cứu con tin? Không có vấn đề. Muốn khiêu chiến cao thủ? Đồng dạng không có vấn đề. Kỳ vọng Thời Không lữ hành? Càng thêm không là vấn đề.<br />\r\n<br />\r\n-------------------------------------------------------------------------------------------------<br />\r\nThế giới qua: Dynasty Warriors(Tam Quốc Vô Song),Iron Man 2(lướt qua),Toaru Majutsu no Index, Resident Evil, Tiếu Ngao Giang Hồ, KOF, Vô Hạn Khủng Bố ( phần Ailen ), Ỷ Thiên Đồ Long Ký, Zero no Tsukaima, Đại Đường Song Long Truyện, Phong Vân, Highschool DxD, Detective Conan, Dragon Ball, Tru Tiên, ......",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

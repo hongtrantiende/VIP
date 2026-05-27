@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "11422",
+        "NAME": "Lời Nguyền Lỗ Ban",
+        "CHAPTER": [
+            {
+                "id": "3787267",
+                "name": "Chương 1 :Bóng nửa đêm"
+            }
+        ],
+        "TOTALCHAPTER": "65",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đô Thị, Linh Dị",
+        "AUTHOR": "Viên Thái Cực",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Nhân vật lịch sử Lỗ Ban không chỉ là ông tổ của nghề mộc mà còn là ông tổ của ám khí và cạm bẫy<br />\r\nĐược mệnh danh là \"Cuốn tiểu thuyết thần kỳ nhất năm 2011\" ngay khi tập 1 được xuất bản tại Trung Quốc<br />\r\nKhai thác một đề tài hoàn toàn mới mẻ và kì bí .Giải mã trận pháp ,cạm bẫy và ám khí",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

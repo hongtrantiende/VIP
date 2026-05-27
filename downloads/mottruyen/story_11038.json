@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "11038",
+        "NAME": "Một Phần Bảy Tỷ",
+        "CHAPTER": [
+            {
+                "id": "3644623",
+                "name": "Chương 1: Nữ chính ngôn tình, không phải tôi."
+            }
+        ],
+        "TOTALCHAPTER": "24",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Ngôn Tình",
+        "AUTHOR": "traidattron",
+        "TRANS": "Nhiều Converter",
+        "DESC": "\" Bao giờ tôi mới gặp được một người để tôi có thể thương thật lâu, lâu hơn cả những ngày chúng tôi chúng tôi chưa gặp nhau?\"_ Cô ngồi an nhiên chống tay lên cằm, mắt mơ màng để tâm hồn tự do bay bổng. Anh cầm cuốn y khoa bên cạnh, nghe cô nói bâng quơ như vậy thì chẳng do dự mà gõ nhẹ vào đầu cô, không quên ném thêm câu nói phũ phàng:<br />\r\n\" Nằm mơ.\"",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

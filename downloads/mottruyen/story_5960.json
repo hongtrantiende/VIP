@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "5960",
+        "NAME": "Mệnh Kỵ Sĩ",
+        "CHAPTER": [
+            {
+                "id": "2145562",
+                "name": "Chương 1: “Luôn luôn giữ nụ cười tươi”"
+            }
+        ],
+        "TOTALCHAPTER": "31",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo, Dị Năng, Dị Giới",
+        "AUTHOR": "Ngự Ngã",
+        "TRANS": "Hương",
+        "DESC": "Mệnh kỵ sĩ (The Legend of Sun Knight) là tiểu thuyết Đài Loan 2010 của Ngự Ngã và được Os Rabbit Cat chuyển thể thành truyện tranh. Nó được lấy cảm hứng từ việc tác giả muốn 'thể hiện những sắc màu chân thực của một kỵ sĩ\". Câu chuyện được viết theo phong cách thoải mái và đầy hài hước. Nó kể về một thế giới trong trong tưởng tượng, là nơi đa thần và được chia ra thành nhiều đất nước và tôn giáo. Trong những tôn giáo đó, tín ngưỡng của thần Ánh sáng được xem là có lịch sử lâu đời nhất và là một trong ba thế lực lớn nhất. Cuốn tiểu thuyết là câu chuyện kể về Sun knight đời thứ 38 của Thần điện Ánh sáng và những người đồng bạn của anh ấy. Sun knight xuất hiện như một kỵ sĩ nhân ái tha thứ cho cả những tên tội phạm tồi tệ nhất nhưng chỉ có người đọc mới biết anh ấy ghét việc cứ phải nhắc đến thần Ánh sáng mỗi khi nói chuyện.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

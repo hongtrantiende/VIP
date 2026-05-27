@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "1105",
+        "NAME": "Của Ta Hiền Giả Đại Nhân",
+        "CHAPTER": [
+            {
+                "id": "371668",
+                "name": "Chương 01:  yes! My lord!"
+            }
+        ],
+        "TOTALCHAPTER": "54",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Dị Giới",
+        "AUTHOR": "MyKingsKnight",
+        "TRANS": "Hắc Sư",
+        "DESC": "\"Rin, kh&ocirc;ng đến chất lỏng trao đổi sao?\" Nhẹ nh&agrave;ng m&agrave; khơi gợi l&ecirc;n Tohsaka Rin c&aacute;i cằm, Keira ngươi mỉm cười hỏi.<br /><br />\"Ai, ai muốn c&ugrave;ng ngươi bổ ma ah!\"<br /><br />\"A rồi, kh&ocirc;ng biết l&agrave; ai tại lần thứ tư ch&eacute;n th&aacute;nh trong chiến tranh n&oacute;i c&aacute;i g&igrave; 'Th&iacute;ch nhất' bổ ma rồi hả?\"<br /><br />\"C&acirc;m miệng! Ngươi c&aacute;i n&agrave;y y&ecirc;u th&iacute;ch tiểu loli!\"<br /><br />\"C&aacute;i kia, c&aacute;i kia, khải đại nh&acirc;n nếu như c&oacute; thể m&agrave; n&oacute;i thỉnh c&ugrave;ng ta chất lỏng trao đổi a!\" Sakura khu&ocirc;n mặt nhỏ nhắn ngang...m&agrave; bắt đầu tr&agrave;n đầy ngượng ng&ugrave;ng c&ugrave;ng chờ mong.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

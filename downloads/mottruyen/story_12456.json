@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "12456",
+        "NAME": "Siêu Cường  Vong Linh Chúa Tể",
+        "CHAPTER": [
+            {
+                "id": "4043333",
+                "name": "Chương 1: Sống lại"
+            }
+        ],
+        "TOTALCHAPTER": "316",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Võng Du, Khoa Huyễn",
+        "AUTHOR": "Phách Vương Thập Tam",
+        "TRANS": "Liu",
+        "DESC": "Một ngày kia, hết thảy người chơi từ từ hồi tưởng lại, này bị vong linh chi phối sợ hãi.  \"Nhân loại ngu xuẩn, quỳ rạp xuống ta vong linh trước mặt đại quân, nằm rạp run rẩy đi!\"  . . .  Hoàn toàn mới toàn năng nghề nghiệp, vô địch cao cấp chơi pháp; quét ngang võng du, tung Hoành Vũ trụ; 3000 thế giới, ta chủ chìm nổi!",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "7807",
+        "NAME": "Tiên Trủng",
+        "CHAPTER": [
+            {
+                "id": "2731755",
+                "name": "Chương 1: Xà Tín Thảo"
+            }
+        ],
+        "TOTALCHAPTER": "76",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp",
+        "AUTHOR": "Doãn Thu Quân",
+        "TRANS": "ngocdeptrai22041998",
+        "DESC": "Tiên trủng giới thiệu vắn tắt: www. uukanshu. com nghịch thiên, còn có ngoại lệ; nghịch ta, tuyệt không sinh cơ!<br />\r\n<br />\r\n\tCái này loạn thế phân tranh, nếu thật muốn đem ta cuốn vào, ta đây chỉ có thể một tay vuốt lên gió này sóng!<br />\r\n<br />\r\n\tMột cái thuở nhỏ thân họa bệnh gì thiếu niên, hướng chết mà sinh, rồi lại ngoài ý muốn bước vào tiên đồ, nguyên lai tưởng rằng từ đó thoát khỏi tử vong âm ảnh, rồi lại bị cuốn vào phân tranh bên trong...<br />\r\n<br />\r\n\tTiên Ma một ý niệm, ta như thành đạo, mặc dù sa đọa thành ma, cũng thản nhiên không sợ, ta đem ma tẩy thiên hạ!",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

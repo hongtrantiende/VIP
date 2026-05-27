@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "11923",
+        "NAME": "Ta Chế Tạo Hệ Thống",
+        "CHAPTER": [
+            {
+                "id": "3910430",
+                "name": "Chương 1: Ta hệ thống"
+            }
+        ],
+        "TOTALCHAPTER": "101",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đô Thị",
+        "AUTHOR": "Tân Phong",
+        "TRANS": "ddddaaaa",
+        "DESC": "Khổ ép sinh hoạt, trứng nát thời gian, hết thảy đều từ lấy được hệ thống mà phát sinh thay đổi.<br />\r\n<br />\r\nTa có chế tạo hệ thống, hết thảy đều đem phát sinh thay đổi",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

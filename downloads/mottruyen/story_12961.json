@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "12961",
+        "NAME": "Bá Trùng Thiên Hoang",
+        "CHAPTER": [
+            {
+                "id": "4186459",
+                "name": "Chương 1: Nửa Đời Tu Ma, Quay Đầu Lại"
+            }
+        ],
+        "TOTALCHAPTER": "10",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo, Dị Giới",
+        "AUTHOR": "acong",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Không viết nữa",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

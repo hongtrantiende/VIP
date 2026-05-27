@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "2459",
+        "NAME": "Văn Nghệ Thời Đại",
+        "CHAPTER": [
+            {
+                "id": "809157",
+                "name": "Chương 1: Trử Thanh"
+            }
+        ],
+        "TOTALCHAPTER": "782",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đô Thị",
+        "AUTHOR": "Thụy Giác Hội Biến Bạch",
+        "TRANS": "MrBladeOz",
+        "DESC": "Hắn từng ở một c&aacute;i trong huyện th&agrave;nh nhỏ nh&igrave;n thấy một c&aacute;i t&ecirc;n l&agrave; Tiểu Vũ ăn trộm, đ&atilde; từng tại T&ocirc; Ch&acirc;u bờ s&ocirc;ng được chứng kiến một c&aacute;i t&oacute;c v&agrave;ng mỹ nh&acirc;n ngư, c&agrave;ng l&agrave; ở một c&aacute;i trong th&ocirc;n nhỏ xem qua một người đ&agrave;n &ocirc;ng đang bị chặt đầu trước học lừa h&iacute;...  Viết giới thiệu vắn tắt v&ocirc; năng, c&aacute;i n&agrave;y đại kh&aacute;i l&agrave; một người b&igrave;nh thường thanh ni&ecirc;n chuyển biến th&agrave;nh văn nghệ thanh ni&ecirc;n chuyện cũ.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

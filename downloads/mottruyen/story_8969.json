@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "8969",
+        "NAME": "Nguyên Long",
+        "CHAPTER": [
+            {
+                "id": "3078431",
+                "name": "Chương 1: Mới tới quý địa"
+            }
+        ],
+        "TOTALCHAPTER": "737",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo",
+        "AUTHOR": "Nhâm Oán",
+        "TRANS": "Hoàng Châu",
+        "DESC": "Nguy&ecirc;n Hồn thế giới, huyền huyễn thần kỳ, gia tộc bộc ph&aacute;t, t&ocirc;ng m&ocirc;n đứng vững, cường giả lộn xộn ra, cao thủ như m&acirc;y.<br /> <br /> Vương b&agrave;i tay đ&aacute;nh l&eacute;n Vương Thắng xuy&ecirc;n qua đến Nguy&ecirc;n Hồn thế giới, đ&acirc;m đầu v&agrave;o nhất kh&ocirc;ng đủ tư c&aacute;ch c&aacute; ch&eacute;p t&agrave;n hồn, th&agrave;nh người gặp người bắt nạt r&aacute;c rưởi.<br /> <br /> Ta tới l&agrave; giết người, kh&ocirc;ng phải đến bị c&aacute;c ngươi cười nhạo.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

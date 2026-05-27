@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "9317",
+        "NAME": "Hải Tặc Chi Vô Đế",
+        "CHAPTER": [
+            {
+                "id": "3155978",
+                "name": "Chương 1: Impel Down Vô Hạn Địa Ngục"
+            }
+        ],
+        "TOTALCHAPTER": "747",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đồng Nhân",
+        "AUTHOR": "Vô Duy",
+        "TRANS": "DarkHero",
+        "DESC": "Duy ngã độc tôn, độc chưởng càn khôn Vô Đế: Duy ta bên ngoài, lại không Đế Hoàng! Trừ ta bên ngoài, ai dám xưng đế? <br />\r\n<br />\r\nTừ trong Địa Ngục quật khởi, trong bóng tối đi đến, trong ngục giam giết ra. Từ đây một vị Đế Hoàng, quân lâm thiên hạ, tam cung lục viện. Hải tặc, Tử Thần...<br />\r\n<br />\r\n>700c",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

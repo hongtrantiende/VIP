@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "1351",
+        "NAME": "Phong Lưu Y Thánh",
+        "CHAPTER": [
+            {
+                "id": "560634",
+                "name": "Chương 1: Yêu tinh xinh đẹp"
+            }
+        ],
+        "TOTALCHAPTER": "1579",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đô Thị",
+        "AUTHOR": "Thái Tấn",
+        "TRANS": "VTK",
+        "DESC": "Thần y thế kỉ 21, người duy nhất được giới y khoa tr&ecirc;n to&agrave;n thế giới thừa nhận. Hắn ch&iacute;nh l&agrave; nh&acirc;n vật đứng cao nhất tr&ecirc;n đỉnh ngọn kim tự th&aacute;p trong giới y khoa. Tr&ecirc;n thực tế, sau hai chữ thần y, c&ograve;n c&oacute; hai chữ &ndash; đoạt mệnh, thần y đoạt mệnh, &yacute; nghĩa rất đơn giản, người đ&agrave;n &ocirc;ng n&agrave;y c&oacute; thể cướp lấy sinh mệnh từ trong tay Di&ecirc;m Vương hay Thần chết.<br /><br />Nhưng, vấn đề l&agrave;, người đ&agrave;n &ocirc;ng n&agrave;y c&oacute; hơi phong lưu, cho d&ugrave; l&agrave; cực phẩm ngự tỉ, nữ doanh nh&acirc;n, ng&ocirc;i sao xinh đẹp, b&agrave; mẹ đơn th&acirc;n, dường như số đ&agrave;o hoa của hắn c&ograve;n lợi hại hơn y thuật của hắn.<br /><br />L&agrave; một b&ocirc;ng hoa k&igrave; lạ trong giới y khoa, Đường Tranh cảm thấy, danh xưng Thần y đa t&igrave;nh c&ograve;n c&oacute; &yacute; nghĩa nội h&agrave;m hơn Thần y đoạt mệnh.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "8247",
+        "NAME": "Nghịch Trần Giới",
+        "CHAPTER": [
+            {
+                "id": "2840060",
+                "name": "Chương 1: Bây Giờ Quay Lại Làm Phàm Nhân"
+            }
+        ],
+        "TOTALCHAPTER": "2",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp, Huyền Ảo",
+        "AUTHOR": "macphi",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Tu ma",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

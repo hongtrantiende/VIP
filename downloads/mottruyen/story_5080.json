@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "5080",
+        "NAME": "Mạt pháp ôn y",
+        "CHAPTER": [
+            {
+                "id": "1793373",
+                "name": "Chương 1:  đầu thai làm người"
+            }
+        ],
+        "TOTALCHAPTER": "549",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đô Thị",
+        "AUTHOR": "Xích tuyết",
+        "TRANS": "๖ۣۜTiếu ๖ۣۜHồng ๖ۣۜTrần",
+        "DESC": "Thời kỳ d&acirc;n quốc Trung y tiểu thần đồng ngẫu nhi&ecirc;n được y đạo kinh thư &laquo; Cửu Chuyển &Ocirc;n Kinh &raquo; , với ba mươi tuổi tu luyện th&agrave;nh c&ocirc;ng, lại kh&ocirc;ng c&oacute; thể trải qua L&ocirc;i Kiếp, linh hồn xuy&ecirc;n qua đi tới hiện đại đ&ocirc; thị, trở th&agrave;nh một danh học tập T&acirc;y y sinh vi&ecirc;n.<br /> <br /> Dựa v&agrave;o kiếp trước y thuật t&iacute;ch lũy c&ugrave;ng &laquo; Cửu Chuyển &Ocirc;n Kinh 》 tu luyện, hắn bắt đầu nghịch tập, tr&igrave; bệnh lạ, trừ virus, quan s&aacute;t kh&iacute;, trừng phạt cường đỡ yếu, b&ecirc;nh vực kẻ yếu, diệu thủ hồi xu&acirc;n, rất nhiều hồng nhan v&agrave;o ngực, tiếu ngạo y đạo phong lưu.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "11432",
+        "NAME": "Vĩnh Sinh Thiên",
+        "CHAPTER": [
+            {
+                "id": "3788715",
+                "name": "Chương 1: Diệt môn thảm án"
+            }
+        ],
+        "TOTALCHAPTER": "1166",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp, Huyền Ảo, Xuyên Không",
+        "AUTHOR": "Cô Phần",
+        "TRANS": "808",
+        "DESC": "Vĩnh sinh khó khăn, khó như thượng cửu thiên! <br />\r\n<br />\r\nĐồn đại Thiên Giới trên chín tầng trời còn có một thiên—— Vĩnh Sinh Thiên. Vị diện tu sĩ hàng tỉ, lại có ai có thể chân chính trèo lên này chí cao vô thượng một thiên? <br />\r\n<br />\r\nTu chân giới vô số tu sĩ mơ tưởng phi thăng thành tiên, nào ngờ Tiên giới cũng không phải điểm kết thúc, Thần giới cũng không là phần cuối, Thánh Nhân như cũ vô pháp vĩnh sinh... <br />\r\n<br />\r\nĐến từ địa cầu linh hồn, là cùng đông đảo tu sĩ đồng dạng bao phủ tại trùng trùng điệp điệp tu chân hồng lưu, hay là nghịch thiên quật khởi, thành tựu một đoạn bất hủ truyền thuyết? Đây là một cái truy cầu vĩnh sinh chuyện xưa, đây là một cái tu chân côn đồ thần thoại!",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "7457",
+        "NAME": "Sinh Viên Bá Đạo",
+        "CHAPTER": [
+            {
+                "id": "2637665",
+                "name": "Chương 1: Gã học sinh thần bí."
+            }
+        ],
+        "TOTALCHAPTER": "3",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đô Thị, Dị Năng",
+        "AUTHOR": "Kitty",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Lũ công tử bột bọn mày dùng đô la thần chưởng đè người!? Thế anh đây sẽ dùng việt nam chân kinh để đập cho tụi mày phải kêu cha gọi mẹ!<br />\r\n<br />\r\nVô lại lưu manh lừa lọc để đạt được mục đích? Thích đấy!? Ý kiến gì! Miễn người đẹp ngã vào tay anh là được, ý kiến là ăn đấm nhé!<br />\r\n<br />\r\n<br />\r\nTrần Nguyên, một lính đánh thuê kinh khủng nhất thế giới, sau khi chán ghét gió tanh mưa máu nơi chiến trường, về lại cuộc sống của một con người bình thường liệu có suôn sẻ? Những ngày tháng điên cuồng tại chiến trường có ảnh hưởng con người hắn?<br />\r\n<br />\r\nNhững kiến thức cùng kỹ năng chiến trường liệu có giúp cho hắn trên con đường tìm lại chính mình nơi quê nhà. Câu trả lời, nằm trong từng chương của tác phẩm “Sinh Viên Đại Học Bá Đạo”.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

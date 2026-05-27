@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "9135",
+        "NAME": "Chí Tôn Tiên Triều",
+        "CHAPTER": [
+            {
+                "id": "3145854",
+                "name": "Chương 1: Đầu thai làm người"
+            }
+        ],
+        "TOTALCHAPTER": "100",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp",
+        "AUTHOR": "Ám Hắc Gia Tử",
+        "TRANS": "†๖ۣۜSóiღ†",
+        "DESC": "Đỉnh đầu của ch&uacute;ng ta l&agrave; M&atilde;n Thi&ecirc;n Ti&ecirc;n Phật, dưới ch&acirc;n l&agrave; &Acirc;m Giới Quỷ Thần, c&agrave;ng c&oacute; v&ocirc; số Ti&ecirc;n M&ocirc;n tu sĩ t&uacute;ng ho&agrave;nh thi&ecirc;n địa, Phi&ecirc;n Thủ Vi V&acirc;n, Ph&uacute;c Thủ Vi Vũ, tr&ecirc;n thế giới n&agrave;y, ph&agrave;m nh&acirc;n như l&agrave; con kiến h&ocirc;i.<br /> <br /> Cho n&ecirc;n, ta kh&ocirc;ng l&agrave;m ph&agrave;m nh&acirc;n!",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "5466",
+        "NAME": "Tam Quốc Phong Thần Đường",
+        "CHAPTER": [
+            {
+                "id": "1942157",
+                "name": "Chương 1: Chuyển Sinh Hán Mạt"
+            }
+        ],
+        "TOTALCHAPTER": "326",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Dị Năng, Xuyên Không",
+        "AUTHOR": "Mộng Tựa Lưu Sa",
+        "TRANS": "Báo chứ ai :v",
+        "DESC": "Đ&ecirc;̣ nh&acirc;́t h&ecirc;̣ th&ocirc;́ng cùng Hàn Nặc đi vào tam qu&ocirc;́c. Nảy sinh quan h&ecirc;̣ như nào đọc truy&ecirc;̣n sẽ rõ!!!!",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "4658",
+        "NAME": "Bạch Hổ Tinh Quân",
+        "CHAPTER": [
+            {
+                "id": "1649676",
+                "name": "Chương 1: Huyết Mai đăng Minh chủ Bạch Hổ lạc Ta bà"
+            }
+        ],
+        "TOTALCHAPTER": "23",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Kiếm Hiệp",
+        "AUTHOR": "Ưu Đàm Hoa",
+        "TRANS": "Đại Việt Kiếm Thần",
+        "DESC": "Sưu tầm",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

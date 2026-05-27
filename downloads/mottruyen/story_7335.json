@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "7335",
+        "NAME": "Hồng Y Nữ Tử Kí",
+        "CHAPTER": [
+            {
+                "id": "2606502",
+                "name": "Chương 1 : Cái Chết Nhẹ Tựa Mây"
+            }
+        ],
+        "TOTALCHAPTER": "1",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo, Dị Giới, Nữ Hiệp, Trùng Sinh",
+        "AUTHOR": "aihalam",
+        "TRANS": "Nhiều Converter",
+        "DESC": "...",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

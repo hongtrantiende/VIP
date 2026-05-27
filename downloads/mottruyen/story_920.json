@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "920",
+        "NAME": "Thế Giới Hoàn Mỹ",
+        "CHAPTER": [
+            {
+                "id": "226750",
+                "name": "Chương 1: Triều khí bồng bột"
+            }
+        ],
+        "TOTALCHAPTER": "2018",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo",
+        "AUTHOR": "Thần Đông",
+        "TRANS": "Kensin_Kaoru, trang4mat, Tiến Luân",
+        "DESC": "Đ&ecirc;m đ&atilde; về khuya, b&oacute;ng tối phủ k&iacute;n khắp nơi, bao tr&ugrave;m l&ecirc;n cảnh vật. Thế nhưng trong n&uacute;i lại chẳng hề y&ecirc;n tĩnh, tiếng m&atilde;nh th&uacute; r&iacute;t g&agrave;o rung động cả non s&ocirc;ng, c&acirc;y cối rung l&ecirc;n, l&aacute; bay t&aacute;n loạn.<br /><br />Chốn rừng n&uacute;i m&ecirc;nh mang l&agrave; nơi hoạt động của v&ocirc; số m&atilde;nh th&uacute; hồng hoang c&ugrave;ng những chủng tộc s&oacute;t lại từ thời Th&aacute;i Cổ. Tiếng k&ecirc;u đ&aacute;ng sợ của mu&ocirc;n lo&agrave;i rống l&ecirc;n trong b&oacute;ng tối, khiến mặt đất như muốn nứt to&aacute;c ra.<br /><br />Từ trong d&atilde;y n&uacute;i tr&ocirc;ng xa thấy c&oacute; thấp tho&aacute;ng một quầng s&aacute;ng nhu h&ograve;a, tựa như một ngọn nến lập l&ograve;e dưới m&agrave;n đ&ecirc;m đen v&ocirc; tận, lẩn khuất giữa mu&ocirc;n tr&ugrave;ng n&uacute;i, &aacute;nh s&aacute;ng dường như c&oacute; thể vụt tắt bất cứ l&uacute;c n&agrave;o.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

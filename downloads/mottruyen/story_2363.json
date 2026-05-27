@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "2363",
+        "NAME": "Trọng Sinh Đại La Kim Tiên",
+        "CHAPTER": [
+            {
+                "id": "788329",
+                "name": "Chương 2: Đẳng cấp tấn chức"
+            }
+        ],
+        "TOTALCHAPTER": "22",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo",
+        "AUTHOR": "Dịch môn",
+        "TRANS": "Tá Thần Nam",
+        "DESC": "Kiếp trước vi tiên, sống lại dị giới.<br />\r\n<br />\r\n\tMột khối nhân tiên kiếp lôi phạt thần bí xuất hiện ngọc bội hạng lai lịch?<br />\r\n<br />\r\n\tVậy là cái gì bí ẩn họa cướp ẩn vào phía sau màn?<br />\r\n<br />\r\n\tĐã từng tiên cốt có thể không chi khởi tương lai thần cách?<br />\r\n<br />\r\n\tKiếp trước huy hoàng có thể không sáng tạo kiếp truyền kỳ?<br />\r\n<br />\r\n\tKê đông lạnh không thể thiếu, chiến đấu bất năng đình!",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

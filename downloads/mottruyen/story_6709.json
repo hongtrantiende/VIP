@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "6709",
+        "NAME": "Tam Thiên Tối Cường Hệ Thống",
+        "CHAPTER": [
+            {
+                "id": "2382634",
+                "name": "Chương 1: Xuyên việt"
+            }
+        ],
+        "TOTALCHAPTER": "1",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo, Dị Giới, Khoa Huyễn",
+        "AUTHOR": "ngotanloc12345678901234567890",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Trần Minh là sinh viên trường XX, Thành phố XXX, do bạn gái bỏ nên vùi đầu chơi game và kiệt sức mà mất mạng. Khi cậu tỉnh lại thì đã thấy mình xuyên việt qua thế giới khác có tên là Minh Vũ Đại Lục. Minh Vũ Đại Lục khi sinh ra thì mỗi một đứa trẻ đều mang trong mình một đôi cánh khác nhau tùy theo huyết thống của mỗi người. Hãy cùng đón chờ Trần Minh sẽ ngày càng lớn mạnh theo thời gian với hệ thống tối cường nhé.....",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

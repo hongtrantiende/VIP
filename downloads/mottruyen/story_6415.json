@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "6415",
+        "NAME": "Tinh Tế Đại Anh Hùng",
+        "CHAPTER": [
+            {
+                "id": "2281916",
+                "name": "Chương 1 : Sờ bắp đùi 1 cái"
+            }
+        ],
+        "TOTALCHAPTER": "6",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Khoa Huyễn",
+        "AUTHOR": "Thrall Phẫn Nộ",
+        "TRANS": "Gà",
+        "DESC": "Lôi Bân vốn chỉ là một tiểu nhân vật khu dân nghèo, mơ ước lớn nhất chính là sau khi tham gia binh dịch, trở lại khu dân nghèo mở một cửa hàng sửa chữa của chính mình, kiếm thật nhiều tiền, sau đó ngủ cùng bà chủ tiệm thẩm mỹ đối diện.<br />\r\n<br />\r\nNhưng là thời đại vũ trụ, loạn lạc nổi lên, diễn ra các loại âm mưu quỷ kế, ngươi lừa ta gạt, Lôi Bân trở thành con cờ trọng yếu nhất trong vòng xoáy này, không thể không bị ép buộc lần lần trở thành đại anh hùng của liên bang.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

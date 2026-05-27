@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "12446",
+        "NAME": "Lão Dê Xuyên Việt",
+        "CHAPTER": [
+            {
+                "id": "4040854",
+                "name": "Chương 1: Xuyên cmm việt"
+            }
+        ],
+        "TOTALCHAPTER": "2",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp, Huyền Ảo, Xuyên Không",
+        "AUTHOR": "sontung19988@",
+        "TRANS": "๖ۣۜNguyệt๖ۣۜNhất๖ۣۜThiên",
+        "DESC": "",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "6320",
+        "NAME": "Dự Án Vincent",
+        "CHAPTER": [
+            {
+                "id": "2246684",
+                "name": "Chương 1 : Sự Khởi Đầu"
+            }
+        ],
+        "TOTALCHAPTER": "18",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo, Võng Du, Dị Giới, Khoa Huyễn, Xuyên Không",
+        "AUTHOR": "Tani",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Ngày tàn thế giới đã đến, các lãnh đạo cùng nhau phối hợp tìm ra giải pháp cứu cánh loài người, một dự án mang tên Vincent do một người đàn ông khởi xướng đã thuyết phục được họ. . .và đâu là mục đích thật sự của ông ta?<br />\r\n<br />\r\nPhần 1 : Hoàng Hôn Chư Thần ( đang uplate )<br />\r\n<br />\r\nPhần 2 : Thần Lộ Trải Vạn Giới <br />\r\n<br />\r\nPhần 3 : Chung Cực Chiến - Con Lắc Thời Gian<br />\r\n<br />\r\n<br />\r\nVì là chuyện đầu tay nên mong mọi người ủng hộ :D",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

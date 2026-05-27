@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "3478",
+        "NAME": "Anh Yêu Em mất rồi!",
+        "CHAPTER": [
+            {
+                "id": "1205520",
+                "name": "Chương 1:Về Việt Nam"
+            }
+        ],
+        "TOTALCHAPTER": "2",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đô Thị",
+        "AUTHOR": "Boo Béo",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Minh-một cậu nhóc nghịch ngợm mang khuôn mặt baby lai Pháp<br />\r\nNó-Phương,một cô nhóc cá tính và hoàn toàn bình thường<br />\r\nLong-đẹp trai nhưng lạnh lùng,thừa kế tập đoàn Ice And White lớn thứ 4Châu Á",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "11599",
+        "NAME": "Thứ Ba Đế Quốc",
+        "CHAPTER": [
+            {
+                "id": "3832431",
+                "name": "Chương 1: Burgerbraukeller bia quán"
+            }
+        ],
+        "TOTALCHAPTER": "1789",
+        "IMG": "https://static.cdnno.com/poster/thu-ba-de-quoc/150.jpg",
+        "CAT": "Lịch Sử, Trùng Sinh",
+        "AUTHOR": "Hoa Đông Chi Hùng",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Trùng sinh trở về thành Cyric, phụ tá Hitler ... Vĩ đại thứ ba đế quốc!<br />\r\n<br />\r\n* Các bạn ủng hộ bằng 3 phương thức:<br />\r\n1. Bấm vào 5 sao bên phải màn hình.<br />\r\n2. Bấm đề cử, chọn số Nguyệt phiếu. ( Chỉ áp dụng với bạn có Tài khoản của truyencv.com)<br />\r\n3. Ấn nút Tặng đậu cuối chương.<br />\r\nChân thành cảm ơn!",
+        "THUMB": "https://static.cdnno.com/poster/thu-ba-de-quoc/150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

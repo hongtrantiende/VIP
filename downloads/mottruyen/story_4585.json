@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "4585",
+        "NAME": "Giám Bảo Đại Sư",
+        "CHAPTER": [
+            {
+                "id": "1627062",
+                "name": "Chương 1: Giám bảo giảng đường"
+            }
+        ],
+        "TOTALCHAPTER": "873",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đô Thị",
+        "AUTHOR": "Duy Quả",
+        "TRANS": "dinhnhan",
+        "DESC": "Tiểu tử, ta xem ngươi mi thanh mục tú xương cốt thanh kỳ, rất tứ ngươi giám linh bài một mặt, chứng giám thiên hạ chúng bảo.<br />\r\n<br />\r\n\tTiểu huynh đệ, ta xem ngươi diện hàm lòng từ bi hoài thiện niệm, sẽ đưa ngươi Hà Thủ Ô một cây, có thể dưỡng thế gian vạn vật.<br />\r\n<br />\r\n\t...<br />\r\n<br />\r\n\tGiới thiệu tóm tắt vô năng, trực tiếp đọc sách đi, tuyệt đối so với đệ nhất bản cường.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

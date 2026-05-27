@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "8003",
+        "NAME": "Tiên Thành Vú Em",
+        "CHAPTER": [
+            {
+                "id": "2783199",
+                "name": "Chương 1: Thái Bình trấn rất lợi hại thái bình"
+            }
+        ],
+        "TOTALCHAPTER": "1566",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp, Huyền Ảo",
+        "AUTHOR": "Bàn Cổ Hỗn Độn",
+        "TRANS": "♚๖ۣۜKabigon♌♔",
+        "DESC": "Đường th&agrave;nh ti&ecirc;n, nơi n&agrave;o cầu? ( Cầu th&agrave;nh ti&ecirc;n t&igrave;m ở đ&acirc;u)<br /> <br /> Tuyết Sơn đỉnh, Cung Điện lạc.( Tr&ecirc;n Tuyết sơn một t&ograve;a cung điện)<br /> <br /> Ai n&oacute;i v&igrave; hiền v&igrave; Th&aacute;nh giả tự c&oacute; Ti&ecirc;n Cốt? (  Hiền giả Th&aacute;nh giả chưa chắc l&agrave; người tốt )<br /> <br /> Vọng Ng&ocirc;n l&agrave; y&ecirc;u v&igrave; Ma giả Trường Sinh Bất Hủ?( N&oacute;i rằng Th&agrave;nh Y&ecirc;u tất kh&ocirc;ng chết)<br /> <br /> Ti&ecirc;n Th&agrave;nh Ti&ecirc;n Th&agrave;nh, trước c&oacute; Ti&ecirc;n? Vẫn l&agrave; trước c&oacute; Th&agrave;nh?( G&agrave; c&oacute; trước hay trứng c&oacute; trước)<br /> <br /> P/s: truyện c&oacute; l&uacute;c theo kiểu diễn giải trinh th&aacute;m",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

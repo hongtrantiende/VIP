@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "12355",
+        "NAME": "Tam Quốc chi siêu cấp vũ lực hệ thống",
+        "CHAPTER": [
+            {
+                "id": "4019864",
+                "name": "Chương 1: Xuyên qua"
+            }
+        ],
+        "TOTALCHAPTER": "90",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Kiếm Hiệp, Quân Sự, Lịch Sử",
+        "AUTHOR": "Cửu Mệnh Thương Lăng",
+        "TRANS": "LuciferAngel",
+        "DESC": "Huyễn Tưởng tương lai bị xe đụng, không cẩn thận xuyên qua Đông Hán những năm cuối.<br />\r\n<br />\r\n\tVõ hiệp hệ thống trượng nghĩa tương trợ.<br />\r\n<br />\r\n\t\"Ta phải mãnh tướng ngươi có hay không \"<br />\r\n<br />\r\n\t\"Không.\"<br />\r\n<br />\r\n\t\"Vậy ngươi có cái gì \"<br />\r\n<br />\r\n\t\"Trương Tam Phong, Tây Môn Xuy Tuyết, Hùng Bá, Sở Lưu Hương...\"<br />\r\n<br />\r\n\t\"Theo ta chọn \"<br />\r\n<br />\r\n\t\"Đi rút thưởng.\"<br />\r\n<br />\r\n\t\"Vậy ngươi còn có cái gì công năng \"<br />\r\n<br />\r\n\t\"Chính mình đọc sách đi.\"",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "6001",
+        "NAME": "Siêu Thần Cấp Xuyên Việt",
+        "CHAPTER": [
+            {
+                "id": "2164179",
+                "name": "Quyển 1 : Trưởng Thành -Chương 1 : Đêm tối , đánh nhau"
+            }
+        ],
+        "TOTALCHAPTER": "210",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp, Đô Thị, Huyền Ảo, Dị Giới, Đồng Nhân",
+        "AUTHOR": "Thiên Trường Địa Cửu",
+        "TRANS": "Củ Hành Thần Bí",
+        "DESC": "Nếu như được tự lựa chọn xuyên việt các thế giới, ngươi sẽ chọn cho mình con đường như thế nào?<br />\r\nHãy xem con tác cho main chọn đường thế nào nhé.<br />\r\n<br />\r\nTruyện này mình thấy thằng main nó cứ bá bá ~~ up cho ae đọc giải trí",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

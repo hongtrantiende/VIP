@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "2162",
+        "NAME": "Chí Tôn Pháp Thần",
+        "CHAPTER": [
+            {
+                "id": "747124",
+                "name": "Chương 1: Thần Thuật Sư"
+            }
+        ],
+        "TOTALCHAPTER": "252",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo",
+        "AUTHOR": "Bán Túy Du Tử",
+        "TRANS": "Dao Nguyệt",
+        "DESC": "Mộc V&acirc;n gi&aacute;ng l&acirc;m mười lăm ng&agrave;n năm trước viễn cổ thế giới, Nh&acirc;n tộc văn minh vừa sinh ra, nh&acirc;n loại t&agrave;i năng nắm giữ tu luyện kỹ xảo, mới quen chế thuốc, luyện đan, chế tạo b&ugrave;a c&ugrave;ng trận ph&aacute;p. Đại lục rung chuyển, dị tộc hung hăng, y&ecirc;u ma ho&agrave;nh h&agrave;nh, ma th&uacute; nổi l&ecirc;n bốn ph&iacute;a, Nh&acirc;n tộc địa vị bấp b&ecirc;nh! Đ&acirc;y l&agrave; một c&aacute;i cổ xưa m&agrave; d&atilde; man thời loạn lạc, c&aacute;i n&agrave;y cũng l&agrave; một c&aacute;i nhiệt huyết m&agrave; chấn động cố sự!",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

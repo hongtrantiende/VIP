@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "1225",
+        "NAME": "Võ Lâm Cửu Tiêu",
+        "CHAPTER": [
+            {
+                "id": "480215",
+                "name": "Chương 1: Thâm cừu"
+            }
+        ],
+        "TOTALCHAPTER": "1427",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo",
+        "AUTHOR": "Yêu Yêu",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Vũ chi cực xử, thượng l&acirc;m cửu ti&ecirc;u, hạ đạp ho&agrave;ng tuyền, phất tay trong nh&aacute;y mắt nghịch &acirc;m dương. . .<br /><br />Phế vật? Thi&ecirc;n t&agrave;i! ! !<br /><br />D&ugrave;ng v&otilde; nhập đạo, d&ugrave;ng đan bổ th&acirc;n, thần b&iacute; hệ thống, đặc th&ugrave; kỳ ngộ, lại để cho từng đ&atilde; l&agrave; phế vật thiếu ni&ecirc;n giẫm đạp địch nh&acirc;n từng chồng bạch cốt, từng bước một đạp v&agrave;o đỉnh phong! ! !",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

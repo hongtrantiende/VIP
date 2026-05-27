@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "1140",
+        "NAME": "Đô Thị Vô Thượng Tiên Y",
+        "CHAPTER": [
+            {
+                "id": "414108",
+                "name": "Thứ 1 chương xem đủ không có?"
+            }
+        ],
+        "TOTALCHAPTER": "1978",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đô Thị",
+        "AUTHOR": "Đoạn Kiều Tàn Tuyết",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Hắn l&agrave;m qu&aacute; chuyển gạch, l&agrave;m qu&aacute; qu&aacute;n bar phục vụ sinh, l&agrave;m qu&aacute; văn ph&ograve;ng văn vi&ecirc;n, l&agrave;m qu&aacute; l&atilde;o sư, l&agrave;m qu&aacute; thầy thuốc... Hắn l&agrave; ng&agrave;n ng&agrave;n vạn vạn người l&agrave;m c&ocirc;ng trung một g&atilde;, v&igrave; sinh kế m&agrave; b&ocirc;n ba lao lực, nhưng đồng thời hắn lại l&agrave; một vị được với cổ vu vương hạ vũ huyết mạch truyền thừa Vu sư.<br /><br />Vu, thượng nhất ho&agrave;nh đỉnh thi&ecirc;n, hạ nhất ho&agrave;nh đạp đất, trung gian nhất dựng thẳng nối thẳng thi&ecirc;n địa, trung thống người với người, l&agrave; ch&acirc;n ch&iacute;nh th&ocirc;ng thi&ecirc;n đạt, nắm trong tay thi&ecirc;n địa vạn vật sinh linh chi đại năng giả!",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "4112",
+        "NAME": "Tuyệt Phẩm Tà Thiếu",
+        "CHAPTER": [
+            {
+                "id": "1505120",
+                "name": "Chương 1: Ta biết đánh nhau"
+            }
+        ],
+        "TOTALCHAPTER": "20",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đô Thị, Dị Năng",
+        "AUTHOR": "Vẫn lạc tinh thần",
+        "TRANS": "LordDragon",
+        "DESC": "Đàm Tiếu Tiếu nói: ta là cực phẩm mỹ nữ! Bành Oánh Thi nói: ta là cực phẩm ngự tỷ! Y Bảo Nhi nói: ta là cực phẩm loli! Thượng Quan Vô Đạo nói: ta còn là cực phẩm công tử đây này... Diệp Tiêu lên tràng: nhốn nháo cái gì mà nhốn nháo, thiếu gia mới được là nhân vật chính, thiếu gia khẩu hiệu là chà đạp hết thảy cực phẩm, chỉ làm nhân gian tuyệt phẩm!",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

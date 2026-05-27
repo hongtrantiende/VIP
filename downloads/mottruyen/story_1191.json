@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "1191",
+        "NAME": "Thùy Dữ Tranh Phong",
+        "CHAPTER": [
+            {
+                "id": "457504",
+                "name": "Chương 1: : Lương Khâu Phong"
+            }
+        ],
+        "TOTALCHAPTER": "369",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo",
+        "AUTHOR": "Nam Triêu Trần",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Nh&acirc;n sinh tr&ecirc;n đời, thi&ecirc;n nh&acirc;n giao chiến, n&ecirc;n tranh gi&agrave;nh đấy, muốn theo lý cố gắng.<br /><br />Tranh gi&agrave;nh, l&agrave; một loại th&aacute;i độ, m&agrave; nhu nhược c&ugrave;ng khiếp đảm đại danh từ gọi \"Bất hạnh\" .<br /><br />C&ugrave;ng thi&ecirc;n tranh vận, c&ugrave;ng địa tranh lợi, c&ugrave;ng người tranh th&agrave;nh bại. Kh&ocirc;ng tranh gi&agrave;nh, ngươi tựu lấy kh&ocirc;ng được ngươi ưa th&iacute;ch đồ vật.<br /><br />L&yacute; tưởng, vinh quang, th&agrave;nh tựu, địa vị. . .<br /><br />B&ecirc;n n&agrave;o kh&ocirc;ng cần ra sức tranh thủ?<br /><br />&mdash;&mdash; tại thi&ecirc;n t&agrave;i xuất hiện lớp lớp phong v&acirc;n thời đại, đương hắn tr&aacute;nh ph&aacute; vận mệnh tr&oacute;i buộc, ngược d&ograve;ng tr&ecirc;n xuống, ai d&aacute;m tranh phong!",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

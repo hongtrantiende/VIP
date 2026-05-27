@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "939",
+        "NAME": "Tà Thiếu Dược Vương",
+        "CHAPTER": [
+            {
+                "id": "239352",
+                "name": "Chương 1: Thần kỳ gặp gỡ"
+            }
+        ],
+        "TOTALCHAPTER": "841",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo",
+        "AUTHOR": "Thắng Kỷ",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Ho&agrave;n khố đại thiếu? Hay n&oacute;i giỡn, ta kh&ocirc;ng phải ho&agrave;n khố đại thiếu, nh&igrave;n r&otilde; r&agrave;ng bổn thiếu gia th&acirc;n phận! Bổn thiếu gia l&agrave; gia chủ, Minh Ngọc Ho&agrave;ng Triều lớn nhất gia tộc Nh&acirc;m gia chi chủ, gắng phải n&oacute;i bản đại thiếu ho&agrave;n khố, thỉnh xưng h&ocirc; ta l&agrave; ho&agrave;n khố gia chủ.\r\n<br />Giết ngươi lại c&oacute; l&agrave;m sao? Ho&agrave;ng cung trước giết ngươi th&igrave; sao? Miễn Tử Ngọc B&agrave;i bổn gia chủ c&oacute; v&agrave;i khối đ&acirc;y n&agrave;y. Xem ho&agrave;n khố T&agrave; thiếu, như H&agrave; thống lĩnh gia tộc l&agrave;m nhất gia chi chủ, đi đến đỉnh phong. T&agrave; kh&iacute; ch&iacute;nh l&agrave; nh&acirc;n sinh, kh&ocirc;ng thể địch nổi! !",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

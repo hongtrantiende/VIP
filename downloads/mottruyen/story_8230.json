@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "8230",
+        "NAME": "Hokage Rút Thưởng Hệ Thống",
+        "CHAPTER": [
+            {
+                "id": "2833641",
+                "name": "Chương 1: Hokage thế giới người xuyên việt"
+            }
+        ],
+        "TOTALCHAPTER": "111",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đồng Nhân",
+        "AUTHOR": "Trạch nam địch nam",
+        "TRANS": "huypt3522",
+        "DESC": "Hokage Rút Thưởng Hệ Thống",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

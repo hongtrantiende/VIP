@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "3972",
+        "NAME": "Hàn Ngu Chi Du Nhàn",
+        "CHAPTER": [
+            {
+                "id": "1444016",
+                "name": "Chương 1:: Trở lại Khởi Điểm"
+            }
+        ],
+        "TOTALCHAPTER": "857",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đô Thị",
+        "AUTHOR": "Hữu Ngư Đích Thiên Không",
+        "TRANS": "Mọt Sách, landland",
+        "DESC": "Kiếp trước hắn l&agrave; nước Hoa c&ograve;n trẻ nhất Kinh Tế Học tiến sĩ; sẽ 6 Quốc Ngữ n&oacute;i Thi&ecirc;n T&agrave;i Ngữ Ng&ocirc;n Học nh&agrave;, nhưng cuối c&ugrave;ng IQ cao hắn chết ở EQ mặt tr&ecirc;n.<br /><br />Kiếp n&agrave;y hắn c&oacute; một c&aacute;i Vĩ Đại t&acirc;m nguyện, vậy th&igrave; l&agrave; mở một mặt thuộc về hắn \"Hồi ức\" Qu&aacute;n C&agrave; Ph&ecirc;, sau đ&oacute; an an ổn ổn vượt qua n&agrave;y m&ocirc;̣t đời , đ&aacute;ng tiếc. . . . .",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

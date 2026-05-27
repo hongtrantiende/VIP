@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "2589",
+        "NAME": "Trọng Sinh Chi Nam Tống Hùng Khởi",
+        "CHAPTER": [
+            {
+                "id": "848116",
+                "name": "Chương 1: Rơi xuống nước"
+            }
+        ],
+        "TOTALCHAPTER": "20",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Lịch Sử",
+        "AUTHOR": "Phóng Dương Đích Lão Hán",
+        "TRANS": "Phucddcm7749",
+        "DESC": "Một c&aacute;i hải qu&acirc;n trường học sinh vi&ecirc;n t&agrave;i cao, nh&acirc;n th&agrave;nh t&iacute;ch đột xuất, trở th&agrave;nh hải qu&acirc;n lục đội bộ đội đặc chủng, đang thi h&agrave;nh một lần nhiệm vụ, ngẫu nhi&ecirc;n chuyển thế đến Nam Tống mạt đế Triệu B&iacute;nh tr&ecirc;n người. Bắt đầu, hắn chỉ l&agrave; v&igrave; bảo to&agrave;n t&iacute;nh mạng. Sau đ&oacute;, g&aacute;nh lấy lịch sử sứ mệnh, chế tạo một c&aacute;i ho&agrave;n to&agrave;n mới Đại Tống đế quốc.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

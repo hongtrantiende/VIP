@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "3133",
+        "NAME": "Tiêu Dao Tu Thần",
+        "CHAPTER": [
+            {
+                "id": "1067595",
+                "name": "Chương 1: Anh Hùng Cứu Mỹ"
+            }
+        ],
+        "TOTALCHAPTER": "20",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đô Thị",
+        "AUTHOR": "Huyết Sắc Hồng Lệ",
+        "TRANS": "Tập Sự",
+        "DESC": "Xuất ngũ binh vương từng dật, anh hùng cứu mỹ nhân người bị thương nặng, không ngờ bị một vị thần nhân cứu sống, được một bộ nghịch thiên tuyệt thế công pháp, một viên thần bí mạnh mẽ hạt châu, từ đây trường học, đô thị mặc ta ngang dọc, mạnh mẽ gia tộc, cổ lão môn phái hết mức đạp ở dưới chân, từng đoạn Bất Hủ truyền kỳ từ đây triển khai.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

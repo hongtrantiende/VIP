@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "7208",
+        "NAME": "Đan Đạo Tông Sư",
+        "CHAPTER": [
+            {
+                "id": "2569819",
+                "name": "Chương 1: Đại tiểu thư giật mình"
+            }
+        ],
+        "TOTALCHAPTER": "1646",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo, Trùng Sinh",
+        "AUTHOR": "Chỉ Thị Tiểu Hà Mễ",
+        "TRANS": "808",
+        "DESC": "Tần Dật Trần mang theo hơn một vạn năm ký ức trở lại còn trẻ thời điểm. Cao siêu tinh thần lực tạo nghệ, cao cấp đan dược cách điều chế, cao cấp vũ kỹ, cao cấp bí tịch, cần cái gì có cái đó. Ở kiếp này, ta không muốn lại lưu lại tiếc nuối. Ôn nhã hoàng gia công chúa, điêu ngoa bốc đồng ma nữ, thánh khiết băng lãnh thần nữ, nhất nhất cùng hắn phát sinh cùng xuất hiện.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

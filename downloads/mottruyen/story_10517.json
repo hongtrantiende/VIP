@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "10517",
+        "NAME": "Vạn Giới Bá Vương",
+        "CHAPTER": [
+            {
+                "id": "3507761",
+                "name": "Chương 1 : Lâm Thần"
+            }
+        ],
+        "TOTALCHAPTER": "1",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp, Huyền Ảo, Trùng Sinh",
+        "AUTHOR": "quanhoanganh",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Không có tuyệt đỉnh công pháp hay hệ thống toàn năng, chỉ có nỗ lực và kỳ ngộ.<br />\r\nKhông có tư chất siêu phàm, nhưng có ngộ tính kinh thiên.<br />\r\nLâm Thần con trai của Lôi Đế từ nhỏ bị kẻ thù truy sát rơi vào luân hồi, trọng sinh vào một quần áo lụa công tử cùng tên, từ đó bắt đầu một cuộc đời mới, báo thù rữa hận, đạp vỡ thương khung, hướng đến thần vị.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

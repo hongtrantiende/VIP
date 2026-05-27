@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "8490",
+        "NAME": "Kiếm Vương Truyền Thuyết",
+        "CHAPTER": [
+            {
+                "id": "2928038",
+                "name": "Chương 1: Vô địch cô quạnh"
+            }
+        ],
+        "TOTALCHAPTER": "191",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo",
+        "AUTHOR": "Thất Lạc Diệp",
+        "TRANS": "๖ۜVân ๖ۜPhong™",
+        "DESC": "Mũi kiếm chỉ, vô địch thiên hạ!<br />\r\n<br />\r\n\tMột cái thức tỉnh thất bại, mạch hủy công phế thiếu niên, nhẫn thụ lấy cười nhạo cùng khinh thường tiến vào Vạn Linh Học Viện, trở thành một danh tối thông thường biên ngoại sinh. . .<br />\r\n<br />\r\n\tGặp may đúng dịp xuống, linh mạch sống lại. Hậu tích bạc phát hắn, từng bước một danh dương học viện, âm thanh động Bắc vực, cầm kiếm ngang dọc Long Linh Đại Lục.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

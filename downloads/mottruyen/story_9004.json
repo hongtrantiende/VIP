@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "9004",
+        "NAME": "One Piece Chi Trượng Kiếm Vi Đế",
+        "CHAPTER": [
+            {
+                "id": "3055618",
+                "name": "Chương mở đầu: Lời tựa"
+            }
+        ],
+        "TOTALCHAPTER": "51",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đồng Nhân",
+        "AUTHOR": "Dạ Kiến Bắc",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Hải tặc vương chi trường kiếm là đế giới thiệu vắn tắt lấy kiếm nhập đạo, mặc dù đứng tại thế giới võ đạo đỉnh phong.<br />\r\n<br />\r\n\tCuối cùng trọn đời chung quy khó có thể nghịch thiên, vũ khí lạnh cực hạn chung quy không chỉ có một viên nho nhỏ viên đạn.<br />\r\n<br />\r\n\tSau đó, hắn trọng sinh.<br />\r\n<br />\r\n\tThế giới One Piece.<br />\r\n<br />\r\n\tLàm cho hắn thấy được hắn đã từng chỗ ở võ đạo đỉnh phong, bất quá là mới vừa bắt đầu.<br />\r\n<br />\r\n\tKhông hề bị đến thế giới cực hạn, hắn có thể đủ trở nên càng mạnh.<br />\r\n<br />\r\n\tSiêu việt tối cường, trở thành vô địch.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

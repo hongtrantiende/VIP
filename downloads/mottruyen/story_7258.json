@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "7258",
+        "NAME": "Đột Kích",
+        "CHAPTER": [
+            {
+                "id": "2581094",
+                "name": "Chương 1 : Phản bội"
+            }
+        ],
+        "TOTALCHAPTER": "14",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đô Thị, Dị Năng, Quân Sự, Trùng Sinh",
+        "AUTHOR": "deanandy999",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Hắn - bị phản bội bởi chính người anh em của mình .Khi cùng đường , hắn đã cho kích nổ lựu đạn làm tất cả mọi người cùng chết.Cứ tưởng bản thân đã chết , hắn lại phát hiện ra mình đã xuyên về quá khứ và nhập vào một thiếu niên không cha không mẹ . Liệu hắn có bước được lên đỉnh vinh quang hay xã hội sẽ chôn vùi hắn ?",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

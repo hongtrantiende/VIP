@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "2909",
+        "NAME": "Tiếu Thánh",
+        "CHAPTER": [
+            {
+                "id": "985762",
+                "name": "Chương 1 : Trang bức"
+            }
+        ],
+        "TOTALCHAPTER": "55",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo",
+        "AUTHOR": "Băng Tuyết Đông Minh",
+        "TRANS": "CSA",
+        "DESC": "Đạo Huyền đại lục, một cái truyền thừa ngàn năm, giữa năm ngàn hiện ra vô số cường giả địa phương. Cái gì là truyền thừa ngàn năm?<br />\r\n<br />\r\nLão đạo sĩ nói: \"Chính là từ trước có tòa sơn, trong ngọn núi có tòa miếu, trong miếu có cái lão đạo sĩ đang kể chuyện cũ, hắn tại nói cái gì đây? Hắn đang giảng từ trước có tòa sơn, trong ngọn núi có tòa miếu, trong miếu có cái lão đạo sĩ đang kể chuyện cũ sự tình, như vậy nhiều lần ngàn năm, chính là ngàn năm truyền thừa.\"<br />\r\n<br />\r\nTrần Tiểu Phàm nói: \"Được rồi, lão sư coi như ngươi thắng!\"",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

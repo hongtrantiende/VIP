@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "2825",
+        "NAME": "Người Saiya Trong Thế Giới Marvel",
+        "CHAPTER": [
+            {
+                "id": "938991",
+                "name": "Chương 1:  nơi này là thế giới Marvel?\t"
+            }
+        ],
+        "TOTALCHAPTER": "199",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đồng Nhân",
+        "AUTHOR": "Tiêu Dao Long Kiếm Hồn",
+        "TRANS": "Suriken",
+        "DESC": "C&ugrave;ng Captain America c&ugrave;ng một chỗ chấm dứt nhị chiến [World War II]<br /><br />C&ugrave;ng Iron man c&ugrave;ng một chỗ t&aacute;n g&aacute;i<br /><br />C&aacute;i kia bị phao (ng&acirc;m) g&aacute;i ngốc t&ecirc;n l&agrave; Black Widow<br /><br />Kh&ocirc;ng c&oacute; việc g&igrave; h&agrave;nh hạ tho&aacute;ng một ph&aacute;t t&ecirc;n l&agrave; Hulk lục Mập Mạp<br /><br />Gi&aacute;o huấn c&aacute;i kia kh&ocirc;ng c&oacute; việc g&igrave; lu&ocirc;n lối ra \"Ph&agrave;m nh&acirc;n\" L&ocirc;i thần",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "1119",
+        "NAME": "Chúa Tể Chi Vương",
+        "CHAPTER": [
+            {
+                "id": "398189",
+                "name": "Chương 001: Thiếu niên Triệu Phong"
+            }
+        ],
+        "TOTALCHAPTER": "1581",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo",
+        "AUTHOR": "Khoái Xan Điếm",
+        "TRANS": "kokono_89",
+        "DESC": "Với một số t&aacute;c giả đ&atilde; quen mặt với người đọc th&igrave; truyencv cũng kh&ocirc;ng cần giới thiệu nội dung truyện nhiều. Độ chất của t&aacute;c phẩm chắc chắn sẽ kh&ocirc;ng thua c&aacute;c bộ m&agrave; Kho&aacute;i Xan Điếm đ&atilde; viết như Ti&ecirc;n H&agrave; Phong Bạo, Ti&ecirc;n Hồng Lộ, Ti&ecirc;n Luyện Chi Lộ\r\n&nbsp;\r\nTruyện kể về b&igrave;nh thường chi tộc thiếu ni&ecirc;n, ngo&agrave;i &yacute; muốn dung hợp một con mắt của Th&aacute;i Cổ thần linh, từ nay về sau c&aacute; ch&eacute;p h&oacute;a rồng, như sao chổi quật khởi, đạp v&agrave;o truyền kỳ con đường tu h&agrave;nh.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

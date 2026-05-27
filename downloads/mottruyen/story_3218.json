@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "3218",
+        "NAME": "Võng Du Chi Đại Đạo Tặc",
+        "CHAPTER": [
+            {
+                "id": "1114162",
+                "name": "Chương 1: Trùng sinh"
+            }
+        ],
+        "TOTALCHAPTER": "1426",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Võng Du",
+        "AUTHOR": "Phiếm Chu Điền Từ",
+        "TRANS": "tieuthienvu, Kinzie",
+        "DESC": "Tr&ecirc;n mũi đao khi&ecirc;u vũ, trong b&oacute;ng tối bước chậm.<br /> <br /> <br /> L&agrave; độc h&agrave;nh vương giả, l&agrave; tử vong sứ đồ, l&agrave; đạo tặc vinh diệu !<br /> <br /> <br /> Tr&ugrave;ng sinh ngoạn v&otilde;ng du, lấy việc gi&agrave;nh trước một bước !<br /> <br /> <br /> --------------------------------<br /> <br /> <br /> Ta một đời n&agrave;y đều chỉ trung với ch&iacute;nh m&igrave;nh,<br /> <br /> <br /> Ta sở l&agrave;m hết thảy lựa chọn,<br /> <br /> <br /> Đều l&agrave; cam t&acirc;m t&igrave;nh nguyện, tự do &yacute; ch&iacute; kết quả.<br /> <br /> <br /> Ta chưa từng c&oacute; bị bất luận kẻ n&agrave;o, bất cứ sự vật sở n&ocirc; dịch, d&ugrave;ng thế lực bắt &eacute;p, ngay cả thần cũng l&agrave;m kh&ocirc;ng được !<br /> <br /> <br /> Ta c&oacute; thể nh&acirc;n s&ugrave;ng b&aacute;i, t&ocirc;n trọng m&agrave; hướng người kh&aacute;c c&uacute;i đầu, nhưng tuyệt kh&ocirc;ng v&igrave; khuất phục m&agrave; c&uacute;i đầu !",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

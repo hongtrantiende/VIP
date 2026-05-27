@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "8020",
+        "NAME": "Thần Hoàng Ma Đế",
+        "CHAPTER": [
+            {
+                "id": "2787365",
+                "name": "Chương 1: Trọng sinh"
+            }
+        ],
+        "TOTALCHAPTER": "1304",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp, Huyền Ảo, Trùng Sinh",
+        "AUTHOR": "Hàn Vô Phong",
+        "TRANS": "Nhiều Converter",
+        "DESC": "- Thần giới Chiến Thần nhi tử , bởi vì cha công cao át chủ , Thần Vương hãm hại ,    cả nhà bị giết! ! Ngoài ý muốn rơi vào Thần trì trọng sinh tại Thiên Linh Đại Lục , vừa có Thần Cách , lại tu Ma Đạo , thế muốn đem toàn bộ Thần giới đạp ở dưới chân! !",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "11672",
+        "NAME": "Ma Pháp Điên Bạo",
+        "CHAPTER": [
+            {
+                "id": "3848243",
+                "name": "Chương 1:  vong linh thi thể"
+            }
+        ],
+        "TOTALCHAPTER": "270",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp, Dị Giới, Xuyên Không",
+        "AUTHOR": "Phi Tại Thiên Không",
+        "TRANS": "❂Củ❣Chuối❣Vô❣Tình❂",
+        "DESC": "Xuyên việt đến một cái ma pháp độ cao đang phát triển thế kỷ Ma Pháp Thế Giới, Ô Tư đành phải dùng ma pháp chế tạo hiện đại binh khí, cải tạo Khô Lâu binh thành kẻ hủy diệt, xưng bá Ma Pháp Thế Giới.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "10080",
+        "NAME": "Khởi Điểm Xuyên Việt Hệ Thống",
+        "CHAPTER": [
+            {
+                "id": "3387102",
+                "name": "Chương 1:: Xuyên Việt Hệ Thống"
+            }
+        ],
+        "TOTALCHAPTER": "342",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo, Xuyên Không",
+        "AUTHOR": "Đỉnh Thất",
+        "TRANS": "selong",
+        "DESC": "Mộng tưởng khoái ý nhân sinh, phóng thích tự mình Cao Tam Học Sinh Đinh Kỳ đạt được một cái \"Lên điểm Xuyên Việt Hệ Thống\" .<br />\r\n<br />\r\n\tXuyên việt số liệu nơi phát ra: Điểm xuất phát chỗ có.<br />\r\n<br />\r\n\tMột « Đấu Phá Thương Khung », hai « Già Thiên ».<br />\r\n<br />\r\nP/s : Đã xuyên <br />\r\n<br />\r\n« Đấu Phá Thương Khung »<br />\r\n« Già Thiên »<br />\r\n«  Toàn Cầu Tiến Hóa »",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

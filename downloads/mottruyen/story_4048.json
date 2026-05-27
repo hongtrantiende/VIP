@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "4048",
+        "NAME": "Càn Khôn Kiếm Thần",
+        "CHAPTER": [
+            {
+                "id": "1494993",
+                "name": "Chương 1: Cảnh gia thiên tài"
+            }
+        ],
+        "TOTALCHAPTER": "1015",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo",
+        "AUTHOR": "Trần Sơn",
+        "TRANS": "Lạc Mất Em Rồi",
+        "DESC": "Cảnh Ng&ocirc;n từng l&agrave; Cảnh gia ưu t&uacute; nhất thi&ecirc;n t&agrave;i, mười s&aacute;u tuổi đột ph&aacute; V&otilde; Đạo cửu trọng thi&ecirc;n bước v&agrave;o cảnh giới Ti&ecirc;n Thi&ecirc;n, to&agrave;n bộ Đ&ocirc;ng L&acirc;m Th&agrave;nh kh&ocirc;ng người c&oacute; thể so s&aacute;nh, nhưng kh&ocirc;ng hiểu ra sao khi tiến v&agrave;o Thần Phong Học Viện sau cảnh giới rơi xuống, trở th&agrave;nh tr&ograve; cười.<br /><br />Mở ra C&agrave;n Kh&ocirc;n Giới phong ấn, một lần nữa quật khởi, cuối c&ugrave;ng chế b&aacute; Thi&ecirc;n Nguy&ecirc;n Đại Lục, trở th&agrave;nh v&ocirc; số v&otilde; giả ngưỡng vọng tồn tại.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

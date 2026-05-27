@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "3483",
+        "NAME": "Yêu Quái Quản Lý Viên",
+        "CHAPTER": [
+            {
+                "id": "1208333",
+                "name": "Chương 1 mang ngươi mở du thuyền"
+            }
+        ],
+        "TOTALCHAPTER": "49",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đô Thị",
+        "AUTHOR": "Bạn Độc Tiểu Mục Đồng",
+        "TRANS": "Suntran",
+        "DESC": "N&ecirc;n đ&aacute;nh tờ n&agrave;o b&agrave;i n&agrave;y ngoại trừ ở chơi mạt chược thời điểm kh&aacute; l&agrave; khiến người ta l&agrave;m kh&oacute; dễ ở ngo&agrave;i, cũng l&agrave;m cho c&oacute; lựa chọn cản trở Tề Tư Viễn rất d&agrave;y v&ograve;<br /><br />L&agrave; vứt ra thanh kh&acirc;u cửu vĩ hồ đến đ&aacute;nh xinh đẹp liền chi&ecirc;u vẫn l&agrave; n&eacute;m ra Hậu Nghệ m&ocirc;̣t phát v&agrave;o hồn, đ&acirc;y thật sự l&agrave; một nan đề<br /><br />Đương nhi&ecirc;n, bộ kia vạn linh tạp c&oacute; thể cho hắn kinh hỉ vượt xa sự tưởng tượng của hắn",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

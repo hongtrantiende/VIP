@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "3345",
+        "NAME": "Tình Yêu và Tình Bạn",
+        "CHAPTER": [
+            {
+                "id": "1162024",
+                "name": "Chương 1: Chú cún con lucky"
+            }
+        ],
+        "TOTALCHAPTER": "5",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Ngôn Tình",
+        "AUTHOR": "Drambo",
+        "TRANS": "Drambo",
+        "DESC": "Nội dung nói về tình yêu và tình bạn của nhưng bạn trẻ mới lớn",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "8017",
+        "NAME": "Vô Địch Kiếm Thần",
+        "CHAPTER": [
+            {
+                "id": "2786394",
+                "name": "Chương 1: Kiếm giết người, phải đẫm máu!"
+            }
+        ],
+        "TOTALCHAPTER": "383",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo",
+        "AUTHOR": "Phong Cuồng Đại Mễ",
+        "TRANS": "Hoàng Châu",
+        "DESC": "V&ocirc; Tận đại lục, vạn tộc san s&aacute;t, Ti&ecirc;n Ma hai giới vạn &aacute;c nắm quyền, thiếu ni&ecirc;n L&acirc;m Hi&ecirc;n ch&iacute;n lần gặp cướp giết m&agrave; kh&ocirc;ng chết, được y&ecirc;u nữ cứu gi&uacute;p may m&agrave; kh&ocirc;ng chết, nay m&agrave; trở về! Tha cho hắn y&ecirc;u ma quỷ qu&aacute;i, tha cho hắn đầy trời Thần Phật, ta tự nhi&ecirc;n một chi&ecirc;u kiếm, ch&eacute;m hết vạn ma ngàn y&ecirc;u!",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "8901",
+        "NAME": "Tiên Yêu Thánh Đế",
+        "CHAPTER": [
+            {
+                "id": "3032529",
+                "name": "Tự chương: Thánh Đình cân nhắc quyết định"
+            }
+        ],
+        "TOTALCHAPTER": "35",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp, Đô Thị, Kiếm Hiệp, Huyền Ảo, Quân Sự, Xuyên Không",
+        "AUTHOR": "Yến Khai",
+        "TRANS": "๖ۣۜBuồn๖ۣۜVì",
+        "DESC": "\"Bệ Hạ, Thái Nhất Môn liên hiệp Ngũ Đại Môn Phái tạo phản!\"<br />\r\n<br />\r\n\t\"Chán sống, chớ có cho là có thánh nhân chỗ dựa, trẫm cũng không dám động đến bọn hắn! Cho trẫm truyền đại tướng quân Thanh Liên Kiếm Tiên.\"<br />\r\n<br />\r\n\t...<br />\r\n<br />\r\n\t\"Bệ Hạ, đế quốc đã cố, là thời điểm tiến quân Yêu Giới.\"<br />\r\n<br />\r\n\t\"Yêu Giới chuyện để sau đó mới nói, gần đây luôn có thánh nhân nghĩ muốn mưu hại trẫm, chuyện này bất bình, trẫm tâm bất an.\"<br />\r\n<br />\r\n\t...<br />\r\n<br />\r\n\tMột Hoa Hạ thanh niên chuyển kiếp trở thành Chu Tước sau đó, hướng về hai giới Thánh Đế con đường, mà một loạt cố sự cũng theo đó bắt đầu.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

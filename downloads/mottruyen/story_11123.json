@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "11123",
+        "NAME": "Hải Tặc Vương Chi Tà Ác Hải Tặc",
+        "CHAPTER": [
+            {
+                "id": "3674690",
+                "name": "Chương 1 Luffy  bị treo giải thưởng"
+            }
+        ],
+        "TOTALCHAPTER": "44",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Xuyên Không, Đồng Nhân",
+        "AUTHOR": "Nhiều Converter",
+        "TRANS": "xuan cam",
+        "DESC": "Ta muốn trở thành hải tặc vương nam nhân. Hải tặc sao zehaahah vậy thì phải đốt giết ,cướp bóc nếu không thì thật có lỗi với chức nghiệp này .<br />\r\nHãy để tên ta vang vọng khắp các ngóc ngách thế giới này ---- ta đề đốc Cavendish :))))))))))",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

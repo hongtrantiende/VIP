@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "3106",
+        "NAME": "Kỳ Duyên Tu Tiên",
+        "CHAPTER": [
+            {
+                "id": "1056966",
+                "name": "Chương 1: Tinh Quang Quả"
+            }
+        ],
+        "TOTALCHAPTER": "107",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp",
+        "AUTHOR": "Lâm Hạ Khán Tịch",
+        "TRANS": "Vấn Vương",
+        "DESC": "Mịch ph&aacute;p tầm bảo đế th&iacute;nh t&ugrave;y,\r\n<br />Duy&ecirc;n t&ograve;ng thi&ecirc;n h&agrave;ng đạo tự th&agrave;nh,\r\nTu đắc thần th&ocirc;ng mỹ tương bạn,\r\nTi&ecirc;n lộ v&ocirc; tẫn ng&atilde; vi t&ocirc;n!\r\nSơn th&ocirc;n thiếu ni&ecirc;n cơ duy&ecirc;n xảo hợp hạ đạp thượng tu ti&ecirc;n chi lộ, kh&aacute;n tha như h&agrave; tại cường giả vi t&ocirc;n đ&iacute;ch tu ch&acirc;n giới mịch đắc v&ocirc; thượng ti&ecirc;n duy&ecirc;n, chứng đạo th&agrave;nh ti&ecirc;n!",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

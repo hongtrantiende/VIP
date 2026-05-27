@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "7867",
+        "NAME": "Ảnh Thị Thế Giới Đại Rút Thưởng",
+        "CHAPTER": [
+            {
+                "id": "2752309",
+                "name": "Chương 1:  mới vào Cương Thi Tiên Sinh"
+            }
+        ],
+        "TOTALCHAPTER": "20",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp, Đô Thị, Kiếm Hiệp, Khoa Huyễn, Xuyên Không, Đồng Nhân",
+        "AUTHOR": "Bàn phím Waltz",
+        "TRANS": "Alice",
+        "DESC": "《 cương thi tiên sinh 》 trung , học chút mao sơn thuật , thuận tiện quải liễu một con cương thi trở lại , đi 《 cuồng mãng tai ương 》 trung , lấy hai mãng xà đản , nếm thử một cái động vật cương thi hóa nghiên cứu , nếu như cự mãng không đủ lớn , vậy thì đi 《 tiền sử cự ngạc 》 trung , lấy một con tiền sử cự ngạc vui đùa một chút . dĩ nhiên , cũng sẽ không quên cường hóa tự thân , 《 Mỹ quốc đội trưởng 》 trung đích siêu cấp huyết thanh , chính là cái tốt lựa chọn , còn có những khác rất nhiều ảnh thị thế giới ……",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

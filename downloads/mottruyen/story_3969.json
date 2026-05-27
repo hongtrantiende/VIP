@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "3969",
+        "NAME": "Tà Kiếm Chí Tôn",
+        "CHAPTER": [
+            {
+                "id": "1443006",
+                "name": "Chương 1: Kính Lam đại lục"
+            }
+        ],
+        "TOTALCHAPTER": "636",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Dị Giới",
+        "AUTHOR": "Ngốc Tiểu Ngư",
+        "TRANS": "Yến Virus",
+        "DESC": "B&igrave;nh thường người trẻ tuổi trọng sinh đi v&agrave;o K&iacute;nh Lam đại lục, trở th&agrave;nh v&otilde; tu gia tộc đệ tử Nhiếp ưng. Dựa v&agrave;o kẻ xuy&ecirc;n việt tr&iacute; nhớ, tại tu luyện gia truyền c&ocirc;ng ph&aacute;p trong c&aacute;ch kh&aacute;c mới cảnh, đ&atilde; t&igrave;m được tu vi phi tốc tăng l&ecirc;n phương ph&aacute;p, trưởng th&agrave;nh l&agrave; dị giới mạnh nhất tu luyện giả. Tại thực lực n&agrave;y ch&iacute; thượng thế giới, hắn t&ugrave;y &yacute; Ti&ecirc;u Dao, đem mỹ nữ, quyền thế, t&agrave;i ph&uacute; tận chưởng trong tay, trở th&agrave;nh đại lục mới một đời Thần Thoại!",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

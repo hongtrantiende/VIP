@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "10508",
+        "NAME": "Mỹ Mạn Nho Nhỏ Luyện Bảo Sư",
+        "CHAPTER": [
+            {
+                "id": "3511705",
+                "name": "Chương 1: Bắt đầu chi chương"
+            }
+        ],
+        "TOTALCHAPTER": "180",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo, Khoa Huyễn, Đồng Nhân, Trùng Sinh",
+        "AUTHOR": "Tu Hành Giả",
+        "TRANS": "SiTinh",
+        "DESC": "Thế giới Marvel, New York đại chiến nửa năm sau, Địa Cầu lại khôi phục hòa bình, những siêu cấp anh hùng lại lần nữa bận rộn lên riêng phần mình sự tình, tiếp tục trừng ác dương thiện, nghiên cứu phát minh, hoặc là tán gái Party.<br />\r\n<br />\r\n\tNhân vật chính Nhiếp Bảo ngoài ý muốn xuyên qua đến nơi này, nhưng hắn không có tranh bá chi tâm, cũng không muốn làm cái gì siêu anh hùng, không có việc gì liền ưa thích luyện cái pháp bảo, mở tiểu điếm, làm chút thức ăn, trồng cái vườn nhỏ, ỷ vào càn khôn đỉnh thuận tiện năng lực, cuộc sống tạm bợ qua mười phần thoải mái, làm một cái có phòng có xe thành công tu tiên giả, bình thường, nhưng tuyệt không bị người bắt nạt.<br />\r\n<br />\r\n\tLại nhìn pháp bảo quá nhiều, Tu Tiên Giới thổ hào, xông xáo thế giới Marvel.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "10342",
+        "NAME": "Những Câu Chuyện Nhỏ Ở Văn Phòng",
+        "CHAPTER": [
+            {
+                "id": "3464714",
+                "name": "Chương 1: Sáng thứ hai đầu tuần- phần 1"
+            }
+        ],
+        "TOTALCHAPTER": "1",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đô Thị, Ngôn Tình",
+        "AUTHOR": "phongthanbang",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Làm một nữ cường nhân có khó không??? Khó, rất khó. Thế còn làm một nữ nhân viên văn phòng nho nhỏ dễ hơn hả? Đùa nhau à, cứ như Tiểu Hà phán, thì nó còn khó hơn cả làm nữ cường nhân đấy.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

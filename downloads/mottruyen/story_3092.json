@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "3092",
+        "NAME": "Vạn Giới Kiếm Tông",
+        "CHAPTER": [
+            {
+                "id": "1052673",
+                "name": "Chương 1: Diệp Tôn"
+            }
+        ],
+        "TOTALCHAPTER": "1180",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo",
+        "AUTHOR": "Trần Ai Quá Khách",
+        "TRANS": "Kinta, Bradrangon",
+        "DESC": "Đây là một cái người, thần, ma, vạn tộc cùng múa thời đại, chư thiên vạn giới, vạn tộc san sát, vạn đạo tranh phong, cường giả như rừng, quần hùng tập trung, kỳ tài, thiên tài ùn ùn, tia sáng ánh sáng ngọc. Vũ trụ tinh không dưới, một gã thiếu niên hiển lộ cao chót vót, dựa vào trong tay một thanh kiếm tại đây thế gian diễn lại kia kẻ khác hướng tới truyền thuyết.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

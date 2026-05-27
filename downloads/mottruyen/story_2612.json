@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "2612",
+        "NAME": "Sử Thượng Đệ Nhất Chưởng Môn",
+        "CHAPTER": [
+            {
+                "id": "850717",
+                "name": "Chương 1: Ta là chưởng môn"
+            }
+        ],
+        "TOTALCHAPTER": "564",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Dị Giới, Xuyên Không",
+        "AUTHOR": "Minh Vực Thiên Sứ",
+        "TRANS": "trang4mat",
+        "DESC": "Đ&atilde; xuy&ecirc;n việt rồi, hơn nữa trở th&agrave;nh nhất ph&aacute;i t&ocirc;n sư!<br /> <br /> Xem tựa hồ kh&ocirc;ng tệ, chỉ l&agrave; m&ocirc;n ph&aacute;i n&agrave;y tựa hồ yếu đi điểm, người cũng thiếu một ch&uacute;t...<br /> <br /> \"Sư huynh, sư ph&oacute; n&oacute;i, chấn hưng bổn ph&aacute;i tr&aacute;ch nhiệm tựu giao cho ngươi rồi!\" Duy nhất đồng m&ocirc;n sư muội vẻ mặt kh&oacute; chịu n&oacute;i: \"Nếu như ngươi l&agrave;m kh&ocirc;ng đến tựu vội v&agrave;ng đem chức chưởng m&ocirc;n lại để cho cho ta đi!\"",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

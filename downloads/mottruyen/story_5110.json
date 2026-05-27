@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "5110",
+        "NAME": "Tử Huyết Thánh Hoàng",
+        "CHAPTER": [
+            {
+                "id": "1811006",
+                "name": "Chương 1: Phế huyết"
+            }
+        ],
+        "TOTALCHAPTER": "1417",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo",
+        "AUTHOR": "Duy Dịch Vĩnh Hằng",
+        "TRANS": "Kimkolxe",
+        "DESC": "Thiếu ni&ecirc;n Tần Mặc, xuy&ecirc;n qua Huyền Ho&agrave;ng đại lục, trời sinh bạch sắc phế huyết tu luyện v&ocirc; vọng, cơ duy&ecirc;n xảo hợp được Th&aacute;nh Ho&agrave;ng Tử Huyết truyền thừa, Nghịch Thi&ecirc;n Cải Mệnh, bước tr&ecirc;n con đường cường giả, dẫn dắt Nh&acirc;n Tộc chinh phạt Chư Thi&ecirc;n, vấn đỉnh v&ocirc; thượng Th&aacute;nh Ho&agrave;ng .<br /> <br /> Ta l&agrave; ngươi kiếm, mang ngươi uống cạn dị tộc huyết, ta l&agrave; ngươi chi khi&ecirc;n, hộ ngươi mu&ocirc;n đời được Trường Sinh! ! !",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

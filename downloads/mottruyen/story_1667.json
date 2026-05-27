@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "1667",
+        "NAME": "Chiến Hoàng",
+        "CHAPTER": [
+            {
+                "id": "684362",
+                "name": "Chương 1: Quái thai Tạ Ngạo Vũ"
+            }
+        ],
+        "TOTALCHAPTER": "2407",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo",
+        "AUTHOR": "Ngạo Thiên Vô Ngân",
+        "TRANS": "emgaimap, kukhoai",
+        "DESC": "Qu&aacute;i thai Tạ Ngạo Vũ bản kh&ocirc;ng c&aacute;ch n&agrave;o tu luyện đấu kh&iacute;, ngo&agrave;i &yacute; muốn đạt được một quả thần b&iacute; thần đan, vận mệnh chuyển hướng, e rằng Thượng Thi&ecirc;n Vương đao, cảm ngộ t&aacute;nh mạng ch&acirc;n l&yacute;, s&aacute;ng tạo độc đ&aacute;o thời gian đấu kỹ, kh&ocirc;ng gian đấu kỹ, quyết chiến Thượng Cổ đại gia tộc, đại lục b&aacute;ch tộc, tại Kỳ Ảo Đại Lục thay đổi như chong ch&oacute;ng trở tay l&agrave;m mưa, c&ugrave;ng sử s&aacute;ch b&ecirc;n tr&ecirc;n lưu lại mu&ocirc;n đời nhất d&agrave;y đặc một số, l&agrave; vi Bạo Qu&acirc;n giận dữ, đổ m&aacute;u ng&agrave;n dặm; đao Cuồng Khiếu Thi&ecirc;n, mu&ocirc;n đời thần phục huy ho&agrave;ng văn chương.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

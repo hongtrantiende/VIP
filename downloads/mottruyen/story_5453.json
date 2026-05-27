@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "5453",
+        "NAME": "Xen Lẫn Trong Đại Đường",
+        "CHAPTER": [
+            {
+                "id": "1937655",
+                "name": "Chương 1: Cẩu Huyết Thức Xuyên Qua"
+            }
+        ],
+        "TOTALCHAPTER": "100",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Quân Sự, Lịch Sử, Xuyên Không",
+        "AUTHOR": "Thuần Khiết Nhân Sinh",
+        "TRANS": "satan",
+        "DESC": "Đường Lân Đức ba năm, một cái linh hồn xuyên qua thời không, đi tới Văn Thủy Huyện, Đại Đường bởi vậy dần dần đi lên một cái ngã ba...",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

@@ -103,7 +103,7 @@ const AGENT_ROLES: {
   },
 ];
 
-function StepModelPicker({
+export function StepModelPicker({
   novelId,
   role,
 }: {
@@ -119,7 +119,8 @@ function StepModelPicker({
 
 
 
-  const handleProviderChange = (providerId: string) => {
+  const handleProviderChange = async (providerId: string) => {
+    await getOrCreateWritingSettings(novelId);
     if (!providerId) {
       updateWritingSettings(novelId, { [modelKey]: undefined });
       return;
@@ -129,8 +130,9 @@ function StepModelPicker({
     });
   };
 
-  const handleModelChange = (modelId: string) => {
+  const handleModelChange = async (modelId: string) => {
     if (!selectedProviderId) return;
+    await getOrCreateWritingSettings(novelId);
     updateWritingSettings(novelId, {
       [modelKey]: { providerId: selectedProviderId, modelId },
     });

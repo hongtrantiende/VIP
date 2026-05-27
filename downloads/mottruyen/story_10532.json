@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "10532",
+        "NAME": "Mỹ Mạn Cảnh Sát Cố Sự",
+        "CHAPTER": [
+            {
+                "id": "3509042",
+                "name": "Chương 1: New York cảnh sát"
+            }
+        ],
+        "TOTALCHAPTER": "16",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đồng Nhân",
+        "AUTHOR": "Đêm Qua Gió Thu Say",
+        "TRANS": "Ta Thích Ăn Khoai Tây",
+        "DESC": "Một tên cảnh sát tên là Ô Thành, xuyên qua thế giới maverl. bắt đầu cuộc hành trình từ đây  ! ! <br />\r\n<br />\r\nĐề cử 9 - 10 mỗi chương <br />\r\n<br />\r\nVote 10*",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

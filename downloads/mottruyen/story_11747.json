@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "11747",
+        "NAME": "Long Vũ Chiến Thần",
+        "CHAPTER": [
+            {
+                "id": "3867654",
+                "name": "Chương 1: Đồ tể liều mạng"
+            }
+        ],
+        "TOTALCHAPTER": "52",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo",
+        "AUTHOR": "La Mã",
+        "TRANS": "ThienVuDe",
+        "DESC": "Vô số kỷ nguyên bách tộc tranh hùng. Một khỏa chúng sinh chi tâm, chư tộc hào hùng cũng tới tranh phong. Thiếu niên Diệp Phi tập \" Huyết Long Thần Thuật \", thôn phệ vạn vật linh khí quật khởi, sát khắp chư giới, thành chúng sinh chi tâm, đẫm máu xưng tôn.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "11327",
+        "NAME": "Hokage Chi Choutetsu Senmei",
+        "CHAPTER": [
+            {
+                "id": "4247344",
+                "name": "Chương 1: Choutetsu Senmei"
+            }
+        ],
+        "TOTALCHAPTER": "669",
+        "IMG": "https://static.cdnno.com/poster/hokage-chi-choutetsu-senmei/150.jpg",
+        "CAT": "Xuyên Không, Đồng Nhân",
+        "AUTHOR": "Phao Phao Ngư Tử",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Xuyên qua đến hỏa ảnh thế giới Choutetsu Senmei, từ một cái chiến tranh cô nhi, dựa vào biết rõ tương lai xu thế, cùng tinh vi tính kế, từng bước một đi đến nhẫn giới mạnh nhất",
+        "THUMB": "https://static.cdnno.com/poster/hokage-chi-choutetsu-senmei/150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

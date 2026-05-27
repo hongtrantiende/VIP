@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "2531",
+        "NAME": "Tu Chân Kỳ Tài",
+        "CHAPTER": [
+            {
+                "id": "832037",
+                "name": "Chương 1: Trong hồ mỹ nữ (Thượng)"
+            }
+        ],
+        "TOTALCHAPTER": "57",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp",
+        "AUTHOR": "Thiên Không Thành Vân",
+        "TRANS": "๖ۣۜHùng ๖ۣۜBá",
+        "DESC": "một lần đ&ecirc;m khuya kỳ ngộ, xui xẻo L&yacute; V&acirc;n Phi ngo&agrave;i &yacute; muốn xuy&ecirc;n vi&ecirc;̣t đ&atilde; đến Dị Giới, từ nay về sau bước l&ecirc;n kh&ocirc;ng b&igrave;nh thường con đường tu ti&ecirc;n.\r\n<br /> tại đ&acirc;y mỹ nữ như m&acirc;y, L&yacute; V&acirc;n Phi phải như thế n&agrave;o đem những thứ kia tuyệt thế mỹ nữ &ocirc;m v&agrave;o l&ograve;ng?\r\n<br /> tại đ&acirc;y cao thủ phần đ&ocirc;ng, L&yacute; V&acirc;n Phi lại phải như thế n&agrave;o đem những thứ kia kinh khủng y&ecirc;u ma c&ugrave;ng ph&aacute;ch lối c&aacute;c đại thần dẫm n&aacute;t dưới ch&acirc;n?",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

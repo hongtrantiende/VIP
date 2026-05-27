@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "11703",
+        "NAME": "Phàm Linh Tru Thiên Truyện",
+        "CHAPTER": [
+            {
+                "id": "3856279",
+                "name": "Chương 1: Trời giáng lưu hỏa, phụ thân ly thế"
+            }
+        ],
+        "TOTALCHAPTER": "243",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp, Kiếm Hiệp, Dị Giới",
+        "AUTHOR": "Diệp Phi Thiên Nhai",
+        "TRANS": "svipboys",
+        "DESC": "“Yêu cầu của ta rất đơn giản, chính là ngươi cần thiết muốn cam đoan ta vĩnh viễn bất tử bất lão, liền này một điều kiện, đơn giản đi?” Một cái không có tuệ căn ( linh căn ) phàm nhân hướng một cái chỉ còn nguyên thần đan linh như thế nói. Trời sinh vạn vật, tuệ tắc linh, quy tắc chung nói, đạt tắc tôn. Thả xem hắn như thế nào lấy phàm nhân chi khu đi ra một cái bất phàm chi đạo.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

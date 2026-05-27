@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "9505",
+        "NAME": "Dấu Chân Huyền Thoại",
+        "CHAPTER": [
+            {
+                "id": "3354437",
+                "name": "Chương 1: Không Tên!"
+            }
+        ],
+        "TOTALCHAPTER": "2",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp, Đô Thị, Huyền Ảo, Võng Du, Dị Giới, Xuyên Không, Đồng Nhân",
+        "AUTHOR": "Nh2kLov3",
+        "TRANS": "Nhiều Converter",
+        "DESC": "",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

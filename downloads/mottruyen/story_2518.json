@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "2518",
+        "NAME": "Thiếp Thân Binh Hoàng",
+        "CHAPTER": [
+            {
+                "id": "826099",
+                "name": "Chương 1:   Thương Lão sư nữ Fans hâm mộ?"
+            }
+        ],
+        "TOTALCHAPTER": "60",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đô Thị",
+        "AUTHOR": "Tịch Mịch Vũ Giả",
+        "TRANS": "VôTim ✞ TiểuBạch",
+        "DESC": "Binh Vương chi Vương,   mới l&agrave; Binh Ho&agrave;ng,   Binh Ho&agrave;ng nhập thế,   v&ocirc; hạn ki&ecirc;u ngạo!  Một đời Binh Ho&agrave;ng,   v&igrave; th&acirc;n thế trở về đ&ocirc; thị,   h&oacute;a th&acirc;n chơi mỹ chủ nh&agrave;,   trở th&agrave;nh mỹ nữ kh&aacute;ch trọ Thiếp Th&acirc;n Binh Ho&agrave;ng,   đi&ecirc;n cuồng gặm hoa cỏ dại!  Ti&ecirc;u Phong Dương n&oacute;i:   ai d&aacute;m ăn ta hoa cỏ dại,   l&atilde;o tử liền đ&aacute;nh cho hắn kh&ocirc;ng thể tự g&aacute;nh v&aacute;c!",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

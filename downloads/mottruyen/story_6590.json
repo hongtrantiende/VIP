@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "6590",
+        "NAME": "Ám Hắc Chi Ngã Hữu Hệ Thống",
+        "CHAPTER": [
+            {
+                "id": "2344549",
+                "name": "Chương 1: Xuyên việt ?"
+            }
+        ],
+        "TOTALCHAPTER": "90",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo, Dị Giới, Xuyên Không, Linh Dị",
+        "AUTHOR": "0 0 Tử Phong 0 0",
+        "TRANS": "Tiên Hạc",
+        "DESC": "Giới thiệu vắn tắt: Cổ xưa Ám Hắc đại lục, nhân loại đau khổ giãy dụa tại Tam Ma Thần tà ác dã tâm phía dưới, cùng Thiên Đường tử thủ ở thế gian sau cùng bừng sáng ... Mang theo hệ thống xuyên việt đến tương tự với Diablo trò chơi Dị Giới trong, Phương Dật Phong hội từng trải chút gì ? Có Ma Thú kỹ năng và Anh Hùng Liên Minh - LOL trang bị Phương Dật Phong, lại đều sẽ tại Dị Thế Đại Lục lên, nhấc lên như thế nào thủy triều ... Nghi ngờ ...",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

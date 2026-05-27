@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "12453",
+        "NAME": "Độc Vũ Tinh Hà",
+        "CHAPTER": [
+            {
+                "id": "4041543",
+                "name": "Chương 1 :Hóa dục tinh tử"
+            }
+        ],
+        "TOTALCHAPTER": "79",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp, Huyền Ảo, Dị Giới",
+        "AUTHOR": "Long Đảm Thương",
+        "TRANS": "sharamimi",
+        "DESC": "Ngân hà mênh mông, võ đạo vô cùng, ai lập hắn đỉnh?<br />\r\nDương Trần, Long Vũ Tinh muôn đời Chí Tôn Võ Tổ, đảo ngược Ngân Hà, nghịch chuyển Thời Không, trở lại năm trăm năm trước, chỉ vì đột phá sở hữu tất cả, cuối cùng ức vạn võ đạo.<br />\r\n(Truyện này ở TQ đang hot, nghe bảo cũng hay ,<br />\r\ncác bạn đọc thử xem !!! )",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

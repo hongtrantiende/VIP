@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "5594",
+        "NAME": "VẬN KHÍ",
+        "CHAPTER": [
+            {
+                "id": "1989612",
+                "name": "Chương 1: Càn Khôn số mệnh"
+            }
+        ],
+        "TOTALCHAPTER": "60",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đô Thị, Dị Năng",
+        "AUTHOR": "Ảm Nhiên Tiêu Hồn",
+        "TRANS": "vô danh",
+        "DESC": "Lâm Ly đạt được nhưng thay đổi số mệnh đích Càn Khôn số mệnh đồ lúc sau, cuộc sống trở nên đủ mọi màu sắc.<br />\r\nNhưng...<br />\r\nThiên Đình tinh quân một mình hạ phàm, thệ muốn đoạt lại số mệnh đồ.<br />\r\n...<br />\r\nĐược rồi, ít nhất thay đổi vận khí là chuyện tốt.<br />\r\nNhưng mà...<br />\r\n\"Càn Khôn số mệnh đồ vì vật thí nghiệm, chưa bất luận cái gì thí nghiệm, như cố ý ngoại, khái không có trách nhiệm. Bản sản phẩm cuối cùng giải thích quyền về Thiên Đình tập đoàn Hoàng gia viện nghiên cứu tất cả.\"<br />\r\nCó thể thấy được, Lâm Ly đủ mọi màu sắc đích cuộc sống mới mới vừa bắt đầu...",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "12540",
+        "NAME": "Nhà Ta Khách Nhân Ngươi Không Thể Trêu Vào",
+        "CHAPTER": [
+            {
+                "id": "4062260",
+                "name": "Chương 1: Ngươi tốt, ta là Edogawa Conan"
+            }
+        ],
+        "TOTALCHAPTER": "299",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đô Thị",
+        "AUTHOR": "Phong Hỏa Thành Lâm",
+        "TRANS": "hui235235",
+        "DESC": "Ngày một tháng năm, Tử thần học sinh tiểu học Conan tới nhà làm khách, ta bị ép cuốn vào đến một trận hình sự vụ án bên trong. Ngày tám tháng năm, Batman Wayne lão gia tới nhà làm khách, ta bị ép đi theo hắn đi đả kích phạm tội, tháng năm mười sáu ngày trầm mặc cừu non Hannibal tới nhà làm khách, ta chỉ có thể nói một câu, nhà ta khách nhân ngươi thật không thể trêu vào.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

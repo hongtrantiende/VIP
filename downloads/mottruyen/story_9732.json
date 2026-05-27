@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "9732",
+        "NAME": "Thuần Dương Đan Tôn",
+        "CHAPTER": [
+            {
+                "id": "3282059",
+                "name": "Chương 1:  vào núi hái thuốc"
+            }
+        ],
+        "TOTALCHAPTER": "586",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo",
+        "AUTHOR": "Đông phong hóa ngữ",
+        "TRANS": "๖ۣۜTiếu ๖ۣۜHồng ๖ۣۜTrần",
+        "DESC": "Đây là một cái tốt nhất niên đại , Đại Thiên thế giới , võ giả ngang dọc! Chư thiên vạn vực , bách tộc tranh phong!<br />\r\n<br />\r\n\tĐây cũng là xấu nhất niên đại , thiên địa bất nhân dĩ vạn vật vi sô cẩu , cường giả bất nhân lấy người yếu là chó rơm!<br />\r\n<br />\r\n\tCon trai thứ Mục Phàm dưới cơ duyên xảo hợp được đến một khối thần bí cục gạch , từ đây bước lên võ đạo con đường lên trời.<br />\r\n<br />\r\n\tVạn cổ ngàn năm bất hủ ý , Chư Thiên Vạn Giới ta độc tôn! Làm Mục Phàm đứng ở thế giới đỉnh phong , quay đầu tới nơi , lại phát hiện , hết thảy vừa mới bắt đầu...",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

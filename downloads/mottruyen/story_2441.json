@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "2441",
+        "NAME": "Đại Khí Tông",
+        "CHAPTER": [
+            {
+                "id": "804669",
+                "name": "Chương 1: Mệnh phạm tiểu nhân"
+            }
+        ],
+        "TOTALCHAPTER": "899",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo",
+        "AUTHOR": "Bất Vấn Thương Sinh Vấn Quỷ Thần",
+        "TRANS": "xxx3202",
+        "DESC": "Thần Kiếm Tru T&agrave;, bảo ấn phi&ecirc;n thi&ecirc;n;<br /><br />Vạn Ma phi&ecirc;n g&agrave;o th&eacute;t tụ dẫn, Trảm Ph&aacute;ch Đao v&ocirc; tung v&ocirc; ảnh...<br /><br />Đ&acirc;y l&agrave; một c&aacute;i luyện kh&iacute; chứng đạo, ph&aacute;p bảo tạp người cố sự.<br /><br />Rễ cỏ t&aacute;n tu L&yacute; V&atilde;n, may mắn đạt được thượng cổ kh&iacute; t&ocirc;ng b&iacute; truyền, từ đ&acirc;y vui vẻ sung sướng.<br /><br />. . .",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "6047",
+        "NAME": "Chung Cực Chúa Tể",
+        "CHAPTER": [
+            {
+                "id": "2173670",
+                "name": "Chương 1: Thiếu niên Phương Triển"
+            }
+        ],
+        "TOTALCHAPTER": "989",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo",
+        "AUTHOR": "Lưu Liên Oa",
+        "TRANS": "Kimkolxe",
+        "DESC": "Thần b&iacute; kim sắc l&ocirc;i đ&igrave;nh từ tr&ecirc;n trời gi&aacute;ng xuống, h&oacute;a th&agrave;nh thiếu ni&ecirc;n Phương Triển con mắt thứ ba .<br /> <br /> Từ nay về sau mở ra tư chất nghịch thi&ecirc;n, qu&eacute;t ngang thi&ecirc;n hạ, tung ho&agrave;nh v&ocirc; địch .<br /> <br /> Lại xem dị giới b&igrave;nh thường thiếu ni&ecirc;n, như thế n&agrave;o kh&iacute; th&ocirc;n Tinh H&agrave;, bằng v&agrave;o Ch&uacute;a Tể Chi Nh&atilde;n, soạn nhạc bất hủ truyền thuyết .",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "6087",
+        "NAME": "Mạnh nhất hệ thống",
+        "CHAPTER": [
+            {
+                "id": "2182091",
+                "name": "Chương 1 : Trọng sinh dị giới"
+            }
+        ],
+        "TOTALCHAPTER": "13",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo",
+        "AUTHOR": "zzzltzzz",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Trùng sinh dị giới rồi !!! lại có hệ thống !!!!<br />\r\nTruyện Việt mọi người ủng hộ",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "12675",
+        "NAME": "Hoa Hạ Đại Tông Sư",
+        "CHAPTER": [
+            {
+                "id": "4098395",
+                "name": "Chương  1: Ta đã trở về"
+            }
+        ],
+        "TOTALCHAPTER": "535",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp, Đô Thị",
+        "AUTHOR": "Âu Dương Ngọc Thanh",
+        "TRANS": "HacTamx",
+        "DESC": "Phá sản con nhà giàu, mất tích ba trăm năm sau, trở lại đô thị, lại phát hiện cự chính mình rời đi thời gian, chỉ qua ba tháng, học bá vị hôn thê, điêu ngoa ngực bự nữ cảnh sát, siêu cấp nữ đặc công, Hắc Ám giáo đình nữ ác ma, tuyệt đại phong sương nữ kiếm tiên, đến tột cùng ai mới là hắn tình yêu chân thành.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

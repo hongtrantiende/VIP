@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "12520",
+        "NAME": "Vượt Qua Ngàn Năm Yêu Chàng",
+        "CHAPTER": [
+            {
+                "id": "4057726",
+                "name": "Chương 1:xuyên qua"
+            }
+        ],
+        "TOTALCHAPTER": "1",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Ngôn Tình",
+        "AUTHOR": "Nhiều Converter",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Mẫn là một phụ nữ hiện đại 27 tuổi, vô tình bị đưa về quá khứ một ngàn năm trước, sống thân phận của tam tiểu thư Mộ Dung gia – Mộ Dung Phong, vừa lúc bị gả cho tứ hoàng tử Tư Mã Nhuệ. Nàng không muốn lấy hắn, mà hắn ban đầu chính là muốn lấy em gái nàng – Mộ Dung Tuyết.Truyện xoay quanh hai người bọn họ, và kéo dài từ quá khứ đến tận tương lai.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

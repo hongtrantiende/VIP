@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "5513",
+        "NAME": "Hạn chế cấp Mạt Nhật bệnh",
+        "CHAPTER": [
+            {
+                "id": "1956517",
+                "name": "Chương 1 WC chuyện lạ."
+            }
+        ],
+        "TOTALCHAPTER": "50",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đô Thị, Khoa Huyễn",
+        "AUTHOR": "Toàn bộ trở thành F",
+        "TRANS": "kiemtien1",
+        "DESC": "Năm 1999 ngày tận thế, khủng bố Đại Vương hàng lâm. Ta cùng ngươi dùng khác biệt phương thức giẫm qua phía trước có gai Bụi gai. Ngươi phách lối không e ngại lùi bước, ta cúi đầu trầm mặc lại kiên định. 17 tuổi Cao Trung Ưu Đẳng Sinh cao xuyên truy tra trong trường học sinh mất tích sự kiện, trong lúc vô tình bị cuốn vào Mạt Nhật huyễn cảnh, tiếp xúc đến tên là \"Tư tưởng bên ngoài chi vật\" quái vật, lấy người thị giác chỗ triển khai tràn ngập chính năng lượng đại mạo hiểm.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

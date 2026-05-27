@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "3145",
+        "NAME": "Dungeon ni Deai",
+        "CHAPTER": [
+            {
+                "id": "1072938",
+                "name": "Tập 1 : Tự chương"
+            }
+        ],
+        "TOTALCHAPTER": "45",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Võng Du",
+        "AUTHOR": "Fujino Omori",
+        "TRANS": "^_^",
+        "DESC": "Dungeon ni Deai wo Motomeru no wa Machigatteiru Darou ka<br />\r\n<br />\r\nThành phố mê cung, Orario—— đây là một thành phố lớn cùng một mê cung vĩ đại nằm bên dưới (thường được gọi là \"Dungeon\"). Phấn khích vì những thứ mới lạ, danh vọng, tiền tài hay chỉ đơn giản để tìm kiếm sự lãng mạn với cô gái dễ thương nào đó. Bên trong thành phố này, nơi mà những giấc mơ và khát vọng luôn chờ đợi, một cậu bé đã gặp một nữ thần \"bé nhỏ\". \"Được rồi, Bell, hãy đi với tôi! Tôi sẽ thực hiện buổi lễ cho cậu!\" \"Vâng! Tôi muốn trở nên mạnh mẽ hơn!\" Sau khi được trao những cái ấn ký lạnh lẽo lên vai như tất cả các khác, cậu bé loài người này đã được xác định để trở thành một Thám hiểm gia, và một nữ thần mà thậm chí không có tín đồ, đã có một cuộc gặp gỡ đầy định mệnh. Cuộc hành trình của cậu bé này như được viết bởi các nữ thần<br />\r\n<br />\r\nBộ này là cv nhé...đôi chỗ khó hiểu thì thông cảm ^^",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

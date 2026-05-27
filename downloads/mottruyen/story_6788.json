@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "6788",
+        "NAME": "Kiếm Tiên Thuần Dương",
+        "CHAPTER": [
+            {
+                "id": "2420004",
+                "name": "Chương 1: Chung Nam luyện khí dẫn Thiên Lôi, Thái Dương thần phong phá giới đến"
+            }
+        ],
+        "TOTALCHAPTER": "399",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp",
+        "AUTHOR": "Nhất Niệm Linh Đài Phương Thốn Gian",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Thế gian có tu giả, lấy tiên làm tên, khuy Thiên cơ, loạn số trời, lấy lòng người giả thiên tâm, ngón tay nghịch vì là tà.<br />\r\n<br />\r\nLấy ma làm tên, nghịch thiên đạo, hủy nhân luân, lấy dục vọng của mình diệt thương sinh, tự ác thành ma.<br />\r\n<br />\r\nLấy Phật làm tên, mê hoặc thương thiên, mê chúng sinh, lấy ngụy thiện trộm công đức, ma tâm ẩn sâu.<br />\r\n<br />\r\nLấy quỷ làm tên, trốn số trời, nghịch âm dương, lấy tử khí sinh ra cơ, tịch diệt luân hồi.<br />\r\n<br />\r\nTa có một chiêu kiếm, ý chí vì là mũi nhọn, dũng cảm quyết đoán vì là phong, chính khí vì là thân, thiện niệm vì là chuôi, nắm lấy, có thể chỉnh Tiên Phật tên, hàng phục ma quỷ chi tâm, chém chết yêu tà thân!",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

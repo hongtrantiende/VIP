@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "11978",
+        "NAME": "Nghiệp",
+        "CHAPTER": [
+            {
+                "id": "3925579",
+                "name": "Chương 1: Đoạn 1"
+            }
+        ],
+        "TOTALCHAPTER": "49",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo",
+        "AUTHOR": "chosanbo",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Đây là câu chuyện về chiến tranh, ở một thế giới giả tưởng. Bối cảnh lịch sử tương thời Châu Âu Trung Cổ. Ở thế giới đó, các phe phái đấu đá nhau đều vì động cơ riêng, nhưng nhân danh lý tưởng cao đẹp, lý do đúng đắn và tư tưởng chính nghĩa. Truyện sẽ lần lượt đi theo mỗi phe, để người đọc có được cái nhìn toàn diện và tự đưa ra đánh giá của riêng mình. Còn tôi sẽ quyết định bên nào thắng.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "10341",
+        "NAME": "Cực Phẩm Địa Chủ",
+        "CHAPTER": [
+            {
+                "id": "3464523",
+                "name": "Chương 1:  thất nghiệp bạch lĩnh"
+            }
+        ],
+        "TOTALCHAPTER": "84",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đô Thị",
+        "AUTHOR": "Tráng Hương Tiểu Ba",
+        "TRANS": "Congian",
+        "DESC": "Đô thị bạch lĩnh ngẫu nhiên hoạch trúc tía không gian, sáng lập siêu cấp mỹ thực tập đoàn, thành tựu cực phẩm địa chủ! Đang tập CVT Ae thông cảm. truyện>1k.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

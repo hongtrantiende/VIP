@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "4376",
+        "NAME": "Huyễn Mộng Cuồng Long",
+        "CHAPTER": [
+            {
+                "id": "1574534",
+                "name": "Chương 1 : Cuộc chạy trốn nghiệt ngã"
+            }
+        ],
+        "TOTALCHAPTER": "3",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đô Thị, Ngôn Tình",
+        "AUTHOR": "Hoàng Long",
+        "TRANS": "Hoàng Long",
+        "DESC": "Ước gì tôi hóa con sâu Dọa em một bữa quên sầu mới thôi Nhưng mà tôi chỉ là tôi Nên em vẫn chẳng coi tôi ra gì.  Ước gì tôi hóa con... Ki Nhe răng xông đến, em đi đằng trời Nhưng mà tôi chỉ là người Nên em chẳng chạy vẫn ngồi ì ra.  Ước gì tôi hóa con ma Lừ đừ chết khiếp em òa khóc ngay Nhưng mà tôi vẫn sống đây Nên thôi đành chịu em đầy đọa tôi…",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "10645",
+        "NAME": "Đại Sơn Đạo Sĩ",
+        "CHAPTER": [
+            {
+                "id": "3538830",
+                "name": "Chương 1: Người chết"
+            }
+        ],
+        "TOTALCHAPTER": "8",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Linh Dị",
+        "AUTHOR": "Dạ Vô Tận",
+        "TRANS": "binh1986b",
+        "DESC": "Một là híp mắt bấm ngón tay toán thiên mệnh từ bán tiên, một là xuất quỷ nhập thần ngữ ra kinh người hữu đạo trưởng. Ta ở toàn bộ sự kiện linh dị vòng xoáy trong đến tột cùng ai mới là nói lời nói thật, thùy đáng giá tín nhiệm quan tài trong người của dĩ nhiên tử mà phục sinh, hay hoặc là có người quấy phá khí tức tử vong tràn ngập mũi thở. Chân tướng cái khăn che mặt một tầng một tầng đẩy ra, đã có càng ngày càng nhiều bất khả tư nghị ở ta, cá nhỏ trên người của phát sinh.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

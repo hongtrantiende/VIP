@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "9746",
+        "NAME": "Trọng Sinh Chi Du Nhiên Nhân Sinh",
+        "CHAPTER": [
+            {
+                "id": "3287197",
+                "name": "Chương 1: Sống lại 1999"
+            }
+        ],
+        "TOTALCHAPTER": "11",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đô Thị",
+        "AUTHOR": "Thần quang lộ tây pháp",
+        "TRANS": "phuc3562",
+        "DESC": "Mỗi người đều là phía trên thế giới này độc nhất vô nhị Thiên Sứ, đi trên đường, phải tin tưởng chính mình là đẹp nhất một phong cảnh.<br />\r\n<br />\r\n\tTác giả tự định nghĩa nhãn mác: Dốc lòng học sinh làm ruộng văn",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

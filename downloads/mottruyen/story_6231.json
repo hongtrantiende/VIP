@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "6231",
+        "NAME": "Con Đường Bình Phàm",
+        "CHAPTER": [
+            {
+                "id": "2217671",
+                "name": "Chương 1:Thiếu niên vô danh​"
+            }
+        ],
+        "TOTALCHAPTER": "6",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp",
+        "AUTHOR": "hohongphat@",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Nàng thích hoa,hắn ghét hoa.Nàng thích ngắm nhìn thanh xuân trôi đi sống cuộc sống bình dị bên cạnh hắn,hắn thì lại thích mỗi ngày được gần cạnh nàng,ngắm nàng say ngủ trong vòng tay,tay cầm sách,1 tách trà,1 sủng vật,1 gia đình hạnh phúc.Đời sống bình dị bên người thân mặc kệ tất cả.... Nàng gục ngã trên tay hắn,đôi môi anh đào hé cười đẹp hơn cả trăm hoa,cánh hoa trong tay nàng màu đỏ hay do huyết lệ trên gương mặt hốc hác.Cười đi rồi mọi chuyện sẽ tốt đẹp.\"Không ai có thể cướp nàng khỏi ta\" ,xung quanh tĩnh lặng không 1 tiếng động nào ngoài tiếng cười duy nhất của hắn.Hắn 1 thanh niên bình phàm sẽ làm gì để đảo ngược càn khôn đoạt hết tạo hóa và giành lấy 1 nửa còn lại của đời mình...",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

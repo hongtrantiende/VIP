@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "3123",
+        "NAME": "Vạn Kiếm Thánh Tôn",
+        "CHAPTER": [
+            {
+                "id": "1063004",
+                "name": "Chương 1: độ thánh kiếp"
+            }
+        ],
+        "TOTALCHAPTER": "5",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp, Dị Giới, Trùng Sinh",
+        "AUTHOR": "A Nghiệp",
+        "TRANS": "ming vương",
+        "DESC": "1 kiếm quyế định 1 số mệnh<br />\r\n1 kiếm định càn khôn<br />\r\n1 kiếm phá thương khung<br />\r\n<br />\r\nnắm trong tay thập đại thánh kiếm khiêu chiến thánh kiếp<br />\r\n<br />\r\nthất bại.  vạn kiếm thánh tôn sẽ làm gì khi chuyển thế trùng tu",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

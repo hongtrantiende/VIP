@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "1120",
+        "NAME": "Hồng Hoang Tạo Hóa",
+        "CHAPTER": [
+            {
+                "id": "398613",
+                "name": "Chương 1: Chết ở trong muôn hoa"
+            }
+        ],
+        "TOTALCHAPTER": "482",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp",
+        "AUTHOR": "Phong Tuyết",
+        "TRANS": "Thánh Địa Già Thiên",
+        "DESC": "Vừa chết kiếp n&agrave;y giải quyết xong ph&agrave;m trần !<br /><br />Sống lại Hồng Hoang tạo h&oacute;a mu&ocirc;n d&acirc;n !<br /><br />Dưới Thi&ecirc;n Đạo tất cả đều giun dế !<br /><br />Duy c&oacute; dị số kh&aacute;m ph&aacute; vạn ph&aacute;p !<br /><br />M&agrave; lại xem nh&acirc;n vật ch&iacute;nh c&aacute;i n&agrave;y lọt v&agrave;o thế giới Hồng Hoang dị sổ l&agrave;m sao:<br /><br />Tạo h&oacute;a ph&uacute;c phận mu&ocirc;n d&acirc;n<br /><br />Đạo ph&aacute;p ngang dọc thi&ecirc;n địa<br /><br />Tr&aacute;nh tho&aacute;t Thi&ecirc;n Đạo r&agrave;ng buộc<br /><br />Một kiếm ph&aacute; nh&agrave;n rỗi m&agrave; đi<br /><br />Từ đ&oacute; Ti&ecirc;u Dao kh&ocirc;ng buộc ...",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "2366",
+        "NAME": "Thái Cổ Thần Ma Quyết",
+        "CHAPTER": [
+            {
+                "id": "788452",
+                "name": "Chương 1: Có tử Trần Dương"
+            }
+        ],
+        "TOTALCHAPTER": "11",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo",
+        "AUTHOR": "Dạ Thượng Tây Lâu",
+        "TRANS": "Lord",
+        "DESC": "Tu luyện, ch&iacute;nh l&agrave; nghịch thi&ecirc;n tiến h&agrave;nh!<br /> <br /> Đột ph&aacute; bản th&acirc;n g&ocirc;ng c&ugrave;m xiềng x&iacute;ch, đạt tới vĩnh sinh bất tử chi cảnh!<br /> <br /> Nhưng,<br /> <br /> Sinh cựccảnh l&agrave; được chết, tử cực cảnh l&agrave; được sinh, sinh tử hai tướng theo!<br /> <br /> M&agrave; lại xem nh&acirc;n vật ch&iacute;nh như thế n&agrave;o sinh tử t&ocirc;i luyện b&ecirc;n trong, kh&aacute;m ph&aacute; v&otilde; chi ch&acirc;n l&yacute;, đạt đến v&otilde; cảnh đỉnh phong!",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

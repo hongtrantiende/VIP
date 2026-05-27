@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "4228",
+        "NAME": "Cửu Thiên Thánh Đế",
+        "CHAPTER": [
+            {
+                "id": "1534646",
+                "name": "Chương 1: Chán nản thiếu niên"
+            }
+        ],
+        "TOTALCHAPTER": "209",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp, Huyền Ảo",
+        "AUTHOR": "Cửu Tam Phái",
+        "TRANS": "๖ۣۜArt of ๖ۣۜTime",
+        "DESC": "Truyền thuyết, chỉ cần cầm trong tay Long Giới liền có thể thấy rõ tất cả!<br />\r\n<br />\r\nSau đó, Lịch Vân phát hiện, thâm ảo khó hiểu công pháp, làm người khác còn ở đoán văn giải tự lúc, hắn đã lĩnh ngộ sáng tác giả ý nghĩ... nguy hiểm tầng tầng cấm địa, làm người khác còn ở cẩn thận tra xét lúc, hắn đã biết được người thiết kế ý đồ... <br />\r\n<br />\r\nCó một ngày, Lịch Vân nhìn thấy một thân tài nóng nảy nữ tử: Mỹ nữ, cái yếm ban đầu không phải là dùng để mặc!",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

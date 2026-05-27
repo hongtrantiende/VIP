@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "11401",
+        "NAME": "Diamond No Ace Toàn Năng Tuyển Thủ",
+        "CHAPTER": [
+            {
+                "id": "3785315",
+                "name": "Chương 1:: Dương Bình bóng chày"
+            }
+        ],
+        "TOTALCHAPTER": "1140",
+        "IMG": "https://static.cdnno.com/poster/diamond-no-ace-toan-nang-tuyen-thu/150.jpg",
+        "CAT": "Cạnh Kỹ, Đồng Nhân",
+        "AUTHOR": "Phi Hùng Kỵ Sĩ",
+        "TRANS": "HacTamX",
+        "DESC": "Nhị thứ nguyên ký sinh giả Dương Bình, Hồi Sinh ở trùng tên trùng họ, nắm giữ Koushien giấc mơ người Hoa trên người thiếu niên<br />\r\n<br />\r\n\tMột cái ngang dọc hoàn vũ, mất đi mục tiêu vương giả cùng một cái nắm giữ kiên định giấc mơ, thiên phú dị bẩm, thân thể vốn sinh ra đã kém cỏi thiếu niên<br />\r\n<br />\r\n\tLàm hai người linh hồn hợp hai làm một!<br />\r\n<br />\r\n\tMột cái tân Koushien truyền thuyết liền như vậy sinh ra!",
+        "THUMB": "https://static.cdnno.com/poster/diamond-no-ace-toan-nang-tuyen-thu/150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

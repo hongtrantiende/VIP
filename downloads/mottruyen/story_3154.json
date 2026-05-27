@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "3154",
+        "NAME": "Dị giới mạnh nhất hệ thống",
+        "CHAPTER": [
+            {
+                "id": "1075179",
+                "name": "Chương 1: Thợ săn"
+            }
+        ],
+        "TOTALCHAPTER": "20",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo, Dị Giới",
+        "AUTHOR": "Lôi Sát",
+        "TRANS": "xemtruyen",
+        "DESC": "Cái gì, ngươi hỏi ta học tập linh kỹ tốc độ tại sao như vậy nhanh?<br />\r\n<br />\r\n\tẠch, ngươi nói chính là Kỹ Năng đi, đây đương nhiên là một điểm sẽ, lẽ nào ngươi không phải?<br />\r\n<br />\r\n\tCái gì, ngươi hỏi ta tu luyện lẽ nào không có bình cảnh?<br />\r\n<br />\r\n\tẠch, ngươi nói hẳn là chuyển chức nhiệm vụ chứ?",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

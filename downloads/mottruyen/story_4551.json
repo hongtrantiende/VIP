@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "4551",
+        "NAME": "Đại Minh Vũ Phu",
+        "CHAPTER": [
+            {
+                "id": "2832622",
+                "name": "Chương 1:   bắt đầu"
+            }
+        ],
+        "TOTALCHAPTER": "315",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Lịch Sử",
+        "AUTHOR": "Đặc Biệt Bạch",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Triệu Tiến một đời b&igrave;nh thản, kh&ocirc;ng ngờ lại c&oacute; một khởi đầu mới ở cuối thời Minh.<br /> Hắn muốn lưu t&ecirc;n của m&igrave;nh trong lịch sử.<br /> Dựa v&agrave;o m&acirc;u trong tay, b&igrave;nh định vạn dặm non s&ocirc;ng.<br /> Đ&oacute; l&agrave; Đại Minh Vũ Phu.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

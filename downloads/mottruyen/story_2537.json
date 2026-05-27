@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "2537",
+        "NAME": "Ngư Phu Truyền Kỳ",
+        "CHAPTER": [
+            {
+                "id": "833219",
+                "name": "Chương 1: Cạnh biển đến bảo"
+            }
+        ],
+        "TOTALCHAPTER": "209",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đô Thị",
+        "AUTHOR": "Sơn Thôn Hộ Khẩu",
+        "TRANS": "Tiêu Dao Thán",
+        "DESC": "Tốt nghiệp đại học sau vệ h&agrave;ng ở hải dương cục ch&acirc;n chạy gần một năm, cuối c&ugrave;ng hay l&agrave; bởi v&igrave; v&agrave;i c&acirc;u kh&oacute;e miệng bị l&atilde;nh đạo cấp tr&ecirc;n khai trừ. Về đến cố hương, ở cạnh biển ngẫu nhi&ecirc;n gặp một vi&ecirc;n thần b&iacute; hạt ch&acirc;u, h&ograve;a v&agrave;o trong cơ thể.\r\n<br />Trải qua hiểu r&otilde;, hạt ch&acirc;u kia c&oacute; thể l&agrave;m cho vệ h&agrave;ng ở đ&aacute;y biển du lịch, kh&ocirc;ng bị dưỡng kh&iacute;, thủy &aacute;p, tia s&aacute;ng c&aacute;c loại (chờ) ảnh hưởng.\r\n<br />Thần b&iacute; hải dương vẫn l&agrave; nh&acirc;n loại ng&oacute;ng tr&ocirc;ng, &iacute;t c&oacute; người đặt ch&acirc;n, ph&iacute;a dưới l&agrave; bảo t&agrave;ng v&ocirc; tận, đều tĩnh đ&aacute;m nh&acirc;n loại khai ph&aacute;: Đại t&ocirc;m h&ugrave;m, biển rộng giải, hải s&acirc;m, hải đảm, c&aacute; muối, hiếm thấy hồng san h&ocirc;, thậm ch&iacute; đ&aacute;y biển di bảo v&acirc;n v&acirc;n.\r\n<br />C&oacute; thần b&iacute; hải ch&acirc;u, người đ&aacute;nh c&aacute; cũng l&agrave; một c&aacute;i truyền kỳ!",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "1282",
+        "NAME": "Tạo Vật Chi Chủ",
+        "CHAPTER": [
+            {
+                "id": "511867",
+                "name": "Chương 1: Tô La"
+            }
+        ],
+        "TOTALCHAPTER": "659",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo",
+        "AUTHOR": "Dạ Thủy Hàn",
+        "TRANS": "Kuden, La Phong",
+        "DESC": "Nh&acirc;n vật ch&iacute;nh lo lắng kh&ocirc;ng l&yacute; do rời đi người th&acirc;n, từ Địa cầu đi tới một vi&ecirc;n xa lạ tu giả l&agrave;m đầu Bạch Ngọc tinh, hắn muốn trở lại Địa cầu nhất định phải đi tới mạnh nh&acirc;́t con đường, trở th&agrave;nh mạnh mẽ nhất tu giả.<br /><br />Trong l&uacute;c v&ocirc; t&igrave;nh dung hợp bản nguy&ecirc;n vũ trụ, mở ra nh&acirc;n vật ch&iacute;nh v&ocirc; địch cuộc đời.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "9725",
+        "NAME": "Cửu Thế Luân Hồi Quyết",
+        "CHAPTER": [
+            {
+                "id": "3281212",
+                "name": "Chương 1: : Trí nhớ kiếp trước"
+            }
+        ],
+        "TOTALCHAPTER": "1109",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đô Thị, Trùng Sinh",
+        "AUTHOR": "Kim Dạ Tử Chính",
+        "TRANS": "808",
+        "DESC": "Cửu thế luân hồi, cửu thế hồn, cửu thế nhuốm máu, rơi hồng trần. Một khi trở về luân hồi ngày, cửu thế tề thiên, vạn giới thần...<br />\r\n<br />\r\nCửu thế luân hồi, cửu thế tích lũy, công pháp ta có, bảo tàng ta cũng có, người khác không có, ta cũng có, đương nhiên muội tử cũng là không thiếu được...",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

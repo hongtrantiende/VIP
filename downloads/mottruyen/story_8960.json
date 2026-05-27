@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "8960",
+        "NAME": "Dạo chơi Nhị Thứ Nguyên - Anime Thế Giới",
+        "CHAPTER": [
+            {
+                "id": "3047433",
+                "name": "Chương 1 : Cái chết bất chợt"
+            }
+        ],
+        "TOTALCHAPTER": "13",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Dị Giới, Đồng Nhân, Trùng Sinh",
+        "AUTHOR": "minhyendonga",
+        "TRANS": "Nhiều Converter",
+        "DESC": "NVC của chúng ta là một anh chàng người Việt nam 16 tuổi bị chết đi vì cứu ba em học sinh THCS. Nào ngờ đó là lỗi của Thượng Đế. Vì thế để đền bù thượng đế cho main trùng sinh tại Naruto thế giới . Được Thượng đế tặng cho một món quà nhưng méo biết là gì.<br />\r\n<br />\r\nTruyện do mình sáng tác lần đầu viết có lẽ không hay nên đừng gạch đá.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

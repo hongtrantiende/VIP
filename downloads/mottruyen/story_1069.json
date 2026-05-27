@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "1069",
+        "NAME": "Trại Chăn Nuôi Thần Ma",
+        "CHAPTER": [
+            {
+                "id": "338064",
+                "name": "Chương 1: Trường học tai biến"
+            }
+        ],
+        "TOTALCHAPTER": "1174",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo",
+        "AUTHOR": "Hắc Đồng Vương",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Nh&acirc;n vật ch&iacute;nh của truyện, T&ocirc; Vũ, vốn chỉ l&agrave; một sinh vi&ecirc;n của một  trường đại học hạng tư. Do sự kiện hố trời, hắn v&agrave; c&aacute;c bạn học c&ugrave;ng  trường đ&atilde; bị đưa tới một rừng rậm tr&agrave;n đầy nguy hiểm v&agrave; khủng bố.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

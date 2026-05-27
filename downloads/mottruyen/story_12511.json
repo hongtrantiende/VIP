@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "12511",
+        "NAME": "Ta Tối Cường VEGITO",
+        "CHAPTER": [
+            {
+                "id": "4059880",
+                "name": "Chương 1 ta là vegito"
+            }
+        ],
+        "TOTALCHAPTER": "11",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo, Xuyên Không, Đồng Nhân",
+        "AUTHOR": "Skt1king123",
+        "TRANS": "Nhiều Converter",
+        "DESC": "ĐÌNH PHONG TỐI CƯỜNG ta là mạnh nhất <br />\r\nđối mặt với địch nhân ; <br />\r\nđịch nhân : ngươi ngươi sao có thể <br />\r\nVEGITO : không phải các ngươi yếu mà vì ta quá mạnh mà thôi <br />\r\nnhân vật chính : ta tại sao dù đả cố gắng củng không bằng ngươi <br />\r\nvegito: ngươi không nên kỳ võng điều không tưởng <br />\r\nnữ chính: vegito ta thích ngươi <br />\r\nvegito: ta biết <br />\r\nchinh phục nhị thứ nguyên đánh tan vạn giới ta tối cường vegito",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

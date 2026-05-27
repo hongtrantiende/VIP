@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "2798",
+        "NAME": "Hỗn Độn Hỏa Liên",
+        "CHAPTER": [
+            {
+                "id": "927090",
+                "name": "Chương 1: Dương Hàn"
+            }
+        ],
+        "TOTALCHAPTER": "15",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo",
+        "AUTHOR": "Ám mục",
+        "TRANS": "Tà Đế",
+        "DESC": "Một lần bị thương này làm cho niên thiếu kinh mạch bị hao tổn, dẫn đến tu vi lại cũng vô pháp tiến thêm, từ nay về sau thành vì gia tộc trò cười.<br />\r\n<br />\r\n\tThế nhân cười nhạo cùng châm chọc vẫn chưa làm cho hắn trầm luân, cơ duyên xảo hợp dưới nhận được thượng cổ lục đại thần vật trong, thần bí nhất Hỗn Độn Hỏa Liên, từ nay về sau hắn con đường bị sửa!<br />\r\n<br />\r\n\tDiệt thế hoang tộc, viễn cổ long tộc, thần bí kỳ lân tộc, một vừa xuất hiện!<br />\r\n<br />\r\n\tHắn có thể không tại đây phân tranh trên đại lục chiếm được một tịch vị!<br />\r\n<br />\r\n\tHắn có thể không cứu vớt mảnh đại lục này với nước lửa!<br />\r\n<br />\r\n\tĐây hết thảy tất cả, đều ở đây với không biết trong!",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "7375",
+        "NAME": "Trọng Sinh Hồng Hoang Chi Tam Giới Yêu Tôn",
+        "CHAPTER": [
+            {
+                "id": "2614443",
+                "name": "Chương 1: Dẫn nhập"
+            }
+        ],
+        "TOTALCHAPTER": "1067",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp, Trùng Sinh",
+        "AUTHOR": "Nghệ Chi Trư",
+        "TRANS": "AnyPro",
+        "DESC": "Đạo Ma Đấu Phá Thương Khung ngày, Vu Yêu vũ động càn khôn lúc, tam giáo cuộc đời thăng trầm. Hồng Hoang Thái Sơ, hung thú xưng vương, các lộ Tiên Thiên đại thần cũng vẫn còn thành trường kỳ. Vương Hạo trọng sinh Thái Sơ, ngoài ý muốn phát hiện mình thành Thập Nhị Phẩm Thanh Liên, nghĩ đến chính mình cuối cùng bị Tam Thanh chia cắt vận mệnh, Vương Hạo không khỏi ngửa mặt lên trời gầm to: \"Mạng ta do ta, không do trời!\"",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

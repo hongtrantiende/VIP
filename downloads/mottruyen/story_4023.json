@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "4023",
+        "NAME": "Dị Giới Hải Tặc Vương",
+        "CHAPTER": [
+            {
+                "id": "1484684",
+                "name": "Chương 1:  xuyên việt 【 cầu cất chứa 】"
+            }
+        ],
+        "TOTALCHAPTER": "53",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Dị Giới",
+        "AUTHOR": "Đường Xuyên",
+        "TRANS": "trang4mat",
+        "DESC": "Ta muốn cho sở hữu tất cả biển cả trở th&agrave;nh của ta đ&igrave;nh viện, lại để cho sở hữu tất cả bến cảng trở th&agrave;nh của ta s&acirc;n thượng! Lại để cho sở hữu tất cả địch nh&acirc;n nghe thấy t&ecirc;n của ta sẽ gặp lạnh run! ! ------- Đường Kiệt",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

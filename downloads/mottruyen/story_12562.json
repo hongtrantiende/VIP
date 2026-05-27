@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "12562",
+        "NAME": "Ngược Về Thời Lê Sơ",
+        "CHAPTER": [
+            {
+                "id": "4071766",
+                "name": "Chương 1: Dòng dõi Đông A"
+            }
+        ],
+        "TOTALCHAPTER": "10",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Quân Sự, Lịch Sử, Xuyên Không",
+        "AUTHOR": "Trần Nguyên Hãn",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Truyện kể về 1 thanh niên Việt Nam hiện đại, sau khi đi bộ đội, giải ngủ học CNTT ở trường bách khoa, bị xuyên việt đến thời hậu nhà Trần khi bị nhà Hồ... truyện khá hay mọi người đọc trải nghiệm.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

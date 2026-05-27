@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "5460",
+        "NAME": "Tam Quốc Chi Viên Gia Con Thứ",
+        "CHAPTER": [
+            {
+                "id": "1941455",
+                "name": "Chương 1: Thân phận đặc thù hoả đầu quân"
+            }
+        ],
+        "TOTALCHAPTER": "878",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Quân Sự, Lịch Sử, Trùng Sinh",
+        "AUTHOR": "Húy Nham",
+        "TRANS": "Phong Pháp Sư",
+        "DESC": "Xuy&ecirc;n việt H&aacute;n mạt trở th&agrave;nh Vi&ecirc;n Thiệu con thứ, th&agrave;nh tựu bá nghi&ecirc;̣p kh&ocirc;ng đi đường thường.  Người đ&agrave;n b&agrave; của ta ai d&aacute;m chạm? Ta giang sơn ta l&agrave;m chủ!  Muốn ngươi th&agrave;nh vương ngươi th&igrave; lại th&agrave;nh vương, muốn ngươi l&agrave; giặc ngươi li&ecirc;̀n vì khấu!",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

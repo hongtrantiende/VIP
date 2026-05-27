@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "2508",
+        "NAME": "Trạch Yêu",
+        "CHAPTER": [
+            {
+                "id": "823929",
+                "name": "Chương 1: Chùa Cổ Tự"
+            }
+        ],
+        "TOTALCHAPTER": "21",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp",
+        "AUTHOR": "Trần Trọng",
+        "TRANS": "Tuyêniapa",
+        "DESC": "Huy ho&agrave;ng Thần Ch&acirc;u, t&ocirc;ng ph&aacute;i san s&aacute;t, Phật Đạo nho mặc, b&aacute;ch gia đều hưng. ph&aacute;p c&oacute; 3,600, đều c&oacute; thể nhập đạo.<br /><br />\"Tu kh&ocirc;ng xấu th&acirc;n, luyện s&aacute;t phạt thuật, động như đi&ecirc;n Phong Liệt hỏa, thế bằng cửu thi&ecirc;n L&ocirc;i Đ&igrave;nh, lấy lực chứng đạo, vạn người mạc địch, l&agrave; v&igrave; l&agrave; đấu chiến phương ph&aacute;p!\"<br /><br />\"Học thi&ecirc;n hạ kinh lu&acirc;n, ngộ trị quốc thuật, v&igrave; l&agrave; thi&ecirc;n địa lập t&acirc;m, m&agrave; sống d&acirc;n lập mệnh. Lấy văn chứng đạo, vạn người k&iacute;nh ngưỡng, l&agrave; v&igrave; l&agrave; tr&igrave; thế phương ph&aacute;p!\"<br /><br />\"Th&ocirc;ng kỳ ho&agrave;ng thuật, luyện linh đan diệu dược, tồn nh&acirc;n &aacute;i chi t&acirc;m, giải vạn d&acirc;n đau khổ, lấy y chứng đạo, vạn người cảm ơn, l&agrave; v&igrave; l&agrave; tế thế phương ph&aacute;p!\"<br /><br />\"C&oacute; thể h&ocirc; mưa gọi gi&oacute;, c&oacute; thể dịch quỷ th&ocirc;ng thần, ph&aacute;p ch&uacute; tru y&ecirc;u ma, b&ugrave;a ch&uacute; trấn hung t&agrave;, lấy ph&aacute;p chứng đạo, vạn người b&aacute;i phục, l&agrave; v&igrave; l&agrave; Th&ocirc;ng Huyền phương ph&aacute;p!\"<br /><br />M&agrave; chuy&ecirc;n về d&ugrave;ng nắm đấm giải quyết vấn đề Đỗ Trọng Ti&ecirc;u, kh&ocirc;ng ch&uacute;t do dự m&agrave; lựa chọn đấu chiến phương ph&aacute;p. Từ đ&acirc;y một người một c&ocirc;n, một c&ocirc;n K&igrave;nh Thi&ecirc;n, một nh&aacute;nh độc t&uacute;, một sừng cao ch&oacute;t v&oacute;t, lục thần Tru Ti&ecirc;n, b&aacute;ch chiến m&agrave; ngang nhi&ecirc;n kh&ocirc;ng ng&atilde;, sẽ th&agrave;nh vạn y&ecirc;u Ch&iacute; T&ocirc;n!",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

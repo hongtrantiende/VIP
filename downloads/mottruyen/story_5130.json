@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "5130",
+        "NAME": "Cửu Thiên Thần Hoàng",
+        "CHAPTER": [
+            {
+                "id": "1821511",
+                "name": "Chương 1"
+            }
+        ],
+        "TOTALCHAPTER": "201",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo",
+        "AUTHOR": "Nhật chiếu hương lô",
+        "TRANS": "Klorsky",
+        "DESC": "Thiếu niên thiên tân vạn khổ thu được trân quý dược thảo giao cho ngưỡng mộ trong lòng nữ tử, lại gặp đến nữ tử phản bội, bị phế tu vi, kinh mạch đứt từng khúc. Không cam lòng hơn, bị từ trên trời giáng xuống thần bí mầm móng chọn trúng, thu được bá đạo huyết mạch chi lực, từ đó ngang dọc Lục Hợp Bát Hoang, phách tuyệt cửu thiên thập địa. Cuối cùng có một ngày, ta muốn phượng hoàng lâm Cửu trọng!",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

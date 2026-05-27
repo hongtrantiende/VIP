@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "5011",
+        "NAME": "Mahouka Koukou  no Rettousei",
+        "CHAPTER": [
+            {
+                "id": "1762159",
+                "name": "Giới thiệu"
+            }
+        ],
+        "TOTALCHAPTER": "7",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo, Dị Năng",
+        "AUTHOR": "Satou Tsutomu",
+        "TRANS": "Nhiều thành viên",
+        "DESC": "Pháp thuật.<br />\r\nNó không phải sản phẩm của thần thoại hay truyền thuyết, mà là một kỹ thuật khoa học hiện đại đã được phát triển gần một thế kỷ tính cho đến giờ.<br />\r\nMùa xuân năm nay, mùa học sinh mới nhập học lại tới.<br />\r\nTrường trung học Đệ Nhất trực thuộc Đại Học Ma Pháp Quốc Gia - ngôi trường thường được gọi bằng cái tên \"trung học Pháp Thuật\" - chia học sinh ra làm \"Học sinh khoa 1\" bao gồm những học sinh có thành tích xuất sắc, và \"Học sinh khoa 2\" dự bị cho khoa 1, bọn họ được gọi lần lượt là \"Bloom\" cùng \"Weed\".<br />\r\nNăm nay, một cặp anh em sẽ vào học tại trường trung học Pháp Thuật.<br />\r\nCậu anh là học sinh yếu kém.<br />\r\nCô em là học sinh xuất sắc hoàn hảo.<br />\r\nCậu anh yếu kém đầy lạc quan trong từng lời nói cử chỉ, cô em xuất sắc dành tình cảm vượt quá tình ruột thịt cho anh trai. Từ lúc hai người bước chân qua cổng trường trung học Đệ Nhất, ngôi trường danh giá vốn hòa bình sắp phải đối mặt với những tháng ngày đầy phong ba bão táp.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "11381",
+        "NAME": "Hư Giới Chi Môn",
+        "CHAPTER": [
+            {
+                "id": "3783927",
+                "name": "Chương 1 : Không tương lai tốt"
+            }
+        ],
+        "TOTALCHAPTER": "55",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đô Thị, Xuyên Không, Đồng Nhân",
+        "AUTHOR": "quanlamthiendia",
+        "TRANS": "Nhiều Converter",
+        "DESC": "A e thông cảm ,mình viết bộ đầu tay nên mấy chương đầu tam quốc chưa quen.<br />\r\nMình dự định viết đến hết nên a e không lo thái giám.Mỗi ngày 5 chương,ngày nghỉ 10 chương.<br />\r\na em có ý kiến thế giới hay nhân vật chính nào hay thì coment dưới.<br />\r\nLăng thiên được hư giới chi môn xuyên qua các thế giới ảo tưởng tu luyện,kết hợp cả khoa học kĩ thuật với võ công tu tiên,khoa học rất it.<br />\r\ntruyện tự tay đánh nhưng  mình nghĩ được gì đánh lấy,sai chữ hơi nhiều a e thông cảm,",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

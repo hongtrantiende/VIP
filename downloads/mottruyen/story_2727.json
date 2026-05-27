@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "2727",
+        "NAME": "X Nhất Long Thời Đại",
+        "CHAPTER": [
+            {
+                "id": "894122",
+                "name": "Chương 1 : vạn long tụ hội"
+            }
+        ],
+        "TOTALCHAPTER": "238",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo",
+        "AUTHOR": "Vân Thiên Khong",
+        "TRANS": "Tiểu Tặc",
+        "DESC": "Chảy xuôi long huyết mạch <br />\r\n<br />\r\n　　 Có được long hồn phách <br />\r\n<br />\r\n　　 Kỳ thật ......<br />\r\n<br />\r\n　　 Mỗi người trong thân thể cũng ngủ say một điều long <br />\r\n<br />\r\n　　 Hãy phóng xuất ra trong lòng long <br />\r\n<br />\r\n　　 Làm chúng ta cùng nhau —— Bay lượn thiên địa !<br />\r\n<br />\r\n　　X Một con rồng thời đại , Mở ra ......",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

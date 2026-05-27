@@ -3,6 +3,14 @@
 import { AddChapterDialog } from "@/components/add-chapter-dialog";
 import { BulkAddChaptersDialog } from "@/components/bulk-add-chapters-dialog";
 import { TranslateTabPanel } from "@/components/novel/translate-tab-panel";
+import { NovelSetup } from "@/components/writing/novel-setup";
+import { useRewriteStore } from "@/lib/stores/rewrite-store";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
 import {
   AlertDialog,
   AlertDialogAction,
@@ -122,6 +130,7 @@ export function ChaptersTab({
   onAnalyze,
   onTranslate,
   onReplace,
+  onScanFix,
   onConvert,
   onQtTranslate,
   onPdfTranslate,
@@ -129,6 +138,8 @@ export function ChaptersTab({
   onSplitMultiple,
   onMergeMultiple,
   onMergeParts,
+  activeSubTab: propActiveSubTab,
+  onActiveSubTabChange,
 }: {
   novelId: string;
   chapters: Chapter[];
@@ -144,6 +155,7 @@ export function ChaptersTab({
   ) => void;
   onTranslate: (chapterIds: string[]) => void;
   onReplace?: (chapterIds: string[]) => void;
+  onScanFix?: (chapterIds: string[]) => void;
   onConvert?: (chapterIds: string[]) => void;
   onQtTranslate?: (chapterIds: string[]) => void;
   onPdfTranslate?: (chapterIds: string[]) => void;
@@ -151,6 +163,8 @@ export function ChaptersTab({
   onSplitMultiple?: (chapterIds: string[]) => void;
   onMergeMultiple?: (chapterIds: string[]) => void;
   onMergeParts?: (chapterIds: string[]) => void;
+  activeSubTab?: "standard" | "ai";
+  onActiveSubTabChange?: (tab: "standard" | "ai") => void;
 }) {
   const novel = useLiveQuery(() => db.novels.get(novelId), [novelId]);
   const isEditMode = novel?.customTranslateMode === "edit";
@@ -165,10 +179,20 @@ export function ChaptersTab({
   const [workspaceOpen, setWorkspaceOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
   const [showTranslateStatus, setShowTranslateStatus] = useState(true);
+  
+  const { isGenerating: isRewriting, activeNovelId: rewriteNovelId, phase: rewritePhase } = useRewriteStore();
+  const [rewriteOpen, setRewriteOpen] = useState(false);
+  const showRewriteLoading = isRewriting && rewriteNovelId === novelId;
+
   const [visibleCount, setVisibleCount] = useState(CHAPTER_PAGE_SIZE);
   const debouncedQuery = useDebouncedValue(searchQuery, 350);
 
-  const [activeSubTab, setActiveSubTab] = useState<"standard" | "ai">("standard");
+  const [activeSubTabState, setActiveSubTabState] = useState<"standard" | "ai">("standard");
+  const activeSubTab = propActiveSubTab ?? activeSubTabState;
+  const setActiveSubTab = (tab: "standard" | "ai") => {
+    setActiveSubTabState(tab);
+    onActiveSubTabChange?.(tab);
+  };
 
   // Reset selection and visible page count when sub-tab changes
   useEffect(() => {
@@ -424,22 +448,46 @@ export function ChaptersTab({
           <PlusIcon className="size-3.5 sm:mr-1.5" />
           <span className="hidden sm:inline">Thêm chương</span>
         </Button>
-        <Button size="sm" variant="outline" onClick={() => setBulkOpen(true)}>
-          <FileTextIcon className="size-3.5 sm:mr-1.5" />
-          <span className="hidden sm:inline">Thêm nhiều</span>
-        </Button>
-        <Button size="sm" variant="outline" onClick={selectDuplicates}>
-          <CopyXIcon className="size-3.5 sm:mr-1.5" />
-          <span className="hidden sm:inline">Chọn trùng lặp</span>
-        </Button>
-        <Button size="sm" variant="outline" className="text-red-600 dark:text-red-400 border-red-500/30" onClick={selectTranslationErrors}>
-          <XCircleIcon className="size-3.5 sm:mr-1.5" />
-          <span className="hidden sm:inline">{isEditMode ? "Chọn lỗi biên tập" : "Chọn lỗi dịch"}</span>
-        </Button>
-        <Button size="sm" variant="outline" className="text-blue-600 dark:text-blue-400" onClick={() => setWorkspaceOpen(true)}>
-          <ZapIcon className="size-3.5 sm:mr-1.5" />
-          <span className="hidden sm:inline">Khu Vực Dịch Truyện</span>
-        </Button>
+        {activeSubTab === "ai" && (
+          <Button 
+            size="sm" 
+            variant="outline" 
+            className="text-amber-600 border-amber-600/30 hover:bg-amber-50 dark:hover:bg-amber-900/20"
+            onClick={() => setRewriteOpen(true)}
+          >
+            {showRewriteLoading ? (
+              <>
+                <LoaderIcon className="size-3.5 sm:mr-1.5 animate-spin" />
+                <span className="hidden sm:inline">{rewritePhase || "Đang Rewrite..."}</span>
+              </>
+            ) : (
+              <>
+                <SparklesIcon className="size-3.5 sm:mr-1.5" />
+                <span className="hidden sm:inline">Tự động Rewrite truyện</span>
+              </>
+            )}
+          </Button>
+        )}
+        {activeSubTab !== "ai" && (
+          <>
+            <Button size="sm" variant="outline" onClick={() => setBulkOpen(true)}>
+              <FileTextIcon className="size-3.5 sm:mr-1.5" />
+              <span className="hidden sm:inline">Thêm nhiều</span>
+            </Button>
+            <Button size="sm" variant="outline" onClick={selectDuplicates}>
+              <CopyXIcon className="size-3.5 sm:mr-1.5" />
+              <span className="hidden sm:inline">Chọn trùng lặp</span>
+            </Button>
+            <Button size="sm" variant="outline" className="text-red-600 dark:text-red-400 border-red-500/30" onClick={selectTranslationErrors}>
+              <XCircleIcon className="size-3.5 sm:mr-1.5" />
+              <span className="hidden sm:inline">{isEditMode ? "Chọn lỗi biên tập" : "Chọn lỗi dịch"}</span>
+            </Button>
+            <Button size="sm" variant="outline" className="text-blue-600 dark:text-blue-400" onClick={() => setWorkspaceOpen(true)}>
+              <ZapIcon className="size-3.5 sm:mr-1.5" />
+              <span className="hidden sm:inline">Khu Vực Dịch Truyện</span>
+            </Button>
+          </>
+        )}
         {selected.size > 0 && onSplitMultiple && (
           <Button
             size="sm"
@@ -503,13 +551,24 @@ export function ChaptersTab({
                 <TrashIcon className="size-3.5" />
                 Xóa đã chọn
               </button>
-              <button
-                className="flex w-full items-center gap-2 rounded-md px-2 py-1.5 text-sm hover:bg-muted text-amber-600"
-                onClick={() => setBulkClearTranslationsOpen(true)}
-              >
-                <EraserIcon className="size-3.5" />
-                {isEditMode ? "Xóa bản biên tập" : "Xóa bản dịch"}
-              </button>
+              {activeSubTab !== "ai" && (
+                <button
+                  className="flex w-full items-center gap-2 rounded-md px-2 py-1.5 text-sm hover:bg-muted text-amber-600"
+                  onClick={() => setBulkClearTranslationsOpen(true)}
+                >
+                  <EraserIcon className="size-3.5" />
+                  {isEditMode ? "Xóa bản biên tập" : "Xóa bản dịch"}
+                </button>
+              )}
+              {onScanFix && (
+                <button
+                  className="flex w-full items-center gap-2 rounded-md px-2 py-1.5 text-sm hover:bg-muted text-amber-600 dark:text-amber-400"
+                  onClick={() => onScanFix(Array.from(selected))}
+                >
+                  <SparklesIcon className="size-3.5" />
+                  Quét lỗi & Sửa (AI)
+                </button>
+              )}
               {onReplace && (
                 <button
                   className="flex w-full items-center gap-2 rounded-md px-2 py-1.5 text-sm hover:bg-muted"
@@ -558,30 +617,6 @@ export function ChaptersTab({
             </PopoverContent>
           </Popover>
 
-          {needsAnalysisCount > 0 && (
-            <Button
-              variant="outline"
-              size="sm"
-              onClick={() => onAnalyze("incremental")}
-              title={`Phân tích còn lại (${needsAnalysisCount})`}
-            >
-              <SearchIcon className="size-3.5 sm:mr-1.5" />
-              <span className="hidden sm:inline">
-                Phân tích còn lại ({needsAnalysisCount})
-              </span>
-              <span className="sm:hidden">{needsAnalysisCount}</span>
-            </Button>
-          )}
-          <Button
-            variant="outline"
-            size="sm"
-            onClick={() => onAnalyze("full")}
-            title="Phân tích tất cả"
-          >
-            <SearchIcon className="size-3.5 sm:mr-1.5" />
-            <span className="hidden sm:inline">Phân tích tất cả</span>
-          </Button>
-
           {translateJob && (translateJob.isRunning || translateJob.step === "progress") && (
             <Button
               variant="outline"
@@ -616,7 +651,7 @@ export function ChaptersTab({
       </div>
 
       {/* Chapter list */}
-      {chapters.length === 0 ? (
+{chapters.length === 0 ? (
         <p className="py-8 text-center text-sm text-muted-foreground">
           Chưa có chương nào. Thêm mới hoặc nhập tiểu thuyết.
         </p>
@@ -920,6 +955,17 @@ export function ChaptersTab({
         nextOrder={displayedChaptersList.length}
         isAiWritten={activeSubTab === "ai"}
       />
+
+      <Dialog open={rewriteOpen} onOpenChange={setRewriteOpen}>
+        <DialogContent className="max-w-3xl max-h-[90vh] overflow-y-auto p-0">
+          <DialogHeader className="p-4 pb-0">
+            <DialogTitle>Tự động Rewrite Truyện</DialogTitle>
+          </DialogHeader>
+          <div className="p-4 pt-0">
+            <NovelSetup novelId={novelId} />
+          </div>
+        </DialogContent>
+      </Dialog>
 
       <AlertDialog
         open={!!deleteTarget}

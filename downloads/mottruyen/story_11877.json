@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "11877",
+        "NAME": "Thế Chiến Thứ 2 Đáng Yêu",
+        "CHAPTER": [
+            {
+                "id": "3900670",
+                "name": "Chương 1 : Chuyển kiếp đến Đức..."
+            }
+        ],
+        "TOTALCHAPTER": "11",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Quân Sự, Lịch Sử, Trùng Sinh",
+        "AUTHOR": "Nguyệt Diện --- 月面",
+        "TRANS": "dotunglamntt",
+        "DESC": "Giới thiệu tóm tắt: Lâm có đức chuyển kiếp đến 1930 năm, đang chuẩn bị mở ra hoài bão, lại phát hiện cái thế giới này cùng hắn nguyên lai thế giới không quá giống nhau.\"Nhớ năm đó Napoléon ba cầm ba chính là chinh phục lúc ấy Châu Âu thập đại thần cơ tâm, mới hoàn thành thống nhất Âu Lục sự nghiệp. Cho nên ta vẫn luôn nói, phải cứu nước, các vị đầu tiên muốn dáng dấp đẹp trai, coi như không đẹp trai, cũng phải đem mình thu thập sạch sẽ, để cho người nhìn thoải mái mới được.\" .. .",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

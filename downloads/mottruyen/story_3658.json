@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "3658",
+        "NAME": "Liên Minh Huyền Thoại Chi Thái Điểu Chi Quang",
+        "CHAPTER": [
+            {
+                "id": "1262745",
+                "name": "Chương 1: Thiếu niên Trương Hạo"
+            }
+        ],
+        "TOTALCHAPTER": "42",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Võng Du",
+        "AUTHOR": "Ngả Hi Khống",
+        "TRANS": "Lôi Đế",
+        "DESC": "Một phổ th&ocirc;ng li&ecirc;n minh thiếu ni&ecirc;n, v&igrave; l&agrave; tr&aacute;nh n&eacute; khanh hữu mời, t&ugrave;y &yacute; gia nhập l&atilde;o hữu thi đấu đội ngũ, tiếc rằng tạo h&oacute;a tr&ecirc;u người, tiện tay đ&aacute;nh, đ&aacute;nh ra một khiến người ta kh&ocirc;ng biết n&ecirc;n kh&oacute;c hay cười đại thần truyền thuyết. Nếu kh&ocirc;ng thể tr&aacute;nh n&eacute; cứu vớt thế giới nhiệm vụ, hắn đơn giản th&agrave;nh lập chiến đội, chinh chiến giải thi đấu, dẫn dắt đo&agrave;n đội hướng đi đỉnh cao. Xung k&iacute;ch đẳng cấp, dẫn dắt thuỷ triều, đặc sắc chiến thuật, cao cấp đấu ph&aacute;p, to&agrave;n cầu trực tiếp, vạn người k&iacute;nh ngưỡng, ngươi c&ograve;n ở chờ c&aacute;i g&igrave;, tiến v&agrave;o Li&ecirc;n Minh Huyền Thoại thế giới, n&agrave;y, l&agrave; một thời đại tượng trưng, n&agrave;y, cũng l&agrave; một đỉnh cao đo&agrave;n đội đại biểu.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

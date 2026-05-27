@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "1130",
+        "NAME": "Hỗn Luyện Chư Thiên",
+        "CHAPTER": [
+            {
+                "id": "410744",
+                "name": "Chương 01"
+            }
+        ],
+        "TOTALCHAPTER": "380",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo",
+        "AUTHOR": "Độn Giáp Càn Khôn",
+        "TRANS": "motngaythieue2090",
+        "DESC": "Thần th&ocirc;ng, Thống Nhiếp &Acirc;m Dương.\r\n&nbsp;\r\nNhật Nguyệt nơi tay, biến h&oacute;a t&ugrave;y t&acirc;m.\r\n&nbsp;\r\nĐ&aacute;nh vỡ Hư Kh&ocirc;ng, ngao du B&aacute;t Cực.\r\n&nbsp;\r\nĐấu Chuyển Tinh Di, thay đổi C&agrave;n Kh&ocirc;n.\r\n<br />Một c&aacute;i ăn nhờ ở đậu, th&acirc;n phận h&egrave;n mọn thiếu ni&ecirc;n, th&ocirc;ng qua ngẫu nhi&ecirc;n cơ duy&ecirc;n, bước ch&acirc;n v&agrave;o một c&aacute;i kh&ocirc;ng thể tưởng tượng rung động thế giới.\r\n&nbsp;\r\nỞ giữa thi&ecirc;n địa, duy ta Bất Hủ. Ch&acirc;n đạp U Minh, tay che Thương Khung. Ch&uacute;a tể C&agrave;n Kh&ocirc;n, Hỗn Luyện Chư Thi&ecirc;n!",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

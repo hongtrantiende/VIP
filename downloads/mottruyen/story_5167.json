@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "5167",
+        "NAME": "Trùng Hoảng",
+        "CHAPTER": [
+            {
+                "id": "1831280",
+                "name": "Chương 1: Mưa đỏ - Quái trùng"
+            }
+        ],
+        "TOTALCHAPTER": "355",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Khoa Huyễn",
+        "AUTHOR": "Đường Thố Vu",
+        "TRANS": "kurozakuro",
+        "DESC": "Một trận mưa, mở ra diệt thế mở m&agrave;n.<br /> <br /> Một con c&ocirc;n tr&ugrave;ng, mai phục v&ocirc; tận khả năng.<br /> <br /> Hắn ở tr&ugrave;ng triều trong xuy&ecirc;n qua, tại thời khắc sinh tử đi lại, mắt thấy một mảnh tốt đẹp đi&ecirc;u linh, phương minh loạn thế cần l&ocirc;i đ&igrave;nh m&agrave; kh&ocirc;ng phải l&agrave; quang minh!",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

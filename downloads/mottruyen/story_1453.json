@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "1453",
+        "NAME": "Trùng Sinh Chi Kiều Kiều",
+        "CHAPTER": [
+            {
+                "id": "606543",
+                "name": "Chương 1: Trùng sinh"
+            }
+        ],
+        "TOTALCHAPTER": "103",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Ngôn Tình, Trùng Sinh",
+        "AUTHOR": "Vivian",
+        "TRANS": "yappa",
+        "DESC": "Thể loại: Trọng Sinh\r\n&nbsp;\r\nLớn tuổi thặng nữ Kiều Kiều tao ngộ trong sinh hoạt, sự nghiệp thượng c&aacute;c loại bất thuận lợi, mượn rượu ti&ecirc;u sầu, tỉnh, lại trở lại t&aacute;m tuổi năm ấy, đ&acirc;y l&agrave; l&atilde;o thi&ecirc;n gia cấp cơ hội của n&agrave;ng sao? Mặc kệ thế n&agrave;o, n&agrave;ng cũng sẽ nắm lấy cơ hội lần n&agrave;y, sống ra kh&ocirc;ng đồng dạng như vậy ch&iacute;nh m&igrave;nh ~<br /><br />Nội dung nh&atilde;n: Thanh mai tr&uacute;c m&atilde; thời đại kỳ duy&ecirc;n",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

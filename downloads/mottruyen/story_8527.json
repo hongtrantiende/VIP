@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "8527",
+        "NAME": "Chí Tôn Cổ Ma",
+        "CHAPTER": [
+            {
+                "id": "2923492",
+                "name": "Chương 1: Một chiêu bị thua"
+            }
+        ],
+        "TOTALCHAPTER": "1292",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo",
+        "AUTHOR": "Nam Tống Man Đầu",
+        "TRANS": "808",
+        "DESC": "Cổ Ma vẫn lạc, thần nhân quật khởi thời đại. Thiếu niên Lý Phong, lấy được Cổ Ma truyền thừa, chiến cửu thiên thập địa vô số thiên tài, một đường nghiền ép, thành tựu Cổ Ma hung danh!",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "5566",
+        "NAME": "Thượng Phẩm Sơn Trang",
+        "CHAPTER": [
+            {
+                "id": "1978423",
+                "name": "Chương 1: Bài Cũ Tình Tiết"
+            }
+        ],
+        "TOTALCHAPTER": "549",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đô Thị, Huyền Ảo, Dị Năng",
+        "AUTHOR": "Ngũ Đấu Tiểu Dân",
+        "TRANS": "Mrkiss",
+        "DESC": "Sau khi bị bạn g&aacute;i đ&aacute;, c&oacute; ch&uacute;t nản l&ograve;ng tho&aacute;i ch&iacute; Trang Dật chuẩn bị trở về l&atilde;o gia thời điểm, được một thần kỳ kh&ocirc;ng gian, từ đ&oacute; về sau, Trang Dật sinh hoạt sinh biến h&oacute;a nghi&ecirc;ng trời. Xe h&agrave;ng hiệu, mỹ nữ, của cải lũ lượt k&eacute;o đến, Trang Dật tr&igrave;nh diễn vừa ra ho&agrave;n mỹ điểu tia đột k&iacute;ch ngược tr&ograve; hay.<br /> PS: Truyện viết theo dạng Đ&ocirc; Thị - Hương Thổ giống kiểu \" N&ocirc;ng Gia Ti&ecirc;n Điền\"",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

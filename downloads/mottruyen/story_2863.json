@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "2863",
+        "NAME": "Đô Thị Trận Pháp Sư",
+        "CHAPTER": [
+            {
+                "id": "962356",
+                "name": "Chương 1: Hỗn Độn Bảo Ngọc"
+            }
+        ],
+        "TOTALCHAPTER": "495",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đô Thị",
+        "AUTHOR": "Ngũ Thải Bối Xác",
+        "TRANS": "Dothanhqui",
+        "DESC": "Lấy được dị giới truyền thừa, th&agrave;nh tựu đ&ocirc; thị cường giả.<br /><br />Người kh&aacute;c đều cho rằng ta l&agrave; một t&ecirc;n phong thuỷ đại t&ocirc;ng sư, kỳ thực ta l&agrave; một t&ecirc;n trận ph&aacute;p sư, đồng thời cũng l&agrave; một vị thế giới b&aacute;n lẻ nghiệp &ocirc;ng tr&ugrave;m.<br /><br />C&oacute; tinh tướng, c&agrave;ng c&oacute; giẫm người!<br /><br />C&oacute; nhiệt huyết, c&agrave;ng c&oacute; đặc sắc chiến đấu!",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

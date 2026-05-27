@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "3908",
+        "NAME": "Đường Môn Cao Thủ Tại Dị Giới",
+        "CHAPTER": [
+            {
+                "id": "1392300",
+                "name": "Chương 1:  dị giới Đường Phong"
+            }
+        ],
+        "TOTALCHAPTER": "1241",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Dị Giới",
+        "AUTHOR": "Mạc Mặc",
+        "TRANS": "trang4mat",
+        "DESC": "Th&agrave; gặp Di&ecirc;m La Vương, đừng chọc Đường M&ocirc;n lang!<br /><br />H&agrave;nh tẩu tại trong b&oacute;ng tối, h&egrave;n hạ nhưng kh&ocirc;ng mất bản t&iacute;nh, v&ocirc; sỉ lại kh&ocirc;ng n&eacute;m phong độ C&acirc;u hồn sứ giả!<br /><br />Một c&aacute;i Đường M&ocirc;n đệ tử trọng sinh đến một c&aacute;i tất cả đều l&agrave; nữ tử tạo th&agrave;nh m&ocirc;n ph&aacute;i về sau c&acirc;u chuyện.<br /><br />&Ocirc;ng trời thuận ta &ocirc;ng trời xương, &ocirc;ng trời nghịch ta gọi hắn vong!",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

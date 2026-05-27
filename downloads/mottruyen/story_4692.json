@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "4692",
+        "NAME": "Siêu cấp khô lâu binh",
+        "CHAPTER": [
+            {
+                "id": "1662059",
+                "name": "Chương 1: Bảy lần thánh chiến"
+            }
+        ],
+        "TOTALCHAPTER": "100",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp, Huyền Ảo, Dị Giới",
+        "AUTHOR": "Tình chung lưu thủy",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Một khô lâu bắt đầu có ý thức trên chiến trường, bắt đầu hành trình khám phá thế gian, trở nên mạnh mẽ để bảo vệ mình và đồng loại....<br />\r\n<br />\r\nBất tử đế quốc thống trị thế giới vạn năm trước đột ngột biến mất, hành trình tìm kiếm câu trả lời.<br />\r\n<br />\r\nTừng bước thành thần, hé mở bức màn lịch sử...<br />\r\n <br />\r\nHành trình cường giả của một khô lâu bắt đầu.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

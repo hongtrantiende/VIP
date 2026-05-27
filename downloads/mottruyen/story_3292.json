@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "3292",
+        "NAME": "Dị Thế Toàn Năng Đại Sư",
+        "CHAPTER": [
+            {
+                "id": "1149809",
+                "name": "Chương 1: Viêm Dương thành"
+            }
+        ],
+        "TOTALCHAPTER": "290",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo",
+        "AUTHOR": "Tuyệt Thế Hảo Kiếm",
+        "TRANS": "Culydi_PS",
+        "DESC": "Thường một c&aacute;i dược liệu liền có th&ecirc;̉ bi&ecirc;́t th&agrave;nh phần c&ugrave;ng c&aacute;c loại c&ocirc;ng dụng... Sờ một ch&uacute;t vũ kh&iacute; liền c&oacute; thể hiểu r&otilde; chất liệu c&ugrave;ng r&egrave;n đ&uacute;c c&ocirc;ng nghệ... Phương Dịch đ&atilde; đủ biến th&aacute;i, nhưng m&agrave; c&agrave;ng biến th&aacute;i ch&iacute;nh l&agrave;, hắn lại liếc mắt nh&igrave;n liền c&oacute; thể học được đối phương ph&aacute;p thuật thần th&ocirc;ng! . . .",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "10150",
+        "NAME": "Cực Tốc Cuồng Nhân",
+        "CHAPTER": [
+            {
+                "id": "3407485",
+                "name": "Chương 1: Tốc độ 99 là cái cái quỷ gì?"
+            }
+        ],
+        "TOTALCHAPTER": "250",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo",
+        "AUTHOR": "Bính mình qua",
+        "TRANS": "Thích Như Thế",
+        "DESC": "thiếu niên xuyên qua lúc sau, tự mang theo tốc độ thuộc tính giá trị 99 điểm.<br />\r\nNghịch thiên a! Đây chính là cái này tân thế giới tối cao tốc độ.<br />\r\nTừ đây, thiếu niên trở thành một cái cực nhanh cuồng nhân, lấy tốc độ tra tấn sở hữu đối thủ.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

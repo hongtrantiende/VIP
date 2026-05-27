@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "4507",
+        "NAME": "Chiến Thần Niên Đại",
+        "CHAPTER": [
+            {
+                "id": "1602579",
+                "name": "Chương 1: \tKhương thị Khương Nghị"
+            }
+        ],
+        "TOTALCHAPTER": "737",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo, Dị Giới",
+        "AUTHOR": "Thí Nghiệm Chuột Bạch",
+        "TRANS": "๖ۣۜLiu",
+        "DESC": "Ki&ecirc;m gia thương thương, bạch lộ vi sương, từng l&agrave;m si nh&acirc;n, huyết thủy một phương.<br /> <br /> Lu&ocirc;n c&oacute; &iacute;t thứ, l&agrave; đ&aacute;ng bị kỷ niệm, hiến cho c&aacute;i kia huyết y phi&ecirc;u phi&ecirc;u ni&ecirc;n đại.<br /> <br /> - l&atilde;o Th&iacute; Nghiệm Chuột Bạch t&aacute;c giả  truyện \"V&otilde; Thần Phong <br /> - Bộ n&agrave;y hứa hẹn sẽ lại l&agrave; một Si&ecirc;u phẩm nữa. Anh em c&ugrave;ng đ&oacute;n đọc nh&eacute;.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

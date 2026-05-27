@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "11948",
+        "NAME": "Thêm Giờ Tiên Tôn",
+        "CHAPTER": [
+            {
+                "id": "3923493",
+                "name": "Chương 1: Sát cơ tứ phía"
+            }
+        ],
+        "TOTALCHAPTER": "178",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp",
+        "AUTHOR": "Chu Thiên Tử Xuất Hành",
+        "TRANS": "TieuNhanGian",
+        "DESC": "Tiên ma tranh bá, phàm nhân biến thành thịt cá! Tại đây phân tranh loạn thế, Kim Vô Chỉ lặng yên hàng lâm, ngay tại hắn đối mặt tràn đầy ác ý mờ mịt không liệu thời điểm, trong cơ thể không thôi xuất hiện siêu cấp thêm giờ hệ thống!",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

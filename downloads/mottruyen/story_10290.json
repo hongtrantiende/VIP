@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "10290",
+        "NAME": "Võng Du Chung Cực Quái Vật",
+        "CHAPTER": [
+            {
+                "id": "3448166",
+                "name": "001 chương chung cực quái vật"
+            }
+        ],
+        "TOTALCHAPTER": "70",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo, Võng Du",
+        "AUTHOR": "không biết",
+        "TRANS": "không biết",
+        "DESC": "Sở Phong , một cao cấp game thủ vì một lý do bí mật mà khi vào game lại trở thành 1 con 10 cấp liệt diễm thử boss (con boss có lv cấp thấp nhất trong game).<br />\r\n1 game thủ trong lốt boss bước đi trên con đường tiến hóa thành chung cực boss<br />\r\n(game này quái vật có thể đạt được kinh nghiệm từ giết game thủ hoặc quái vật khác)",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

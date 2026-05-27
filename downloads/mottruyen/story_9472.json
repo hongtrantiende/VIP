@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "9472",
+        "NAME": "Bàn Long Chi Minh Vương",
+        "CHAPTER": [
+            {
+                "id": "3201411",
+                "name": "Chương 1 : Xuyên Qua  ."
+            }
+        ],
+        "TOTALCHAPTER": "91",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đồng Nhân",
+        "AUTHOR": "deptraiconnho4321",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Xuyên qua Bàn Long trở thành Ma Thú từ đó quật khởi thành chí cao Chưởng Khống Giả",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

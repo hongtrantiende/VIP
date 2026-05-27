@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "7083",
+        "NAME": "Chung Cực Đạo",
+        "CHAPTER": [
+            {
+                "id": "2518648",
+                "name": "Chương 1 : Tự Chương"
+            }
+        ],
+        "TOTALCHAPTER": "4",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp, Huyền Ảo",
+        "AUTHOR": "votinhlangtu995@",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Ma thì sao? mà thần thì thế nào ? chẳng phải là cuối cùng cũng chỉ còn cát bụi thôi sao? Đạo 3000 loại đâu là đại đạo . Đạo ta duy nhất , nhất Đạo Chung Cực.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

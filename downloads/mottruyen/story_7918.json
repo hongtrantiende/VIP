@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "7918",
+        "NAME": "Đảo Xám Hối",
+        "CHAPTER": [
+            {
+                "id": "2766614",
+                "name": "Đảo Xám Hối"
+            }
+        ],
+        "TOTALCHAPTER": "1",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đô Thị",
+        "AUTHOR": "ngohieuxm@",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Thời kì mới bắt đầu.<br />\r\nNhững lãnh đạo Liên Hiệp Quốc cùng nhau thực hiện một kế hoạch bí ẩn.<br />\r\nCho những người mạnh nhất dù tốt hay xấu từ 17-18 tuổi tập trung lại trên một hòn đảo không xác định trên bản đồ<br />\r\nĐẢO XÁM HỐI<br />\r\nNgô Vân Thiên cũng có trong đó.<br />\r\nTình yêu.Tình anh em.Kẻ thù.Tốt xấu.........",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

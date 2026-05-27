@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "10691",
+        "NAME": "Đế Hoàng Tu La Quyết",
+        "CHAPTER": [
+            {
+                "id": "3553003",
+                "name": "Chương 1: Đại nạn hẳn phải chết tất có hậu phúc"
+            }
+        ],
+        "TOTALCHAPTER": "150",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp, Huyền Ảo",
+        "AUTHOR": "Tiếu Tỉnh Liễu Khốc",
+        "TRANS": "cstdlifecstd",
+        "DESC": "Một là tu Nguyên giả cấp độ đầu tiên là Luyện thể, lại là Nguyên giả, Nguyên sư, Đại nguyên sư, Nguyên linh, Nguyên vương, Nguyên hoàng, Nguyên tôn, Nguyên thánh, Nguyên đế còn có thành thần, nhưng là Nguyên đế cùng thần hiện tại cùng bản không có.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

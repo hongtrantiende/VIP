@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "914",
+        "NAME": "Long Huyết Chiến Thần",
+        "CHAPTER": [
+            {
+                "id": "221689",
+                "name": "Chương 1: Long hình ngọc bội"
+            }
+        ],
+        "TOTALCHAPTER": "3724",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo",
+        "AUTHOR": "Phong Thanh Dương",
+        "TRANS": "Thánh Địa Già Thiên",
+        "DESC": "Long Thần, vốn l&agrave; kh&ocirc;ng c&ograve;n g&igrave; kh&aacute;c c&ocirc;ng tử bột, nhưng bởi v&igrave; cha để lại lưu thần b&iacute; ngọc bội, nuốt Viễn Cổ Thần Long chi truyền thừa tinh huyết, lấy ng&agrave;n tỉ Long Tộc d&ograve;ng m&aacute;u, sở hữu mỹ nữ, &aacute;c chiến thi&ecirc;n hạ!\r\n<br />Tương truyền, Viễn Cổ thời k&igrave; Long Tế Đại Lục, l&agrave; Th&aacute;i Cổ Thần Long thi&ecirc;n hạ, cho đến ng&agrave;y nay, Thần Long tuyệt diệt hầu như kh&ocirc;ng c&ograve;n. Ph&aacute; Long mạch, Ngưng Thần Đan, vũ động Thi&ecirc;n H&agrave; ng&ocirc;i sao, th&acirc;n độ Lu&acirc;n Hồi vạn kiếp, mặc ngươi tu vi Th&ocirc;ng Thi&ecirc;n triệt địa, thực lực ph&aacute;ch tuyệt ho&agrave;n vũ, ta tự c&oacute; Viễn Cổ thập đại Tổ Long tinh huyết, nuốt vũ trụ thi&ecirc;n địa, chưởng khống v&ocirc; tận sinh linh, Long chi truyền nh&acirc;n, vạn cổ trường tồn!",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

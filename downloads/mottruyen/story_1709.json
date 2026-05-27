@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "1709",
+        "NAME": "Vũ Nghịch",
+        "CHAPTER": [
+            {
+                "id": "705769",
+                "name": "Chương 1:Phong Hạo"
+            }
+        ],
+        "TOTALCHAPTER": "2843",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo",
+        "AUTHOR": "Chích Thị Tiểu Hà Mễ",
+        "TRANS": "๖ۣۜTuyệt Thế Vũ Thần๖ۣۜ     Hắc Công Tử",
+        "DESC": "Thi&ecirc;n Vũ Đại Lục, cường giả vi t&ocirc;n. T&ocirc;n nghi&ecirc;m bị giẫm l&ecirc;n, Phong Hạo dứt kho&aacute;t mở ra Hư Vũ Thể Chất, từ đ&acirc;y bước l&ecirc;n Vũ Nghịch con đường, kh&ocirc;ng sinh tức tử, lấy thế gian dị tinh luyện thể, mượn hung th&uacute; tinh ph&aacute;ch t&ocirc;i th&acirc;n, th&agrave;nh tựu V&ocirc; Thượng Nhục Th&acirc;n. Chờ chưởng khống hư vũ thời gian, To&aacute;i Diệt C&agrave;n Kh&ocirc;n, nổi giận ch&eacute;m b&aacute;t phương.  Cấp bậc : V&otilde; Đồ -- V&otilde; Giả -- vũ sư -- Đại Vũ Sư -- Vũ Linh -- Vũ T&ocirc;ng -- Vũ T&ocirc;n -- Vũ Vương -- Vũ Ho&agrave;ng -- Vũ Th&aacute;nh -- Vũ Đế",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "6167",
+        "NAME": "Đại Thiền Sư - Bất Ngôn Tiểu Phật",
+        "CHAPTER": [
+            {
+                "id": "2201380",
+                "name": "Chương 1: Thiền Sư sống lại"
+            }
+        ],
+        "TOTALCHAPTER": "10",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo, Dị Giới, Xuyên Không",
+        "AUTHOR": "Bất Ngôn Tiểu Phật - 不言小佛",
+        "TRANS": "Hoàng Châu",
+        "DESC": "Thiền sư Lô Tử Tín mang theo một chỉ thích chơi gậy sắt khỉ con, sống lại võ đạo thịnh thế.<br />\r\n<br />\r\nLô Tử Tín phát hiện, Thiền tông thiền lý, dĩ nhiên là võ đạo chí lý. Thiện môn thần thông, dĩ nhiên là vô thượng võ kỹ!<br />\r\n<br />\r\nQuần hùng tranh bá, võ tu ngang dọc. Vậy thì như thế nào? Xem ta thiền hành thiên hạ, mang theo ba ngàn đệ tử, giáo hóa chư thiên!<br />\r\n<br />\r\nHồng nhan làm bạn, khoái ý ân cừu. Không thành Phật cũng không thành Ma, ta vì là Đại Thiền sư!",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

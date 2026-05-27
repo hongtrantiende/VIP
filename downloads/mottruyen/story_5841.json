@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "5841",
+        "NAME": "One Piece Chi Tối Cường Phó Thuyền Trưởng",
+        "CHAPTER": [
+            {
+                "id": "2097367",
+                "name": "Chương 1: Thỏ ca ca"
+            }
+        ],
+        "TOTALCHAPTER": "450",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Xuyên Không, Đồng Nhân",
+        "AUTHOR": "Nhiều Converter",
+        "TRANS": "Masaki",
+        "DESC": "Co M tranh phách có trọng yếu như vậy sao ? Chí ít Nero không cho rằng như vậy .<br />\r\n<br />\r\n\tCho nên khi cậu trai kia hô, \"Ta là muốn trở thành vua hải tặc nam nhân!\"<br />\r\n<br />\r\n\tNero cũng chỉ có cố gắng trở thành một mạnh nhất phó thuyền trưởng .<br />\r\n<br />\r\n\tBảo tàng lớn nhất là cái gì ?<br />\r\n<br />\r\n\tKỳ thực có sức mạnh thủ hộ ngươi sở đồ vật ưu thích như vậy đủ rồi .",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

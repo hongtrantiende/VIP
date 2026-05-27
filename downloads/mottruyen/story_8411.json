@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "8411",
+        "NAME": "Điều Giáo Đại Tống",
+        "CHAPTER": [
+            {
+                "id": "2883463",
+                "name": "Chương 1: Quán ăn Đường Ký"
+            }
+        ],
+        "TOTALCHAPTER": "1015",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Lịch Sử, Xuyên Không",
+        "AUTHOR": "Thương Sơn Nguyệt",
+        "TRANS": "Nhiều Converter",
+        "DESC": "\"Khánh Lịch sáu năm, Trung Nguyên đại địa bị đàn sói vây quanh, Triệu Tống vương triều ca múa mừng cảnh thái bình. . . .<br />\r\n<br />\r\n\tĐường Dịch mộng về ngàn năm, tận mắt nhìn thấy Đại Tống ung dung hoa quý cùng dịu dàng.<br />\r\n<br />\r\n\tBan đầu hắn chỉ muốn hưởng thụ cái thời đại này, cái gì Tĩnh Khang sỉ nhục, Mông Cổ thiết kỵ đều không có quan hệ gì với hắn. Dù sao như thế nào đi nữa làm ầm ĩ lịch sử đều có chính nó quỹ tích.<br />\r\n<br />\r\n\tNgàn năm sau khi Trung Hoa vẫn là Trung Hoa! Vong không được!<br />\r\n<br />\r\n\tNhưng khi vị kia lo nước thương dân lão nhân xuất hiện ở trước mặt hắn thời điểm, hắn tâm thay đổi. . . Hắn muốn vì ông già kia làm chút gì thuận tiện là cái thời đại này làm chút gì. . . .<br />\r\n<br />\r\n\tLiền làm sao đem Đại Tống này con cừu con, biến thành con sói nhe nanh tư bản là Đường Dịch mục tiêu duy nhất!\"",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

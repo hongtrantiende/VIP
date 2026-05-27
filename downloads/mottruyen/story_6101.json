@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "6101",
+        "NAME": "Thí Thiên Phong Thần",
+        "CHAPTER": [
+            {
+                "id": "2186209",
+                "name": "Chương 1: Đoạn tuyệt tán"
+            }
+        ],
+        "TOTALCHAPTER": "955",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp, Huyền Ảo",
+        "AUTHOR": "Y cựu đích mê mang",
+        "TRANS": "Hon_don",
+        "DESC": "Mạng như thi&ecirc;n định , c&aacute;i kia ta liền r&aacute;ch c&aacute;i n&agrave;y thi&ecirc;n !",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

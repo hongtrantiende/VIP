@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "9545",
+        "NAME": "Phần Thiên Long Đế",
+        "CHAPTER": [
+            {
+                "id": "3222315",
+                "name": "Chương 1: Tà Long Phần Thiên luân"
+            }
+        ],
+        "TOTALCHAPTER": "137",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp, Huyền Ảo",
+        "AUTHOR": "còi funny",
+        "TRANS": "còi funny",
+        "DESC": "Đc 500c rồi nhé các chế, hay phết",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

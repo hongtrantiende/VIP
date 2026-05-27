@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "11881",
+        "NAME": "Dương Danh Thiên Hạ",
+        "CHAPTER": [
+            {
+                "id": "3901378",
+                "name": "Trùng Sinh"
+            }
+        ],
+        "TOTALCHAPTER": "1",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Kiếm Hiệp, Trùng Sinh",
+        "AUTHOR": "kaguyga",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Dương Thiên xuyên không đến dị giới.<br />\r\nGia tộc bị diệt? Và cuộc trả thù của Dương Thiên.<br />\r\n<br />\r\nTruyện chia thành 9 cảnh giới : sơ linh ,đồ linh , sử linh,giả linh,vương linh,thượng linh,thánh linh,thần linh ,đế linh.<br />\r\n<br />\r\nTừ cảnh giới sơ linh đến thượng linh chia thành 9 tiểu cảnh giới. Còn các cảnh giới còn lại chia làm sơ kỳ - trung kỳ - đại thành.<br />\r\n<br />\r\nNguyên tố : Sét , Lửa , Gió , Đất , Băng , Bóng tối.<br />\r\n<br />\r\nVũ Kỹ chia thành 5 loại : Hạ , Trung , Cao , Thượng , Địa , Thiên .",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "4486",
+        "NAME": "Tranh Bá Thiên Hạ",
+        "CHAPTER": [
+            {
+                "id": "1599295",
+                "name": "Chương 1: Trong biên thành đặc thù nhất người"
+            }
+        ],
+        "TOTALCHAPTER": "20",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Quân Sự, Lịch Sử",
+        "AUTHOR": "Biết bạch",
+        "TRANS": "Mẫn Tinh Nham",
+        "DESC": "Giải quyết vấn đề biện pháp tốt nhất chỉ có hai cái, tiền cùng đao. Leo lên hướng lên trên không có đường tắt, nếu như có cũng chỉ thuộc về chuẩn bị càng đầy đủ người. Thái bình thịnh thế bên trong Phương Giải muốn làm một cái phú gia ông, đáng tiếc thất bại . Thời loạn lạc bên trong Phương Giải muốn làm một cái thái bình ông, đáng tiếc hắn lại thất bại. Vì lẽ đó, hắn tranh bá thiên hạ.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

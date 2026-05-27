@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "12829",
+        "NAME": "Dị Giới Sát Thủ",
+        "CHAPTER": [
+            {
+                "id": "4143725",
+                "name": "Chương 1 : Chán nản"
+            }
+        ],
+        "TOTALCHAPTER": "6",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Võng Du, Khoa Huyễn, Xuyên Không",
+        "AUTHOR": "uy.nguyhiem@",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Một cái đỉnh cấp đạo tặc bị chuyển tới thế giới khác ? <br />\r\nTrong một cái thế giới mà Pháp sư mới là cao quý , một cái đạo tặc phải làm gì đây ?<br />\r\nĐọc và góp ý nhé .",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

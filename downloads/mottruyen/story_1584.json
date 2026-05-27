@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "1584",
+        "NAME": "Tuyệt Thế Cao Thủ Tại Đô Thị",
+        "CHAPTER": [
+            {
+                "id": "649009",
+                "name": "Chương 1: Trộm chính là ta"
+            }
+        ],
+        "TOTALCHAPTER": "807",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đô Thị",
+        "AUTHOR": "Lãng Đãng Tà Thiểu",
+        "TRANS": "Diego",
+        "DESC": "Thuở nhỏ bị lai lịch b&iacute; ẩn L&atilde;o Đầu bồi dưỡng th&agrave;nh tuyệt thế cao thủ c&ocirc; nhi Ti&ecirc;u Dịch, tại Bắc Phi chấp h&agrave;nh xong một c&aacute;i nhiệm vụ sau khi trở lại, lại bị l&atilde;o gi&agrave; một tấm đơn giản nhắn lại c&aacute;i ph&aacute;i đến G thị Z đại học n&agrave;y to&agrave;n quốc c&oacute; tiếng nhất lưu đại học, vẫn kh&ocirc;ng c&oacute; biết r&otilde; l&atilde;o gi&agrave; để hắn đến Z đại mục đ&iacute;ch cuối c&ugrave;ng, nhưng phản l&agrave;m cho m&igrave;nh l&acirc;m v&agrave;o c&ugrave;ng một c&aacute;i lại một c&aacute;i ban hoa hoa kh&ocirc;i của trường cảnh hoa thục nữ hoa m&ocirc;n &aacute;m muội kh&ocirc;ng r&otilde; quan hệ b&ecirc;n trong, điều n&agrave;y l&agrave;m cho hai mươi năm qua vẫn l&agrave; ng&acirc;y thơ đồng nam nhỏ Ti&ecirc;u Dịch l&agrave;m sao chịu nổi...",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

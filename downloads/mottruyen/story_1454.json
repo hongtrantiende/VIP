@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "1454",
+        "NAME": "Thánh Mạch Vũ Hoàng",
+        "CHAPTER": [
+            {
+                "id": "606684",
+                "name": "Chương 1: Hắc Sắc Thạch Đầu"
+            }
+        ],
+        "TOTALCHAPTER": "32",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo",
+        "AUTHOR": "Quá Kiều Khán Thủy",
+        "TRANS": "Giangnam189",
+        "DESC": "Mạch giả , lấy mạch lực ho&agrave;nh h&agrave;nh thi&ecirc;n hạ , tu luyện ch&iacute; cực tr&iacute;ch th&acirc;n thủ tr&iacute;ch tinh , trở tay che trời , mỗi người trời sanh sở ban cho linh căn bất đồng , liền nhất định phải đi một c&aacute;i bất đồng đường .\r\n&nbsp;\r\nNh&acirc;n vật ch&iacute;nh người mang năm mạch , cũng l&agrave; trở th&agrave;nh thi&ecirc;n cổ đệ nhất phế vật , nếu năm mạch kh&ocirc;ng thể độc tiến , như vậy năm mạch đồng tu th&igrave; như thế n&agrave;o , cuối c&ugrave;ng c&oacute; một ng&agrave;y ta sẽ đạp thi&ecirc;n ph&aacute; địa , để cho chư thi&ecirc;n run rẩy , vạn vật thần phục",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

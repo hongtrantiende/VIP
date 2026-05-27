@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "12343",
+        "NAME": "Đại Chủ Làm Thịt",
+        "CHAPTER": [
+            {
+                "id": "4030816",
+                "name": "Chương thứ 21: Sân huấn luyện phong ba"
+            }
+        ],
+        "TOTALCHAPTER": "2",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo",
+        "AUTHOR": "Thiên Tàm Khoai Tây",
+        "TRANS": "HNH",
+        "DESC": "Làm người ta hướng tới đích truyền kỳ , theo đuổi trứ chủ kia làm thịt đường . <br />\r\nVô tận lửa vực , viêm đế chấp chưởng , vạn lửa đốt trời cao . <br />\r\nVũ cảnh bên trong , vũ tổ oai , chấn nhiếp càn khôn . <br />\r\nTây thiên chi điện , bách chiến chi hoàng , chiến uy không thể địch . <br />\r\nBắc hoang chi khâu , vạn mộ đất , không chết đứng đầu trấn thiên địa . <br />\r\n......<br />\r\nThiếu niên tự bắc linh cảnh ra , kỵ Cửu U minh tước , xông hướng kia đặc sắc tuyệt luân đích phân vân thế giới , chúa tể đường , người nào chủ chìm nổi ? <br />\r\nĐại thiên thế giới , vạn đạo tranh phong , ta vì đại chủ làm thịt . <br />\r\n..................",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

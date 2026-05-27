@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "3615",
+        "NAME": "Hàn ngu tới đại minh tinh",
+        "CHAPTER": [
+            {
+                "id": "1250912",
+                "name": "Chương 1: Super star K"
+            }
+        ],
+        "TOTALCHAPTER": "297",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đô Thị",
+        "AUTHOR": "Đông đỉnh cây xương rồng",
+        "TRANS": "Mọt sách",
+        "DESC": "Mỹ tịch hàn duệ Lâm Tại Hiền một cái bất ngờ đi vào Hàn quốc giới giải trí, ở tên này lợi trong sàn, hắn tùy hứng, hắn phong lưu, hắn tiêu sái, đùa bỡn hàn ngu vô cực hạn.<br />\r\n<br />\r\n\tT-ARA mới là chúng ta yêu nhất.<br />\r\n<br />\r\n\tChế tạo một đời mới T-ARA mới là trọng yếu nhất, đăng đỉnh? Không muốn quá đơn giản...",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

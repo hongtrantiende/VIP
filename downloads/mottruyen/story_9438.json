@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "9438",
+        "NAME": "Dragon Ball Chi Ta Là Vegeta",
+        "CHAPTER": [
+            {
+                "id": "3383910",
+                "name": "Chương 1: Xuyên qua trở thành Vegeta"
+            }
+        ],
+        "TOTALCHAPTER": "774",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đồng Nhân",
+        "AUTHOR": "Linh Sơn Đảo Chủ",
+        "TRANS": "DarkHero",
+        "DESC": "Ta là Vegeta, chiến đấu dân tộc người Saiyan vương tử, trong vũ trụ kiêu ngạo nhất chiến sĩ!    Dragon Ball. OP... >1k chap",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

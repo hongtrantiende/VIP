@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "6061",
+        "NAME": "Thiên Thượng Chí Thần",
+        "CHAPTER": [
+            {
+                "id": "2176577",
+                "name": "Chương  : Tái Sinh"
+            }
+        ],
+        "TOTALCHAPTER": "30",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Dị Giới, Xuyên Không, Đồng Nhân",
+        "AUTHOR": "Shone",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Đây là câu chuyện về một kẻ hành quyết, thi hành pháp lý trên ba ngàn đại thế giới. Thế gian vô tình hay hữu tình ta không biết, ta chỉ biết rằng dưới lưỡi kiếm này dù thần, dù ma tất cả đều diệt, ta không quan tâm ai đúng ai sai, ta chỉ quan tam ta đúng hay sai mà thôi, ta đúng thì sao, mà sai thì sao ? ta cũng không biết.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

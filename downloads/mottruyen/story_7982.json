@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "7982",
+        "NAME": "Hải tặc vương chi thiêu thiêu trái cây",
+        "CHAPTER": [
+            {
+                "id": "2781356",
+                "name": "Chương 1 biển rộng tặc thời đại"
+            }
+        ],
+        "TOTALCHAPTER": "7",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Xuyên Không, Đồng Nhân",
+        "AUTHOR": "Vĩnh tồn tín ngưỡng",
+        "TRANS": "I'm MAN",
+        "DESC": "Ngọn lửa vừa ra, thiên địa đốt vô!<br />\r\n—— thiêu thiêu trái cây<br />\r\n“Khi ta trong cơ thể bốc cháy lên đệ nhất lũ ngọn lửa thời điểm, truyền thuyết cũng đã bắt đầu rồi.”<br />\r\n···························",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

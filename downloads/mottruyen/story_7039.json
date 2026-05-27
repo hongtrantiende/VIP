@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "7039",
+        "NAME": "Cổ Tích Thời @",
+        "CHAPTER": [
+            {
+                "id": "2506961",
+                "name": "Chương 1"
+            }
+        ],
+        "TOTALCHAPTER": "1",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đô Thị, Ngôn Tình",
+        "AUTHOR": "Cổ Long Lão Đạo",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Cô và anh quen nhau trong một lớp học võ. Anh trầm tính ít nói cô thì ngược lại rất hòa đồng và hay nói. Lần đầu gặp anh, thấy anh cứ lủi thủi một mình trên sân, có khi cả buổi chẳng thấy tập. Lúc đầu cô chỉ nghĩ vì thấy anh không ai nói chuyện, cô thấy tội quá nên cô chủ động đến bắt chuyện. Thế là quen, đơn giản mà.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

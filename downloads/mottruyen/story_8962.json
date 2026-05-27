@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "8962",
+        "NAME": "Saitama Hai Lần Nguyên Du ký.",
+        "CHAPTER": [
+            {
+                "id": "3047832",
+                "name": "Chương 1 : Saitama và cuộc thi kiếm thánh sứ."
+            }
+        ],
+        "TOTALCHAPTER": "2",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đồng Nhân",
+        "AUTHOR": "IanCross",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Không có gì đặc biệt, chỉ là 1 thanh niên xuyên việt thành Saitama và đi du lịch các thế giới 2d tiện tay mở cái harem thật lớn mà thôi.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

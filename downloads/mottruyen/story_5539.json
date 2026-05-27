@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "5539",
+        "NAME": "Tần Thì Chi Phản Diện Hệ thống",
+        "CHAPTER": [
+            {
+                "id": "1968862",
+                "name": "Chương 01: Không có hack xuyên qua không phải tốt xuyên qua"
+            }
+        ],
+        "TOTALCHAPTER": "165",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Khoa Huyễn, Xuyên Không",
+        "AUTHOR": "Thất tinh phì hùng",
+        "TRANS": "MisDax",
+        "DESC": "xuy&ecirc;n qua đến Tần Th&igrave; Minh Nguyệt thế giới, t&ugrave;y th&acirc;n c&ograve;n bổ sung một c&aacute;i hố cha hệ thống. Doanh Tử Dặc kh&ocirc;ng thể kh&ocirc;ng lau mồ h&ocirc;i, c&ograve;n c&oacute; hơn hai mươi năm, Tần triều liền phải chơi xong. Chơi xong liền chơi xong đi, m&igrave;nh c&ograve;n c&ugrave;ng Tần triều kh&oacute;a lại ở c&ugrave;ng nhau, ai bảo hắn họ Doanh đ&acirc;u?<br /> <br /> Cuối c&ugrave;ng, Doanh Tử Dặc biểu thị, đi con đường của m&igrave;nh, để Huyền Cơ nương nương kh&ocirc;ng đường c&oacute; thể đi. <br /> ps: test thử 15c thấy cũng được n&ecirc;n m&igrave;nh đ&agrave;o hố :)",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "7031",
+        "NAME": "Thám Tử Conan Chi Bất Minh Sát Thủ",
+        "CHAPTER": [
+            {
+                "id": "2503844",
+                "name": "Chương 1: Ven đường hài tử không muốn kiếm"
+            }
+        ],
+        "TOTALCHAPTER": "419",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đồng Nhân",
+        "AUTHOR": "lâm trùng hoa",
+        "TRANS": "Khaox8896",
+        "DESC": "Đệ nhất thế giới s&aacute;t thủ xuy&ecirc;n qua đến Conan thế giới, c&ugrave;ng Ai Haibara đồng thời bị Agasa tiến sĩ thu dưỡng.<br /> <br /> Ta kh&ocirc;ng hiểu thương, nhưng ta phi đao nhanh hơn vi&ecirc;n đạn.<br /> <br /> T&igrave;nh h&oacute;a gi&aacute;p? Thử xem ta v&agrave;o m&aacute;u l&agrave; chết.<br /> <br /> C&aacute;i g&igrave; bay lượn dực? Ta đ&acirc;y gọi Ngự Đao phi h&agrave;nh!<br /> <br /> Ta mới chưa từng ăn APTX4869 đ&acirc;y! Ta sẽ biến th&agrave;nh đứa nhỏ l&agrave; bởi v&igrave; phản ph&aacute;c quy ch&acirc;n, c&oacute; tin ta hay kh&ocirc;ng bất cứ l&uacute;c n&agrave;o c&oacute; thể biến trở về đến?",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "4195",
+        "NAME": "Thương Khung Chi Chủ",
+        "CHAPTER": [
+            {
+                "id": "1525100",
+                "name": "Chương 01: Thanh Ngưu truyền thừa"
+            }
+        ],
+        "TOTALCHAPTER": "246",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo",
+        "AUTHOR": "Phong Thánh Đại Bằng",
+        "TRANS": "thtgiang",
+        "DESC": "Đại thi&ecirc;n thế giới, chư thi&ecirc;n tinh đấu, đều ở tay ta. Y&ecirc;u ma quỷ qu&aacute;i, &acirc;m dương vạn ph&aacute;p, nhất niệm sinh diệt. Thi&ecirc;n đạo bất c&ocirc;ng, họa loạn ho&agrave;nh h&agrave;nh. Nh&acirc;n gian vương triều, mạnh được yếu thua. Ta kh&ocirc;ng cầu th&agrave;nh ti&ecirc;n th&agrave;nh thần, chỉ cầu một ng&agrave;y kia khống chế thương khung, l&agrave;m một c&aacute;i c&ocirc;ng bằng.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

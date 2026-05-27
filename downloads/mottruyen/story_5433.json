@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "5433",
+        "NAME": "Tha Thân Thượng Hữu Khối Ngọc",
+        "CHAPTER": [
+            {
+                "id": "1928324",
+                "name": "Chương 1: Thôi học thất nghiệp sau bị nện bể đầu"
+            }
+        ],
+        "TOTALCHAPTER": "474",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đô Thị",
+        "AUTHOR": "Tịnh Thủy",
+        "TRANS": "Nvccanh",
+        "DESC": "Một năm trước, Trần Ch&iacute;nh l&agrave; năm thứ hai đại học chết trạch, n&agrave;ng l&agrave; to&agrave;n trường nổi danh gi&aacute;o hoa, bởi v&igrave; n&agrave;ng, hắn đ&aacute;nh nhau sau đ&oacute; được th&ocirc;i học, trong l&ograve;ng hạ xuống tiếc nuối.<br /><br />Một năm sau, Trần Ch&iacute;nh được một khối ngọc đập bể đầu, từ đ&oacute; về sau, hắn nắm giữ thay đổi cuộc sống năng lượng.<br /><br />Dưới đất quyền k&iacute;ch địa, s&ograve;ng bạc, thị trường đồ cổ, đổ thạch tr&agrave;ng, s&agrave;n đấu gi&aacute; v&acirc;n v&acirc;n, hắn đ&aacute;nh đ&acirc;u thắng đ&oacute; kh&ocirc;ng g&igrave; cản nổi.<br /><br />Đương nhi&ecirc;n, hắn c&ograve;n muốn b&ugrave; đắp l&uacute;c trước c&aacute;i kia tiếc nuối",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

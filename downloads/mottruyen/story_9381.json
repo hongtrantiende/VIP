@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "9381",
+        "NAME": "Lấy Sách Nhập Đạo",
+        "CHAPTER": [
+            {
+                "id": "3174593",
+                "name": "Chương 1: Bút Lông ."
+            }
+        ],
+        "TOTALCHAPTER": "117",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp, Huyền Ảo, Xuyên Không",
+        "AUTHOR": "Phi Điểu Hắc Y",
+        "TRANS": "yykhongloithoat",
+        "DESC": "Thường nhìn các loại tiểu thuyết Diệp Thu Sinh xuyên việt đến Tu Chân Giới, cũng đạt được nguyên bản chủ nhân thần kỳ Bút Lông, Diệp Thu Sinh bắt đầu vô hạn diễn dịch con đường tu chân của mình...<br />\r\n<br />\r\n\t\"Tiểu Phàm Đại Thần, cầu mau mau đổi mới, lại không đổi mới ta liền từ phấn biến thành đen!\"<br />\r\n<br />\r\n\t\"Rống! Quá đẹp, khen thưởng một trăm linh thạch\"<br />\r\n<br />\r\n\t...<br />\r\n<br />\r\n\tNgẫu nhiên thần kỳ Bút Lông, mỹ nữ, đan dược, pháp bảo... Muốn cái gì vẽ cái gì, úc, mỹ nữ coi như xong, Tiểu Mỹ sẽ giết ta!<br />\r\n<br />\r\n#ps: Hố mới đào, cầu ủng hộ ! ^^<br />\r\n<br />\r\n★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆<br />\r\nCầu vote 10* !!<br />\r\nCầu vote cuối chương !! <br />\r\nCầu đề cử !!<br />\r\n★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

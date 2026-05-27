@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "905",
+        "NAME": "Hoàng Tộc Đại Chu",
+        "CHAPTER": [
+            {
+                "id": "215429",
+                "name": "Chương 1: Tỉnh lại"
+            }
+        ],
+        "TOTALCHAPTER": "1173",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo",
+        "AUTHOR": "Hoàng Phủ Kỳ",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Nh&acirc;n vật ch&iacute;nh Phương V&acirc;n, gặp cảnh cha bị giết, huynh trưởng bị phế v&otilde; c&ocirc;ng, uất ức m&agrave; tự tử, mẹ tuẫn tiết theo cha để giữ trọn nghĩa vợ chồng, tận mắt chứng kiến to&agrave;n gia tộc 320 người bị ch&eacute;m đầu trước cổng S&ugrave;ng Dương m&ocirc;n, m&agrave; ho&agrave;n to&agrave;n bất lực.\r\n<br />Thế nhưng, một lực lượng b&iacute; ẩn đ&atilde; cho hắn được l&agrave;m lại. Phương V&acirc;n quay ngược thời gian về 10 năm trước, đứng trước tương lai bi thảm của gia tộc, hắn phải liều mạng luyện tập v&otilde; c&ocirc;ng, để cứu v&atilde;n tất cả. Thế nhưng, b&aacute;nh xe vận mệnh lu&ocirc;n kh&ocirc;ng ngừng chuyển động, mỗi một h&agrave;nh động ng&agrave;y h&ocirc;m nay của hắn lại l&agrave;m tương lai chệch hướng, những g&igrave; m&agrave; hắn sắp đối mặt, đ&atilde; kh&ocirc;ng c&ograve;n như những g&igrave; m&agrave; hắn trải qua 10 năm về trước nữa.<br /><br />",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

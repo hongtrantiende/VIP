@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "9528",
+        "NAME": "Vạn Vực Vi Tôn",
+        "CHAPTER": [
+            {
+                "id": "3218819",
+                "name": "Chương 1: Thiếu niên Tử Phong"
+            }
+        ],
+        "TOTALCHAPTER": "164",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo",
+        "AUTHOR": "Độc Ái Nam",
+        "TRANS": "Daivuong",
+        "DESC": "Đại Thiên Thế Giới, vạn vực cùng tồn tại, tông môn san sát. Tiểu Gia Tộc đệ tử ngoài ý muốn giác tỉnh Truyền Thừa Ấn Ký thu hoạch được Thái Cổ Thối Thể Chi Pháp, tu hành chi đồ vượt mọi chông gai viết tiếp tinh không thần thoại. <br />\r\n<br />\r\n_Trong bóng tối quật cường tiến lên, trong mưa gió kinh lịch trưởng thành, chỉ vì trong lòng một khắc này vĩnh hằng.<br />\r\n<br />\r\nCảnh giới: Ngưng Khí Cảnh ---> Uẩn Khí Cảnh--> Hóa Khí Cảnh",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

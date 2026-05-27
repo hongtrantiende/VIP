@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "5666",
+        "NAME": "Đại Ma Đầu",
+        "CHAPTER": [
+            {
+                "id": "2020007",
+                "name": "Chương 1: Âm Sát Tông"
+            }
+        ],
+        "TOTALCHAPTER": "826",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo, Dị Giới, Xuyên Không",
+        "AUTHOR": "Ngạo Vô Thường",
+        "TRANS": "๖ۣۜNhox๖ۣۜMix๖",
+        "DESC": "Ngoạn triệu ho&aacute;n, luyện &acirc;m hồn, Huyết Tế Vạn Quỷ Phi&ecirc;n.<br /> <br /> Thả xem L&ocirc;i Động theo một c&aacute;i v&ocirc; danh tiểu bối, th&ecirc;m v&agrave;o T&agrave; T&ocirc;ng sau, từng bước một theo một c&aacute;i thiếu ni&ecirc;n b&igrave;nh thường lớn l&ecirc;n th&agrave;nh kinh thi&ecirc;n Đại Ma Đầu, ngang dọc với thi&ecirc;n hạ. Thuận ta th&igrave; sống, nghịch ta th&igrave; chết.<br /> ---------------------------------------------------<br /> FULL 827c",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

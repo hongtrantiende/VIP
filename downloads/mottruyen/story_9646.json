@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "9646",
+        "NAME": "Hàn Môn Kiêu Sĩ",
+        "CHAPTER": [
+            {
+                "id": "3396151",
+                "name": "Chương 1: Gió thu mưa thu"
+            }
+        ],
+        "TOTALCHAPTER": "1051",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Lịch Sử, Xuyên Không",
+        "AUTHOR": "Cao Nguyệt",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Khi quân Kim gót sắt sắp đạp nát Hoàng Hà băng cứng, hắn đi vào cái này phồn hoa như Thanh Minh Thượng Hà Đồ thời đại.<br />\r\n<br />\r\nTác giả định nghĩa nội dung: Thiết huyết tranh bá.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

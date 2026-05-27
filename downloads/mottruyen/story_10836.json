@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "10836",
+        "NAME": "Hồn Chiến Thánh Đế",
+        "CHAPTER": [
+            {
+                "id": "3596455",
+                "name": "Chương 1: Làm sao còn không chết!"
+            }
+        ],
+        "TOTALCHAPTER": "513",
+        "IMG": "https://static.cdnno.com/poster/hon-chien-thanh-de/150.jpg",
+        "CAT": "Huyền Ảo",
+        "AUTHOR": "Tĩnh Chỉ Đích Yên Hỏa",
+        "TRANS": "DarkHero",
+        "DESC": "Đại Ương Hoa Cung cung chủ Đế cấp Ch&uacute; Hồn sư, Đế cấp Luyện Kh&iacute; sư, Đế cấp Ph&ugrave; Văn sư, Đan Đế Tề Duệ bị y&ecirc;u nhất nữ nh&acirc;n c&ugrave;ng huynh đệ tốt nhất s&aacute;t hại.<br /> <br /> Mười năm sau, giữ lại ho&agrave;n chỉnh k&yacute; ức Tề Duệ mượn thi tr&ugrave;ng sinh, từ đ&acirc;y tu v&ocirc; thượng thần c&ocirc;ng, r&egrave;n đ&uacute;c tuyệt thế V&otilde; Hồn, th&agrave;nh tựu Hồn V&otilde; Th&aacute;nh Đế!",
+        "THUMB": "https://static.cdnno.com/poster/hon-chien-thanh-de/150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

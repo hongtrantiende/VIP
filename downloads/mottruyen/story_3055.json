@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "3055",
+        "NAME": "Này nhóc...em hư ắm rồi",
+        "CHAPTER": [
+            {
+                "id": "1044494",
+                "name": "Chương 1 : Đụng độ"
+            }
+        ],
+        "TOTALCHAPTER": "1",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Ngôn Tình",
+        "AUTHOR": "Tec Trần",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Mình viết truyện này chủ yếu là về 1 cô nhóc và 1 chàng trai lạnh lùng , và truyện không theo nghĩa kiếm hiệp gì hết ^^ mong các bạn theo dõi , share truyện giùm mik , liên hệ Facebook : Tec Trần để nhận quà nha",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

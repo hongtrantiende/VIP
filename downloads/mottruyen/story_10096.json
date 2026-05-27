@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "10096",
+        "NAME": "Ca Là Tiên Nhân Ca Sợ Ai",
+        "CHAPTER": [
+            {
+                "id": "3392551",
+                "name": "Chương 1 :  Hảo tâm bị sét đánh"
+            }
+        ],
+        "TOTALCHAPTER": "5",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp, Đô Thị, Huyền Ảo, Xuyên Không, Trùng Sinh",
+        "AUTHOR": "Thần tiên ca ca",
+        "TRANS": "tiencao621",
+        "DESC": "Người nào đó nguyên lai là một cái phế phẩm, sau lại ngoài ý muốn trọng sinh lại một lần, vì thế liên tiếp chuyện xưa bắt đầu. －－－<br />\r\n-------------------------------------<br />\r\nCầu cất chứa, cầu đề cử, cầu vote 10**",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "2819",
+        "NAME": "Siêu Nhân Lai Tập",
+        "CHAPTER": [
+            {
+                "id": "936318",
+                "name": "Chương 2 : Ma vương giáng lâm"
+            }
+        ],
+        "TOTALCHAPTER": "583",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Võng Du",
+        "AUTHOR": "Tam Thập Nhị Biến",
+        "TRANS": "Totung",
+        "DESC": "Ch&iacute;nh nghĩa c&ugrave;ng t&agrave; &aacute;c, l&agrave; kẻ địch vĩnh hằng!\r\n<br />Khi nữ si&ecirc;u nh&acirc;n c&ugrave;ng nữ Ma vương đồng thời xuất hiện ở L&acirc;m Bạch trước mặt, y&ecirc;u cầu hắn lựa chọn ch&iacute;nh nghĩa c&ugrave;ng t&agrave; &aacute;c con đường th&igrave;...\r\n<br />L&acirc;m Bạch vuốt ch&iacute;nh m&igrave;nh lương t&acirc;m nghĩ đến rất l&acirc;u, cuối c&ugrave;ng quyết định: \"Tuyển bộ ngực lớn.\"\r\n<br />P/S: S&aacute;ch mới của Ba hai c&ocirc;ng c&ocirc;ng, t&aacute;c giả quen thuộc với c&aacute;c bộ : \"Manh nương tam quốc diễn nghĩa\", \"Manh nương tứ hải vi gia\", \"Manh nương v&otilde; hiệp thế giới\". Lần n&agrave;y Ba hai c&ocirc;ng c&ocirc;ng muốn viết một quyển chứng minh \"manh\" hệ s&aacute;ch của m&igrave;nh \"manh\" kh&ocirc;ng chỉ ở t&ecirc;n m&agrave; c&ograve;n ở nội dung của n&oacute; nữa.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

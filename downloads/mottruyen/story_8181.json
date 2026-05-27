@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "8181",
+        "NAME": "Fairy Tail : Tối Cường Ma Đạo Sĩ",
+        "CHAPTER": [
+            {
+                "id": "2823348",
+                "name": "Chương 1 : Ares Swordeath"
+            }
+        ],
+        "TOTALCHAPTER": "5",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Xuyên Không, Đồng Nhân",
+        "AUTHOR": "hindeptrai123",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Một nhẫn giả vô tình đạt được được infinity gems thứ tám : Universe Gem  sau đó xuyên không vào Fairy Tail .",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

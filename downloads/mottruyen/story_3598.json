@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "3598",
+        "NAME": "Phần Thiên Chiến Thần",
+        "CHAPTER": [
+            {
+                "id": "1243907",
+                "name": "Chương 1: Thiên chi hỏa"
+            }
+        ],
+        "TOTALCHAPTER": "727",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo",
+        "AUTHOR": "Chích Thị Tiểu Hà Mễ",
+        "TRANS": "Mahoukuku",
+        "DESC": "Tr&ecirc;n người chịu hệ \"Hỏa\" dị năng Ti&ecirc;u Vũ sống lại đến lấy hỏa vi t&ocirc;n Thi&ecirc;n Hỏa đại lục, đối mặt bắt nạt, m&agrave; nh&igrave;n hắn dẫn Cửu Thi&ecirc;n Thần Hỏa t&uacute;y thể, ch&aacute;y hết vũ trụ sơn h&agrave;, trở th&agrave;nh người ch&uacute;a tể kia sinh tử đại đạo phần thi&ecirc;n chiến thần, để chư thần vạn giới ở liệt diễm b&ecirc;n trong r&ecirc;n rỉ!",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

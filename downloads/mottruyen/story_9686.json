@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "9686",
+        "NAME": "Diêm Phán",
+        "CHAPTER": [
+            {
+                "id": "3263783",
+                "name": "Chương 1 : Đế Minh"
+            }
+        ],
+        "TOTALCHAPTER": "1020",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Linh Dị",
+        "AUTHOR": "Nhuận Đức tiên sinh",
+        "TRANS": "Tâm",
+        "DESC": "Đế Minh một người bình thường y dược tiêu thụ đại biểu, ở du ngoạn lúc cũng bởi vì một cái thiện ý cử động cộng thêm thành tín lòng kính sợ, cuộc đời của hắn lúc đó cải biến . Thôi Phán, Địa Phủ số một phán quan, từ hắn làm Đế Minh hợp tác kiêm lão sư, vị này tâm tính ngay thẳng, văn tài gió Dương Đại Phán Quan có thể không đem Đế Minh mang thượng số làm quan Đại Đạo đây? Đúng quan trọng nhất là, chỗ tốt lĩnh, nhưng giao phó nhiệm vụ nhất định phải hoàn thành, còn nhớ rõ nhiệm vụ của ngươi là cái gì không ? Nhớ kỹ! còn không mau hành động! (bản cố sự chỉ do hư cấu, như có tương đồng, chỉ do vừa khớp . )",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

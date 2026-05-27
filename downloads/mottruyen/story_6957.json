@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "6957",
+        "NAME": "Con Đường Thành Thần",
+        "CHAPTER": [
+            {
+                "id": "2478369",
+                "name": "Chương 1 : Xuyên việt"
+            }
+        ],
+        "TOTALCHAPTER": "2",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp, Xuyên Không",
+        "AUTHOR": "Ko co tên",
+        "TRANS": "Thonthien",
+        "DESC": "Truyện được xoay quanh 1 anh chàng tên Hoàng Thiên xuất thân là 1 người bình thường đến nổi ko có j để bình thường<br />\r\nRủi thay trên đường đi học anh bị tai nạn xe đầu thai trùng sinh tại 1 thế giới gọi là Luyện Thần đại lục. Từ đây anh bắt đầu những cuộc phiêuu lưu trên con đường thành thần có mỹ nữ có kẻ thù ám hại nhiều lần suýt chết ...... Ns nhiều quay thôi các bạn đọc chịu khó đọc nha",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

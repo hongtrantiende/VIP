@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "5120",
+        "NAME": "Arifureta Shokugyou de Sekai Saikyou",
+        "CHAPTER": [
+            {
+                "id": "1817818",
+                "name": "Chương 0:Mở đầu (1)"
+            }
+        ],
+        "TOTALCHAPTER": "223",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Dị Năng, Dị Giới",
+        "AUTHOR": "Hakumai Ryo",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Anh main nhà ta và Cả lớp bị triệu hồi tới thế giới khác (Light Novel)<br />\r\nẢnh nhân vật cho dễ tưởng tượng:<br />\r\nMain:http://arifureta-shokugyou-de-sekai-saikyou.wikia.com/wiki/Nagumo_Hajime<br />\r\nYue:http://arifureta-shokugyou-de-sekai-saikyou.wikia.com/wiki/Yue<br />\r\nShia:http://arifureta-shokugyou-de-sekai-saikyou.wikia.com/wiki/Shia_Haulia<br />\r\nTio_Clarce:http://arifureta-shokugyou-de-sekai-saikyou.wikia.com/wiki/Tio_Clarce<br />\r\nKaori_Shirasaki:http://arifureta-shokugyou-de-sekai-saikyou.wikia.com/wiki/Kaori_Shirasaki",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

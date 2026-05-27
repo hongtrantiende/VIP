@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "4040",
+        "NAME": "Phong Thủy Đại Tướng Sư",
+        "CHAPTER": [
+            {
+                "id": "1492521",
+                "name": "Chương 1: Nhà Bảo Tàng la bàn"
+            }
+        ],
+        "TOTALCHAPTER": "320",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đô Thị",
+        "AUTHOR": "Tinh Phẩm Hương Yên",
+        "TRANS": "Mọt sách , Là Lá La",
+        "DESC": "Dưỡng Khí, Quan Khí, Định Khí, Thừa Khí, Tu Khí, Vấn Khí, phong thủy tướng sư sáu Đại cảnh giới!<br />\r\n<br />\r\nChính tâm, Tu Thân, Tề gia, Trị Quốc, Bình Thiên Hạ, tô chín con là một phổ thông phong thủy tướng sư Truyền Thừa người, thế nhưng bởi vì các loại Cơ Duyên, từ đây đi tới Huy Hoàng óng ánh nhân sinh con đường.<br />\r\n<br />\r\nThiết miệng trực đoạn, chọn người tiền đồ,<br />\r\n<br />\r\nĐồng miệng trực đoạn, quyết người Phú Quý,<br />\r\n<br />\r\nQuý giá miệng trực đoạn, cải mạng người vận,<br />\r\n<br />\r\nSáu bốc, bát quái, tính toán tận Thiên Hạ Sự, trắc khắp cả Thế Gian người!",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

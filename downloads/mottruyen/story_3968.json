@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "3968",
+        "NAME": "Tinh Thần Quyết",
+        "CHAPTER": [
+            {
+                "id": "1441852",
+                "name": "Chương 1: Huyết tẩy cả nhà"
+            }
+        ],
+        "TOTALCHAPTER": "1134",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo",
+        "AUTHOR": "Diệt Phách",
+        "TRANS": "Yến Virus",
+        "DESC": "Phong V&acirc;n, một c&aacute;i th&acirc;n phụ huyết hải th&acirc;m cừu thiếu ni&ecirc;n, vi truy t&igrave;m cả nh&agrave; bị diệt ch&acirc;n tướng, đạp v&agrave;o tu nguy&ecirc;n chi lộ. Con đường ph&iacute;a trước nhấp nh&ocirc; gian khổ, thẳng đến gặp được một qu&aacute;i l&atilde;o đầu truyền thụ 《 Tinh Thần Quyết 》 c&ugrave;ng Thần Binh, nh&acirc;n sinh của hắn như vậy chuyển hướng. Thần Ma tại hắn dưới th&acirc;n kiếm vẫn lạc, quỷ qu&aacute;i tại dưới đao của hắn ch&ocirc;n v&ugrave;i. Ng&agrave;n vạn tinh thần bởi v&igrave; hắn m&agrave; sinh, ng&agrave;y nguyệt quang huy bởi v&igrave; hắn s&aacute;ng lạn. Đại địa bởi v&igrave; hắn bị run rẩy, vũ trụ tại hắn dưới ch&acirc;n phủ phục.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

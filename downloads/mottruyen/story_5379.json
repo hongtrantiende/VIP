@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "5379",
+        "NAME": "Chiến Diệu Tinh Không",
+        "CHAPTER": [
+            {
+                "id": "1905524",
+                "name": "Chương 1:: Sức chiến đấu tám mươi mốt"
+            }
+        ],
+        "TOTALCHAPTER": "789",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Khoa Huyễn",
+        "AUTHOR": "Thiên địa đại ba trùng",
+        "TRANS": "Khaox8896",
+        "DESC": "(2014 tinh chế thưởng đệ tứ qu&yacute; dự thi t&aacute;c phẩm ) n&agrave;y, l&agrave; một c&aacute;i sức chiến đấu thế giới. N&agrave;y, l&agrave; một mảnh sức chiến đấu tinh kh&ocirc;ng. Thiếu ni&ecirc;n ninh cương, ngẫu nhi&ecirc;n ở B&iacute; Cảnh tiến h&agrave;nh tế b&agrave;o g&acirc;y dựng lại hậu, liền lấy sao chổi gi&ocirc;́ng như tốc độ, quật khởi ở mặt đất cầu, l&oacute;ng l&aacute;nh c&ugrave;ng vũ trụ m&ocirc;̃i cái chủng tộc. S&aacute;t tr&ugrave;ng tộc, đấu Ky Gi&aacute;p, thu Huyễn Th&uacute;, đạp cường giả, chiến Tinh Kh&ocirc;ng, t&igrave;m đi t&igrave;m nguồn gốc, ph&aacute; &acirc;m dương. Chờ đứng ở vũ trụ đỉnh, hắn c&oacute; thể l&agrave;m, ch&iacute;nh l&agrave; n&acirc;ng tay l&ecirc;n trung Chiến Đao, d&ugrave;ng hắn tăng mạnh chiến đấu lực, chiếu s&aacute;ng to&agrave;n bộ Tinh Kh&ocirc;ng!",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

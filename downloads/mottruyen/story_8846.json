@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "8846",
+        "NAME": "Sát Thiên",
+        "CHAPTER": [
+            {
+                "id": "3391910",
+                "name": "Chương 1: Xuyên Không"
+            }
+        ],
+        "TOTALCHAPTER": "13",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp, Đô Thị, Huyền Ảo",
+        "AUTHOR": "thienthaoho01",
+        "TRANS": "Nhiều Converter",
+        "DESC": "....",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

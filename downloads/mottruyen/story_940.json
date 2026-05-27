@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "940",
+        "NAME": "Ngạo Kiếm Thiên Khung",
+        "CHAPTER": [
+            {
+                "id": "239637",
+                "name": "Chương 1: Ngôi sao đọa lạc"
+            }
+        ],
+        "TOTALCHAPTER": "1513",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo",
+        "AUTHOR": "Tiểu Đao Phong Lợi",
+        "TRANS": "Nhiều Converter",
+        "DESC": "B&aacute;ch ni&ecirc;n tinh tế, Thất Tinh trụy lạc!<br /> <br /> Đến tột c&ugrave;ng l&agrave; đắc tội Thượng Thi&ecirc;n, hay vẫn l&agrave; c&oacute; nguy&ecirc;n nh&acirc;n kh&aacute;c?<br /> <br /> Th&acirc;n thể suy nhược thiếu ni&ecirc;n, trong đan điền chất chứa Thất Tinh chi hồn, từ nay về sau đạp v&agrave;o một đầu đường l&ecirc;n trời!<br /> <br /> Một c&aacute;i to lớn huyền huyễn thế giới, nhiệt huyết b&agrave;nh trướng, thần b&iacute; v&ocirc; tận.<br /> <br /> Thất Tinh diệu, thi&ecirc;n hạ kinh sợ, ngạo kiếm Thương Khung!",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "7098",
+        "NAME": "Xử Án",
+        "CHAPTER": [
+            {
+                "id": "2525224",
+                "name": "Chương 1 xuyên qua chín trăm năm, xem Động Đình"
+            }
+        ],
+        "TOTALCHAPTER": "350",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Quân Sự, Lịch Sử",
+        "AUTHOR": "Ly nhân vọng tả ngạn",
+        "TRANS": "Иⱨȃɳ☼Ɨȃɱ",
+        "DESC": "Kỳ trí phá quỷ án, xảo tư chiêu ngục oan. Hiện đại pháp y xuyên qua Nam Tống những năm cuối, thượng lưu ngợp trong vàng son, tầng dưới chót dân chúng lầm than Thế tục rung chuyển bất an, hung án quỷ sự không ngừng, mạng người tiện như cỏ rác, vận mệnh tựa kiếm như đao Thả tới lĩnh giáo lĩnh giáo!",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

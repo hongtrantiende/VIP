@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "9557",
+        "NAME": "Ái Triều",
+        "CHAPTER": [
+            {
+                "id": "3228276",
+                "name": "Chương 1: Dị Thảo Sơn"
+            }
+        ],
+        "TOTALCHAPTER": "9",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Ngôn Tình",
+        "AUTHOR": "kami",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Văn án: Ái Cửu cung chìm trong sắc trắng tang thương...<br />\r\nLụa trắng phất phơ, cung điện vắng lặng, lòng người quặn thắt..",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

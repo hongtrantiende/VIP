@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "3501",
+        "NAME": "Nam Việt Hùng Truyện",
+        "CHAPTER": [
+            {
+                "id": "1214649",
+                "name": "Quyển 1: Anh Hùng Lĩnh Nam   Chương 1:Thế sự hồi đầu dĩ nhất không, Giang sơn vô lệ khấp anh h"
+            }
+        ],
+        "TOTALCHAPTER": "7",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Kiếm Hiệp, Lịch Sử",
+        "AUTHOR": "Yên Tử Cư Sĩ Trần Đại Sĩ",
+        "TRANS": "Không Tên Đang Khóc",
+        "DESC": "Nam Việt Hùng Truyện ghi nhận cho chúng ta thấy những xấu xa hèn hạ của những con người vì danh lợi mà hành động phi nghĩa, lại có những nhân vật quên mình để bão vệ nhân tính, bão vệ đạo nghĩa làm người. <br />\r\n<br />\r\nBộ Nam Việt Hùng Truyện đã phãn ảnh sâu sắc cho chúng ta thấy rằng giá trị con người không phải ở trong những kẻ có quyền chức, uy thế, mà nó rải khắp trong dân gian, trong những kẻ cô đơn nghèo khổ, nhưng biết tôn trọng đạo nghĩa làm người. <br />\r\nĐọc Nam Việt Hùng Truyện là nhìn vào tấm gương xã hội, là suy xét những biến chuyển của tâm trạng người xưa, so sánh với người thời nay.<br />\r\n<br />\r\n<br />\r\nChúc mọi người đọc vui ve @!@",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

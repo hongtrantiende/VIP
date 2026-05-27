@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "10754",
+        "NAME": "Diamond No Ace Mạnh Nhất Batter",
+        "CHAPTER": [
+            {
+                "id": "3570318",
+                "name": "Chương 1: Đến từ Trung Quốc du học sinh"
+            }
+        ],
+        "TOTALCHAPTER": "1024",
+        "IMG": "https://static.cdnno.com/poster/diamond-no-ace-manh-nhat-batter/150.jpg",
+        "CAT": "Cạnh Kỹ, Đồng Nhân",
+        "AUTHOR": "Dạ Túy Mộc Diệp",
+        "TRANS": "Hắc TâmX",
+        "DESC": "Một cái vượt qua đời đời batter, một trận không có khói lửa chiến tranh.<br />\r\n<br />\r\nNơi này là quyết ra bại giả sân bãi, tại đây chỉ có người thắng mới có thể xưng vương!<br />\r\n<br />\r\nKim cương trên trận tinh anh, bóng chày tinh linh ưu ái!<br />\r\n<br />\r\nTa cũng là truyền kỳ! Một cái người khác vô pháp với tới bóng chày thần",
+        "THUMB": "https://static.cdnno.com/poster/diamond-no-ace-manh-nhat-batter/150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

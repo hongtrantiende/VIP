@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "4810",
+        "NAME": "Phệ Long Đế",
+        "CHAPTER": [
+            {
+                "id": "1699045",
+                "name": "Chương 1 : Tiết đồng đỏ thần quan"
+            }
+        ],
+        "TOTALCHAPTER": "295",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp, Huyền Ảo, Khoa Huyễn",
+        "AUTHOR": "Lý Sâm Sâm",
+        "TRANS": "Kẻ Vô Danh",
+        "DESC": "Một cái tốt nghiệp trung học sanh ở dị giới lí sinh hoạt, tại một cái thực lực nói chủ thời đại lí. Hắn tập một môn dùng thôn phệ ma thú nguyên thần tiến hóa tâm pháp, đương nhiên, cũng có thể thôn phệ Dị Hỏa luyện đan. Bất quá trọng yếu nhất , còn là thôn phệ phương đông Thần Long nguyên thần, Thanh Long, Bạch Long, Hắc Long, Kim Long, Hoàng Long...... Nghĩ thôn phệ thần thú nha, đi, trước theo con gián thôn phệ bắt đầu đi! Hắn chưa bao giờ nghĩ trở nên cường đại như vậy, chỉ là muốn cùng tiểu sư muội tại trong sư môn trải qua tuần trăng mật loại sinh hoạt. Hắn chưa bao giờ nghĩ gặp gỡ nhiều mỹ nữ như vậy, chỉ là nhân phẩm lúc bộc phát, nghĩ ngăn cản cũng ngăn không được bay tới diễm phúc.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

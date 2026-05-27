@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "10750",
+        "NAME": "Cửu Vĩ Hồ",
+        "CHAPTER": [
+            {
+                "id": "3568419",
+                "name": "- Giới Thiệu Qua :"
+            }
+        ],
+        "TOTALCHAPTER": "14",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp, Huyền Ảo",
+        "AUTHOR": "Kai",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Đại khái là kể về nvc được truyền thừa lại sức mạnh của hồ ly rồi từ đấy sang thế giới khác đánh đấm :) và sang đấy tìm cô người yêu bị bắt mất :) Nhắc thêm nvc có 4 tính cách nhé :)  <br />\r\nĐây là mình đăng phần 2 cho mọi người đọc nhé còn phần 1 ai muón mình sẽ đăng cho <br />\r\n<br />\r\nVề phần cấp bậc sức mạnh thì ở tiên lục phân chia :<br />\r\n- Luyện thể -> Hư Linh -> Chân Linh - Nguyên Linh -> Địa Linh -> Thiên Linh-> Linh - Tiên<br />\r\nMỗi cấp bậc chênh nhau về sức mạnh là quá lớn, luyện thể yếu hơn hư linh 10 lần, hư linh lại yếu hơn chân linh 100 lần, chân linh lại yêu hơn nguyên linh 1000 lần :3 cứ như vậy mà tính tiếp cấp số nhân 10 :)<br />\r\nThế nhé :)",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

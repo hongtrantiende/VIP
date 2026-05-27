@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "6222",
+        "NAME": "Hệ Thống Tưởng Thưởng",
+        "CHAPTER": [
+            {
+                "id": "2274030",
+                "name": "Chương 1 : Hệ thống thức tỉnh, Tẩy tủy đan"
+            }
+        ],
+        "TOTALCHAPTER": "10",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo, Dị Giới",
+        "AUTHOR": "KatanaTatsu",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Hệ thống do 1 vị thần ở thần giới tạo ra hệ thống tìm đồ đệ. Hãy xem Lâm Kiếm Long trở thành thần như thế nào nhé.<br />\r\n<br />\r\n2 ngày 1 chương nhá các huynh đệ tỷ muội<br />\r\n<br />\r\nP/s : Mọi truyện trên đời không truyện nào hoàn mỹ 100% cả. Riêng truyện này của ta thì là truyện đầu tay nên không bao giờ 100% được, mà nó lại là truyện viết nâng tay nên cao nhất chỉ hoàn hảo 10%. Xin các đạo hữu đừng ném gạch đá ( do ta sinh năm 2003 trẻ người non dạ, có viết dở thì tha cho )<br />\r\n<br />\r\nLink tán dóc : http://forum.truyencv.com/showthread.php?t=1366",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

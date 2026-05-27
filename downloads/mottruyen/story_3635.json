@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "3635",
+        "NAME": "Mỹ Nữ Lão Bà Yêu Ta",
+        "CHAPTER": [
+            {
+                "id": "1257514",
+                "name": "Chương 1: Gia thuộc"
+            }
+        ],
+        "TOTALCHAPTER": "214",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đô Thị",
+        "AUTHOR": "Bắc Dã Dã",
+        "TRANS": "Suntran, Nguyễn Vũ",
+        "DESC": "Nh&agrave; gi&agrave;u người ở rể, quyết định nữ vương!",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "8523",
+        "NAME": "Phục Hưng Thế Giới",
+        "CHAPTER": [
+            {
+                "id": "2921954",
+                "name": "Chương : Mở đầu"
+            }
+        ],
+        "TOTALCHAPTER": "2",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp, Ngôn Tình, Dị Giới, Xuyên Không",
+        "AUTHOR": "luliluli1207@",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Thế giới sụp đỗ. Ta không màng. Gia đình, người thân, tất thảy ta đều không xem trọng. Nhưng chỉ mình ngươi, ta mãi mãi không thể rời bỏ. Nếu mất ngươi, mới là mọi thứ của ta biến mất. Mới lại đau đớn thống khổ nhất cho ta. <br />\r\nThế giới có ngươi, nơi đó có ta. Vì ngươi, ta nguyện làm mọi thứ. Để cứu ngươi, ta nguyện cứu cả thế giới. Để bên ngươi, ta nguyện đánh đổi sinh mạng. Để lần nữa nhìn thấy nụ cười đã trao ta sự sống, phong ấn này gỡ bỏ cũng là quá nhẹ nhàng.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

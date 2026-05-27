@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "10295",
+        "NAME": "Hoa Ngu Bên Trong Hàn Ngu",
+        "CHAPTER": [
+            {
+                "id": "3450190",
+                "name": "Chương 1: Ngu Nhạc đại thế"
+            }
+        ],
+        "TOTALCHAPTER": "300",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đô Thị",
+        "AUTHOR": "Nhược Triêu Hề",
+        "TRANS": "chankiet2",
+        "DESC": "Một năm kia, Hàn Lưu trắng trợn xâm lấn Trung Quốc. Trung Quốc Giới âm nhạc sinh ra biến đổi lớn, va chạm trùng kích vào, âm nhạc hệ thống cải biến, Trung Quốc ba đại Music Core thành lập, vô số âm nhạc nhân làm hành hương. Cái kia Hàn Lưu xâm lấn niên đại, âm nhạc Bảng danh sách vì Hàn Quốc ca sĩ chỗ chiếm lấy, đệ nhất Thiên Vương văn huân vũ hoành không xuất thế, ngăn cơn sóng dữ, độc bộ giới ca hát.<br />\r\n<br />\r\n\tBây giờ hơn mười năm về sau, nội địa âm nhạc phồn vinh mạnh mẽ hấp dẫn toàn thế giới ca sĩ, các quốc gia nghệ nhân nhao nhao tiến quân, thế giới trào lưu sắp bao phủ Trung Quốc. Cái kia đoạn ngoại tịch chiếm lấy nội địa âm nhạc Bảng danh sách hắc ám lịch sử sẽ tái diễn? Tại bây giờ không có văn huân vũ Giới Âm Nhạc, có ai có thể có thể chịu được chức trách lớn vì nội địa âm nhạc chống lên một mảnh bầu trời? Nội địa Giới Âm Nhạc, nguy cơ từng bước một tới gần. . .<br />\r\n<br />\r\n\tHàn Lưu có thể với thế giới dương danh, trung quốc phong là sao không thể bao phủ toàn cầu?<br />\r\n<br />\r\n\tLại nhìn Lăng Văn Hiên như thế nào cất bước giới ca hát, từng bước leo thành tựu Đệ Nhất Thiên Vương.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

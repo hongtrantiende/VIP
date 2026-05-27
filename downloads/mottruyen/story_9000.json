@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "9000",
+        "NAME": "Đô Thị Dị Nhân Chi Chiến",
+        "CHAPTER": [
+            {
+                "id": "3057604",
+                "name": "Chương 1: Hắc Ám Pháp Sư"
+            }
+        ],
+        "TOTALCHAPTER": "2",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đô Thị, Võng Du, Dị Giới",
+        "AUTHOR": "Aminxter",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Hắn là một người bình thường như bao người khác.<br />\r\nHắn vô tình nhận được một máy chơi game kỳ lạ.<br />\r\nHắn chơi game, hắn xuyên không, hắn đang trong quá trình biến dị của chính bản thân mình!<br />\r\nMạnh, mạnh lên, mạnh hơn nữa!<br />\r\nGiữa chúng ta, những người bình thường luôn tiềm ẩn những dị nhân với sức mạnh phi thường như vậy.<br />\r\n- Mạc Tâm -",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "943",
+        "NAME": "Dịch Cân Kinh",
+        "CHAPTER": [
+            {
+                "id": "282286",
+                "name": "Chương 01: Thiên Xà Xạ Tức"
+            }
+        ],
+        "TOTALCHAPTER": "1434",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp",
+        "AUTHOR": "Vị Tri",
+        "TRANS": "Hoa, dahuonglan_vnn",
+        "DESC": "Tần Thứ, một c&aacute;i chất ph&aacute;c thiếu ni&ecirc;n theo gia gia ẩn cư tại Đ&ocirc;ng Bắc th&acirc;m sơn trung tu tập Thi&ecirc;n X&agrave; xạ tức luyện kh&iacute; thuật. Sau khi gia gia tạ thế, theo di ng&ocirc;n của gia gia trở lại Thi&ecirc;n X&agrave; tộc nhất mạch để nhận tổ quy t&ocirc;ng, th&igrave; bị tộc trưởng &aacute;m hại, phế bỏ nội đan trở th&agrave;nh phế nh&acirc;n kh&ocirc;ng thể tiếp tục tu luyện kh&iacute; thuật.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

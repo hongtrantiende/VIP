@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "3158",
+        "NAME": "Tu Tiên Giới Nông Nghiệp Chuyên Gia",
+        "CHAPTER": [
+            {
+                "id": "1075817",
+                "name": "Chương 1: Thất tình"
+            }
+        ],
+        "TOTALCHAPTER": "55",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp, Dị Giới",
+        "AUTHOR": "Giò",
+        "TRANS": "Kenno007",
+        "DESC": "N&ocirc;ng nghiệp kỹ thuật vi&ecirc;n, thất t&igrave;nh xuy&ecirc;n qua Tu Ti&ecirc;n giới. Chỉ c&oacute; thể loại lương thực, c&oacute; thể n&agrave;o đặt ch&acirc;n ở dị giới? Mệnh của ta thuộc về ta chứ kh&ocirc;ng thuộc về &ocirc;ng trời! Thay đổi n&ocirc;ng nghiệp kỹ thuật, b&ocirc;̀i dưỡng linh Dược ti&ecirc;n thảo! Xem Tu Ti&ecirc;n giới n&ocirc;ng nghiệp chuy&ecirc;n gia, l&agrave;m sao d&ugrave;ng n&ocirc;ng nghiệp kỹ thuật bước l&ecirc;n tu ch&acirc;n con đường nghịch thi&ecirc;n!",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

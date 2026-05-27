@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "7796",
+        "NAME": "Tiêu Dao Vạn Giới",
+        "CHAPTER": [
+            {
+                "id": "2730177",
+                "name": "01 kết thúc?... bắt đầu"
+            }
+        ],
+        "TOTALCHAPTER": "4",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp, Võng Du, Khoa Huyễn",
+        "AUTHOR": "nhikute387@",
+        "TRANS": "Nhiều Converter",
+        "DESC": "truyện đầu tay nên hơi dở mọi người có gì góp ý cho mình nha :3<br />\r\nmặc kệ giang hồ thị phi ân oán<br />\r\nmặc kệ tu tiên gian nan<br />\r\nmặc kệ thế nhân tranh đấu<br />\r\nta chỉ mình ta tiêu dao bên hồng nhan",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

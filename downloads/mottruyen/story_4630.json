@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "4630",
+        "NAME": "Nhất kiếm trảm đạo",
+        "CHAPTER": [
+            {
+                "id": "1642376",
+                "name": "Quyển 1:luyển thể thành thánh, Chương 1:Chịu nhục"
+            }
+        ],
+        "TOTALCHAPTER": "12",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo",
+        "AUTHOR": "Liên Thiên Hồng",
+        "TRANS": "Cửu Vũ",
+        "DESC": "Luyện Vũ Thành Thánh, nhập đạo thành Tiên, phá đạo thành Thần,  nhìn Chiến Thần như thế nào du ngoạn sơn thuỷ, phá hết vạn pháp!",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

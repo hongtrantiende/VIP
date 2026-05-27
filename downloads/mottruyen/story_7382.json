@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "7382",
+        "NAME": "Trọng Sinh Doãn Chí Bình",
+        "CHAPTER": [
+            {
+                "id": "2617434",
+                "name": "Chương 1: Trên núi Chung Nam"
+            }
+        ],
+        "TOTALCHAPTER": "281",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Kiếm Hiệp, Xuyên Không, Đồng Nhân, Trùng Sinh",
+        "AUTHOR": "Cầm Rượu Uấn Tóc",
+        "TRANS": "Mathangianglam",
+        "DESC": "Tác phẩm tóm tắt:Xuyên qua trở thành Doãn Chí Bình, cái kia bị vạn nhân thóa mạ ác ôn. Hắn muốn thay đổi chính mình vận mệnh, muốn trở thành một thế hệ đại hiệp, càng phải bị vạn nhân kính ngưỡng. Hắn còn muốn Tiểu Long Nữ khuynh tâm, nhưng bất hạnh chính là hắn phát hiện chính mình so Tiểu Long Nữ lớn mười sáu tuổi, Tiểu Long Nữ thế nhưng còn không có sinh ra. Mà chính mình lại bị hiểu lầm thành Tiểu Long Nữ phụ thân. Thế giới này, bởi vì Doãn Chí Bình xuất hiện, trở nên cùng trước kia khác nhau rất lớn.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

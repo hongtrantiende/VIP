@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "11885",
+        "NAME": "Thiên Ngoại Thiên",
+        "CHAPTER": [
+            {
+                "id": "3901819",
+                "name": "Chương 1: Tên Điên"
+            }
+        ],
+        "TOTALCHAPTER": "3",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp, Võng Du, Xuyên Không",
+        "AUTHOR": "kun_eric96@",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Một thiếu niên trạch nam mới tốt nghiệp cấp 3, hắn không hề học tiếp đại học mà quyết định chìm đắm trong sách truyện. Bị ám ảnh bởi những truyện xuyên không võng du, hắn quyết định chủ ý xuyên không một cách chủ động. Làm sao để chủ động đây? Nhảy lầu, tông xe, nhảy cầu, treo cổ, uống thuốc độc,... không gì hắn không thử. Sau nhiều nỗ lực thất bại mà chưa chết, cuối cùng ông trời có mắt, thành công cũng đến. Hắn chết! và lần này... thêm một câu truyện ly kỳ nữa được bắt đầu.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

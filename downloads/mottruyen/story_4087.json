@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "4087",
+        "NAME": "Hỗn Độn Lôi Tu",
+        "CHAPTER": [
+            {
+                "id": "1500130",
+                "name": "Chương: 1 - Tiểu Bàn đạo sĩ"
+            }
+        ],
+        "TOTALCHAPTER": "304",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp",
+        "AUTHOR": "Tả Tự Bản",
+        "TRANS": "LoveCV",
+        "DESC": "Một tiểu đạo sĩ béo ở trong môn phái rất hay bị người khác khi dễ, dựa vào pháp bảo cha mẹ đã qua đời để lại, tu luyện ra tuyệt thế Hỗn Độn Ngũ Hành lôi thuật, dần dần quật khởi .\"Qùy Thủy thần lôi, Bính Hỏa thần lôi, Ất Mộc Thần Lôi , Mậu Thổ Thần lôi, Canh Kim Thần lôi, Tiểu Ngũ Hành Hỗn Nguyên thần lôi, Đại Ngũ Hành Diệt Tuyệt thần lôi, Tử Tiêu thần lôi, Thái Thanh thần lôi, Hạo Thiên Sất Trá thần lôi, Thái Cực Âm Dương Chính Khí thần lôi, lão tử dùng thần lôi đánh chết ngươi....\"Bần đạo viết: \"Phàm có người không phục, nhất loạt oanh sát.....\"",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

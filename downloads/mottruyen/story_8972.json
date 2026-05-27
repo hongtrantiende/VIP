@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "8972",
+        "NAME": "One Piece Tối Cường Phụ Thân",
+        "CHAPTER": [
+            {
+                "id": "3049063",
+                "name": "Chương 1: Ta muốn đánh 10 cái"
+            }
+        ],
+        "TOTALCHAPTER": "932",
+        "IMG": "https://static.cdnno.com/poster/one-piece-toi-cuong-phu-than/150.jpg",
+        "CAT": "Đồng Nhân",
+        "AUTHOR": "Vô Địch Thanh Y",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Không cách nào tưởng tượng hơn năm mươi tuổi Roger, lại còn biết có một mười mấy tuổi đệ đệ.  Thế nhưng ca ca trở thành hải tặc vương, đệ đệ lại không hề tài năng.  Cũng may khi 16 tuổi, hắn cư nhiên phát hiện mình trên người mang theo một cái phụ thân hệ thống.  <br />\n<br />\nPhụ thân Diệp Vấn, thu được tông sư tâm tình, phụ thân Cái Niếp, thu được trăm bước phi kiếm, phụ thân Lý Tiêu Dao, thu được Thục Sơn kiếm pháp.  Chỉ có thể phụ thân những thứ này? Vậy ngươi đã sai lầm rồi!  Payne, Ichigo, chỉ cần có tiền, bất luận cái gì Quỷ Hồn, đều có thể phụ thân.  Đây là một cái có tiền có thể ma xui quỷ khiến thế giới!",
+        "THUMB": "https://static.cdnno.com/poster/one-piece-toi-cuong-phu-than/150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "3870",
+        "NAME": "Võ Đạo Toàn Năng",
+        "CHAPTER": [
+            {
+                "id": "1366147",
+                "name": "Chương 1:  Quyết định"
+            }
+        ],
+        "TOTALCHAPTER": "746",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Khoa Huyễn",
+        "AUTHOR": "Hình Viễn",
+        "TRANS": "trang4mat",
+        "DESC": "V&otilde; đạo tu luyện, theo kh&ocirc;ng thiếu khuyết thi&ecirc;n t&agrave;i.<br /><br />Linh Vũ Đại Lục, một thi&ecirc;n t&agrave;i xuất hiện lớp lớp thế giới.<br /><br />Vũ Tr&ugrave;ng, như thế n&agrave;o theo một c&aacute;i kh&ocirc;ng nhập lưu tiểu gia tộc b&igrave;nh thường đệ tử, từng bước một si&ecirc;u việt bối cảnh si&ecirc;u nhi&ecirc;n đại gia tộc, đại m&ocirc;n ph&aacute;i đ&aacute;m thi&ecirc;n t&agrave;i bọn họ.<br /><br />C&ocirc;ng ph&aacute;p, đan dược, vũ kỹ, ph&aacute;p bảo, đạo phủ, kỳ ngộ.<br /><br />Hết thảy đều ở 《 v&otilde; đạo to&agrave;n năng 》.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

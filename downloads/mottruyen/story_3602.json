@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "3602",
+        "NAME": "Trượng Kiếm Quyết",
+        "CHAPTER": [
+            {
+                "id": "1246478",
+                "name": "Chương 1: Một bộ thanh sam trên Thanh Thành"
+            }
+        ],
+        "TOTALCHAPTER": "22",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Kiếm Hiệp",
+        "AUTHOR": "Pháo kép",
+        "TRANS": "Timka",
+        "DESC": "Trượng kiếm quyết ) Giang hồ là thuần khiết, làm nhạt quan phủ cùng thời đại, trong chốn giang hồ hết thảy đều là do người giang hồ chính mình duy trì, phá hoại cũng vậy. <br />\r\n<br />\r\n\"Lợi ích\" cùng \"Trật tự\" là cái giang hồ này chủ đề. <br />\r\n<br />\r\nKhổng lồ danh môn phân tranh, tràn ngập Kiếm Hồn thế giới võ hiệp.<br />\r\n<br />\r\nĐây chính là Trượng kiếm quyết giang hồ, ở trong cái giang hồ này, Hành Vân, một võ công, địa vị đều rất thấp kém Thanh Thành đệ tử, hắn nên đi nơi nào? . .",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

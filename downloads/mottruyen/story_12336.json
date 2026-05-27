@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "12336",
+        "NAME": "Trọng Sinh Làm Hoàng Đế",
+        "CHAPTER": [
+            {
+                "id": "4013940",
+                "name": "Chương 1: 1 xuyên qua làm Hoàng Đế"
+            }
+        ],
+        "TOTALCHAPTER": "2217",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo, Xuyên Không",
+        "AUTHOR": "Thử Sinh Lạc Lạc",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Thiên hạ là trẫm, thiên hạ phụ nữ đều là trẫm!<br />\r\n<br />\r\n\tMà xem Hoa Hạ đệ nhất bộ đội đặc chủng, sống lại dị thế, trở thành thiên cổ đế hoàng!<br />\r\n<br />\r\n\tTrẫm là Hoàng Đế, nhất ngôn cửu đỉnh, lời vàng ý ngọc đã nói muốn giết ngươi toàn gia, liền nhất định sẽ giết cả nhà ngươi!",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

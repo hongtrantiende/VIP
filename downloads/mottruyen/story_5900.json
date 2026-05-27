@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "5900",
+        "NAME": "Hải Tặc Vương Chi Long Chi Tử",
+        "CHAPTER": [
+            {
+                "id": "2118990",
+                "name": "Một sơ lâm"
+            }
+        ],
+        "TOTALCHAPTER": "2",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Xuyên Không, Đồng Nhân",
+        "AUTHOR": "Thiên Sát Khốc Tinh",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Cái thứ hai lên thuyền.Mũ Rơm thuyền hải tặc thuyền phó. Còn gì đọc đi sẽ biết :))",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "2682",
+        "NAME": "Đan Vũ Song Tuyệt",
+        "CHAPTER": [
+            {
+                "id": "881142",
+                "name": "Chương 01: Thân dịch"
+            }
+        ],
+        "TOTALCHAPTER": "568",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo",
+        "AUTHOR": "Cay Đắng Ngọt Cà Phê",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Trương Hoa Minh, v&igrave; một c&aacute;i hư v&ocirc; truyền thuyết mệnh lệnh m&agrave; đi chấp h&agrave;nh nhiệm vụ, kết quả c&ugrave;ng kẻ địch đồng quy vu tận, linh hồn xuy&ecirc;n qua đến lấy v&otilde; vi t&ocirc;n tr&ecirc;n thế giới, m&agrave; theo hắn đồng thời đến trong c&aacute;i n&agrave;y thế giới đồ vật chỉ c&oacute; một dạng, đ&oacute; ch&iacute;nh l&agrave; c&aacute;i thứ ở trong truyền thuyết tr&agrave;n đầy sắc th&aacute;i thần b&iacute; truyền thuyết Hỗn Độn ch&acirc;u.<br /> <br /> Phế vật người? N&oacute;i đ&ugrave;a g&igrave; vậy? Ngươi nghe n&oacute;i qua phế vật người c&oacute; thể vượt cấp chiến đấu?<br /> <br /> Linh đan? Ha ha! Ở trong mắt ta chẳng qua l&agrave; đồ ăn vặt m&agrave; th&ocirc;i.<br /> <br /> Thi&ecirc;n Cấp vũ kỹ? Nh&agrave; ta tr&ocirc;ng cửa l&atilde;o đầu tu luyện ch&iacute;nh l&agrave; Thi&ecirc;n Cấp vũ kỹ.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

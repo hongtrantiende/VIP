@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "12505",
+        "NAME": "Tam Quốc Chi Tranh Bá Thiên Hạ",
+        "CHAPTER": [
+            {
+                "id": "4055002",
+                "name": "Chương 1: Xuyên Qua Chi Sơ, Chiến Loạn Là Lúc"
+            }
+        ],
+        "TOTALCHAPTER": "428",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Quân Sự, Lịch Sử, Xuyên Không",
+        "AUTHOR": "Hư Vô Vạn Cổ",
+        "TRANS": "Vô Trung Sinh Hữu",
+        "DESC": "Một người bộ đội đặc chủng, một cái siêu cấp hệ thống, một cái tụ tập so trong lịch sử tam quốc càng nhiều nhân tài tam quốc thế giới. Khi Lý Đường đại quân quyết đấu Mông Cổ thiết kỵ thời điểm,  Mông Cổ có hay không tái hiện lịch sử huy hoàng, Lý Đường, lại có không tái hiện đã từng huy hoàng; Khi Lưu Bang mất đi Hán tam kiệt phụ tá, Hạng Võ lại có không chính tay đâm Lưu Bang, làm kiếp trước ân oán họa thượng một cái dấu chấm câu; Khi này một người tinh anh bộ đội đặc chủng đối mặt rất nhiều thiên cổ đế vương thời điểm, liệu có thể hoàn thành tranh bá thiên hạ tâm nguyện.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "3594",
+        "NAME": "Tiên Nghịch Càn Khôn",
+        "CHAPTER": [
+            {
+                "id": "1243690",
+                "name": "Chương 01: Trụy lạc cấm địa"
+            }
+        ],
+        "TOTALCHAPTER": "759",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp",
+        "AUTHOR": "Đạn Chỉ Lưu Niên",
+        "TRANS": "Dạ Hương Lan",
+        "DESC": "Trăm vạn năm trước, thời kỳ viễn cổ, một bả Th&iacute; Thần Kiếm ngang trời xuất thế, th&iacute; giết ch&uacute;ng thần, kh&ocirc;ng một địch thủ, trăm vạn năm về sau, một đời thi&ecirc;n ki&ecirc;u V&acirc;n Thi&ecirc;n bị đ&igrave;nh trệ m&ocirc;n ph&aacute;i cấm địa, được Th&iacute; Thần Kiếm truyền thừa, được T&aacute;ng Thi&ecirc;n Kiếm Quyết, chế thuộc về m&igrave;nh Kiếm Ti&ecirc;n tổ hợp kỹ, lưu lạc Ti&ecirc;n Phủ, chiến khắp nơi thi&ecirc;n t&agrave;i, ch&acirc;n đạp Viễn Cổ thần thể, giết biến dị thể chất, một đời Kiếm Ti&ecirc;n, phong hoa tuyệt đại, nghịch chuyển C&agrave;n Kh&ocirc;n!",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

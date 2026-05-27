@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "11782",
+        "NAME": "Xuyên Qua Ba Nghìn Vị Diện",
+        "CHAPTER": [
+            {
+                "id": "3876045",
+                "name": "Chương 1:  bắt đầu từ hôm nay làm xuyên việt giả"
+            }
+        ],
+        "TOTALCHAPTER": "209",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo, Xuyên Không, Đồng Nhân",
+        "AUTHOR": "Rớt xuống mặt trăng",
+        "TRANS": "Kim Nam",
+        "DESC": "Chuyển kiếp hàng năm có, năm nay đến nhà ta. Ngẫu nhiên được chuyển kiếp hệ thống từ đây ca trên chân đạp tiên nhị đại, đón dâu bạch phú mỹ nghịch tập con đường, chinh phục.\" Thạch Viêm ngữ lục. <br />\r\nTru Tiên, Đấu Phá, Tru Tiên 2, Vũ Động Càn Khôn .........",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

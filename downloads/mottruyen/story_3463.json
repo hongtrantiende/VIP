@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "3463",
+        "NAME": "Đô Thị Chi Nhị Thứ Nguyên Phụ Thể",
+        "CHAPTER": [
+            {
+                "id": "1200956",
+                "name": "Thứ 1 chương Shin cậu bé bút chì voi vũ"
+            }
+        ],
+        "TOTALCHAPTER": "680",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đô Thị",
+        "AUTHOR": "Hồng Trà Đản Cao",
+        "TRANS": "Wdragon21",
+        "DESC": "Ho&agrave;n th&agrave;nh nhị thứ nguy&ecirc;n nh&acirc;n vật nguyện vọng, được đến bọn họ si&ecirc;u năng lực, tung ho&agrave;nh đ&ocirc; thị kh&ocirc;ng g&igrave; l&agrave;m kh&ocirc;ng được.<br /><br />Lục oa ẩn th&acirc;n năng lực.<br /><br />M&atilde; lương họa c&aacute;i g&igrave; c&oacute; c&aacute;i g&igrave; năng lực.<br /><br />Keima Katsuragi tiến c&ocirc;ng chiếm đ&oacute;ng năng lực.<br /><br />Fujiwara no Sai cờ v&acirc;y năng lực.<br /><br />Tiểu đương gia mỹ thực năng lực.<br /><br />...<br /><br />Chỉ cần c&oacute; y&ecirc;u, hết thảy giai mới c&oacute; thể.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

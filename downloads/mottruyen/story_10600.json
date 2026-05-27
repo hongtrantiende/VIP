@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "10600",
+        "NAME": "Đấu La Hệ Thống Chi Thông Thiên Đường",
+        "CHAPTER": [
+            {
+                "id": "3525229",
+                "name": "Chương 1: Sét Đánh"
+            }
+        ],
+        "TOTALCHAPTER": "150",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo, Xuyên Không, Đồng Nhân",
+        "AUTHOR": "Bối Qua Đại",
+        "TRANS": "kurankotori",
+        "DESC": "Hồ Đạo Nam chuyển kiếp , bị một đạo sét đánh quá sau hoa lệ lệ chuyển kiếp , thần kỳ đi tới trong truyền thuyết đích đấu la đại lục , được rồi , cuộc sống địa không quen đích , hắn nên như thế nào sinh tồn ? không muốn lo lắng , thượng đế đối với hắn vẫn rất tốt , đấu la hệ thống tùy thân chuyển kiếp , dẫn hắn trang bức dẫn hắn bay , nhìn nhân vật chính như thế nào mở ra một đoạn đấu la cuộc hành trình đi ! !",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

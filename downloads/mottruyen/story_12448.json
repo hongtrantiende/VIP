@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "12448",
+        "NAME": "Vạn Cổ Tiên Tôn",
+        "CHAPTER": [
+            {
+                "id": "4040865",
+                "name": "Chương 1: Lẳng Lơ Ma Nữ"
+            }
+        ],
+        "TOTALCHAPTER": "1",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Kiếm Hiệp, Dị Giới, Đồng Nhân",
+        "AUTHOR": "Mạc Phi",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Mạc Phi, Quỳnh Hoa phái đại sư huynh, vì một cuốn thiên thư mà sư môn bị diệt, chó nhà có tang.<br />\r\n<br />\r\nLại vì một cuốn thiên thư mà hoành tảo thiên quân, tung hoành vạn giới, chiếm được những mỹ nữ sắc nước hương trời trong thiên hạ.<br />\r\n<br />\r\nLà ma là tà thì đã làm sao, chỉ vì thủ hộ sau lưng nho nhỏ một vùng trời, mà giết sạch thiên hạ thì đã sao?",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "8591",
+        "NAME": "Võng Du Tam Quốc Chi Phong Hoả Liên Thiên",
+        "CHAPTER": [
+            {
+                "id": "2945395",
+                "name": "Chương 1: Mới bắt đầu"
+            }
+        ],
+        "TOTALCHAPTER": "40",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Võng Du",
+        "AUTHOR": "Tiểu Tiểu Phẫn Thanh",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Võng du tam quốc..khá giống tam quốc vương giả..mới đọc khá là ổn lên làm <br />\r\nmọi người vào đọc thử :D",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

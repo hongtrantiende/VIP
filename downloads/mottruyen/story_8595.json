@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "8595",
+        "NAME": "Thanh Liên Kiếm Đạo",
+        "CHAPTER": [
+            {
+                "id": "2949656",
+                "name": "Chương 1:Bên hồ sen nhẹ nhàng hát"
+            }
+        ],
+        "TOTALCHAPTER": "450",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo",
+        "AUTHOR": "Hoa Biểu",
+        "TRANS": "Cơn Gió Lạnh",
+        "DESC": "Thiên địa mở , Hỗn độn phân , Một đóa thanh liên vào kiếp trần.<br />\r\n<br />\r\nĐại thế tranh , Nhân yêu tồn , Dám hỏi thế gian người nào Chí tôn.<br />\r\n<br />\r\nRắn Xanh miệng , Ong Vàng châm , vật gì lại hơn nhân tâm hung ác.<br />\r\n<br />\r\nTrong lòng kiếm , độ thương sinh , vô tình hơn hẳn chí tình.<br />\r\n<br />\r\n\t------<br />\r\n<br />\r\nLực lượng hệ thống:<br />\r\n<br />\r\n\tYêu Tộc<br />\r\n<br />\r\n\tLinh Tê Cảnh, Thổ Nạp Cảnh, Hóa Hình Cảnh, Chân Đan Cảnh, Phá Kiếp Cảnh, Huyền Biến Cảnh, Vấn Thiên Cảnh<br />\r\n<br />\r\n\tĐạo thuật<br />\r\n<br />\r\n\tDẫn Linh Cảnh, Sơ Thức Cảnh, Luyện Thần Cảnh, Ngưng Thai Cảnh, Toàn Chân Cảnh, Thần Thông Cảnh, Càn Khôn Cảnh<br />\r\n<br />\r\n\tVõ đạo<br />\r\n<br />\r\n\tTụ Khí Cảnh, Đoán Thể Cảnh, Tẩy Tủy Cảnh, Thuế Phàm Cảnh, Quy Nguyên Cảnh, Hợp Đạo Cảnh, Sinh Tử Cảnh",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

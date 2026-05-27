@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "5623",
+        "NAME": "Thần Thụ Bảo Điển",
+        "CHAPTER": [
+            {
+                "id": "1997890",
+                "name": "Chương 01: Thần Thụ Bảo Điển"
+            }
+        ],
+        "TOTALCHAPTER": "340",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đô Thị",
+        "AUTHOR": "Ngã Tại Nhĩ Thân Hậu",
+        "TRANS": "ღ๖ۣۜTiểu๖ۣۜTâm",
+        "DESC": "Vai chính lấy được một bộ \" Thần Thụ Bảo Điển \", có thể thông qua kỹ năng, đem một gốc cây phổ thông thực vật tùy cơ chuyển hóa thành trong truyền thuyết Thần Thụ, ví dụ như Diêu Tiễn Thụ, Bàn Đào Thụ, Nhân Tham Quả Thụ",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

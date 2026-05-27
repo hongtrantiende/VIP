@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "1251",
+        "NAME": "Thiên Trạch",
+        "CHAPTER": [
+            {
+                "id": "494415",
+                "name": "Chương 1: Trăm nhà đua tiếng"
+            }
+        ],
+        "TOTALCHAPTER": "723",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo",
+        "AUTHOR": "Quyển Thổ Thần",
+        "TRANS": "Thánh Địa Già Thiên",
+        "DESC": "Mệnh c&aacute;ch Ph&aacute; Qu&acirc;n, liền muốn lĩnh ngàn qu&acirc;n vạn ch&uacute;ng, giương đao cưỡi ngựa...\r\n<br />Mệnh c&aacute;ch Tử Vi, liền muốn Trạch Bị Thương Sinh, chủ đại địa ch&igrave;m nổi...\r\n<br />Mệnh c&aacute;ch gi&uacute;p đỡ, liền muốn thống trị thi&ecirc;n hạ, tr&ecirc;n vạn người, dưới một người!\r\n<br />M&agrave; ta mệnh c&aacute;ch y&ecirc;u tinh, liền muốn lẫn lộn Thi&ecirc;n Cơ, loạn Cửu Ch&acirc;u, khấu thi&ecirc;n hạ!\r\n<br />Th&aacute;nh nh&acirc;n bất tử, đạo tặc kh&ocirc;ng ngừng! ! ! !\r\n<br />Ta l&agrave; ai,\r\n<br />Ai l&agrave; ta? ?\r\n<br />C&oacute; một con th&agrave; rằng chiến chết cũng kh&ocirc;ng chịu quay đầu lại th&uacute;, tử chiến sau phong ho&aacute; ở Đại Hoang m&ecirc;nh m&ocirc;ng tr&ecirc;n v&ugrave;ng qu&ecirc;,\r\n<br />B&acirc;y giờ, ta trở về, mang theo ta hung hăng, c&ograve;n c&oacute; ta... Quật cường!",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

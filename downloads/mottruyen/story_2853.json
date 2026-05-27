@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "2853",
+        "NAME": "Vô Hạn Anime Triệu Hoán",
+        "CHAPTER": [
+            {
+                "id": "957792",
+                "name": "Chương 01: Kỳ kỳ quái quái Chủ Thần Không Gian , tân thủ cuộc thi"
+            }
+        ],
+        "TOTALCHAPTER": "169",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đồng Nhân",
+        "AUTHOR": "Một Phiến Lá Chu Tử Chuyên Mục",
+        "TRANS": "NetIP",
+        "DESC": "Mang theo v&ocirc; hạn danh tự , thực chất l&agrave;m một c&aacute;i chỗ ở Anime h&agrave;nh tr&igrave;nh , thuận tiện bộ sung triệu ho&aacute;n thuộc t&iacute;nh . &Acirc;n , kỳ thật ch&uacute;ng ta đều l&agrave; y&ecirc;u chiến sĩ ah ~~<br /><br />Một c&aacute;i chiều s&acirc;u chỗ ở m&igrave;nh cmn ~~~",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

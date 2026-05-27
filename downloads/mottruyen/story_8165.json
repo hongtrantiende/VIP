@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "8165",
+        "NAME": "Xuyên Qua Ta Có Hệ Thống",
+        "CHAPTER": [
+            {
+                "id": "2820199",
+                "name": "Chương 1 : Người được chọn"
+            }
+        ],
+        "TOTALCHAPTER": "7",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Kiếm Hiệp, Huyền Ảo, Xuyên Không, Đồng Nhân",
+        "AUTHOR": "Ghost999",
+        "TRANS": "Thịt Bò Khô",
+        "DESC": "Hệ Thống ở tay thiên hạ có<br />\r\nTruyện kể về main xuyên qua các thế giới<br />\r\nP/s: Truyện đầu tay mong chỉ  bảo ngiều hơn",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

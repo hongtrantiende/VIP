@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "3082",
+        "NAME": "Nông Gia Tiên Điền",
+        "CHAPTER": [
+            {
+                "id": "1051322",
+                "name": "Chương 1: Kỳ dị tiểu không gian"
+            }
+        ],
+        "TOTALCHAPTER": "1639",
+        "IMG": "https://static.cdnno.com/poster/nong-gia-tien-dien/150.jpg",
+        "CAT": "Đô Thị",
+        "AUTHOR": "Nam Sơn Ẩn Sĩ",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Thần bí không gian, hẻo lánh sơn thôn nhỏ.Từ phồn hoa đô thị trở về tiểu nông dân, mở ra hắn khác loại nhân sinh.Hoang dã miếu thờ, võ lâm tông phái, để bình tĩnh núi rừng thay đổi dần huyên náo.Lý Thanh Vân nói, kỳ thực ta chỉ là cái nông hai đời...Các mỹ nữ nói, quỷ tin!",
+        "THUMB": "https://static.cdnno.com/poster/nong-gia-tien-dien/150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

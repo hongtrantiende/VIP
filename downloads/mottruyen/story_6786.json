@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "6786",
+        "NAME": "Võ Lâm Bán Hiệp Truyện",
+        "CHAPTER": [
+            {
+                "id": "2420657",
+                "name": "Chương 1: Xuyên qua"
+            }
+        ],
+        "TOTALCHAPTER": "653",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Dị Giới",
+        "AUTHOR": "Văn Sao Công",
+        "TRANS": "Hoàng Châu",
+        "DESC": "V&ocirc; tận rộng r&atilde;i m&agrave; m&ecirc;nh m&ocirc;ng v&otilde; đạo thế giới.<br /> <br /> Nơi n&agrave;y c&oacute; vai v&aacute;c Ngũ Nhạc, ch&acirc;n đạp vạn h&agrave; khủng bố v&otilde; giả, ph&aacute; to&aacute;i hư kh&ocirc;ng l&agrave; tất cả cuối c&ugrave;ng? Kh&ocirc;ng! Nơi n&agrave;y vừa mới bắt đầu!<br /> <br /> Ba v&acirc;n quỷ b&iacute; giang hồ, thoải m&aacute;i tr&agrave;n trề tranh đấu, c&ograve;n c&oacute; chư Thế Giới lu&acirc;n hồi mạo hiểm!<br /> <br /> Một vị xuy&ecirc;n qua thiếu ni&ecirc;n, một đoạn diễn v&otilde; lệnh mang đến truyền kỳ...",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

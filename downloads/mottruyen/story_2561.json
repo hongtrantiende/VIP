@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "2561",
+        "NAME": "Cơ Giáp Thiên Vương",
+        "CHAPTER": [
+            {
+                "id": "841614",
+                "name": "Chương 1: Sa gia quân"
+            }
+        ],
+        "TOTALCHAPTER": "240",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Khoa Huyễn",
+        "AUTHOR": "Cổ Kiếm Phong",
+        "TRANS": "Hoàng Luân",
+        "DESC": "Thần b&iacute; ch&iacute; bảo, bưu h&atilde;n mỹ nữ, cuồng d&atilde; cơ gi&aacute;p, hết thảy nh&eacute;t v&agrave;o trong l&ograve;ng.  Nh&igrave;n xem L&yacute; Nguy&ecirc;n, một c&aacute;i xuất từ bi&ecirc;n cương gia tộc nho nhỏ ky gi&aacute;p binh, như thế n&agrave;o đi ra một c&aacute;i thuộc về m&igrave;nh đường. Lại như thế n&agrave;o khống chế sắt th&eacute;p d&ograve;ng chảy, đạp ph&aacute; ng&acirc;n h&agrave;, ngạo cười ho&agrave;n vũ, th&agrave;nh tựu bất bại đỉnh. Hắn, cơ gi&aacute;p thi&ecirc;n vương, l&agrave;m cho vạn quốc gia đến hướng v&ecirc;̀, l&agrave;m cho v&ocirc; số vương b&agrave;i c&uacute;i đầu xưng thần.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

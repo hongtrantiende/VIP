@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "12110",
+        "NAME": "Dị Thế Chủ Nông Trường",
+        "CHAPTER": [
+            {
+                "id": "3950402",
+                "name": "Chương 1: Xuyên! ! !"
+            }
+        ],
+        "TOTALCHAPTER": "20",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo, Dị Giới",
+        "AUTHOR": "Thủy Trung Đích Đảo Ảnh",
+        "TRANS": "SacLangVuong",
+        "DESC": "Một cái xui xẻo? May mắn? Gia hỏa, chơi đùa một lần biến dị? Biến thái? nông trường Game. \" bị \" xuyên qua đến một cái ma pháp thế giới. Cái thế giới này có thật nhiều ma pháp sư cường đại ~! Không liên quan, ở nông trường nguyên liệu nấu ăn dưới sự giúp đỡ người này rất nhanh thì có thể học được. Cái thế giới này có thật nhiều người đều có ma sủng ~! Không cái gì không nổi, bọn họ cơm sau chuồn ma sủng, chúng ta cơm sau liền chuồn Tỳ Hưu. Xem một cái may mắn kẻ xui xẻo ở dị giới hạnh phúc nông trường chủ sinh hoạt. . .",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

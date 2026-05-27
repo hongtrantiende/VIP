@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "12278",
+        "NAME": "Vô Hạn Trang Bức Hệ Thống",
+        "CHAPTER": [
+            {
+                "id": "4000961",
+                "name": "Chương 1: Vô hạn Trang Bức? Chính là cái này feel vạn phần thoải mái!"
+            }
+        ],
+        "TOTALCHAPTER": "142",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo",
+        "AUTHOR": "Kiếm Ngữ",
+        "TRANS": "ThieuNhanGian",
+        "DESC": "Trang Bức có thể hối đoái Hồng Quân Lão Tổ, Nữ Oa nương nương, Thông Thiên Giáo Chủ, Zeus Satan? Trang Bức có thể xuyên qua nơi này Tây Du, Phong Thần, tiên quốc Đại Đế, Hồng Hoang? Trang Bức có thể nhập vào thân Á Tác, duệ văn? Trang Bức còn có thể rút ra khí vận, cướp đoạt vị diện? Mà lại theo Trang Bức đi tới, sau lưng nhất hứa lưu tinh!",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

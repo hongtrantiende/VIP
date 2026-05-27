@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "1083",
+        "NAME": "Truyền Kiếm",
+        "CHAPTER": [
+            {
+                "id": "357522",
+                "name": "Chương 1: Trời sinh tàn mạch"
+            }
+        ],
+        "TOTALCHAPTER": "526",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp",
+        "AUTHOR": "Văn Mặc",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Mạc Vấn, một thiếu ni&ecirc;n vừa sinh ra kinh mạch đ&atilde; kh&ocirc;ng trọn vẹn, sống  kh&ocirc;ng qu&aacute; mười t&aacute;m tuổi. Liệu ch&agrave;ng thiếu ni&ecirc;n n&agrave;y sẽ phải l&agrave;m g&igrave; để  chống chọi với số phận?\r\n&nbsp;\r\nTruyện nh&acirc;n vật ch&iacute;nh c&oacute; ho&agrave;n cảnh v&ocirc; c&ugrave;ng bi thảm, khuy&ecirc;n c&aacute;c đồng ch&iacute; n&agrave;o yếu tim đừng xem",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

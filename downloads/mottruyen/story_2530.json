@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "2530",
+        "NAME": "Nhất Tiên Nan Cầu",
+        "CHAPTER": [
+            {
+                "id": "6876377",
+                "name": "Chương 1 : Mạch gia thôn"
+            }
+        ],
+        "TOTALCHAPTER": "675",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp, Huyền Ảo",
+        "AUTHOR": "Vân Cập",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Làm nữ tu sĩ, trường sinh trên đường muốn vượt qua khó khăn nhiều lắm.<br />\r\n<br />\r\nTư chất, công pháp, đan dược, pháp bảo, giống nhau cũng không có thể thiếu.<br />\r\n<br />\r\nCảm tình, yếu đuối, nhân từ, lòng tham, giống nhau cũng không có thể nhiều.<br />\r\n<br />\r\nKhông có người trước, tu hành quá chậm, hơn người sau, bị chết quá nhanh.<br />\r\n<br />\r\nCàng thậm giả, dung mạo nếu không qua không kịp, trí tuệ muốn không nhiều không ít",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

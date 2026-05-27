@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "3390",
+        "NAME": "Yêu quái nhân viên quản lý",
+        "CHAPTER": [
+            {
+                "id": "1177087",
+                "name": "Chương 1 : mang ngươi mở du thuyền"
+            }
+        ],
+        "TOTALCHAPTER": "2",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đô Thị",
+        "AUTHOR": "Thư đồng tiểu mục đồng",
+        "TRANS": "lekien",
+        "DESC": "Truyện độ thị được gần 400 chương , vừa đọc vừa edit<br />\r\n Nên đánh tấm kia bài? Này ngoại trừ ở chơi mạt chược thời điểm khá là khiến người ta làm khó dễ ở ngoài, cũng làm cho có lựa chọn cản trở tề tư xa rất dày vò.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

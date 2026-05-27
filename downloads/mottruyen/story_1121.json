@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "1121",
+        "NAME": "Linh Chu",
+        "CHAPTER": [
+            {
+                "id": "399056",
+                "name": " Chương 30 thanh mai trúc mã "
+            }
+        ],
+        "TOTALCHAPTER": "1149",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo",
+        "AUTHOR": "Cửu Đương Gia",
+        "TRANS": "Niệm Khúc",
+        "DESC": "Đ&acirc;y l&agrave; một m&ecirc;nh m&ocirc;ng thế giới k&igrave; dị, c&oacute; c&ugrave;ng thi&ecirc;n liều mạng tu h&agrave;nh giả, d&aacute;ng vẻ thướt tha mềm mại tuyệt đẹp c&ocirc; g&aacute;i, xuy&ecirc;n qua ho&agrave;n vũ cổ cường nh&acirc;n, c&ograve;n c&oacute; hung m&atilde;nh cổ th&uacute;, hắc thạch b&ecirc;n trong bạch cốt, dưới b&ugrave;n đất Ho&agrave;ng tuyền, tr&ecirc;n bầu trời cung điện.\r\n<br />C&ograve;n c&oacute; bảy con cổ xưa Linh chu...<br /><br />Truyện coi được, nhẹ nh&agrave;ng t&igrave;nh cảm, h&agrave;i h&agrave;i ra được hơn 400 chương rồi.<br /><br />\" A Di Đ&agrave; phật, nếu n&oacute;i phật độ người hữu duy&ecirc;n, mới vừa rồi bần tăng đ&atilde; th&agrave;nh k&iacute;nh b&aacute;o c&aacute;o Phật tổ, Phật tổ n&oacute;i bần tăng c&ugrave;ng c&ocirc; nương hữu duy&ecirc;n, tối nay muốn bần tăng v&ocirc; luận như thế n&agrave;o cũng muốn độ h&oacute;a c&ocirc; nương - một đoạn đi chơi kỹ viện ^o^ \"",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "4990",
+        "NAME": "Võ Hiệp Đại Hậu Cung",
+        "CHAPTER": [
+            {
+                "id": "1754000",
+                "name": "Chương 1: Dkm a !"
+            }
+        ],
+        "TOTALCHAPTER": "105",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đồng Nhân",
+        "AUTHOR": "Dân Kỹ Thuật",
+        "TRANS": "๖ۣۜHuyễn ๖ۣۜNguyệt",
+        "DESC": "Thế giới võ hiệp có cái gì?<br />\r\n<br />\r\nBí tịch võ công: Độc Cô Cửu Kiếm, Hàng Long Thập Bát Chưởng, Long Tượng Bàn Nhược Công, Cửu Âm Chân Kinh, Lục Mạch thần kiếm, Bài Vân Chưởng, Tam Phân Quy Nguyên Khí ...Những này ta đều có.<br />\r\n<br />\r\nÔn nhu hình mỹ nữ: Trinh tiết liệt nữ Nhạc Linh San, băng thanh ngọc khiết Tiểu Long Nữ, phiêu dật xuất trần Chu Chỉ Nhược, đọc đủ thứ thi thư Vương Ngữ Yên , cổ linh tinh quái Quách Tương.  cần dạy dỗ nữ hán tử: Quý khí Vô Song Nhậm Doanh Doanh, phú nhị đại Quách Phù, công chúa kiểu Triệu Mẫn, nham hiểm xảo trá A Tử<br />\r\n<br />\r\nXuyên qua thế giới: Tiếu Ngạo Giang Hồ, Thần Điêu Hiệp Lữ, Ỷ Thiên Đồ Long ký, Thiên Long Bát Bộ, Phong Vân.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

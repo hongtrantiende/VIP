@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "7068",
+        "NAME": "Du Hành Giả Huyền Thoại",
+        "CHAPTER": [
+            {
+                "id": "2514578",
+                "name": "Chương 1 : Minh Khang"
+            }
+        ],
+        "TOTALCHAPTER": "3",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Xuyên Không, Đồng Nhân",
+        "AUTHOR": "pimpimbm",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Một tên otaku xuyên việt...<br />\r\nMột con chủ thần loli đồng nhan cự nhủ !<br />\r\nMột thế giới đầy mạo hiểm và phấn khích !<br />\r\nCái gì sẽ chờ đợi Minh Khang tại nơi này ?<br />\r\nTập tành viết truyện, các bạn đọc rồi góp ý nha.<br />\r\nĐồng nhân dungeon.<br />\r\nTiến độ: con baba bò<br />\r\nNgày 1c, cn 2c",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

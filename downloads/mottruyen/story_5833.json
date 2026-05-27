@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "5833",
+        "NAME": "Xích Long Võ Thần",
+        "CHAPTER": [
+            {
+                "id": "4351503",
+                "name": "Chương 1 : Võ Hồn huyết mạch"
+            }
+        ],
+        "TOTALCHAPTER": "851",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo",
+        "AUTHOR": "Du Du Đế Hoàng",
+        "TRANS": "FireStorm",
+        "DESC": "Xích Long, long chi thủy tổ, sinh ở hỗn độn, chính là tiên thiên thần linh.  Lâm Thần, Đông Dương quận Lâm gia một người thiếu niên, người mang Xích Long huyết thống, lại bị người lầm tưởng là khuê xà huyết thống, bởi vì cùng gia tộc đệ tử thiên tài tranh đấu, bị đuổi ra khỏi cửa...  Mà xem Lâm Thần làm sao dựa vào Xích Long huyết thống, ở thời loạn lạc bên trong mở một đường máu, trở thành cổ kim vạn giới mạnh nhất Võ Thần!",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "1591",
+        "NAME": "Võng Du Vô Danh Chí Tôn",
+        "CHAPTER": [
+            {
+                "id": "652208",
+                "name": "Chương 1 : Tự Chương"
+            }
+        ],
+        "TOTALCHAPTER": "21",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đô Thị, Huyền Ảo, Dị Năng, Võng Du",
+        "AUTHOR": "Thần",
+        "TRANS": "Việt Nam",
+        "DESC": "Một đời Quân Thần bất hạnh ngã xuống . Quyền thế bị mất , tước vị không còn , danh vọng không còn , Chiến tích bị cướp mất . Một đời thiếu niên quật khởi đòi về tất cả mình muốn , mở ra dân tộc thân thế chi mê . Một đời thiếu niên sát thần ma, nghịch thiên, chiến đạo, đạp lên chí tôn vị .",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

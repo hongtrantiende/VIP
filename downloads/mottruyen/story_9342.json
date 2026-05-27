@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "9342",
+        "NAME": "Tiên Dược Cung Ứng Thương",
+        "CHAPTER": [
+            {
+                "id": "5863337",
+                "name": "Chương 1: Cứu người thần kỳ thiên hàng"
+            }
+        ],
+        "TOTALCHAPTER": "1011",
+        "IMG": "https://static.cdnno.com/poster/tien-duoc-cung-ung-thuong/150.jpg",
+        "CAT": "Đô Thị",
+        "AUTHOR": "Đường Thố Vu",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Một cái hoang vu nông thôn,<br />\r\n<br />\r\n\tNửa vùng núi, mấy gian phòng,<br />\r\n<br />\r\n\tCó người ở xa ngàn dặm mà đến, xe sang trọng chật ních đường nhỏ trong núi,<br />\r\n<br />\r\n\tBởi vì nơi này có một cái tuổi trẻ người,<br />\r\n<br />\r\n\tMột bộ thuốc có thể chữa bạch cốt, người chết sống lại!",
+        "THUMB": "https://static.cdnno.com/poster/tien-duoc-cung-ung-thuong/150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

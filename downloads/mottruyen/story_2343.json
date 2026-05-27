@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "2343",
+        "NAME": "Thời Không Cướp Đoạt Giả",
+        "CHAPTER": [
+            {
+                "id": "781264",
+                "name": "Tự chương"
+            }
+        ],
+        "TOTALCHAPTER": "18",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Dị Năng, Khoa Huyễn",
+        "AUTHOR": "Dạ Nam Tinh",
+        "TRANS": "๖ۣۜTiếu ๖ۣۜTuyệt",
+        "DESC": "Ngươi nếu như có thể xuyên việt đến các loại điện ảnh cùng trò chơi thậm chí là manga trong, hơn nữa đạt được trong đó các loại thần kỳ vật phẩm cùng khoa học kỹ thuật, vậy ngươi sẽ làm những thứ gì?<br />\r\nlà trở thành siêu cấp anh hùng cứu vớt nhân dân đại chúng! hay vẫn là đền đáp quốc gia, trở thành anh hùng dân tộc! hoặc là dùng cái này đến chinh phục thống trị thế giới!<br />\r\nmỗi người khả năng đều có chính mình đặc biệt nghĩ cách cùng cách làm.  mộc bụi tinh vừa mới tốt đã có được như vậy có thể xuyên qua điều kiện, bất quá lý tưởng của hắn còn chưa bắt đầu tiến hành, liền đem muốn đối mặt một cái loạn thành một bầy sự thật thế giới.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

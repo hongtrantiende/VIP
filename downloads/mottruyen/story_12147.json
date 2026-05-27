@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "12147",
+        "NAME": "Vườn Trường Vô Địch Học Sinh",
+        "CHAPTER": [
+            {
+                "id": "3960241",
+                "name": "Chương 1 : Biến dị Thần Nhãn"
+            }
+        ],
+        "TOTALCHAPTER": "90",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đô Thị",
+        "AUTHOR": "Nhiều Converter",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Đéo",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

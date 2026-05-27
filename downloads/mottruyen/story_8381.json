@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "8381",
+        "NAME": "Đô Thị Chi Tuyệt Thế Tiêu Dao",
+        "CHAPTER": [
+            {
+                "id": "2877871",
+                "name": "Chương 1 : Giang Hồ"
+            }
+        ],
+        "TOTALCHAPTER": "5",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đô Thị, Huyền Ảo, Dị Năng",
+        "AUTHOR": "Fḁčëßøøķ",
+        "TRANS": "Nhập tên Converter hoặc nhóm Converter. Bỏ trống nếu",
+        "DESC": "Thiếu niên Giang Hồ bất ngờ dung hợp một tia Không Gian bổn nguyên tinh túy và một đoạn kỳ lạ ký ức.<br />\n<br />\nTừ đó cuộc sống hắn phát sinh biến hóa long trời lở đất.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

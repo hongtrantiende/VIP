@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "12690",
+        "NAME": "Tuyệt Tiên Ký",
+        "CHAPTER": [
+            {
+                "id": "4100821",
+                "name": "Chương 1: Thế Nhân Không Tiếc Nàng, Ta Tiếc!"
+            }
+        ],
+        "TOTALCHAPTER": "1",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp, Huyền Ảo, Trùng Sinh",
+        "AUTHOR": "philiti",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Tuyệt Tiên vừa xuất, vạn kiếm thuần phục.<br />\r\n<br />\r\nĐã từng Thái Vi Tiên Vực đệ nhất thiên tài Chu An, vì một điểm chấp nhất mà  thân tử đạo tiêu, rồi lại vì một thanh bí ẩn Tuyệt Tiên kiếm mà trùng sinh Kiếm giới.<br />\r\n<br />\r\nNếu như được sống lại một thế, ta quyết đạp bằng thiên hạ, giết sạch tiên giới cừu nhân, cùng nàng đi đến cuối cùng.<br />\r\n<br />\r\n(Truyện tác Việt Nam, anh em vote 10 cái nhé)",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

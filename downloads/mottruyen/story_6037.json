@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "6037",
+        "NAME": "Đại ảnh đế",
+        "CHAPTER": [
+            {
+                "id": "2171694",
+                "name": "Chương 1: Lông Mi Cong Cong"
+            }
+        ],
+        "TOTALCHAPTER": "704",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đô Thị, Dị Giới, Trùng Sinh",
+        "AUTHOR": "Tô thích thần lai liễu",
+        "TRANS": "Khaox8896",
+        "DESC": "Chân thực điện ảnh, một loại dụng tiềm thức ra đóng phim.<br />\r\n<br />\r\n\tBất luận ngươi là thanh xuân ngọc nữ, vẫn là nham hiểm giả dối, ở chân thực điện ảnh trung đô chỉ có hiện ra nguyên hình, Tô Diệp ở sau khi chuyển kiếp có che đậy tiềm thức năng lực.<br />\r\n<br />\r\n\tMô phỏng theo Ngô Trấn Vũ biểu diễn vẻ thần kinh, mô phỏng theo Trương Quốc Vinh biểu diễn lãng tử, mô phỏng theo Gable biểu diễn thân sĩ, mô phỏng theo Brando biểu diễn đại lão.<br />\r\n<br />\r\n\tĐược gọi là tiềm thức so sánh với đế còn muốn thần bí nam nhân —— Tô Diệp<br />\r\n<br />\r\n\t\"Tự Tô Diệp ở ( người qua đường ) đầu diễn sau đó, trên thế giới diễn viên liền chia làm hai loại, một loại là Tô Diệp, một loại khác là Tô Diệp bên ngoài còn lại diễn viên.\" —— ( The Times )",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

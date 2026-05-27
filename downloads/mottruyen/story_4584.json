@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "4584",
+        "NAME": "Sáng Thế Thần Dụ",
+        "CHAPTER": [
+            {
+                "id": "1626748",
+                "name": "Tự chương"
+            }
+        ],
+        "TOTALCHAPTER": "47",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp",
+        "AUTHOR": "Tiểu Mật Sáp",
+        "TRANS": "Vân Phong",
+        "DESC": "Hắn l&agrave; trong thi&ecirc;n địa l&uacute;c đầu Thần tộc một th&agrave;nh vi&ecirc;n , cũng kh&ocirc;ng cẩn thận bị gặp biến cố .<br /> <br /> Hắn v&igrave; để tr&aacute;nh cho thế giới hủy diệt đến , muốn trọng cải lịch sử .<br /> <br /> Xem thế gian tuần ho&agrave;n đền đ&aacute;p lại , xem v&acirc;n l&ecirc;n v&acirc;n Lạc , xem Thần dụ s&aacute;ng thế .",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

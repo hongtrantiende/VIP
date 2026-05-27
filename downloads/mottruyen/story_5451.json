@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "5451",
+        "NAME": "Anh Hùng Tín Điều",
+        "CHAPTER": [
+            {
+                "id": "3512391",
+                "name": "Chương 1: Đệ nhất người đưa thư"
+            }
+        ],
+        "TOTALCHAPTER": "19",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Dị Giới",
+        "AUTHOR": "Tương Tư Tẩy Hồng Đậu",
+        "TRANS": "Khoa",
+        "DESC": "Một lần tình cờ từ đại lục ngũ đại thần bí truyền thuyết một trong lang thang thương nhân trong tay mua được toàn trí toàn năng Thượng cổ ma điển, bình dân thiếu niên Đường Đốn đạp vào hắn chinh phục con đường!  Lãnh chúa, Tứ cảnh công tước, đế quốc thân vương, quốc vương Quyền trượng, bộ bộ thăng cấp, một tay khuynh thiên hạ!  Bất Tử quân đoàn, cự nhân quân đoàn, mị ma nữ bộc quân đoàn, Ác Ma quân đoàn, tinh kỳ tung bay, thế giới thần phục!",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

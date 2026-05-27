@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "8594",
+        "NAME": "Linh Vũ",
+        "CHAPTER": [
+            {
+                "id": "2946920",
+                "name": "Chương 1:Trao Đổi"
+            }
+        ],
+        "TOTALCHAPTER": "1",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo, Dị Giới, Xuyên Không",
+        "AUTHOR": "dautay97",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Main soái, bá đạo, sinh ra trong gia tộc quyền thế...<br />\r\n<br />\r\nLinh Vũ là một đại lục rộng lớn, cường giả vi tôn. Tần Phong xuyên việt đến thế giới này với một nhiệm vụ được Thần giao phó. Hắn sẽ thi hành nhiệm vụ ấy như thế nào???",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

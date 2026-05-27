@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "8771",
+        "NAME": "Siêu Cấp Đại Phản Diện Hệ Thống",
+        "CHAPTER": [
+            {
+                "id": "3003156",
+                "name": "Chương 1 : 123423536436"
+            }
+        ],
+        "TOTALCHAPTER": "1",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp, Huyền Ảo, Xuyên Không",
+        "AUTHOR": "GodSlayer",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Drop",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

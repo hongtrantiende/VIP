@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "11224",
+        "NAME": "Tiên Vương Ẩn Cư Tại Đô Thị",
+        "CHAPTER": [
+            {
+                "id": "3711550",
+                "name": "Chương 1 : Kiếp Số Tận - Ngộ Đăng Tiên! (1)"
+            }
+        ],
+        "TOTALCHAPTER": "18",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đô Thị, Huyền Ảo, Xuyên Không",
+        "AUTHOR": "Out",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Đại khái là một lão cao nhân tu tiên, đi qua cả cuộc đời mình cho đến phút cuối cùng lại ngộ đạo đăng tiên, trở về Trái Đất.<br />\r\n<br />\r\nTự mình phong ấn thực lực, làm một người bình thường, trải nghiệm một lần nữa nhân sinh.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

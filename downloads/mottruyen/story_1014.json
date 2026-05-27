@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "1014",
+        "NAME": "Quang Minh Kỷ Nguyên",
+        "CHAPTER": [
+            {
+                "id": "312812",
+                "name": "Chương 1: Dạ hành"
+            }
+        ],
+        "TOTALCHAPTER": "1876",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo",
+        "AUTHOR": "Huyết Hồng",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Nh&acirc;n vật ch&iacute;nh trong truyện l&agrave; L&acirc;m Tề. C&acirc;u chuyện mới đầu xoay quanh về sinh vi&ecirc;n trong trường đại học Đệ Ngũ v&agrave; học viện Lục Qu&acirc;n, những mối quan hệ giữa c&aacute;c sinh vi&ecirc;n trong trường v&agrave; m&acirc;u thuẫn ngo&agrave;i đời thường.\r\n&nbsp;\r\nChủ yếu n&oacute;i về nh&acirc;n vật L&acirc;m Tề, con trai độc nhất của một gia tộc kỳ qu&aacute;i, sinh vi&ecirc;n trường đại học Đệ Ngũ chuy&ecirc;n ng&agrave;nh T&agrave;i Vụ v&agrave; Kế To&aacute;n, xung quanh l&agrave; những người bạn Vu Li&ecirc;n, Enzo,Wilker, Ballin. D&ugrave; l&agrave; sinh vi&ecirc;n đại học nhưng L&acirc;m Tề c&oacute; nhiều mối quan hệ phức tạp c&oacute; nhiều bạn b&egrave; nhưng xen v&agrave;o đ&oacute; l&agrave; những mối hận th&ugrave; với c&aacute;c bang hội, gia tộc qu&yacute; tộc. ...<br /><br />Tuy nhi&ecirc;n c&agrave;ng về sau, kh&ocirc;ng gian của truyện c&agrave;ng rộng mở với cuộc xung đột giữa gi&aacute;o hội v&agrave; triều đ&igrave;nh, giữa c&aacute;c thế lực hắc &aacute;m v&agrave; c&aacute;c vị thần, giữa c&aacute;c chủng tộc bị cấm đo&aacute;n v&agrave; nh&acirc;n loại, cũng như ngay trong nội bộ c&aacute;c thế lực đ&oacute;.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

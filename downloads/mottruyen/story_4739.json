@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "4739",
+        "NAME": "Tinh Tế Pháp Sư Hành",
+        "CHAPTER": [
+            {
+                "id": "1682269",
+                "name": "Chương 1:  Phục hồi"
+            }
+        ],
+        "TOTALCHAPTER": "10",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Khoa Huyễn",
+        "AUTHOR": "Đả Khạp Thụy Trùng",
+        "TRANS": "fanmiq",
+        "DESC": "Một khối đá đưa tới huyết án<br />\r\n<br />\r\nCấp bảy đại ma pháp sư từ Ma Pháp đại lục xuyên qua chưa đến địa cầu<br />\r\n<br />\r\nDị năng! Thể thuật! Một bữa ăn sáng<br />\r\n<br />\r\nCái gì? Còn có pháo laser, cơ giáp, phi thuyền<br />\r\n<br />\r\nMa pháp hold không hold ở ah<br />\r\n<br />\r\nLại nhìn ma pháp sư tinh tế chi hành <br />\r\n<br />\r\n<br />\r\nTruyện đại thần qidian",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

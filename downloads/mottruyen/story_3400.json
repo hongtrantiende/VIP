@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "3400",
+        "NAME": "Tạo Hóa Thần Tháp",
+        "CHAPTER": [
+            {
+                "id": "1178597",
+                "name": "Chương 01: Quặng mỏ"
+            }
+        ],
+        "TOTALCHAPTER": "111",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp",
+        "AUTHOR": "Trúc Y Vô Trần",
+        "TRANS": "Chanlinh",
+        "DESC": "Từ Mộ đ&atilde; xuy&ecirc;n việt rồi, xuy&ecirc;n vi&ecirc;̣t đến một c&aacute;i Tu Ch&acirc;n Thế Giới, th&agrave;nh một t&ecirc;n đ&agrave;o qu&aacute;ng tu n&ocirc;.<br /><br />Theo hắn m&agrave; đến, c&ograve;n c&oacute; một t&ograve;a bảo th&aacute;p.<br /><br />Tại l&agrave; to&agrave;n bộ thế giới đều cải biến.<br /><br />. . .<br /><br />Một c&aacute;i kh&ocirc;ng nhập t&ocirc;ng m&ocirc;n tu giả, một c&aacute;i kh&ocirc;ng đồng dạng như vậy Tu Ch&acirc;n Thế Giới.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "7369",
+        "NAME": "Phá Pháp Chi Nhãn",
+        "CHAPTER": [
+            {
+                "id": "3528318",
+                "name": "Chương 1: Tự chương"
+            }
+        ],
+        "TOTALCHAPTER": "258",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo",
+        "AUTHOR": "Ngô Kiệt Siêu",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Một trạch nam địa cầu xuy&ecirc;n qua thế giới ma ph&aacute;p mang theo đ&ocirc;i mắt c&oacute; thể nh&igrave;n nhấu mọi phắp tắc căn bản",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

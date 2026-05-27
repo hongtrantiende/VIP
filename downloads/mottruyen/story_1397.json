@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "1397",
+        "NAME": "Phao Nữu Tác Tệ Khí",
+        "CHAPTER": [
+            {
+                "id": "576765",
+                "name": "Chương 1: Đồ lót đều sai mất"
+            }
+        ],
+        "TOTALCHAPTER": "696",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đô Thị",
+        "AUTHOR": "Viên Kiểm Miêu",
+        "TRANS": "Oll",
+        "DESC": "Muốn hung hăng càn qu&acirc;́y qua c&ocirc;ng tử ca?<br /><br />Muốn ngưu bức qua x&atilde; hội đen?<br /><br />Muốn h&aacute;i lượt Cực phẩm c&ocirc; n&agrave;ng?<br /><br />Tiểu L&ocirc;i ti nơi tay, hết thảy c&oacute; ta!<br /><br />Từ khi c&oacute; một ng&agrave;y, L&acirc;m Thi&ecirc;n đạt được một c&aacute;i tương lai tr&iacute; tuệ nh&acirc;n tạo, hết thảy đều thay đổi...",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

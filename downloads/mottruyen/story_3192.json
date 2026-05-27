@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "3192",
+        "NAME": "Hắn Đến Từ Tận Thế",
+        "CHAPTER": [
+            {
+                "id": "1096122",
+                "name": "Chương 1: Dường như mới ngày hôm qua"
+            }
+        ],
+        "TOTALCHAPTER": "299",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đô Thị",
+        "AUTHOR": "Trúc Trà",
+        "TRANS": "dokhanh2909",
+        "DESC": "Hắn vốn sống ở Tận Thế Mạt Nhật thế giới, sau khi chết trọng sinh tới địa cầu Hoa Quốc, linh hồn nhập v&agrave;o một người t&ecirc;n l&agrave; V&acirc;n Lạc thanh ni&ecirc;n.<br /><br />Trước khi chết, hắn đ&atilde; sống 237 năm m&agrave;. . . V&acirc;n Lạc mới c&oacute; 23 ba tuổi.<br /><br />Hắn kh&ocirc;ng muốn l&agrave;m anh h&ugrave;ng, chỉ muốn lấy vợ sinh con, b&igrave;nh thản qua hết cả đời n&agrave;y. Hắn c&oacute; lẽ đang ở ngay b&ecirc;n cạnh ch&uacute;ng ta, an tĩnh m&agrave; đi ngang qua.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "5332",
+        "NAME": "Tam Quốc Chi Lữ Bố truyền kỳ",
+        "CHAPTER": [
+            {
+                "id": "1884094",
+                "name": "Chương 1: Bỏ mình Bạch Môn Lâu"
+            }
+        ],
+        "TOTALCHAPTER": "376",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Quân Sự, Lịch Sử, Xuyên Không, Trùng Sinh",
+        "AUTHOR": "Hà Gia Tứ Lang",
+        "TRANS": "Phong Pháp Sư",
+        "DESC": "Thế nh&acirc;n tất cả n&oacute;i ta Lữ Phụng Ti&ecirc;n hữu dũng v&ocirc; mưu, thay đổi thất thường, Tam T&iacute;nh Gia N&ocirc;. Cũng kh&ocirc;ng biết, nếu kh&ocirc;ng c&oacute; tr&iacute; mưu, l&agrave;m sao b&igrave;nh an mệnh vu loạn thế; nếu kh&ocirc;ng c&oacute; tr&iacute; mưu, l&agrave;m sao chu to&agrave;n vu chư hầu; nếu kh&ocirc;ng c&oacute; tr&iacute; mưu, l&agrave;m sao sừng sững ở thi&ecirc;n địa; nếu kh&ocirc;ng c&oacute; tr&iacute; mưu, l&agrave;m sao kh&iacute; th&ocirc;n H&agrave; Sơn, b&igrave;nh định loạn thế. Ch&iacute;nh nghĩa, đại đạo, ph&aacute;p l&yacute;, đức hiểm, nh&acirc;n từ, kh&ocirc;ng khỏi l&agrave; chư hầu d&ograve;m ng&oacute; ng&ocirc;i b&aacute;u thi&ecirc;n hạ chi mượn cớ. Ta Lữ Bố, chẳng qua chỉ l&agrave; trong loạn thế thuần t&uacute;y nhất cường giả, l&agrave;m sao thuần t&uacute;y, chỉ v&igrave; ta l&agrave;, nh&acirc;n t&agrave;i kiệt xuất",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

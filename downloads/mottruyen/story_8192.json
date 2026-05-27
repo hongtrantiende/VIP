@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "8192",
+        "NAME": "Hắc Ám Kỷ Nguyên",
+        "CHAPTER": [
+            {
+                "id": "2825223",
+                "name": "Chương 1: Mây đen áp thành"
+            }
+        ],
+        "TOTALCHAPTER": "21",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Khoa Huyễn",
+        "AUTHOR": "Hắc Mễ Phạn",
+        "TRANS": "chris",
+        "DESC": "Mây đen bao phủ toàn cầu, Thái Dương vĩnh viễn biến mất, vực sâu ác ma dòm ngó nhân gian, nhân loại tiến nhập tối tăm nhất kỷ nguyên. Khi ta tỉnh lại, dưới đêm dài , liền là của ta thiên hạ.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

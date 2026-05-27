@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "9373",
+        "NAME": "Bá Thiên",
+        "CHAPTER": [
+            {
+                "id": "3169260",
+                "name": "Chương 1: Trùng Sinh"
+            }
+        ],
+        "TOTALCHAPTER": "1",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp, Kiếm Hiệp, Dị Năng, Dị Giới, Trùng Sinh",
+        "AUTHOR": "vuadame123",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Hắn Thiên tôn được trùng sinh, đi tìm lại những thứ đã mất ở kiếp trước, đừng nhìn hắn mà phán xét, hắn mạnh hơn bất cứ kẻ nào.<br />\r\n<br />\r\nCác tầng cảnh giới:<br />\r\n-Luyện khí cảnh: được chia thành 9 tầng nhỏ.<br />\r\n-Luyện thể cảnh: được chia thành 9 tầng nhỏ.<br />\r\n-Khai hồn cảnh: được chia thành 9 tầng nhỏ.<br />\r\n-Nhập thần cảnh: được chia thành 9 tầng nhỏ.<br />\r\n-Bán thần cảnh: được chia thành 9 tầng nhỏ.<br />\r\n-Thiên tôn cảnh: được chia thành 9 tầng nhỏ.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

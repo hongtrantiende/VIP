@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "4932",
+        "NAME": "Siêu Cấp Tinh Tế Chiến Sĩ",
+        "CHAPTER": [
+            {
+                "id": "1734269",
+                "name": "Chương 1 trọng sinh cùng rèn luyện"
+            }
+        ],
+        "TOTALCHAPTER": "157",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Khoa Huyễn",
+        "AUTHOR": "Ta Khiếu Bài Vân Chưởng",
+        "TRANS": "lãnh vô khuyết",
+        "DESC": "Người trọng sinh nghĩ lầm xuyên việt đến thế giới 7 viên ngọc rồng phấn đấu chuyện xưa.<br />\r\n<br />\r\nMột đại tinh tế con đường cường giả, tại long châu các chiến sĩ khủng bố trong bóng mờ gian nan lên đường.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

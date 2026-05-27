@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "4340",
+        "NAME": "Mạt Thế Đồ Đằng",
+        "CHAPTER": [
+            {
+                "id": "1565359",
+                "name": "Chương 1: Thiếu niên"
+            }
+        ],
+        "TOTALCHAPTER": "35",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đô Thị, Khoa Huyễn",
+        "AUTHOR": "Huy Hoàng Chiến Lang",
+        "TRANS": "๖ۣۜArt of ๖ۣۜTime",
+        "DESC": "Đây là biển cát cùng máy móc thế giới, dựa vào phế phẩm cùng rác rưởi sinh tồn hắc ám tương lai. Nơi này đầy rẫy Truyền Thống Tiến Hóa Giả, Linh Năng Tiến Hóa Giả, Trùng Hóa Biến Dị Giả, Cơ Giới Cải Tạo Giả chờ muôn hình muôn vẻ tân nhân loại, ở mảnh này tàn khốc mà nguy hiểm trên đất bên trong tranh cướp cuối cùng tài nguyên. Một vị ở đống rác trên lớn lên lãnh khốc thiếu niên, ngẫu nhiên gặp Thiên Không thành thất lạc quý tộc thiếu nữ, một đoạn truyền kỳ lữ trình bởi vậy triển khai. . .",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

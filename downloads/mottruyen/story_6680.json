@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "6680",
+        "NAME": "Thế Giới Song Song",
+        "CHAPTER": [
+            {
+                "id": "2371379",
+                "name": "CHƯƠNG 1 :  LỜI CHÀO TỪ THẾ GIỚI KHÁC"
+            }
+        ],
+        "TOTALCHAPTER": "1",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Linh Dị",
+        "AUTHOR": "harryslim",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Câu chuyện về 1 câu bé vốn có 1 cuộc sống yên bình và rồi vô tình cậu được chọn là người gánh vác sứ mệnh của cả 2 thế giới  . Câu chuyện lấy bối cảnh Việt Nam  dễ gần , cảm giác ma mị , mờ ảo .",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

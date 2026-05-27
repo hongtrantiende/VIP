@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "7764",
+        "NAME": "Tối Cường Hệ Thống",
+        "CHAPTER": [
+            {
+                "id": "2728199",
+                "name": "Chương 1: Để ta thăng cấp đi"
+            }
+        ],
+        "TOTALCHAPTER": "1165",
+        "IMG": "https://static.cdnno.com/poster/toi-cuong-he-thong/150.jpg",
+        "CAT": "Huyền Ảo",
+        "AUTHOR": "Tân Phong",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Ta chính là mạnh nhất.<br />\r\n<br />\r\nMain bựa , truyện hài nhiều đoạn cười không nhặt được mồm luôn.",
+        "THUMB": "https://static.cdnno.com/poster/toi-cuong-he-thong/150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

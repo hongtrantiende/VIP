@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "11754",
+        "NAME": "Cuồng Bạo Lôi Thần",
+        "CHAPTER": [
+            {
+                "id": "3870660",
+                "name": "Chương 1: Đoạn Lăng Phong"
+            }
+        ],
+        "TOTALCHAPTER": "526",
+        "IMG": "https://static.cdnno.com/poster/cuong-bao-loi-than/150.jpg",
+        "CAT": "Khoa Huyễn",
+        "AUTHOR": "Liễu Tam Đao",
+        "TRANS": "†๖ۣۜSóiღ†",
+        "DESC": "Thiên Kiêu thiếu niên Đoạn Lăng Phong bi thảm tiểu nhân ám hại, huyết mạch bị phong ấn biến thành phế vật, ngoài ý muốn thu hoạch được Lôi Thần truyền thừa, đạt được cuồng bạo thăng cấp hệ thống.<br />\r\n<br />\r\n\tTu luyện thần công, giả heo ăn thịt hổ, một đường chẳng những nghịch tập quật khởi, cướp bóc vô cùng tài phú, ta có hệ thống Thương Thành, đan dược vũ khí Phù Triện đều là cực phẩm.<br />\r\n<br />\r\n\tChiến Thiên các đại thiên kiêu, vượt cấp giết địch, khoái ý ân cừu, cẩu thả bụi hoa, quét ngang Chư Thiên Vạn Giới, Hùng Bá Thiên Hạ, ta chính là thế giới này mạnh nhất cuồng bạo Lôi Thần.",
+        "THUMB": "https://static.cdnno.com/poster/cuong-bao-loi-than/150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "9399",
+        "NAME": "Siêu Cấp Truyền Kỳ Cửa Hàng",
+        "CHAPTER": [
+            {
+                "id": "3192731",
+                "name": "Chương 1: Thiên Tai Nhân Họa"
+            }
+        ],
+        "TOTALCHAPTER": "70",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đô Thị, Dị Năng",
+        "AUTHOR": "Nhị Tương",
+        "TRANS": "Saya Yuki",
+        "DESC": "\"Đã từng thật sự cho rằng nhân sinh cứ như vậy, bình tĩnh tâm cự tuyệt lại có thủy triều...\"<br />\r\n<br />\r\n\tNgọa Tào! Cái này. . . Cái này cửa hàng lấy ở đâu?<br />\r\n<br />\r\n\tMở ra truyền kỳ cửa hàng, thành tựu truyền kỳ nhân sinh.<br />\r\n<br />\r\nCầu vote 10 cuối mỗi chương",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

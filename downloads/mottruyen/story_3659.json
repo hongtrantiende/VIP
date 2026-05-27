@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "3659",
+        "NAME": "Kỳ Lâm Dị Giới",
+        "CHAPTER": [
+            {
+                "id": "1262777",
+                "name": "Chương 1: Đến từ dị giới thiếu niên"
+            }
+        ],
+        "TOTALCHAPTER": "104",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo",
+        "AUTHOR": "Vô Vu",
+        "TRANS": "Linhlamdo",
+        "DESC": "Nắm giữ tuyệt thế vũ mạch, mang theo Tinh La b&agrave;n cờ gi&aacute;ng l&acirc;m dị giới, xảo ngộ Tiểu Sư T&ocirc;n, tr&ecirc;u đ&ugrave;a ti&ecirc;n tử, động t&igrave;nh y&ecirc;u nữ, ta mệnh tuy ph&agrave;m, ta t&acirc;m bất ph&agrave;m, cho d&ugrave; thế gian kh&ocirc;ng cho, nhưng ta cũng kh&ocirc;ng cần thi&ecirc;n địa tha cho ta, bởi v&igrave;, ta l&agrave; B&aacute; Vương!",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

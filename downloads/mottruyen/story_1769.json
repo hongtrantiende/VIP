@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "1769",
+        "NAME": "Tiên Lộ Chí Tôn",
+        "CHAPTER": [
+            {
+                "id": "727453",
+                "name": "Chương 1: Tiên linh"
+            }
+        ],
+        "TOTALCHAPTER": "1340",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp",
+        "AUTHOR": "Thụy Thu",
+        "TRANS": "†๖ۣۜSóiღ†",
+        "DESC": "Một người phấn đấu, phải chăng có th&ecirc;̉ mang đến vận mệnh chuyển cơ? Tr&agrave;n trề đại thế, đến c&ugrave;ng c&oacute; thể kh&ocirc;ng bị con s&acirc;u cái ki&ecirc;́n chỗ sửa đổi? Đương trường sinh kh&ocirc;ng hề ti&ecirc;u dao, ch&uacute;ng sinh đều vi kẻ t&ugrave; tội, v&igrave; vậy &acirc;m mưu bộc ph&aacute;t, loạn thế mở ra!",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

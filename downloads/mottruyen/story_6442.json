@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "6442",
+        "NAME": "Tống Mạn Ma Kiếm Sĩ",
+        "CHAPTER": [
+            {
+                "id": "2296523",
+                "name": "Tự chương"
+            }
+        ],
+        "TOTALCHAPTER": "776",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Xuyên Không, Đồng Nhân",
+        "AUTHOR": "Điền Chân",
+        "TRANS": "Nhiều Converter",
+        "DESC": "( Highschool of the Dead ), ( Infinite Stratos (IS) ), ( Highschool DxD ), ( Date A Live ), ( Akame ga Kill ), Phiên ngoại thiên ( Seirei Tsukai no Blade Dance ), Phiên ngoại thiên ( Esdeath siêu thần học viện )",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

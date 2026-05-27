@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "9005",
+        "NAME": "Tàn Thiên",
+        "CHAPTER": [
+            {
+                "id": "3085945",
+                "name": "Chương 1 : Thiên Y"
+            }
+        ],
+        "TOTALCHAPTER": "44",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp, Huyền Ảo",
+        "AUTHOR": "luitan12",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Hắn sinh ra đã cao quý, người mang độc nhất vô nhị thiên phú như hắn nhưng có thể khiến cho cùng thế hệ ngưỡng vọng.<br />\r\n<br />\r\nHắn xuất thân nhưng là Đệ Nhất Đại Tộc, với chúng sinh mà nói hắn là một tồn tại khiến người nhìn lên.<br />\r\n<br />\r\nChỉ là phía sau cái kia cao quý thân phận, lại có mấy ai biết hắn đã bỏ ra những gì, gánh chịu lấy áp lực như thế nào.<br />\r\n<br />\r\nĐây là một cái tuyệt thế thiên kiêu xuyên qua cái này tới cái khác thế giới để đi tìm những thứ đã bị quên lãng cố sự.<br />\r\n<br />\r\nP.S : không cầu vote, nhưng cầu không chơi dìm hàng! <br />\r\n<br />\r\nHãy là người lịch sự!<br />\r\n<br />\r\nTruyền việt theo Hán- Việt, thần thoại hóa nhân vật cổ tích!",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

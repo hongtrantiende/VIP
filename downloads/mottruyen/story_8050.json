@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "8050",
+        "NAME": "Tối Cường Đại Tiên Hệ Thống",
+        "CHAPTER": [
+            {
+                "id": "2793814",
+                "name": "Chương 1: Đại Tự Tại, Phương Tự Tại"
+            }
+        ],
+        "TOTALCHAPTER": "305",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp, Huyền Ảo",
+        "AUTHOR": "Nhị Trúc",
+        "TRANS": "Liu",
+        "DESC": "Bên người hệ thống, đỉnh cao vô địch!<br />\r\n<br />\r\n\tTất cả huyết thống, ngàn vạn pháp bảo, vô tận tiền tài, phong phú toàn diện, không thiếu gì cả!<br />\r\n<br />\r\n\tĐây là một cái khá là xấu bụng thiếu niên, cùng một cái xấu bụng hệ thống, đấu trí so dũng khí cố sự!<br />\r\n<br />\r\n\tMột đoạn tiên hiệp truyền kỳ, từ đó bắt đầu! <br />\r\n<br />\r\n\t-------------------------------------",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "4539",
+        "NAME": "Hồng Hoang Chi Tử Hư",
+        "CHAPTER": [
+            {
+                "id": "1610417",
+                "name": "Chương 1: Thiên địa sơ khai"
+            }
+        ],
+        "TOTALCHAPTER": "295",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp",
+        "AUTHOR": "Tử Hư",
+        "TRANS": "Mít and Tôm",
+        "DESC": "Trong hồng hoang , một đ&aacute;m &aacute;nh s&aacute;ng t&iacute;m , biến h&oacute;a m&agrave; sinh , từ đ&oacute; k&eacute;o ra Hồng Hoang đại mạc !<br /><br />",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

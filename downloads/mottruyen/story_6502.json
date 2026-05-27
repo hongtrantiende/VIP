@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "6502",
+        "NAME": "Tiên Vực Khoa Kỹ Bá Chủ",
+        "CHAPTER": [
+            {
+                "id": "2313748",
+                "name": "Chương 1: Tiên vực"
+            }
+        ],
+        "TOTALCHAPTER": "1833",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp, Quân Sự",
+        "AUTHOR": "Thí Kiếm Thiên Nhai",
+        "TRANS": "๖ۣۜHồng ๖ۣۜTrần ๖ۣۜLạc ღ๖ۣۜTiên",
+        "DESC": "Hàng trăm đã qua vạn năm, tiên pháp hoàn toàn chảy vào dân gian, quần hùng cũng khởi; tân tư tưởng, tân tình thế, tân sự vật, tầng tầng lớp lớp.<br />\r\n<br />\r\n\tTruyền thống người tu hành, đối mặt trước đó chưa từng có tình thế hỗn loạn.<br />\r\n<br />\r\n\tMột cái Địa Cầu tới linh hồn, sẽ cho sự biến hóa này trung tiên vực, mang đến như thế nào phong ba đâu này?<br />\r\n<br />\r\nCầu thanks sau mỗi chương <br />\r\nCầu like<br />\r\nCầu vote tốt !!!",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

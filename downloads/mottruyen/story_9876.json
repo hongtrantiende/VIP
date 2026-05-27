@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "9876",
+        "NAME": "Hệ Thống Môn Phái Tu Chân",
+        "CHAPTER": [
+            {
+                "id": "3332287",
+                "name": "Chương 1 : Huyền Âm môn"
+            }
+        ],
+        "TOTALCHAPTER": "2",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp, Võng Du",
+        "AUTHOR": "talahunam",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Ngô Ngọc Linh vốn đang chơi một game tiên hiệp \"Môn Phái Tu chân\" đạt tới top1. Thế nhưng nàng xuyên không! Nàng xuyên không tới Huyền Âm Môn, một tiểu môn phái Luyện Khí nhỏ bé, thậm chí sắp tan vỡ, hơn nữa, Ngô Ngọc Linh còn mang thân phận tân chưởng môn! Cũng may là cô có hệ thống giúp đỡ. Hãy xem Ngô Ngọc Linh đưa Huyền Âm Môn tới đỉnh cao của Tu Chân giới!",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

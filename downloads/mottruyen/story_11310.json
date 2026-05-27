@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "11310",
+        "NAME": "Việt Tiên Ký",
+        "CHAPTER": [
+            {
+                "id": "3748392",
+                "name": "Chương 1 : Chuyện Xưa"
+            }
+        ],
+        "TOTALCHAPTER": "4",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp, Huyền Ảo, Lịch Sử",
+        "AUTHOR": "Quangbkavvn",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Cùng về thời Hồng Bàng<br />\r\n Xem Việt nhân tu chân<br />\r\n<br />\r\n9 cảnh giới ban đầu : Võ Giả - Võ Sư - Đại Võ Sư - Võ Linh - Võ Hoàng  - Võ Tông - Võ Tôn  - Võ Đế - Võ Thánh . <br />\r\n<br />\r\n Thấy mấy đạo hữu hay thắc mắc là tại sao tác giả Việt lại không viết truyện thuần Việt. Nay tại hạ mạn phép thử tài nghệ<br />\r\n<br />\r\nThấy vui thì đừng ngại vote. Cmt góp ý",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

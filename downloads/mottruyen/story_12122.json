@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "12122",
+        "NAME": "Kiếm Tru Thiên Đạo",
+        "CHAPTER": [
+            {
+                "id": "3952949",
+                "name": "Chương 1: Kiếm Tiên tân sinh"
+            }
+        ],
+        "TOTALCHAPTER": "840",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp",
+        "AUTHOR": "Thái Thượng Bố Y",
+        "TRANS": "Liu",
+        "DESC": "Hắn là trong Tu Tiên giới duy nhất Kiếm tu người, hắn một đời đều đang tu luyện Kiếm Tiên chi đạo! <br />\r\n<br />\r\nTrước khi chết, hắn chỉ để lại một câu chấn động thế nhân lời nói: \"Ta Kiếm Tiên chi đạo, chưa bao giờ có chạy trốn, ta muốn cho này kiếm, chỉ có phong mang.\" <br />\r\n<br />\r\nKhi hắn lần thứ hai mở con mắt ra, thế giới sốt sắng rồi! hắn trùng tu Kiếm Tiên chi đạo, kiếm tru Thiên Đạo, ý nát tan Thương Khung, thành tựu Kiếm Tiên cảnh giới!",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

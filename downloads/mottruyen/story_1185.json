@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "1185",
+        "NAME": "Trùng Sinh Thế Gia Tử",
+        "CHAPTER": [
+            {
+                "id": "452921",
+                "name": "Chương 1: Nhiếp thái tử đích truyền thuyết"
+            }
+        ],
+        "TOTALCHAPTER": "353",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đô Thị, Trùng Sinh",
+        "AUTHOR": "Thái Tấn",
+        "TRANS": "langriser",
+        "DESC": "Trong Tứ Cửu th&agrave;nh, được xưng l&agrave; thế gia đệ tử trung nhất uất ức con  ri&ecirc;ng, Nhiếp Chấn Bang kh&ocirc;ng chịu nổi g&aacute;nh nặng rốt cục tự s&aacute;t, lại sống  lại về tới c&ugrave;ng phụ th&acirc;n quen biết nhau trước kia một s&aacute;t na kia.\r\n&nbsp;\r\nBi  kịch hay kh&ocirc;ng c&ograve;n hội t&aacute;i diễn? Tiếng tăm lừng lẫy kẻ bất lực, l&uacute;c n&agrave;y  đ&acirc;y c&oacute; thể tại Tứ Cửu th&agrave;nh trở th&agrave;nh kh&ocirc;ng người kh&ocirc;ng biết, kh&ocirc;ng  người kh&ocirc;ng hiểu tồn tại sao? Gia đạo sa s&uacute;t, cả đời n&agrave;y, Nhiếp Chấn  Bang c&ograve;n c&oacute; thể lại để cho lịch sử t&aacute;i diễn sao? Con ri&ecirc;ng cũng c&oacute; khống  chế gia tộc ng&agrave;y n&agrave;o đ&oacute; sao?",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

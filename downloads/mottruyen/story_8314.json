@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "8314",
+        "NAME": "Thông Thiên Tiên Lộ",
+        "CHAPTER": [
+            {
+                "id": "2859799",
+                "name": "Chương 1: Quân hỏa"
+            }
+        ],
+        "TOTALCHAPTER": "1358",
+        "IMG": "https://static.cdnno.com/poster/thong-thien-tien-lo/150.jpg",
+        "CAT": "Huyền Ảo",
+        "AUTHOR": "Thương Thiên Bạch Hạc",
+        "TRANS": "Hoàng Châu",
+        "DESC": "\"Âu Dương đại sư, cầu ngài cho ta rèn đúc cái Thần khí đi! Điều kiện ngài mở!\"  \". . .\"  \"Âu Dương đại sư, ta biết toàn thiên hạ liền ngài có thể rèn đúc bảy thuộc tính Thần khí, mời ngài tác thành!\"  \". . .\"  \"Âu Dương đại sư, ngài. . .\"  \"Âu Dương em rể ngươi! Lão Tử họ Âu!\"  . . .  \"Hừm, thuộc tính kém một chút, thêm chút cái gì đây! Đến điểm hút máu, hút ma, toàn phòng. . . Trở lại cái băng hỏa hai thuộc tính kỹ năng cái gì, trở lại. . .\"  \"Chuyện này. . . Đây là Thần khí sao? Là muốn nghịch thiên rồi sao?\"  . . .  Đây là một cái có thể tùy ý rèn đúc cùng tu bổ trang bị thuộc tính, kỹ năng tiểu nhân vật cố sự!  Trồng ruộng một chút, đánh nhau một chút, thế giới muốn hòa bình!",
+        "THUMB": "https://static.cdnno.com/poster/thong-thien-tien-lo/150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

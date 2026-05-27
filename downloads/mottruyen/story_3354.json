@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "3354",
+        "NAME": "Đại Đường Cuồng Sĩ",
+        "CHAPTER": [
+            {
+                "id": "1163413",
+                "name": "Chương 1: Gia có hãn tỷ - Quyển 1"
+            }
+        ],
+        "TOTALCHAPTER": "407",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Lịch Sử",
+        "AUTHOR": "Cao Nguyệt",
+        "TRANS": "Vking, Lamgaka",
+        "DESC": "Thiện thủ giả, nấp trong Cửu Địa b&ecirc;n dưới, giỏi về tấn c&ocirc;ng giả, c&ocirc;ng với tr&ecirc;n ch&iacute;n tầng trời.<br /><br />Hoặc l&agrave; kh&ocirc;ng l&agrave;m, hoặc l&agrave; l&agrave;m tuyệt.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

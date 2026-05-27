@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "10819",
+        "NAME": "Hokage Chi Huyền Thoại",
+        "CHAPTER": [
+            {
+                "id": "3590796",
+                "name": "Chương 1 : Huyền thoại Củ huyền thoại mới"
+            }
+        ],
+        "TOTALCHAPTER": "1",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đồng Nhân",
+        "AUTHOR": "zzmachuzz",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Hỗn huyết của senju và uchiha .không có mộc độn  nhưng có tả luân nhãn .mở tả luân nhãn theo cách đặc biệt .khoảng gần 20 tuổi .biết nhiều nhẩn thuật .nhưng phải đến kage cấp mới sử dụng được .",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

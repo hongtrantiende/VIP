@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "2844",
+        "NAME": "Yêu Tộc",
+        "CHAPTER": [
+            {
+                "id": "950104",
+                "name": "Chương 1\tTrong núi hái thuốc trẻ con"
+            }
+        ],
+        "TOTALCHAPTER": "41",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo",
+        "AUTHOR": "Y Quan Tự Tuyết",
+        "TRANS": "Tanikaze",
+        "DESC": "Biến mất ngàn năm c&aacute;c Th&aacute;nh địa t&aacute;i hiện, bị ch&eacute;m đứt cung trời b&aacute;ch y&ecirc;u đường lại một lần nữa, suy yếu thần triều tr&ugrave;ng hiện ra cao ch&oacute;t v&oacute;t...<br /><br />Một c&aacute;i Bắc Cương bi&ecirc;n thuỳ thi&ecirc;n s&aacute;ch c&ocirc; nhi, mang theo một trang s&aacute;ch v&agrave;ng c&ugrave;ng một c&aacute;i tử da hồ l&ocirc; vượt qua truyền kỳ, chứng kiến truyền thuyết",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

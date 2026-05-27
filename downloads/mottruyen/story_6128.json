@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "6128",
+        "NAME": "Toàn Dân Công Địch",
+        "CHAPTER": [
+            {
+                "id": "2192980",
+                "name": "Chương 1: Bị chơi hỏng thiên tài"
+            }
+        ],
+        "TOTALCHAPTER": "594",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Khoa Huyễn",
+        "AUTHOR": "Kỵ sĩ rồng",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Li&ecirc;n Bang đệ nhất Tham Mưu Trưởng Andrei n&oacute;i : Hắn số tiền thưởng c&ograve;n chưa đủ n&oacute;i r&otilde; hết thảy sao? Tối Cao Ph&aacute;p Viện Tư Ph&aacute;p Mokpet n&oacute;i : Hắn h&agrave;nh vi phạm tội đầy đủ bị giảo thủ một vạn lần. Nh&acirc;n loại đệ nhất ph&uacute; h&agrave;o Sean n&oacute;i : Hắn l&agrave; c&aacute;i từ đầu đến đu&ocirc;i hỗn đản, hắn kh&ocirc;ng ri&ecirc;ng lấy đi ta t&agrave;i ph&uacute;, c&ograve;n lừa gạt đi nữ nhi của ta. Yến Phi L&acirc;m ai th&aacute;n : Ta thực thật l&agrave; một c&aacute;i Người tốt.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

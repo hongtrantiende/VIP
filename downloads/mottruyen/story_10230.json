@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "10230",
+        "NAME": "Du Hí Tứ Vạn Niên",
+        "CHAPTER": [
+            {
+                "id": "3431386",
+                "name": "Chương 01: Đây không phải trò chơi"
+            }
+        ],
+        "TOTALCHAPTER": "5",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo, Võng Du, Khoa Huyễn, Xuyên Không",
+        "AUTHOR": "Hắc Hồ Hồ Đích Lão Yêu",
+        "TRANS": "Ẩn Sĩ Cao Nhân",
+        "DESC": "4 vạn năm trước, trò chơi trở thành phía trên thế giới này chủ nghiệp.<br />\r\n<br />\r\n4 vạn năm sau, trò chơi lại sẽ phát triển trở thành hình dáng gì.<br />\r\n<br />\r\n4 vạn năm thời gian, khoa học kỹ thuật thụ điểm oai thế giới, mọi người cùng nhau đến trò chơi đi.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

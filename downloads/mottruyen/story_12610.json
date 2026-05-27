@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "12610",
+        "NAME": "Tối Cường Sát Thủ",
+        "CHAPTER": [
+            {
+                "id": "4082464",
+                "name": "Muốn ai chết , chỉ cần có tiền sát thủ Thiên Cương sẽ lo phần còn lại."
+            }
+        ],
+        "TOTALCHAPTER": "11",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp, Dị Giới, Xuyên Không",
+        "AUTHOR": "Hữu Đức",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Một đời sát thủ lừng danh <br />\r\n Một đời Thiên Đế ai ai không sợ !<br />\r\nMột chưởng bá khí tung hoành<br />\r\nXưng bá thiên địa lịch sử ghi danh.<br />\r\n<br />\r\n<br />\r\nCảnh giới :<br />\r\n@ Phàm nhân <br />\r\n- Luyện thể<br />\r\n-Luyện gân<br />\r\n-Luyện cốt<br />\r\n-Luyện huyết<br />\r\n@ Tu tiên<br />\r\n-Trúc cơ<br />\r\n-Kim cang<br />\r\n-Thiết cang<br />\r\n-Hư ảnh<br />\r\n-Linh ảnh<br />\r\n-Đấu linh<br />\r\n-Địa linh<br />\r\n-Đế linh<br />\r\n@ Tiên giới<br />\r\n-Huyễn cảnh<br />\r\n-Huyền hằng cảnh<br />\r\n-Thiên linh chi cảnh<br />\r\n-Bất diệt thiên tinh cảnh<br />\r\n-Đại thánh tôn",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

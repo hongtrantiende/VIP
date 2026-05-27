@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "6732",
+        "NAME": "Hoàn Mỹ Đế Tiên",
+        "CHAPTER": [
+            {
+                "id": "2398054",
+                "name": "Chương 1: Thâm Uyên"
+            }
+        ],
+        "TOTALCHAPTER": "502",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo",
+        "AUTHOR": "Quân Lăng Phi",
+        "TRANS": "Lillkpy",
+        "DESC": "Tỉnh dậy, hắn thức tỉnh với mộ địa, mất trước kia tất cả ký ức, trên người chỉ có một khối Huyết Ngọc. . . Được một ông già cứu, may mắn trong bái nhập một cái tu tiên môn phái, nhân duyên tế hội, đi lên một cái Thông Thiên Chi Lộ. .<br />\r\n<br />\r\n\tBa năm sau, Hắc Phong đáy vực, trong lúc vô ý thu hoạch một hồi tạo hóa, từ nay về sau bước trên không phải tiên không phải ma, không phải thần không phải yêu đạp Cổ đường. . . .<br />\r\n<br />\r\n\tCổ, không được lập văn tự, tai miệng tương truyền; Cổ, khó có thể lưỡng toàn, duy Thánh Giả trường tồn!",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

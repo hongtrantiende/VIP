@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "3363",
+        "NAME": "Trọng Khải Mạt Thế",
+        "CHAPTER": [
+            {
+                "id": "1165796",
+                "name": "Chương 1:: Tận thế"
+            }
+        ],
+        "TOTALCHAPTER": "904",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Khoa Huyễn",
+        "AUTHOR": "Cổ Hi",
+        "TRANS": "Seed",
+        "DESC": "Đ&acirc;y l&agrave; một t&iacute;n ngưỡng ki&ecirc;n định nhưng tan vỡ thế giới,<br /><br />Đ&acirc;y l&agrave; một kh&ocirc;ng thiếu g&igrave; cả nhưng kh&ocirc;ng c&ograve;n g&igrave; cả thế giới;<br /><br />Ch&uacute;ng ta kh&aacute;t vọng cứu rỗi, ch&uacute;ng ta hi vọng trầm lu&acirc;n, ch&uacute;ng ta lạnh l&ugrave;ng v&ocirc; t&igrave;nh, ch&uacute;ng ta đi&ecirc;n cuồng nhiệt huyết, ch&uacute;ng ta cường h&atilde;n như thần, ch&uacute;ng ta thấp k&eacute;m như nghĩ...<br /><br />Dừng lại, l&agrave; Địa Ngục.<br /><br />Đi về ph&iacute;a trước, vẫn l&agrave; Địa Ngục.\"",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

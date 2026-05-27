@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "10457",
+        "NAME": "Truyền Kỳ Pokemon Chi Ngọa Phong",
+        "CHAPTER": [
+            {
+                "id": "3493095",
+                "name": "Chương 1: Ngạo Phong cùng thần bí trứng"
+            }
+        ],
+        "TOTALCHAPTER": "475",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Dị Giới, Xuyên Không, Đồng Nhân",
+        "AUTHOR": "Ảnh đế",
+        "TRANS": "0o0Killua0o0",
+        "DESC": "Như thế nào trở thành cường giả? Thu phục cường đại Pokemon, không ngừng huấn luyện là có thể đạt đến tới đỉnh phong sao?<br />\r\n<br />\r\n\tNhư thế nào đi tới đỉnh phong? Đi giống như các người trước con dường  liền có thể sao?<br />\r\n<br />\r\n\tNếu như không  làm như vậy thì ta nên đi con đường nào?<br />\r\n<br />\r\n---0o0Killua0o0: đồng nhân pokemon mới còn đang ra hy vọng mọi người ủng hộ 10* đi !!!",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

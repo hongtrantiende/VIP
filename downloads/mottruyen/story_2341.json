@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "2341",
+        "NAME": "Thất Tịch Không Mưa",
+        "CHAPTER": [
+            {
+                "id": "780962",
+                "name": "Chương 01: Thiên Tình"
+            }
+        ],
+        "TOTALCHAPTER": "17",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Ngôn Tình",
+        "AUTHOR": "Lâu Vũ Tình",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Từ nhỏ c&ocirc; đ&atilde; thầm y&ecirc;u anh, như số kiếp kh&ocirc;ng thể thay đổi<br /> T&igrave;nh  y&ecirc;u trong s&aacute;ng ấy, như lần đầu được nếm m&ugrave;i vị của quả khế mới ch&iacute;n.<br /> Sau đ&oacute; c&ocirc; v&agrave; anh xa nhau, gặp lại đều c&aacute;ch nhau ba năm.<br /> .<br /> .<br /> Hai con người y&ecirc;u nhau đến tận xương tủy, y&ecirc;u đến vụn vỡ con tim nhưng lại kh&ocirc;ng thể n&agrave;o đến với nhau.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

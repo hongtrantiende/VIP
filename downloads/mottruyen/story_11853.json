@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "11853",
+        "NAME": "Chiến Mâu Tôn Đồ",
+        "CHAPTER": [
+            {
+                "id": "3893379",
+                "name": "Chương 1: Chiến Thương"
+            }
+        ],
+        "TOTALCHAPTER": "14",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo",
+        "AUTHOR": "Quỷ cốc cũng Phong",
+        "TRANS": "lanhvokhuyet",
+        "DESC": "tu luyện, chỉ là muốn để cho mình sống được không có gì lo sợ mà thôi!<br />\r\n<br />\r\n\tChiến đấu, chỉ là muốn để người mình quan tâm không bị thương tổn mà thôi!<br />\r\n<br />\r\n\tLàm sao, trong cuộc sống muốn cho ngươi sợ hãi giả quá nhiều; trên thực tế muốn thương tổn ngươi quan tâm người giả cũng vì mấy không ít.<br />\r\n<br />\r\n\tNhư thế nào? Chỉ có đi vào đỉnh cao, cư cao mà hỏi \"Ta vì là dao thớt, ai vì là hiếp đáp?",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

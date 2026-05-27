@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "7487",
+        "NAME": "Thương Pháo Du Hiệp",
+        "CHAPTER": [
+            {
+                "id": "2645560",
+                "name": "Chương 1: Siêu cấp đao phong"
+            }
+        ],
+        "TOTALCHAPTER": "229",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Võng Du, Dị Giới, Xuyên Không",
+        "AUTHOR": "Ảnh Tử Kinh Kỷ Nhân",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Hoan ngh&ecirc;nh đi tới nơi n&agrave;y dạng một thế giới,<br /> <br /> Đ&atilde; kh&ocirc;ng c&oacute; bất kỳ đường lui.<br /> <br /> Kh&ocirc;ng đường c&oacute; thể trốn, kh&ocirc;ng chỗ c&oacute; thể trốn,<br /> <br /> Chỉ c&oacute; thể một đường chiến đấu đến c&ugrave;ng.<br /> <br /> Giơ l&ecirc;n n&ograve;ng s&uacute;ng t&ugrave;y &yacute; Liệt Diễm,<br /> <br /> Đem kẻ địch đạp ở dưới ch&acirc;n!",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "4318",
+        "NAME": "Sinh Sinh Bất Diệt",
+        "CHAPTER": [
+            {
+                "id": "1558764",
+                "name": "Chương 1: Thiếu niên Trần Phong"
+            }
+        ],
+        "TOTALCHAPTER": "1499",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo",
+        "AUTHOR": "Sư Tử Đông",
+        "TRANS": "๖ۣۜYurisa",
+        "DESC": "Thiếu niên Trần Phong<br />\r\n<br />\r\n\tNgười mang tuyệt thế Thần Khí, tu cái thế Ma Công .<br />\r\n<br />\r\n\tChiến Nhân giới, đồ Ma giới, thiêu Tiên giới, xông Thần giới .<br />\r\n<br />\r\n\tĐánh khắp Chư Thế Giới, tuôn ra trùng thiên đường máu, thành tựu vô thượng Chí Tôn .",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "1290",
+        "NAME": "Đại Đạo Độc Hành",
+        "CHAPTER": [
+            {
+                "id": "514827",
+                "name": "Chương 1: Thiên Đạo Sát"
+            }
+        ],
+        "TOTALCHAPTER": "1754",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp",
+        "AUTHOR": "Vụ Ngoại Giang Sơn",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Tu giả, khi tay cầm Ngũ Hành, chân đạp Âm Dương, siêu thoát Sinh Tử Luân Hồi, cầu tác Vĩnh Hằng đại đạo.Khổ tu, đốn ngộ, tử chiến, kinh nghiệm vạn kiếp, cuối cùng sẽ đạp vào tuyệt đỉnh, vừa xem Cửu Thiên mịt mù.Ta rốt cục đứng tại Cửu Thiên chi đỉnh, mới phát hiện cần cù dùng cầu đại đạo, bất quá là ta đi đường, mà đường này bất quá giờ mới bắt đầu!Đại đạo bao la mờ mịt, duy ta độc hành!",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

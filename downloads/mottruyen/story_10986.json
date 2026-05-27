@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "10986",
+        "NAME": "Siêu Cấp Tiên Khí",
+        "CHAPTER": [
+            {
+                "id": "3636210",
+                "name": "Chương 1: Một luồng Tiên khí"
+            }
+        ],
+        "TOTALCHAPTER": "1561",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đô Thị, Dị Năng",
+        "AUTHOR": "Cách tử lý dương quang",
+        "TRANS": "๖ۣۜTiếu ๖ۣۜHồng ๖ۣۜTrần",
+        "DESC": "Một luồng Tiên khí , hẻo lánh sơn thôn.<br />\r\n<br />\r\n\tChán nản phồn hoa thành thị , trở về điềm tĩnh trang viên , làm ruộng nuôi dưỡng , chăm sóc người bị thương.<br />\r\n<br />\r\n\tTa là Cố Nhân , tại hồng trần phần cuối chờ ngươi nghỉ ngơi.<br />\r\n<br />\r\n\tChúng ta uống ly rượu , phẩm ly trà , thiên nam địa bắc.<br />\r\np/s: không có gì chỉ là hương thổ thôi",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

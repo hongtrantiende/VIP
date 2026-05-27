@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "7158",
+        "NAME": "The Game",
+        "CHAPTER": [
+            {
+                "id": "2553080",
+                "name": "Chapter 1: Game START - Trò chơi bắt đầu (A)"
+            }
+        ],
+        "TOTALCHAPTER": "4",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đô Thị, Khoa Huyễn",
+        "AUTHOR": "Saito",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Câu chuyện được kể ở một tương lai không xa, khi mà khoa học kỹ thuật tiên tiến tới mức con người có thể biến thể giới ảo 2D trong  thành thật bằng một kỹ thuật được gọi là \"vật chất hóa\". Thế nhưng sau đó chuyện không nên đến đã xảy đến, vật chất hóa lại đẩy nhân loại đi đến bờ diệt vong.<br />\r\n<br />\r\nThông báo: truyện tạm thời ngừng đăng vì tác giả đem đi tham dự Telus, chân thành cám ơn và xin lỗi các bạn đã theo dõi truyện.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

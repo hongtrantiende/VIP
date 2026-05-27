@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "2721",
+        "NAME": "Điền Viên Đại Đường",
+        "CHAPTER": [
+            {
+                "id": "891615",
+                "name": "Phần đệm"
+            }
+        ],
+        "TOTALCHAPTER": "40",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Lịch Sử",
+        "AUTHOR": "Điền Viên Như Mộng",
+        "TRANS": "Npct3001",
+        "DESC": "N&ocirc;ng th&ocirc;n đại Đường, ấm &aacute;p &aacute;nh mặt trời, mạch mạch v&agrave;ng &oacute;ng &aacute;nh, c&oacute; c&ograve; trắng tại bay lượn.<br /><br />Trương Tiểu Bảo: \"Ta kh&ocirc;ng cho rằng d&ugrave;ng bản l&atilde;nh của ta c&oacute; thể cải biến c&aacute;i đại sự g&igrave; nhi, &yacute; nghĩ của ta rất đơn giản, tựu l&agrave; cải biến tho&aacute;ng một ph&aacute;t nh&agrave; m&igrave;nh sinh hoạt t&igrave;nh huống, Nhưng c&oacute; nhiều khi, sự t&igrave;nh sẽ kh&ocirc;ng dựa theo như ngươi nghĩ ph&aacute;t triển, ngay tại ta cố gắng đề cao gia đ&igrave;nh sinh hoạt tr&igrave;nh độ trong qu&aacute; tr&igrave;nh, đ&atilde; xảy ra rất nhiều sự t&igrave;nh, n&oacute;i như thế n&agrave;o đ&acirc;y, &acirc;n. . . Đơn giản điểm tựu l&agrave; Hồ Điệp c&aacute;nh? Kh&ocirc;ng kh&ocirc;ng kh&ocirc;ng, c&aacute;i n&agrave;y v&iacute; von qu&aacute; tươi đẹp đi một t&iacute;, th&ocirc;ng tục ch&uacute;t &iacute;t, ta l&agrave; một khỏa bị bỏ v&agrave;o trong nồi con chuột thỉ.\"<br /><br />Vương Quy&ecirc;n: \"Từ khi c&ugrave;ng quốc tế lừa dối phạm c&ugrave;ng nhau đ&atilde; đến thời đại n&agrave;y, ta tuy&ecirc;n bố, c&aacute;i thế giới n&agrave;y kh&ocirc;ng hề c&oacute; lừa đảo.\"",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

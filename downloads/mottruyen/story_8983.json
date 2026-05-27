@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "8983",
+        "NAME": "Võng Du Chi Sinh Hóa Chiến Tranh",
+        "CHAPTER": [
+            {
+                "id": "3051088",
+                "name": "Chương 1: Mới bắt đầu"
+            }
+        ],
+        "TOTALCHAPTER": "220",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Võng Du",
+        "AUTHOR": "Thị Huyết Tử",
+        "TRANS": "thanndieu",
+        "DESC": "Chiến xa đang rong ruổi sa trường, chiến đấu cơ bay lên trời, chiến hạm theo gió vượt sóng.<br />\r\n<br />\r\n\tTa không cần hoa lệ áo giáp, chỉ có một cũ nát áo chống đạn;<br />\r\n<br />\r\n\tTa không cần huyễn khốc kỹ năng, chỉ có dựa vào vũ khí nắm trong tay;<br />\r\n<br />\r\n\tTa không cần phong cách tọa kỵ, chỉ có một chiếc quân đội màu xanh biếc Hãn Mã;<br />\r\n<br />\r\n\tTa không cần trang bị xịn, chỉ có một cây nát vụn như vậy súng trường.<br />\r\n<br />\r\n\tTa không có khả năng lấy một địch ngàn, nhưng ta có một đám có thể cùng ta đồng sinh cộng tử huynh đệ!<br />\r\n<br />\r\n    Tên lửa từ đâu",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

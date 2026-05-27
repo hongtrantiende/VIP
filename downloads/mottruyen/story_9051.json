@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "9051",
+        "NAME": "Đại Tiểu Thư Đích Chí Tôn Long Vệ",
+        "CHAPTER": [
+            {
+                "id": "3077335",
+                "name": "Chương 1: Dấu ở trong quần lót a"
+            }
+        ],
+        "TOTALCHAPTER": "7",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đô Thị, Huyền Ảo",
+        "AUTHOR": "giấy trắng một rương",
+        "TRANS": "phongphong",
+        "DESC": "Ngắn gọn thôi: Thanh niên nhà quê đi xe bus gặp người đẹp và một đám cướp . Mọi chuyện sẽ ra sao đây ???!!!>o",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

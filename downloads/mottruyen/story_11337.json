@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "11337",
+        "NAME": "Hắc Bạch Nhãn",
+        "CHAPTER": [
+            {
+                "id": "3761008",
+                "name": "Chương 1: Thật lớn 1 khỏa hồng ngọc"
+            }
+        ],
+        "TOTALCHAPTER": "275",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đô Thị, Linh Dị",
+        "AUTHOR": "Cứu Cực Bạch Thái Trứ",
+        "TRANS": "tuankietdeptrai1@gmail.com",
+        "DESC": "Trong truyền thuyết, Minh phủ âm tôn có một đôi kỳ dị hai mắt, gặp thiện như bạch, gặp ác tức hắc, chẳng những kỳ dị lại mang theo không thể tưởng tượng nổi lực lượng, được phong là Minh giới phán quan, để phán quyết thế giới thiện ác đúng sai, công lý chính nghĩa đều ở trong!<br />\r\n<br />\r\n\tĐây vốn là một đôi không thuộc về trong nhân thế hai mắt, thẳng đến một vị nào đó thiếu niên lấy xuống kính râm...",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

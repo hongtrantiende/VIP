@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "12439",
+        "NAME": "Tam Quốc Tối Cường Quân Thần",
+        "CHAPTER": [
+            {
+                "id": "4039130",
+                "name": "Chương 1: Hoa Hùng VS Quan Vũ"
+            }
+        ],
+        "TOTALCHAPTER": "58",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Quân Sự",
+        "AUTHOR": "Hải Các 1 Hào",
+        "TRANS": "TieuNhanGian",
+        "DESC": "Hồn xuyên Hổ Lao Quan phía trước Hoa Hùng, muốn như Hà Tài thể tránh thoát Quan Vũ tam đao sát kiếp? Điêu Thuyền cùng Hoa Hùng yêu nhau, liên hoàn kế sẽ như thế nào tiến hành? Hoa Hùng chém giết Đổng Trác, có hay không nên mang theo thiên tử lấy làm chư hầu? Chưởng khống tổ chức lệ khu, nên như thế nào chế tạo Vương Bá chi cơ? Căn cơ ổn định, đối ngoại chinh chiến Binh Phong trước hết nhất ứng thẳng hướng chỗ nào? . . . Tỉnh chưởng thiên hạ quyền, say nằm mỹ nhân đầu gối, như thế, năng lực không uổng công Tam quốc đi một lần!",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

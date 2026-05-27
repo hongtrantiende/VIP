@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "5020",
+        "NAME": "Thanh Y Đạo Sĩ",
+        "CHAPTER": [
+            {
+                "id": "1764433",
+                "name": "Chương 1: Quan Thiên Miếu"
+            }
+        ],
+        "TOTALCHAPTER": "17",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Linh Dị",
+        "AUTHOR": "Môn Tam Phái",
+        "TRANS": "Thiên Tử Nhi",
+        "DESC": "Phụ th&acirc;n v&ocirc; cớ ra đi, mật thất sư gia h&agrave;i cốt, lồng sắt b&ecirc;n trong t&agrave;n tật t&ecirc;n ăn m&agrave;y, mất t&iacute;ch b&iacute; ẩn đội th&aacute;m hiểm vi&ecirc;n, trong v&ograve;ng một đ&ecirc;m người cả th&ocirc;n ly kỳ tử vong... Ph&aacute;t sinh c&aacute;i n&agrave;y một h&agrave;ng loạt quỷ dị m&agrave; lại kinh khủng sự t&igrave;nh, đều chỉ hướng một c&aacute;i kinh khủng m&agrave; lại tổ chức thần b&iacute;, t&agrave; &aacute;c Nam Dương vu thuật, thần b&iacute; ngự linh chi thuật, kinh khủng Mi&ecirc;u Cương cổ thuật, cao th&acirc;m Đạo gia trận ph&aacute;p, si&ecirc;u ph&agrave;m Phật gia thủ đoạn... &Aacute;o xanh n&oacute;i. . .",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

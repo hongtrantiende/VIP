@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "3361",
+        "NAME": "Thế Giới Tiên Hiệp",
+        "CHAPTER": [
+            {
+                "id": "1165695",
+                "name": "Chương 1 : Không cam lòng"
+            }
+        ],
+        "TOTALCHAPTER": "827",
+        "IMG": "https://static.cdnno.com/poster/the-gioi-tien-hiep/150.jpg",
+        "CAT": "Tiên Hiệp",
+        "AUTHOR": "Vô Tội",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Lúc bước lên con đường tu tiên, ngàn vạn Tiên đạo phía trước, mà ngươi chẳng qua là giống như là con sâu cái kiến tồn tại , lúc tất cả khi dễ, vô số bất bình hạ xuống ngươi thân, ngươi là nên ẩn nhẫn, hay là nên phấn khởi mà tranh giành, không sợ sinh tử?",
+        "THUMB": "https://static.cdnno.com/poster/the-gioi-tien-hiep/150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

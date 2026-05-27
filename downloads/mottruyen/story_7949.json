@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "7949",
+        "NAME": "Thiên Nam Truyền Thuyết",
+        "CHAPTER": [
+            {
+                "id": "2776798",
+                "name": "Chương 1 : Xuyên Không"
+            }
+        ],
+        "TOTALCHAPTER": "2",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo, Xuyên Không",
+        "AUTHOR": "Look",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Đây không phải thế giới tiên hiệp, nơi mà tiên khí, tiên nhân mang phong cách cổ xưa bay đầy trời.<br />\r\n<br />\r\nĐây không phải đấu khí, ma pháp thế giới, nơi ma thuật đấu khí hoa lệ tung hoành.<br />\r\n<br />\r\nĐây cũng không phải hồn giới, nơi hồn thú, hồn sủng sư tồn tại, cũng không phải dành cho các sinh vật vong linh sinh sống.<br />\r\n<br />\r\nĐây là một thế giới nơi chiến lực đỉnh cao có thể quyết định tất cả, một thế giới vô hạn.<br />\r\n<br />\r\nNơi đây chiến lực được tôn sùng.<br />\r\n<br />\r\nThế giới chiến lực (1triệu =1x, 100x = 1h, 100h =1d, 100d=1v, 100v=1g đến vô cực)<br />\r\nPhổ thông – 1 – 100 (100m)<br />\r\nTinh anh – 100 – 10000 (1km2)<br />\r\nChiến tướng – 10000 – 1x (cấp độ lĩnh vực ",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

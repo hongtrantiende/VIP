@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "7560",
+        "NAME": "One Piece thế giới băng hoàng",
+        "CHAPTER": [
+            {
+                "id": "2676067",
+                "name": "Chương 1: Trước khi xuyên qua"
+            }
+        ],
+        "TOTALCHAPTER": "8",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đồng Nhân",
+        "AUTHOR": "keyboardhero97",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Một tên trạch nam xuyên qua đến thế giới One Piece, sở hữu hoàng giả hệ thống.<br />\r\nHãy xem hắn làm sao từng bước tiến lên từ một tên người bình thường đến Đại tướng và siêu việt tất cả sức mạnh của thế giới này.<br />\r\n* Aokiji, trái Hie Hie no Mi của ngươi có thể sánh bằng Teigu Demon's Extract của ta sao<br />\r\n* Đại phật Sengoku, chúng ta cùng so phật, mộc độn chân pháp thiên thủ.<br />\r\n<br />\r\nMong mọi người ủng hộ, sau khi đọc xong nhớ thanks làm động lực để mình viết tiếp :)",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

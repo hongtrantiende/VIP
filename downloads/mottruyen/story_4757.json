@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "4757",
+        "NAME": "Long Phù",
+        "CHAPTER": [
+            {
+                "id": "1687637",
+                "name": "Tự chương"
+            }
+        ],
+        "TOTALCHAPTER": "1163",
+        "IMG": "https://static.cdnno.com/poster/long-phu/150.jpg",
+        "CAT": "Huyền Ảo",
+        "AUTHOR": "Mộng Nhập Thần Cơ",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Mặt đất bao la, tương lai biến đổi, trong hỗn loạn, Long Xà cùng nổi lên, ai là Chân Long, ai lại là mãng xà? Hoặc là Thiên Địa chúng sinh, đều có thể thành Long? Triều đình, giang hồ môn phái, thế ngoại tiên đạo, ngàn năm thế gia, Man tộc, Ma Thần, Yêu tộc, Thượng Cổ Vu Đạo, trăm ngàn thế lực, dây dưa cùng nhau, nhân duyên tế hội.",
+        "THUMB": "https://static.cdnno.com/poster/long-phu/150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

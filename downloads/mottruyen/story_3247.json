@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "3247",
+        "NAME": "Đại Huyền Môn Phong Thần",
+        "CHAPTER": [
+            {
+                "id": "1129111",
+                "name": "Chương 1: Âm Hồn Cốc - Quyển I : Thực khí"
+            }
+        ],
+        "TOTALCHAPTER": "238",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp",
+        "AUTHOR": "Thân Vẫn Chỉ Tiêm",
+        "TRANS": "Vipnd2003",
+        "DESC": "Xuy&ecirc;n việt ở ti&ecirc;n ph&aacute;p thịnh vượng trong thế giới, cố gắng tu h&agrave;nh...<br /><br />...<br /><br />Vốn l&agrave; ta cho l&agrave;, ta đi tới c&aacute;i thế giới n&agrave;y, cả đời đều muốn ở biết c&aacute;i thế giới n&agrave;y, thực kh&iacute; vẽ b&ugrave;a, cho đến c&oacute; một ng&agrave;y, ta thần ngự &acirc;m dương, uy lăng thi&ecirc;n hạ, mới biết được, c&aacute;i thế giới n&agrave;y cũng biết ta.<br /><br />...<br /><br />Nửa đời tu h&agrave;nh kh&ocirc;ng người n&agrave;o biết, một khi đắc ph&aacute;p thi&ecirc;n hạ kinh sợ.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "12373",
+        "NAME": "Kiếm Tung Đại Lục",
+        "CHAPTER": [
+            {
+                "id": "4026254",
+                "name": "Chương 1 : Nếu có kiếp sau, ta vẫn yêu nàng"
+            }
+        ],
+        "TOTALCHAPTER": "2",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp, Huyền Ảo",
+        "AUTHOR": "xoidauphong89@",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Truyện kể về nhân vật Thập Thiên sống ở trong Kiếm Tung Đại Lục.<br />\r\nTruyện này do tại hạ tự viết khi đang chơi game kiếm tung - do là tác phẩm đầu tay nên còn nhiều sơ sót mong các vị góp ý thêm.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

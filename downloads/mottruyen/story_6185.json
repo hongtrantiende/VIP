@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "6185",
+        "NAME": "Kích Thần",
+        "CHAPTER": [
+            {
+                "id": "2206712",
+                "name": "Chương 1: Thiên Nứt"
+            }
+        ],
+        "TOTALCHAPTER": "12",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Kiếm Hiệp, Huyền Ảo",
+        "AUTHOR": "金炎",
+        "TRANS": "Niion",
+        "DESC": "Ngột ngạt trong lòng thân thế bí ẩn<br />\r\n<br />\r\n\tÁnh sáng quái cách xa lục dị giới truyền kỳ<br />\r\n<br />\r\n\tKhông ngừng không nghỉ đẫm máu tranh bá<br />\r\n<br />\r\n\tCâu tâm đấu giác ngươi lừa ta gạt",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

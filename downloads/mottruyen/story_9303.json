@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "9303",
+        "NAME": "Tam Quốc Chi Bố Vũ Giang Sơn",
+        "CHAPTER": [
+            {
+                "id": "3153342",
+                "name": "Chương 1: Cửu Nguyên có hổ"
+            }
+        ],
+        "TOTALCHAPTER": "9",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Lịch Sử, Xuyên Không",
+        "AUTHOR": "Thập Nguyệt Dương",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Không giống nhau tam quốc, không giống nhau Lữ Bố.<br />\r\n<br />\r\n\tMảnh cảnh lữ kính dâng, nhân công tuẫn chức, linh hồn xuyên qua, sống lại ở Đông Hán những năm cuối, hoàn thành ba tính gia nô Lữ Phụng Tiên.<br />\r\n<br />\r\n\tMay mắn chính là, Trương Giác còn chưa khởi nghĩa, Đổng Trác còn chưa loạn chính, quần hùng cũng không cắt cứ.<br />\r\n<br />\r\n\tVì lẽ đó hết thảy đều còn có cơ hội, giết đinh nguyên, tru Đổng Trác, chém danh tướng, diệt quần hùng, chiến tứ phương, quét lục hợp, bình bát hoang, uy chấn hoàn vũ, bố vũ giang sơn, ta vì là Lữ Bố chính danh!",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

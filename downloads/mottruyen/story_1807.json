@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "1807",
+        "NAME": "Hồng Hoang Đại Đế",
+        "CHAPTER": [
+            {
+                "id": "743403",
+                "name": "Chương 1: Địa Long Thần Ưng"
+            }
+        ],
+        "TOTALCHAPTER": "319",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo",
+        "AUTHOR": "Đệ Thập Nhân",
+        "TRANS": "Huyết Long",
+        "DESC": "Một đạo thần b&iacute; tấm bia đ&aacute; Thi&ecirc;n đồ chuyển được c&aacute;i kh&aacute;c thời kh&ocirc;ng.&nbsp;<br /><br />Một chiếc cực lớn Ma Vương thuyền xuy&ecirc;n qua Thi&ecirc;n Địa Nh&acirc;n Tam Giới!&nbsp;<br /><br />Một kh&uacute;c Trường Sinh bi ca như vậy vang l&ecirc;n!&nbsp;<br /><br />Tấm bia đ&aacute; Thi&ecirc;n đồ l&agrave; ch&iacute;n l&agrave; mười, trăm vạn thần kiếm mai phục giết Thi&ecirc;n Địa.&nbsp;<br /><br />Một hồi thần b&iacute; lữ đồ bắt đầu từ nơi n&agrave;y...",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

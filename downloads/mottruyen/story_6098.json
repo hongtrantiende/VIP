@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "6098",
+        "NAME": "Ma Thần Nhạc Viên",
+        "CHAPTER": [
+            {
+                "id": "2880881",
+                "name": "Chương 1: Ma Đô"
+            }
+        ],
+        "TOTALCHAPTER": "1163",
+        "IMG": "https://static.cdnno.com/poster/ma-than-nhac-vien/150.jpg",
+        "CAT": "Huyền Ảo, Võng Du, Dị Giới, Khoa Huyễn",
+        "AUTHOR": "Hùng Lang Cẩu",
+        "TRANS": "Nhiều Converter",
+        "DESC": "\"Thế gian đệ nhất thiên phú kiếm thuật, tiêu hao tuổi thọ 72 năm, giao dịch sau còn thừa lại tuổi thọ 5 năm. Đồng thời khiến ngươi vĩnh viễn không cảm giác được tình yêu, thân tình cùng hữu tình, cả đời đều muốn cô độc sống quãng đời còn lại, đoạn tử tuyệt tôn.  Từ nay về sau, trong cuộc sống hết thảy hạnh phúc đều muốn cùng ngươi không có quan hệ, ngươi nguyện ý sao?\"  \"Ha ha ha ha, ta bơ vơ không chỗ nương tựa, vạn niệm câu hôi, thân mang mối thù không đội trời chung, ta làm sao có thể không nguyện? Ta làm sao có thể không muốn? Ta cầu còn không được! !\"",
+        "THUMB": "https://static.cdnno.com/poster/ma-than-nhac-vien/150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

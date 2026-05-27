@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "10451",
+        "NAME": "Linh Dị Tiểu Nông Dân",
+        "CHAPTER": [
+            {
+                "id": "3491786",
+                "name": "Chương 1:  lại không thi đậu"
+            }
+        ],
+        "TOTALCHAPTER": "397",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đô Thị, Linh Dị",
+        "AUTHOR": "Tiểu cương vô danh",
+        "TRANS": "๖ۣۜTiếu ๖ۣۜHồng ๖ۣۜTrần",
+        "DESC": "Một cái tiểu nông dân xuất thân học sinh kỳ ngộ trải qua , thi vào trường cao đẳng nhiều lần thi rớt , hắn trong lúc vô tình nhặt được một quyển tu luyện bí tịch , từ đây khí vận ngút trời , thành công xoay mình! Giải thích một chút \"Linh dị\", nơi này ý tứ không phải quỷ thần , không phải dò xét mộ , mà là một cái không giống nhau tiểu nông dân! Hắn có y đạo , có công pháp , có tướng thuật , chủ yếu nhất là hắn phấn đấu , hắn kiên trì , hắn chính trực. Hắn may mắn , hắn thành công!",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

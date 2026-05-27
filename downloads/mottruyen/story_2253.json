@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "2253",
+        "NAME": "Biến Chủng Siêu Nhân",
+        "CHAPTER": [
+            {
+                "id": "760192",
+                "name": "Chương 1: Ngươi là dị nhân! - Quyển 1"
+            }
+        ],
+        "TOTALCHAPTER": "51",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Khoa Huyễn",
+        "AUTHOR": "Dịch Tiểu Lâu",
+        "TRANS": "Ravi",
+        "DESC": "Trọng sinh tại thế giới điện ảnh, đ&atilde; trở th&agrave;nh một dị nh&acirc;n.  Tr&ecirc;n đảo hoang, vật lộn khủng long!  Đối oanh Hulk! C&ugrave;ng Spider Man ngao du rừng sắt th&eacute;p!  Kh&aacute;ch đến từ ngo&agrave;i h&agrave;nh tinh Loki mời, hỏa diễm của Hellboy cuồng hống!  Transformers t&acirc;̣p kích, sắt th&eacute;p chiến ca thi&ecirc;u đốt mạnh mẽ!  Thor, Captain America, Iron Man, c&ograve;n c&oacute; X-Men! Si&ecirc;u anh h&ugrave;ng to&agrave;n bộ ra s&acirc;n!  Trong Avengers, ai c&oacute; thể nghĩ đến vậy m&agrave; sẽ th&ecirc;m một gia hỏa t&ecirc;n l&agrave; Cloud &middot; Strife?  Ps: Quyển s&aacute;ch tiểu bạch; kh&ocirc;ng phải hắc &aacute;m văn...  Ps: T&aacute;c giả ghi nội dung cốt truyện l&agrave;m ch&iacute;nh, điện ảnh làm phụ...  Ps: Tuyến thời gian do t&aacute;c giả khống chế, xin chớ nhả r&atilde;nh thời gian nội dung cốt truyện trước sau ph&aacute;t triển.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

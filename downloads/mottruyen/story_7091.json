@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "7091",
+        "NAME": "Hàn Ngu Chi 2015",
+        "CHAPTER": [
+            {
+                "id": "2521327",
+                "name": "Chương 1: Đi làm"
+            }
+        ],
+        "TOTALCHAPTER": "230",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đô Thị",
+        "AUTHOR": "Cổ Lũng 古陇",
+        "TRANS": "CrazyMeo",
+        "DESC": "Một c&aacute;i b&igrave;nh thường du học sinh, trong l&uacute;c v&ocirc; t&igrave;nh x&acirc;m nhập H&agrave;n Quốc l&agrave;ng giải tr&iacute;, từ đ&oacute; hắn nh&acirc;n sinh ph&aacute;t sinh nghi&ecirc;ng trời lệch đất biến h&oacute;a<br /> <br /> <br /> P/s: M&igrave;nh vừa l&agrave;m vừa đọc n&ecirc;n cv kỹ cơ m&agrave; chậm. Đồng thời bạn đọc t&ocirc;i đọc n&ecirc;n đừng c&agrave;m r&agrave;m về tốc độ nh&eacute;",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "4216",
+        "NAME": "Tu La Vũ Đế",
+        "CHAPTER": [
+            {
+                "id": "1529765",
+                "name": "Chương 001: Đoạt xác sống lại! - Quyển 1"
+            }
+        ],
+        "TOTALCHAPTER": "184",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo",
+        "AUTHOR": "Tàn Kiếm",
+        "TRANS": "Ký Ức Xa",
+        "DESC": "Tu Ch&iacute; T&ocirc;n v&otilde; học, cưới đẹp nhất Th&aacute;nh nữ!<br /><br />Tuyệt cảnh thiếu ni&ecirc;n đoạt x&aacute;c sống lại, mở ra kinh thế thi&ecirc;n ph&uacute;, chưởng L&ocirc;i Đ&igrave;nh &yacute; ch&iacute;, chứng nhận Tu La S&aacute;t Đạo!<br /><br />-----<br /><br />Tu luyện cảnh giới: Hậu Thi&ecirc;n, Ti&ecirc;n Thi&ecirc;n, V&otilde; đạo Ch&acirc;n Đan Lĩnh Vực: (Ch&acirc;n Nguy&ecirc;n, Thi&ecirc;n Nguy&ecirc;n, Hư Đan , Ch&acirc;n Đan, Huyền Đan, Thi&ecirc;n Đan, Hồn Đan )......c&aacute;c loại cảnh giới, mỗi c&aacute;i cảnh giới c&oacute; minh x&aacute;c cửu trọng ph&acirc;n chia.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "12086",
+        "NAME": "Sơn Hải Bát Hoang Lục",
+        "CHAPTER": [
+            {
+                "id": "6059254",
+                "name": "Chương 1 - Quyển 1: Núi mưa có khách từ xa"
+            }
+        ],
+        "TOTALCHAPTER": "311",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo, Dị Giới",
+        "AUTHOR": "Lạc Thủy",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Xuống dốc Man Hoang Vu tộc, một tên thiếu niên lặng yên kế thừa thất truyền nhiều năm Chúc Do cấm chú, nhập Đại Tấn thế gia, khuấy động Bát Hoang phong vân .<br />\r\n<br />\r\n\tĐâm cái người rơm, rủa chết địch thủ, Kim Thiền lột xác, Trảm Tiên Phi Đao .<br />\r\n<br />\r\n\tPhật đạo tranh chấp, thế gia ám đấu, môn phái kịch chiến, các tộc xưng bá .",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

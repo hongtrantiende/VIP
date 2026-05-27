@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "3199",
+        "NAME": "Thương Giới Chủ Tể",
+        "CHAPTER": [
+            {
+                "id": "1100720",
+                "name": "Chương 1: Một thế giới khác"
+            }
+        ],
+        "TOTALCHAPTER": "597",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Dị Giới",
+        "AUTHOR": "Đột Nhiên Quang Hòa Nhiệt",
+        "TRANS": "suntran",
+        "DESC": "Tương lai thế giới dị th&uacute; ho&agrave;nh h&agrave;nh, nh&acirc;n loại kh&ocirc;ng c&ograve;n l&agrave; thế giới ch&uacute;a tể.<br /><br />Ng&agrave;y đ&oacute;, một t&ecirc;n đến từ qu&aacute; khứ người mang ( l&ograve;ng đất th&agrave;nh c&ugrave;ng dũng sĩ ) tay s&uacute;ng thần skill người trẻ tuổi đi tới thế giới n&agrave;y.<br /><br />",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

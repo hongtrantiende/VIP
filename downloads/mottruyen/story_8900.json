@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "8900",
+        "NAME": "Tà Mạch",
+        "CHAPTER": [
+            {
+                "id": "3032138",
+                "name": "Chương 1: Bạch Mặc"
+            }
+        ],
+        "TOTALCHAPTER": "200",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo",
+        "AUTHOR": "Hải Tặc Chi Hoàng",
+        "TRANS": "Luciper",
+        "DESC": "Thức tỉnh sức mạnh huyết thống, có thể nắm giữ các loại khó mà tin nổi thần thông.<br />\r\n<br />\r\nCảm xúc dâng trào, vô hạn ảo tưởng, đón gió vung kích ngàn cơn sóng, thiếu niên bất bại nhiệt huyết!",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

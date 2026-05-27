@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "2279",
+        "NAME": "Vũ Linh Nghịch Thiên",
+        "CHAPTER": [
+            {
+                "id": "767088",
+                "name": "Chương 1: đồng tộc tương tàn"
+            }
+        ],
+        "TOTALCHAPTER": "641",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo",
+        "AUTHOR": "Kim Trường Cung",
+        "TRANS": "Lqp0808",
+        "DESC": "《 Linh Vũ nghịch thi&ecirc;n 》&nbsp;Kim trường cung &nbsp; lấy , Linh Vũ nghịch thi&ecirc;n đọc đầy đủ kh&ocirc;ng thể tu v&otilde; phế vật thiếu ni&ecirc;n ~ cơ duy&ecirc;n b&aacute;i sư được c&ocirc;ng ph&aacute;p nghịch thi&ecirc;n ~ từ đ&oacute; đi đến kh&ocirc;ng đồng dạng như vậy v&otilde; đạo con đường nghịch thi&ecirc;n . Con đường nghịch thi&ecirc;n , l&agrave; đ&aacute;nh đi ra ngo&agrave;i Th&ocirc;ng Thi&ecirc;n Lộ ...",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

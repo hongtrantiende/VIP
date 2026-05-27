@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "9595",
+        "NAME": "Lôi Đình Tà Đế",
+        "CHAPTER": [
+            {
+                "id": "3240579",
+                "name": "Chương 1: Phúc Lợi Khi Được Sét Nện"
+            }
+        ],
+        "TOTALCHAPTER": "4",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp, Dị Năng, Xuyên Không",
+        "AUTHOR": "Akaishuichi",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Thanh niên xuyên không qua dị giơi.<br />\r\n<br />\r\n<br />\r\nCùng tham gia hành trình của hắn.<br />\r\n<br />\r\n<br />\r\nCầu vote, đề cử, nguyệt phiếu.<br />\r\n<br />\r\nTà Đế cảm tạ chư vị đạo hữu.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

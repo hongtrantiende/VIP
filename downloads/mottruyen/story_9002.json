@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "9002",
+        "NAME": "Mỹ Mạn Chi Huyết Thanh",
+        "CHAPTER": [
+            {
+                "id": "3061428",
+                "name": "Chương 1: Delos cùng Superman"
+            }
+        ],
+        "TOTALCHAPTER": "431",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Khoa Huyễn, Xuyên Không",
+        "AUTHOR": "Long Vương Đích Hậu Đại",
+        "TRANS": "khaox8896",
+        "DESC": "Khi siêu nhân còn không có học được bay lúc, ta đã muốn ở kế hoạch như thế nào đuổi kịp và vượt qua đối phương.<br />\r\n<br />\r\n\tKhi Captain America còn trên địa cầu lạnh nhất địa phương khi băng côn lúc, ta đã muốn bắt đầu vì tương lai mà dốc sức làm sự nghiệp.<br />\r\n<br />\r\n\tKhi trẻ tuổi Iron Man còn tại ăn chơi chè chén, khắp nơi đắc tội với người lúc, ta đã bước vào đỉnh cấp phú nhân hàng ngũ.<br />\r\n<br />\r\n\tKhi Wolverine còn không có khôi phục ký ức, X giáo sư cùng Vạn Từ Vương bởi vì người biến dị vấn đề mà chia chia hợp hợp, tương ái tương sát lúc, ta đã trở thành trên địa cầu không thể coi thường cường giả.<br />\r\n<br />\r\n\tKhi con nhện nhỏ một bên đãng tơ nhện, một bên mong nhớ chính mình đối tượng thầm mến lúc, ta đã trở thành đông đảo cường giả lãnh tụ.<br />\r\n<br />\r\n\tĐây chính là ta ở cái này vô hạn khả năng thế giới bên trong viết truyền kỳ.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

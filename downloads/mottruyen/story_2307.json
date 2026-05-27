@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "2307",
+        "NAME": "Bất Hủ Kiếm Tôn",
+        "CHAPTER": [
+            {
+                "id": "772822",
+                "name": "Chương 1: Kiếm thiên tài"
+            }
+        ],
+        "TOTALCHAPTER": "52",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo",
+        "AUTHOR": "Thạch Đà Lôi",
+        "TRANS": "Tuyêniapa",
+        "DESC": "Hắn, một 'Trời cao quản hai con, ta trong ống' kiếm thiên tài, nhưng tại mười chín tuổi năm ấy bị thân nhất yêu nhất người phản bội hãm hại, với hoàn lan trong sông ngã xuống. Hai năm sau, hắn hung hăng trở về, dẹp yên kiếm đại hội, sang không tông, cuốn lấy thiên hạ phong vân<br />\r\n<br />\r\nNgân hà đoạn, Nguyệt Hải khô, chư thiên loạn, duy kiếm.<br />\r\n<br />\r\nĐợi đến thịnh thế, đăng cao dõi mắt: \"Dùng vô tận hài cốt tác thành một toàn bộ không thiên hạ",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

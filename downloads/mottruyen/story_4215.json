@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "4215",
+        "NAME": "Võng Du  Dị giới Thánh Kỵ Sĩ",
+        "CHAPTER": [
+            {
+                "id": "1529590",
+                "name": "1-- CV 0 1 chương 1 mua sắm vui chơi mũ giáp"
+            }
+        ],
+        "TOTALCHAPTER": "40",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Võng Du",
+        "AUTHOR": "Tác giả: Lãng thạch",
+        "TRANS": "thaotv1992",
+        "DESC": "Kỵ sĩ - (Dị giới thánh kỵ sĩ) Bắt đầu liễu.<br />\r\n<br />\r\nLâm phong cấu mãi du hí đầu khôi, kết quả xuyên qua tới dị giới, thành vì kỵ sĩ.<br />\r\n<br />\r\nThôn trường: \"Kỵ sĩ lâm phong, mười lăm cấp đích bạc quái vật bốn tí băng viên ma yếu tập kích chúng ta thôn trang liễu, xin, mời chửng cứu chúng ta ba.\"<br />\r\n<br />\r\nKỵ sĩ lâm phong: \"Hảo!\"<br />\r\n<br />\r\n\"A! Ta mới 1 cấp, còn không có vũ khí.\"<br />\r\n<br />\r\nThôn trường: \"Nga, sát tiểu quái hội bạo vũ khí.\"<br />\r\n<br />\r\nKỵ sĩ lâm phong: \"Xá? Đây là dị giới chính, hay là du hí?\"",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

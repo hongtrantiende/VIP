@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "8917",
+        "NAME": "Chú Tiên Ký",
+        "CHAPTER": [
+            {
+                "id": "3034545",
+                "name": "Chương 1: Âm Dương Chú"
+            }
+        ],
+        "TOTALCHAPTER": "187",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp",
+        "AUTHOR": "Nhật Nguyệt Ngôn Nhân",
+        "TRANS": "SayaYuki",
+        "DESC": "Thần Đạo hưng thịnh , Ti&ecirc;n Đạo xuống dốc.<br /> <br /> Thần giả , K&yacute; Thọ Vĩnh Xương. Ti&ecirc;n giả , từ cổ ch&iacute; kim Bất Hủ.<br /> <br /> Tại Thần Đạo ch&egrave;n &eacute;p ph&iacute;a dưới, Tu Thần Giả tuyệt đối , Tu Ti&ecirc;n giả mịt mờ.<br /> <br /> M&agrave; v&agrave;o l&uacute;c n&agrave;y , nắm trong tay &Acirc;m Dương ch&uacute; Bạch Thạch lại trong l&uacute;c lơ đ&atilde;ng đạp v&agrave;o Tu Ti&ecirc;n Chi Lộ.<br /> <br /> \"Ta c&oacute; một ch&uacute; , c&oacute; thể ch&uacute; thi&ecirc;n địa n&agrave;y Sinh Diệt , vạn vật tan biến \"",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "5837",
+        "NAME": "Tần Thời Minh Nguyệt Chi Vua Hố Hệ Thống",
+        "CHAPTER": [
+            {
+                "id": "2095248",
+                "name": "Chương 1: Hố cha hệ thống"
+            }
+        ],
+        "TOTALCHAPTER": "531",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đồng Nhân",
+        "AUTHOR": "Nhất Tích La Phù Mộng",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Tóc bạc ba ngàn trượng, tình ý dài mấy tấc? Đây là một cái đùa bức hệ thống mang theo nhân vật chính quét ngang Tần Thời cố sự!<br />\r\n<br />\r\nMà! Làm mà người khác hệ thống như thế có yêu, mà ta hệ thống nhưng như thế vua hố, không cẩn thận sẽ có nguy hiểm đến tính mạng!",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

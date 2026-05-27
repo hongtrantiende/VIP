@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "5814",
+        "NAME": "Liệp Hồn Kỷ Nguyên",
+        "CHAPTER": [
+            {
+                "id": "2085915",
+                "name": "Chương 1: Sau ngày tận thế thời đại tiểu thuyết: Liệp Hồn Kỷ Nguyên tác giả: Thần thần th"
+            }
+        ],
+        "TOTALCHAPTER": "29",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo, Dị Năng, Khoa Huyễn",
+        "AUTHOR": "Thần thần thần thần thần",
+        "TRANS": "nguoi ranh roi",
+        "DESC": "Hai mươi năm trước, một ai c&oacute; thể tưởng tượng ra được, khoa học viễn tưởng trong ng&agrave;y tận thế sẽ trở th&agrave;nh hiện thực.<br /> <br /> Hết thảy đều tới qu&aacute; mức đột nhi&ecirc;n, tựa hồ chỉ l&agrave; trong một đ&ecirc;m, phồn hoa nh&acirc;n loại văn minh suy sụp đổ n&aacute;t, chỉ để lại tảng lớn tảng lớn hoang d&atilde; c&ugrave;ng th&ecirc; lương th&ecirc; lạnh gạch ng&oacute;i vụn.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

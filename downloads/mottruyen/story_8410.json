@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "8410",
+        "NAME": "Hải Tặc Vương Chi Màu Xanh Da Trời Mị Ảnh",
+        "CHAPTER": [
+            {
+                "id": "4449146",
+                "name": "Chương 1: Xuyên qua hải tặc thế giới"
+            }
+        ],
+        "TOTALCHAPTER": "925",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đồng Nhân",
+        "AUTHOR": "Nguyệt Minh Đêm Thu",
+        "TRANS": "Quang Huy",
+        "DESC": "Đây là một cái do ngu si, dân mù đường, si mê, mê tiền, tên lường gạt, sủng vật, xấu bụng nữ, biến thái, xương, cộng thêm Ngư Nhân hỗn huyết tạo thành cố sự.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

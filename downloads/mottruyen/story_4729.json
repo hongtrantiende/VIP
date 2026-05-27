@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "4729",
+        "NAME": "Hỗn Độn Thiên Tôn",
+        "CHAPTER": [
+            {
+                "id": "1681006",
+                "name": "Chương 1: Thiếu niên cùng cẩu"
+            }
+        ],
+        "TOTALCHAPTER": "17",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo",
+        "AUTHOR": "Thiêu Đao",
+        "TRANS": "hoangkhang1208",
+        "DESC": "Một thanh niên đầy nhiệt huyết địa cầu , ngoài ý muốn xuyên qua đến Thiên Thần đại lục, phụ thân ở đại lục cực mạnh môn phái người thừa kế trên người.<br />\r\n<br />\r\nTuy rằng chính mình cường đại thân thể, nhưng không có kế thừa bất kỳ trí nhớ gì. Đối mặt với khiêu chiến không phân rõ địch ta, thực lực cường đại võ giả, rơi vào đường cùng, Lâm Nhạc suốt đêm thu dọn đồ đạc chạy thoát...<br />\r\n<br />\r\nNguyên nhân chính là như vậy hoang đường lựa chọn, nhượng hắn quấn vào một hồi đại lục là bàn cờ, thiên địa chúng sinh là quân cờ.<br />\r\n<br />\r\nThế gia, tông môn san sát, cường giả vô số.<br />\r\nMà Lâm Nhạc nhân sinh đặc sắc cũng từ nơi này bắt đầu rồi...",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

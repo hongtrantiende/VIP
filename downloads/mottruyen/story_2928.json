@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "2928",
+        "NAME": "Thánh Cảnh Chi Vương",
+        "CHAPTER": [
+            {
+                "id": "990104",
+                "name": "Chương 1: Vận mệnh thăng trầm (thượng)"
+            }
+        ],
+        "TOTALCHAPTER": "61",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp",
+        "AUTHOR": "Ngưu Ngữ Giả",
+        "TRANS": "Hoa Vô Lệ",
+        "DESC": "Liên tiếp thần thoại, tranh thiên hạ —— là thiên địa lập tâm, mà sống dân lập mệnh, là hướng về thánh kế tuyệt học, là vạn thế mở thái bình",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

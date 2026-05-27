@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "9629",
+        "NAME": "Chiến Phật",
+        "CHAPTER": [
+            {
+                "id": "3251908",
+                "name": "Chương 1 : thắng phật chiến thần, tôn hoàn."
+            }
+        ],
+        "TOTALCHAPTER": "2",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp",
+        "AUTHOR": "nguyenducron",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Việt Thư . <br />\r\n<br />\r\nCốt truyện vắn tắt : <br />\r\n<br />\r\nĐính chính rằng, lão tử là hạ lưu không phải phong lưu! Và ta là một con khỉ truyền nhân! <br />\r\n<br />\r\nLịch đăng chương : Rảnh khi nào đăng khi đấy ( tuần ít có 3-5 chương)  <br />\r\n<br />\r\nChương truyện có nội dung ngắn ae thông cảm sẽ lấy số lượng bù chất lượng.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

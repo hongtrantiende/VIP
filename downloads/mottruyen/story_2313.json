@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "2313",
+        "NAME": "Hỏa Trung Kim Liên",
+        "CHAPTER": [
+            {
+                "id": "773974",
+                "name": "Chương 1: Tân sinh"
+            }
+        ],
+        "TOTALCHAPTER": "437",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo",
+        "AUTHOR": "Lão Nạp Bất Năng Cật Tố",
+        "TRANS": "trang4mat",
+        "DESC": "Thần Ti&ecirc;n đều do người đến l&agrave;m, người muốn th&agrave;nh ti&ecirc;n lộ d&agrave;i dằng dặc.<br /> <br /> Một ph&agrave;m nh&acirc;n hướng ti&ecirc;n nh&acirc;n chuyển biến  tiến h&oacute;a con đường trải qua.<br /> <br /> Tu ti&ecirc;n cảnh giới ph&acirc;n chia: Luyện Kh&iacute;, Tr&uacute;c Cơ, Kim Đan, Nguy&ecirc;n Anh, H&oacute;a Thần.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

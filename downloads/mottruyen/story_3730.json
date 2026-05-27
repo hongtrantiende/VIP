@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "3730",
+        "NAME": "Thợ Săn",
+        "CHAPTER": [
+            {
+                "id": "1285019",
+                "name": "Cơn Bão Bí Ẩn"
+            }
+        ],
+        "TOTALCHAPTER": "30",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Ngôn Tình, Dị Năng",
+        "AUTHOR": "Nam Minh",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Đồng Khánh Nam là một người có xuất thân bí ẩn, sinh ra trong một cơn bão rất mạnh và kỳ lạ. Đến năm học lớp 8, sau khi bị sét đánh mà không hề hấn gì, những năng lực đặc biệt kỳ lạ trong con người hắn lần lượt xuất hiện như trí thông minh vượt trội, có khả năng tương tác với máy tính, khả năng phóng điện, khả năng dịch chuyển tức thời,... Nhờ tìm hiểu khoa học, Khánh Nam biết rằng những khả năng đặc biệt đó không tự nhiên sinh ra mà có thể hắn là sản phẩm của nền khoa học tiên tiến. Vì thế hắn thi vào học viện HA để tìm hiểu mình sinh ra từ đâu và vì sao được sinh ra.<br />\r\nNhưng dù đã đọc hàng ngàn cuốn sách khoa học, dò tìm ở các viện nghiên cứu, Khanh vẫn không tìm được chút manh mối nào, một cuộc sống không người thân, không bạn bè và không mục đích khiến hắn trở nên tuyệt vọng định tìm đến cái chết nhưng không thành. <br />\r\nTrong khoảng thời gian ở trên thành phố TL, Khánh Nam đã sử dụng năng lực của mình cứu giúp nhiều người trong bộ dạng của người bịt mặt, áo đen. Tên tuổi của người bịt mặt áo đen này nhanh chóng được báo chí đưa tin, nhiều người biết đến và được gọi dưới cái tên “Thợ Săn”, nhưng Khánh Nam không hề quan tâm đến điều đó.<br />\r\nNguyễn Phương Linh, lớp trưởng lớp Tài Năng K57 là một cô gái xinh đẹp, thông minh và tốt tính. Nhận thấy Khánh Nam, một người mồ côi cha mẹ và không hòa đồng nên đã hết sức giúp đỡ, nhưng trong quá trình tìm hiểu để giúp đỡ Khánh Nam cô lại vô tình phát hiện hắn chính là Thợ Săn đang được người người ngưỡng mộ.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

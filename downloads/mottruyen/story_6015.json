@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "6015",
+        "NAME": "Đại Thi Triều",
+        "CHAPTER": [
+            {
+                "id": "2169740",
+                "name": "Chương 1: Bừng tỉnh"
+            }
+        ],
+        "TOTALCHAPTER": "471",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Khoa Huyễn, Trùng Sinh",
+        "AUTHOR": "Hóa thần tú",
+        "TRANS": "๖ۣۜTiếu ๖ۣۜHồng ๖ۣۜTrần",
+        "DESC": "Hứa Bằng cơ duy&ecirc;n xảo hợp trở lại thi triều b&ugrave;ng nổ trước thời gian nửa năm , nắm giữ mười năm tận thế sinh tồn kinh nghiệm Hứa Bằng , đời n&agrave;y lại đều sẽ c&oacute; như thế n&agrave;o vận mệnh ?<br /> <br /> Cả thế giới &aacute;c mộng hạ xuống , hoạt tử nh&acirc;n vạn dặm thi tường , tống t&aacute;ng người cường đại c&ugrave;ng thần b&iacute; , nh&acirc;n loại đến c&ugrave;ng n&ecirc;n đi nơi n&agrave;o ?<br /> <br /> <br /> Cầu thanks, cầu vote tốt !!!",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

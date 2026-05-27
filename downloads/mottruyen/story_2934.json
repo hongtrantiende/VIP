@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "2934",
+        "NAME": "Vợ Giả",
+        "CHAPTER": [
+            {
+                "id": "990713",
+                "name": "Chương 1 : Cứ việc đi - Sao phải sợ"
+            }
+        ],
+        "TOTALCHAPTER": "29",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Ngôn Tình",
+        "AUTHOR": "Quỳnh Elaine",
+        "TRANS": "Elaine",
+        "DESC": "",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

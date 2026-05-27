@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "4842",
+        "NAME": "Trò chơi sáng thế kỷ",
+        "CHAPTER": [
+            {
+                "id": "1703905",
+                "name": "Chương 1:  đến từ đào bảo em bé"
+            }
+        ],
+        "TOTALCHAPTER": "100",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đô Thị",
+        "AUTHOR": "Chanh trùng",
+        "TRANS": "Tiếu Hồng Trần",
+        "DESC": "2015, hoa hạ đất đai, b&aacute;ch hoa nộ ph&oacute;ng, quần h&ugrave;ng tranh vương.<br /> <br /> LOL, T&acirc;y Du, dota, Ma Th&uacute;. . . &Aacute;nh sao vẫn l&oacute;ng l&aacute;nh.<br /> <br /> Thủ vọng ti&ecirc;n phong, Lostark, Hắc Sa, qu&aacute;i vật thợ săn. . . Hải lưu thế tới m&atilde;nh liệt.<br /> <br /> To&agrave;n bộ tin tức h&igrave;nh chiếu, giả tưởng thực tế, nh&acirc;n c&ocirc;ng tr&iacute; năng, thứ thời đại cơ thể. . . Hết thảy gần ngay trước mắt!<br /> <br /> Nhưng, boys-and-gril,This-is-just- A-beginning!<br /> <br /> Xanh thẳm bờ biển chanh quang nhạc vi&ecirc;n! Trời cao tr&ecirc;n vương quốc tr&ograve; chơi! Thời kh&ocirc;ng Bỉ Ngạn đ&iacute;ch thế giới thứ hai!<br /> <br /> C&ugrave;ng với những thứ kia &mdash;&mdash; ta ngươi kh&ocirc;ng ngờ tới tr&ocirc;i qua kho&aacute;ng đạt hoang tưởng, lộng lẫy mơ mộng, s&aacute;ng ch&oacute;i Ng&acirc;n h&agrave;. . .<br /> <br /> Cũng ắt sẽ từng bước một leo l&ecirc;n n&agrave;y rầm rầm rộ rộ h&agrave;o quang v&otilde; đ&agrave;i!<br /> <br /> Chung nhau s&aacute;ng tạo một c&aacute;i ho&agrave;n to&agrave;n mới tr&ograve; chơi thời đại!",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

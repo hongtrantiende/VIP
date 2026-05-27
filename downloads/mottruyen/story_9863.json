@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "9863",
+        "NAME": "Đại Thần Dụ Hạ Tuyến",
+        "CHAPTER": [
+            {
+                "id": "3327000",
+                "name": "Chương 1: Kết Hôn"
+            }
+        ],
+        "TOTALCHAPTER": "23",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đô Thị, Ngôn Tình, Võng Du",
+        "AUTHOR": "Yên Vũ Khanh Vân",
+        "TRANS": "Tieumieume",
+        "DESC": "\"L&agrave; ngươi?\" \"L&agrave; ta\" hắn c&ugrave;ng n&agrave;ng tương ngộ, hiện thực c&ugrave;ng tr&ograve; chơi kết hợp.<br /> \"Đại thần, đao hạ lưu t&igrave;nh\" \"Hảo! T&igrave;nh ta để lại.\" Một lần ngo&agrave;i &yacute; muốn n&agrave;ng nơi n&agrave;y qu&aacute; thượng bị khi dễ sinh hoạt.<br /> \"Nguy&ecirc;n lai khi đ&oacute; ngươi liền r&igrave;nh coi thượng ta!\"<br /> \"Ngươi sai rồi, kỳ thật từ lần đầu ti&ecirc;n gặp được ngươi ta liền coi trọng ngươi.\"<br /> \"V&igrave; c&aacute;i g&igrave; l&agrave; ta?\" \"Bởi v&igrave; l&agrave; ngươi!\"",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

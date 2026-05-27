@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "2716",
+        "NAME": "Chấp Chưởng Hollywood",
+        "CHAPTER": [
+            {
+                "id": "890362",
+                "name": "Chương 1 : Hôm nay lên, đó là của ta cố sự"
+            }
+        ],
+        "TOTALCHAPTER": "255",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đô Thị",
+        "AUTHOR": "Heracross",
+        "TRANS": "Tiểu La",
+        "DESC": "Một đ&ecirc;m mộng tỉnh, th&acirc;n hồi trở lại 96. Kiếp trước ở trong nước no bụng trải qua ch&igrave;m nổi tiểu nh&acirc;n vật, đi tới thập kỷ 90 Hollywood. Người v&agrave; vật kh&ocirc;ng c&ograve;n, xưa nay kh&ocirc;ng phải h&ocirc;m qua, kh&ocirc;ng c&oacute; thay đổi đấy, l&agrave; từng đ&atilde; l&agrave; mộng tưởng.<br /><br />Một c&aacute;i m&agrave;n ảnh, trong m&agrave;n ảnh, thăng trầm, m&agrave;n ảnh b&ecirc;n ngo&agrave;i, màu mè nh&acirc;n sinh. Chưởng ở m&agrave;n ảnh, nắm lấy cơ hội, mỹ hảo tương lai, trong tay ta.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "12398",
+        "NAME": "Điện Ảnh Đại Sư",
+        "CHAPTER": [
+            {
+                "id": "4031464",
+                "name": "Chương 01. Chương 1 xô là sấm sét"
+            }
+        ],
+        "TOTALCHAPTER": "19",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đô Thị",
+        "AUTHOR": "Cơ Khí Nhân Ngõa Lực- 机器人瓦力",
+        "TRANS": "Anhbanmai",
+        "DESC": "Từ xấu tiểu tử đến nam tử hán, từ vô danh tiểu tốt đến toàn cầu thần tượng. Từ một thiên tài thiếu niên đến một cái Điện Ảnh Đại Sư, phải đi qua bao nhiêu đường. Không thẹn tình nghĩa, không hối hận thanh xuân, truy đuổi giấc mơ, đối kháng thế giới, muốn làm đến bao nhiêu việc.\"Nguyên thủy bộ lạc tôn kính kể chuyện xưa người, nhưng mà nếu như chuyện xưa của hắn không giảng được, bọn hắn liền sẽ giết hắn, sau đó đêm đó món ăn ăn tươi.\" Diệp Duy không muốn bị ăn tươi, làm bước lên điện ảnh con đường một khắc đó, liền nhất định là cái độc nhất vô nhị truyền kỳ. Một cái Điện Ảnh Đại Sư đang tại quật khởi.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "10938",
+        "NAME": "Đạo Pháp Hư Không",
+        "CHAPTER": [
+            {
+                "id": "3630540",
+                "name": "Chương 1:  thử nghiệm"
+            }
+        ],
+        "TOTALCHAPTER": "5",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo, Dị Giới",
+        "AUTHOR": "Sơn Xuân Tú",
+        "TRANS": "Nhichanrio",
+        "DESC": "Nhất Thế Phật Lưỡng Thế Tình <br />\r\n<br />\r\nSáng Như Minh Nguyệt Phục Đông Sơn<br />\r\n<br />\r\nKhông Thành Uyên Ương Sầu Tương Tư<br />\r\n<br />\r\nSơn Lâm Nhà Ai Chỗ Ấy Lang<br />\r\n<br />\r\nVài Lần Hồn Tiêu Tan Bên Chỗ<br />\r\n<br />\r\nĐến Nay Ngụ Ngụ Không Thể Quên.<br />\r\n<br />\r\n<br />\r\n. . . . . . . . <br />\r\n<br />\r\nNhận xét Cvt .<br />\r\n<br />\r\nBộ này cực có triển vọng, cách hành văn của tác giả rất tốt, đáng để đọc và cảm nhận.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

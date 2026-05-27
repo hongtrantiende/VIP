@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "6703",
+        "NAME": "Xuyên Đến Làng Lá Thành Kyuubi",
+        "CHAPTER": [
+            {
+                "id": "2381369",
+                "name": "Chương 1: Chỉ là mơ thôi mà"
+            }
+        ],
+        "TOTALCHAPTER": "9",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Xuyên Không, Đồng Nhân",
+        "AUTHOR": "lethao17140@",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Ngủ một giấc liền xuyên qua? Cái này có gì lạ chứ. Ta tiếp nhận.<br />\r\nNgủ một giấc liền xuyên qua thế giới Naruto? Cái này cũng chẳng lạ lắm. Ta tiếp nhận.<br />\r\nNgủ một giấc liền xuyên qua thế giới Naruto trở thành Kyuubi- Cửu vĩ hồ sắp bị Hokage Đệ Tứ (Namikaze Minato) phong ấn. Có vấn đề gì chứ? Ta... ta... Fuck. Phật Tổ ơi, Thánh Ala ơi, Chúa Giêsu ơi, mẹ ơi cứu con......",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

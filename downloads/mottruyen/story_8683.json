@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "8683",
+        "NAME": "Dị Giới Bá Chủ Tại Đô Thị",
+        "CHAPTER": [
+            {
+                "id": "2970747",
+                "name": "Chương 1:  phá toái không được phản xuyên qua"
+            }
+        ],
+        "TOTALCHAPTER": "844",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đô Thị",
+        "AUTHOR": "Tiễu tiễu đóa khởi lai",
+        "TRANS": "๖ۣۜTiếu ๖ۣۜHồng ๖ۣۜTrần",
+        "DESC": "Gặp qua xuyên qua dị giới bằng ngón tay vàng xưng Vương xưng Bá , thế nhưng dị giới bá chủ xuyên qua đô thị vô tình gặp gỡ ngón tay vàng bắt đầu thành tựu không phải phàm nhân sinh ngươi gặp qua à? Chỉ có không nghĩ tới không có không làm được",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

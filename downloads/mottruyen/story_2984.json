@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "2984",
+        "NAME": "Tân Phong Lãnh Địa",
+        "CHAPTER": [
+            {
+                "id": "1017521",
+                "name": "Chương 1: Mị nhi"
+            }
+        ],
+        "TOTALCHAPTER": "473",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo, Xuyên Không",
+        "AUTHOR": "Tỏi Sách",
+        "TRANS": "Suntran, Huyền Thiên, Tử Diễm",
+        "DESC": "Kh&ocirc;ng c&oacute; x&aacute;n lạn v&otilde; kỹ, kh&ocirc;ng c&oacute; cao th&acirc;m c&ocirc;ng ph&aacute;p, đ&acirc;y l&agrave; một người \"xuy&ecirc;n việt\" từ từ thay đổi dị giới sinh hoạt, văn h&oacute;a, giải tr&iacute; cố sự. Đ&acirc;y l&agrave; một đem l&atilde;nh địa từ từ thay đổi th&agrave;nh hiện đại th&agrave;nh thị, dẫn dắt dị giới t&acirc;n tục lệ cố sự.<br /> <br /> Cố sự b&ecirc;n trong có th&ecirc;̉ hơi c&oacute; ch&uacute;t nhiệt huyết, một ch&uacute;t tranh đấu, nhưng c&agrave;ng nhiều ch&iacute;nh l&agrave; từng c&aacute;i từng c&aacute;i t&acirc;n sự vật sinh ra, c&ugrave;ng với một th&ocirc;n trang nhỏ chậm r&atilde;i trưởng th&agrave;nh l&ecirc;n th&agrave;nh đại giải tr&iacute; đế quốc qu&aacute; tr&igrave;nh.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

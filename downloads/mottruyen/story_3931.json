@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "3931",
+        "NAME": "Võng Du Chi Thanh Thành Kiếm Tiên",
+        "CHAPTER": [
+            {
+                "id": "1410608",
+                "name": "Chương 1: Tông môn mở rộng ra, trò chơi khải thủy"
+            }
+        ],
+        "TOTALCHAPTER": "703",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Võng Du",
+        "AUTHOR": "Thái Hồ Bá Vương",
+        "TRANS": "traitim_phale",
+        "DESC": "Ti&ecirc;n Nh&acirc;n phủ ta đỉnh, kết t&oacute;c thụ Trường Sinh.<br /><br />Đ&acirc;y l&agrave; cũng thực cũng huyễn ti&ecirc;n hiệp tr&ograve; chơi, một c&aacute;i Thanh Th&agrave;nh đệ tử tại Bỉ Ngạn trong thế giới trường kiếm đi về ph&iacute;a trước c&acirc;u chuyện.<br /><br />Kh&ocirc;ng c&oacute; trọng sinh, c&oacute; rất nhiều dũng kh&iacute; c&ugrave;ng tr&iacute; tuệ va chạm;<br /><br />Kh&ocirc;ng c&oacute; ti&ecirc;n tri, c&oacute; rất nhiều kỹ thuật c&ugrave;ng mưu lược tương giao.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

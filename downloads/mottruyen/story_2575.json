@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "2575",
+        "NAME": "Đế Bá",
+        "CHAPTER": [
+            {
+                "id": "843308",
+                "name": "Khế tử"
+            }
+        ],
+        "TOTALCHAPTER": "7235",
+        "IMG": "https://static.cdnno.com/poster/de-ba/150.jpg",
+        "CAT": "Huyền Ảo",
+        "AUTHOR": "Yếm Bút Tiêu Sinh",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Ngàn vạn năm trước, Lý Thất Dạ trồng xuống một cây Thúy Trúc.Tám trăm vạn năm trước, Lý Thất Dạ nuôi một đầu cá chép.Năm trăm vạn năm trước, Lý Thất Dạ thu dưỡng một cái tiểu cô nương.... ... ... ... ...Hôm nay, Lý Thất Dạ tỉnh lại sau giấc ngủ, Thúy Trúc tu luyện thành thần linh, cá chép hóa thành Kim Long, tiểu cô nương trở thành Cửu Giới Nữ Đế.Đây là một cái dưỡng thành cố sự, một cái bất tử Nhân tộc tiểu tử dưỡng thành Yêu Thần, dưỡng thành Tiên thú, dưỡng thành Nữ Đế cố sự.",
+        "THUMB": "https://static.cdnno.com/poster/de-ba/150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "3343",
+        "NAME": "Vũ Luyện Càn Khôn",
+        "CHAPTER": [
+            {
+                "id": "1161557",
+                "name": "Chương 1: Thiếu niên Liễu Minh"
+            }
+        ],
+        "TOTALCHAPTER": "325",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo",
+        "AUTHOR": "Nguyệt Lạc Ca Bất Lạc",
+        "TRANS": "Thái Cổ Phách Kiếm",
+        "DESC": "Hắn, cũng kh&ocirc;ng phải l&agrave; thi&ecirc;n t&agrave;i, tư chất thường thường.<br /><br />Nhưng thức tỉnh rồi thi&ecirc;n ph&uacute; huyết mạch sau, hắn ch&iacute;nh l&agrave; thi&ecirc;n t&agrave;i tuyệt thế!<br /><br />Bằng v&agrave;o thi&ecirc;n ph&uacute; huyết mạch, hắn cấp tốc ở tr&ecirc;n đại lục bộc lộ t&agrave;i năng.<br /><br />Mục ti&ecirc;u của hắn, l&agrave; thế giới đỉnh!",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

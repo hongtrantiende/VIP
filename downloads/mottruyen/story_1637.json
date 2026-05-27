@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "1637",
+        "NAME": "Lôi Vũ Liệt Thiên",
+        "CHAPTER": [
+            {
+                "id": "673070",
+                "name": "Chương 1: Dương thôn thằng ranh con"
+            }
+        ],
+        "TOTALCHAPTER": "250",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo",
+        "AUTHOR": "Tử Vi Phong Bạo Quan Chú",
+        "TRANS": "Yêu Tinh, Hàn Dạ",
+        "DESC": "V&otilde; cực kỳ g&acirc;y n&ecirc;n liệt Thương Khung, lau mồ h&ocirc;i, rơi v&atilde;i huyết.<br /> <br /> Xem t&ecirc;n c&ocirc;n đồ Lăng L&ocirc;i như thế n&agrave;o từng bước một đạp v&agrave;o đỉnh phong.<br /> <br /> Lăng L&ocirc;i n&oacute;i: \"Mục ti&ecirc;u của ta tựu l&agrave; dạo chơi nh&acirc;n gian, đ&ugrave;a giỡn c&aacute;c loại muội tử, trở th&agrave;nh Liệt Thi&ecirc;n L&ocirc;i Qu&acirc;n.\"",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

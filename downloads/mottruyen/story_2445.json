@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "2445",
+        "NAME": "Tề Thiên Nghịc Thánh",
+        "CHAPTER": [
+            {
+                "id": "806027",
+                "name": "Chương 1: Ta là Ngộ Không"
+            }
+        ],
+        "TOTALCHAPTER": "336",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp",
+        "AUTHOR": "Ngộ không đạo nhân",
+        "TRANS": "Cối Xay",
+        "DESC": ":   chúng ta từ nhỏ tự do thân , đầy trời thần Phật , dựa vào cái gì cao cao tại thượng !  Bồ Tát , Phật Đà , Thần Tiên?. Ta muốn bọn ngươi thần hồn câu diệt !  thiên như ngăn ta , phá hôm nay; mà như ngăn ta , đạp vỡ đất này !  Như Lai , hôm nay liền muốn ngươi trả cho ta —— 500 năm ! .  quyển sách , bỏ đi giả giữ lại thực , trực chỉ bản tâm , cho ta một cái sưu tầm , còn một mình ngươi đằng đằng sát khí Tôn Ngộ Không ! Khác: Quyển sách cùng 《 Tây Du Ký 》 xuất nhập khá lớn , chư vị xem quan chớ để dò số chỗ ngồi .",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

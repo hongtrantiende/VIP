@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "9957",
+        "NAME": "Ta Lãnh Diễm Tổng Tài Lão Bà",
+        "CHAPTER": [
+            {
+                "id": "3362431",
+                "name": "Chương 1: Kết hôn, ly hôn?"
+            }
+        ],
+        "TOTALCHAPTER": "2090",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đô Thị",
+        "AUTHOR": "Ngã Ái Mỹ Nhân Ngư",
+        "TRANS": "010203",
+        "DESC": "Ta Lãnh Diễm Tổng Tài Lão Bà giới thiệu tóm tắt:  hắn là chiến trường Lang Vương, người mang võ công tuyệt thế, còn có thể y thuật thần kỳ, vốn định bình tĩnh sinh hoạt, nhưng mà tổng giám đốc lão bà cho rằng hắn là oắt con vô dụng, muốn cùng hắn ly hôn, phu thê chiến tranh lạnh bắt đầu từ đó. . . h",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

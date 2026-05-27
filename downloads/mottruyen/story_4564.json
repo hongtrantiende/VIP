@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "4564",
+        "NAME": "Trọng Sinh Chi Siêu Phàm Nhập Thánh",
+        "CHAPTER": [
+            {
+                "id": "1619908",
+                "name": "Chương 1: Trọng sinh thiếu niên"
+            }
+        ],
+        "TOTALCHAPTER": "652",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo, Trùng Sinh",
+        "AUTHOR": "Ngã Thị Mộc Sâm Lâm",
+        "TRANS": "Phong Gia",
+        "DESC": "Vũ trụ mịt mờ, nh&acirc;n loại ở trong chiến tranh bại bởi dị tộc. Sống lại hai trăm năm trước l&acirc;m s&acirc;m c&oacute; thể kh&ocirc;ng ngăn cơn s&oacute;ng dữ, sửa lo&agrave;i người số phận ni. Đ&acirc;y l&agrave; một đời ki&ecirc;u h&ugrave;ng quật khởi sử! ! ! Đ&acirc;y l&agrave; nhất bộ chinh chiến huyết lệ sử! ! ! Đ&acirc;y l&agrave; một hồi lo&agrave;i người chấn hưng sử! ! ! Kh&aacute;n diễn vi&ecirc;n quấy phong v&acirc;n, c&aacute;i tay v&atilde;n thi&ecirc;n khuynh! ! !",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "6129",
+        "NAME": "Ta Xuyên Qua Thành Một Thanh Kiếm",
+        "CHAPTER": [
+            {
+                "id": "2193232",
+                "name": "Chương 1: Thanh Vân Kiếm"
+            }
+        ],
+        "TOTALCHAPTER": "384",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp",
+        "AUTHOR": "Túy Nguyệt Chi",
+        "TRANS": "Tiên Hạc",
+        "DESC": "T&ocirc; Nghị xuy&ecirc;n qua, kh&ocirc;ng c&oacute; nghịch thi&ecirc;n ng&oacute;n tay v&agrave;ng, kh&ocirc;ng c&oacute; ly kỳ th&acirc;n thế, c&agrave;ng kh&ocirc;ng c&oacute; cường n&uacute;i dựa lớn, như vậy cũng kh&ocirc;ng t&iacute;nh . . . L&atilde;o thi&ecirc;n! V&igrave; sao ta lại biến th&agrave;nh một thanh kiếm!<br /> <br /> Thi&ecirc;n địa đại tế ng&agrave;y, Li&ecirc;n V&acirc;n T&ocirc;ng chưởng m&ocirc;n thủ thu đồ đệ, Thanh V&acirc;n Kiếm cũng theo đ&oacute; truyền tới Trầm Nhu Tuyết trong tay, th&agrave;nh Trầm Nhu Tuyết t&ugrave;y th&acirc;n bội kiếm . C&aacute;i g&igrave; gọi l&agrave; t&ugrave;y th&acirc;n bội kiếm ? Tự nhi&ecirc;n l&agrave; ăn phải dẫn, ngủ muốn &ocirc;m, tắm thời điểm vậy. . .<br /> <br /> Biết bảo hộ chủ nh&acirc;n, biết nghe chủ nh&acirc;n n&oacute;i hết t&acirc;m sự, thỉnh thoảng c&ograve;n c&oacute; thể l&agrave;m một &iacute;t v&ocirc; sỉ hạ lưu sự t&igrave;nh, ta l&agrave; một thanh kiếm, cũng một bả c&ugrave;ng người kh&aacute;c bất đồng kiếm!",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

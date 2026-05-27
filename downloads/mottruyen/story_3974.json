@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "3974",
+        "NAME": "Tiên Chi Võ Đạo",
+        "CHAPTER": [
+            {
+                "id": "1445635",
+                "name": "Chương 1: : tu tiên thế giới"
+            }
+        ],
+        "TOTALCHAPTER": "798",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Khoa Huyễn",
+        "AUTHOR": "Dạ Vân Đoan",
+        "TRANS": "Yến Virus",
+        "DESC": "Đ&acirc;y l&agrave; một đoạn nhiệt huyết tu ti&ecirc;n c&acirc;u chuyện!",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

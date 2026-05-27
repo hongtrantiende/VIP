@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "7330",
+        "NAME": "Thấu thị Y Vương",
+        "CHAPTER": [
+            {
+                "id": "2608536",
+                "name": "Chương 1:   trời không phụ người có lòng"
+            }
+        ],
+        "TOTALCHAPTER": "1260",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đô Thị",
+        "AUTHOR": "Mỹ Nữ Thỉnh Tự Trọng",
+        "TRANS": "Phong Pháp Sư",
+        "DESC": "Thấu thị Y Vương giới thiệu tóm tắt:  .  uukanshu.  co   nữ lưu lại,   nam rời đi,   có tiền đứng bên trái,   đẹp mắt đứng bên phải,   cũng không có thỉnh rời đi!<br />\r\n<br />\r\n\tĐừng có dùng cái loại này bẩn thỉu ánh mắt xem ta,   chẳng qua là chữa bệnh mà thôi,   ừ...   thật!",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

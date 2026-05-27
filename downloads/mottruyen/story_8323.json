@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "8323",
+        "NAME": "One Piece Chi Người Hỗ Trợ",
+        "CHAPTER": [
+            {
+                "id": "2861422",
+                "name": "Giới Thiệu TÍ"
+            }
+        ],
+        "TOTALCHAPTER": "2",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đồng Nhân",
+        "AUTHOR": "huytrannguyengiahuy@",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Ta chỉ là người kế bên<br />\r\nlà đồng bạn <br />\r\ndẫn các ngươi đến đỉnh phong",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

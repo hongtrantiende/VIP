@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "11140",
+        "NAME": "Đô Thị Tu Tiên Kỳ Tài",
+        "CHAPTER": [
+            {
+                "id": "3689099",
+                "name": "Chương 1: Anh hùng cứu mỹ nhân"
+            }
+        ],
+        "TOTALCHAPTER": "753",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đô Thị",
+        "AUTHOR": "Lãng Băng Tâm Hỏa",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Sở Phàm, một cái trong núi lớn đi ra thiếu niên, lần thứ nhất anh hùng cứu mỹ nhân, lại bị người đánh chết, lại bị chôn sống đến bãi tha ma, lại bởi vì một cái không chút nào thu hút xương tháp mặt dây chuyền khởi tử hoàn sinh.<br />\r\n<br />\r\n\tThế nhưng là, thật có chuyện tốt như vậy sao? Từ ngôi mộ nơi leo ra, chẳng khác nào là phục sinh sao?<br />\r\n<br />\r\n\tBày ở trước mặt hắn, là một đầu không nhìn thấy cuối cùng cầu nổi, hai bên đều là vách núi, hắn đã không có đường lui!",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

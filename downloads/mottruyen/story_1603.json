@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "1603",
+        "NAME": "Tạo Hóa Chi Môn",
+        "CHAPTER": [
+            {
+                "id": "659011",
+                "name": "Tự Chương"
+            }
+        ],
+        "TOTALCHAPTER": "1528",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp, Trùng Sinh",
+        "AUTHOR": "Ta Là Lão Ngũ",
+        "TRANS": "Mộ Dung Ý Nhy, Cuồng Đế",
+        "DESC": "Sau khi kết bộ truyện Thiếu Gia Bị Bỏ Rơi t&aacute;c giả L&atilde;o Ngũ cho ra t&aacute;c phẩm mới c&oacute; t&ecirc;n Tạo H&oacute;a Chi M&ocirc;n. Theo lời t&aacute;c giả th&igrave; truyện n&agrave;y vẫn l&agrave; Ti&ecirc;n Hiệp nhưng sẽ c&oacute; ph&aacute; c&aacute;ch ri&ecirc;ng của L&atilde;o Ngũ\r\n<br /> Đ&acirc;y l&agrave; một c&aacute;i ph&aacute; th&agrave;nh mảnh nhỏ thế giới , đ&acirc;y l&agrave; một c&aacute;i bị di vong nơi hẻo l&aacute;nh . Ng&agrave;y n&agrave;o đ&oacute; , th&agrave; rằng th&agrave;nh ng&atilde; l&ograve;ng nhất thời điểm , c&oacute; một ng&agrave;y , hắn bị ngạnh sinh sinh đ&iacute;ch mang đến nơi n&agrave;yC&aacute;i thế giới n&agrave;y bởi v&igrave; đ&atilde; c&oacute; Ninh Th&agrave;nh , đem tại vũ trụ m&ecirc;nh m&ocirc;ng trong lưu danh , đem tại v&ocirc; tận trong vũ trụ l&oacute;ng l&aacute;nh !",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

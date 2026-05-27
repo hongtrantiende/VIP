@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "9760",
+        "NAME": "Hệ Thống Chi Thông Thiên Vạn Giới",
+        "CHAPTER": [
+            {
+                "id": "3292064",
+                "name": "Chương 1 : Khởi Động Hệ Thống"
+            }
+        ],
+        "TOTALCHAPTER": "7",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đô Thị, Huyền Ảo, Võng Du, Dị Giới, Khoa Huyễn, Xuyên Không, Đồng Nhân, Trùng Sinh",
+        "AUTHOR": "NightDragon",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Đây là truyện hệ thống thông thiên viết lại do mới bị xóa<br />\r\nTa Nguyễn Hoàng Phi Long kẻ nắm giữ Thông Thiên Hệ Thống. Ma Đế gặp ta là chạy . Ta là anh của Vạn Giới chi đế , con của ta Naruto là một trong tam đại thánh nhân, Kirito đệ nhất thánh kiếm là của ta tiểu đệ , sủng thú của ta là Cửu Đại Vĩ Thú.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

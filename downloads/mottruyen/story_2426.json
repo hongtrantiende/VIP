@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "2426",
+        "NAME": "Siêu Cấp Trình Tự Viên",
+        "CHAPTER": [
+            {
+                "id": "802275",
+                "name": "Chương 1: Tốt nghiệp đi xa"
+            }
+        ],
+        "TOTALCHAPTER": "147",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Khoa Huyễn, Xuyên Không",
+        "AUTHOR": "Tinh Như Vân",
+        "TRANS": "AnhEmNhaThan",
+        "DESC": "Một l&ograve;ng muốn trở th&agrave;nh si&ecirc;u cấp tr&igrave;nh tự vi&ecirc;n, ly kỳ sự t&igrave;nh kh&ocirc;ng ngừng ph&aacute;t sinh, v&igrave; cứu sống bạn g&aacute;i, chửng cứu nh&acirc;n loại, lợi dụng số hiệu xuy&ecirc;n qua đến cổ đại, tương lai.<br /><br />Xuy&ecirc;n qua, tu luyện v&otilde; thuật, giết người đoạt bảo, thu thập thần ch&acirc;u, ch&uacute;t l&ograve;ng th&agrave;nh.<br /><br />Cất bước tương lai, số hiệu ở tay, giải cứu nh&acirc;n loại, cứu vớt Địa cầu, kh&ocirc;ng th&agrave;nh vấn đề.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

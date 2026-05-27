@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "1731",
+        "NAME": "Vũ Tôn Đạo",
+        "CHAPTER": [
+            {
+                "id": "720852",
+                "name": "Chương 1. Hoàng triều Tam công chúa"
+            }
+        ],
+        "TOTALCHAPTER": "365",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo",
+        "AUTHOR": "Cẩu Bào Tử",
+        "TRANS": "Vịt Con Xấu Xí",
+        "DESC": "V&otilde; chi đạo cực, phong b&aacute; ho&agrave;n vũ.<br /><br />Bố thi&ecirc;n hạ to lớn cục, huyền huyễn kh&oacute; lường.<br /><br />Th&aacute;m hiểm, Ho&agrave;ng tộc, d&atilde; th&uacute;, th&acirc;n thế, Xuất Trần, v&otilde; chi &aacute;o nghĩa, kh&iacute; chi huyền diệu, đạo chi ch&acirc;n l&yacute;, người chi nghĩa kh&iacute;, vung thi&ecirc;n hạ chi B&aacute; kh&iacute;, lộ nghĩa sĩ chi hiệp nghĩa, xem kh&ocirc;ng tận nhu t&igrave;nh, v&ocirc; số ti&ecirc;u s&aacute;i, đều ở Cẩu B&agrave;o Tử t&acirc;n t&aacute;c giả.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

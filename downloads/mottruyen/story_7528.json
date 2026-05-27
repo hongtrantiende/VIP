@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "7528",
+        "NAME": "Lữ Hành Giả",
+        "CHAPTER": [
+            {
+                "id": "2662984",
+                "name": "Chương 1: Bắt đầu cuộc hành trình."
+            }
+        ],
+        "TOTALCHAPTER": "78",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đô Thị, Kiếm Hiệp, Huyền Ảo, Đồng Nhân",
+        "AUTHOR": "Phong94",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Câu chuyện về một Closer, thậm thí còn có chút trẻ trâu, xuyên không vào các thế giới. Nhân vật chính chỉ là người bình thường, tướng mạo bình thường, trí tuệ bình thường, nghị lực cũng bình thường, giống như vô vàn người bình thường mà bạn thấy đi trên phố, nhưng ai quy định chỉ có người có tố chất mới được xuyên việt?",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

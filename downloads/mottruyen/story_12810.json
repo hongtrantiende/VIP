@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "12810",
+        "NAME": "Anh Hùng Liên Minh Phương Đông Quý Tộc",
+        "CHAPTER": [
+            {
+                "id": "4135620",
+                "name": "Chương 1: Akali"
+            }
+        ],
+        "TOTALCHAPTER": "744",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Võng Du, Dị Giới",
+        "AUTHOR": "Bát Thập Bát Niên Hạ",
+        "TRANS": "Quang Huy",
+        "DESC": "Ta ở Ionia!<br />\r\n<br />\r\n\tKhông, không phải Ionia Server, là Ionia đại lục!<br />\r\n<br />\r\n\tĐây không phải là trò chơi, đây là chân thực Sử Thi thế giới.<br />\r\n<br />\r\n\tChiến tranh bước chân lặng lẽ mà tới. Freijord tranh chấp chạm một cái liền bùng nổ, Shadow Isles vong linh rục rịch, Bilgewater thế cục giả dối quỷ quyệt, Shurima viễn cổ lực lượng lần nữa hạ xuống, hư không sinh vật mắt nhìn xuống chằm chằm. . . Nhưng những thứ này theo ta có quan hệ?<br />\r\n<br />\r\n\tTa đến từ phương đông, ta là tới nhận thức muội chỉ.<br />\r\n<br />\r\n\t[ đây là một bộ lấy anh hùng liên minh quan phương bối cảnh cố sự làm chủ tuyến xuyên qua tiểu thuyết, ừm, là như vậy. ]",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

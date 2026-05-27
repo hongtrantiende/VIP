@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "5420",
+        "NAME": "Mạn Mạn Tiên Đồ",
+        "CHAPTER": [
+            {
+                "id": "1921377",
+                "name": "Chương 1: Tiêu Dao"
+            }
+        ],
+        "TOTALCHAPTER": "15",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp",
+        "AUTHOR": "Tuyệt Thế Tiểu Bạch",
+        "TRANS": "HoaVoUu",
+        "DESC": "Một cái sỏa nữ nhân bị một siêu cấp đại \"Cơ duyên\" đập đến miệng phun máu tươi, toàn thân co giật, suýt chút nữa đánh rắm, năm trăm năm tu vi hủy diệt sạch, linh tư bị thay đổi.<br />\r\n\tTrùng tu a! Trùng tu! Chuyện này quả thật chính là trọng sinh tái tu! Toại nàng ngộ  , từ đây khoác lên da dê ở trong giới tu tiên làm một con kẹp đuôi lang, sờ soạng lần mò một lần nữa bò hướng về quang minh hoạn lộ thênh thang",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "6527",
+        "NAME": "Lạnh Lùng Hay Băng Giá",
+        "CHAPTER": [
+            {
+                "id": "2321709",
+                "name": "Chương 1: Gặp Lại Nhau"
+            }
+        ],
+        "TOTALCHAPTER": "2",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Ngôn Tình",
+        "AUTHOR": "Punny",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Nó- Phan Linh Nhi (16t) Mồ côi từ nhỏ, đi học được nhờ có học bổng, học giỏi, làm việc thêm cật lực để kiếm tiền. Mái tóc dài màu đỏ hung, đôi mắt xanh đặc biệt, cao cỡ 1m52.<br />\r\nPhạm Yến Thy (16t) : Bạn thân nó và An, gia cảnh khá giả, nhà gần nó. Mái tóc màu vàng nâu, đôi mắt đen sâu.<br />\r\nHạ An An: (16t) : Bạn thân nó và Thy, tiểu thư tập đoàn Hạ Gia (nổi tiếng ngành khách sạn). Tóc màu hồng nhạt, đôi mắt đen to tròn<br />\r\nBa đứa nó chơi thân với nhau đã mười năm......",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

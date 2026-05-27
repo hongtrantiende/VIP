@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "4802",
+        "NAME": "Vĩnh trấn Càn Khôn",
+        "CHAPTER": [
+            {
+                "id": "1697535",
+                "name": "Chương 1 : Mạc Ninh!"
+            }
+        ],
+        "TOTALCHAPTER": "747",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo",
+        "AUTHOR": "Hôi y đạo trường",
+        "TRANS": "Blood&amp;Rose",
+        "DESC": "Nh&acirc;n quả rơi dưới c&acirc;y Bồ Đề, vạn thế phật đ&agrave; ti&ecirc;u thanh t&iacute;ch.   Tu h&agrave;nh khắp đường ngươi ngu lừa dối, ti&ecirc;n sư đ&uacute;c th&agrave;nh Thi&ecirc;n Đạo đường!   Một khỏa hạt Bồ Đề, một bản tổ truyền c&ocirc;ng ph&aacute;p, một c&acirc;y ma phi&ecirc;n, một thiếu ni&ecirc;n, một đầu Mạn Mạn con đường tu ti&ecirc;n...",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

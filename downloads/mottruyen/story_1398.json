@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "1398",
+        "NAME": "Sỏa Tiên Đan Đế",
+        "CHAPTER": [
+            {
+                "id": "577467",
+                "name": "Chương 1: Trọng sinh thế tục"
+            }
+        ],
+        "TOTALCHAPTER": "815",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp, Huyền Ảo",
+        "AUTHOR": "Hồng Diệp",
+        "TRANS": "Oll",
+        "DESC": "Kỳ huyễn Tu Chấn\r\nThi&ecirc;n đ&igrave;nh luyện đan đồng tử Thường Thịnh, tinh th&ocirc;ng luyện đan chi đạo, bị người cấu hại bị &eacute;p chuyển thế, kh&ocirc;ng ngờ lại phụ th&acirc;n v&agrave;o một c&aacute;i kẻ ngu tr&ecirc;n người, dứt kho&aacute;t giả ngu đứng đờ người ra đến c&ugrave;ng...",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

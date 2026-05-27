@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "1776",
+        "NAME": "Vạn Cổ Chí Tôn",
+        "CHAPTER": [
+            {
+                "id": "732369",
+                "name": "Chương 01: Thức tỉnh - Quyển 1"
+            }
+        ],
+        "TOTALCHAPTER": "2396",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo",
+        "AUTHOR": "Thái Nhất Sinh Thủy",
+        "TRANS": "Nhoktials",
+        "DESC": "Thập đại phong h&agrave;o Vũ Đế một trong, tuyệt thế Cổ Phi Dương tại Thi&ecirc;n Đ&atilde;ng sơn mạch ng&atilde; xuống, với mười năm năm sau chuyển thế sống lại, h&oacute;a th&agrave;nh Thi&ecirc;n Thủy quốc c&ocirc;ng tử L&yacute; V&acirc;n Ti&ecirc;u, mở ra một hồi c&ugrave;ng đương đại v&ocirc; số thi&ecirc;n t&agrave;i tranh chấp phong nghịch thi&ecirc;n lữ tr&igrave;nh. V&otilde; đạo chín tầng, thập phương Thần Cảnh, từ đ&acirc;y to&agrave;n bộ thế giới nổi kh&ugrave;ng!",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

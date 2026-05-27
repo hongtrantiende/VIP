@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "5729",
+        "NAME": "Tối Cường Thương Thành Hệ Thống",
+        "CHAPTER": [
+            {
+                "id": "2054271",
+                "name": "Chương 1: Ái Muội thương thành"
+            }
+        ],
+        "TOTALCHAPTER": "100",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đô Thị, Khoa Huyễn, Xuyên Không, Đồng Nhân",
+        "AUTHOR": "Nhiều Converter",
+        "TRANS": "๖ۣۜCon♥Nghiện❀",
+        "DESC": "L&acirc;m Khai ngẫu nhi&ecirc;n đạt được một con l&atilde;o đồng hồ điện tử, hơn nữa đ&acirc;y l&agrave; một c&aacute;i cần &aacute;m muội gi&aacute; trị mới c&oacute; thể mở ra thương th&agrave;nh, phế vật hạnh ph&uacute;c nh&acirc;n sinh l&uacute;c đ&oacute; bắt đầu rồi .",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

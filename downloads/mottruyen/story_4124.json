@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "4124",
+        "NAME": "Akihabara chi Ma Quỷ Người Đại Diện",
+        "CHAPTER": [
+            {
+                "id": "1506715",
+                "name": "Chương 01: Luật Hương Xuyên  - Quyển 1"
+            }
+        ],
+        "TOTALCHAPTER": "254",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đô Thị",
+        "AUTHOR": "Phong Nguyệt Huyết Thương",
+        "TRANS": "BellTB9x",
+        "DESC": "\"Kagawa Hane l&agrave; thế giới giải tr&iacute; to lớn nhất u &aacute;c t&iacute;nh!\"<br /><br />&mdash;&mdash;&mdash;&mdash; Johnny x&atilde; trưởng Johnny Kitagawa<br /><br />\"Nếu như kh&ocirc;ng phải Kagawa, AKB kh&ocirc;ng khả năng sẽ c&oacute; khổng lồ như thế sức ảnh hưởng, nhưng n&agrave;y cải biến kh&ocirc;ng xong hắn l&agrave; t&ecirc;n khốn kiếp bản chất.\"<br /><br />&mdash;&mdash;&mdash;&mdash;AKB48 tổng chế t&aacute;c người Akimoto Yasushi<br /><br />\"Kagawa đại th&uacute;c l&agrave; người tốt. . . Rất &ocirc;n h&ograve;a Ah. . . Ch&iacute;nh l&agrave; c&oacute; ch&uacute;t nghi&ecirc;m khắc.\"<br /><br />&mdash;&mdash;&mdash;&mdash;AKB48 hai kỳ sinh Oshima Yuko<br /><br />\"Kagawa Hane, hắn l&agrave; một c&aacute;i vượt thời đại nh&acirc;n vật, hắn ph&aacute; vỡ quốc gia n&agrave;y truyền thống c&ocirc;ng ty đại diện chế độ, th&agrave;nh lập một c&aacute;i mới người đại diện chế độ!\"<br /><br />&mdash;&mdash;&mdash;&mdash; ( Time Magazine )",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "1381",
+        "NAME": "Siêu Cấp Tạp Hóa Điếm",
+        "CHAPTER": [
+            {
+                "id": "572134",
+                "name": "Chương 1: Siêu cấp tiệm tạp hóa"
+            }
+        ],
+        "TOTALCHAPTER": "127",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đô Thị",
+        "AUTHOR": "Khiếu Ngã Tiểu Dạng",
+        "TRANS": "Oll",
+        "DESC": "Một c&aacute;i người l&agrave;m c&ocirc;ng, ngo&agrave;i &yacute; muốn đ&atilde; nhận được Si&ecirc;u cấp tiệm tạp h&oacute;a hệ thống, hắn c&oacute; thể tại Si&ecirc;u cấp tiệm tạp h&oacute;a ở b&ecirc;n trong mua được bất kỳ vật g&igrave;<br /><br />Si&ecirc;u cấp d&eacute;p l&ecirc;, Si&ecirc;u cấp Khả Nhạc, Si&ecirc;u cấp k&iacute;nh mắt. . . . . Những điều n&agrave;y đều l&agrave; gia c&ocirc;ng qua<br /><br />Cửu Dương Thần C&ocirc;ng, Th&aacute;nh Linh kiếm ph&aacute;p, Ngưng Sương Kiếm. . . . . Những điều n&agrave;y đều l&agrave; kịch truyền h&igrave;nh ở b&ecirc;n trong<br /><br />Thanh Linh Đan, Kim Tủy Đan, Tr&uacute;c Cơ Đan... Những điều n&agrave;y đều l&agrave; trong tiểu thuyết<br /><br />Ti&ecirc;̉u tử s&aacute;ch mới \"Tận thế chi may mắn bảo rương\" đ&atilde; l&ecirc;n khung, c&oacute; hứng th&uacute; thư hữu c&oacute; thể đi nh&igrave;n xem",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

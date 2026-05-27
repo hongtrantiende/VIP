@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "4761",
+        "NAME": "Bào Tử Vật Ngữ (Spore)",
+        "CHAPTER": [
+            {
+                "id": "1688080",
+                "name": "Chương 1: Chương 1: Mới tới"
+            }
+        ],
+        "TOTALCHAPTER": "381",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Dị Giới, Khoa Huyễn, Xuyên Không, Trùng Sinh",
+        "AUTHOR": "Red Ye",
+        "TRANS": "TruyLing",
+        "DESC": "Ai đã từng chơi qua game Spore thì chắc biết bộ này nói về cái gì, còn ai chưa biết mình giới thiệu luôn, Truyện kể về 1 thanh niên xuyên không tới vị diện được quản lý bởi liên minh vũ trụ nhằm tránh cho quá nhiều người xuyên qua gây hại cho dị giới.<br />\r\nTruyên kể từ thanh niên bước khởi đầu chỉ là một đơn bào, dần dần tiến hóa thành đa bào, sinh vật, cho tới Thần của một chủng quần \"Thú\", dẫn dắt con dân tới văn minh, oánh nhau với các hành tinh khác...bla...bla!",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

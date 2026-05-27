@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "1605",
+        "NAME": "Hàng Lâm Dị Giới",
+        "CHAPTER": [
+            {
+                "id": "657714",
+                "name": "Chương 1: Cô ảnh trong sa mạc"
+            }
+        ],
+        "TOTALCHAPTER": "168",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo",
+        "AUTHOR": "Lam Lĩnh Tiếu Tiếu Sinh",
+        "TRANS": "Yeu Em",
+        "DESC": "Mang theo th&acirc;n thể xuy&ecirc;n việt dị giới, hấp thu kh&ocirc;ng gian năng lượng Đoạn Phi, chẳng những trở n&ecirc;n tiềm lực v&ocirc; hạn, m&agrave; c&ograve;n c&agrave;ng cường đại, l&agrave;m cho người ta h&acirc;m mộ tự l&agrave;nh năng lực! Tuy l&agrave; danh tiếng kh&ocirc;ng đ&aacute;ng một xu, cũng c&oacute; thể tạo n&ecirc;n một thế giới ri&ecirc;ng!",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

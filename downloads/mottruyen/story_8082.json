@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "8082",
+        "NAME": "Ta Là Nữ Phụ: Không Muốn Lãnh Cơm Hợp a!",
+        "CHAPTER": [
+            {
+                "id": "2802837",
+                "name": "Tại sao ta xuyên?"
+            }
+        ],
+        "TOTALCHAPTER": "4",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Ngôn Tình, Xuyên Không",
+        "AUTHOR": "Hahang",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Ta, Lam Tâm Di, thích ngủ,ăn,chơi,cày tiểu thuyết,... Nói chung chính là theo đuổi cuộc sống của một con sâu gạo. Thế nhưng... Thiên a! Tại sao ông lại đối xữ với ta như vậy? Đành là cho ta xuyên. Tại sao lại xuyên đúng lúc ta đang giải quyết nỗi buồn,đã vậy..",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "2753",
+        "NAME": "Hồng Hoang Cổ Thần",
+        "CHAPTER": [
+            {
+                "id": "901336",
+                "name": "Chương 1: Trăm năm về sau"
+            }
+        ],
+        "TOTALCHAPTER": "673",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo",
+        "AUTHOR": "Vương Ngữ Tử",
+        "TRANS": "Sun",
+        "DESC": "Thượng cổ một trận chiến, kinh thiên động địa, đem trời vỡ làm sáu đoạn.<br />\r\nMấy chục vạn năm sau, một đời thiếu niên Huyền Thiên, cầm trong tay mảnh vỡ binh khí tại tầng dưới chót nhất Thiên Địa sinh ra. Mà lại trời sinh khiếm khuyết ,mắc bệnh đau đầu , trong đại não thập phần quái dị.<br />\r\nRốt cục có một ngày, trong đầu dị thường đã có chút ít manh mối , này dĩ nhiên là ký ức mảnh vỡ, ghi chép một góc thượng cổ .<br />\r\nÔng trời...ơ...i! Này dĩ nhiên là thượng cổ chiến trường chém giết tràng diện, vạn tộc nhuốm máu, đàn thú gào thét, kinh thiên động địa.<br />\r\nTa rốt cuộc là ai? Vì sao thiếu đi kí ức?",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

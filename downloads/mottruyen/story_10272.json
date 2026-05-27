@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "10272",
+        "NAME": "Ôn Nhu Âm Hiểm Đại Sư Huynh",
+        "CHAPTER": [
+            {
+                "id": "3441568",
+                "name": "Chương 1: Chạy trốn hôn nhân"
+            }
+        ],
+        "TOTALCHAPTER": "2",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo",
+        "AUTHOR": "medoctruyencom",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Âm hiểm sư huynh, vì mục đích không không từ thủ đoạn<br />\r\n<br />\r\nTruyện kể về nhân vật chính thuộc dạng độc ác tàn nhẫn, có thể gọi hắn là Ngụy Quận Tử, tiểu nhân, âm hiểm, cầm thú...<br />\r\n<br />\r\nNhưng chắc chắn một điều, hắn thật sự là nhân vật chính, hơn nửa thuộc dạng phản phái cầm thú sư huynh.<br />\r\n<br />\r\n*Truyện Việt, vì công việc khá bận, 1 tuần / chương hoặc 2-3 ngày / chương",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

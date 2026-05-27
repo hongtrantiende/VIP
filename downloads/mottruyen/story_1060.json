@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "1060",
+        "NAME": "Siêu Cấp Tội Phạm",
+        "CHAPTER": [
+            {
+                "id": "391123",
+                "name": "Chương 1: Huyết sắc lớp học"
+            }
+        ],
+        "TOTALCHAPTER": "456",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Khoa Huyễn",
+        "AUTHOR": "Oai Đảo Thần",
+        "TRANS": "Nhiều Converter",
+        "DESC": "\"Binh sĩ kh&ocirc;ng muốn l&agrave;m tướng qu&acirc;n th&igrave; kh&ocirc;ng phải l&agrave; một binh sĩ tốt.\"\r\n&nbsp;\r\nĐ&acirc;y l&agrave; điều m&agrave; huấn luyện vi&ecirc;n chiến đấu trong ng&agrave;y đầu ti&ecirc;n dạy cho ch&uacute;ng ta đ&atilde; n&oacute;i. Khi đ&oacute; ta c&ograve;n cho rằng huấn luyện vi&ecirc;n thật vĩ đại, l&agrave; tồn tại kh&ocirc;ng thể chiến thắng....<br /><br />Nhưng kể từ khi ta bị Hệ Thống Chiến Thần nhập v&agrave;o th&acirc;n, ngộ s&aacute;t huấn luyện vi&ecirc;n, sau đ&oacute; bị ph&aacute;n tội v&agrave;o Karl ngục giam, cả đời bị giam cầm, ta cũng viết cho m&igrave;nh một c&acirc;u danh ng&ocirc;n, để kh&iacute;ch lệ cuộc sống của ta sau n&agrave;y: \"T&ugrave; phạm kh&ocirc;ng muốn vượt ngục, th&igrave; kh&ocirc;ng phải l&agrave; một t&ugrave; phạm tốt.\"",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

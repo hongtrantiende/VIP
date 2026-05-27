@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "7041",
+        "NAME": "Cửu Thiên Đế Chủ",
+        "CHAPTER": [
+            {
+                "id": "2508109",
+                "name": "Chương 1: Mất hồn thiếu niên, một ngày thiên tài"
+            }
+        ],
+        "TOTALCHAPTER": "595",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo",
+        "AUTHOR": "Huy Xích Phương Tù",
+        "TRANS": "808",
+        "DESC": "Cửu Thiên Đại Lục, Võ Đạo vi tôn.<br />\r\n<br />\r\n\tVõ đồ một trong, tu huyết thuật, tập thể pháp, dung linh quyết, trảm ngã vấn đạo!<br />\r\n<br />\r\n\tTrăm năm trước, Cửu Tiêu Võ Hoàng không hiểu vẫn lạc;<br />\r\n<br />\r\n\tTrăm năm, một luồng tàn hồn ngoài ý muốn trọng sinh!<br />\r\n<br />\r\n\tLăng Cửu Tiêu nhìn lên trời xanh: \"Ở kiếp này, ta nhất định phải giết quay về trên chín tầng trời, chưởng Càn Khôn thương khung, đạp võ đạo đỉnh phong!\"",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

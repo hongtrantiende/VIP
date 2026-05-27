@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "3429",
+        "NAME": "Thần Điêu Chi Ma Giáo Giáo Chủ",
+        "CHAPTER": [
+            {
+                "id": "1189916",
+                "name": "Chương 1: Ma Giáo Giáo Chủ"
+            }
+        ],
+        "TOTALCHAPTER": "72",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Kiếm Hiệp",
+        "AUTHOR": "Khuyển Phiên Trường",
+        "TRANS": "ThaiHoang",
+        "DESC": "V&ocirc; t&acirc;m tranh thi&ecirc;n hạ, l&agrave;m sao vạn d&acirc;n kh&oacute; khăn. Bản t&acirc;m ng&agrave;y xưa th&aacute;ng, tiếc rằng hoa thơm cỏ lạ như sao. Một đời thi&ecirc;n t&agrave;i xuất C&ocirc;n L&ocirc;n, Ma Gi&aacute;o Gi&aacute;o Chủ chuyển c&agrave;n kh&ocirc;n.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

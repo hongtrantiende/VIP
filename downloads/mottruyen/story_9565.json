@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "9565",
+        "NAME": "Nghịch Chuyển Càn Khôn",
+        "CHAPTER": [
+            {
+                "id": "3231540",
+                "name": "Chương 1: Biến Cố"
+            }
+        ],
+        "TOTALCHAPTER": "1",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đô Thị, Huyền Ảo",
+        "AUTHOR": "nhoxzino1",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Chuyện kể về Lâm Gia Khang chàng trai thư sinh lên Sài Gòn. Đã du hành ngược thời gian về năm 2014  với đám bạn của mình.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

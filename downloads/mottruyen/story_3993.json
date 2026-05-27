@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "3993",
+        "NAME": "Dị Giới Toàn Chức Nghiệp Đại Sư",
+        "CHAPTER": [
+            {
+                "id": "1458802",
+                "name": "Chương 1: Dược tề học thái điểu"
+            }
+        ],
+        "TOTALCHAPTER": "1296",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Dị Giới",
+        "AUTHOR": "Trang tất phàm",
+        "TRANS": "trang4mat",
+        "DESC": "Game online b&ecirc;n trong đ&iacute;ch nh&agrave; kho tiểu h&agrave;o, lại ngo&agrave;i &yacute; muốn tiến nhập Dị Giới.<br /><br />Hắn chẳng những đ&atilde; mang đến v&ocirc; số Cực phẩm t&agrave;i liệu, c&ograve;n tinh th&ocirc;ng cơ hồ sở hữu t&acirc;́t cả sinh hoạt kỹ năng, đ&aacute;ng sợ nhất ch&iacute;nh l&agrave;, thằng n&agrave;y đồng thời hay vẫn l&agrave; một c&aacute;i kh&ocirc;ng tiền kho&aacute;ng hậu ma ph&aacute;p thi&ecirc;n t&agrave;i!",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

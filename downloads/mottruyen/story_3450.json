@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "3450",
+        "NAME": "Văn Võ Thánh Thần",
+        "CHAPTER": [
+            {
+                "id": "1194774",
+                "name": "Chương 1: Mới quen văn võ thế giới"
+            }
+        ],
+        "TOTALCHAPTER": "294",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo",
+        "AUTHOR": "Thần Kỳ Cải Trắng",
+        "TRANS": "ChucMung",
+        "DESC": "Ng&agrave;y xưa binh vương, h&ocirc;m nay phế vật, ngẫu nhi&ecirc;n đạt được s&aacute;ch qu&yacute;, tập t&aacute;c th&agrave;nh mới; một c&aacute;i xuy&ecirc;n qua đến Thi&ecirc;n Nguy&ecirc;n Đại Lục Hoa Hạ binh vương, th&ocirc;ng qua tu tập văn v&otilde;, từng bước từng bước trở th&agrave;nh triều đ&igrave;nh trụ cột, cuốn v&agrave;o từng cuộc một cung đ&igrave;nh đấu ph&aacute;p, đại biểu quốc gia tranh b&aacute; Đại Lục, đi tới nh&acirc;n sinh đỉnh cao.<br /><br />T&aacute;c phẩm nh&atilde;n m&aacute;c: Tranh b&aacute; lưu, cơ tr&iacute;, nh&agrave; gi&agrave;u<br /><br />T&aacute;c giả:<br /><br />Thần kỳ cải trắng<br /><br />Hi vọng c&aacute;c thư hữu lẫn nhau chuyển c&aacute;o, hỗ trợ quảng c&aacute;o, ủng hộ của c&aacute;c ngươi ch&iacute;nh l&agrave; sức mạnh của ta! Cầu click, cầu đề cử, cầu b&igrave;nh luận s&aacute;ch, c&aacute;c loại cầu!",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

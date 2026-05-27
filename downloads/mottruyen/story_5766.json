@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "5766",
+        "NAME": "Túng Hoành Tại Võ Hiệp Thế Giới",
+        "CHAPTER": [
+            {
+                "id": "2065083",
+                "name": "Chương 1: Tiểu thuyết võ hiệp tam đại oán niệm"
+            }
+        ],
+        "TOTALCHAPTER": "543",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Kiếm Hiệp",
+        "AUTHOR": "Thiên Hạ Thùy Nhân Bất Thức Quân",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Diệp Cô Thành Thiên Ngoại Phi Tiên có hay không vượt qua nhân gian cực hạn.<br />\r\n<br />\r\n\tTảo Địa Thần Tăng là có hay không vô địch thiên hạ.<br />\r\n<br />\r\n\tTiểu Lý Phi Đao đao có hay không ở khắp mọi nơi.<br />\r\n<br />\r\n\tLãng Phiên Vân Phúc Vũ Kiếm có hay không Thiên Hạ Vô Song.<br />\r\n<br />\r\n\tThế giới võ hiệp bên trong, Lý Trọng lớn tiếng kêu lên: \"Ta đến rồi, ta chinh phục!\"",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

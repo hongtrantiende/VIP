@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "3663",
+        "NAME": "Vạn Cổ Kiếm Hoàng",
+        "CHAPTER": [
+            {
+                "id": "1263041",
+                "name": "Chương 1: Ba phút"
+            }
+        ],
+        "TOTALCHAPTER": "161",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo",
+        "AUTHOR": "Nhất Nhật Giang Hỏa",
+        "TRANS": "Hiephp",
+        "DESC": "Kiếm đi vạn l&yacute;, lực ph&aacute;ch v&ocirc; song!<br /><br />Kiếp trước đỉnh kiếm kh&aacute;ch chuyển thế trọng sinh!<br /><br />Một bộ 《 Đại Nhật Lưu Ly Kiếm Kinh 》, uy chấn Vạn Cổ.<br /><br />Một đ&ocirc;i Long đồng, ph&aacute;ch tuyệt tứ phương!<br /><br />Th&acirc;n l&agrave; nam nhi, ti&ecirc;n y nộ m&atilde; uống rượu ch&eacute;m đầu người!<br /><br />Bắn l&ecirc;n kinh hồng, Vạn Cổ Kiếm Ho&agrave;ng!",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

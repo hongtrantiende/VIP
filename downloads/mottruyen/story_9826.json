@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "9826",
+        "NAME": "Tín Ngưỡng Thần Quốc",
+        "CHAPTER": [
+            {
+                "id": "3316119",
+                "name": "Chương 1: Báo mộng"
+            }
+        ],
+        "TOTALCHAPTER": "379",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo, Dị Giới",
+        "AUTHOR": "Lưỡng Chích Trần Khiết Nam",
+        "TRANS": "asas",
+        "DESC": "một kề bên phá diệt thế giới, đến từ vực sâu sinh linh đang gào khóc chém giết.<br />\r\n<br />\r\n\tDị thế linh hồn, bất ngờ mang theo một viên thần cách giáng lâm này thế.<br />\r\n<br />\r\n\tNgủ say vạn năm, tỉnh lại lần nữa, nhưng phát hiện mình đã đã biến thành một viên bị người nguyên thủy tế bái cổ thụ",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

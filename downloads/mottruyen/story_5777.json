@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "5777",
+        "NAME": "Mạt Thế Thợ Săn Quái Vật",
+        "CHAPTER": [
+            {
+                "id": "2070629",
+                "name": "Chương 1: Sống lại"
+            }
+        ],
+        "TOTALCHAPTER": "63",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo, Khoa Huyễn",
+        "AUTHOR": "Tiên tri gạo",
+        "TRANS": "người rảnh rổi",
+        "DESC": "Mạt thế đã tới, long vũ ở mạt thế giãy dụa mười năm trọng sinh tại trước khi mạt thế, cũng thu được quái vật triệu hoán hệ thống, có triệu hoán thợ săn quái vật vật phẩm và quái vật năng lực. Hung hãn giặc cướp, lam tốc long vương. Trọng trang nước pháo, đại danh lá chắn giải. Lục chi đế vương, lão sơn long.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

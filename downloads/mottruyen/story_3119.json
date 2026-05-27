@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "3119",
+        "NAME": "Đại Tai Biến",
+        "CHAPTER": [
+            {
+                "id": "1061994",
+                "name": "Chương 1: Sống lại 5 năm trước"
+            }
+        ],
+        "TOTALCHAPTER": "1168",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Khoa Huyễn",
+        "AUTHOR": "Phẩn Nộ Tát Nhỉ",
+        "TRANS": "Xemtruyen",
+        "DESC": "Đại tai biến v&agrave;o thời khắc to&agrave;n bộ nh&acirc;n loại đ&oacute;n nhận v&ocirc; số qu&aacute;i vật phủ xuống,nh&acirc;n loại phải đấu tranh để trở th&agrave;nh một vủ trụ c&ocirc;ng d&acirc;n l&agrave; c&oacute; thể sinh tồn,Diệp Trạm một đời phấn đấu đả được leve 97 k&eacute;m một ch&uacute;t l&agrave; c&oacute; thể đạt leve 100 l&agrave; c&oacute; thể thu được vủ trụ c&ocirc;ng d&acirc;n,nhưng đả chết trọng sinh lai 5 năm trước",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

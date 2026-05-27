@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "10325",
+        "NAME": "Dàn mỹ phụ hậu cung của ta",
+        "CHAPTER": [
+            {
+                "id": "3751863",
+                "name": "Chương 1 : Hay Lắm !"
+            }
+        ],
+        "TOTALCHAPTER": "5",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đô Thị, Dị Năng, Đồng Nhân",
+        "AUTHOR": "Acgiaacbao",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Ngậm máu phun người, ta hận...<br />\r\n<br />\r\nTa sẽ trở lại...<br />\r\n<br />\r\nCon đường này rồi sẽ đi tới đâu? <br />\r\n<br />\r\nBản thân ta không có gì cả, chỉ có cái mạng què này thôi! <br />\r\n<br />\r\nSạo l đấy, ta có một ngọn U Minh hỏa trong tay này. <br />\r\n<br />\r\nChết -> trùng sinh -> kì ngộ -> kill boss -> gái theo ->  ...<br />\r\n<br />\r\nChán quá nên viết ! Cảnh báo, tác là một thằng lười siêu cấp vũ trụ.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

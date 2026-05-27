@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "10951",
+        "NAME": "Vạn Vực Ma Thần",
+        "CHAPTER": [
+            {
+                "id": "3636752",
+                "name": "Chương 1: Trọng sinh, vương giả trở về"
+            }
+        ],
+        "TOTALCHAPTER": "735",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo, Dị Giới, Trùng Sinh",
+        "AUTHOR": "Lăng Nguyệt Bạch",
+        "TRANS": "808",
+        "DESC": "Thế gian thê lương, duy lòng ta không thay đổi.<br />\r\n<br />\r\n\tVương giả trọng sinh, chắc chắn đứng ở thế giới đỉnh phong, quan sát đại địa.<br />\r\n<br />\r\n\tSi tâm hồng nhan, vạn dặm tìm quân, chỉ vì một câu hứa hẹn.<br />\r\n<br />\r\n\tĐạp phá thương khung, chỉ vì viết ra, thuộc về ta truyền thuyết.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

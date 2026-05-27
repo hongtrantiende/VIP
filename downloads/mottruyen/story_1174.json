@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "1174",
+        "NAME": "Tuyệt Đại Ma Sư",
+        "CHAPTER": [
+            {
+                "id": "437723",
+                "name": "Chương 1: Độc Long trảo"
+            }
+        ],
+        "TOTALCHAPTER": "15",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo",
+        "AUTHOR": "Cửu Thiên Thánh",
+        "TRANS": "Đi_tìm_hạnh_phúc",
+        "DESC": "Th&aacute;nh Địa lộ , Ch&iacute; T&ocirc;n ra, Đại Đế thủy hiện tung. . .<br /><br />Đi v&agrave;o Đại Hoang Lục Thiếu Khanh, lại đ&atilde; trở th&agrave;nh một g&atilde; thần triều xếp v&agrave;o ở nước ngo&agrave;i thứ nhất Ma T&ocirc;ng mật th&aacute;m.<br /><br />Khi hắn được đến Thượng Cổ Kiếm T&ocirc;ng truyền thừa một khắc n&agrave;y, nhất định Ma danh chấn tứ phương, một kiếm thắng cửu thi&ecirc;n.<br /><br />...<br /><br />Th&agrave; rằng vĩnh kiếp thụ trầm lu&acirc;n, kh&ocirc;ng theo chư th&aacute;nh cầu giải tho&aacute;t.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

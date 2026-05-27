@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "3901",
+        "NAME": "Đại Đạo Tu Hành Giả",
+        "CHAPTER": [
+            {
+                "id": "1387215",
+                "name": "Chương 1:  Tiên Thiên hậu thiên sinh tử dị"
+            }
+        ],
+        "TOTALCHAPTER": "600",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Khoa Huyễn",
+        "AUTHOR": "Quy Ngọa Cố Sơn",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Hồng M&ocirc;ng kh&ocirc;ng ph&aacute;n đạo vi trước,<br /><br />H&oacute;a tận Hậu Thi&ecirc;n th&agrave;nh Ti&ecirc;n Thi&ecirc;n;<br /><br />H&ocirc;m nay mới biết sinh tử một,<br /><br />Chỉ cầu đại đạo kh&ocirc;ng cầu ti&ecirc;n.<br /><br />V&ocirc; Thượng c&aacute;c loại:đợi linh căn, kh&ocirc;ng Ti&ecirc;n Thi&ecirc;n Linh Bảo, kh&ocirc;ng si&ecirc;u cấp b&iacute; k&iacute;p, chỉ c&oacute; một khỏa đạo t&acirc;m có th&ecirc;̉ cầm, ch&uacute;ng ta thong dong cất bước tại đại đạo chi đồ.<br /><br />Cuốn s&aacute;ch n&agrave;y giảng thuật một c&aacute;i thể ngộ đại đạo người tu h&agrave;nh tại ph&agrave;m nh&acirc;n tu ti&ecirc;n loại thế giới tu ti&ecirc;n lộ tr&igrave;nh, kh&ocirc;ng đi c&aacute;i loại nầy d&ugrave;ng hấp linh kh&iacute;, từng bước thăng cấp s&aacute;o lộ, m&agrave; th&ocirc;i ch&uacute; trọng t&acirc;m t&iacute;nh tu vi, ngộ đạo vi trước, t&aacute;nh mạng song tu chi lộ, thể hiện ch&iacute;nh thức người tu đạo phong th&aacute;i.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

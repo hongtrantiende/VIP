@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "1462",
+        "NAME": "Tiên Chi Cực Đạo",
+        "CHAPTER": [
+            {
+                "id": "610578",
+                "name": "Chương 01: Huyền Nhiên"
+            }
+        ],
+        "TOTALCHAPTER": "1234",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp",
+        "AUTHOR": "Thánh Chỉ",
+        "TRANS": "Ngan Cả Đàn",
+        "DESC": "Hồng Trần khất tử kết đạo duy&ecirc;n,\r\n&nbsp;\r\nĐạo ph&aacute;p tự nhi&ecirc;n được th&agrave;nh ti&ecirc;n.\r\n&nbsp;\r\nVốn muốn Ti&ecirc;u Dao tam giới gian,\r\n&nbsp;\r\nTrong một chữ t&igrave;nh lại kh&oacute; đoạn.\r\n&nbsp;\r\nT&aacute;i nhập thế tục tục t&igrave;nh duy&ecirc;n,\r\n&nbsp;\r\nNăm quốc ph&acirc;n tranh nhiễu hắn t&acirc;m.\r\n&nbsp;\r\nHết thảy đều kết th&uacute;c đạt đạo cực,  <br /><br />\r\n&nbsp;\r\n&nbsp;\r\nTam giới thần phục xưng đế ho&agrave;ng.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

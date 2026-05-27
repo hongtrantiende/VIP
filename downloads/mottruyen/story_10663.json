@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "10663",
+        "NAME": "12 Chòm Sao Và Những Chuyện Linh Tinh",
+        "CHAPTER": [
+            {
+                "id": "3542588",
+                "name": "Chương 1 GTNV"
+            }
+        ],
+        "TOTALCHAPTER": "3",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Dị Năng, Dị Giới, Xuyên Không",
+        "AUTHOR": "Chipbong",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Câu chuyện nói về hành trình và cuộc sống thú vị của 12 chòm sao. Luôn có những bất ngờ mà bắt buộc các sao phải thích nghi và xử lí được.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

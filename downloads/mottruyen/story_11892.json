@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "11892",
+        "NAME": "Lăng Thiên Truyền Thuyết",
+        "CHAPTER": [
+            {
+                "id": "3903289",
+                "name": "Chương 1: Lăng Thiên Chi Cừu"
+            }
+        ],
+        "TOTALCHAPTER": "11",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo, Dị Giới, Xuyên Không",
+        "AUTHOR": "Phong Lăng Thiên Hạ",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Lăng Thiên gặp gia tộc đấu đá hãm hại, cùng cừu nhân đồng quy vu tận. Dưới cơ duyên xảo hợp, lại chuyển sinh đến thế giới khác, hoàn khố công tử, tung hoành dị thế, lật tay thành mây, trở tay thành mưa, tự mình gầy dựng thế lực, cuối cùng trở thành một đoạn truyền kỳ, một cái truyền thuyết vĩnh hằng.<br />\r\nHồng nhan tình cảm chân thành, mỹ nhân tình nặng như núi, tung hoành thiên hạ, ta muốn lăng thiên!",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "12423",
+        "NAME": "Nữ Trang Đại Lão",
+        "CHAPTER": [
+            {
+                "id": "4034458",
+                "name": "Chương 1: Nữ Trang?"
+            }
+        ],
+        "TOTALCHAPTER": "228",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đô Thị, Xuyên Không",
+        "AUTHOR": "Nguyệt Hạ Hành Nhân",
+        "TRANS": "ShohuCina",
+        "DESC": "Đ&acirc;y l&agrave; một c&aacute;i nam sinh, sau khi xuy&ecirc;n việt bi kịch cố sự.<br /> Ngươi gặp qua một c&aacute;i hệ thống sẽ tuy&ecirc;n bố 'Thay đổi kiểu nữ v&aacute;y ngắn, tiến h&agrave;nh một trận trực tiếp' y&ecirc;u cầu sao?<br /> Ngươi gặp qua một c&aacute;i hệ thống sẽ tuy&ecirc;n bố 'Thay đổi s&aacute;u centimet giày cao g&oacute;t, nhảy l&ecirc;n một đoạn Cực Lạc Tịnh Thổ c&ugrave;ng Uy Phong Đường Đường' nhiệm vụ sao?<br /> ......<br /> T&ocirc; L&acirc;m tại l&uacute;c n&agrave;y hỏng mất.<br /> Hắn vẫn l&agrave; một nam nh&acirc;n a!!!<br /> Tại thời khắc n&agrave;y, hắn tam quan hủy hết b&ecirc;n trong......",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

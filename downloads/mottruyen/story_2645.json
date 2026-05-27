@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "2645",
+        "NAME": "Tinh Tế Phán Quan",
+        "CHAPTER": [
+            {
+                "id": "870236",
+                "name": "Chương 02: Nhân Karin"
+            }
+        ],
+        "TOTALCHAPTER": "1237",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Khoa Huyễn",
+        "AUTHOR": "Cổ Kiếm Phong",
+        "TRANS": "Liu",
+        "DESC": "Một bả kiếm laser x&ocirc;ng Tinh Tế , một kiếm nơi tay đ&aacute;nh đ&acirc;u thắng đ&oacute;; kh&ocirc;ng g&igrave; cản nổi , kiếm quang bố tr&iacute; Tung Ho&agrave;nh V&ocirc; Địch .<br /> <br /> Hỗn Thế Đại Ph&aacute;n Quan , trọc Quang Minh mạo , nơi đ&oacute; c&oacute; ta , ở đ&acirc;u th&igrave; c&oacute; cuối c&ugrave;ng Thẩm Ph&aacute;n .",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

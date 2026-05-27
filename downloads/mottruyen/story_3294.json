@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "3294",
+        "NAME": "Phật Môn Tiểu Hòa Thượng",
+        "CHAPTER": [
+            {
+                "id": "1150201",
+                "name": "Chương 1: Đường Nguyên"
+            }
+        ],
+        "TOTALCHAPTER": "226",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Kiếm Hiệp",
+        "AUTHOR": "Hồng Y Chu Tước",
+        "TRANS": "Hổ",
+        "DESC": "Hiện đại thanh ni&ecirc;n Đường Nguy&ecirc;n xuy&ecirc;n đến tương tự cổ đại thế giới.\r\n<br />Nơi n&agrave;y c&oacute; kiếm minh cửu thi&ecirc;n Thục Sơn kiếm tu, c&oacute; ph&aacute; n&uacute;i đ&aacute; vụn Trung Nguy&ecirc;n v&otilde; giả, c&oacute; ng&ocirc;ng cuồng tự đại T&agrave; đạo l&atilde;o ma!\r\n<br />Đường Nguy&ecirc;n linh hồn xuy&ecirc;n qua đến thế giới n&agrave;y, bất ngờ đ&atilde; trở th&agrave;nh một t&ecirc;n h&ograve;a thượng.\r\n<br />C&aacute;i g&igrave; c&aacute;i n&agrave;y ch&ugrave;a chiền bị Ma m&ocirc;n t&agrave;n s&aacute;t tự đ&atilde; triệt để sa s&uacute;t kh&ocirc;ng cần gấp g&aacute;p, ta c&oacute; một c&aacute;i Phật m&ocirc;n ng&agrave;nh ch&iacute;nh thống.\r\n<br />\"Sư phụ, ngươi loại c&acirc;y kia tr&ecirc;n mọc ra một c&aacute;i tiểu Phật tổ.\"\r\n<br />\"Kh&ocirc;ng, đ&oacute; l&agrave; Nh&acirc;n S&acirc;m Quả, chỉ l&agrave; trường giống Phật tổ m&agrave; th&ocirc;i.\"",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

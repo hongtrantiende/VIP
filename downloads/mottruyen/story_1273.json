@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "1273",
+        "NAME": "Đại Chí Tôn",
+        "CHAPTER": [
+            {
+                "id": "506741",
+                "name": "Chương 1: Đoạn trường nhân, ở thiên nhai"
+            }
+        ],
+        "TOTALCHAPTER": "990",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo",
+        "AUTHOR": "Tô Nguyệt Tịch",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Dù ch&ecirc;́t kh&ocirc;ng hối hận tu h&agrave;nh lộ!<br /><br />Xem si&ecirc;u cấp binh vương l&agrave;m sao ở dị giới diễu v&otilde; dương oai!",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

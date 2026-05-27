@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "7288",
+        "NAME": "Hệ Thống Kép",
+        "CHAPTER": [
+            {
+                "id": "2591316",
+                "name": "Chương 1: Rắc rối đã đến"
+            }
+        ],
+        "TOTALCHAPTER": "5",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Dị Năng, Dị Giới, Khoa Huyễn, Xuyên Không, Trùng Sinh",
+        "AUTHOR": "ryuku",
+        "TRANS": "Nhiều Converter",
+        "DESC": "1 anh chàng làm việc tại 1 hãng game danh tiếng với việc thiết kế nhân vật cho 1 trò chơi vô cùng nổi tiếng vừa open beta. Đó là manga moba. Rồi 1 ngày, rắc rối đã tìm đến chàng trai trẻ...",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

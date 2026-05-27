@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "12831",
+        "NAME": "Con Đường Mới",
+        "CHAPTER": [
+            {
+                "id": "4144541",
+                "name": "Chương 1 : Tất Cả Cũng Chỉ Là Giả Dối"
+            }
+        ],
+        "TOTALCHAPTER": "2",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đô Thị, Ngôn Tình",
+        "AUTHOR": "thienkiemcuadk",
+        "TRANS": "Nhiều Converter",
+        "DESC": "trở về quá khứ ta được làm lại<br />\r\n<br />\r\nbao nhiêu đau khổ vất vả kiếp trước <br />\r\n<br />\r\nchuyện tình cảm đau thương kiếp trước còn tái diễn<br />\r\n<br />\r\nmột lần nữa sống lại trần dật tuấn sẽ như thế nào hãy đón xem bộ truyện Con Đường Mới .<br />\r\n<br />\r\n1 ngày 1 chương post lúc 9h tối.......",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

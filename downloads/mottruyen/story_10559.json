@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "10559",
+        "NAME": "Hành Trình",
+        "CHAPTER": [
+            {
+                "id": "3516271",
+                "name": "Chương 1: Thanh Nguyên Sơn bách thú cốc"
+            }
+        ],
+        "TOTALCHAPTER": "80",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo",
+        "AUTHOR": "Lôi Vân Phong Bạo",
+        "TRANS": "collinsnova",
+        "DESC": "Thượng Cổ, một hồi quét ngang chư giới có một không hai cuộc chiến bộc phát, tam giới hủy hết, Thiên quốc trụy lạc, tham chiến các tộc truyền thừa đoạn tuyệt, tổn thất thảm trọng, sử xưng hạo kiếp cuộc chiến.<br />\r\n<br />\r\n\tChiến hậu Nhân tộc mặc dù nhanh chóng lớn mạnh, nhưng bởi vì Nhân Hoàng vẫn lạc, gây nên nhân tộc trưởng kỳ hưng mà không vượng, phân hoá mười quốc trăm phái, càng có vạn tộc lẫn vào, mấy ngàn năm qua chinh chiến không ngớt.<br />\r\n<br />\r\n\tNgàn năm về sau, hạo kiếp cuộc chiến mánh khóe lại hiện ra, diệt thế chi hỏa một lần nữa nhen nhóm.<br />\r\n<br />\r\n\tMà lại xem thân phụ Yêu Hoàng huyết mạch kẻ xuyên việt thiên hữu, như thế nào ẩn vào tiên môn ở trong, dùng hiện đại ánh mắt tạo chiến xa, đúc Khôi Lỗi, thu Yêu Vương tại dưới trướng, ôm mỹ nhân tại bên người?<br />\r\n<br />\r\n\tNhư thế nào vượt qua nhập đạo qua muộn khó khăn, theo linh bắt đầu, đánh vỡ Âm Dương, phân tích thuật pháp, đúc một thân Hỗn Nguyên Đạo thể, bác một lần Ngũ Hành cùng tu?<br />\r\n<br />\r\n\t\"Đến đây đi, chư vị chiến sĩ, pháp sư, đạo sĩ, Y Tiên... Gia nhập của ta hành trình, chung kết chiến thời đại!\"",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

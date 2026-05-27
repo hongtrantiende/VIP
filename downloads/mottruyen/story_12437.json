@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "12437",
+        "NAME": "Tại Nước Mỹ Nông Thôn Sinh Hoạt",
+        "CHAPTER": [
+            {
+                "id": "4039849",
+                "name": "Chương 1: Không thành thục mồ côi cha baba"
+            }
+        ],
+        "TOTALCHAPTER": "468",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đô Thị",
+        "AUTHOR": "Phì Nhục Lão Thử",
+        "TRANS": "๖ۣۜPhong ๖ۣۜLưu ๖ۣۜVô ๖ۣۜTà",
+        "DESC": "Khi kế thừa lão tổ tông truyền thừa về sau, mồ côi cha baba Trương Hạo sinh hoạt biến.<br />\r\n<br />\r\n\tĐể tiểu công chúa không buồn không lo khoái lạc trưởng thành, cái này vẫn luôn là chính mình mục tiêu.<br />\r\n<br />\r\n\tĐể nhà nhân sinh sống càng tốt hơn , đây là một mực áy náy Trương Hạo nỗ lực muốn làm được.<br />\r\n<br />\r\n\tCho tới nay buộc chính mình càng thành thục, ổn trọng, cái kia là bời vì chính mình cần giống cái nam nhân một dạng kiếm tiền nuôi gia đình.<br />\r\n<br />\r\n\tNhưng là hiện tại nhẹ nhàng có chút cải biến, có lẽ cũng có thể sinh hoạt càng đặc sắc, hài lòng!",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

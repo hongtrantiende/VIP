@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "5209",
+        "NAME": "Ngã Đích Tu Đạo Nhân Sinh",
+        "CHAPTER": [
+            {
+                "id": "1843496",
+                "name": "Chương 1:  Nhập đạo"
+            }
+        ],
+        "TOTALCHAPTER": "189",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp",
+        "AUTHOR": "Điếu Ngư Nhất Ca",
+        "TRANS": "fanmiq",
+        "DESC": "Ta gọi Ho&agrave;ng Cảnh Dương, l&agrave; c&aacute;i 9x.<br /><br />Kh&ocirc;ng cẩn thận, ta cho m&igrave;nh gieo đạo chủng.<br /><br />Theo ta chậm r&atilde;i lớn l&ecirc;n, đạo tại th&acirc;n thể ta b&ecirc;n trong mọc rễ nảy mầm.<br /><br />Nhật nguyệt tinh thần, thủy hỏa phong l&ocirc;i<br /><br />Th&oacute;i đời n&oacute;ng lạnh, t&igrave;nh người ấm lạnh<br /><br />Thế giới ng&agrave;n vạn, đạo hữu vạn loại<br /><br />Nhập mộng ti&ecirc;n cảnh, ti&ecirc;n đạo nguy&ecirc;n lai kh&ocirc;ng đường về",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

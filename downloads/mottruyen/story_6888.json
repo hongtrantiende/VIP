@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "6888",
+        "NAME": "Vũ Luyện Vạn Cổ",
+        "CHAPTER": [
+            {
+                "id": "2447764",
+                "name": "Chương 1: Ba trăm năm phía sau"
+            }
+        ],
+        "TOTALCHAPTER": "513",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp",
+        "AUTHOR": "Thái Thần Thiên",
+        "TRANS": "Tiêu Dao",
+        "DESC": "Ta nếu th&agrave;nh Phật, Thi&ecirc;n Hạ V&ocirc; Ma, ta nếu th&agrave;nh Ma, Phật l&agrave;m kh&oacute; dễ được ta;<br /> <br /> Tu Bất Diệt Thi&ecirc;n Kinh, luyện b&acirc;́t tử v&otilde; đạo, Thần Phong Vũ Đế chuyển thế ba trăm năm ph&iacute;a sau, gi&aacute;c tỉnh Thi&ecirc;n Đế huyết mạch, chấp chưởng Thượng Cổ Thi&ecirc;n Đ&igrave;nh, Vũ To&aacute;i Hư Kh&ocirc;ng, ph&aacute;p ph&aacute; Chư Thi&ecirc;n, qu&eacute;t ngang Cửu Thi&ecirc;n Thập Địa Thần Ma, kiểm chứng vạn Cổ Thần đạo!<br /> <br /> <br /> v&otilde; giả Cảnh Giới: Vũ Đồ - v&otilde; giả - Vũ Sư - Đại Vũ Sư - Vũ Vương - Vũ T&ocirc;ng - Vũ Qu&acirc;n - Vũ Ho&agrave;ng - Vũ Đế Cửu Đại Cảnh Giới, mỗi một Đại Cảnh giới lại ph&acirc;n cửu sao nhỏ",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

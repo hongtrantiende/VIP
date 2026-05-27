@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "9394",
+        "NAME": "Tối Cường Long Sủng",
+        "CHAPTER": [
+            {
+                "id": "3177903",
+                "name": "Chương 1: Ngẫu nhiên cứu mỹ nhân"
+            }
+        ],
+        "TOTALCHAPTER": "942",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp, Đô Thị",
+        "AUTHOR": "Dưới ánh trăng nói mộng",
+        "TRANS": "︻ ╦̵̵╤───",
+        "DESC": "một lần ngoài ý muốn phía dưới, Lâm Tu thu hoạch được Viễn Cổ Truyền Thừa, đồng thời tự dưỡng một đầu Tiểu Bạch Long, từ đó đi đến một đầu Cường Giả chi Lộ<br />\r\n<br />\r\n<br />\r\n\tLưu lạc Hoa Đô, đùa du hí các loại trong mỹ nữ.<br />\r\n<br />\r\n\t\"Không sai, ta chính là toàn năng, ta chính là mạnh nhất\".<br />\r\n<br />\r\n-------------------------------------------------------------------------------------<br />\r\nPS: Đánh nhau  rất nhiều!!!",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

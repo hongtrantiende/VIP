@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "1493",
+        "NAME": "Chuyển Sinh Thành Slime",
+        "CHAPTER": [
+            {
+                "id": "622868",
+                "name": "Chương 1: Slime."
+            }
+        ],
+        "TOTALCHAPTER": "138",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo",
+        "AUTHOR": "Yêu Quái Nại Lạc",
+        "TRANS": "bakanekosb",
+        "DESC": "Một c&aacute;i chuyển sinh th&agrave;nh Slime đ&iacute;ch trạch nam, tại dị giới lữ h&agrave;nh, tiến h&oacute;a, cuối c&ugrave;ng trở th&agrave;nh mạnh nhất Slime đ&iacute;ch chuyện xưa.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "10898",
+        "NAME": "Không Tâm Nguyệt Lượng",
+        "CHAPTER": [
+            {
+                "id": "3615970",
+                "name": "Cửu Thiên Giới"
+            }
+        ],
+        "TOTALCHAPTER": "8",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp, Huyền Ảo",
+        "AUTHOR": "Quangxctl",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Chân tiên tân sinh sau kỳ mạt thế<br />\r\n Viết lại truyền kỳ chí tôn Thái Cổ<br />\r\n \" Cho ta ngàn năm<br />\r\n Trong vòng ngàn năm ta lại siêu việt tiền kiếp<br />\r\n Siêu việt chân tiên\" <br />\r\n Dẫm chân đại địa toái<br />\r\n Nhất niệm hóa vĩnh hằng",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

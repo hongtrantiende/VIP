@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "11255",
+        "NAME": "Hokage Chi Đại Mỹ Thực Gia",
+        "CHAPTER": [
+            {
+                "id": "3724407",
+                "name": "Chương  1: Ichiraku nhà hàng đối diện mới mở nhà hàng"
+            }
+        ],
+        "TOTALCHAPTER": "845",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đồng Nhân",
+        "AUTHOR": "Nghịch Trường Thiên",
+        "TRANS": "HacTamX",
+        "DESC": "Ở Konoha, có một cái quán ăn, nơi đó là hết thảy Ninja đổ xô tới địa phương<br />\r\n<br />\r\n\tCái gì? Kakashi lại ném xuống thân thiết thiên đường, sáng sớm chạy đến nhà hàng trước cửa xếp hàng?<br />\r\n<br />\r\n\tCái gì? Đệ tam Hokage đại nhân lại nghỉ việc, chỉ vì đi chỗ đó gia nhà hàng điểm cái mì sợi?<br />\r\n<br />\r\n\tCái gì? Orochimaru lại cũng tới, chỉ vì ăn trộm học tập làm thế nào món ăn?<br />\r\n<br />\r\n\tĐối mặt cửa tiệm trước đông đảo quát tháo nhẫn giới nhân vật nổi tiếng, Dương Minh chỉ là bình tĩnh địa ngẩng đầu nhìn trời: \"Xin lỗi, hôm nay bản điếm tạm dừng doanh nghiệp, ta muốn yên tĩnh làm cái mỹ nam tử\"\"",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

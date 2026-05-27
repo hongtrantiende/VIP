@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "3967",
+        "NAME": "Thần Hồn Biến",
+        "CHAPTER": [
+            {
+                "id": "1440861",
+                "name": "Chương 1: Phế vật đại thiếu"
+            }
+        ],
+        "TOTALCHAPTER": "932",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Dị Giới",
+        "AUTHOR": "Tam Quyền Tiểu Tử",
+        "TRANS": "Yến Virus",
+        "DESC": "Một c&aacute;i thế nh&acirc;n trong mắt phế vật, gia tộc vứt bỏ đệ tử, nhập mộ cứu sống, lại ngẫu được thần hồn, cơ duy&ecirc;n xảo hợp gặp lại, lại để cho hắn bước l&ecirc;n một đầu m&igrave;nh cũng kh&ocirc;ng c&oacute; phương hướng đường...",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

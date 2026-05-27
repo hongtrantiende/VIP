@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "5557",
+        "NAME": "Đại Đạo Chi Lữ",
+        "CHAPTER": [
+            {
+                "id": "1974719",
+                "name": "Chương 1: Chán nản thiếu niên"
+            }
+        ],
+        "TOTALCHAPTER": "10",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo",
+        "AUTHOR": "Nguỵ Ngã",
+        "TRANS": "Khoai Tây",
+        "DESC": "Một khỏa Thần Thạch từ vũ trụ mà đến rơi xuống tại Địa Cầu, cường đại Đạo Lực chiếu rọi Địa Cầu. Người bởi vì đã nhận được Đạo Lực liền thành cường đại Đạo Giả, thú bởi vì đã nhận được Đạo Lực phát triển thành Đạo Thú. Từ nay về sau, cường đại Đạo Giả cùng khủng bố Đạo Thú liền trên Địa Cầu phổ biến xuất hiện, ngày càng nhiều người theo đuổi chí thượng đại đạo. <br />\r\n<br />\r\nMột cái nhà giàu đệ tử Hạ Nhiên bởi vì không có Đạo Lực bị gia tộc bài xích, chèn ép, cuối cùng đẩy vào cấm địa. Ngẫu nhiên đạt được Khổng Minh thạch, Khổng Minh tàn hồn thức tỉnh, Hạ Nhiên được Gia Cát Lượng chỗ chỉ giáo, mở ra đại đạo hành trình!",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

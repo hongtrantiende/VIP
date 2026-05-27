@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "8785",
+        "NAME": "Đại Quốc Y",
+        "CHAPTER": [
+            {
+                "id": "3011470",
+                "name": "Chương 1: Trên tường thiếu niên"
+            }
+        ],
+        "TOTALCHAPTER": "463",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Lịch Sử",
+        "AUTHOR": "Mỹ Vị La Tống Thang",
+        "TRANS": "Cơn Gió Lạnh",
+        "DESC": "Không có khổ hải thâm cừu !<br />\r\n<br />\r\nKhông có tranh bá thiên hạ !<br />\r\n<br />\r\nKhông có âm mưu quỷ kế !<br />\r\n<br />\r\nKhông có tính hết cơ mưu !<br />\r\n<br />\r\nĐây là một cái Giang Nam thiếu niên không cẩn thận lớn lên thành người trước kẻ sau không ai bằng một Đại Quốc Y thánh thủ lãng mạn chuyện xưa.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

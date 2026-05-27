@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "2626",
+        "NAME": "Dị Giới Chi Trang Bị Cường Hoá Chuyên Gia",
+        "CHAPTER": [
+            {
+                "id": "855701",
+                "name": "Chương 1: Bạch Vân Phi"
+            }
+        ],
+        "TOTALCHAPTER": "1350",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Dị Giới",
+        "AUTHOR": "Mang Mang Vân Hải",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Người xuy&ecirc;n qua đ&atilde; chết, c&oacute; việc mời đốt giấy.<br /> <br /> Tu hồn l&agrave;m chủ Thi&ecirc;n Hồn Đại Lục, dĩ cố người xuy&ecirc;n qua mấy điểm linh hồn mảnh nhỏ, c&ugrave;ng với một quyển vị diện quy tắc ở ngo&agrave;i s&aacute;ch kỹ năng, sẽ cho thế giới n&agrave;y mang đến như thế n&agrave;o s&oacute;ng gi&oacute; m&agrave;?<br /> <br /> Nh&igrave;n một b&igrave;nh thường b&igrave;nh d&acirc;n thiếu ni&ecirc;n, như thế n&agrave;o đi ra một c&aacute;i tự do đường.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

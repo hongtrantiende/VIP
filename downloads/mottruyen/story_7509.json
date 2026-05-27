@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "7509",
+        "NAME": "Xuyên Không Thành NPC",
+        "CHAPTER": [
+            {
+                "id": "2652947",
+                "name": "Chương 1: Bán Kĩ Năng"
+            }
+        ],
+        "TOTALCHAPTER": "3",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo, Võng Du, Khoa Huyễn, Xuyên Không",
+        "AUTHOR": "hien1619",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Xuyên không thật bình thường a, cái không bình thường ở đây là xuyên vào game luôn rồi mà càng không bình thường khi cái hệ thống NPC trong não chết tiệt luôn bắt làm nhiệm vụ hàng ngày chứ.<br />\r\nGì nhiệm vụ cấp F phải giết 10000 con thỏ (quái cấp 1 cạnh tân thủ thôn) trong 1 ngày cơ à<br />\r\nGì phần thưởng nhiệm vụ cấp F chỉ có 100 kinh nghiệm với 1 bạc lại không có thần khí à<br />\r\nCũng may hệ thống còn có thêm chức năng ủy thác nhiệm vụ cho người chơi đó chỉ là phần thưởng ngươi phải tự lo a<br />\r\nKiếp sống của nhân vật chính à NPC siêu cấp bắt đầu từ đây.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "10714",
+        "NAME": "Tuyệt Đại Võ Thần",
+        "CHAPTER": [
+            {
+                "id": "3557903",
+                "name": "Chương 1: Côn Lôn Thánh thể"
+            }
+        ],
+        "TOTALCHAPTER": "328",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp",
+        "AUTHOR": "Minh Nguyệt Hỏa",
+        "TRANS": "cstdlifecstd",
+        "DESC": "\"Chúng ta tốt với ngươi, cho ngươi tài nguyên tu luyện, chỉ là vì để cho ngươi nhanh lên một chút tu luyện tới ngưng khí cảnh chín tầng, nhanh lên một chút thành niên, như vậy Thánh thể mới có thể bị tróc ra, chúng ta vẫn luôn đang lợi dụng ngươi, đáng thương ngươi kẻ ngu này dĩ nhiên một điểm cũng không thấy.\"<br />\r\n<br />\r\n\tLạc Trần từ không nghĩ tới một người tâm lại có thể như vậy ác độc, vì đạt được mục đích không chừa thủ đoạn nào, tuyệt vọng nhắm hai mắt lại.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

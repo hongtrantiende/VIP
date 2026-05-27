@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "12314",
+        "NAME": "Trọng Sinh Đúc Lại Mộng Tưởng",
+        "CHAPTER": [
+            {
+                "id": "4006681",
+                "name": "Chương 1: Lão Hà giờ học tiếng Anh"
+            }
+        ],
+        "TOTALCHAPTER": "500",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đô Thị, Trùng Sinh",
+        "AUTHOR": "Ngân Sắc Kỷ Niệm Tệ",
+        "TRANS": "Cơn Gió Lạnh",
+        "DESC": "Mang theo vài chục năm việc trải qua cùng tiên tri, Triệu Trạch Quân một đầu đánh trở về năm 2001.<br />\r\n<br />\r\n\tMặt đối với sinh hoạt lớn đùa giỡn, nên làm cái gì? Là phấn khởi phản kháng, hay lại là nhắm mắt lại hưởng thụ?<br />\r\n<br />\r\n\tTriệu Trạch Quân nói: Đổi tư thế, một lần nữa!<br />\r\n<br />\r\n\tNhững năm kia hối hận không kịp hoàng kim kỳ ngộ, những năm kia gặp thoáng qua phong tình vạn chủng, những năm kia chôn giấu ở đáy lòng chưa từng buông xuống cố chấp, cùng với những thứ kia còn chưa kịp đi thực hiện mộng tưởng và tương lai. . .<br />\r\n<br />\r\n\tĐời này, toàn bộ làm lại lần nữa!",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

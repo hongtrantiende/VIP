@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "3634",
+        "NAME": "Thất Giới Chiến Tiên",
+        "CHAPTER": [
+            {
+                "id": "1256884",
+                "name": "Chương 1: Vương Phong"
+            }
+        ],
+        "TOTALCHAPTER": "432",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo",
+        "AUTHOR": "Đạn Chỉ Suất Ca",
+        "TRANS": "Irkndd",
+        "DESC": "Vạn năm trước, ti&ecirc;n lộ đứt đoạn, ti&ecirc;n ph&agrave;m vĩnh c&aacute;ch.<br /> <br /> Mười ng&agrave;n năm sau, một nắm giữ thế giới thụ c&acirc;y non thiếu ni&ecirc;n, từ Thần  Vũ M&ocirc;n từng bước một quật khởi, tu luyện Th&aacute;i cổ ma thể, th&acirc;n thể th&agrave;nh  th&aacute;nh, ngang dọc Phong V&acirc;n, Nghịch Thi&ecirc;n chiến ti&ecirc;n, cả thế gian v&ocirc;  địch.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

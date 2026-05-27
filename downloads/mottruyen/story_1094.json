@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "1094",
+        "NAME": "Trường Sinh Giới",
+        "CHAPTER": [
+            {
+                "id": "351633",
+                "name": "Chương 1: Vũ phá hư không"
+            }
+        ],
+        "TOTALCHAPTER": "688",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo",
+        "AUTHOR": "Thần Đông",
+        "TRANS": "Nhiều Converter",
+        "DESC": "T&aacute;c phẩm n&oacute;i về nh&acirc;n vật ch&iacute;nh t&ecirc;n Ti&ecirc;u Thần, hắn th&acirc;n v&otilde; c&ocirc;ng tuyệt  thế. Lại bất đắc dĩ bị cuốn v&agrave;o một thế giới cổ l&atilde;o t&ecirc;n l&agrave; &ldquo;Trường Sinh  giới&rdquo;. Tại đ&acirc;y, hắn sẽ phải bắt đầu đấu tranh cho sự sống của m&igrave;nh v&agrave;  kh&aacute;m ph&aacute; b&iacute; ẩn của v&ugrave;ng đất v&ocirc; tận tuế nguyệt n&agrave;y. Giết hay bị giết! Đ&oacute;  ch&iacute;nh l&agrave; ch&acirc;n l&yacute; trong xuy&ecirc;n suốt cả c&acirc;u truyện.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

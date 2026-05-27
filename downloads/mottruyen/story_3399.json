@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "3399",
+        "NAME": "Tà Đạo Quỷ Tôn",
+        "CHAPTER": [
+            {
+                "id": "1178235",
+                "name": "Chương 01: Âm Hồn Tông - Quyển 1: Âm Hồn Tông"
+            }
+        ],
+        "TOTALCHAPTER": "317",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp",
+        "AUTHOR": "Truy Mộng Nhân Love Bình",
+        "TRANS": "Chanlinh",
+        "DESC": "Kiếp trước th&acirc;n l&agrave; c&ocirc; nhi, tại mạt ph&aacute;p thời đại tu tập Quỷ Đạo Ch&acirc;n Giải nhưng m&agrave; l&agrave;m &aacute;c quỷ cắn trả, như vậy chết.<br /><br />Tr&ugrave;ng sinh Tu Ti&ecirc;n Giới, Hồ Đ&ocirc;ng H&agrave;n tiến v&agrave;o t&agrave; đạo &Acirc;m Hồn T&ocirc;ng, th&agrave;nh một g&atilde; b&igrave;nh thường Ngoại M&ocirc;n Đệ Tử, cao cao nh&igrave;n l&ecirc;n lấy nh&agrave; m&igrave;nh n&agrave;ng d&acirc;u.<br /><br />V&igrave; vậy, Hồ Đ&ocirc;ng H&agrave;n một mặt tu h&agrave;nh 《 Quỷ Đạo Ch&acirc;n Giải 》, một mặt thề &mdash;&mdash;<br /><br />Nhất định phải đuổi tới n&agrave;ng d&acirc;u!",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

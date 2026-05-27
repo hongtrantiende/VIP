@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "4035",
+        "NAME": "Đông Kinh Đạo Sĩ",
+        "CHAPTER": [
+            {
+                "id": "1490869",
+                "name": "Chương 1: Gặp quỷ"
+            }
+        ],
+        "TOTALCHAPTER": "626",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đô Thị",
+        "AUTHOR": "Minh Nguyệt Tử Thời",
+        "TRANS": "Dokhanh2909",
+        "DESC": "Thi&ecirc;n thượng bạch ngọc kinh, thập nhị l&acirc;u ngũ th&agrave;nh. Ti&ecirc;n nh&acirc;n phủ ng&atilde; đỉnh, kết ph&aacute;t thụ trường sinh.<br /><br />Lữ Đồng T&acirc;n đệ tử trọng sinh, trở th&agrave;nh Nhật Bản Tokyo một c&aacute;i mười s&aacute;u tuổi phổ th&ocirc;ng học sinh cấp ba.<br /><br />V&igrave; cầu trường sinh, ẩn th&acirc;n với mu&ocirc;n ng&agrave;n ch&uacute;ng sinh b&ecirc;n trong, lại lần nữa thể nghiệm Nh&acirc;n Gian b&aacute;ch th&aacute;i, cuồn cuộn hồng trần.<br /><br />Mấy trăm năm vững chắc Đạo T&acirc;m, kết quả c&oacute; thể hay kh&ocirc;ng tại hiện đại đại đ&ocirc; thị xa hoa truỵ lạc trung kh&ocirc;ng thay đổi dự t&iacute;nh ban đầu.<br /><br />Ức vạn tiền t&agrave;i c&oacute; thể bu&ocirc;ng bỏ, mỹ nh&acirc;n &acirc;n kh&oacute; bỏ.<br /><br />T&oacute;m lại, đ&acirc;y chỉ l&agrave; một chuyển thế l&atilde;o quỷ, tại mạt ph&aacute;p thời đại hiện đại đại đ&ocirc; thị ch&iacute;nh giữa, b&igrave;nh thường nh&agrave;n nh&atilde; thường ng&agrave;y.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

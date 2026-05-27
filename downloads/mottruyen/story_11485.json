@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "11485",
+        "NAME": "Xuyên Qua Theo Sơn Tặc Bắt Đầu",
+        "CHAPTER": [
+            {
+                "id": "3806189",
+                "name": "Chương 001 :chức nghiệp? Nạn dân!"
+            }
+        ],
+        "TOTALCHAPTER": "1399",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Võng Du, Quân Sự, Lịch Sử",
+        "AUTHOR": "Nộ tiếu",
+        "TRANS": "Quang Huy",
+        "DESC": "Làm Lục hải không biết rõ mình xuyên qua đến một cái thế giới trò chơi thời điểm hắn là mộng bài.<br />\r\n<br />\r\n\tĐương nhiên chỗ ở mình cái này một cái quốc gia lại là Đông Hán, hơn nữa còn là năm cuối thời điểm, hắn cảm giác mình là có thể kiểu như trâu bò.<br />\r\n<br />\r\n\tNhưng khi hắn biết quân lính lập tức phải diệt bọn họ cái này một cái sơn trại thời điểm, cái tên này liền dừng bút.<br />\r\n<br />\r\nTui cũng muốn giới thiệu chút về truyện nhưng tui cũng chưa đọc nên thôi :V",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

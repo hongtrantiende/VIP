@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "12891",
+        "NAME": "Võng Du Hàng Lâm Hiện Thực",
+        "CHAPTER": [
+            {
+                "id": "4163555",
+                "name": "Chương 1: Trò chơi thế giới sinh thành bên trong"
+            }
+        ],
+        "TOTALCHAPTER": "342",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Võng Du",
+        "AUTHOR": "Ngự Phản Nhị Tam Tam",
+        "TRANS": "Liu",
+        "DESC": "Đại đạo giáng lâm, trò chơi mở ra!<br />\r\n<br />\r\n\tÂu hoàng quật khởi, biểu diễn bắt đầu!<br />\r\n<br />\r\n\tPs: truyện này số lượng dựa theo giả thiết lưu, vô địch nghiền ép lưu.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

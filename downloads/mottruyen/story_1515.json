@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "1515",
+        "NAME": "Trong Lòng Ta",
+        "CHAPTER": [
+            {
+                "id": "625939",
+                "name": "Chương 1: Tối thân ái"
+            }
+        ],
+        "TOTALCHAPTER": "73",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Ngôn Tình, Đồng Nhân",
+        "AUTHOR": "Thích Ăn Nãi Hoàng Bao",
+        "TRANS": "Shiyuka",
+        "DESC": "Mỗ long:&ldquo;Nha, Choi Yoon Hee, gả cho ta đi&rdquo;<br /><br />Ngốc manh:&ldquo;Kh&ocirc;ng cần, sớm như vậy liền lập gia đ&igrave;nh ta mới kh&ocirc;ng cần đ&acirc;u!!!&rdquo;<br /><br />Mỗ long h&iacute; mắt:&ldquo;Vậy ngươi muốn mang con ta chạy chỗ n&agrave;o a?&rdquo;<br /><br />Ngốc manh:&ldquo;Hiện tại ngươi cũng chỉ nghĩ ngươi con !! C&ugrave;ng ngươi con kết h&ocirc;n đi th&ocirc;i!!!&rdquo;<br /><br />Người mới ra đi, thỉnh nhiều chỉ gi&aacute;o ha&nbsp;<br /><br />Nội dung nh&atilde;n: Xuy&ecirc;n kh&ocirc;ng thời kh&ocirc;ng t&ugrave;y th&acirc;n kh&ocirc;ng gian K-biz&nbsp;",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

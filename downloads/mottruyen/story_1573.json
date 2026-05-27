@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "1573",
+        "NAME": "Quái Trù",
+        "CHAPTER": [
+            {
+                "id": "644667",
+                "name": "Chương 1: Ta từ sa mạc đến"
+            }
+        ],
+        "TOTALCHAPTER": "2011",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đô Thị",
+        "AUTHOR": "Điền Thập",
+        "TRANS": "Hàm Nguyệt",
+        "DESC": "Bạch Lộ ở một c&aacute;i thần kỳ trưởng ngục lớn, học được rất nhiều qu&aacute;i lạ bản lĩnh.<br /><br />C&agrave;ng đạt được thần truyện tr&ugrave; đạo, nắm giữ tuyệt thế tr&ugrave; nghệ.<br /><br />Gặp may đ&uacute;ng dịp, đi tới thủ đ&ocirc; mở cửa tiệm, từ đ&acirc;y tr&ecirc;n đời c&oacute; một gian cổ qu&aacute;i qu&aacute;n cơm, nhiều hơn một c&aacute;i cổ qu&aacute;i Tr&ugrave; Sư, xảy ra rất nhiều chuyện cổ qu&aacute;i.<br /><br />Qu&aacute;i tr&ugrave; Bạch Lộ.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

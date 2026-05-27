@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "4820",
+        "NAME": "Dưỡng Đạo",
+        "CHAPTER": [
+            {
+                "id": "1700576",
+                "name": "Chương 1: Trở thành Thần Sứ"
+            }
+        ],
+        "TOTALCHAPTER": "127",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo",
+        "AUTHOR": "Cửu Khổng",
+        "TRANS": "Quá Lìu Tìu",
+        "DESC": "Tương lai thế giới một t&ecirc;n người m&aacute;y ngẫu nhi&ecirc;n đạt được Kỳ Thạch, sản sinh linh tr&iacute;, nhờ số trời run rủi, bị đường hầm kh&ocirc;ng gian truyền tống đến Dị Giới, mơ mơ hồ hồ bị một đ&aacute;m Ph&agrave;m Nh&acirc;n cho rằng Thần Sứ.\r\n&nbsp;\r\nV&igrave; sinh tồn, hắn lợi dụng yếu ớt T&iacute;n Ngưỡng Chi Lực, th&ocirc;n phệ hổ Y&ecirc;u Hồn, luyện h&oacute;a Long Thể, sẽ th&agrave;nh nh&acirc;n th&acirc;n. Nhưng đ&acirc;y chỉ l&agrave; bắt đầu, kỳ huyễn t&agrave;n khốc Dị Giới, nhược nhục cường thực Tu Ch&acirc;n thế giới, m&agrave; xem nh&acirc;n vật ch&iacute;nh thế n&agrave;o lấy l&yacute; tr&iacute; đến cực điểm l&atilde;nh khốc, đơn thuần đến đ&aacute;ng y&ecirc;u. . .",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

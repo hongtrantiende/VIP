@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "12568",
+        "NAME": "Siêu Cấp Mộ Binh Kho Hàng",
+        "CHAPTER": [
+            {
+                "id": "4073791",
+                "name": "Chương 2: Siêu Cấp Xâm Chiếm Hệ Thống"
+            }
+        ],
+        "TOTALCHAPTER": "50",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đô Thị",
+        "AUTHOR": "Nguyên Thủy Tù Trưởng",
+        "TRANS": "luffy",
+        "DESC": "hải quân duy tu bộ đích tiểu binh --- Giang Phong, xuất ngũ chuyển nghề, ở hán lý chịu xa lánh trở lại lão gia tiểu thị trấn, mở một gian sửa chữa xưởng, sinh ý nhẹ, lại ngoài ý muốn đạt được nền văn minh Silicon kết tinh [ siêu cấp xâm chiếm hệ thống ], buộc định [ mộ binh kho hàng ], mở ra xâm chiếm Địa Cầu lãnh địa con đường của. chiêu mộ duy tu binh, công binh, chữa bệnh binh, bộ đội đặc chủng, tay súng bắn tỉa, bộ đội phòng không, lính thiết giáp... làm việc buôn bán, kiếm kiếm tiền, hoàn thành hệ thống tuyên bố đích kì ba nhiệm vụ, còn có thăng cấp thưởng cho, cuộc sống Nhạc Vô Biên!",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

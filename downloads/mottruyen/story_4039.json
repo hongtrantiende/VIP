@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "4039",
+        "NAME": "Hỗn Độn Tinh Thần",
+        "CHAPTER": [
+            {
+                "id": "1492915",
+                "name": "Chương 1: Trương Bình"
+            }
+        ],
+        "TOTALCHAPTER": "470",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Kiếm Hiệp",
+        "AUTHOR": "Địa Thượng Tả Nhất",
+        "TRANS": "trang4mat",
+        "DESC": "Ph&agrave;m nh&acirc;n Trương B&igrave;nh, một c&aacute;i v&ocirc; t&igrave;nh trở th&agrave;nh người tu ti&ecirc;n. D&ugrave;ng một c&aacute;i Ngũ H&agrave;nh linh căn đều đủ cực phẩm phế vật tư chất, đem nho nhỏ ph&ugrave; triện chi thuật cho rằng ch&iacute;nh m&igrave;nh mạnh nhất thủ đoạn c&ocirc;ng k&iacute;ch, đồng thời nương tựa theo ch&iacute;nh m&igrave;nh tr&iacute; dũng song to&agrave;n, thể ph&aacute;p song tu, đặt ch&acirc;n ti&ecirc;n chi đỉnh Phong, tiếu ngạo tam giới! M&agrave; lại đến xem tiểu ph&ugrave; triện như thế n&agrave;o khắc địch đến thắng! Ph&ugrave; bạo, ph&ugrave; trận, ph&ugrave; linh ba điệp như thế n&agrave;o chế địch ph&aacute;p thuật!",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

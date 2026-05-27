@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "3942",
+        "NAME": "Tịch Hy",
+        "CHAPTER": [
+            {
+                "id": "1419828",
+                "name": "Chương 1:Đụng Độ"
+            }
+        ],
+        "TOTALCHAPTER": "5",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo",
+        "AUTHOR": "Anh Harry",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Người là ai ?<br />\r\nTịch nhi ! Sao con lại nhớ tất cả mọi thứ lại chỉ quên mình ta? Tại sao?<br />\r\nHắn một Hoa Phong thượng tiên vang danh lục giới , thấu hiểu mọi thứ trên thế gian nhưng một thứ hắn không thể hiểu nổi là một chữ \"  tình\" . Hắn có thể chết vì nàng nhưng có thể vì Lục giới mà giết nàng .<br />\r\nNàng một cô gái luôn lấy tình cảm vượt nên trên lý trí . Khi tình cảm mất đi , nàng vẫn có thể bao dung và tha thứ cho lục giới nhưng lại không tha thứ cho hắn .<br />\r\nLiệu tình cảm của hai người này sẽ đến đâu",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

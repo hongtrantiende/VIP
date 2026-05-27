@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "9245",
+        "NAME": "Cái Thế Tiên Tôn Chương Mới Nhất",
+        "CHAPTER": [
+            {
+                "id": "3140937",
+                "name": "2122 chương liên minh thế giới chín cự đầu"
+            }
+        ],
+        "TOTALCHAPTER": "212",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp",
+        "AUTHOR": "Vương Tiểu Mạn",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Tiếp theo truyện người trước bỏ dở ko update",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

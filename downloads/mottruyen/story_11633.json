@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "11633",
+        "NAME": "Đạo Diễn Xuất Sắc Nhất",
+        "CHAPTER": [
+            {
+                "id": "3840868",
+                "name": "Chương 1: Bị Trường Đại Học Nam California khai trừ học sinh"
+            }
+        ],
+        "TOTALCHAPTER": "55",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đô Thị",
+        "AUTHOR": "Người máy WALL-E",
+        "TRANS": "Revotino",
+        "DESC": "Trở thành đạo diễn, chế tạo ra để toàn thế giới điên cuồng phim. Đây là Vương Dương mộng tưởng, thế nhưng là nhân sinh của hắn vừa mới bị đả kích nặng nề, bởi vì bị người vu hãm mà lọt vào Đại học Nam California khai trừ. Nhưng là Thượng Đế đối Vương Dương quan bế một cánh cửa sổ đồng thời, lại vì hắn mở ra một cái khác cửa sổ. Tại trên đường cái bị một chiếc xe nôi đụng về sau, Vương Dương vậy mà có thể đoán trước tương lai phim!<br />\r\n<br />\r\n\tThế là, năm 1998 là không bình thường như thế, ngoại trừ « Titanic » trình diễn thần tích, còn có một cái thế kỷ 21 vĩ đại nhất truyền kỳ đạo diễn lặng lẽ vùng lên",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

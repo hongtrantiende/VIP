@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "8009",
+        "NAME": "Tình Yêu Của Tôi",
+        "CHAPTER": [
+            {
+                "id": "2805813",
+                "name": "Chương Một : Người Con Gái Của Tôi"
+            }
+        ],
+        "TOTALCHAPTER": "2",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Ngôn Tình",
+        "AUTHOR": "conghoanngo21@",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Tình Yêu Của Tôi là câu truyện kể về cuộc đời của hai người đã chơi với nhau từ nhỏ, nhưng vì hoàn cản đặc biệt của gia đình cả hai bên, cùng với đó là tình cảm lớn lao của cả hai đối với đất nước, hai người đã phải xa nhau, nhưng liệu những khắc nghiệt của cuộc đời có chia cắt được họ...<br />\r\ncùng theo dõi nhé",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

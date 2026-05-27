@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "6948",
+        "NAME": "Nữ Chủ, Ta Là Mỗ Tác Giả",
+        "CHAPTER": [
+            {
+                "id": "2464397",
+                "name": "Văn án."
+            }
+        ],
+        "TOTALCHAPTER": "10",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Ngôn Tình, Xuyên Không",
+        "AUTHOR": "hanhsin98@",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Đ&acirc;y l&agrave; nữ phụ văn. C&ograve;n nội dung th&igrave;... đọc đ&atilde; rồi biết ^^",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

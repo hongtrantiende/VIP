@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "1079",
+        "NAME": "Hàng Long Phục Hổ",
+        "CHAPTER": [
+            {
+                "id": "361098",
+                "name": "Chương 1: Suy vận cùng kỳ tích"
+            }
+        ],
+        "TOTALCHAPTER": "576",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Dị Giới",
+        "AUTHOR": "8nan",
+        "TRANS": "Lana",
+        "DESC": "Ti&ecirc;u H&ugrave;ng mang trong m&igrave;nh hai d&ograve;ng m&aacute;u l&agrave; kẻ th&ugrave; của nhau, một huyết  mạch th&aacute;nh th&uacute; Bạch Hổ Vương của nh&acirc;n tộc v&agrave; một huyết mạch Cửu Dực  Thi&ecirc;n Long của y&ecirc;u tộc.\r\n&nbsp;\r\nTừ nhỏ đ&atilde; bị gia tộc vứt bỏ, kinh mạch bị Lục  đạo tỏa mạch thuật phong ấn, cả đời đều đ&atilde; định trước kh&ocirc;ng c&aacute;ch n&agrave;o  thức tỉnh huyết mạch, v&ocirc; ph&aacute;p trở th&agrave;nh v&otilde; giả huyết mạch cường đại.<br /><br />Một  linh hồn thần kỳ, một hư nghĩ kh&ocirc;ng gian thần kỳ, đ&atilde; l&agrave;m cho cuộc đời  của Ti&ecirc;u H&ugrave;ng nguy&ecirc;n bản đ&atilde; định trước ảm đạm tối tăm, lại trở n&ecirc;n rộng  lớn mạnh mẽ.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

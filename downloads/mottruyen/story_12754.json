@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "12754",
+        "NAME": "Phấn Đấu Tại Tân Minh Triều",
+        "CHAPTER": [
+            {
+                "id": "4112108",
+                "name": "Chương 1 : Muốn nhận rõ cái này thế đạo"
+            }
+        ],
+        "TOTALCHAPTER": "550",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Lịch Sử",
+        "AUTHOR": "Ta Chỉ Là Truyền Thuyết",
+        "TRANS": "Vân Anh",
+        "DESC": "Thể loại hậu cung, xuyên việt Minh triều, quan trường tiểu thuyết. Thị giác đặc biệt, là từ bộ khoái bắt đầu. Quan đấu thủ đoạn đặc sắc, các loại tính toán, một bước tính toán, có nhiều như vậy cách nghĩ, có nhiều như vậy đến tiếp sau chuẩn bị. Nhân vật chủ yếu là một lòng thăng quan phát tài, không cầu cứu quốc hứng bang tục nhân, tiểu nhân, nhưng không tính ác nhân. Nhưng chính vì vậy định vị, khiến cho câu chuyện triển khai lúc có thể khinh trang thượng trận, dứt bỏ rồi rất nhiều đạo đức mẫu mực, muôn đời văn vẻ, lo quốc lo dân trầm trọng gánh nặng, nhân vật chủ yếu tại quan trường thể chế trong giở trò, lục đục với nhau, biểu hiện ra chính là quan trường muôn màu, cung đình tranh giành luồn cúi.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "1464",
+        "NAME": "Thần Tọa",
+        "CHAPTER": [
+            {
+                "id": "611047",
+                "name": "Chương 1: Lâm Hi"
+            }
+        ],
+        "TOTALCHAPTER": "1113",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo",
+        "AUTHOR": "Hoàng Phủ Kỳ",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Chỗ dựa bị người hất đổ, vị tr&iacute; thiếu chưởng m&ocirc;n bị người cướp mất, tự m&igrave;nh c&ograve;n bị người h&atilde;m hại,-- l&agrave;m sao b&acirc;y giờ?<br /><br />N&eacute;m lăn hắn, chặt thương hắn, s&uacute;y hai l&ograve;ng b&agrave;n tay, giết hắn!<br /><br />Truyện li&ecirc;n quan tới một thiếu ni&ecirc;n quật khởi từ nghịch cảnh, kho&aacute;i &yacute; &acirc;n cừu, ki&ecirc;n quyết tiến thủ, dũng m&atilde;nh tinh tiến, c&acirc;u chuyện về con đường đi đến Thần Tọa!",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

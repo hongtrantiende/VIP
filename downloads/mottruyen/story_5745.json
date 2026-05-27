@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "5745",
+        "NAME": "Nghề Làm Phi",
+        "CHAPTER": [
+            {
+                "id": "2061718",
+                "name": "Chương 1"
+            }
+        ],
+        "TOTALCHAPTER": "16",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Ngôn Tình, Xuyên Không",
+        "AUTHOR": "Nguyệt Hạ Điệp Ảnh",
+        "TRANS": "Hằng Nguyễn",
+        "DESC": "Xuyên không thành một phi tần nho nhỏ đã mất thánh sủng, Trang Lạc<br />\r\nYên tâm tâm niệm niệm sẽ hoàn thành tốt nghề nghiệp mới của mình – nghề<br />\r\nlàm phi – một nghề nghiệp vô cùng rủi ro, không thể từ chức, một là làm<br />\r\ntốt, hai là chết. Một nghề nghiệp luôn phải phấn đấu vươn lên không<br />\r\nngừng, nhưng lại không được phép để con tim mình rung động. Bởi lỡ rung<br />\r\nđộng rồi, là vạn kiếp không thể quay đầu…Suy cho cùng, đã là nữ tử thì sẽ có một ngày già đi, lấy sắc tranh<br />\r\ntình nhất định sẽ phải nhận kết cục sắc suy tình bạc, bởi Đế vương đa<br />\r\ntình, hồng nhan chóng lụi, vậy thì nàng sẽ dùng lí trí này để thuần phục trái tim Đế vương.Vẫn biết vận mệnh vô thường, Đế vương vô tình, nhưng Trang Lạc Yên<br />\r\nnàng không sợ, bởi, trái tim trong lồng ngực nàng, mãi mãi chỉ thuộc về<br />\r\nnàng mà thôi!",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

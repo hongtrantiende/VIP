@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "8390",
+        "NAME": "Siêu Cấp Tham Nang Thủ Vật",
+        "CHAPTER": [
+            {
+                "id": "2878865",
+                "name": "Chương 1:, Lý Hán"
+            }
+        ],
+        "TOTALCHAPTER": "170",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Khoa Huyễn, Xuyên Không, Đồng Nhân",
+        "AUTHOR": "Dạo bước rùa đen",
+        "TRANS": "︻ ╦̵̵╤───",
+        "DESC": "Đạt được Đại Đạo chi thủ, làm cường hãn nhất cường đạo!<br />\r\n<br />\r\n\tHành tẩu vô số Vũ Trụ, một tay vươn hướng vạn thiên giới!<br />\r\n<br />\r\n\tPháp bảo đan dược Dị Năng, mỹ nữ Thần Thú chộp vào tay!<br />\r\n<br />\r\n\tRùa đen kiên trì bản gốc, nhưng rùa đen ưa thích chơi ác!",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

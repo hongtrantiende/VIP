@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "9108",
+        "NAME": "Nhị Thứ Nguyên Chi Phiến Dực Hàng Lâm",
+        "CHAPTER": [
+            {
+                "id": "3094505",
+                "name": "Chương mở đầu"
+            }
+        ],
+        "TOTALCHAPTER": "530",
+        "IMG": "https://static.cdnno.com/poster/nhi-thu-nguyen-chi-phien-duc-hang-lam/150.jpg",
+        "CAT": "Đồng Nhân",
+        "AUTHOR": "Huyết Sắc Phượng Hoàng",
+        "TRANS": "DarkHero",
+        "DESC": "Chỉ có một cái cánh bay bất ổn a, muốn tìm tới một cái khác mới được, vì tìm tới thích hợp nhất chỉ có thể tìm thêm một chút. Cho nên Nhị Thứ Nguyên các muội tử, đều đến trở thành ta cánh đi!<br />\r\n<br />\r\nBfaloo Full.<br />\r\n<br />\r\nHigh School Of The Dead, FATE, Vô Hạn Khủng Bố, Final Fantasy, Touhou Project, Fate/stay night, DxD, ........",
+        "THUMB": "https://static.cdnno.com/poster/nhi-thu-nguyen-chi-phien-duc-hang-lam/150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

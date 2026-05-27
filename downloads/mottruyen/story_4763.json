@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "4763",
+        "NAME": "Phân Thân Bạch Tuộc",
+        "CHAPTER": [
+            {
+                "id": "1688327",
+                "name": "Chương 1: 8 móng cá phân thân"
+            }
+        ],
+        "TOTALCHAPTER": "195",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đô Thị, Huyền Ảo, Dị Năng, Khoa Huyễn",
+        "AUTHOR": "miểu tốc cửu quang niên",
+        "TRANS": "๖ۣۜMộng»Vô»Ngã",
+        "DESC": "Thẩm duệ có một bạch tuộc phân thân, tên là tiểu tám.<br />\r\n<br />\r\n\tĐừng xem tiểu tám người này đần độn ngây thơ chân thành dáng vẻ, một khi đến hải lý nhưng là bất chiết bất khấu đại sát khí, hắn có thể mò vớt thuyền chìm, cũng có thể đem thuyền bắn chìm, thật sự là Thẩm duệ xông xáo tứ hải tốt người giúp.<br />\r\n<br />\r\n\tChẳng qua là tiểu tám người này có chút kỳ quái, hắn không ăn cá, chuyên ăn điện",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

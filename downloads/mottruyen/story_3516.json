@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "3516",
+        "NAME": "Thập Kiếp Tán Tiên",
+        "CHAPTER": [
+            {
+                "id": "1219638",
+                "name": "Chương 1: Tạ Diễn"
+            }
+        ],
+        "TOTALCHAPTER": "420",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo",
+        "AUTHOR": "Vạn Diễn",
+        "TRANS": "Thaiduongdhd",
+        "DESC": "T&agrave;n ph&aacute; Thế Giới, Đại Vu sống lại, L&atilde;o Tăng lấy sức một m&igrave;nh trấn &aacute;p T&agrave; Miếu, Thượng Cổ Di Tộc k&eacute;o d&agrave;i hơi t&agrave;n.\r\n<br />Thi&ecirc;n Địa vỡ n&aacute;t, bước ra Tinh Kh&ocirc;ng.\r\n<br />Thấy ti&ecirc;n, gặp y&ecirc;u.\r\n<br />L&agrave;m hết thảy, chỉ v&igrave; c&ograve;n sống. . . . .\r\n<br />Bởi v&igrave;, hắn c&oacute; thể thấy linh hồn.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

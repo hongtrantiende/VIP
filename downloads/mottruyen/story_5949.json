@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "5949",
+        "NAME": "Xâm Lược Tinh Không",
+        "CHAPTER": [
+            {
+                "id": "2141701",
+                "name": "Chương 1: Hình dáng thế giới"
+            }
+        ],
+        "TOTALCHAPTER": "69",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Khoa Huyễn",
+        "AUTHOR": "Tây Phong Tây",
+        "TRANS": "๖ۣۜThiên ๖ۣۜSầu",
+        "DESC": "''Tác giả! Mỗi lần xuất hiện ta đều là chạy được hay không được, tuy rằng ta có chút ít có thể chạy, ngươi như vậy cũng quá đáng rồi.\"<br />\r\n<br />\r\n\t''Mấy ngày nay đang tu văn, yên tâm, cái này sửa, bắt đầu lại từ đầu sửa, bất quá nha, chạy còn là phải gọt dũa, ngươi cũng không phải giống cái loại này YY sẽ đem đối phương dọa ngốc quái dị, lúc mới bắt đầu ngươi yếu đến bỏ đi.\"<br />\r\n<br />\r\n\t \"Ta đây có ngày nổi danh sao?\"<br />\r\n<br />\r\n\t \"Có lẽ có đi, kịch bản bên trong ngươi về sau ngược lại là có chút trâu bò, bất quá nha, phát triển là cần quá trình gọt dũa.\"<br />\r\n<br />\r\n\t\"Vậy ta còn có một vấn đề, nữ nhân vật chính đến cùng bộ dáng gì nữa?\"<br />\r\n<br />\r\n\t\"Cút! Ngươi không nên mò mẫm quan tâm.\"",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "4801",
+        "NAME": "Tam Quốc Chi Vô Hạn Triệu Hoán",
+        "CHAPTER": [
+            {
+                "id": "1696746",
+                "name": "Chương 1: Thần kỳ hệ thống"
+            }
+        ],
+        "TOTALCHAPTER": "1297",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Lịch Sử",
+        "AUTHOR": "Đằng Lạc",
+        "TRANS": "landland",
+        "DESC": "C&oacute; được gương đồng Pad, nắm giữ thần kỳ Triệu Ho&aacute;n Hệ Thống!<br /> <br /> Lương Sơn Hảo H&aacute;n, Ng&otilde;a Cương Anh H&ugrave;ng, Lăng Y&ecirc;n C&aacute;c C&ocirc;ng Thần, Nam Tống Trung Hưng Tướng, to&agrave;n đến đưa tin!<br /> <br /> Tiền Tần Đại Hiền, Minh Thanh Năng giả, mau tới trợ trận!<br /> <br /> C&aacute;c Lộ Chư Hầu, kh&ocirc;ng h&agrave;ng th&igrave; diệt! Tứ phương Man Di! Kh&ocirc;ng thuận th&igrave; b&igrave;nh!",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

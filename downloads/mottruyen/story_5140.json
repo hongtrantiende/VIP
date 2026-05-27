@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "5140",
+        "NAME": "Mao Sơn thuật chi bắt quỷ người",
+        "CHAPTER": [
+            {
+                "id": "1823582",
+                "name": "Chương 1:  Vương Tiểu Thất"
+            }
+        ],
+        "TOTALCHAPTER": "1309",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Linh Dị",
+        "AUTHOR": "Dạ vũ dạ ngữ",
+        "TRANS": "๖ۣۜTiếu ๖ۣۜHồng ๖ۣۜTrần",
+        "DESC": "Tối cao quá mức vi diệu pháp, hàng trăm vạn kiếp khó khăn gặp gỡ, Mao Sơn cấm thuật Sát Quỷ Lệnh. Nhân vật chính Vương Tiểu Thất, từ nhỏ đi theo sư phụ học đạo, mười tám tuổi rời đi sư phụ, thân vào hồng trần, gặp gỡ đủ loại quỷ dị sự kiện linh dị, nhìn nhân vật chính như thế nào phá giải!",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "9011",
+        "NAME": "Xinh Đẹp Tỷ Muội Siêu Cấp Bảo Tiêu",
+        "CHAPTER": [
+            {
+                "id": "3057124",
+                "name": "Chương 1: Dã Nhân cứu mỹ nhân"
+            }
+        ],
+        "TOTALCHAPTER": "1485",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đô Thị, Kiếm Hiệp, Dị Năng",
+        "AUTHOR": "Khô Đằng Lão Thúc",
+        "TRANS": "Lão Hạc",
+        "DESC": "Ngẫu  nhiên cứu nữ cảnh hoa, Tiểu Đạo Sĩ hạ sơn, bắt đầu hành trình hộ vệ của hắn cuộc đời.<br />\r\n<br />\r\n\tCảnh sát tỷ tỷ, \"Ta tuyên bố, Tần Phong từ đây chính thức quy ta một người hết thảy. Ai ghi nhớ hắn, ta với ai gấp!\"<br />\r\n<br />\r\n\tGiáo Hoa muội muội, \"Ta cũng tuyên bố, ta là tỷ tỷ đồ cưới, từ đây hoàn thành Quy tỷ phu hết thảy!\"<br />\r\n<br />\r\n\tChúng mỹ nữ, \"Chúng ta phản đối, Tần Phong là của mấy người, cũng là chúng ta!\"<br />\r\n<br />\r\n\tTiểu Đạo Sĩ, \"Khặc khặc, biết điều một điểm. Mọi người không nên gấp, từng cái từng cái đến! Bần Đạo không gần nữ sắc, chúng ta vẫn là tìm một chỗ, hảo hảo bàn luận cuộc sống đi!\"",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

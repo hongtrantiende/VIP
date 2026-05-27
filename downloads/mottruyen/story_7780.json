@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "7780",
+        "NAME": "Đại Năng Toàn Diện Hệ Thống",
+        "CHAPTER": [
+            {
+                "id": "2913556",
+                "name": "Chương  1: Giới Thiệu ( Chương ngắn )"
+            }
+        ],
+        "TOTALCHAPTER": "1",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Quân Sự",
+        "AUTHOR": "BookWriter",
+        "TRANS": "Nhiều Converter",
+        "DESC": "...",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

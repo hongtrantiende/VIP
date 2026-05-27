@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "5547",
+        "NAME": "Danh trinh thám Conan chi nảy mầm thiên hạ",
+        "CHAPTER": [
+            {
+                "id": "1973434",
+                "name": "Chương 1: Tống Nhiên"
+            }
+        ],
+        "TOTALCHAPTER": "1878",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đồng Nhân",
+        "AUTHOR": "Huyễn Tích Cả Đời",
+        "TRANS": "Thienhoang9z",
+        "DESC": "Conan đồng nghiệp, linh hồn xuyên qua, biến thân bách hợp, không mừng chớ nhập!!!",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

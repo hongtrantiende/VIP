@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "6622",
+        "NAME": "Ma Huyết Long Hồn",
+        "CHAPTER": [
+            {
+                "id": "2352809",
+                "name": "Chương 1: Nhất Chưởng Liệt Tâm"
+            }
+        ],
+        "TOTALCHAPTER": "15",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo",
+        "AUTHOR": "Phung Phí Mê Người - 乱花迷人",
+        "TRANS": "ShadowOfShadow",
+        "DESC": "Một thiếu niên làm tiều phu đốn củi qua ngày,cha mẹ hắn mất đi từ khi hắn còn bé.<br />\r\nRồi một ngày cậu bị ức hiếp và biết được chân tướng nguyên nhân tử vong của cha mẹ.<br />\r\nTheo Ma Huyết trong người cậu thức tỉnh,thiếu niên đốn củi đã đạp lên con đường tu luyện để trả thù cho cừu nhân của mình",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

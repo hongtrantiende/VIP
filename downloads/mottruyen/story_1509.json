@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "1509",
+        "NAME": "Cái Gọi Là Cùng Xuất Hiện",
+        "CHAPTER": [
+            {
+                "id": "625186",
+                "name": "Chương 1:"
+            }
+        ],
+        "TOTALCHAPTER": "71",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Ngôn Tình, Đồng Nhân",
+        "AUTHOR": "Cách Nữ",
+        "TRANS": "Shiyuka",
+        "DESC": "Hắn l&agrave; t&agrave;i hoa hơn người, lại t&acirc;m tư mẫn cảm nh&acirc;n&nbsp;<br /><br />N&agrave;ng l&agrave; d&ugrave;ng lạnh l&ugrave;ng ngụy trang, che giấu nội t&acirc;m đơn thuần nh&acirc;n&nbsp;<br /><br />N&agrave;ng cho hắn ở t&igrave;nh y&ecirc;u thượng duy nhất t&iacute;n nhiệm c&ugrave;ng ấm &aacute;p&nbsp;<br /><br />Hắn nhượng n&agrave;ng đ&atilde; biết c&aacute;i g&igrave; l&agrave; t&igrave;nh y&ecirc;u&nbsp;<br /><br />&ldquo;Ngươi l&agrave; duy nhất c&oacute; thể nhượng ta hạnh ph&uacute;c nh&acirc;n.&rdquo;-- Kim Hye Yi&nbsp;<br /><br />&ldquo;Đ&acirc;y l&agrave; ta tại thế thượng nghe qua tối ấm &aacute;p lời n&oacute;i.&rdquo;-- Kwon Ji Yong&nbsp;<br /><br />Nội dung nh&atilde;n: K-biz Nhật H&agrave;n phim &aacute;i &acirc;n tổng hợp lại&nbsp;",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

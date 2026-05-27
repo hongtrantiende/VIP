@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "10329",
+        "NAME": "Siêu Thần Liệp Nhân Hệ Thống",
+        "CHAPTER": [
+            {
+                "id": "3459925",
+                "name": "Chương 1: Siêu Thần Liệp Nhân Hệ Thống"
+            }
+        ],
+        "TOTALCHAPTER": "120",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo, Khoa Huyễn, Mạt Thế",
+        "AUTHOR": "Trọng Long",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Tương lai thế giới, dị giới giáng lâm, đạo lực rậm rạp, dị chủng hoành hành một cái mới đại thế đã triển khai",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

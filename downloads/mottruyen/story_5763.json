@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "5763",
+        "NAME": "tử vong thần tọa",
+        "CHAPTER": [
+            {
+                "id": "2064248",
+                "name": "Chương 1: Ta là pháp sư vong linh"
+            }
+        ],
+        "TOTALCHAPTER": "64",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Võng Du, Dị Giới, Quân Sự, Trùng Sinh",
+        "AUTHOR": "Vũ Dân",
+        "TRANS": "Kuden",
+        "DESC": "Mang theo vu yêu vương ký ức, bước vào cùng game như thế thế giới, có nắm giữ tử vong tâm, tất sẽ một lần nữa bước lên tử vong thần tọa, trở thành sử thi bên trong một thành viên.<br />\r\n<br />\r\n***Đọc thì ấn cảm ơn ở mỗi cuối chương nhiều vào ko ca cho nhảy hố =))",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

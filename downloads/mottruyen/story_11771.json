@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "11771",
+        "NAME": "Marvel Vô Hạn Khoa Học Kỹ Thuật",
+        "CHAPTER": [
+            {
+                "id": "3873201",
+                "name": "Chương 1: Thần Quốc thư mời"
+            }
+        ],
+        "TOTALCHAPTER": "530",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Khoa Huyễn, Xuyên Không",
+        "AUTHOR": "Nhiều Converter",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Trọng sinh thế giới Marvel thành lập Umbrella, dùng cái này vô số thế giới trở thành vô thượng khoa học kỹ thuật Chúa tể.<br />\r\n<br />\r\n\tXuyên toa thế giới có, DC thế giới, Resident Evil trò chơi, Thành Long Lịch Hiểm Ký, Chung Kết Giả 5, Transcendence, Numero 9, Toaru Majutsu no Index, Call of Duty, Phong Vân, Hogake, DOOM, Edge of Tomorrow, Star Wars, Starship Troopers các loại thế giới.<br />\r\n<br />\r\n\tMarvel Chủ Thế Giới phức tạp, dựng thẳng cưa kinh hồn, Mộng Ma Fred, tinh thạch hồ Jason. . . Godzilla, King Kong, Dị Chủng, Tinh Cầu Quật Khởi, Dị Hình, Predator. . . Silent Hill, Tế Tự Imhotep. . .<br />\r\n<br />\r\n\tPS: Thiên khoa kỹ, loại Điền Văn, thế giới nửa dung hợp nửa Xuyên Việt Thế Giới, vì khoa học kỹ thuật Thần Giáo gửi lời chào.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

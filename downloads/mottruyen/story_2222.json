@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "2222",
+        "NAME": "Hoang Thiên Đế",
+        "CHAPTER": [
+            {
+                "id": "753715",
+                "name": "Chương 1: Cốc Đạo"
+            }
+        ],
+        "TOTALCHAPTER": "40",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo",
+        "AUTHOR": "Yên Tích",
+        "TRANS": "Hàm Nguyệt",
+        "DESC": "Ta lấy Hoang thể chấn động đại địa, ta lấy đạo văn diệt cửu thi&ecirc;n, người người sợ h&atilde;i t&ecirc;n của ta &mdash;&mdash; Hoang Thi&ecirc;n Đế!<br /><br />Ta ch&iacute;nh l&agrave; Hoang, hủy thi&ecirc;n diệt địa, trong nh&aacute;y mắt che trời tồn tại!<br /><br />Ta ch&iacute;nh l&agrave; đạo, chưởng khống Lu&acirc;n Hồi, đi&ecirc;n đảo c&agrave;n kh&ocirc;n ch&uacute;a tể.<br /><br />Thi&ecirc;n đảo ngược, c&oacute; thể diệt, nhất niệm m&agrave; th&ocirc;i.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "4073",
+        "NAME": "Chân Võ Thế Giới",
+        "CHAPTER": [
+            {
+                "id": "1499444",
+                "name": "Chương 1: Dịch Vân chi mộ"
+            }
+        ],
+        "TOTALCHAPTER": "1715",
+        "IMG": "https://static.cdnno.com/poster/chan-vo-the-gioi/150.jpg",
+        "CAT": "Huyền Ảo",
+        "AUTHOR": "Tàm Kiển Lý Đích Ngưu",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Có một ngày, Dịch Vân đi leo núi, tại trong hang núi phát hiện một trương thần bí màu tím tấm thẻ.Hắn chạm đến tấm thẻ trong nháy mắt, sơn thể sạt lở.Tại hắn thật vất vả sau khi bò ra, đã thấy đến cực độ bất khả tư nghị một màn, ách. . . Cụ thể cái gì không thể tưởng tượng nổi, mời xem quyển sách chương 1.—— Đây là một cái tuyệt đẹp mà lại tràn ngập không biết Chân Võ thế giới, đây là một cái tầm thường thiếu niên thành tựu cường giả tuyệt thế truyền kỳ.",
+        "THUMB": "https://static.cdnno.com/poster/chan-vo-the-gioi/150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

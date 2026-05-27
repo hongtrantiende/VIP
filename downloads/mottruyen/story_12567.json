@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "12567",
+        "NAME": "Thứ Nguyên Chi Vô Hạn Vương",
+        "CHAPTER": [
+            {
+                "id": "4073590",
+                "name": "Chương 1 : Ikaros cùng Thứ nguyên nhà xưởng"
+            }
+        ],
+        "TOTALCHAPTER": "7",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Khoa Huyễn, Xuyên Không, Đồng Nhân",
+        "AUTHOR": "Trandinhanh",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Lâm Vũ Minh một thiên tài bị coi như phế vật . Một ngày năm mười năm tuổi , hắn trở thành chủ nhân của thứ nguyên nhà xưởng . Hãy theo dõi hành trình của hắn từ một người phế vật thành vô hạn thứ nguyên vương",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

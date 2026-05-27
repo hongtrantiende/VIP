@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "3204",
+        "NAME": "Vạn Linh Chúa Tể",
+        "CHAPTER": [
+            {
+                "id": "1101799",
+                "name": "Chương 1: Thần Châu đại lục"
+            }
+        ],
+        "TOTALCHAPTER": "1150",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo",
+        "AUTHOR": "Đại Thúc Đùa Giỡn Lolita",
+        "TRANS": "bradrangon",
+        "DESC": "Thương Khung dưới, Vạn tộc san s&aacute;t, quần h&ugrave;ng tập trung, ch&uacute;ng sinh tranh nhau ph&aacute;t s&aacute;ng.<br /><br />Thiếu ni&ecirc;n từ Thần Ch&acirc;u xuất ra, tay cầm Cổ L&atilde;o bức hoạ cuộn tr&ograve;n, x&ocirc;ng Hướng thế giới v&ocirc; bi&ecirc;n, kỳ qu&aacute;i, v&ocirc; tận Thần B&iacute;.<br /><br />Trộm cơ duy&ecirc;n, đoạt tạo h&oacute;a, đạp ph&aacute; sinh tử, vạn đạo tranh phong.<br /><br />",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

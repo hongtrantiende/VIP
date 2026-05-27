@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "12677",
+        "NAME": "Cực Phẩm Bá Đế",
+        "CHAPTER": [
+            {
+                "id": "4098585",
+                "name": "Chương 1: Ta là trời Đế"
+            }
+        ],
+        "TOTALCHAPTER": "1178",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp, Trùng Sinh",
+        "AUTHOR": "Tàn Nguyệt Như Tuyết",
+        "TRANS": "Huyền Thiên",
+        "DESC": "Diệp Đế trọng sinh trở lại thời đại thiếu niên, mang theo Chư Thiên đệ nhất Bá Kiếm, cùng « Cửu Long Thiên Đế Kinh », từ đó mở ra một đầu bá nghiền ép Vô Địch đường.<br />\r\n<br />\r\n\tNgươi là vạn cổ đệ nhất thiên tài?<br />\r\n<br />\r\n\tKhông có ý tứ, ta là Thiên Đế.<br />\r\n<br />\r\n\tNgươi là Tuyệt Thế Vô Song cường giả? Không tốt nghĩ nghị, ta là Thiên Đế.<br />\r\n<br />\r\n\tNgươi là phong hoa tuyệt đại mỹ nhân?<br />\r\n<br />\r\n\tKhông có ý tứ , có thể khi vợ ta sao! ?<br />\r\n<br />\r\n\tĐây là một cái trang bức đánh mặt, giả heo ăn thịt hổ, mập mờ cười vang Sảng Văn cố sự.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

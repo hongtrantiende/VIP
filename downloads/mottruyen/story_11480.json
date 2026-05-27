@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "11480",
+        "NAME": "Đó Là Yêu",
+        "CHAPTER": [
+            {
+                "id": "3803045",
+                "name": "Chương 1: Chịu đựng được nỗi ly biệt mới tìm được tình yêu chân chính"
+            }
+        ],
+        "TOTALCHAPTER": "14",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Ngôn Tình",
+        "AUTHOR": "BachLam",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Đó là yêu là truyện ngôn tình xoay quanh Dư Khả Nhiên.<br />\r\nNăm năm trước, cô và anh yêu nhau.<br />\r\nNăm năm sau, gặp lại nhau chỉ còn thù hận, gặp lại nhau là duyên hay nghiệt? Hay là nghiệt duyên?  <br />\r\nLam Quân nói với cô: Hai người nghĩ Tiểu Bách là con của hai người nhưng sự thật, nó không phải con của cô và Trịnh Vũ Thần.<br />\r\nCuối cùng sau này cô mới hiểu ra, họ không lừa dối cô, chỉ là cô quá ngốc nghếch.<br />\r\nRốt cuộc, ai sẽ là người đi đến cuối cùng với cô? Là người cô từng yêu hay người bao lâu luôn yêu cô?",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

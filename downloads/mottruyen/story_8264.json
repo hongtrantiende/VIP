@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "8264",
+        "NAME": "Đường Đến Toàn Năng",
+        "CHAPTER": [
+            {
+                "id": "2841123",
+                "name": "Chương 1 : Time Master"
+            }
+        ],
+        "TOTALCHAPTER": "7",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo, Dị Năng, Dị Giới, Khoa Huyễn, Xuyên Không",
+        "AUTHOR": "Knight",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Một kẻ bình thường vì 1 sự cố trở thành một kẻ bất thường.<br />\r\n<br />\r\nHam muốn mãnh liệt truy cầu đỉnh cao, vũ trụ không phải giới hạn cuối cùng ta hướng đến.<br />\r\n<br />\r\n\"Ta chưa bao giờ cảm thấy thõa mãn\" <br />\r\n<br />\r\nTruyện dành cho các thanh niên ảo tưởng sức mạnh. Main siêu bá, bá từ đầu đến cuối.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

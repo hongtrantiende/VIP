@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "5660",
+        "NAME": "Hỗn Tại Tam Quốc Truyện Kỳ",
+        "CHAPTER": [
+            {
+                "id": "2017792",
+                "name": "Chương 1: Tam Quốc truyền kỳ..."
+            }
+        ],
+        "TOTALCHAPTER": "210",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Võng Du",
+        "AUTHOR": "Hồng Khai Thủy",
+        "TRANS": "Lão Cô Đơn",
+        "DESC": "Hỗn Tại Tam Quốc Truyện Kỳ Trung giới thiệu vắn tắt:... Vân Cát, Quách Gia té xỉu, nhanh chóng đến cứu mạng!<br />\r\n<br />\r\n\tVân Cát, Chu Du hộc máu, nhanh chóng đến cứu mạng!<br />\r\n<br />\r\n\tVân Cát, Tiểu Kiều buồn nôn rồi, ôi ngươi chạy cái gì?<br />\r\n<br />\r\n\tVân Cát, Điêu Thuyền có tin vui, ôi ngươi cho ta trở lại!<br />\r\n<br />\r\n\tTa chỉ là một cái thầy thuốc, các ngươi bỏ qua cho ta đi!",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

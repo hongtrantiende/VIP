@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "2900",
+        "NAME": "Convert với QuickTranslation – cơ bản.",
+        "CHAPTER": [
+            {
+                "id": "983505",
+                "name": "Chuong 1:"
+            }
+        ],
+        "TOTALCHAPTER": "1",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đô Thị",
+        "AUTHOR": "armelia",
+        "TRANS": "armelia",
+        "DESC": "Convert với QuickTranslation – cơ bản.<br />\r\nlink downloads: https://drive.google.com/file/d/0B_7R1KZwfYVTMmQ2aHVFcEF1RXc/view",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

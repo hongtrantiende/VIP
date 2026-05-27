@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "1772",
+        "NAME": "Hàn Ngu Chi Huân",
+        "CHAPTER": [
+            {
+                "id": "728538",
+                "name": "Tự"
+            }
+        ],
+        "TOTALCHAPTER": "1146",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đô Thị",
+        "AUTHOR": "Nghệ Ngữ Si Nhân",
+        "TRANS": "TửLinh",
+        "DESC": "Ch&uacute;ng ta trong đời lớn nhất lười biếng, liền l&agrave; khi ch&uacute;ng ta biết r&otilde; ch&iacute;nh m&igrave;nh c&oacute; l&agrave;m ra lựa chọn năng lực, lại kh&ocirc;ng đi chủ động thay đổi, m&agrave; l&agrave; bỏ mặc n&oacute; sinh hoạt th&aacute;i độ.<br /><br />Một c&aacute;i đa t&agrave;i đa nghệ nhưng lại t&iacute;nh t&igrave;nh lười nh&aacute;c, y&ecirc;u th&iacute;ch th&iacute;ch ứng trong mọi ho&agrave;n cảnh nghệ sĩ, tại một khi tỉnh ngộ sau, lộ ra mũi nhọn, hướng về đỉnh n&uacute;i bước v&agrave;o phấn đấu sử.<br /><br />Nhiều năm sau, t&ecirc;n của hắn đ&atilde; trở th&agrave;nh H&agrave;n Quốc giới giải tr&iacute; một thời đại đ&aacute;nh dấu, được khen l&agrave; H&agrave;n Quốc giới giải tr&iacute; hu&acirc;n chương!",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

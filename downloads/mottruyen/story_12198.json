@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "12198",
+        "NAME": "Vị Diện Đại Hành Giả",
+        "CHAPTER": [
+            {
+                "id": "3974207",
+                "name": "Chương 1: Tohsaka Vũ Hàn"
+            }
+        ],
+        "TOTALCHAPTER": "181",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Xuyên Không, Đồng Nhân",
+        "AUTHOR": "Ngân Phong Lạc Diệp",
+        "TRANS": "Terumi",
+        "DESC": "Gửi hư không Đại hành giả công ty, các ngươi thái độ phục vụ rất tốt.<br />\r\n<br />\r\n\tGửi Alaya muội muội cùng Gaia tỉ tỉ, kỳ thật kiếm tiền rất đơn giản.<br />\r\n<br />\r\n\tGửi Luân hồi giả, không phải sợ, ta Tohsaka Vũ Hàn không vẽ mặt.<br />\r\n<br />\r\n\tĐây là một rất nhàn nhã câu chuyện, đây là một Hình Nguyệt   kẻ xuyên việt, treo lên đánh Luân hồi giả   câu chuyện.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

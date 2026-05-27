@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "2691",
+        "NAME": "Kẻ Kế Thừa Vũ Trụ",
+        "CHAPTER": [
+            {
+                "id": "883469",
+                "name": "Chap 1: VŨ TRỤ TỨ VƯƠNG"
+            }
+        ],
+        "TOTALCHAPTER": "116",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Dị Năng, Dị Giới, Khoa Huyễn, Xuyên Không",
+        "AUTHOR": "Sakura1255",
+        "TRANS": "Tự Viết",
+        "DESC": "Đây là một truyện mà mình tự viết mong được các bạn góp ý.<br />\r\n<br />\r\nTruyện bắt đầu từ 1 nhóm cường giả mạnh nhất vũ trụ chuyên trông coi và quản lý vũ trụ được gọi là Vũ Trụ Tứ Vương. Một hôm, Kiếm Vương, thủ lĩnh của nhóm tập hợp nhóm lại giao trách nhiệm cho ba người còn lại và tự phong ấn mình vào một chiếc nhẫn rồi mở cổng không gian sang một nơi vô định nào đó để tìm người kế thừa vị trí. Và ai sẽ là người may mắn nhận được truyền thừa của cường giả số 1 vũ trụ mênh mông này",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "8590",
+        "NAME": "Tam Quốc Chi Lữ Bố Tân Truyện",
+        "CHAPTER": [
+            {
+                "id": "2945313",
+                "name": "Chương 1: Mãnh hổ xuất thế"
+            }
+        ],
+        "TOTALCHAPTER": "25",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Quân Sự, Lịch Sử, Xuyên Không",
+        "AUTHOR": "Tuyệt Lãnh Vô Lệ",
+        "TRANS": "DragonKT",
+        "DESC": "Thiên Hạ Vô Song tên Lữ Bố, Tam Quốc thứ nhất xưng Ôn Hầu!",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

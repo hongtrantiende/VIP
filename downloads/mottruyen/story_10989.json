@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "10989",
+        "NAME": "Cực Phẩm Toàn Năng Cuồng Thiếu",
+        "CHAPTER": [
+            {
+                "id": "3636170",
+                "name": "Chương 1: Chủ động đến cửa"
+            }
+        ],
+        "TOTALCHAPTER": "2900",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đô Thị",
+        "AUTHOR": "Nhất chi yên khoái cảm",
+        "TRANS": "๖ۣۜTiếu ๖ۣۜHồng ๖ۣۜTrần",
+        "DESC": "Gia tộc vứt đi Chu Thần trở lại đô thị , thề cầm lại chính mình hết thảy , giẫm đạp quần là áo lụa , thu đồ đệ , lãm mỹ nhân; ngẫu nhiên được tà thần ma huyết , là cứu mạng , tu pháp thuật , ngộ thiên đạo , bước lên nghịch thiên cải mệnh con đường.<br />\r\n<br />\r\n\tCuồng thiếu Chí Tôn , ma huyết phụ thể , một đời tà thần , pháp bảo toàn thu.<br />\r\n<br />\r\n\tGia tộc bí pháp , thân phận bí ẩn , bước vào Tu Tiên , nghịch thiên cải mệnh.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "1748",
+        "NAME": "Mỹ Nữ Doanh Gia",
+        "CHAPTER": [
+            {
+                "id": "724147",
+                "name": "Chương 1: Trăm năm cô độc"
+            }
+        ],
+        "TOTALCHAPTER": "655",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đô Thị",
+        "AUTHOR": "Linh Vũ",
+        "TRANS": "Hàm Nguyệt",
+        "DESC": "C&oacute; như vậy nhiều th&uacute; vị chuyện, đua xe, Piano, game, chuyện l&agrave;m ăn, t&agrave;i ch&iacute;nh, ch&iacute;nh nghĩa, t&agrave; &aacute;c... C&oacute; phải l&agrave; đều hẳn l&agrave; trải nghiệm một tho&aacute;ng.<br /><br />C&oacute; nhiều như vậy mỹ hảo c&ocirc; nương, th&ocirc;ng minh, thuần ph&aacute;c, đ&aacute;ng y&ecirc;u, dịu ngoan, tự m&igrave;nh cố gắng, rộng lượng, hẹp h&ograve;i... C&oacute; phải l&agrave; cũng c&oacute; thể quan &aacute;i một tho&aacute;ng.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

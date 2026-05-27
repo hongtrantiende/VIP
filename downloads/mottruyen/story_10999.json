@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "10999",
+        "NAME": "Ma Pháp Tân Thế Kỉ",
+        "CHAPTER": [
+            {
+                "id": "3637353",
+                "name": "Chương 1: Đại Chiến Ma Vương"
+            }
+        ],
+        "TOTALCHAPTER": "1",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đô Thị, Dị Giới",
+        "AUTHOR": "01229411995",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Nhờ ma pháp mà con người đã nắm giữ được khoa học kĩ thuật hiện đại. Nhưng tại sao con người vẫn không thể đánh lại được ma giới. Ma giới là gì và ở đâu? Sao ma giới lại phải tấn công con người? Ma pháp lại là gì? Rốt cuộc tại sao lại có ma pháp? Những câu trả lời đã được đưa ra nhưng không cái nào thoả mãn được con người. Vậy thì những câu trả lời là gì?",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

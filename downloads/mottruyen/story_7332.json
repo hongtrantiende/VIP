@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "7332",
+        "NAME": "Siêu Phẩm Hệ Thống",
+        "CHAPTER": [
+            {
+                "id": "2605762",
+                "name": "Chương 1 : Xuyên không"
+            }
+        ],
+        "TOTALCHAPTER": "5",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp, Dị Giới, Xuyên Không",
+        "AUTHOR": "monstergra44",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Có hệ thống mộ dung ý nhi ta sẽ là nữ chính đầu tiên chinh phục cả thế giới này.<br />\r\n(Đây là lần đầu viết truyện mong mọi người ủng hộ)<br />\r\nLịch ra chưa xác định được khi nào có mình sẽ sữa lại phần nội dung",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

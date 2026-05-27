@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "1077",
+        "NAME": "Thiên Tai",
+        "CHAPTER": [
+            {
+                "id": "333520",
+                "name": "Chương 1: Bất tử lần thứ hai"
+            }
+        ],
+        "TOTALCHAPTER": "755",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Võng Du",
+        "AUTHOR": "Bán Túy Du Tử",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Y&ecirc;n tĩnh thế giới ở một đ&ecirc;m, bị trở th&agrave;nh tử vong game nơi.\r\n<br />Cao cao tại thượng cự ph&uacute; quan lớn? phong hoa tuyệt đại minh tinh hoa kh&ocirc;i của trường? C&aacute;i n&agrave;y m&aacute;u tanh t&agrave;n khốc trong thế giới, chỉ c&oacute; ch&acirc;n ch&iacute;nh cường giả mới c&oacute; sinh tồn quyền lợi, người nhỏ yếu chỉ c&oacute; bị n&ocirc; dịch hoặc đ&agrave;o thải vận mệnh!<br /><br />Đ&acirc;y l&agrave; thi&ecirc;n tai ương! cũng l&agrave; Thần Ma tai ương! Đ&acirc;y l&agrave; thế giới ch&acirc;n ch&iacute;nh tận thế, nhưng kh&ocirc;ng phải ng&agrave;y cuối c&ugrave;ng.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

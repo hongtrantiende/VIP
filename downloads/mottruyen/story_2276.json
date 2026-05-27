@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "2276",
+        "NAME": "Dị Thế Chi Quang Não Thần Quan",
+        "CHAPTER": [
+            {
+                "id": "766583",
+                "name": "Chương mở đầu"
+            }
+        ],
+        "TOTALCHAPTER": "280",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo",
+        "AUTHOR": "Long Vương Đích Hiền Tế",
+        "TRANS": "Manh Manh",
+        "DESC": "Y Học Viện học sinh Khương Qu&acirc;n Minh bị đĩa bay đụng v&agrave;o dị thế<br /><br />Đĩa bay tr&ecirc;n quang n&atilde;o c&ugrave;ng hắn hợp thể<br /><br />Ở long c&ugrave;ng ph&eacute;p thuật thế giới, Khương Qu&acirc;n Minh dựa v&agrave;o ch&iacute;nh m&igrave;nh kiến thức y học<br /><br />Dựa v&agrave;o quang n&atilde;o cải tạo, l&agrave;m sao cứu trị thế nh&acirc;n, l&agrave;m sao từng bước một hướng đi mạnh nh&acirc;́t",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

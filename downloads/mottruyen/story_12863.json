@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "12863",
+        "NAME": "Trò Chơi Lược Đoạt Giả",
+        "CHAPTER": [
+            {
+                "id": "4154537",
+                "name": "Chương 2:. Đều là bệnh thần kinh"
+            }
+        ],
+        "TOTALCHAPTER": "45",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đô Thị, Võng Du",
+        "AUTHOR": "爱会上颖",
+        "TRANS": "Nghèo Rớt Mồng Tơi",
+        "DESC": "Người khác Tu Tiên, ta sửa trò chơi, trong trò chơi nhân vật năng lực đảm nhiệm để ta làm cướp lấy, cáp, có ai ta ngạo mạn! Đại gia ta không chỉ có muốn đoạt lấy những trò chơi này nhân vật năng lực, còn phải mình mở phát trò chơi tạo năng lực, nửa phút đánh bể toàn bộ vũ trụ",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

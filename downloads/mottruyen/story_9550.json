@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "9550",
+        "NAME": "Thái Cổ Thanh Long",
+        "CHAPTER": [
+            {
+                "id": "3232345",
+                "name": "Chương 1: Thanh Long"
+            }
+        ],
+        "TOTALCHAPTER": "101",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đô Thị, Huyền Ảo, Dị Năng",
+        "AUTHOR": "Mạc Minh",
+        "TRANS": "๖ۣۜThanh ๖ۣۜPhong",
+        "DESC": "Mênh mông vô ngần biển sâu, du động một đám sớm đã diệt tuyệt khổng lồ sinh vật, có Kỷ Jura Lôi Long, có Kỷ Phấn Trắng Thương Long, tại trước mặt của bọn nó, còn có một đầu thân dài 500m vĩ đại Thanh Long .<br />\r\n<br />\r\n\tThanh Long rít gào, chuyển Long Đầu nuốt một con đi ngang qua Cá Mập Trắng, thuận miệng bắt lại một cái nỗ lực trốn chạy Cự Chương, bẹp một hơi nuốt trọn <br />\r\n<br />\r\n================================================<br />\r\n-----------------------------------------------------------------------------------------------<br />\r\nTruyện mới nên hố rất sâu... Các bằng hữu thận chi thận chi... <br />\r\n-----------------------------------------------------------------------------------------------<br />\r\n================================================",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

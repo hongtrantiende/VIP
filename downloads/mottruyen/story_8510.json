@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "8510",
+        "NAME": "Chân Nhân Mỹ Hóa Hệ Thống",
+        "CHAPTER": [
+            {
+                "id": "2916671",
+                "name": "Chương 1: Tra phần có sau"
+            }
+        ],
+        "TOTALCHAPTER": "300",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đô Thị",
+        "AUTHOR": "Lý Huyền Nguyên",
+        "TRANS": "Liu",
+        "DESC": "Người một đời, ba phần dựa vào nỗ lực, bảy phần dựa vào thiên phú, còn có chín phần mười dựa vào nhan trị.<br />\r\n<br />\r\n\tĐinh Mộc, vốn là hơi nhỏ soái, hơi nhỏ tiền, có chút khôn vặt một người bình thường, vốn là chỉ có thể quá bình thường bên trong mang chút ít xa xỉ cùng tiểu Quang huy một đời.<br />\r\n<br />\r\n\tMột lần ngẫu nhiên, Đinh Mộc muốn download phần mềm chỉnh ảnh, nhưng được một khoản người ngoài hành tinh Chân Nhân mỹ hóa hệ thống. Sau khi, Đinh Mộc trở thành vô số nữ nhân truy đuổi, theo đuổi, vây đỡ đối tượng.<br />\r\n<br />\r\n\tLà ở dục vọng bên trong trầm luân, hay là đi chinh phục ngôi sao Đại Hải.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

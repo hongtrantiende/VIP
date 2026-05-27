@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "1103",
+        "NAME": "Thịnh Đường Phong Lưu Võ Trạng Nguyên",
+        "CHAPTER": [
+            {
+                "id": "358605",
+                "name": "Chương 1: Siêu cấp nhảy dù"
+            }
+        ],
+        "TOTALCHAPTER": "473",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Quân Sự, Lịch Sử",
+        "AUTHOR": "Tầm Hương Sư",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Tần Ti&ecirc;u l&agrave; một g&atilde; bộ đội đặc chủng ưu t&uacute;, bị một cước đạp đến thời k&igrave;  Đại Chu triều đời Đường biến th&agrave;nh hậu nh&acirc;n của Tần Quỳnh, trở th&agrave;nh đệ  tử Địch Nh&acirc;n Kiệt đồng thời cũng l&agrave; đệ tử c&aacute;ch thế của v&otilde; tướng Vũ Văn  Th&agrave;nh Đ&ocirc;.\r\n&nbsp;\r\nV&otilde; Tắc Thi&ecirc;n khai s&aacute;ng thời kỳ v&otilde; cử, lần tổ chức v&otilde; cử  n&agrave;y Tần Ti&ecirc;u đoạt giải nhất trở th&agrave;nh vị V&otilde; Trạng Nguy&ecirc;n đầu ti&ecirc;n của  lịch sử Trung Quốc.<br /><br />Tại Đường triều Tần Ti&ecirc;u vận dụng tr&iacute; tuệ v&agrave;  kỹ năng của bộ đội đặc chủng thế kỷ 21 c&ugrave;ng với khả năng ph&aacute; &aacute;n học được  từ Địch Nh&acirc;n Kiệt nhiều lần ph&aacute; kỳ &aacute;n, chinh chiến tứ phương, tung  ho&agrave;nh giang hồ, tạo phong v&acirc;n khắp triều đ&igrave;nh.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

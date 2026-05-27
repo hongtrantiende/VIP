@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "12757",
+        "NAME": "Võ Tông",
+        "CHAPTER": [
+            {
+                "id": "4113254",
+                "name": "Chương 1: Nhân sinh là một hồi có một không hai đại bức"
+            }
+        ],
+        "TOTALCHAPTER": "14",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo",
+        "AUTHOR": "Thù ngạn",
+        "TRANS": "Kostrya",
+        "DESC": "Thế giới này không có bóng đá Lam Cầu, thay vào đó là nhiều loại võ đạo trận đấu.<br />\r\n<br />\r\n\tLúc đó, vượt qua thi đấu vòng tròn là trên thế giới cạnh tranh kịch liệt nhất thi đấu vòng tròn, nhưng vượt qua câu lạc bộ đã có năm năm không trèo lên đỉnh hơn kém quan, đội tuyển quốc gia mười năm không tiến nhập World Cup trận chung kết.<br />\r\n<br />\r\n\tThẳng đến Tề Lâm xuất hiện.<br />\r\n<br />\r\n\tToàn bộ thế giới truyền thông cùng nhà khoa học đều vì hắn chiến tích bất khả tư nghị điên cuồng.<br />\r\n<br />\r\n\tTề Lâm: Ta cũng không biết phải đánh thế nào, nhưng ta chính là có thể thắng.<br />\r\n<br />\r\n\tHắn để cho vô số đối thủ tan vỡ, để cho rất nhiều huấn luyện viên phát điên, tối chuyên nghiệp khoa học đoàn đội cũng không cách nào giải thích Tề Lâm thần bí kia chiến tích.<br />\r\n<br />\r\n\tCuối cùng, hắn bị thế nhân nhận định",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

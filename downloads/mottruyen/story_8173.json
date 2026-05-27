@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "8173",
+        "NAME": "Hàn Ngu Chi Ta Là Lee Soo-Man",
+        "CHAPTER": [
+            {
+                "id": "2821621",
+                "name": "Chương 1: Ta là Lee Soo-man"
+            }
+        ],
+        "TOTALCHAPTER": "517",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đô Thị, Trùng Sinh",
+        "AUTHOR": "Vừa lòng thỏa ý",
+        "TRANS": "❖⊰๖ۣۜLier⊱❖",
+        "DESC": "Ta biến thân thành Hàn Quốc giải trí giáo phụ Lee Soo-man.<br />\r\n<br />\r\n\tNhìn ta như thế nào sáng tạo ra một cái hoàn toàn mới giải trí đế quốc, xưng bá Á Châu cũng chỉ là bắt đầu.<br />\r\n<br />\r\n\tMới thị giác, nhân vật mới giảng thuật trong vòng giải trí thay đổi bất ngờ.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

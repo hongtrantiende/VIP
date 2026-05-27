@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "1275",
+        "NAME": "Cực Phẩm Lão Bản Nương",
+        "CHAPTER": [
+            {
+                "id": "507574",
+                "name": "Chương 01: Bị đánh nữ hài"
+            }
+        ],
+        "TOTALCHAPTER": "348",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Dị Năng",
+        "AUTHOR": "Dương Lão Tam",
+        "TRANS": "Hoa",
+        "DESC": "Nắm giữ tuyệt đỉnh tr&ugrave; nghệ Dương Diệp Thịnh, khuất th&acirc;n ở một c&aacute;i qu&aacute;n cơm nhỏ, bởi v&igrave; một c&aacute;i Cực phẩm b&agrave; chủ.&nbsp;<br /><br />Nắm giữ si&ecirc;u ph&agrave;m v&otilde; nghệ Dương Diệp Thịnh, dấn th&acirc;n v&agrave;o ở một c&aacute;i đại qu&aacute;n bar, cũng bởi v&igrave; một c&aacute;i Cực phẩm b&agrave; chủ.&nbsp;<br /><br />Sau đ&oacute;, Dương Diệp Thịnh m&igrave;nh l&agrave;m &ocirc;ng chủ, c&agrave;ng ng&agrave;y c&agrave;ng nhiều Cực phẩm b&agrave; chủ xuất hiện...",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

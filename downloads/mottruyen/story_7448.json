@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "7448",
+        "NAME": "Đô Thị Đại Cao Thủ",
+        "CHAPTER": [
+            {
+                "id": "2635575",
+                "name": "Chương 1: Trao đổi hệ thống"
+            }
+        ],
+        "TOTALCHAPTER": "120",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đô Thị",
+        "AUTHOR": "Lão ưng cật tiểu kê",
+        "TRANS": "gautruc01",
+        "DESC": "Hệ thống: \"Tiền tài, mỹ nữ, võ công, ngươi tuyển loại nào?\"<br />\r\n<br />\r\nTrương Dương: \"Có thể đều có muốn không?\"<br />\r\n<br />\r\nHệ thống: \"Không thể, chỉ có thể tuyển đồng dạng!\"<br />\r\n<br />\r\nTrương Dương: \"Học biết võ công có thể vô địch thiên hạ sao?\"<br />\r\n<br />\r\nHệ thống: \"Có thể!\"<br />\r\n<br />\r\nTrương Dương: \"Ta đây muốn võ công!\"<br />\r\n<br />\r\n...<br />\r\n<br />\r\nHệ thống: \"Tốt rồi, ngươi đã vô địch thiên hạ rồi!\"<br />\r\n<br />\r\nTrương Dương: \"Ha ha ha, hệ thống mau đem tiền tài mỹ nữ đều giao ra đây! Ta đã vô địch thiên hạ rồi!\"",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

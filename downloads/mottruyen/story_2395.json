@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "2395",
+        "NAME": "Phần Thiên Chí Tôn",
+        "CHAPTER": [
+            {
+                "id": "793397",
+                "name": "Chương 1: Thiên ca cùng Tiểu Bảo"
+            }
+        ],
+        "TOTALCHAPTER": "120",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo",
+        "AUTHOR": "Long Sơn Nhị Đương Gia",
+        "TRANS": "Vuongls",
+        "DESC": "Phần Thi&ecirc;n ch&iacute; t&ocirc;n<br /><br />Nộ từ l&ograve;ng sinh, hỏa do nộ l&ecirc;n, thế, c&oacute; thể Phần Thi&ecirc;n diệt địa, Mạc kh&ocirc;ng thể đỡ! Thiếu ni&ecirc;n Trầm Thi&ecirc;n, bất ngờ thu được Phần Thi&ecirc;n chi t&acirc;m t&aacute;n th&agrave;nh, được Phần Thi&ecirc;n hỏa đế truyền thừa v&ocirc; thượng. Từ đ&acirc;y, c&aacute;i n&agrave;y ki&ecirc;n nghị thiếu ni&ecirc;n, mở ra một đoạn thuộc về hắn Phần Thi&ecirc;n truyền kỳ!",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "12071",
+        "NAME": "Ngạo Cửu Thiên",
+        "CHAPTER": [
+            {
+                "id": "3946334",
+                "name": "Chương 1:Muốn nghịch thiên"
+            }
+        ],
+        "TOTALCHAPTER": "2",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo",
+        "AUTHOR": "ace1402",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Cửu thiên từ xưa nhiều anh kiệt<br />\r\nthiên sinh phế thể có là chi<br />\r\nta đây phế thể ngạo cửu thiên <br />\r\nthiên kêu thần thể ta đạp đổ<br />\r\nThiết huyết huynh đệ cạnh bên ta<br />\r\nTri kỷ hồng nhan hậu phương chờ<br />\r\nNhất kiếm nhất tửu tại trong tay<br />\r\nPhiên vân phúc vũ chỉ nhất niệm<br />\r\nTrảm thần giết phật có là chi?<br />\r\nVũ động bát hoang có là gì ?<br />\r\nTay nắm nhật nguyệt hái trăng sao<br />\r\nThế gian này ai được như ta",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

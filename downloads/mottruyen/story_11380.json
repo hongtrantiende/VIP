@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "11380",
+        "NAME": "Vô Thường Sổ Ghi Chép",
+        "CHAPTER": [
+            {
+                "id": "3779246",
+                "name": "Thứ 1 Chương Âm vô thường Dương vô thường"
+            }
+        ],
+        "TOTALCHAPTER": "22",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Linh Dị",
+        "AUTHOR": "Kiều Nghi Nho",
+        "TRANS": "blackcat_gx",
+        "DESC": "Hai anh em Dương Vô Thường Và Âm Vô Thường đi giữa ranh giới nhân gian và địa phủ, và những chuyện huyền nghi quanh đó.<br />\r\n Chưa đọc, đại khái vậy.Thôi thì vừa làm vừa đọc.Định chỉ dán trên watt mà mạng bèo nhèo quá, dán bên này. Có ai làm hay chưa thì mình không biết, bản nhân không chịu trách nhiệm.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

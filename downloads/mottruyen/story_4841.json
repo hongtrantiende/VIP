@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "4841",
+        "NAME": "Vạn giới kiếm chủ",
+        "CHAPTER": [
+            {
+                "id": "1703741",
+                "name": "Chương 1: Ninh Thần, đoạn kiếm"
+            }
+        ],
+        "TOTALCHAPTER": "111",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Trùng Sinh",
+        "AUTHOR": "Thâm Ám",
+        "TRANS": "Phong Gia",
+        "DESC": "\"Kiếm Thánh\" Ninh Thần tao ngộ tử kiếp, nhục thân vẫn diệt, linh hồn đi tới hạ cấp vị diện, sống lại tại một cái tư chất tu luyện thấp tông chủ chi tử thân thượng.<br />\r\n<br />\r\n\tMột thanh đoạn kiếm, một quyển hắc thư, mở ra hắn điên phong chi lộ.<br />\r\n<br />\r\n\tThế giới vô tận, tông môn san sát, dị tộc tranh phong, thiên tài tranh phách. . . Ninh Thần cầm trong tay nhất kiếm, trảm diệt tất cả.<br />\r\n<br />\r\n\tPhong vân tế hội, kiếm chủ vạn giới.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

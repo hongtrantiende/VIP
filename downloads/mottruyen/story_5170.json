@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "5170",
+        "NAME": "Thất Sát Thần Hoàng",
+        "CHAPTER": [
+            {
+                "id": "1839478",
+                "name": "Chương 01: Thiếu niên Trần Húc"
+            }
+        ],
+        "TOTALCHAPTER": "113",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo",
+        "AUTHOR": "Thiết Mã Phi Kiều",
+        "TRANS": "Thiên Tử Nhi",
+        "DESC": "C&ocirc;ng ph&aacute;p nghịch thi&ecirc;n, Th&iacute; Thi&ecirc;n v&otilde; kỹ, nương theo lấy hắn đi đến cướp đoạt con đường, l&acirc;́y giết thần chi danh, tr&egrave;o n&uacute;i tuyệt đỉnh, một đường th&acirc;y nằm trăm vạn! Chư quốc san s&aacute;t, vạn t&ocirc;ng rong ruổi, nhìn nh&acirc;n vật ch&iacute;nh tiếu ngạo quần h&ugrave;ng, quang vinh trèo l&ecirc;n đường lớn chi đỉnh, nơi n&agrave;y t&agrave;n khốc khiến người ta run rẩy!",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "11893",
+        "NAME": "Bác Sĩ Thiên Tài",
+        "CHAPTER": [
+            {
+                "id": "3903411",
+                "name": "Chương 1: Vì tính mạng của ba mươi sáu trẻ sơ sinh."
+            }
+        ],
+        "TOTALCHAPTER": "10",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đô Thị",
+        "AUTHOR": "Liễu Hạ Huy",
+        "TRANS": "boycyjin",
+        "DESC": "Bác Sĩ Thiên Tài - Muốn cứu người sao? Học y đi. Muốn giết người sao? Cũng là học y đi. Muốn nắm giữ gia tài hàng tỉ, có quyền lực vô thượng trong tay sao? Ta, có thể nắm giữ sinh mệnh của ngươi.<br />\r\n<br />\r\n- Đó là lời giới thiệu trên trang chủ của truyện Bác sĩ thiên tài này. Tác giả của truyện: Liễu Hạ Huy, cũng là một người không quá xa lạ với các tác phẩm như Lân gia hữu nữ sơ trưởng thành (được xem như là một trong những tác phẩm tiêu biểu của thể loại đô thị), Cận thân bảo tiêu. Và đây là bộ thứ ba của tác giả với nhân vật chính là người thừa kế của thế gia Trung hoa y dược, truyện kể về một xử nam với y thuật của mình chu du trong thế giới y học đầy mỹ nữ. Với cách sắp xếp câu chyện hợp lý, nhiều tình tiết gây cười, bảo đảm đây sẽ là một bộ truyện hay rất đáng để mọi người đọc.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

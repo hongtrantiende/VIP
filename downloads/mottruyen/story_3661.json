@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "3661",
+        "NAME": "Huyết Mạch Hoàng Giả",
+        "CHAPTER": [
+            {
+                "id": "1262844",
+                "name": "Chương 01: Huyết Mạch đại lục"
+            }
+        ],
+        "TOTALCHAPTER": "191",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo",
+        "AUTHOR": "Thiển Du Lương",
+        "TRANS": "Thaiduongdhd",
+        "DESC": "Huyết mạch chủng loại: Kỳ dị hệ, phổ th&ocirc;ng hệ, sắt th&eacute;p hệ, độc hệ, hệ hỏa, hải dương hệ, L&ocirc;i điện hệ, cỏ c&acirc;y hệ, Quang Minh Hệ, Hắc &Aacute;m Hệ, h&agrave;n băng hệ, gi&oacute; lốc hệ, c&ocirc;n tr&ugrave;ng hệ, Long hệ, nham thạch hệ, phi h&agrave;nh hệ.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

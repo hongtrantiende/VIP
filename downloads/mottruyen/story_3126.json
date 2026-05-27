@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "3126",
+        "NAME": "Hồn Võ Vương Tọa",
+        "CHAPTER": [
+            {
+                "id": "1063851",
+                "name": "Chương 1: Sau khi phá rồi dựng lại"
+            }
+        ],
+        "TOTALCHAPTER": "30",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo",
+        "AUTHOR": "Phong Cuồng Mã Đại Oa",
+        "TRANS": "№.1ŤiểußạchKiểm",
+        "DESC": "Cửu Thánh Đại Lục, tập võ làm đầu, gân cốt làm gốc. Tần Thạch trong lúc vô tình xuyên qua, nhưng tự dẫn theo một cái cực phẩm Long Căn. Từ đây như Giao Long vào biển, một phát mà không thể vãn hồi,quét cường địch. Càng đến kinh thế truyền thừa<br />\r\nThu Mỹ Nữ<br />\r\nKhắc Hồn Văn<br />\r\nKhống Thần Thú<br />\r\nTiếu Ngạo Cửu Thiên<br />\r\nĐạp Phá Thương Khung.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

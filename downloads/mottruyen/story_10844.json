@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "10844",
+        "NAME": "Ta Là Chí Tôn",
+        "CHAPTER": [
+            {
+                "id": "3635703",
+                "name": "Viết tại sách mới trước đó!"
+            }
+        ],
+        "TOTALCHAPTER": "1488",
+        "IMG": "https://static.cdnno.com/poster/ta-la-chi-ton/150.jpg",
+        "CAT": "Huyền Ảo",
+        "AUTHOR": "Phong Lăng Thiên Hạ",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Thuốc không thành đan chỉ là độc;  Người không thành thần cuối cùng thành không!  . . .  Thiên Đạo có thiếu, nhân gian bất bình; hồng trần thế ngoại, Võng Lượng hoành hành; buồn bã ngươi bất hạnh, hận mà không tranh; quy tắc bên ngoài, ta đến chấp hành.  Bố võ thiên hạ, giết sạch bất bình; trong tay có đao, trong lòng có tình; trong ngực mỹ nhân, dưới đao gian hùng; lặng lẽ hồng trần, không tiếc kiếp này!  . . .  Thời gian loạn thế, quần hùng cùng nổi lên; khói lửa khắp nơi, sơn hà phá toái. Cửu Tôn cố vấn Vân Dương đại nạn không chết, dốc lòng báo thù; kinh thiên mưu trí, đạp phá quốc thù nhà hận; thiết cốt mềm lòng, diễn dịch yêu hận tình cừu; tuyệt thế thần công, giết sạch nhân gian bất bình; lòng son bích huyết, viết lên huynh đệ thiên thu!",
+        "THUMB": "https://static.cdnno.com/poster/ta-la-chi-ton/150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

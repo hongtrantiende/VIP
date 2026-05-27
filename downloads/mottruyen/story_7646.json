@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "7646",
+        "NAME": "Chỉ Yêu Mãi Người",
+        "CHAPTER": [
+            {
+                "id": "2694335",
+                "name": "Giới thiệu"
+            }
+        ],
+        "TOTALCHAPTER": "4",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Xuyên Không",
+        "AUTHOR": "kemtraxanh_catinh_vt99@",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Nữ phụ văn - Xuyên không",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

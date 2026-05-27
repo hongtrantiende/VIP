@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "3631",
+        "NAME": "Tinh Tế Nông Trường",
+        "CHAPTER": [
+            {
+                "id": "1255753",
+                "name": "Chương 01: đột nhiên xuất hiện"
+            }
+        ],
+        "TOTALCHAPTER": "368",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Khoa Huyễn",
+        "AUTHOR": "Hổ Khu Cự Chấn",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Mênh mông thần bí vũ trụ :  Chỉ có kim loại cùng nhiệt huyết mới được là vĩnh hằng nhạc dạo  Nhìn mình sau lưng cái kia phô thiên cái địa khổng lồ chiến hạm, Lôi Điệu Thiên lộ ra mỉm cười.  Ca cũng là truyền thuyết...",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

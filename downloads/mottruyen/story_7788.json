@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "7788",
+        "NAME": "Vô Hạn Khủng Bố",
+        "CHAPTER": [
+            {
+                "id": "2728258",
+                "name": "Chương 1 : Vô hạn khủng bố"
+            }
+        ],
+        "TOTALCHAPTER": "2",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo",
+        "AUTHOR": "Thuần Khiết Tích Tiểu Long",
+        "TRANS": "™Tuyết Nữ™",
+        "DESC": "Huyết , huyết và huyết =))))<br />\r\nGiết,giết và giết =))))<br />\r\nXem nội dung sẽ rõ :D",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

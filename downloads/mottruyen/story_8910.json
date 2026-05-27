@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "8910",
+        "NAME": "Vạn Giới Thánh Sư",
+        "CHAPTER": [
+            {
+                "id": "3038108",
+                "name": "Chương 1: Không phải liền là trang cái bức à, về phần cầm sét đánh"
+            }
+        ],
+        "TOTALCHAPTER": "553",
+        "IMG": "https://static.cdnno.com/poster/van-gioi-thanh-su/150.jpg",
+        "CAT": "Xuyên Không",
+        "AUTHOR": "Tuyết Lạc Quân",
+        "TRANS": "†๖ۣۜSóiღ†",
+        "DESC": "Từ hôm nay trở đi, làm một cái quang vinh Nhân Dân Giáo Sư<br />\r\n<br />\r\n\tLàm càn rỡ, trang bức, điều giáo nhân vật chính đồ đệ!<br />\r\n<br />\r\n\tTừ hôm nay trở đi, quan tâm Vạn Thiên Thế Giới có thể hay không bị phá hư<br />\r\n<br />\r\n\tTa có một cái hệ thống, vượt qua Vạn Giới, giáo hóa Chư Thiên!<br />\r\n<br />\r\n+ Có cười như thằng điên đừng đổ tại mình nhé =))",
+        "THUMB": "https://static.cdnno.com/poster/van-gioi-thanh-su/150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

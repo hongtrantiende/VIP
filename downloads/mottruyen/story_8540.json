@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "8540",
+        "NAME": "Hoạn Hải Tiên Đồ",
+        "CHAPTER": [
+            {
+                "id": "2925943",
+                "name": "Chương 1: Trời giáng tai họa bất ngờ"
+            }
+        ],
+        "TOTALCHAPTER": "191",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp, Đô Thị, Huyền Ảo",
+        "AUTHOR": "Nhất Thế Tiên Hiệp",
+        "TRANS": "Congiolanh",
+        "DESC": "Ninh Phất Trần kỳ ngộ thu được Ho&agrave;ng Kim Ti&ecirc;n Thư.<br /> <br /> H&atilde;y xem hắn trưởng th&agrave;nh ra sao khi sống trong thời đại mạt ph&aacute;p tu ti&ecirc;n ở Đ&ocirc; thị.<br /> <br /> Truyện được lượt đọc hơn 1triệu 200 ngh&igrave;n rồi,anh em y&ecirc;n t&acirc;m kh&ocirc;ng phải người mới viết s&aacute;ch đ&acirc;y.&Ocirc;ng n&agrave;y đ&atilde; viết truyện xuất bản rồi,bộ n&agrave;y l&agrave; thứ nhất truyện  mạng m&agrave; th&ocirc;i.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "3334",
+        "NAME": "Thế Lợi Nhãn",
+        "CHAPTER": [
+            {
+                "id": "1159738",
+                "name": "Chương 1: Trước kỳ thi tốt nghiệp trung học 1 tháng"
+            }
+        ],
+        "TOTALCHAPTER": "684",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đô Thị",
+        "AUTHOR": "Cuồng Bôn Đích Hải Mã",
+        "TRANS": "Suntran",
+        "DESC": "Thế giới tên đạo tặc, tài nghệ tinh xảo đồ cổ giả tạo đại sư Giang Bình, bị tín nhiệm nhất hợp tác bán đi bỏ mình nhưng cũng may mắn địa sống lại đến mười tám tuổi năm ấy, còn có một tháng liền muốn đối mặt thi đại họcSau khi sống lại Giang Bình không chỉ bảo lưu kiếp trước hết thảy ký ức cùng kinh nghiệm, trả lại ngoài ý muốn phát hiện mình ủng có thể nhìn thấu người khác vận thế năng lựcMà xem trở lại 18 tuổi Giang Bình, làm sao thay đổi mình và vận mạng của người nhà, bù đắp kiếp trước tiếc nuối, sáng tạo mỹ hảo kiếp này ,đương nhiên kiếp trước những kia hãm hại qua sông bình gia hỏa, hắn kiếp này tuyệt đối sẽ không buông tha!",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

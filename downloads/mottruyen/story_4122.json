@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "4122",
+        "NAME": "Vương bài xạ thủ",
+        "CHAPTER": [
+            {
+                "id": "1506458",
+                "name": "Chương 1 : Tuyệt thế \"mỹ\" nam - Quyển 1 : Ngươi thích gấu con của ta sao?"
+            }
+        ],
+        "TOTALCHAPTER": "168",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Khoa Huyễn",
+        "AUTHOR": "Xuyên Ngoa Tử Đích Trư",
+        "TRANS": "Thanatos",
+        "DESC": "Mang theo 《 Huy Ho&agrave;ng 》 trung thần thương thủ sở hữu kỹ năng xuy&ecirc;n qua đến Dị Giới, hắn thậm ch&iacute; c&ograve;n hội nhận được n&agrave;o đ&oacute; bất minh sinh vật ph&aacute;t ra nhiệm vụ, thưởng cho ch&iacute;nh l&agrave; trong tr&ograve; chơi trang bị c&ugrave;ng t&agrave;i liệu.<br /><br />Đối với Triệu Kiệt m&agrave; n&oacute;i, tin tức tốt đ&uacute;ng, tại Tr&aacute;i Đất nỗ lực kh&ocirc;ng nhất định c&oacute; thể lấy được đ&ocirc;ng t&acirc;y ở chỗ n&agrave;y lại c&oacute; thể.<br /><br />Tin tức xấu đ&uacute;ng, xuy&ecirc;n qua ph&iacute;a sau hắn dĩ nhi&ecirc;n c&oacute; hiện xinh đẹp kh&ocirc;ng thể tả gương mặt.<br /><br />Triệu Kiệt: \"Ta l&agrave; người c&oacute; tốt t&iacute;nh kh&iacute;, thế nhưng xin kh&ocirc;ng cần ở trước mặt ta n&oacute;i Ngụy Nương, nh&acirc;n y&ecirc;u loại n&agrave;y từ... Nếu như ngươi kh&ocirc;ng muốn bị đ&oacute;ng băng lựu đạn Bạo C&uacute;c m&agrave; n&oacute;i.\"",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

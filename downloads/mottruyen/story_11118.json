@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "11118",
+        "NAME": "Bạch Ngân Bá Chủ",
+        "CHAPTER": [
+            {
+                "id": "3711418",
+                "name": "Chương 1: Ta là Lễ Cường"
+            }
+        ],
+        "TOTALCHAPTER": "679",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo",
+        "AUTHOR": "Túy Hổ",
+        "TRANS": "DarkHero",
+        "DESC": "Trên thế giới vật trân quý nhất đều là miễn phí, thường nhân nhưng dù sao làm như không thấy, ngoại trừ không khí, ánh nắng, thân tình những vật trân quý nhất này bên ngoài, còn có một loại vật trân quý nhất, ngay tại bên cạnh ngươi, dễ như trở bàn tay, không biết ngươi là có hay không trông thấy?<br />\r\n<br />\r\nTG: Hắc Thiết Chi Bảo",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "11940",
+        "NAME": "Nhân Đạo Đế Tôn",
+        "CHAPTER": [
+            {
+                "id": "3918695",
+                "name": "Chương 1: Thiếu niên trong núi"
+            }
+        ],
+        "TOTALCHAPTER": "108",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo",
+        "AUTHOR": "Tiếu Diện Hổ Nan Họa Cốt",
+        "TRANS": "TieuNhanGian",
+        "DESC": "Gió lạnh như đao, lấy đại địa là cái thớt gỗ, xem chúng sinh là thịt cá. Vạn dặm phi tuyết, đem thương khung làm hoả lò, dung vạn vật là bạch ngân. Nhân đạo chi lộ, như trăm sông hợp thành đại dương mênh mông, nạp vạn tộc khoảng tinh hoa.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

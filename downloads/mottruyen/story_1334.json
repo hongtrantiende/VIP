@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "1334",
+        "NAME": "Xuyên Việt Lệnh Hồ Xung",
+        "CHAPTER": [
+            {
+                "id": "551188",
+                "name": "Chương 1: Xuyên qua tiếu ngạo giang hồ"
+            }
+        ],
+        "TOTALCHAPTER": "974",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp",
+        "AUTHOR": "Tiểu Bàn Tử Thượng Sơn",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Trạch nam Lệnh Hồ Đạt , xuy&ecirc;n qua đến 2013 kịch truyền h&igrave;nh bản T&acirc;n Tiếu Ngạo Giang Hồ , đ&atilde; trở th&agrave;nh kịch b&ecirc;n trong nam số một Lệnh Hồ Xung\r\nTa l&agrave; Lệnh Hồ Xung , ta muốn nghịch thi&ecirc;n cải mệnh , ta muốn Đ&ocirc;ng Phương Bất Bại\r\nThần c&ocirc;ng v&ocirc; địch tiếu ngạo giang hồ , liền để ta Lệnh Hồ Xung ho&agrave;n to&agrave;n thay đổi thế giới n&agrave;y",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

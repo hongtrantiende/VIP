@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "9639",
+        "NAME": "Vạn Vật Bá Chủ",
+        "CHAPTER": [
+            {
+                "id": "3254458",
+                "name": "Chương 1: Mới vào trò chơi"
+            }
+        ],
+        "TOTALCHAPTER": "1",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo",
+        "AUTHOR": "Gia Cát Tĩnh",
+        "TRANS": "Mrton1",
+        "DESC": "Vạn vật khởi nguyên, thành tựu thế gian bá chủ, tại thế giới mới giữa tìm kiếm mới lối ra, thế gian bản không có tuyệt đối tự do, nhưng nhượng vô số người truy tầm chờ.<br />\r\n<br />\r\n\tĐộc tùng vô kháo thiên thu tái,<br />\r\n<br />\r\n\tNgã tâm tự minh dụng tiều thùy.<br />\r\n<br />\r\n\tCô phong tiếu khán thiên hạ sự,<br />\r\n<br />\r\n\tBất dữ thế nhân luận thị phi.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

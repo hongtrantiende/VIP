@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "9611",
+        "NAME": "Cực Phẩm Đạo Sĩ Hạ Sơn",
+        "CHAPTER": [
+            {
+                "id": "3250738",
+                "name": "Lời tựa tiểu thuyết: Cực Phẩm Đạo Sĩ Hạ Sơn tác giả: Phong Xuy Ngô Đồng"
+            }
+        ],
+        "TOTALCHAPTER": "50",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đô Thị, Dị Năng",
+        "AUTHOR": "Phong Xuy Ngô Đồng",
+        "TRANS": "Saya Yuki",
+        "DESC": "20 năm trước, đạo gia ở trong một đêm bị sụp đổ<br />\r\n<br />\r\n\tHai mươi năm sau, đạo gia truyền nhân nhập thế Diệt Yêu Nhập Ma phục đạo<br />\r\n<br />\r\n\tThiên đạo nếu là có, cũng không biết bản thân chấp pháp, như vậy thì để cho ta tới thay trời chấp pháp.<br />\r\n<br />\r\nCầu vote 10 cuối mỗi chương.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

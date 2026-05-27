@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "7670",
+        "NAME": "Lọt Vào Manga / Anime Rồi !",
+        "CHAPTER": [
+            {
+                "id": "2710005",
+                "name": "Chap 1 : Ngẫu nhiên xuyên không."
+            }
+        ],
+        "TOTALCHAPTER": "14",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Dị Năng, Khoa Huyễn, Xuyên Không, Đồng Nhân",
+        "AUTHOR": "ikazuchi",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Hệ thống : chuẩn bị sẵn sàng<br />\r\nPlayer : ai dà.... cho tui về nhà đi được không !<br />\r\n<br />\r\n3...<br />\r\n2...<br />\r\n1...<br />\r\nBắt đầu dịch chuyển. Điểm đến  : ....<br />\r\n<br />\r\n<br />\r\nThím Main không muốn xuyên không, tội cái là lại bị lôi qua thế giới khác.<br />\r\nCùng đón xem thím main sẽ làm gì sau đó nào :V",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

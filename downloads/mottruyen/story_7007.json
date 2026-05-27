@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "7007",
+        "NAME": "Hiệu Thiên Truyện",
+        "CHAPTER": [
+            {
+                "id": "2489017",
+                "name": "Chương 1 : Xuyên việt"
+            }
+        ],
+        "TOTALCHAPTER": "36",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo, Dị Giới, Xuyên Không",
+        "AUTHOR": "manhaque",
+        "TRANS": "Nhiều Converter",
+        "DESC": "\"Muốn trị khỏi vết thương thì chịu khó một tí, đau một chút rồi khỏi ngay ấy mà.\"<br />\r\nTrần Hiệu Thiên giương cung ngắm vào cô nàng tinh linh tộc.<br />\r\n\"Cứ bình tĩnh, để ta bắn vô người người một phát thôi, đừng lo, có vấn đề ta sẽ chịu trách nhiệm, này này, đừng chạy, ta có ý tốt mà, thật là...\"<br />\r\nCuộc sống làm người tốt không dễ như Trần Hiệu Thiên nghĩ.<br />\r\n ( P/s: đây là tác phẩm đầu của mình, nếu có vấn đề gì thì mong mọi người góp ý để mình có thể tiến bộ hơn. Cảm ơn)",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

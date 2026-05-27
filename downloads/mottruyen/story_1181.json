@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "1181",
+        "NAME": "Tiên Đồ Kiếm Tu",
+        "CHAPTER": [
+            {
+                "id": "448656",
+                "name": "Chương 1:  loạn thế cùng thiếu niên"
+            }
+        ],
+        "TOTALCHAPTER": "1219",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp",
+        "AUTHOR": "Quân Tử Tìm Nước",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Một thiếu ni&ecirc;n tr&ecirc;n con đường tu ti&ecirc;n, chấp nhất tại si&ecirc;u tho&aacute;t kiếm đạo, chưởng Ngũ H&agrave;nh, khống &Acirc;m Dương, d&ugrave;ng bản th&acirc;n linh căn t&aacute;i tạo Thi&ecirc;n Địa, Tạo H&oacute;a chi kh&iacute;, diễn h&oacute;a vạn vật!&nbsp;<br /><br />Giới ch&acirc;u nơi tay, thi&ecirc;n hạ ta c&oacute;!&nbsp;",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

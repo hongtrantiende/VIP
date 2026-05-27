@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "2800",
+        "NAME": "Hắc Ám Thời Đại",
+        "CHAPTER": [
+            {
+                "id": "927498",
+                "name": "Tự chương: Bông tuyết màu đen"
+            }
+        ],
+        "TOTALCHAPTER": "147",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Khoa Huyễn",
+        "AUTHOR": "Huyễn Dạ Hành",
+        "TRANS": "Tiểu La",
+        "DESC": "Th&aacute;i Dương kh&ocirc;ng ở bay l&ecirc;n, tinh cầu ngừng chuyển động, tiến h&oacute;a phong bạo mang tất cả to&agrave;n bộ thế giới.<br /><br />Dị th&uacute; ho&agrave;nh h&agrave;nh thế giới, nh&acirc;n loại tại giết ch&oacute;c trong tiến h&oacute;a...<br /><br />Trật tự cũ triệt để sụp đổ,<br /><br />Nhưng &mdash;&mdash;<br /><br />Ai tới ch&uacute;a tể thời đại mới?",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

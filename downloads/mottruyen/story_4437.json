@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "4437",
+        "NAME": "Vạn Khôi Tiên Đế",
+        "CHAPTER": [
+            {
+                "id": "1584558",
+                "name": "Chương 1 : Phường trong thiếu niên - Quyển 1 : Phường Thị Tán Tu"
+            }
+        ],
+        "TOTALCHAPTER": "335",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp",
+        "AUTHOR": "Mãn Chước Du",
+        "TRANS": "Hungprods",
+        "DESC": "Thi&ecirc;n Đạo suy sụp, đại kiếp nạn nổi l&ecirc;n,<br /><br />T&aacute;n tu thiếu ni&ecirc;n bước l&ecirc;n d&agrave;i đằng đẵng trường sinh Đại Đạo,<br /><br />Đại Đạo v&ocirc; t&igrave;nh, một m&igrave;nh đi một m&igrave;nh, sinh tử mịt mờ, nh&acirc;n t&acirc;m hiểm &aacute;c, Y&ecirc;u Ma giảo hoạt, th&iacute;ch giả sinh tồn,<br /><br />Đợi ta Linh Ấn một kết, ng&agrave;n vạn Kh&ocirc;i Lỗi, v&igrave; ta sử dụng, gi&uacute;p ta Vấn Đạo.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

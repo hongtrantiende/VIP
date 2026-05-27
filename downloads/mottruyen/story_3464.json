@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "3464",
+        "NAME": "Thiết Giáp Nổ Vang",
+        "CHAPTER": [
+            {
+                "id": "4347832",
+                "name": "001: Ban đầu"
+            }
+        ],
+        "TOTALCHAPTER": "423",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đô Thị, Quân Sự",
+        "AUTHOR": "Cương Thiết Oanh Minh",
+        "TRANS": "ViVu",
+        "DESC": "Đây là cái gì? Một cái có thể thăng cấp hệ thống?<br />\r\n<br />\r\n\tNhưng vì cái gì không có sách hướng dẫn?<br />\r\n<br />\r\n\tTự mình tìm tòi?<br />\r\n<br />\r\n\tNgươi chơi ta đi?<br />\r\n<br />\r\n\tMột cái chiếm được một bộ có thể thăng cấp quân sự hệ thống người trẻ tuổi, về sau đường nên đi như thế nào?<br />\r\n<br />\r\nP/s : Hơn 1k chương<br />\r\n<br />\r\nConverter : ~ViVu~",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

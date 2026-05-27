@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "12176",
+        "NAME": "Tận Cùng Vũ Trụ",
+        "CHAPTER": [
+            {
+                "id": "3967602",
+                "name": "Chương 1: Tiền"
+            }
+        ],
+        "TOTALCHAPTER": "23",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Khoa Huyễn",
+        "AUTHOR": "chungqc88",
+        "TRANS": "Nhiều Converter",
+        "DESC": "D",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

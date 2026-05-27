@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "1310",
+        "NAME": "Đại Đạo Chủ",
+        "CHAPTER": [
+            {
+                "id": "536082",
+                "name": "Chương 01: Thanh Thiền hiến thân"
+            }
+        ],
+        "TOTALCHAPTER": "3068",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Dị Giới",
+        "AUTHOR": "Phiêu Đãng Đích Vân",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Ho&agrave;n to&agrave;n hư cấu! Đ&atilde; xuy&ecirc;n việt rồi, c&aacute;i thế giới n&agrave;y qu&aacute; nguy hiểm, thi&ecirc;n thu tuấn kiệt, mu&ocirc;n đời anh h&agrave;o qu&aacute; nhiều, người mang dị bảo Triệu Thạc ch&acirc;n đạp địa, đỉnh đầu thi&ecirc;n, thuộc loại tr&acirc;u b&ograve; rầm rầm xuất hiện, nhấc l&ecirc;n một đường gi&oacute; tanh mưa m&aacute;u.<br /><br />Ti&ecirc;n Thi&ecirc;n B&iacute; Cảnh? Thượng Cổ Động Thi&ecirc;n? V&ocirc; Thượng Đạo Kh&iacute;? Đều l&agrave; ta , ai động giết ai!<br /><br />Ti&ecirc;n Tử? Thần Nữ? Y&ecirc;u nữ? Ma nữ? &Acirc;n, ta nh&igrave;n thấy, ta chinh phục!",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

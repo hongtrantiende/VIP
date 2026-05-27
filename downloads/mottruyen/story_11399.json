@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "11399",
+        "NAME": "Vô Thượng Vu Tổ",
+        "CHAPTER": [
+            {
+                "id": "3788509",
+                "name": "Chương :"
+            }
+        ],
+        "TOTALCHAPTER": "163",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp, Dị Giới",
+        "AUTHOR": "Kim Dạ Tử Chính",
+        "TRANS": "Tiêu Dao",
+        "DESC": "đến Bàn Cổ Truyền Thừa, lấy được chí bảo, tập vô thượng thần thông. Lại nhìn Tần Lĩnh tại thánh nhân giữa đường, coi vạn vật như con kiến hôi hồng lưu bên trong, chỉ huy Vu Tộc Chiến Thiên, Chiến Địa, thần cản giết thần, phật cản giết phật, coi như giết sạch Mãn Thiên Thần Phật lại có làm sao<br />\r\n<br />\r\n\tCoi như thánh nhân cản cũng Vô Sở Úy Cụ, một chữ \"Chiến!\"",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

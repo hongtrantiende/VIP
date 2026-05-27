@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "3040",
+        "NAME": "Chân Võ Phá Thiên",
+        "CHAPTER": [
+            {
+                "id": "1039195",
+                "name": "Chương 1: Thiên Long võ viện"
+            }
+        ],
+        "TOTALCHAPTER": "456",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo",
+        "AUTHOR": "Khai Ngoạn Tiếu",
+        "TRANS": "Kinta",
+        "DESC": "Đương kim thi&ecirc;n hạ, v&otilde; giả vi t&ocirc;n!<br /> <br /> V&otilde; giả, tung ho&agrave;nh ho&agrave;n vũ, Ph&aacute; To&aacute;i Hư Kh&ocirc;ng, kh&ocirc;ng b&aacute;i thi&ecirc;n địa, kh&ocirc;ng mộ ph&uacute; qu&yacute;, t&uacute;ng đế ho&agrave;ng cầm tương kh&ocirc;ng thể d&ugrave;ng chi khom lưng.<br /> <br /> Đ&acirc;y l&agrave; một c&aacute;i thiết cốt tranh tranh hảo nam nhi từng bước một từ bị người kỳ thị tiểu nh&acirc;n vật trở th&agrave;nh tung ho&agrave;nh thi&ecirc;n hạ v&otilde; đạo ch&iacute; th&aacute;nh chuyện xưa",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

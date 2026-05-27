@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "3472",
+        "NAME": "Vương Lão Thực Cuộc Sống Hạnh Phúc",
+        "CHAPTER": [
+            {
+                "id": "1203699",
+                "name": "Chương 1 : Vương Lão Thực đời này"
+            }
+        ],
+        "TOTALCHAPTER": "488",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đô Thị, Trùng Sinh",
+        "AUTHOR": "Cứu Hỏa Tượng",
+        "TRANS": "MrBladeOz",
+        "DESC": "Vương Lão Thực về tới quá khứ, mốt thuyết pháp là trọng sinh rồi.<br />\r\n<br />\r\nĐời trước thật vất vả tình đậu mở, Vương Lão Thực bi kịch rồi.<br />\r\n<br />\r\nLại tới qua, cũng nên tốt một chút, thật sự, Vương lão thực chính là nghĩ tốt một chút.<br />\r\n<br />\r\nDùng cái kia thế đến chuộc kiếp nầy hạnh phúc.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

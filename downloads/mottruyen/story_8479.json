@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "8479",
+        "NAME": "Hàn Ngu Chi Mộc Đầu",
+        "CHAPTER": [
+            {
+                "id": "2908417",
+                "name": "Chương 1-Beak Seung Joo"
+            }
+        ],
+        "TOTALCHAPTER": "8",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Ngôn Tình",
+        "AUTHOR": "DiepLanVy",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Một cái thiên tài yêu nghiệt người rơi vào hàn ngu thế giới, luôn cho nữ nhân là một động vật khó nuôi - 27 tuổi nam tử chưa có dấu một mảnh tình vắt vai... Vậy mà một chuyến công tác về sau trêu chọc vô số tâm nữ nhân tìm được chân mệnh của đời mình.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

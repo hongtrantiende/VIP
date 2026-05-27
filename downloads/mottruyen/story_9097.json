@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "9097",
+        "NAME": "Hùng Bá Chi Mạt Thế",
+        "CHAPTER": [
+            {
+                "id": "3091083",
+                "name": "Chương 1: Ngày trước tận thế"
+            }
+        ],
+        "TOTALCHAPTER": "5",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Kiếm Hiệp, Mạt Thế",
+        "AUTHOR": "baodaocuchuoi",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Trần Khánh Minh một học sinh lớp 11 mê truyện thần ma hệ thống và ảo ước mình giống như nhận vật chính đỉnh cao vũ trụ. Để chuẩn bị ước mơ đó cậu ta tự mình rèn một thanh kiếm sắc bén trong suốt 1 năm . Và rồi một ngày thế giới bỗng nhiên biến dị Chỉ trong nháy mắt thế giới bỗng nhiên biến thành ngày tận thế. Tang thi, yêu thú biến dị hoành hành thế giới, trong khi đó nhân loại rời vào cảnh đau khổ giãy dụa cần sinh. Trần Khánh Minh cùng quân đội của hắn trải qua vô số khó khăn cuối cùng thống nhất thế giới mở ra một tương lai mới......",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

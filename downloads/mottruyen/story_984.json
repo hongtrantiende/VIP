@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "984",
+        "NAME": "Yêu Nghiệt Đồng Cư",
+        "CHAPTER": [
+            {
+                "id": "257461",
+                "name": "Chương 01:  Kiêu ngạo, quá kiêu ngạo"
+            }
+        ],
+        "TOTALCHAPTER": "125",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo",
+        "AUTHOR": "Lãng Đồ",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Tạm dịch: Ở C&ugrave;ng Y&ecirc;u Nghiệt. Đ&acirc;y l&agrave; một phiến kh&ocirc;ng gian hư v&ocirc; mờ mịt, như v&ocirc; c&ugrave;ng v&ocirc; tận, kh&ocirc;ng thấy điểm kết th&uacute;c.<br /><br />\r\nCuồn  cuộn m&acirc;y đen như một con hung th&uacute; đang đi&ecirc;n cuồng, từng ngụm từng ngụm  m&agrave; nuốt trọn bầu trời, khắp nơi chỉ c&ograve;n lại v&ocirc; tận điện vũ cuồng x&agrave;.<br /><br />Dưới  m&acirc;y đen lại l&agrave; một c&acirc;y cột đ&aacute; dựng thẳng l&ecirc;n trời, b&ecirc;n tr&ecirc;n văng đầy  vết m&aacute;u, đỏ thẫm, như một c&acirc;y cột m&aacute;u nối thẳng l&ecirc;n trời, khiến người ta  nh&igrave;n thấy đều phải giật m&igrave;nh.<br /><br />Một nam tử to&agrave;n th&acirc;n trần trụi bị  một sợi x&iacute;ch sắt đầy gai nhọn chặt ở tr&ecirc;n cột đ&aacute;, từng c&aacute;i từng c&aacute;i lồi  ra, nhọn hoắt, phảng phất như răng m&atilde;nh th&uacute;, cắn s&acirc;u v&agrave;o huyết nhục của  nam tử.<br /><br />Nam tử kia t&oacute;c đen d&agrave;i che khuất mặt mũi, khiến cho hắn tr&ocirc;ng c&agrave;ng th&ecirc;m &acirc;m mai.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

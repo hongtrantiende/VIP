@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "7246",
+        "NAME": "Võng Du Xuyên  Tới Vũ Thần Đại Lục",
+        "CHAPTER": [
+            {
+                "id": "2576035",
+                "name": "Chương 1: Kết thúc và khởi đầu"
+            }
+        ],
+        "TOTALCHAPTER": "12",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo, Dị Giới, Xuyên Không",
+        "AUTHOR": "vuongdong",
+        "TRANS": "Nhiều Converter",
+        "DESC": "truyện sẽ ko đăng lên đây nữa.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

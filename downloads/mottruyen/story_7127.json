@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "7127",
+        "NAME": "Tiên Võ Thần Hoàng",
+        "CHAPTER": [
+            {
+                "id": "2541732",
+                "name": "Chương 1: Diệp Thần"
+            }
+        ],
+        "TOTALCHAPTER": "955",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo",
+        "AUTHOR": "Xích Kim",
+        "TRANS": "808",
+        "DESC": "Tay cầm linh khư, tư chất nghịch thiên!<br />\r\n<br />\r\nThiếu niên Diệp Thần, được truyền thừa vô thượng, tu tiên võ chi đạo, quét ngang hàng vạn hàng nghìn vị diện, thành tựu Tiên Võ Thần Hoàng!<br />\r\n<br />\r\n\tMỹ nữ tuyệt thế, đều ở trong sách, nghịch thiên pháp bảo, cái gì cần có đều có!",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

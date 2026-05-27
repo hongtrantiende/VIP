@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "4705",
+        "NAME": "Võ Linh bí quyết",
+        "CHAPTER": [
+            {
+                "id": "1674234",
+                "name": "Chương 1 : Cổ Đạo Du Hiệp"
+            }
+        ],
+        "TOTALCHAPTER": "285",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp, Huyền Ảo",
+        "AUTHOR": "Ấm áp Ngọc công tử",
+        "TRANS": "Huyễn Thần",
+        "DESC": "Ai nói võ giả không thể Tu Tiên ? Một ngày nào đó, Tu Tiên Giả đem ở ta dưới chân run rẩy, một ngày nào đó, ta muốn làm cho tất cả mọi người nhìn lên võ đạo, thời đại này không còn là Tu Tiên thời đại nữa, mà là võ giả thời đại .<br />\r\n<br />\r\n\tMột cái Tu Tiên thế gia phế vật công tử, bị gia tộc vô tình đuổi ra . Nhưng mà, lại ngoài ý muốn đụng với Cổ Đạo Du Hiệp Tiêu Lẫm, đi lên một ... khác cái con đường tu luyện . Luyện Thể, Nội Kính, hậu thiên, Tiên Thiên, Võ Lâm Nhân Sĩ cả đời mục tiêu, có thể là Tiên Thiên trên, lại có cái gì ? Võ Linh bí quyết — -- -- cái mới tinh Vũ Tu hệ thống, chậm rãi kéo ra màn che .",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

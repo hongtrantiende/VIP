@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "1295",
+        "NAME": "Kiếm Động Sơn Hà",
+        "CHAPTER": [
+            {
+                "id": "522316",
+                "name": "Chương 1: Thần bí hủ kiếm"
+            }
+        ],
+        "TOTALCHAPTER": "1588",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo",
+        "AUTHOR": "Khai Hoang",
+        "TRANS": "Dong Linh",
+        "DESC": "\"Ngươi là vạn người chưa chắc c&oacute; được một luyện kiếm t&agrave;i năng! Như theo ta tập kiếm, nhiều nhất một vạn năm sau, ngươi c&oacute; thể v&igrave; tuyệt đại Ti&ecirc;n Vương!\"<br /><br />Trang V&ocirc; Đạo v&igrave; kiếm lấy bổng lộc, lấy việc c&ocirc;ng l&agrave;m việc ri&ecirc;ng đầu cơ học qu&aacute;n vứt bỏ binh kh&iacute;. Nhưng gặp một c&aacute;i thần b&iacute; hủ kiếm quấn quanh người, kh&ocirc;ng cắt đu&ocirc;i được, đập kh&ocirc;ng n&aacute;t, cũng &eacute;p kh&ocirc;ng được, khiến người sởn cả t&oacute;c g&aacute;y. Nhưng m&agrave; mỗi đến ban đ&ecirc;m, Trang V&ocirc; Đạo đều sẽ mơ tới một vị dung mạo tuyệt thế thiếu nữ xinh đẹp.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

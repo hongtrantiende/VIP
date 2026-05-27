@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "6363",
+        "NAME": "Linh Giới",
+        "CHAPTER": [
+            {
+                "id": "2262322",
+                "name": "Chương 1 : Bán Đảo Địa Lao"
+            }
+        ],
+        "TOTALCHAPTER": "1",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo, Dị Giới",
+        "AUTHOR": "Tani",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Vạn Đồng Ma Thụ chấp chưởng rừng xanh<br />\r\n<br />\r\nSát Thực Trùng tung hoành hoang nguyên, sa mạc<br />\r\n<br />\r\nNguyệt Chi Yêu Vương nương nhờ ánh trăng, quét ngang đêm địa<br />\r\n<br />\r\nViêm Ma Lĩnh Chủ lực áp quàn hùng, đốt tận thiên địa<br />\r\n<br />\r\nHấp Huyết Qủy Vương,  Phệ Linh Yêu Hồn, Côn Bằng, Diễm Phượng. . .tất cả hợp thành một thế giới hồn thú rộng lớn.<br />\r\n<br />\r\nNhân vật chính là một thiếu niên trẻ tuổi, một con người nếm nhiều bi kịch, thân mang một con Thần Bí Chi Mâu tà ác trong người, liệu hắn có thể sống sót vấn đỉnh vương tọa?<br />\r\n<br />\r\nHắn bước đi trê n con đường cường giả, dẫm qua vô số máu tươi bước đi, liên tục hấp thu, thu phục hồn thú phấn đấu một ngày đứng trên đỉnh thế giới.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

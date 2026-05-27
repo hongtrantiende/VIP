@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "8588",
+        "NAME": "Tiêu Dao Tiểu Thần Y",
+        "CHAPTER": [
+            {
+                "id": "2945054",
+                "name": "Chương 1: : Ruộng ngô"
+            }
+        ],
+        "TOTALCHAPTER": "1093",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đô Thị",
+        "AUTHOR": "Giang hà hồ hải",
+        "TRANS": "๖ۣۜTiếu ๖ۣۜHồng ๖ۣۜTrần",
+        "DESC": "Tiểu nông dân loại vườn trái cây , mở nhà máy , một ngày thu đấu vàng , diệu thủ thần y , cao quan đạt quý quỳ cầu tới cửa. Hoa khôi của trường , ngự tỷ , nữ xí nghiệp gia. . . Đủ loại mỹ nữ rối rít hướng thôn hội tụ!",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "2918",
+        "NAME": "Long Huyết Đại Pháp Sư",
+        "CHAPTER": [
+            {
+                "id": "987951",
+                "name": "Chương 1: Xuyên qua rồi tên rác rưởi"
+            }
+        ],
+        "TOTALCHAPTER": "181",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo, Võng Du, Dị Giới",
+        "AUTHOR": "Xiếc",
+        "TRANS": "Kuden",
+        "DESC": "Không lên tiếng thì thôi, lên tiếng thì biểu hiện siêu quần<br />\r\n<br />\r\nLong Linh huyết thống, rồng gầm toàn tộc<br />\r\n<br />\r\nTay phải ma kiếm, phi thân như yến<br />\r\n<br />\r\nTay trái chấp pháp, tà dương kinh hồng<br />\r\n<br />\r\n############<br />\r\n<br />\r\nNguyên lực đẳng cấp: Khai Nguyên, giác khí, tụ nguyên, vạn linh, khí trùng, linh thủ, nguyên hộ, cuồng loạn, Thần vực, Thiên nhân",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

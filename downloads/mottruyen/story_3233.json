@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "3233",
+        "NAME": "Phong Lưu Cuồng Thiếu",
+        "CHAPTER": [
+            {
+                "id": "1125415",
+                "name": "Chương 1: Nụ hôn đầu tiên"
+            }
+        ],
+        "TOTALCHAPTER": "1414",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đô Thị",
+        "AUTHOR": "Nhất Tịch Ngư Tiều Bàn",
+        "TRANS": "Rie",
+        "DESC": "V&igrave; sao k&ecirc;u phong lưu? Khiến tiểu la lỵ si t&igrave;nh kh&oacute; qu&ecirc;n , khiến ngự nữ tỷ tỷ muốn ngừng m&agrave; kh&ocirc;ng được , khiến th&acirc;n gia ngh&igrave;n ức n&oacute;ng bỏng muội giấy ngh&igrave;n dặm t&igrave;m phu. V&igrave; sao k&ecirc;u cuồng? Ti&ecirc;u tiền như nước , ngợp trong v&agrave;ng son , ngang dọc thương trường , ti&ecirc;u dao tự tại , l&uacute;c n&agrave;y nhiệt huyết , lúc khác phong lưu , to&agrave;n bộ thời gian th&igrave; ph&oacute;ng đ&atilde;ng , đ&acirc;y l&agrave; phong lưu cuồng thiếu.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

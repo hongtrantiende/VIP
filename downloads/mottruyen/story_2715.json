@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "2715",
+        "NAME": "Tinh Nộ",
+        "CHAPTER": [
+            {
+                "id": "890332",
+                "name": "Chương 1: Quang Đích Ngân Tích"
+            }
+        ],
+        "TOTALCHAPTER": "30",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Khoa Huyễn",
+        "AUTHOR": "Thí Thí Dương",
+        "TRANS": "Xin Cái Tên",
+        "DESC": "&Aacute;c chiến tinh kh&ocirc;ng, liều mạng Dị H&igrave;nh, bất kể l&agrave; tu ch&acirc;n hay l&agrave; khoa học kỹ thuật, nh&acirc;n loại đều phải v&igrave; sinh tồn m&agrave; chiến.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

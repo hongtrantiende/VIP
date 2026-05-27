@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "12790",
+        "NAME": "Đế Chế Ngầm",
+        "CHAPTER": [
+            {
+                "id": "4127942",
+                "name": "Chương 1: Bắt đầu"
+            }
+        ],
+        "TOTALCHAPTER": "1",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đô Thị, Quân Sự",
+        "AUTHOR": "fantz007",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Chủ tịch Hàn - nhân vật đứng đầu trong thế giới ngầm cả nước. Sau khoảng thời gian êm ả, ông ta đã hợp pháp hóa công việc làm ăn của mình. Nhưng trong thế giới ngầm sóng sau dồn sóng trước, quyền lực Chủ tịch Hàn đang có trong tay là sự thèm khát của vô vàn kẻ khác. Một kế hoạch tinh vi được lập ra, Chủ tịch Hàn sẽ phải xử trí như thế nào đối với những kẻ đang muốn soán ngôi mình và phá hoại những gì mình đã gây dựng. Mời các bạn theo dõi...",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

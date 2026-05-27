@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "12747",
+        "NAME": "Xuân Thu Ta Là Vương",
+        "CHAPTER": [
+            {
+                "id": "4111568",
+                "name": "Chương 1 : Gia tộc hắc lịch sử"
+            }
+        ],
+        "TOTALCHAPTER": "140",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Lịch Sử",
+        "AUTHOR": "Thất Nguyệt Tân Phiên",
+        "TRANS": "Vân Anh",
+        "DESC": "Câu chuyện bối cảnh vì xuân thu thời kì cuối, Tam gia phân tấn trước. Chỉnh thể mà nói là nhất bộ xuyên việt qua Tranh Bá hậu cung Sảng Văn. Nhân vật chủ yếu tu thân Tề gia trị quốc bình thiên hạ từng cái thực hiện, nhìn xem rất thoải mái. Nhân vật chủ yếu hậu cung thành phần rồi, tỷ tỷ, Nữ Vu tình phụ, Tây Thi, vợ người ta đều thu, thậm chí còn làm hậu cung âm mưu.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

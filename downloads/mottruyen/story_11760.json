@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "11760",
+        "NAME": "Yêu Hoang Dạ",
+        "CHAPTER": [
+            {
+                "id": "3871645",
+                "name": "Chương 1: Thiên muốn tiêu diệt ta, ta liền diệt thiên!"
+            }
+        ],
+        "TOTALCHAPTER": "80",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo",
+        "AUTHOR": "Miêu Duệ",
+        "TRANS": "ThienVuDe",
+        "DESC": "Yêu Hoang Dạ, Thiên đình phá toái, người đó đứng đầu? Thượng cổ Tần Châu, đại kiếp nạn tái khởi! Hoang Cổ huyết mạch, nháy mắt muôn đời, tung kim phạt cổ, lại trở mình thiên địa! Mặc dù kinh qua luân hồi hàng tỉ năm, xem ta một kẻ rễ cỏ, như thế nào nghịch thiên cải mệnh rung chuyển thương khung. . . Vạch trần kinh thiên âm mưu, nhấc lên phong thần tính kế, lục thông thiên tiên lộ, một lần nữa tế luyện tam giới! Là thân, là tình, là chúng sinh, diễn dịch ra. . .",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

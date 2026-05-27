@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "5288",
+        "NAME": "Đô Thị Siêu Cấp Cường Thiếu",
+        "CHAPTER": [
+            {
+                "id": "1881671",
+                "name": "Chương 1: Rèn luyện hồng trần"
+            }
+        ],
+        "TOTALCHAPTER": "2246",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đô Thị, Dị Năng",
+        "AUTHOR": "Lưu Thủy Khúc Thương",
+        "TRANS": "Tiêu Dao",
+        "DESC": "Người mang tuyệt thế v&otilde; c&ocirc;ng, c&ograve;n biết thần kỳ y thuật, Diệp Hi&ecirc;n một đường hung hăng, b&aacute; đạo phi thường, t&ugrave;y &yacute; ngang dọc đ&ocirc; thị, leo l&ecirc;n vương giả đỉnh phong!<br /> <br /> Đầu th&aacute;ng 3 ta l&agrave;m nhak. do ta tinh đăng k&yacute; huyền cấp. đặt gạch trước ,. mong mọi người ủng hộ<br /> 1 tuần đ&acirc;u ta đăng 1 ng&agrave;y 50c c&aacute;c tuần tiếp theo l&agrave; 1 ng&agrave;y 20c<br /> Cầu vote v&agrave; thank",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

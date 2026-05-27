@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "11115",
+        "NAME": "Huyết Vực Vũ Đế",
+        "CHAPTER": [
+            {
+                "id": "3671272",
+                "name": "Chương 1: Sống lại Lâm Trần"
+            }
+        ],
+        "TOTALCHAPTER": "1",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo",
+        "AUTHOR": "Mộng Gian Ngự",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Mang theo nghịch thiên công pháp sống lại thế gian. Phụ phế thể thiếu niên thân, từ đó lên như diều gặp gió.<br />\r\n<br />\r\n\tLuận tu luyện, ngươi không kịp ta vạn phần một. Luận trang bức ngươi quả thực không chịu nổi một kích.<br />\r\n<br />\r\n\tNgươi nói ta ngạo nghễ vô biên, không coi ai ra gì. Nói ta cuồng trung vong ngã, không hiểu thu liễm? Xin lỗi, bởi vì ta là Vũ Đế!<br />\r\n<br />\r\n\t*************************************************************<br />\r\n<br />\r\n\tVõ giả, Vũ Cơ, Vũ Linh, Hồn Vũ, Địa Vũ, Thiên Vũ, Vương Giả, Huyền Tôn, Đại Đế.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

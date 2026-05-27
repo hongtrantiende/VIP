@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "9707",
+        "NAME": "Phần Thiên Đại Đế",
+        "CHAPTER": [
+            {
+                "id": "3273513",
+                "name": "Chương 1: Quỷ Dị Đại Thủ Ấn"
+            }
+        ],
+        "TOTALCHAPTER": "80",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo",
+        "AUTHOR": "Đôi Mộc Tử Nữ",
+        "TRANS": "Tấn Huy",
+        "DESC": "Lâm Vân, một công tử xảy ra vô số biến cố đã đến đỉnh chí tôn, vậy cuộc đời hắn sẽ như thế nào.<br />\r\nCảnh giới:<br />\r\nLuyện Nhục<br />\r\nLuyện Bì Mô<br />\r\nĐoán Cốt<br />\r\nLuyện Tạng<br />\r\nNguyên Phủ <br />\r\n...<br />\r\nTác phẩm convert đầu tay của mình ae ủng hộ!",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

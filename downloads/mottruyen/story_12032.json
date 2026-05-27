@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "12032",
+        "NAME": "Thương Thiên",
+        "CHAPTER": [
+            {
+                "id": "3943972",
+                "name": "Chương 1 : Nháo thị thiếu niên"
+            }
+        ],
+        "TOTALCHAPTER": "10",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp, Huyền Ảo",
+        "AUTHOR": "Tử Mộc Vạn Quân",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Hàng ngày khỏe mạnh, nam nhi nên không ngừng tự cường. Một ngọn bút không rõ ràng trong lịch sử, điểm phá bí mật của hư không, vượt qua bức tường chắn của võ hiệp cùng tiên hiệp, Thương Thiên vẽ ra bối cảnh tiên phàm quy mô chưa từng có, tận cùng sách là thiên địa mênh mông điểm điểm hồng trần.<br />\r\n<br />\r\nTay thợ săn nhỏ tuổi Lý Nhạc Phàm, nhân bị hãm hại mà sung quân, đồng thời do cừu hận mà bước chân vào đường giang hồ... Thiếu niên tóc trắng, vì thất tình nhập võ, trong 1 lần ở gần ranh giới của cái chết cảm ngộ được sinh mạng, sau tự mình sáng tạo ra khoáng thế kì điển \"Thất Tình Thiên Thư\".",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "3485",
+        "NAME": "Hùng Bá Thần Hoang",
+        "CHAPTER": [
+            {
+                "id": "1208467",
+                "name": "Chương 1 : Phế vật Trầm Phàm"
+            }
+        ],
+        "TOTALCHAPTER": "2471",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo",
+        "AUTHOR": "Đao Lạc",
+        "TRANS": "Tranhaongok",
+        "DESC": "H&ugrave;ng B&aacute; Thần Hoang Th&aacute;i Cổ Ph&aacute; Diệt, Thượng Cổ phục hưng, Hữu Thần M&ocirc;n tự hư v&ocirc; bay tới, Trấn &Aacute;p Thi&ecirc;n Địa, Cố Hữu Thần Hoang đại thế. .<br /><br />Phế vật Trầm Ph&agrave;m, được &Acirc;m Dương Thần Tiền, th&agrave;nh thi&ecirc;n t&agrave;i tuyệt thế. . . Từ đ&acirc;y, hắn chuy&ecirc;n đ&aacute;nh c&aacute;c loại thi&ecirc;n t&agrave;i trang bức, chuy&ecirc;n trị c&aacute;c loại ti&ecirc;n nữ thần cơ, hắn Chiến Cường giả, bại đại địch, ph&aacute; r&agrave;ng buộc, cải thi&ecirc;n mệnh, tại t&ocirc;ng m&ocirc;n L&acirc;m Lập, cường giả Như V&acirc;n, vạn tộc c&ugrave;ng nổi l&ecirc;n đại thời đại, từng bước đỉnh cao, thề phải H&ugrave;ng B&aacute; Thần Hoang!",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

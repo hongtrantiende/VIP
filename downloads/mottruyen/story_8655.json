@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "8655",
+        "NAME": "Hệ Thống Nguy Hiểm Nhất Hệ Mặt Trời",
+        "CHAPTER": [
+            {
+                "id": "2961320",
+                "name": "CHƯƠNG 1: Lăng Kiếm Vũ"
+            }
+        ],
+        "TOTALCHAPTER": "11",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo, Dị Năng, Võng Du, Dị Giới, Xuyên Không, Trùng Sinh",
+        "AUTHOR": "Aminxter",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Đang chạy thể dục buổi sáng bỗng nhiên trời đất điên đảo, Lăng Kiếm Vũ bị rơi vào vô tận bóng tối. Khi tỉnh dậy hắn bất ngờ nhận ra mình không còn ở địa cầu nữa. Vậy nơi đây là đâu? Tương lai hắn sẽ thế nào? Mọi người hãy cùng xem Hệ thống nguy hiểm nhất hệ mặt trời và chờ đợi đáp án",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

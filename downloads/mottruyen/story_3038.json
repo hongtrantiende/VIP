@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "3038",
+        "NAME": "Ám Hắc Vương Tọa",
+        "CHAPTER": [
+            {
+                "id": "1039135",
+                "name": "Chương 1"
+            }
+        ],
+        "TOTALCHAPTER": "9",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Khoa Huyễn",
+        "AUTHOR": "Bách Niên Hồng Trần",
+        "TRANS": "migen",
+        "DESC": "Khi linh hồn tho&aacute;t ly th&acirc;n thể, dục vọng gi&atilde;y khỏi g&ocirc;ng xiềng, sẽ kh&ocirc;ng c&oacute; về ph&iacute;a trước con đường. Con c&aacute; chỉ c&oacute; nhảy ra mặt nước, mới c&oacute; thể nh&igrave;n thấy s&ocirc;ng d&agrave;i chảy xu&ocirc;i phương hướng. . .\r\n&nbsp;\r\nỞ c&aacute;i kia xa x&ocirc;i trong truyền thuyết, hỗn độn sơ khai, thế gian chỉ c&oacute; một chỗ ho&agrave;ng thi&ecirc;n hậu thổ, b&ecirc;n tr&ecirc;n thai ngh&eacute;n ng&agrave;n tỉ sinh linh, v&ocirc; số sinh mệnh, chủng tộc mạnh mẽ. Quang c&ugrave;ng &aacute;m trong l&uacute;c đ&oacute;, sinh linh trải qua Vạn Thế Lu&acirc;n Hồi, thức tỉnh huyết mạch truyền thừa, t&aacute;i hiện viễn cổ truyền thuyết. . .\r\n&nbsp;\r\nNăm 2012, kh&ocirc;ng phải bệnh độc bạo ph&aacute;t Resident Evil, cũng kh&ocirc;ng phải Th&aacute;i Dương biến mất rơi v&agrave;o hắc &aacute;m, lại c&agrave;ng kh&ocirc;ng l&agrave; kho&aacute;ng thế hồng thủy nhấn ch&igrave;m Thế giới, m&agrave; l&agrave; v&ocirc; thượng gi&aacute;ng l&acirc;m!",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

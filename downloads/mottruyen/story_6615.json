@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "6615",
+        "NAME": "Thánh Long Hồn Đế",
+        "CHAPTER": [
+            {
+                "id": "2349910",
+                "name": "Chương 1: Võ hồn giác tỉnh"
+            }
+        ],
+        "TOTALCHAPTER": "799",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo",
+        "AUTHOR": "Thanh Ngân Thập Nhất Thiếu",
+        "TRANS": "hiennguyen",
+        "DESC": "Hồn động cửu tiêu, niệm khóa trời cao .<br />\r\n<br />\r\n\tTrảm diệt Chư Thiên Nhật Nguyệt, đoạn tẫn Ngân Hà Tinh Thần .<br />\r\n<br />\r\n\tTa muốn thế gian này, lại không có người mà ta chiến không thắng!<br />\r\n<br />\r\n\tLại xem Lâm Trần, khốn long thăng thiên, cá chép vượt Long Môn!",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "3891",
+        "NAME": "Võng Du Chi Đại Đạo Vô Hình",
+        "CHAPTER": [
+            {
+                "id": "1383852",
+                "name": "Chương 1:  bắt đầu trò chơi"
+            }
+        ],
+        "TOTALCHAPTER": "860",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Cạnh Kỹ",
+        "AUTHOR": "Trần Nhượng",
+        "TRANS": "trang4mat",
+        "DESC": "Một m&igrave;nh nhập hải đảo, b&aacute;i sư khổ luyện B&iacute;nh Hỏa ch&acirc;n kinh; đơn kiếm độ thi&ecirc;n kiếp, lực kh&aacute;ng L&ocirc;i Hỏa cười phục kim cua; dắt tay nhau x&ocirc;ng động phủ, đoạt bảo ph&aacute; trận dấu diếm Huyền Cơ; ẩn nấp xem hổ đấu, ch&iacute;nh t&agrave; kẽ hở xảo thủ bảo đỉnh. M&agrave; lại xem V&otilde;ng Du chi đại đạo v&ocirc; h&igrave;nh, Thủy l&atilde;o ba tr&ograve; chơi kiếp sống, kh&ocirc;ng đồng dạng như vậy kiếm ti&ecirc;n thế giới!<br /><br />\"Thủy Tam gia ta chỉ cần ngẫu m&agrave; d&acirc;m đ&atilde;ng, hết thảy tựu lập tức OK!\"Như Thủy đồng học ngữ.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

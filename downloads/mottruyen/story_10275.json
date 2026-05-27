@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "10275",
+        "NAME": "Hành Trình Trên Runeterra",
+        "CHAPTER": [
+            {
+                "id": "3442270",
+                "name": "Chương 1:Hệ thống Liên minh,Hành trình bắt đầu."
+            }
+        ],
+        "TOTALCHAPTER": "1",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Võng Du, Xuyên Không",
+        "AUTHOR": "Baovuong",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Ken,một học sinh số 1 thế giới. trong một lần vô tình bị một vết nứt không gian do Thần đại vũ trụ sơ ý tạo nên hút vào và xuyên đến Runeterra-Thế giới Liên minh huyền thoại.Để bồi thường,Thần đại vũ trụ tặng cho hắn một hệ thống.Hành trình của Ken bắt đầu.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

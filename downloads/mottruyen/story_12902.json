@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "12902",
+        "NAME": "Bá Đạo Thần Ký",
+        "CHAPTER": [
+            {
+                "id": "4166373",
+                "name": "Chương 1 : Không Đạo Vô Biên Quyết"
+            }
+        ],
+        "TOTALCHAPTER": "22",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp, Huyền Ảo",
+        "AUTHOR": "DaoThan",
+        "TRANS": "Nhiều Converter",
+        "DESC": "- Một thiếu niên xuất thân từ một gia tộc xuống dốc, hắn đến từ một tinh vực thấp hèn.<br />\r\nHắn có một trái tim cường giả, hắn có cho hắn một ý niệm bất diệt.<br />\r\nĐại đạo làm sao để vượt qua, vận mệnh có đổi được không, ý niệm của hắn có thực hiện được chăng.<br />\r\n- '' Ta không muốn nghịch thiên, nhưng... nếu thiên nghịch ta... ta tru thiên '' <br />\r\n=> Một thiếu niên diễn tả lại con đường thần ký, hắn để lại cho người đời truyền kỳ sử sách vĩnh hằng, hắn đạp phá... thường thức chi lộ<br />\r\n* cầu nguyệt phiếu<br />\r\n...",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

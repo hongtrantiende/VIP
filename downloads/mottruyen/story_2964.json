@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "2964",
+        "NAME": "Hồi Sinh 2003",
+        "CHAPTER": [
+            {
+                "id": "2957876",
+                "name": "Chương 1:  trở lại năm 2003"
+            }
+        ],
+        "TOTALCHAPTER": "816",
+        "IMG": "https://static.cdnno.com/poster/hoi-sinh-2003/150.jpg",
+        "CAT": "Đô Thị",
+        "AUTHOR": "Mộc Tử Tâm",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Một tác giả viết truyện online quay trở lại năm 2003, bắt đầu lại từ đầu, từng bước đi tới. Nắm trước được xu thế phát triển của truyện online, cùng kinh nghiệm mười năm sáng tác, hắn từng bước từng bước một đi tới đỉnh cao.<br />\r\n <br />\r\nTruyện viết theo chủ nghĩa hiện thực huyền ảo, đề cập tới nhiều góc tối của xã hội, có hắc thủ phía sau màn, có tình yêu chân chính, cũng có tình yêu toan tính, có sự day dứt, cũng có sự buông thả, có sự hời hợt cũng có sự chín chắn, tất cả đều xoay quanh nhân vật chính.",
+        "THUMB": "https://static.cdnno.com/poster/hoi-sinh-2003/150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

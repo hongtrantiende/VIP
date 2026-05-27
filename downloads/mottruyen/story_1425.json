@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "1425",
+        "NAME": "Linh Kiếm Tình Duyên",
+        "CHAPTER": [
+            {
+                "id": "589578",
+                "name": "Chương 1: Đói rét bên đường, thực là ít người đi"
+            }
+        ],
+        "TOTALCHAPTER": "494",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp",
+        "AUTHOR": "Thất Xích Cư Sĩ",
+        "TRANS": "Oll",
+        "DESC": "Tam giới kh&ocirc;ng an, giống như hỏa chỗ ở. Ch&uacute;ng khổ tr&agrave;n ngập, c&aacute;i g&igrave; đ&aacute;ng sợ sợ. Thường c&oacute; sinh l&atilde;o bệnh tử gian nan khổ cực, như thế chờ hỏa, rực nhưng kh&ocirc;ng th&ocirc;i... ...",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

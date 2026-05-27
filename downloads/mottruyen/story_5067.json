@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "5067",
+        "NAME": "Độ Linh Sư",
+        "CHAPTER": [
+            {
+                "id": "1784438",
+                "name": "Chương 1: Tô Ký nhang đèn giấy trát hàng"
+            }
+        ],
+        "TOTALCHAPTER": "9",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đô Thị, Linh Dị",
+        "AUTHOR": "Công Tử Thanh Nha Nha",
+        "TRANS": "Chym",
+        "DESC": "Tại nội thành một đầu ngõ sâu bên trong, có một nhà nho nhỏ không chút nào thu hút \"Tô Ký nhang đèn giấy trát hàng\" . Chủ cửa hàng là một tên tái nhợt thanh niên, ngày thường vị này Tô lão bản chỉ là bán một ít nhang đèn giấy trát, lại có rất ít người biết được hắn thực tế là một tên Độ Linh Sư, một đôi mắt bạc có thể nhìn thấy thiên đạo, nhìn thấu quỷ thần, mà chức trách của hắn chính là chuyên môn vận dẫn những cái kia bồi hồi tại nhân gian không chịu rời đi vong hồn...",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

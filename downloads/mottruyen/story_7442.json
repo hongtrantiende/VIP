@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "7442",
+        "NAME": "Đao Kiếm Thần Vực",
+        "CHAPTER": [
+            {
+                "id": "2633252",
+                "name": "Lời dẫn"
+            }
+        ],
+        "TOTALCHAPTER": "8",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đô Thị, Kiếm Hiệp, Huyền Ảo",
+        "AUTHOR": "Kawahara Reki",
+        "TRANS": "Crush",
+        "DESC": "Không thể thoát khỏi nơi này cho tới khi phá đảo game; game over đồng nghĩa với \"cái chết\" theo đúng nghĩa của nó. Không hề biết đến điều này, 10000 người đăng nhập vào \"Sword Art Online\", game thế hệ mới của loại game MMO, vén tấm màn của cuộc tử chiến. Một mình tham gia vào trò chơi, Kirito đã nhanh chóng chấp nhận «sự thật» này. Và ở trong thế giới này, bên trong một tòa tháp lơ lửng giữa không trung tên là \"Aincrad\", cậu ta chấp nhận là một người chơi solo. Với mục tiêu tiến đến tầng cao nhất để phá đảo game, Kirito tiếp tục mạo hiểm chiến đấu đơn độc. Vì một lời mời hấp dẫn từ nữ kiếm sĩ và đồng thời là một người dùng liễu kiếm điêu luyện, Asuna, cậu ta quyết định chiến đấu cùng cô ấy. Cuộc gặp gỡ đem đến một cơ hội có thể nói là định mệnh của Kirito.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

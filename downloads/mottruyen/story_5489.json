@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "5489",
+        "NAME": "Trận Sư",
+        "CHAPTER": [
+            {
+                "id": "1948324",
+                "name": "Chương 1: Tần Hiên"
+            }
+        ],
+        "TOTALCHAPTER": "3",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp",
+        "AUTHOR": "Lạc Vân Thiên",
+        "TRANS": "Ngô Văn Huỳnh VM",
+        "DESC": "Tần Hiên , Một cái năm hệ ngụy linh căn đệ tử , Dưới cơ duyên xảo hợp chiếm được một quyển trận thư , Vận mệnh của hắn từ nay về sau thay đổi . Nghịch thiên tu tiên , Kinh nghiệm tất cả đau khổ , Tần Hiên cuối cùng đứng ở điên phong , Ngạo thế thiên hạ .",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

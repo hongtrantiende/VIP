@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "6695",
+        "NAME": "Linh Tuyền Siêu Cấp",
+        "CHAPTER": [
+            {
+                "id": "2379303",
+                "name": "Chương: 10 mang đi nguyên liệu?."
+            }
+        ],
+        "TOTALCHAPTER": "510",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đô Thị, Khoa Huyễn",
+        "AUTHOR": "Thanh Mạc Sơn",
+        "TRANS": "Dantrongtu",
+        "DESC": "Ta kh&ocirc;ng phải một t&ecirc;n gian thương.<br /> <br /> Mục ti&ecirc;u của ta l&agrave;: Truy cầu cao hơn chất lượng khỏe mạnh sinh hoạt!<br /> <br /> Bởi v&igrave; một trận ngo&agrave;i &yacute; muốn, An Lương thu được một c&aacute;i trưởng th&agrave;nh h&igrave;nh kh&ocirc;ng gian, trong kh&ocirc;ng gian c&oacute; được một ngụm thần kỳ linh tuyền, từ đ&oacute; tận sức tại hữu cơ n&ocirc;ng nghiệp, ẩm thực nghề nghiệp c&ugrave;ng du lịch tổng hợp ph&aacute;t triển.<br /> <br /> An Lương kh&ocirc;ng phải một t&ecirc;n gian thương, thật sự!",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

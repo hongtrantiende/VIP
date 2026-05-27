@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "7898",
+        "NAME": "Fate/Overlap-Số Mạng Trọng Điệp",
+        "CHAPTER": [
+            {
+                "id": "2760612",
+                "name": "Chương : bắt đầu"
+            }
+        ],
+        "TOTALCHAPTER": "46",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đồng Nhân",
+        "AUTHOR": "Lục Thập Sát Na",
+        "TRANS": "yugi3112000",
+        "DESC": "Vận mệnh cùng vận mệnh trùng điệp. . . . . .<br />\r\n<br />\r\n\tBánh xe vận mệnh, ở không nên có  địa phương, xuất hiện thay đổi. . . . . .<br />\r\n<br />\r\n\tNhư vậy sau phát triển lại thì như thế nào?<br />\r\n<br />\r\n\tMột thần bí khó lường  Tohsaka Rin. . . . . .<br />\r\n<br />\r\n\tNàng từ đâu tới đây?<br />\r\n<br />\r\n\tTại sao xuất hiện?",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "11045",
+        "NAME": "Thập Ấn Tiên Vương",
+        "CHAPTER": [
+            {
+                "id": "3648195",
+                "name": "Chương 1: Đại mộng cửu thế"
+            }
+        ],
+        "TOTALCHAPTER": "907",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo, Dị Giới, Trùng Sinh",
+        "AUTHOR": "Hải Trần",
+        "TRANS": "808",
+        "DESC": "Vạn Linh đại lục, lấy thức tỉnh thập đại ấn luân cùng mười hai huyết mạch vi tôn. Long gia đệ tử Long Đằng thức tỉnh Thần Long huyết mạch, dục vọng nhất phi trùng thiên thời điểm, lại chịu khổ gia tộc người mổ ngực đoạn mạch, hãm vào sinh tử nguy cơ thời điểm. Long Đằng vậy mà một giấc chiêm bao cửu thế, này cửu thế bên trong hắn đều là thiên kiêu nhân vật, mà hắn trong mộng chỗ nhớ rõ cổ thuật, vậy mà đều chân thật tồn tại...",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "11560",
+        "NAME": "One Piece Chi Kiếm Đế",
+        "CHAPTER": [
+            {
+                "id": "3823336",
+                "name": "Chương 1: Sát kiếm chọn chủ"
+            }
+        ],
+        "TOTALCHAPTER": "379",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Xuyên Không, Đồng Nhân",
+        "AUTHOR": "Mộng Lý Khả Thành Thần",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Lúc Lâm Phong đi đến hải tặc thế giới thời điểm, vận mạng bàn quay bắt đầu chậm rãi chuyển động, thế giới tương lai chậm rãi chếch đi hướng một cái không biết phương hướng.<br />\r\n<br />\r\n\tLúc Ace gia nhập vào kiếm đế đoàn hải tặc, có hay không liền đã thoát đi trên đỉnh chiến tranh số mệnh?<br />\r\n<br />\r\n\tMarineford, Hải Quân bản bộ phía trước trên không quảng trường, Lâm Phong Ngự kiếm đứng tại giữa không trung, trong miệng khẽ quát một tiếng: \"Kiếm Chi Lĩnh Vực, Vô Hạn Giảo Sát!\"<br />\r\n<br />\r\n\tChỉ thấy đầy trời kiếm mang, che mất trên quảng trường hai mươi vạn tinh nhuệ Hải Quân.<br />\r\n<br />\r\n\tMà theo sát phía sau, từ trên trời giáng xuống vạn đạo sét, lòng đất hiện lên xuất vô tận liệt diễm, cũng cùng nhau thôn phệ hướng trên quảng trường",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

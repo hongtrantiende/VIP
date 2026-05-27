@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "8395",
+        "NAME": "Hướng Tiên",
+        "CHAPTER": [
+            {
+                "id": "2880420",
+                "name": "Chương 1: Lâm Hạo Thiên"
+            }
+        ],
+        "TOTALCHAPTER": "1",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp, Dị Giới",
+        "AUTHOR": "quockull",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Vì muốn tìm đáp án mà bước vào tu tiên lộ.<br />\r\nVì sống sót mà phải trở nên nham hiểm.<br />\r\nVì trường sinh mà vứt bỏ hồng trần.<br />\r\nTiên lộ tịch mịch duy ta không tịch mịch!",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "10248",
+        "NAME": "Huyễn Mộng",
+        "CHAPTER": [
+            {
+                "id": "3442044",
+                "name": "Chương 1 :  Từ Đâu Đến"
+            }
+        ],
+        "TOTALCHAPTER": "1",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp, Dị Giới",
+        "AUTHOR": "vinhquang0897",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Định Mệnh là thứ không thể nắm giử vậy nếu có kẻ nắm giử và quyết định được Định Mệnh sẻ là như thế nào...Hẩy theo truyền kì Mệnh Môn  đến Ẫn Thiên Đại Lục",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

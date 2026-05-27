@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "5247",
+        "NAME": "Bàn Long Chi Phong Hành",
+        "CHAPTER": [
+            {
+                "id": "1854885",
+                "name": "Chương 01: Trọng sinh Bàn Long"
+            }
+        ],
+        "TOTALCHAPTER": "20",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Xuyên Không, Đồng Nhân, Trùng Sinh",
+        "AUTHOR": "Hoa nhất cá giác lạc",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Bàn Long, bản trong lòng người một cái Vĩnh Hằng kinh điển, xem một cái trọng sinh tại Bàn Long thế giới người, mang ngươi đi vào trong nội tâm cái kia Vĩnh Hằng kinh điển.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

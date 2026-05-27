@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "11487",
+        "NAME": "Biến Thân Hành Trình",
+        "CHAPTER": [
+            {
+                "id": "3806845",
+                "name": "Chương 1: Mở màn"
+            }
+        ],
+        "TOTALCHAPTER": "1",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Dị Năng, Xuyên Không",
+        "AUTHOR": "Nhà Cao Tầng",
+        "TRANS": "ABSYY",
+        "DESC": "Một câu truyện xưa kể về một thanh niên bị mắc cổ do ăn bậy chuyển thế trọng sinh thành nữ nhân.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

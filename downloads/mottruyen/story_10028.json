@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "10028",
+        "NAME": "Điên Cuồng Thần Hào Chơi Khoa Kỹ",
+        "CHAPTER": [
+            {
+                "id": "3422913",
+                "name": "Chương 1: Lão tài xế lật xe"
+            }
+        ],
+        "TOTALCHAPTER": "1346",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đô Thị",
+        "AUTHOR": "Vi Tình Thành Si",
+        "TRANS": "๖ۜVân ๖ۜPhong™",
+        "DESC": "Lão tài xế lật xe, thế mà tung ra cái 'Thổ Hào Hệ Thống' .<br />\r\n<br />\r\n\tLàm nhiệm vụ, rút thưởng lớn, điên cuồng tán tài chơi khoa học kỹ thuật, không cẩn thận, Tô Thành liền thành Thần cấp thổ hào.<br />\r\n<br />\r\n\t\"Dùng tiền là kiện cực kỳ chuyện nhàm chán, thật, không lừa ngươi. \"<br />\r\n<br />\r\n\t\"Đời ta hối hận nhất sự tình, chính là kiếm lời quá nhiều tiền. \"<br />\r\n<br />\r\n\t\"Một khi xài không hết, còn phải gặp phải sét đánh. \"<br />\r\n<br />\r\n\t\"Thần mẹ nó phiền!\"",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

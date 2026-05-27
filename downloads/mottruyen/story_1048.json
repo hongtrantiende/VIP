@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "1048",
+        "NAME": "Quan Trường Vô Nhai",
+        "CHAPTER": [
+            {
+                "id": "406321",
+                "name": "Chương 1: Cầm quân nhân danh dự chứng đích lão nhân"
+            }
+        ],
+        "TOTALCHAPTER": "856",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đô Thị",
+        "AUTHOR": "Hạ Ngôn Băng",
+        "TRANS": "Nhiều Converter",
+        "DESC": "<br />Nh&acirc;n duy&ecirc;n tế hội, một người bị hiểu lầm l&agrave; th&acirc;n th&iacute;ch của quan lớn ch&iacute;nh phủ, một học sinh b&igrave;nh thường từ nay về sau bước ch&acirc;n v&agrave;o quan trường&hellip;\r\n&nbsp;\r\nĐường lớn gồ ghề, ai c&oacute; thể một bước l&ecirc;n m&acirc;y? Rắc rối kh&oacute; gỡ, ai c&oacute; thể trổ hết t&agrave;i năng? Dục vọng m&ecirc; hoặc, ai c&oacute; thể chống đỡ?<br /><br />Hoạn hải thương đồ, Triệu Trường Phong đến tột c&ugrave;ng đi tới bến bờ n&agrave;o?",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

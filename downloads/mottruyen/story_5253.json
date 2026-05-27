@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "5253",
+        "NAME": "Hỏa Ảnh Chi Băng Ngọc Hệ Thống",
+        "CHAPTER": [
+            {
+                "id": "1857931",
+                "name": "Chương 1: Hyuga Shunkan"
+            }
+        ],
+        "TOTALCHAPTER": "667",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đồng Nhân",
+        "AUTHOR": "Dương Tiểu A",
+        "TRANS": "Vân Phong",
+        "DESC": "Ta tên Hyuga Sát Na , xuyên việt tới rồi hỏa ảnh thế giới , ta liền buồn bực tại sao người khác đều mặc càng đến Uchiha Nhất Tộc vội vàng thăng cấp Sharigan , mà ta nhưng phải xuyên qua đến Bệnh Đục Thủy Tinh Thể Nhất Tộc đây. . . Cái gì? Còn muốn cùng Itachi thần làm đối thủ cạnh tranh? Không đủ nhân gia hành hạ a . . . Cái gì? Ngươi nói có một lần rút thưởng cơ hội? có thể là đánh vào đồ vật không góp sức làm sao bây giờ . . . Cái gì? Ngươi nói không liên quan có thể thăng cấp? Này còn tạm được . . .",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

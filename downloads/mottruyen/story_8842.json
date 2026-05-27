@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "8842",
+        "NAME": "Thánh Sư Trọng Sinh",
+        "CHAPTER": [
+            {
+                "id": "3025413",
+                "name": "Tự Chương: sướng chết? Ngươi biết"
+            }
+        ],
+        "TOTALCHAPTER": "111",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Khoa Huyễn",
+        "AUTHOR": "Hạ Gia Vương Triều",
+        "TRANS": "†๖ۣۜSóiღ†",
+        "DESC": "Trong lịch sử lớn nhất cặn bã Thánh Sư trọng sinh! Bắt đầu \"Cướp bóc\" hành trình<br />\r\n<br />\r\n\tĐoạt người khác bí tịch, đoạt người khác Thánh Khí, đoạt người khác kỳ ngộ, đoạt người khác khí vận, đoạt người khác Thánh Thú, đoạt người khác Thần Thú, còn đoạt người khác nữ nhân<br />\r\n<br />\r\n\tLiệu sự như thần, Dự Tri hết thảy, cực tốc trưởng thành, thuận buồm xuôi gió, trở lại thế giới đỉnh phong!",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

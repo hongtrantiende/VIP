@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "2789",
+        "NAME": "Thị Huyết Công Chúa",
+        "CHAPTER": [
+            {
+                "id": "920565",
+                "name": "Chương 1: Phong lưu Văn Lực - Quyển 1: công chúa sinh ra đời"
+            }
+        ],
+        "TOTALCHAPTER": "221",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo",
+        "AUTHOR": "Động Lực Hỏa Diễm",
+        "TRANS": "trang4mat",
+        "DESC": "Tr&ecirc;n đời n&agrave;y kh&ocirc;ng c&oacute; ngẫu nhi&ecirc;n; c&oacute; chỉ l&agrave; tất nhi&ecirc;n! Đem l&agrave;m một người c&ugrave;ng t&ecirc;n c&ograve;n lại tiếp x&uacute;c về sau, bọn hắn tầm đ&oacute; sẽ xuất hiện \"Duyến \", lập tức hai người vận mệnh biến sẽ ph&aacute;t sinh cải biến!",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

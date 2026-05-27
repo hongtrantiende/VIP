@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "3964",
+        "NAME": "Băng Cơ Ngọc Tiên",
+        "CHAPTER": [
+            {
+                "id": "1438889",
+                "name": "Chương 1: Tần gia thôn"
+            }
+        ],
+        "TOTALCHAPTER": "576",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp",
+        "AUTHOR": "Mộ Lưu Tô",
+        "TRANS": "Yến Virus",
+        "DESC": "Nữ tu sĩ v&igrave; c&aacute;i g&igrave; nhất định phải phụ thuộc nam tu sĩ mới c&oacute; thể sinh tồn?<br /><br />Mặc d&ugrave; vi nữ tu sĩ, cũng đem l&agrave;m tự t&ocirc;n tự m&igrave;nh cố gắng...<br /><br />C&ugrave;ng Thi&ecirc;n Đấu, c&ugrave;ng địa đấu, c&ugrave;ng người đấu! Tư chất b&igrave;nh thường th&igrave; như thế n&agrave;o, th&acirc;n l&agrave; nữ tử th&igrave; như thế n&agrave;o, ng&agrave;y kh&aacute;c vừa bay x&ocirc;ng l&ecirc;n trời, tự nhi&ecirc;n &aacute;p đảo thi&ecirc;n tr&ecirc;n đường, quan s&aacute;t h&agrave;ng tỉ thần ti&ecirc;n phủ phục tại dưới ch&acirc;n.<br /><br />Một c&aacute;i b&igrave;nh thường nh&agrave; n&ocirc;ng nữ nghịch thi&ecirc;n tu ti&ecirc;n chi đồ, thuần ch&aacute;nh nhất tu ti&ecirc;n, thần dị tu luyện, thần th&ocirc;ng, ph&aacute;p bảo, y&ecirc;u th&uacute; chờ c&aacute;c loại..., hết thảy cũng sẽ kh&ocirc;ng thiểu.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

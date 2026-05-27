@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "6925",
+        "NAME": "Bất Diệt Kiếm Tổ",
+        "CHAPTER": [
+            {
+                "id": "2458772",
+                "name": "Chương 1: Tiên nhân múa kiếm"
+            }
+        ],
+        "TOTALCHAPTER": "909",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo",
+        "AUTHOR": "Thanh Đăng Ánh Bạch Phát",
+        "TRANS": "808",
+        "DESC": "\"Lấy Cửu Kiếm l&agrave;m căn cơ, tập luyện v&ocirc; lượng kiếm ph&aacute;p, Cửu Kiếm quy nhất, c&oacute; thể th&agrave;nh tựu v&ocirc; thượng B&aacute; Kiếm!\" Tần H&agrave; mang theo ti&ecirc;n nh&acirc;n m&uacute;a kiếm đồ, h&agrave;ng l&acirc;m Vi&ecirc;m Dương thế giới...",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

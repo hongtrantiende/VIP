@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "4104",
+        "NAME": "Bắc Tống Phong Lưu",
+        "CHAPTER": [
+            {
+                "id": "1503559",
+                "name": "Chương 1: Người Say (1)"
+            }
+        ],
+        "TOTALCHAPTER": "699",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp, Lịch Sử",
+        "AUTHOR": "Nam Hi",
+        "TRANS": "ttv",
+        "DESC": "Lý Kỳ vốn chỉ muốn làm một tiểu đầu bếp an phận. Nhưng vàng tới nơi nào cũng sáng. Nam nhân quá xuất sắc, đôi khi không phải là một chuyện tốt.<br />\r\n<br />\r\n- Cao thái úy muốn ăn bò bít tết? Không thành vấn đề.<br />\r\n<br />\r\n- Thái thái sư muốn ăn lẩu? Bảo ông ta hẹn trước một tháng đi.<br />\r\n<br />\r\n- Lý Sư Sư muốn ăn salad trái cây? Ách...Ban ngày bận rồi, buổi tối hẵng tính.<br />\r\n<br />\r\n- Lý Thanh Chiếu muốn ăn bánh gato? Hỏi nàng ấy đã ly hôn với Triệu Minh Thành chưa?<br />\r\n<br />\r\n- Hoàng thượng muốn thưởng thức Kim Hán Toàn Tịch? Còn đang trong quá trình chuẩn bị, đợi mười năm sau hẵng nó",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

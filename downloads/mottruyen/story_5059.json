@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "5059",
+        "NAME": "Kiếm Đạo Tu Tiên",
+        "CHAPTER": [
+            {
+                "id": "1780443",
+                "name": "Chương 1:  Tề Vân Sơn Mạch"
+            }
+        ],
+        "TOTALCHAPTER": "71",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp",
+        "AUTHOR": "Man Di",
+        "TRANS": "๖ۣۣۜۜCô ๖ۣۣۜۜPhong",
+        "DESC": "Cá lớn nuốt cá bé là trong tu tiên giới là đầu tiên pháp tắc trụ cột, nó không hợp với người yếu, giết hoặc bị giết, đều chỉ vì được càng nhiều tài nguyên Tu Tiên.<br />\r\n<br />\r\nVạn năm tu luyện, rèn luyện mọi thứ,cũng khó khăn trốn thoát xiềng xích luân hồi. Chẳng lẽ hết thảy các thứ này không thể cách nào thay đổi sao? Cũng không phải, đây chẳng qua là ngươi thực lực không đủ!<br />\r\n<br />\r\nCầu nhận xét!!!!!",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

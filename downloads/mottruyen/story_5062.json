@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "5062",
+        "NAME": "Cửu Hoang Thiên Đế",
+        "CHAPTER": [
+            {
+                "id": "1810567",
+                "name": "Chương 01:  thần truyền thừa"
+            }
+        ],
+        "TOTALCHAPTER": "990",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp, Huyền Ảo",
+        "AUTHOR": "Thanh lục",
+        "TRANS": "Hon_don",
+        "DESC": "Thiên có Cửu Châu , Địa có Thập Quốc , chịu Cửu Châu Thập Quốc !<br />\r\n<br />\r\n\tĐây là một cái không muốn người biết niên đại cổ xưa .<br />\r\n<br />\r\n\tThật dài tuế nguyệt , dằng dặc ca .<br />\r\n<br />\r\n\tMột giọt khổ rượu , sách lịch sử một quyển;<br />\r\n<br />\r\n\tMột giọt nhiệt huyết , tấm bia to một tòa !<br />\r\n<br />\r\n\tXem thiên cổ yên ba mênh mông cuồn cuộn , nghe vạn dân muôn đời nhẹ hát ...<br />\r\n<br />\r\nCầu phiếu...",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

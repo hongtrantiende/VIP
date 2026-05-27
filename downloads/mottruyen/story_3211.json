@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "3211",
+        "NAME": "Thương Khung Kiếm Chủ",
+        "CHAPTER": [
+            {
+                "id": "1107774",
+                "name": "Chương 1: Long Xà"
+            }
+        ],
+        "TOTALCHAPTER": "270",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo, Dị Giới",
+        "AUTHOR": "Du Thiên Đích Miêu",
+        "TRANS": "Vndnttp, Thái Cổ Phách Kiếm",
+        "DESC": "Một thanh K&igrave;nh Thi&ecirc;n kiếm lớn, xẹt qua h&agrave;ng tỉ ng&ocirc;i sao, h&agrave;ng l&acirc;m tại tr&ecirc;n Thương Khung Đại Lục<br /> <br /> Trấn nhỏ thiếu ni&ecirc;n Khương L&acirc;m, thi&ecirc;n tư tr&aacute;c tuyệt, &yacute; ch&iacute; cứng cỏi , kh&ocirc;ng cam l&ograve;ng b&igrave;nh thường.<br /> <br /> Từ kiếm lớn b&ecirc;n trong đạt được Kiếm Đạo s&aacute;ch xưa --- &gt; bắt đầu, từng bước một lớn l&ecirc;n th&agrave;nh Thương Khung Kiếm Chủ , bước v&agrave;o c&aacute;i n&agrave;y vạn tộc san s&aacute;t, quần h&ugrave;ng tranh b&aacute; , rộng lớn mạnh mẽ thời đại mới.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

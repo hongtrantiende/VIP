@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "1214",
+        "NAME": "Vô Địch Thăng Cấp Vương",
+        "CHAPTER": [
+            {
+                "id": "470727",
+                "name": "Chương 1: Ngủ Một Giấc,Xuyên Việt"
+            }
+        ],
+        "TOTALCHAPTER": "2495",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo",
+        "AUTHOR": "Khả Ái Nội Nội",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Trạch nam L&acirc;m Phi xuy&ecirc;n qua đến Dị Giới Đại Lục. . . .<br /><br />Thực thần kỳ Đan Dược? L&atilde;o Tử b&igrave;nh thường l&agrave;m đồ ăn vặt ăn. . .<br /><br />Rất lợi hại V&otilde; C&ocirc;ng B&iacute; Tịch? L&atilde;o Tử c&oacute; thể đ&oacute;ng g&oacute;i b&aacute;n ra. . .<br /><br />C&aacute;i g&igrave;. . . Ngươi l&agrave; tuyệt thế Thi&ecirc;n T&agrave;i? L&atilde;o Tử đ&aacute;nh liền l&agrave; c&aacute;c ngươi n&agrave;y đ&oacute; Thi&ecirc;n T&agrave;i. . . .<br /><br />V&igrave; c&aacute;i g&igrave; ta sẽ như vậy lợi hại. . .<br /><br />Bởi v&igrave; ta c&oacute; 1. 0 bản gốc thăng cấp Hệ Thống.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

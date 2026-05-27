@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "4793",
+        "NAME": "Chúa  tể",
+        "CHAPTER": [
+            {
+                "id": "1693932",
+                "name": "Chương 1 : giới thiệu Tập 1"
+            }
+        ],
+        "TOTALCHAPTER": "20",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo, Xuyên Không, Đồng Nhân",
+        "AUTHOR": "MARUYAMA Kugane, MIYAMA Fugin",
+        "TRANS": "MidNight Owls Team",
+        "DESC": "Câu chuyện bắt đầu trong những giây phút cuối tại tại Yggdrasil, một game online đình đám sắp phải đóng cửa. Nhân vật chính Momonga của chúng ta quyết định ở lại đến tận những phút cuối cùng với trò chơi yêu thích của mình và chờ server down. Bất ngờ, server không shutdown và Momonga bị mắc kẹt trong nhân vật của chính mình và \"xuyên việt\" tới thế giới khác. “Overlord hùng mạnh” giờ đây lại tiếp tục đi khám phá thế giới mới và đối mặt với những thử thách mới.<br />\r\n<br />\r\nKhông gia đình, bạn bè, địa vị xã hội, người đàn ông bình thường này sẽ cố gắng hết sức để thống trị thế giới mới này.<br />\r\n<br />\r\n<br />\r\nOverlord(オーバーロード) là web novel Nhật Bản được viết bởi Maruyama Kugane, hiện đã viết lại dưới dạng Lightnovel, có So-bin minh họa. Tới nay đã có 9 volumne được xuất bản bởi Enterbrain và vẫn còn tiếp tục. Bản dịch dựa theo bản của nhóm Skythewood",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

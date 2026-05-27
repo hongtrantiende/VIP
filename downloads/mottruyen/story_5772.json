@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "5772",
+        "NAME": "Thiên tài tuần thú sư",
+        "CHAPTER": [
+            {
+                "id": "2068069",
+                "name": "Chương 1:  Cổ Thiên Bằng"
+            }
+        ],
+        "TOTALCHAPTER": "1423",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo, Dị Giới",
+        "AUTHOR": "Lưu tinh tử dạ",
+        "TRANS": "๖ۣۜTiếu ๖ۣۜHồng ๖ۣۜTrần",
+        "DESC": "Đây là một cái kỳ diệu thế giới , diễn ra bách tộc tranh bá tình hình , mà cố sự muốn từ tiểu gia tộc phế vật Cổ Thiên Bằng gặp phải một cái thần thánh Bạch Long bắt đầu<br />\r\n<br />\r\nCầu thanks, cầu vote tốt !",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

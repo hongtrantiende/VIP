@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "1802",
+        "NAME": "Mỹ Nữ Thánh Ước Thư",
+        "CHAPTER": [
+            {
+                "id": "741632",
+                "name": "Chương 2: Xích Long đế chi lung tay"
+            }
+        ],
+        "TOTALCHAPTER": "523",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Võng Du, Đồng Nhân",
+        "AUTHOR": "Thái Thanh Phẫn Đậu Hũ",
+        "TRANS": "Cicada",
+        "DESC": "Một người , một l&aacute; thư , v&ocirc; hạn thế giới , giảng thuật một thiếu ni&ecirc;n tại tất cả c&aacute;i thế giới th&aacute;nh ước mỹ nữ c&acirc;u chuyện , nơi đ&oacute; c&oacute; mỹ nữ chỗ đ&oacute; liền c&oacute; th&aacute;nh ước tồn tại , nhớ kỹ đ&acirc;y kh&ocirc;ng phải một tr&ograve; chơi , m&agrave; l&agrave; một hồi th&aacute;nh ước cuộc chiến !! Hết thảy cũng l&agrave; v&igrave; mỹ nữ m&agrave; chiến !!",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

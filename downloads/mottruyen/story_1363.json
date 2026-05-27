@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "1363",
+        "NAME": "Kiếm Thần Sống Lại",
+        "CHAPTER": [
+            {
+                "id": "569086",
+                "name": "Chương 1:  Hải Thiên"
+            }
+        ],
+        "TOTALCHAPTER": "70",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo, Dị Năng",
+        "AUTHOR": "Thiên Lôi Trư",
+        "TRANS": "Sữa",
+        "DESC": "Từng tung ho&agrave;nh Hồn Kiếm Đại Lục một thế hệ Kiếm Thần V&ocirc; Thi&ecirc;n, bị người đuổi giết dưới bất đắc dĩ tự bạo, nhưng lại kỳ t&iacute;ch sống lại tới rồi một thiếu ni&ecirc;n trong cơ thể<br /><br />Từ nay về sau, Hồn Kiếm Đại Lục thượng thiếu một c&aacute;i Kiếm Thần V&ocirc; Thi&ecirc;n, rồi lại hơn một c&aacute;i tuyệt thế cao thủ &mdash;&mdash; Hải Thi&ecirc;n!",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

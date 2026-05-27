@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "12112",
+        "NAME": "Vô Hạn Khủng Bố Chi Phá Toái",
+        "CHAPTER": [
+            {
+                "id": "3951569",
+                "name": "Chương 1: Sống lại? Xuyên qua?"
+            }
+        ],
+        "TOTALCHAPTER": "234",
+        "IMG": "https://static.cdnno.com/poster/vo-han-khung-bo-chi-pha-toai/150.jpg",
+        "CAT": "Khoa Huyễn, Xuyên Không, Đồng Nhân",
+        "AUTHOR": "Tòng Trạch Đáo Canh Trạch",
+        "TRANS": "VoVo",
+        "DESC": "Một buổi sáng sống lại Trần Vũ mở ra hắn đô thị nhân vật chính con đường nhưng là hắn cũng không có đắc ý thời gian bao lâu liền phát hiện dường như thế giới thật giống như có chút thay đổi. Nguyên lai là Vô Hạn Khủng Bố! Nếu là Vô Hạn Khủng Bố thế giới tại sao có thể không đi Chủ Thần không gian?",
+        "THUMB": "https://static.cdnno.com/poster/vo-han-khung-bo-chi-pha-toai/150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

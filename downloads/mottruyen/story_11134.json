@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "11134",
+        "NAME": "Trọng Sinh Tới Thế Giới Anime Thể Loại Game",
+        "CHAPTER": [
+            {
+                "id": "3681131",
+                "name": "Chương 1. Xuyên việt tới Log Horizon thế giới. Gặp Lux."
+            }
+        ],
+        "TOTALCHAPTER": "2",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Xuyên Không, Đồng Nhân",
+        "AUTHOR": "KingHarem",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Xuyên qua các thế giới anime thể loại game cùng với sự trợ giúp của tướng Lux cùng Garena hẹ thống, Shehara Shin sẽ làm những gì ở các thế giới đó... <br />\r\nCác thế giới sẽ qua. Log Horizon, Sword art online, Lol.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

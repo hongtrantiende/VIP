@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "4626",
+        "NAME": "cổ võ vô song",
+        "CHAPTER": [
+            {
+                "id": "1640999",
+                "name": "Chương 1: Binh Vương tuyệt cảnh"
+            }
+        ],
+        "TOTALCHAPTER": "60",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đô Thị, Huyền Ảo",
+        "AUTHOR": "Quyết Vô Ngã",
+        "TRANS": "vô danh",
+        "DESC": "một bên là thuần chất trung thành đền nợ nước lại bị hãm hại đã chết bất khuất vong hồn, một bên là cảnh ngộ bi thảm phế vật ngây thơ thiếu niên. Tang không hề tin tưởng, cổ võ tung hoành thời đại trung sừng sững mà đứng.<br />\r\n<br />\r\n\t\"Ta muốn hảo hảo còn sống, ta muốn cho những cái...kia đã từng xem thường người của ta hối hận, vĩnh viễn không là sự thất bại ấy...\"<br />\r\n<br />\r\n\tDũng trèo cao điểm nhiệt huyết thăng cấp, mà lại làm chuẩn uy như thế nào đứng ở chúng núi chi đỉnh bao quát chúng sinh",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

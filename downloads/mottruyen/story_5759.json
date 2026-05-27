@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "5759",
+        "NAME": "Hồng Hoang chi Thái Hạo lên trời lục",
+        "CHAPTER": [
+            {
+                "id": "2063235",
+                "name": "Chương 1:nhập Hồng Hoang minh thân phận"
+            }
+        ],
+        "TOTALCHAPTER": "90",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp",
+        "AUTHOR": "Nhiều Converter",
+        "TRANS": "nguyenvantrung",
+        "DESC": "Nhân vật chính Hoàng hạo chuyển kiếp trở thành Hồng Quân đạo đồng  và lấy đế đạo làm mục tiêu.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

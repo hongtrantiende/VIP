@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "9185",
+        "NAME": "Kiếm Đạo Tranh Phong",
+        "CHAPTER": [
+            {
+                "id": "3126646",
+                "name": "Chương 1: Sinh tử vô thường"
+            }
+        ],
+        "TOTALCHAPTER": "449",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp, Kiếm Hiệp, Trùng Sinh",
+        "AUTHOR": "Thủy Ba Bất Kinh",
+        "TRANS": "Daivuong",
+        "DESC": "Bạch Y Thần sách tái nhập Thần Châu, vấn đỉnh Thiên Hạ Thùy Dữ Tranh Phong<br />\r\n<br />\r\n* Cảnh giới:  Thông linh -> Thông hồn -> Thông Thần -> Địa Linh ->  Địa Hồn ->  Địa Thần",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

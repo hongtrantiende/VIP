@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "5610",
+        "NAME": "Đỉnh Phong nông dân cá thể",
+        "CHAPTER": [
+            {
+                "id": "1992859",
+                "name": "Chương 01: Tân sinh"
+            }
+        ],
+        "TOTALCHAPTER": "2454",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp, Đô Thị, Linh Dị",
+        "AUTHOR": "Cải trắng canh",
+        "TRANS": "BachHac",
+        "DESC": "Thu được Viễn Cổ truyền thừa, nông dân cá thể Dân từ nay về sau đi lên ánh mặt trời đại đạo .<br />\r\n<br />\r\n\tKhi thanh thuần thôn cô, xinh đẹp nữ nhân tổng tài, phong lưu lão bản nương, nóng bỏng nữ giáo sư, Yêu Mị mê người hoa khôi, cay cảnh hoa vờn quanh lúc, Vương Tiểu Phi mộng .<br />\r\n<br />\r\n\tTa chỉ là một nông dân cá thể Dân mà thôi, các ngươi không thể a . . .<br />\r\n<br />\r\n\tCho các ngươi nhìn Tiểu nông dân cường đại!",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

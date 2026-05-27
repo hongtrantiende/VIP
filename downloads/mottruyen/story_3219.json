@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "3219",
+        "NAME": "Ôn Dịch Thích Khách",
+        "CHAPTER": [
+            {
+                "id": "1114813",
+                "name": "Chương 1: Mạnh triệt tan thành mây khói"
+            }
+        ],
+        "TOTALCHAPTER": "297",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Võng Du",
+        "AUTHOR": "Lý Thiên Sầu",
+        "TRANS": "Tieuthienvu",
+        "DESC": "Tiết tháo cùng giới hạn thấp nhất là cái gì? Tham ăn không? Lão bản muốn hay không lấy trước của ta tiết tháo đổi mặt bát , giới hạn thấp nhất trước giữ lại Minh Thiên đổi lại Hồn Đồn?  Một cái không có chút nào tiết tháo cùng giới hạn thấp nhất thằng xui xẻo mạnh triệt tan thành mây khói câu chuyện .  ------  ps1: Quyển sách chân heo tinh khiết nhân vật phản diện , khẩu vị thiên về , không thích cẩn thận khi đi vào .  ps2: Bởi vì tác giả đếm số kém , cho nên trong quyển sách sẽ không xuất hiện số liệu danh sách , muốn nhìn rậm rạp chằng chịt số liệu đồng giày cẩn thận khi đi vào .  ps3: Hoan nghênh các loại đảng tùy ý phun .",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

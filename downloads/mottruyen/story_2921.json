@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "2921",
+        "NAME": "Đứng Đầu Giang Hồ",
+        "CHAPTER": [
+            {
+                "id": "988538",
+                "name": "Chương 01:  Trò chơi ID: ? ? ?"
+            }
+        ],
+        "TOTALCHAPTER": "45",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Võng Du",
+        "AUTHOR": "Tứ Thì Giang Vũ",
+        "TRANS": "Diệp Vô Thần",
+        "DESC": "\"Hôm nay vi sư nhiệm vụ là cái gì?\" Dư Phong online sau hướng tùy thân đồng tử hỏi.<br />\r\n<br />\r\n\"Sư phụ, có hai lựa chọn, đầu tiên là dùng 'Tiêu Dao' vi đề làm thơ một thủ, ban thưởng môn phái danh vọng 500.\" Đồng tử hồi đáp.<br />\r\n<br />\r\n\"Ách. . . Làm thơ như vậy không có khó khăn sự tình ngươi cảm thấy vi sư biết làm sao?\" Kỳ thật hắn chỉ là không biết mà thôi.<br />\r\n<br />\r\nĐồng tử nhẹ gật đầu, giống như có hiểu ra: \"Cái kia giúp ngài an bài thứ hai, ước chiến Linh Thứu cung Cung Chủ, lại để cho hắn trả lại Lục Dương Chưởng cùng Chiết Mai Thủ bí tịch, ban thưởng môn phái danh vọng 5000.\"<br />\r\n<br />\r\n\"Chờ một chút, vi sư đột nhiên thơ tính đại phát, ngươi đừng cản ta!\" Dư Phong vội vàng hô.<br />\r\n<br />\r\n. . .<br />\r\n<br />\r\nChưởng môn nhiệm vụ tuyên bố: lấy ghi 《 Tiêu Dao võ điển 》 cùng 《 Tiêu Dao tạp nghệ luận 》, dùng cung cấp môn nhân truyền thế trăm đời (thay).<br />\r\n<br />\r\n\". . . Đây là cái gì quỷ nhiệm vụ?\"",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

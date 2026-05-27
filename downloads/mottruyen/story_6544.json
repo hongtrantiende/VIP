@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "6544",
+        "NAME": "Trận Khống Càn Khôn",
+        "CHAPTER": [
+            {
+                "id": "2326839",
+                "name": "Chương 1:  Binh ảnh trận phù:"
+            }
+        ],
+        "TOTALCHAPTER": "716",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo",
+        "AUTHOR": "Đỗ Tiểu Hỉ",
+        "TRANS": "Vô Danh Khách",
+        "DESC": "Nhất niệm th&ocirc;ng vạn trận, vạn trận khống c&agrave;n kh&ocirc;n.<br /> <br /> Tần tộc thiếu ni&ecirc;n bị người độc hại, lại ngo&agrave;i &yacute; muốn thu hoạch được thần b&iacute; tr&aacute;i tim.<br /> <br /> Ngươi thi&ecirc;n ph&uacute; tốt? Nh&igrave;n ta Tụ Linh Trận.<br /> <br /> Tốc độ ngươi nhanh? Nh&igrave;n ta kh&ocirc;ng gian thuấn di.<br /> <br /> Ngươi ph&ograve;ng ngự cao? Tần phong sờ l&ecirc;n c&aacute;i cằm, đến c&ugrave;ng l&agrave; d&ugrave;ng ph&ograve;ng trận tiếp tục so ph&ograve;ng ngự đ&acirc;u, vẫn l&agrave; d&ugrave;ng s&aacute;t trận trực tiếp di&ecirc;̣t c&aacute;i n&agrave;y trang bức h&agrave;ng.<br /> <br /> Tần phong cảm gi&aacute;c thật kh&oacute; khăn.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

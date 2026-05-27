@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "8148",
+        "NAME": "Trọng Sinh Đại Học Năm Nhất",
+        "CHAPTER": [
+            {
+                "id": "2817581",
+                "name": "Tự Chương: Mộng tưởng và tiếc nuối"
+            }
+        ],
+        "TOTALCHAPTER": "7",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đô Thị, Trùng Sinh",
+        "AUTHOR": "Đan Bác Trứ",
+        "TRANS": "Anh Tuấn Vô Song",
+        "DESC": "Nếu như trở lại quá khứ, ngươi sẽ lựa chọn trải qua dạng gì nhân sinh?<br />\r\n<br />\r\n\tTrần Hiên không chút do dự nói: Dĩ nhiên trải qua xuất sắc nhân sinh!<br />\r\n<br />\r\n\tCái gì là xuất sắc nhân sinh? Hưởng thụ xa hoa, thanh danh hiển hách, nắm đại quyền, phú hào bảng đệ nhất...<br />\r\n<br />\r\n\tNhững thứ này phải có, nhưng đây là toàn bộ sao?<br />\r\n<br />\r\n\tTrần Hiên nói: Chó má, không tiếc nhân sinh, mới là xuất sắc nhân sinh! Có thân nhân làm bạn nhân sinh, mới là xuất sắc nhân sinh!<br />\r\n<br />\r\n\tTrở lại quá khứ, để cho bên cạnh mình người càng thể diện còn sống!<br />\r\n<br />\r\n\tChính mình qua thoải mái hơn, nhàn nhã, đầy đủ sung túc, vui vẻ...<br />\r\n<br />\r\n\tĐó chính là chân chính xuất sắc nhân sinh!",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

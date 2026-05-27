@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "8586",
+        "NAME": "Sát Long Đạo",
+        "CHAPTER": [
+            {
+                "id": "3010755",
+                "name": "Chương 1 : Thiên ngoại vẫn thạch..."
+            }
+        ],
+        "TOTALCHAPTER": "1",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo, Trùng Sinh",
+        "AUTHOR": "phongprovn",
+        "TRANS": "Nhiều Converter",
+        "DESC": "abcxyz...",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

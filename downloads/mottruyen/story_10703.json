@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "10703",
+        "NAME": "Ác Ôn Đại Cầu Tinh",
+        "CHAPTER": [
+            {
+                "id": "3629825",
+                "name": "Chương 1: Lâm Tinh"
+            }
+        ],
+        "TOTALCHAPTER": "73",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đô Thị, Cạnh Kỹ",
+        "AUTHOR": "Dịch Văn Tam Bất Tri",
+        "TRANS": "†๖ۣۜSóiღ†",
+        "DESC": "Đây là một thiên ác ôn dưỡng thành ký, Lâm Tinh cuối cùng trở thành liên minh nổi danh nhất ác ôn, Bill Lambiel cùng Bruce Bowen cảm thấy không bằng.<br />\r\n<br />\r\nSói xuất phẩm",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

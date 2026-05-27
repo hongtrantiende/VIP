@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "2462",
+        "NAME": "Vô Hạn Võ Trang",
+        "CHAPTER": [
+            {
+                "id": "809315",
+                "name": "Chương 1: Vận mệnh lựa chọn! - Quyển 1"
+            }
+        ],
+        "TOTALCHAPTER": "103",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Khoa Huyễn",
+        "AUTHOR": "Tiểu Khiêm Công Tử",
+        "TRANS": "Xin Cái Tên",
+        "DESC": "Một c&aacute;i phổ phổ th&ocirc;ng th&ocirc;ng thư viện nh&acirc;n vi&ecirc;n quản l&yacute;, ma xui quỷ khiến dưới đi&ecirc;n v&agrave;o v&ocirc; hạn &aacute;c mộng thế giới. Hơn nữa c&ograve;n bị xui xẻo ph&acirc;n phối đến phương t&acirc;y trận doanh! Một c&aacute;i người đ&ocirc;ng phương ở đ&acirc;y khổ sở gi&atilde;y dụa cầu sinh chuyện xưa. M&agrave; lại nh&igrave;n hắn l&agrave;m sao từng bước từng bước đứng vững g&oacute;t ch&acirc;n, vũ trang l&ecirc;n cường đại đo&agrave;n đội!<br /><br />T&iacute;n nhiệm c&ugrave;ng phản bội đan dệt, nhiệt huyết c&ugrave;ng cảm x&uacute;c m&atilde;nh liệt đi theo!<br /><br />Tử vong c&ugrave;ng sinh tồn khi&ecirc;u vũ, t&agrave;n khốc mang theo &ocirc;n nhu va chạm!",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

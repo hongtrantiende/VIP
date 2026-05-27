@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "5271",
+        "NAME": "Tiếu ngạo võ hiệp thế giới",
+        "CHAPTER": [
+            {
+                "id": "1866617",
+                "name": "Chương 1: Tung hoành giang hồ"
+            }
+        ],
+        "TOTALCHAPTER": "565",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Xuyên Không, Đồng Nhân",
+        "AUTHOR": "Dạ Thiên Tiếu",
+        "TRANS": "Thiên Tiếu",
+        "DESC": "Tiếu ngạo võ hiệp thế giới  thương phi xuyên qua đám võ hiệp thế giới vị diện, cứu lại đám bi kịch, thuận tiện tái cứu vớt một ít mỹ nữ",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

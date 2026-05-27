@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "7298",
+        "NAME": "Cô Gái Quang Minh",
+        "CHAPTER": [
+            {
+                "id": "2593864",
+                "name": "Chương 1 : Chuyện trước khi xuyên"
+            }
+        ],
+        "TOTALCHAPTER": "5",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Nữ Hiệp",
+        "AUTHOR": "khongcoem28898",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Lần đầu thử viết, thích thì dạo lướt qua",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

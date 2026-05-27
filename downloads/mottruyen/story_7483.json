@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "7483",
+        "NAME": "Bạn Gái Tôi Là Người Ngoài Hành Tinh",
+        "CHAPTER": [
+            {
+                "id": "2643767",
+                "name": "Chương 1 : Có hứng thú"
+            }
+        ],
+        "TOTALCHAPTER": "9",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Dị Năng, Dị Giới, Khoa Huyễn, Linh Dị",
+        "AUTHOR": "Lãng Vân",
+        "TRANS": "Nhiều Converter",
+        "DESC": "1 thanh niên Fa cuối cùng cũng tìm được gấu tuy nhiên gấu lại là người ngoài hành tinh? chuyện gì sẽ xảy ra?",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

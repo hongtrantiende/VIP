@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "7805",
+        "NAME": "Siêu Hài Hệ Thống",
+        "CHAPTER": [
+            {
+                "id": "2731352",
+                "name": "Đứng ở dưới đài 13 tên gọi chữ T ban học sinh, nhìn lão sư đứng ở tỷ võ đài kia tràn đ"
+            }
+        ],
+        "TOTALCHAPTER": "148",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo, Xuyên Không",
+        "AUTHOR": "Dạ Thiên Tiếu",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Hay Hài",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "11981",
+        "NAME": "Tiên Mệnh",
+        "CHAPTER": [
+            {
+                "id": "3927618",
+                "name": "Chương 1 : Triệu Phong"
+            }
+        ],
+        "TOTALCHAPTER": "6",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp, Huyền Ảo, Đồng Nhân",
+        "AUTHOR": "Phuongtd",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Viết như một bộ đồng nhân của Tiên Nghịch<br />\r\nChữ Tiên đeo vào Mệnh dù muốn cũng khó thoát<br />\r\nChữ Tình quấn vào Thân dù đắng cũng phải nuốt<br />\r\nCuối cùng nghịch Thiên khó  hay nghịch Mệnh mới khó ?",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

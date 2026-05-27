@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "5005",
+        "NAME": "Vi Thánh",
+        "CHAPTER": [
+            {
+                "id": "1761167",
+                "name": "Chương 1: Thế tử Ninh Trần"
+            }
+        ],
+        "TOTALCHAPTER": "63",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp",
+        "AUTHOR": "Thiển Mực Phương Hoa",
+        "TRANS": "Phong Tinh Nguyệt",
+        "DESC": "Tiên đồ vi thánh thán khinh cuồng<br />\r\n<br />\r\nHọa sinh tử, bút kình thương<br />\r\n<br />\r\nNhất tịch bạch y đạn chỉ tiên ma táng<br />\r\n<br />\r\nThiên kiêu lạc, mỹ nhân thương<br />\r\n<br />\r\nVạn cổ chi hậu độc ta hóa tang thương<br />\r\n<br />\r\n\tThư sinh Ninh Trần, bản vì thế tử lại bị nhận hết khi dễ, tài hoa mai một, một khi văn đạo, từ nay về sau bước lên thuộc về hắn con đường tu luyện, phù lục nhập đạo, họa bản thiên thành, hồng trần mê người nhãn, mênh mông tu tiên đồ.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

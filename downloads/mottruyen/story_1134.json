@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "1134",
+        "NAME": "Bảo Giám",
+        "CHAPTER": [
+            {
+                "id": "412416",
+                "name": "Chương 1:  Huynh Muội"
+            }
+        ],
+        "TOTALCHAPTER": "1217",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đô Thị",
+        "AUTHOR": "Đả Nhãn",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Một v&aacute;n an b&aacute;ch biến , kh&oacute; lường l&agrave; người t&acirc;m !<br />Tam gi&aacute;o cửu lưu , ngũ h&agrave;nh tam gia , đều ở Bảo Gi&aacute;m b&ecirc;n trong !<br /><br />S&aacute;ch mới c&ocirc;ng bố<br /><br />Chuẩn bị một th&aacute;ng , T&acirc;n Thư rốt cuộc muốn c&ugrave;ng Đại Gia gặp mặt &yacute; vị n&agrave;y lại muốn vượt qua nguy&ecirc;n một đ&aacute;m kh&ocirc;ng ngủ muộn rồi . Hi vọng c&aacute;c l&atilde;o bằng hữu c&oacute; thể trước sau như một ủng hộ đục lỗ, ủng hộ 《 Bảo Gi&aacute;m 》<br /><br />hy vọng c&oacute; thể c&oacute; c&agrave;ng nhiều mới Độc Giả , thấy đục lỗ T&acirc;n Thư s&aacute;ch mới c&ocirc;ng bố , phiếu đề cử ch&iacute;nh l&agrave; ủng hộ lớn nhất !<br /><br />C&aacute;m ơn c&aacute;c bằng hữu !",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

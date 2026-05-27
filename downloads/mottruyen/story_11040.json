@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "11040",
+        "NAME": "Võ Cực Tông Sư",
+        "CHAPTER": [
+            {
+                "id": "3645158",
+                "name": "Chương 1: Bình thường người bình thường"
+            }
+        ],
+        "TOTALCHAPTER": "1153",
+        "IMG": "https://static.cdnno.com/poster/vo-cuc-tong-su/150.jpg",
+        "CAT": "Đô Thị, Huyền Ảo",
+        "AUTHOR": "Phong Tiêu Thệ",
+        "TRANS": "hui235235",
+        "DESC": "Đương kim thời đại, Võ đạo quật khởi.<br />\n<br />\nMột cái bình dân, đạt được thần bí thuộc tính dị năng, bình thường tầm thường nhân sinh như vậy cải biến, hướng về vũ trụ mênh mông, từng bước một tiến lên.<br />\n<br />\n\"Ta gọi Phương Thành, ta đại khí không muộn thành!\"",
+        "THUMB": "https://static.cdnno.com/poster/vo-cuc-tong-su/150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

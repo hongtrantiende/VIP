@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "9921",
+        "NAME": "Lăng Thiên Thần Đế",
+        "CHAPTER": [
+            {
+                "id": "6385717",
+                "name": "Chương 01: Khương Thần"
+            }
+        ],
+        "TOTALCHAPTER": "1395",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp, Huyền Ảo",
+        "AUTHOR": "Quân Thiên Đế",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Thiếu niên Khương Thần, mang theo vô thượng huyền công hoành không xuất thế, từ đó đạp lên một đầu con đường nghịch thiên!<br />\r\n<br />\r\n\tKiếm trảm Thần vương đầu, chân đạp Ma hoàng thân thể; cười uống Thần hoàng máu, giận ăn Chân Long thịt; thiên chi kiêu tử, cái thế hào kiệt, vô địch truyền thuyết lại như thế nào ? Nếu dám nghịch ta, chỉ cần một kiếm, liền có thể dẹp yên hết thảy!<br />\r\n<br />\r\n\tTrời như thuận ta, trời nhưng hưng thịnh; trời như nghịch ta, ta để nó vong. . .",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

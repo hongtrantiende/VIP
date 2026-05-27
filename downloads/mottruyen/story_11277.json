@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "11277",
+        "NAME": "Cuộc Sống Dị Giới Của Kẻ Xui Xẻo",
+        "CHAPTER": [
+            {
+                "id": "3733761",
+                "name": "Chương 1:"
+            }
+        ],
+        "TOTALCHAPTER": "28",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo, Dị Giới, Xuyên Không",
+        "AUTHOR": "jonh.william2910@",
+        "TRANS": "Nhiều Converter",
+        "DESC": "\"Khi bị triệu hồi sang thế giới khác, bạn muốn được ban điều gì? Nếu là bạn bạnn muốn gì? Liệu có giống thanh niên bên dưới không?\"<br />\r\n.<br />\r\n.<br />\r\n.<br />\r\n\"Nếu được cho tôi số tiền đủ lớn để sống an nhàn cả đời.\"-Một thanh niên bị vướng vào cuộc triệu hồi của các anh hùng đưa ra ước muốn của mình. Thế nhưng liệu cuộc sống anh ta có thể bình yên như anh ta mong muốn??<br />\r\n3chương/tuần",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

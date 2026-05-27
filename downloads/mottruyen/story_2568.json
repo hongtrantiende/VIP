@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "2568",
+        "NAME": "Trọng Sinh Godzilla",
+        "CHAPTER": [
+            {
+                "id": "842312",
+                "name": "Chương 1:Trọng sinh Godzilla"
+            }
+        ],
+        "TOTALCHAPTER": "208",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Khoa Huyễn",
+        "AUTHOR": "Tinh Vẫn",
+        "TRANS": "Kuro",
+        "DESC": "Trọng sinh Godzilla, chưởng ph&aacute;ch cao chọc trời đại l&acirc;u, ch&acirc;n hủy thi&ecirc;n địch Tank, vượt qua đu&ocirc;i r&uacute;t ra lạn phi cơ trực thăng, một đầu đụng ng&atilde; lăn t&agrave;u chở m&aacute;y bay, cự v&ocirc; ph&aacute;ch thời đại phủ xuống, tai nạn bắt đầu!",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

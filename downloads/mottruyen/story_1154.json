@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "1154",
+        "NAME": "Tiên Võng",
+        "CHAPTER": [
+            {
+                "id": "423044",
+                "name": "Chương 1: Phế bỏ"
+            }
+        ],
+        "TOTALCHAPTER": "1348",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp, Võng Du",
+        "AUTHOR": "Hồng Thạc",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Xuất th&acirc;n từ tiểu tu ch&acirc;n gia tộc L&acirc;m Phong, linh căn bị Nguy&ecirc;n Anh kỳ cao thủ chấn vỡ, th&agrave;nh l&agrave;m một người tu ch&acirc;n phế nh&acirc;n. Nhưng bởi v&igrave; ph&uacute;c trạch th&acirc;m hậu, trong người tu th&agrave;nh Ti&ecirc;n V&otilde;ng!<br /><br />Ti&ecirc;n V&otilde;ng tuy thưa, nhưng kh&oacute; lọt. Người nhập v&otilde;ng ta, giết kh&ocirc;ng tha!<br /><br />Th&ocirc;n phệ y&ecirc;u đan, bắt nguy&ecirc;n thần, chiết xuất t&agrave;i liệu, th&ocirc;i ph&aacute;t linh dược, th&ocirc;i diễn ph&aacute;p trận, hư linh chi lực. . . Kh&ocirc;ng linh căn, tu Ti&ecirc;n V&otilde;ng, ng&agrave;n vạn đại đạo đều đến Thi&ecirc;n Đạo, đạp ph&aacute; tử kiếp th&agrave;nh Kim Ti&ecirc;n.<br /><br />Nguy&ecirc;n Anh kỳ, H&oacute;a Thần kỳ, Đại Thừa kỳ? Nguy&ecirc;n thần d&aacute;m can đảm xuất khiếu, chỉ c&oacute; một con đường chết!",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

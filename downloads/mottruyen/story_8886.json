@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "8886",
+        "NAME": "Legend Of L",
+        "CHAPTER": [
+            {
+                "id": "3029418",
+                "name": "Chương 0 : PROLOGUE"
+            }
+        ],
+        "TOTALCHAPTER": "8",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Dị Giới, Xuyên Không",
+        "AUTHOR": "vlkh017118",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Vì chán ghét cuộc sống vô vị của mình, Long - Một thanh niên du hành tới thế giới khác từ đó bắt đầu một cuộc phiêu lưu không hồi kết, điều gì sẽ đến với hắn phía trước hãy chờ xem",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

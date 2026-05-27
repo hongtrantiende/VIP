@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "8878",
+        "NAME": "Vạn Giới Cô Tịch",
+        "CHAPTER": [
+            {
+                "id": "3027409",
+                "name": "Chương 1 : Kết thúc và khởi đầu mới"
+            }
+        ],
+        "TOTALCHAPTER": "2",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo, Khoa Huyễn, Xuyên Không, Đồng Nhân, Trùng Sinh",
+        "AUTHOR": "damthungbautroi@",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Câu chuyện về một thanh niên Việt Nam cảm thấy lạc lỏng giữa cuộc đời và được chu du giữa các thế giới <br />\r\n( Truyện được xuyên qua vô vàn thế giới , có thế giới là truyện , là điện ảnh , có khi là cả 2 kết hợp nên đừng mong là câu chuyện sẽ dựa trên nguyên tác )",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

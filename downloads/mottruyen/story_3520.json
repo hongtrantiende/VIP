@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "3520",
+        "NAME": "Thần Võ Bá Chủ",
+        "CHAPTER": [
+            {
+                "id": "1220171",
+                "name": "Chương 1: Trần Mặc"
+            }
+        ],
+        "TOTALCHAPTER": "185",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo",
+        "AUTHOR": "Mang Mang Vân Hải",
+        "TRANS": "Mahoukuku",
+        "DESC": "Hiện đại đ&ocirc; thị b&ecirc;n trong một t&ecirc;n b&igrave;nh thường thiếu ni&ecirc;n, mang theo game kỹ năng ( Trang Bị Ph&acirc;n Giải Thuật ) đi tới một cái thế giới lạ lẫm.\r\n<br />Ở trong cái th&ecirc;́ giới này thực lực vi t&ocirc;n, nhỏ yếu người liền sinh tồn cũng th&agrave;nh vấn đề, cũng c&ograve;n tốt tự mang kỹ năng để hắn c&oacute; trở n&ecirc;n mạnh mẽ tư bản, kh&ocirc;ng hề bị người ức hiếp. Chỉ c&oacute; điều, điều n&agrave;y c&oacute; thể lực nhưng c&oacute; một ch&uacute;t thiếu hụt, để hắn liền ph&aacute;p bảo đều kh&ocirc;ng thể sử dụng...\r\n<br />&mdash;&mdash; được rồi, nếu ta d&ugrave;ng kh&ocirc;ng được ph&aacute;p bảo, vậy c&aacute;c ngươi cũng đều đừng d&ugrave;ng! Hết thảy cho ta ph&acirc;n giải hết đi! !\r\n<br />&mdash;&mdash; kh&ocirc;ng được! Hủy bảo cuồng ma đến rồi! Đại gia mau đưa ph&aacute;p bảo thu hồi đến a!",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

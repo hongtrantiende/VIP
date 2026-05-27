@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "10423",
+        "NAME": "Ta Hai Mươi Tuổi Vị Hôn Thê",
+        "CHAPTER": [
+            {
+                "id": "3488194",
+                "name": "Chương 1: Tức phụ nhi quăng ta"
+            }
+        ],
+        "TOTALCHAPTER": "10",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đô Thị, Ngôn Tình",
+        "AUTHOR": "Vi Tiếu Tương",
+        "TRANS": "Bos99zk",
+        "DESC": "Trần viêm mới từ nông thôn đến, liền nhìn đến vị hôn thê gặp được bính sứ, động thân mà ra, không nghĩ tới vị hôn thê trở mặt không biết người, đem hắn một mình ném ở nửa đường thượng hắc nham",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

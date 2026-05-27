@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "1485",
+        "NAME": "Tam Giới Độc Tôn",
+        "CHAPTER": [
+            {
+                "id": "620366",
+                "name": "Chương 01: Thiên Đế chi tử, chuyển thế trùng sinh"
+            }
+        ],
+        "TOTALCHAPTER": "2367",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo",
+        "AUTHOR": "Lê Thiên",
+        "TRANS": "trang4mat",
+        "DESC": "Thi&ecirc;n Đế chi tử Giang Trần, chuy&ecirc;̉n sinh tại một c&aacute;i bị người khi dễ chư hầu tr&ecirc;n người thiếu ni&ecirc;n, từ nay về sau đạp v&agrave;o một đoạn đuổi giết c&aacute;c loại thi&ecirc;n t&agrave;i nghịch tập chi lộ.<br /><br />Tại Giang Trần trước mặt, ai cũng kh&ocirc;ng c&oacute; tư c&aacute;ch tự xưng thi&ecirc;n t&agrave;i, bởi v&igrave;, kh&ocirc;ng c&oacute; c&oacute; người n&agrave;o thi&ecirc;n t&agrave;i, c&oacute; thể so s&aacute;nh Thi&ecirc;n Đế chi tử c&agrave;ng hiểu thi&ecirc;n.<br /><br />Thi&ecirc;n t&agrave;i? Kẻ thuận ta thi&ecirc;n, kẻ nghịch ta cặn b&atilde;!",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

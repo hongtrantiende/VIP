@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "5116",
+        "NAME": "Cực phẩm thiên tôn",
+        "CHAPTER": [
+            {
+                "id": "1813599",
+                "name": "Chương 01: Cực lạc Cung"
+            }
+        ],
+        "TOTALCHAPTER": "775",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo",
+        "AUTHOR": "Thứ Tư Mười",
+        "TRANS": "huyenanh",
+        "DESC": "Ai làm chủ tể, ai vì làm Thiên Tôn, phế vật thiếu niên thành tựu vô thượng bá nghiệp hư vô thể chất phế vật thiếu niên trong lúc vô tình trở thành cực lạc môn tốt nhất truyền nhân! Trải qua mười hai lượt thiên kiếp, nguyên thần tự bạo mà luyện thành thân thể bất tử.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

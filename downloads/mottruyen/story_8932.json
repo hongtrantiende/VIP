@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "8932",
+        "NAME": "Trọng Sinh Chi Thiên Điều",
+        "CHAPTER": [
+            {
+                "id": "3095321",
+                "name": "Chương 1: Ngã xuống Thiên Tôn"
+            }
+        ],
+        "TOTALCHAPTER": "30",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đô Thị, Dị Năng, Trùng Sinh",
+        "AUTHOR": "Quang Ám Chi Tâm",
+        "TRANS": "ܓܨღ๖ۣۜK❍£☞",
+        "DESC": "Dương Xu&acirc;n Tuyết Trắng bản:: Ti&ecirc;n giới chấp ph&aacute;p Thi&ecirc;n T&ocirc;n trở lại thời đại thiếu ni&ecirc;n, tr&ugrave;ng tu thi&ecirc;n điều, lại lập trật tự quy tắc, gi&uacute;p đỡ hạo nhi&ecirc;n ch&iacute;nh kh&iacute;, c&agrave;n qu&eacute;t thi&ecirc;n hạ t&agrave; kh&iacute;. Hoạch năng lực lao, luận ph&aacute;p c&oacute; thể độ người.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

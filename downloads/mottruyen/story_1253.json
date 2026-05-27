@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "1253",
+        "NAME": "HP Vết Cào Của Quạ",
+        "CHAPTER": [
+            {
+                "id": "497168",
+                "name": "Chương 1: Người loạn nhập phá giới mà đến"
+            }
+        ],
+        "TOTALCHAPTER": "216",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo",
+        "AUTHOR": "Lục Như Phàm Sinh",
+        "TRANS": "Тruy Hồn",
+        "DESC": "Vinh quang của Ravenclaw,<br /><br />Chỉ c&oacute; tr&iacute; tuệ mới l&agrave; của cải vĩnh viễn kh&ocirc;ng mất đi,<br /><br />Cuộc sống ở Hogwarts của &Aacute;o Thuật Sư.\r\n&nbsp;\r\nHP l&agrave; Harry Potter",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

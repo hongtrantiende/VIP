@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "1594",
+        "NAME": "Vô Lại Thánh Tôn",
+        "CHAPTER": [
+            {
+                "id": "652758",
+                "name": "Chương 1 : vô lại xuất thế"
+            }
+        ],
+        "TOTALCHAPTER": "335",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp, Đô Thị, Ngôn Tình",
+        "AUTHOR": "Thiên Hạ Duy Ngã",
+        "TRANS": "lequyen9494",
+        "DESC": "Ng&ocirc; Lai đứng ở đầu đường, kia u buồn &aacute;nh mắt, thổn thức hồ tra tử c&ugrave;ng với chủ so&aacute;i đến v&ocirc; địch &aacute;o gi&oacute; hấp dẫn &aacute;nh mắt của mọi người. Hắn lắc lắc kia thần hồ kỳ kỹ t&oacute;c d&agrave;i phi&ecirc;u dật, lộ ra kia tự cho l&agrave; rất m&ecirc; người nụ cười, hăng h&aacute;i thuyết: \"Mời gọi ca v&ocirc; lại. Thật ra th&igrave;, ca kh&ocirc;ng phải l&agrave; truyền thuyết. \" lời c&ograve;n chưa dứt, cục gạch bay ngang.\"Đ&aacute;nh",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

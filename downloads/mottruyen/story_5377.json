@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "5377",
+        "NAME": "Võ Luyện Thương Khung",
+        "CHAPTER": [
+            {
+                "id": "1904957",
+                "name": "Chương 01: Đạo Cực Thần Tu"
+            }
+        ],
+        "TOTALCHAPTER": "309",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo",
+        "AUTHOR": "Kiếm Khí",
+        "TRANS": "DarkHero",
+        "DESC": "Ca kh&ocirc;ng phải phế vật, ca chỉ l&agrave; kh&ocirc;ng giống b&igrave;nh thường m&agrave; th&ocirc;i.  Chớ chọc ca, ca lời răn thế nhưng l&agrave; \"Kẻ phạm ta xa đ&acirc;u cũng giết!\" Thế n&agrave;o, đủ điệu thấp a?  Ca gọi Tần Phong, nhớ kỹ, l&agrave; Tần trong Tần Phong , Phong trong Tần Phong.  Tới đi, để ca mang ngươi tiến v&agrave;o Thần Thức Huyền Cảnh b&ecirc;n trong, c&ugrave;ng một chỗ nhiệt huyết ph&aacute;ch tuyệt, c&ugrave;ng một chỗ tung ho&agrave;nh thi&ecirc;n hạ!",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

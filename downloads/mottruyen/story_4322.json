@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "4322",
+        "NAME": "Đại Gian Tặc",
+        "CHAPTER": [
+            {
+                "id": "1560466",
+                "name": "Chương 1: Hổ Sinh Ba Con Trai, Tất Có Một Bưu"
+            }
+        ],
+        "TOTALCHAPTER": "197",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Quân Sự, Lịch Sử",
+        "AUTHOR": "Khái Bính",
+        "TRANS": "dinhnhan",
+        "DESC": "Thương thi&ecirc;n v&ocirc; đạo, họa hại trọng sinh. . . .<br /> \"Cẩu ho&agrave;ng đế, ngươi rất sao muốn tạo phản?\" Cao triết liền c&acirc;n nhắc sẽ c&oacute; một ng&agrave;y, m&igrave;nh c&oacute; thể chỉ v&agrave;o Thi&ecirc;n Tử mũi hung tợn đến tr&ecirc;n một c&acirc;u như vậy, sau đ&oacute; ch&iacute;nh m&igrave;nh đ&aacute;nh rắm kh&ocirc;ng c&oacute;, đem Thi&ecirc;n Tử doạ niệu. . . . <br /> 1: Giới thiệu t&oacute;m tắt v&ocirc; năng, kh&ocirc;ng muốn nhổ nước bọt. <br /> 2: Đừng nghĩ chỉ d&ugrave;ng một trăm điểm tệ thu mua ta ki&ecirc;u ngạo linh hồn, nếu như thật sự nghĩ, xin mời nhiều hơn mười c&aacute;i. <br /> 3: Nh&oacute;m thư hữu 590/948/05, xin đợi đại gi&aacute;.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

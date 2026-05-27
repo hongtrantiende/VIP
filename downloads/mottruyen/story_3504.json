@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "3504",
+        "NAME": "Chí Tôn",
+        "CHAPTER": [
+            {
+                "id": "1215755",
+                "name": "Chương 1: Tinh Hải Long Cung Thương Lam Long, chí nguyện to lớn không cam lòng dưới tán cây (thượng"
+            }
+        ],
+        "TOTALCHAPTER": "55",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp, Kiếm Hiệp",
+        "AUTHOR": "Cổ Chân Nhân",
+        "TRANS": "chiencbpro",
+        "DESC": "- Trong thế giới thần kỳ này, người người có tiên năng, bồi dưỡng yêu thú, điều khiển yêu binh, đào tạo yêu thực, lấy leo lên cảnh giới đỉnh cao của ngự yêu sư làm quang vinh. <br />\r\n<br />\r\n- La lỵ hồ yêu khả ái, mĩ mi xà yêu yểu điệu, tiên tử liên yêu thanh thuần, muội muội thỏ yêu thiên nhiên ngốc, tỷ tỷ hạt yêu khêu gợi… Lần lượt điều giáo, chậm rãi bồi dưỡng. Thiên hạ đại thế, phong vân biến huyễn, tài tử giai nhân, định đỉnh thiên hạ... Phân chia cảnh giới: Tuấn Kiệt, Dị Sĩ, Kỳ Nhân, Hào Hùng, Quân, Hầu, Vương, Đế, Hoàng, Thánh.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

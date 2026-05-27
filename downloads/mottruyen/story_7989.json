@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "7989",
+        "NAME": "Nhất Kiếm Lăng Trần",
+        "CHAPTER": [
+            {
+                "id": "2781804",
+                "name": "Chương 1: Lâm Trần"
+            }
+        ],
+        "TOTALCHAPTER": "21",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp, Huyền Ảo",
+        "AUTHOR": "Thừa Phong Ngự Kiếm",
+        "TRANS": "Terumi Afuro",
+        "DESC": "\"Tiệt, lấy ra, Tiệt Sát ! Mà không phải là Tiệt giáo Tiệt!\"     <br />\r\n\"Đạo sinh nhất, nhất sanh nhị, nhị sanh tam, tam sinh vạn vật. Năng lượng thủ hằng, thế gian Vạn Vật làm một, làm đạo.\"     <br />\r\n\"Vạn Vật đều có khí vận, đều có Bản Nguyên, chặn   bản ý, vì kiếp, cướp giết, mỗi chặn một vật, lấy ra Bản Nguyên, là cách Đại Đạo một trong càng tiến một bước. Lúc Vạn Vật Quy Nhất lúc, liền có thể thành đạo.\"     <br />\r\nchặn hư thành đạo.    Chân Huyền thế giới đệ nhất cao thủ   Lâm Trần, vốn nên thối lui ra lịch sử võ đài, vậy mà, bởi vì một lần đoạt xá, một thanh Tiệt Kiếm, hắn sinh mệnh quỹ tích chợt đại biến, long trời lở đất !",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

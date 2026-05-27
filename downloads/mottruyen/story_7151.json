@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "7151",
+        "NAME": "Thần Hành Bách Biến",
+        "CHAPTER": [
+            {
+                "id": "2549529",
+                "name": "Chương 1:  Bước đầu luyện võ"
+            }
+        ],
+        "TOTALCHAPTER": "21",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo, Dị Năng, Trùng Sinh",
+        "AUTHOR": "giaphat17@",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Mời các bạn đến với tác phẩm đầu tay của mình.<br />\r\n<br />\r\nNhân vật chính chúng ta bá và đạo. Gái nhiều nhưng vẫn fa. Cưa đổ nhưng không cầm.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

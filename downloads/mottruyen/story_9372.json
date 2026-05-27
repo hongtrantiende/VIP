@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "9372",
+        "NAME": "U Ảnh Long Đế",
+        "CHAPTER": [
+            {
+                "id": "3168250",
+                "name": "Chương 1 độc sấm long đàm"
+            }
+        ],
+        "TOTALCHAPTER": "58",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo",
+        "AUTHOR": "Hắc lang nhi",
+        "TRANS": "Иⱨȃɳ☼Ɨȃɱ",
+        "DESC": "Dừng chân thiên hạ, bày mưu lập kế bên trong, quyết chiến ngàn dặm ở ngoài. Chia rẽ, oai phong một cõi đỉnh, hãy còn ngôn hoành qua nhảy mã. Ngàn năm phong vân một lần nữa phiên khởi, thần long lui tới, chư bá tranh cường, binh cách lẫn nhau hưng, triều dã khó an. Thiên đao hiện, đại đế về! Đao viết lịch sử, bình luận từ ta! Rét cắt da cắt thịt, thao đao chế cẩm",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

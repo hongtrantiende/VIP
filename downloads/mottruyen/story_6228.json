@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "6228",
+        "NAME": "Từ Vô Hạn Trở Về",
+        "CHAPTER": [
+            {
+                "id": "2217725",
+                "name": "Chương 1: Vô hạn trở về"
+            }
+        ],
+        "TOTALCHAPTER": "26",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đô Thị, Dị Năng",
+        "AUTHOR": "Thiên Nhân",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Từ vô hạn trở về thực tại,thân là cường giả, vẫn gặp sóng gió.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

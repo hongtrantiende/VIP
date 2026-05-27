@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "1301",
+        "NAME": "Bắc Tống Tiểu Đầu Bếp",
+        "CHAPTER": [
+            {
+                "id": "526759",
+                "name": "Chương 1: Hán tử say (thượng)"
+            }
+        ],
+        "TOTALCHAPTER": "710",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Lịch Sử",
+        "AUTHOR": "Nam Hi Bắc Khánh",
+        "TRANS": "Tiến Luân",
+        "DESC": "Th&acirc;n l&agrave; một nh&agrave; si&ecirc;u kh&aacute;ch sạn 5 sao Thủ Tịch bếp trưởng L&yacute; Kỳ, bởi v&igrave; uống một ch&uacute;t &iacute;t rượu, dĩ nhi&ecirc;n như kỳ t&iacute;ch xuy&ecirc;n việt đ&atilde; đến Bắc Tống những năm cuối.<br /><br />Đi tới nơi n&agrave;y c&aacute;i v&ocirc; th&acirc;n v&ocirc; cố thế giới xa lạ, bất đắc dĩ, L&yacute; Kỳ kh&ocirc;ng thể l&agrave;m g&igrave; kh&aacute;c hơn l&agrave; nhặt l&ecirc;n l&atilde;o bổn h&agrave;nh, ở Biện Kinh một nh&agrave; sắp b&aacute;n th&aacute;o tửu l&acirc;u bắt đầu l&agrave;m đầu bếp.<br /><br />L&yacute; Kỳ vốn chỉ muốn l&agrave;m một t&ecirc;n khi&ecirc;m tốn tiểu đầu bếp, nhưng là l&agrave; v&agrave;ng đến chỗ n&agrave;o đều sẽ ph&aacute;t s&aacute;ng, nam nh&acirc;n qu&aacute; xuất sắc, c&oacute; l&uacute;c thật kh&ocirc;ng chắc l&agrave; một chuyện tốt.<br /><br />\"Cao th&aacute;i &uacute;y muốn ăn b&ograve; b&iacute;t tết? - kh&ocirc;ng rảnh!\"<br /><br />\"Th&aacute;i Th&aacute;i Sư muốn ăn lẩu? - để hắn sớm một th&aacute;ng hẹn trước.\"<br /><br />\"L&yacute; Sư Sư muốn ăn tr&aacute;i c&acirc;y salad? - ạch. . . Ban ng&agrave;y kh&ocirc;ng rảnh, buổi tối lại đi.\"<br /><br />\"L&yacute; Thanh Chiếu muốn ăn linh chi sĩ b&aacute;nh gat&ocirc;? - hỏi n&agrave;ng c&ugrave;ng Triệu Minh Th&agrave;nh ly h&ocirc;n hay chưa?\"<br /><br />\"Ho&agrave;ng thượng muốn ăn Kim H&aacute;n to&agrave;n tịch? - c&ograve;n tại tr&ugrave; bị trong đ&oacute;, mười năm sau lại n&oacute;i.\"",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

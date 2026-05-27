@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "5034",
+        "NAME": "Giải Trí Tông Sư",
+        "CHAPTER": [
+            {
+                "id": "1767953",
+                "name": "Chương 1: Nợ nần cha"
+            }
+        ],
+        "TOTALCHAPTER": "310",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đô Thị, Xuyên Không",
+        "AUTHOR": "Tinh tinh quật khởi",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Tiểu ph&ograve;ng l&agrave;m việc vi điện ảnh đạo diễn, sống lại thế giới song song! Bước l&ecirc;n giải tr&iacute; h&agrave;nh tr&igrave;nh! <br /> ----",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

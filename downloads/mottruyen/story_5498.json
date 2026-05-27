@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "5498",
+        "NAME": "Siêu hiện đại ma pháp sử",
+        "CHAPTER": [
+            {
+                "id": "1950515",
+                "name": "Chương 1: Mộng cảnh chiếu vào hiện thực"
+            }
+        ],
+        "TOTALCHAPTER": "795",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Xuyên Không, Đồng Nhân",
+        "AUTHOR": "Ngô vi yêu nghiệt",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Để ch&uacute;ng ta bắt đầu thế giới lữ h&agrave;nh đi...<br /> <br /> Nơi đ&oacute; c&oacute; phong ph&uacute; bảo t&agrave;ng, khoa học kỹ thuật, v&otilde; c&ocirc;ng, ma ph&aacute;p, c&ugrave;ng kỳ ngộ.<br /> <br /> T&igrave;m tới ch&uacute;ng n&oacute;, bắt được ch&uacute;ng n&oacute;, đến x&acirc;y th&agrave;nh ch&iacute;nh m&igrave;nh trở th&agrave;nh vượt qua thời kh&ocirc;ng truyền kỳ con đường!<br /> <br /> Truyện đ&atilde; full- tầm 800c",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

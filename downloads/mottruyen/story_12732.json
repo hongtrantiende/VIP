@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "12732",
+        "NAME": "Đô Thị Hắc Khoa Học Kỹ Thuật",
+        "CHAPTER": [
+            {
+                "id": "4109052",
+                "name": "Chương 1: Không giả bộ như thường bị sét đánh"
+            }
+        ],
+        "TOTALCHAPTER": "300",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đô Thị, Khoa Huyễn",
+        "AUTHOR": "Chư Dương Hoàng Hôn",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Bởi vì một lần ngoài ý muốn Lý Vân thảm bị sét đánh nhưng không nghĩ lần này lại thay đổi Lý Vân vận mệnh để cho hắn đạt được từ điện ảnh trong tác phẩm lấy ra khoa học kỹ thuật năng lực.<br />\r\n<br />\r\n\tNhưng mà này lấy ra khoa học kỹ thuật lại không thế nào đứng đắn<br />\r\n<br />\r\n\t( quyển sách chủ cơ điều nhẹ nhỏm sung sướng khôi hài làm ruộng<br />\r\n<br />\r\n\t sách mới « sử thượng trâu nhất đạo trưởng »  đã phát noi theo dễ dàng đường đi.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

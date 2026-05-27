@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "7711",
+        "NAME": "Thất Giới Chi Huyền Thoại Khởi Đầu",
+        "CHAPTER": [
+            {
+                "id": "2711795",
+                "name": "Chương 1: Thế giới mới"
+            }
+        ],
+        "TOTALCHAPTER": "3",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Kiếm Hiệp, Xuyên Không, Đồng Nhân",
+        "AUTHOR": "XxXXxX",
+        "TRANS": "Xxxxxx",
+        "DESC": "Tỉnh dậy thấy mình đã xuyên không đến Thất Giới thế giới hãy xem Lâm Thiên từ đây bắt đầu tạo nên truyền kì của mình tại thế giới này.<br />\r\n<br />\r\nP/s: Truyện viết đầu tay nên mong mọi người góp ý cho.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

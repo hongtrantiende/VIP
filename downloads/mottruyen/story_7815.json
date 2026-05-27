@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "7815",
+        "NAME": "Thiên Nam Tàn Ký",
+        "CHAPTER": [
+            {
+                "id": "2734592",
+                "name": "Chương 1: Thiếu niên Trần Hy"
+            }
+        ],
+        "TOTALCHAPTER": "13",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp",
+        "AUTHOR": "hbyen",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Lĩnh Nam trải qua vô số tuế nguyệt, khi loạn lạc, lúc suy vong, lại có thời kỳ hòa bình. Đông A kỷ nguyên, Thiên Nam cương thổ vô cùng rộng lớn, tài nguyên tu chân vô số kể, thiên tài mọc lên như sao trời, Kỳ Lân hiện ra giữa Thanh Trì, Chân Phượng vẫy cánh ở Đông Các, thời kỳ thịnh thế trước nay chưa từng có. Hiềm đâu, phương Bắc đại loạn, Hoa Hạ thất thủ dưới trướng Vũ giả Thảo nguyên Vương Đình, gián tiếp uy hiếp Thiên Nam, ai có thể ngăn cơn sóng dữ này...",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "11553",
+        "NAME": "Ám Vô Dạ Online",
+        "CHAPTER": [
+            {
+                "id": "3822635",
+                "name": "Chương1:"
+            }
+        ],
+        "TOTALCHAPTER": "7",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Ngôn Tình, Võng Du",
+        "AUTHOR": "Nguyệt Quang Vật Ngữ",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Muốn bk thì đọc đi",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

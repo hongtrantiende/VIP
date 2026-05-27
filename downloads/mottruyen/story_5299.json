@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "5299",
+        "NAME": "Tiên Ma Quyết",
+        "CHAPTER": [
+            {
+                "id": "1873938",
+                "name": "Chương 1: Ngoài trấn khách tới"
+            }
+        ],
+        "TOTALCHAPTER": "279",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp",
+        "AUTHOR": "Tâm Mộng Sở Hướng",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Thành tiên, thành ma, một ý niệm.<br />\r\n<br />\r\nTiên Ma chi lộ, ai chủ chìm nổi.<br />\r\n<br />\r\nMột tràng tai nạn lại để cho một vị thiếu niên từ nay về sau bước chân vào Tiên Ma phân tranh bên trong, một hồi tìm kiếm chân tướng lữ trình lại để cho nhìn hắn lấy hết chuyện thiên hạ, vì tình nghĩa hắn lên trời xuống đất, vì an bình hắn từ nay về sau lại bước vào lịch sử vòng xoáy.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "6399",
+        "NAME": "Siêu Cấp Chiến Binh",
+        "CHAPTER": [
+            {
+                "id": "2299591",
+                "name": "Chương 1: ( thần cấp Dị Năng Giả trọng sinh )"
+            }
+        ],
+        "TOTALCHAPTER": "2554",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đô Thị, Kiếm Hiệp, Dị Năng, Khoa Huyễn",
+        "AUTHOR": "Cẩn Thận Tỉ Mỉ",
+        "TRANS": "Tiên Hạc",
+        "DESC": "Mạt thế \"Thần cấp\" dị năng cường giả, trọng sinh đô thị, linh hồn bám vào bộ đội đặc chủng Diệp Thiên Thần trên người .<br />\r\n<br />\r\n\tBị người khác từ hôn khổ bức ? NO!<br />\r\n<br />\r\n\tBị gia tộc vứt bỏ, cho phụ mẫu mang đến sỉ nhục ? NO!<br />\r\n<br />\r\n\tVì sao kêu phong lưu ? Khiến hoa khôi si tình khó quên, khiến nữ minh tinh muốn ngừng mà không được, khiến thân gia trăm tỉ khuynh thế mỹ nữ mong nhớ ngày đêm; vì sao kêu cuồng ? Quyền đả cao giàu đẹp trai, chân đạp quan nhị đại, chỉ nhận lý do, không nhận người!<br />\r\n<br />\r\n\tPhế vật ?<br />\r\n<br />\r\n\tTa muốn tất cả mọi người biết, ta Diệp Thiên Thần không phải phế vật, ta là siêu cấp Chiến Binh!",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

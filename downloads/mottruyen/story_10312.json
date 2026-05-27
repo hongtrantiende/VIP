@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "10312",
+        "NAME": "Giang Hồ",
+        "CHAPTER": [
+            {
+                "id": "7204914",
+                "name": "Chương 1: Tuổi thơ ấm áp"
+            }
+        ],
+        "TOTALCHAPTER": "97",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Ngôn Tình, Dị Giới",
+        "AUTHOR": "thatduct45@",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Một câu chuyện kể về kiếp sống bụi đời.<br />\r\n<br />\r\nNếu bạn chán thể loại tu tiên, đã nhảm về cảnh ảo tưởng sức mạnh muốn đọc một câu chuyện chân thực mà sinh động. Hãy đến với \"giang hồ\". Một câu chuyện kể về cuộc sống bụi đời việt nam. Nó là một câu chuyện thiên về nhiều nỗi buồn, nhiều sự tiếc nuối cả máu và nước mắt...<br />\r\n   Nói chung đây là một câu chuyện về tình yêu thời con nít với một cô bé thiên thần đã theo anh suốt hành trình dài cuộc sống.<br />\r\n  Là câu chuyện thời sinh viên ấm áp vui vẻ, lắm chuyện với nhiều niềm vui!<br />\r\n   Là câu chuyện về tiền , giang hồ , súng , chân dài và thủ đoạn....",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

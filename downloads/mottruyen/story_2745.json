@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "2745",
+        "NAME": "Thiên Tài Thần Y",
+        "CHAPTER": [
+            {
+                "id": "901140",
+                "name": "Chương 2 \t\tLôi Hỏa thần châm"
+            }
+        ],
+        "TOTALCHAPTER": "309",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đô Thị",
+        "AUTHOR": "Chương Vô Kỵ",
+        "TRANS": "Tanikaze",
+        "DESC": "Xuất th&acirc;n ph&iacute;a nam Phương Nghị mang theo một th&acirc;n y thuật bước v&agrave;o Y&ecirc;n kinh,<br /><br />Ở c&aacute;c loại ph&uacute; h&agrave;o quan th&acirc;n &acirc;m mưu quỷ kế b&ecirc;n trong xoay trái xoay phải,<br /><br />Ở đ&ocirc; thị lang bạt trong l&uacute;c kết bạn c&aacute;c loại hồng nhan tri kỷ, sinh tử huynh đệ,<br /><br />Từ đ&acirc;y ăn sung mặc sướng, t&agrave;i quyền gi&aacute;p thi&ecirc;n hạ, th&agrave;nh tựu một đời thần y, danh dương tứ phương",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

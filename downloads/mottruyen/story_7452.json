@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "7452",
+        "NAME": "Đại Tang Thất",
+        "CHAPTER": [
+            {
+                "id": "2636638",
+                "name": "Chương 1: Ta là Cương Thi cũng là Xuyên Việt Giả."
+            }
+        ],
+        "TOTALCHAPTER": "325",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Khoa Huyễn",
+        "AUTHOR": "Tinh Hùng Dũng Nghi",
+        "TRANS": "♚๖ۣۜKabigon♌♔",
+        "DESC": "Thuộc về ta v&agrave; ngươi Nhất Phương Thế Giới, ngươi nguyện &yacute; chung ta nh&igrave;n trộm một hai sao?<br /> p/s: truyện c&oacute; hay c&oacute; dở , nếu cv kh&ocirc;ng đọc được hoặc lỗi kh&ocirc;ng edit c&oacute; thể th&ocirc;ng b&aacute;o đừng troll vote",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

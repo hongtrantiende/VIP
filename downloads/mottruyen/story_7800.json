@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "7800",
+        "NAME": "Vệ Thần",
+        "CHAPTER": [
+            {
+                "id": "2734591",
+                "name": "Chương 1: Thiên Tài Và Phế Vật"
+            }
+        ],
+        "TOTALCHAPTER": "1",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo, Dị Giới, Xuyên Không",
+        "AUTHOR": "thanbinamnhan",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Linh Vũ đại lục rộng lớn mênh mông, ở đây không có cái gì quốc gia mà chỉ có những tòa thành khổng lồ. Mỗi một tòa thành là một cái tiểu vương quốc, đứng đầu là Vệ Thần. Vệ Thần, Vệ trong từ Bảo Vệ, Vệ Thần ở đây mang ý nghĩa vị thần bảo vệ. <br />\r\n<br />\r\nVệ Thần là người được mọi người tín nhiệm bầu ra, không chỉ vậy mà còn là người mạnh nhất trong đại thành đó. Mỗi một tòa thành đều có diện tích vô cùng lớn, đem ra so sánh còn lớn hơn Hà Nội một chút.<br />\r\n<br />\r\nVũ Phong xuyên việt mà đến Linh Vũ đại lúc, nguyên do bản thân xuyên việt là gì hắn cũng không rõ, chỉ rõ khi mình nhận thức được toàn bộ sự việc thì đã là ở một thế giới khác, là một đứa trẻ tám tuổi, là con trai của Vệ Thần Đệ Lục. <br />\r\n<br />\r\n\"Tiểu tử, nếu ngươi muốn ta cho ngươi mượn sức mạnh của ta thì ngươi phải mang đến đây một bộ Thánh Thư đủ để ta thỏa mãn\"<br />\r\n<br />\r\n\"Cái gì? Ma thú mà cũng đọc Thánh Thư ư??\"",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

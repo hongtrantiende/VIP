@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "3308",
+        "NAME": "Ám Dạ Du Hiệp",
+        "CHAPTER": [
+            {
+                "id": "1153445",
+                "name": "Chương 1: Du hiệp sơ cấp (thượng)"
+            }
+        ],
+        "TOTALCHAPTER": "735",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Võng Du",
+        "AUTHOR": "Thâm Lam Gia Tử Trấp",
+        "TRANS": "tieuthienvu, Nnkhanh115",
+        "DESC": "Truyền kỳ player Marvin xuy&ecirc;n qua đến đ&ecirc;m trước đại tai biến.<br /> <br /> Đ&acirc;y l&agrave; cuối kỷ thứ tư,<br /> <br /> C&aacute;c thần li&ecirc;n thủ ph&aacute; hủy vũ trụ ma tr&igrave;,<br /> <br /> Khối thứ tư phiến đ&aacute; vận mệnh bắt đầu ở thế gian ấp ủ.<br /> <br /> C&aacute;c thần, &aacute;c ma, truyền kỳ, ma quỷ, vu y&ecirc;u, long truyền thuyết sinh vật dồn dập hiện th&acirc;n.<br /> <br /> V&igrave; bảo vệ những tự m&igrave;nh đ&oacute; qu&yacute; trọng đồ vật, Marvin kh&ocirc;ng thể kh&ocirc;ng một lần nữa trốn v&agrave;o b&oacute;ng tối.<br /> <br /> Đ&acirc;y l&agrave; thời đại rung chuyển một người thiếu ni&ecirc;n du hiệp trưởng th&agrave;nh l&ecirc;n th&agrave;nh &aacute;m dạ ch&uacute;a tể cố sự.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "9606",
+        "NAME": "Vô Thượng Thần Tọa",
+        "CHAPTER": [
+            {
+                "id": "3256960",
+                "name": "Chương 1: Đem y phục cởi xuống"
+            }
+        ],
+        "TOTALCHAPTER": "452",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp",
+        "AUTHOR": "Mục Dã Tại Sách",
+        "TRANS": "Tiêu Dao",
+        "DESC": "phàm nhân chi hồn, đi vào tu tiên thế giới, Khổ Linh Căn tư chất, thì tính sao?<br />\r\n<br />\r\n\tTa là Mục Phàm, ta muốn bất hủ!",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

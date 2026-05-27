@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "12480",
+        "NAME": "Thứ Nguyên Trọng Điệp",
+        "CHAPTER": [
+            {
+                "id": "4057912",
+                "name": "Chương 1 : Kẻ lớn mật"
+            }
+        ],
+        "TOTALCHAPTER": "1",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Khoa Huyễn, Xuyên Không, Đồng Nhân",
+        "AUTHOR": "Trandinhanh",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Bị giao cho sứ mạng cứu lấy tất cả . Liệu main có làm được không . Hãy chứng kiến hành trình đi qua từng thế giới để có sức mạnh cứu tất cả <br />\r\n- Ác cũng được mà thiện cũng được chỉ cần là sức mạnh thì các ngươi  là của ta",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

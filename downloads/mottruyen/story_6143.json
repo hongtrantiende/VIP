@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "6143",
+        "NAME": "Binh Doanh Hệ Thống",
+        "CHAPTER": [
+            {
+                "id": "2206114",
+                "name": "Chương 1: Dị giới"
+            }
+        ],
+        "TOTALCHAPTER": "9",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Dị Giới, Khoa Huyễn",
+        "AUTHOR": "anh_di_tim_em892003@",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Binh doanh hệ thống tùy thân.<br />\r\n<br />\r\nThế giới rộng lớn, lấy chiến tranh làm chính.<br />\r\n<br />\r\nXây dựng lãnh địa, chế tạo vũ khí, trưng dụng quân lính. <br />\r\n<br />\r\nTạo lập đế chế riêng.<br />\r\n<br />\r\nVì truyện mình tự viết, vậy nên sẽ không xuất hiện bạo chương.<br />\r\n<br />\r\nSau khi viết xong chương nào, mình sẽ biên tập 1 lần và up lên ngay lập tức. <br />\r\nNếu bạn nào cảm thấy hứng thú và muốn đưa thêm ý tưởng vào truyện thì mình rất hoan nghênh. <br />\r\n<br />\r\nMong mọi người chú ý theo dõi và bình luận đánh giá.<br />\r\n<br />\r\nTrân thành cảm ơn!<br />\r\n<br />\r\nKiến trúc cùng quân lính đều sẽ không có chỉ số HP, chỉ có duy nhất chỉ số phòng ngự thay thế. <br />\r\n<br />\r\nQuân linh bị thương thì sẽ giảm các thuộc tính, dùng quân y chữa trị chỉ số phòng ngự sẽ hồi phục lại như ban đầu. Quân lính chỉ số phòng ngự = 0 sẽ chết.<br />\r\nKiến trúc bị tấn công, chỉ số phòng ngự thấp cần nông dân sửa chữa. Kiến trúc chỉ số phòng ngự = 0 sẽ bị phá hủy hoàn toàn, cần phải xây lại.<br />\r\n<br />\r\n<br />\r\nXin lưu ý, bản truyện mặc dù sử dụng các chỉ số thể hiện thuộc tính nhưng tuyệt đối không phải là võng du truyện tình. Khách quan mà nói tương lai đế chế không chỉ có mỗi hệ thống quân linh loại hình, mà còn có cả dân cư dị giới. Tầng lớp chỉ huy quản lý của hệ thống đều có thể tự lập ý thức riêng, sau khi xuất hiện đều sẽ trở thành một cá thể sống riêng biệt, ngoại trừ năng lực thuộc tính cùng độ trung thành được áp lên bởi hệ thống, nhưng vẫn có sinh lão bệnh tử. Kính xin chú ý!<br />\r\n<br />\r\nThông tin liên hệ: <br />\r\nfb: https://www.facebook.com/unnamde",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

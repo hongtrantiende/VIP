@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "8074",
+        "NAME": "Ta Chỉ Là 1 Thương Nhân",
+        "CHAPTER": [
+            {
+                "id": "2800044",
+                "name": "Chương 1 : Chào mừng đến với không gian giao dịch."
+            }
+        ],
+        "TOTALCHAPTER": "1",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Khoa Huyễn, Đồng Nhân",
+        "AUTHOR": "IanCross",
+        "TRANS": "Nhiều Converter",
+        "DESC": "\"Trong mua bán chúng ta tôn trọng sự đồng giá, là 1 thương nhân tốt ta quán triệt quy tắc này.\" Duy Anh đưa 1 khẩu anaconda cho loli trước mặt và đổi lấy 1 đồng xu 10 yên cảm khái.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

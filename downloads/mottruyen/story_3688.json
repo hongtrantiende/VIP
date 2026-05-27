@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "3688",
+        "NAME": "Vạn Cổ Xà Yêu",
+        "CHAPTER": [
+            {
+                "id": "1271502",
+                "name": "Chương 1:  xà"
+            }
+        ],
+        "TOTALCHAPTER": "559",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp",
+        "AUTHOR": "Thiên Thần",
+        "TRANS": "trang4mat",
+        "DESC": "ruyền thuyết x&agrave; b&aacute;ch ni&ecirc;n vi Hủy, ng&agrave;n năm vi Giao, vạn năm vi Long!<br /><br />Long b&aacute;ch ni&ecirc;n vi Cầu, ng&agrave;n năm vi Ứng, vạn năm vi Thi&ecirc;n Long!<br /><br />Đ&acirc;y l&agrave; một c&aacute;i Ti&ecirc;n Hiệp Thế Giới, bầy y&ecirc;u cuồng loạn nhảy m&uacute;a, b&aacute;ch qu&aacute;i rực rỡ, v&ocirc; tận huyền ảo.<br /><br />Nghịch v&ocirc; hạn thời kh&ocirc;ng, trộm Thi&ecirc;n Địa vận mệnh. Tung vạn kiếp gia th&acirc;n, ta như trước kh&ocirc;ng m&agrave;i!<br /><br />Nắm C&agrave;n Kh&ocirc;n khởi nguy&ecirc;n, chưởng s&aacute;ng lập Tạo H&oacute;a. H&agrave;ng tỉ thời kh&ocirc;ng mục n&aacute;t, ta mu&ocirc;n đời Bất Diệt!",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

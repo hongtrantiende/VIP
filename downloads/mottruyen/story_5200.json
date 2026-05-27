@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "5200",
+        "NAME": "Quỷ Dị Bút Lục",
+        "CHAPTER": [
+            {
+                "id": "1842019",
+                "name": "Chương 1: Lâu"
+            }
+        ],
+        "TOTALCHAPTER": "146",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đô Thị",
+        "AUTHOR": "Quỷ Dạ",
+        "TRANS": "pin",
+        "DESC": "Tử vong động một c&aacute;i liền b&ugrave;ng nổ, t&agrave; &aacute;c ngọn nguồn đơn giản l&agrave; một &iacute;t việc nhỏ kh&ocirc;ng đ&aacute;ng kể, manh mối đủ để t&igrave;m ra hung phạm, nhưng m&agrave; ở ch&acirc;n tướng sau lưng, lại cất giấu qu&aacute; nhiều quỷ dị m&agrave; vừa bất đắc dĩ sự thực.<br /><br />T&igrave;nh tiết ban đầu kh&aacute; chậm với một chuỗi sự kiện kh&ocirc;ng lời giải, th&ocirc;ng qua từng chương nh&acirc;n vật ch&iacute;nh mở ra dần dần những b&iacute; ẩn.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "10294",
+        "NAME": "Võ Phá Thiên Khung",
+        "CHAPTER": [
+            {
+                "id": "3449729",
+                "name": "Chương 1 : Khương Tộc Phế Vật."
+            }
+        ],
+        "TOTALCHAPTER": "2",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo",
+        "AUTHOR": "FansOfBigBoos",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Võ Phá Thiên Khung. <br />\r\n<br />\r\nVõ khí trùng thiên vị diện, vô vàn võ giả, lấy hàng trăm vạn vạn số lượng đếm tới tu võ chi nhân, sĩ, sư, đại sư, linh, vương, hoàng, tông, tôn nhiều không kể xiết, thánh cấp hơn một trăm vị nhưng gặp qua một vị Đế? ? <br />\r\n<br />\r\nLấy thiên tài tiềm lực gây dựng Khương gia bên trong vô số kỳ tích, lại lấy phế vật danh hiệu từ vực sâu trỗi dậy, một kiếm trảm chư thiên, một quyền nát càn khôn, ta võ đạo... Phá Thiên Khung! ! <br />\r\n<br />\r\nHệ Thống Tu Luyện : Võ Sĩ, Võ Sư, Đại Võ Sư, Võ Linh, Võ Vương, Võ Hoàng, Võ Tông, Võ Tôn, Võ Thánh, Võ Đế.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

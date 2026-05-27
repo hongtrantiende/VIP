@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "10834",
+        "NAME": "Siêu Cường Đánh Cắp",
+        "CHAPTER": [
+            {
+                "id": "3595481",
+                "name": "Chương 1 :  Đánh cắp dị năng"
+            }
+        ],
+        "TOTALCHAPTER": "5",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp, Kiếm Hiệp, Huyền Ảo, Dị Năng, Dị Giới, Xuyên Không, Trùng Sinh",
+        "AUTHOR": "Bất Thị Vu Sư",
+        "TRANS": "lahettrongtoalet",
+        "DESC": "Của ngươi chính là của ta, của ta vẫn là của ta, tóm lại đều là của ta.<br />\r\n<br />\r\nCái gì? Ngươi trời sinh thần lực, không cần tu luyện là có thể hoành hành ngang ngược? Của ta.<br />\r\n<br />\r\nCái gì? Ngươi có thần cấp bí pháp, vượt cấp khiêu chiến không phải mộng? Của ta.<br />\r\n<br />\r\nCái gì? Ngươi là có được thần cách thần? Thực hảo, ngươi thần cách là của ta, di? Ngọa tào, đây là? Sáng Thế Thần tiểu nội nội?",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

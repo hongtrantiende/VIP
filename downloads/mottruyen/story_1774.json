@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "1774",
+        "NAME": "Long Ấn Chiến Thần",
+        "CHAPTER": [
+            {
+                "id": "732314",
+                "name": "Chương 1 : Tự Chương"
+            }
+        ],
+        "TOTALCHAPTER": "1261",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Khoa Huyễn",
+        "AUTHOR": "Bán Bộ Thương Tang",
+        "TRANS": "Hoanglvn",
+        "DESC": "Tinh tế đại h&agrave;ng hải thời đại , v&otilde; đạo văn minh thịnh vượng .<br /><br />Một phế vật học sinh , một khối thần b&iacute; long ấn , th&agrave;nh tựu một vị v&ocirc; song đ&iacute;ch thi&ecirc;n t&agrave;i .<br /><br />Tương lai tinh kh&ocirc;ng hạ , nh&igrave;n thiếu ni&ecirc;n n&agrave;y như thế n&agrave;o chấm dứt đời chi tư , đi l&ecirc;n gợn s&oacute;ng tr&aacute;ng kho&aacute;t đ&iacute;ch v&otilde; đ&agrave;i s&agrave;n nhảy , từng bước một bước l&ecirc;n m&ecirc;nh m&ocirc;ng tinh kh&ocirc;ng tột c&ugrave;ng&nbsp;",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

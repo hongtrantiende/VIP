@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "4596",
+        "NAME": "Konjiki no Word Master",
+        "CHAPTER": [
+            {
+                "id": "1633093",
+                "name": "Chương 1: Lạc đến thế giới khác"
+            }
+        ],
+        "TOTALCHAPTER": "95",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Xuyên Không",
+        "AUTHOR": "Ozaki Yuusuke & Tomoto Sui",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Hiiro Okamura, học sinh trung học, một con mọt sách tham ăn và luôn cô độc, nhận ra mình được triệu hồi đến 1 thế giới khác cùng với 1 nhóm 4 người bạn cùng lớp. Sau đó, Bốn người kia phát hiện ra mình có danh hiệu \"Hero\", còn danh hiệu của Hiiro lại là \"Innocent Bystander\" (Người qua đường vô tội). Hiiro bắt đầu cuộc hành trình của mình với một phép thuật đặc biệt - Word Magic với khả năng biến những từ tiếng Nhật cậu viết ra trên không khí thành sự thật",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

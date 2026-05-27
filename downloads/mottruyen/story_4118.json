@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "4118",
+        "NAME": "Trùng Hoàng Chúa Tể",
+        "CHAPTER": [
+            {
+                "id": "1505849",
+                "name": "Chương 1: Trùng tộc truyền thừa"
+            }
+        ],
+        "TOTALCHAPTER": "485",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo",
+        "AUTHOR": "Vũ Dạ Miêu Đầu Ưng",
+        "TRANS": "Huyễn Lang, how?",
+        "DESC": "M&ecirc;nh m&ocirc;ng v&ocirc; bờ Tr&ugrave;ng tộc đại qu&acirc;n, cuồn cuộn Tinh Kh&ocirc;ng đều bị che đậy.<br /><br />V&ocirc; số trong truyền thuyết tuyệt thế dũng tướng, l&agrave; ta trung th&agrave;nh nhất tay sai.<br /><br />Ở nơi n&agrave;y gi&oacute; nổi m&acirc;y phun tr&ecirc;n thế giới, bất luận h&ugrave;ng binh ngh&igrave;n vạn qu&acirc;n sự Đế quốc, c&ograve;n l&agrave; điều khiển vạn vật V&ocirc; thượng Thần dinh, hay hoặc l&agrave; ngang dọc Vũ Trụ Tinh Kh&ocirc;ng Cự Th&uacute;, đều tại ta Tr&ugrave;ng hải đại qu&acirc;n thiết huyết ch&agrave; đạp hạ, sợ h&atilde;i run.<br /><br />Thần phục, hoặc l&agrave; hủy diệt!<br /><br />Ta, ch&iacute;nh l&agrave; Tr&ugrave;ng Ho&agrave;ng, Vũ Trụ duy nhất Ch&uacute;a tể.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

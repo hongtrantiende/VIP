@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "3794",
+        "NAME": "Địa Cầu Du Hí Tràng",
+        "CHAPTER": [
+            {
+                "id": "1310612",
+                "name": "Chương 1:  lần thứ nhất tụ tập"
+            }
+        ],
+        "TOTALCHAPTER": "746",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Khoa Huyễn",
+        "AUTHOR": "Cát Phong Băng",
+        "TRANS": "trang4mat",
+        "DESC": "Năm 2012 th&aacute;ng 12 ng&agrave;y 21!<br /><br />Thế giới ph&acirc;n c&aacute;ch th&agrave;nh v&ocirc; số chiến trường.<br /><br />Trương Phong, kh&ocirc;ng c&oacute; tiếng tăm g&igrave; một t&ecirc;n đệ tử, đạt được chỉ mới c&oacute; đ&iacute;ch thi&ecirc;n ph&uacute; &mdash;&mdash; đ&aacute;nh qu&aacute;i rơi xuống cao đẳng trang bị tỷ lệ gia tăng 30%!<br /><br />V&igrave; sinh tồn, v&igrave; cha mẹ, hắn chiến sinh h&oacute;a, t&agrave;n s&aacute;t Cự Long, từng bước một bước về ph&iacute;a vũ trụ chiến trường.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

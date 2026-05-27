@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "8273",
+        "NAME": "Kiếm Thần Trọng Sinh Mang Hệ Thống",
+        "CHAPTER": [
+            {
+                "id": "2843085",
+                "name": "Chương 1: Anh hùng hệ thống"
+            }
+        ],
+        "TOTALCHAPTER": "265",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo",
+        "AUTHOR": "Thiên Không Chi Ưng",
+        "TRANS": "Liu",
+        "DESC": "Kiếm thần + hệ thống = ?<br />\r\n<br />\r\n\tKiếm thần sống lại, lại vẫn mang vào một cái hệ thống, này còn để những người khác người sống thế nào?<br />\r\n<br />\r\n\tThiên Tuyệt Kiếm thần Lý Thiên Diệp ngàn năm sau sống lại trở về, trở thành Thiên Nguyên vương triều cửu hoàng tử. Sau khi sống lại, Lý Thiên Diệp trong đầu có thêm một cái anh hùng hệ thống.<br />\r\n<br />\r\n\t\"Người thuận thì sống, người nghịch ta thì chết, muốn giết ai thì giết, ta chính là chân lý, bởi vì ta là Lý Thiên Diệp.\"",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

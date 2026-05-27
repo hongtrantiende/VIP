@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "10500",
+        "NAME": "Tống Mạn Chi Huyết Hải Tu La",
+        "CHAPTER": [
+            {
+                "id": "3501072",
+                "name": "Chương 1 huyết sắc thế giới"
+            }
+        ],
+        "TOTALCHAPTER": "829",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp, Dị Năng, Khoa Huyễn, Cạnh Kỹ, Đồng Nhân, Linh Dị",
+        "AUTHOR": "Dạ Linh Tu La",
+        "TRANS": "qqKAIpp",
+        "DESC": "Tu La, thích giết chóc giả cũng; manga anime, trạch nam dã vọng; đương Tu La xuyên qua đến manga anime sẽ như thế nào?<br />\r\nTác giả là tay mới, sẽ không sáng tác phẩm giới thiệu （ cảm thấy thẹn độ hảo cao ） cảnh cáo! Quyển thứ nhất rất nhỏ tham khảo, chuẩn bị trọng viết, đệ nhị cuốn ta chính mình cũng không biết viết như thế nào thành như vậy, thấu sống hạ đi, đệ tam cuốn bắt đầu tận lực đứng đắn viết……",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

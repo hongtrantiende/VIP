@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "2981",
+        "NAME": "Siêu Ý Thức Tiến Hóa",
+        "CHAPTER": [
+            {
+                "id": "1016717",
+                "name": "Chương 1: Liên quan với thiên tài"
+            }
+        ],
+        "TOTALCHAPTER": "20",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Khoa Huyễn, Linh Dị",
+        "AUTHOR": "2012XY",
+        "TRANS": "kenno007",
+        "DESC": "Hoan ngh&ecirc;nh đi tới Ami thế giới! Ở đ&acirc;y, mỗi người đều sẽ từ nhỏ yếu nhất sinh vật cất bước, kh&ocirc;ng ngừng thăng cấp tiến h&oacute;a! Chỉ cần ngươi c&oacute; đầy đủ gi&aacute;c ngộ, ho&agrave;n to&agrave;n c&oacute; thể từng bước một tiến h&oacute;a th&agrave;nh vượt qu&aacute; ngươi tưởng tượng bất kỳ h&igrave;nh th&aacute;i, như thế n&agrave;o, chuẩn bị kỹ c&agrave;ng liền đến đi!",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

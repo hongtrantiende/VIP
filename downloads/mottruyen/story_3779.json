@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "3779",
+        "NAME": "Tịch dạ đẳng tương tư",
+        "CHAPTER": [
+            {
+                "id": "1303559",
+                "name": "Khai Chương: Lâm Tây nhật ký kỳ nhất"
+            }
+        ],
+        "TOTALCHAPTER": "11",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Ngôn Tình",
+        "AUTHOR": "Nặc Danh Nữ Tử",
+        "TRANS": "Không rõ",
+        "DESC": "Nàng là lục công chúa của Phù Nam - Bạch Yên được gả sang An Nam làm Vương Phi của quốc vương An Nam - An Định Vương, Dạ Viên.<br />\r\nLần đầu gặp nàng, Dạ Viên đã để tâm đến nhưng không hề nói ra.<br />\r\nSau đó, Dạ Viên phát hiện ra Bạch Yên được gả đến An Nam với mục đích ám sát chàng nhằm thực hiện âm mưu xâm lược của quốc vương Phù Nam.<br />\r\nNhưng Bạch Yên lại luôn tỏ ra không hề biết gì khiến chàng nghi ngờ nàng đã bị tạm thời mất trí nhớ để phục vụ âm mưu ám sát vào đúng ngày đại hôn của Dạ Viên và Bạch Yên.<br />\r\n<br />\r\nĐến ngày Đại hôn, âm mưu thất bại, quốc vương Phù Nam bị xử chết trong ngục dưới tay của Dạ Viên, nhưng Bạch Yên không hề biết đến chuyện này.<br />\r\nMột tháng sau, bất ngờ một vị công chúa sắc nước hương trời của Lâm Ấp được cho là đã có đính ước từ trước với Dạ Viên được gả đến.<br />\r\nNàng là Triệu Thục Nhi, tính tình nhu mì nói năng nhã nhặn, luôn là một nữ nhi bí ẩn. Nhưng ngoài nét đẹp hoa nhường nguyệt thẹn, nàng lại có thân hình cao lớn hơn nữ nhi bình thường một ít, khiến người ta lại buông lời bông đùa cho rằng nàng là nam nhi cải trang thành.<br />\r\n<br />\r\nRốt cục Lâm Ấp đang định lập âm mưu gì không ai rõ hơn \"nàng ta\", cái chết của Phù Nam quốc vương vẫn là mối lo ngại cho những tin đồn.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

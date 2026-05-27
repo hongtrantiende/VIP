@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "8099",
+        "NAME": "Vị Diện Xuyên Việt Giả",
+        "CHAPTER": [
+            {
+                "id": "2809227",
+                "name": "Chương 1 : Nhận Chủ"
+            }
+        ],
+        "TOTALCHAPTER": "63",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đô Thị, Xuyên Không, Đồng Nhân",
+        "AUTHOR": "TN_Sky",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Lần đầu viết truyện , văn chương còn hơi trúc trắc , mọi người nếu cảm thấy tệ thì đừng gạch đá mà hãy close tab<br />\r\n<br />\r\nTruyện kể về một thiếu niên tên là Minh Vũ, vì một lần làm người tốt mà đc Xuyên Không Giới nhận chủ, trở thành vị diện xuyên việt giả<br />\r\n<br />\r\nTruyện viết bằng đt nên 1 ngày 1-2c/ngày, hôm nào rảnh sẽ 3c/ngày nếu cảm thấy hay hãy vote \"Tốt\" hoặc cmt thanks để ad có động lực viết truyện<br />\r\nThanks<br />\r\n<br />\r\nTạm Dừng...............",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

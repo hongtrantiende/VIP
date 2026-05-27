@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "9262",
+        "NAME": "Phong Thiên Thần Ấn",
+        "CHAPTER": [
+            {
+                "id": "3146422",
+                "name": "Chương 1: Đạo Dẫn Thuật"
+            }
+        ],
+        "TOTALCHAPTER": "75",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp",
+        "AUTHOR": "Tiểu Mã Du Đại Hải",
+        "TRANS": "Saya Yuki",
+        "DESC": "Đi đường khó, đi đường khó, khó mà lên trời! Hành Giả đường khó đi, khắp nơi là nguy cơ, không thông suốt Thiên Hành Giả, hết thảy đều là phù vân! Hành Giả con đường, là Thành Tiên Chi Lộ, cũng là Kinh Cức(bụi gai) Chi Lộ, càng là Sát Lục Chi Lộ!<br />\r\n<br />\r\n<br />\r\nCầu vote 10đ cuối mỗi chương",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "7639",
+        "NAME": "Vô Địch Giáo Sư",
+        "CHAPTER": [
+            {
+                "id": "2707553",
+                "name": "Chương 1: Sa Đọa Học Sinh"
+            }
+        ],
+        "TOTALCHAPTER": "86",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đô Thị",
+        "AUTHOR": "Ngũ Liên Dương",
+        "TRANS": "Vampire",
+        "DESC": "\"Nam Nhân tôn nghiêm, là dựa vào Quyền Đầu và trí tuệ bảo vệ!\"<br />\r\n<br />\r\n\t\"Không có không dậy nổi Học Sinh, chỉ có dạy không tốt lão sư. Các ngươi gặp được ta, là các ngươi có phúc ba đời!\"<br />\r\n<br />\r\n\t\"Ta muốn trở thành vũ trụ siêu cấp vô địch linh hồn Kỹ Sư!\"<br />\r\n<br />\r\n\t... ...<br />\r\nP/s: Bộ truyện mang đến cảm giác thoải mái, nhẹ nhõm, thú vị ^^",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

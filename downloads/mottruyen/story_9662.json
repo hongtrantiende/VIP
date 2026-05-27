@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "9662",
+        "NAME": "Thiên Phú Thế Giới",
+        "CHAPTER": [
+            {
+                "id": "3318639",
+                "name": "Chương 1: Bảy năm nhất mộng"
+            }
+        ],
+        "TOTALCHAPTER": "129",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo",
+        "AUTHOR": "Ngưu Bút",
+        "TRANS": "Hoàng Châu",
+        "DESC": "Nàng, là Đông đại lục từ trước tới nay người thứ nhất Nữ Đế.<br />\r\n<br />\r\n\tHắn, là Nữ Đế vũ lực cướp đoạt nam sủng, từ trước tới nay cái thứ nhất nam quý phi.<br />\r\n<br />\r\n\tVì là thoát khỏi nam sủng thân phận, hắn thức tỉnh thần bí thiên phú, phấn khởi chống lại.<br />\r\n<br />\r\n\tThiên phú thế giới, bởi vì người đàn ông này đột kích ngược mà trở nên muôn màu muôn vẻ.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

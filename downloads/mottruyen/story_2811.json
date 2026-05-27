@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "2811",
+        "NAME": "Hộ Hoa Trạng Nguyên Tại Hiện Đại",
+        "CHAPTER": [
+            {
+                "id": "935418",
+                "name": "Chương 1: Ta muốn bao nguyên đêm"
+            }
+        ],
+        "TOTALCHAPTER": "60",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đô Thị",
+        "AUTHOR": "Lương Thiếu",
+        "TRANS": "Duy Linh",
+        "DESC": "Văn võ song khoa Trạng Nguyên Tiêu Dương ngoài ý muốn xuyên việt đến hiện đại đô thị, dùng Bạn Độc Tiểu Thư Đồng cùng với Nữ Sinh Tẩm Thất Môn Vệ song thân phận tiến vào sân trường đại học, bắt đầu hương diễm hoặc sắc hộ hoa hành trình.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

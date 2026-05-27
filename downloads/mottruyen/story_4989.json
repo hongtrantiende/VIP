@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "4989",
+        "NAME": "Ta Huyễn Tưởng thế giới",
+        "CHAPTER": [
+            {
+                "id": "1753904",
+                "name": "Chương 1: Họa không đến một lần"
+            }
+        ],
+        "TOTALCHAPTER": "104",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Khoa Huyễn, Xuyên Không",
+        "AUTHOR": "địa cầu người địa phương",
+        "TRANS": "๖ۣۜNgố๖ۣۜNgố",
+        "DESC": "Một hồi kỳ ngộ, nhân vật chính của chúng ta Cảnh Thêm bạn học rốt cục trở thành có phòng có địa một thành viên.<br />\r\n<br />\r\nBất quá cái này phòng cùng địa có chút cao cấp đại khí trên đẳng cấp, lại là một cái có thể mang hoạt hình, truyền hình, tiểu thuyết sáng tạo ra thế giới chân thật chưa khai phá trưởng thành không gian!<br />\r\n<br />\r\nVì trải qua có phòng có xe tiêu dao sinh hoạt, Cảnh Thiêm bạn học trằn trọc ở các loại vô hạn ảo tưởng bên trong thế giới, cướp đoạt bên trong khoa học kỹ thuật, nhân khẩu, thậm chí lục địa...<br />\r\n<br />\r\n( Dragon Ball ), ( Resident Evil ), ( Toaru Kagaku no Rērugan ), ( The King of Fighters ), (X Men ), ( The Avengers )...<br />\r\n<br />\r\nNhìn kiến thiết hoàn thành thế giới, Cảnh Thêm vuốt cằm tự lẩm bẩm: \"Còn thiếu điểm nhi cái gì đây... Ân, trở lại cái thu gom thất đi! Transformers Allspark là ta; Iron Man khôi giáp cũng là ta; Dragon Ball, Vô Hạn Bảo thạch cái gì đều là ta!",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

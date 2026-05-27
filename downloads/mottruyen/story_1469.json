@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "1469",
+        "NAME": "Mộng Du Liêu Trai",
+        "CHAPTER": [
+            {
+                "id": "612981",
+                "name": "Chương 01:: Nhân Giáo hồ học"
+            }
+        ],
+        "TOTALCHAPTER": "464",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp",
+        "AUTHOR": "Vân Bạch Thiên Lam",
+        "TRANS": "trang4mat",
+        "DESC": "B&igrave;nh thường thanh ni&ecirc;n Chu Thần xuy&ecirc;n vi&ecirc;̣t đ&atilde; đến một c&aacute;i thế giới kh&aacute;c, căn cứ l&acirc;́y ba vợ bốn n&agrave;ng hầu hảo hảo sống nghĩ cách, thế nhưng m&agrave; thi&ecirc;n bất toại người nguyện, c&aacute;i thế giới n&agrave;y cũng kh&ocirc;ng phải muốn tốt như vậy.  <br /> <br /> Hồ Ly Tinh, nữ quỷ Tiểu Thiến, Hắc Sơn l&atilde;o y&ecirc;u, X&agrave; y&ecirc;u Bạch Nương Tử, Triệu Linh Nhi... Từng c&aacute;i xuất hiện, ho&agrave;n to&agrave;n l&agrave;m rối loạn Chu Thần sinh hoạt.  <br /> <br /> Ở nơi n&agrave;y l&agrave; một c&aacute;i ho&agrave;n mỹ thế giới a, quả thực tựu l&agrave; y&ecirc;u ma ho&agrave;nh h&agrave;nh, quỷ qu&aacute;i mọc l&ecirc;n san s&aacute;t như rừng, Chu Thần c&oacute; thể kh&ocirc;ng tu&acirc;n theo ch&iacute;nh m&igrave;nh đạo, một đường đi đến ngọn nguồn đ&acirc;u n&agrave;y?",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

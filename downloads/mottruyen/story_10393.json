@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "10393",
+        "NAME": "Hoa Khôi Thiếp Thân Cuồng Thiếu",
+        "CHAPTER": [
+            {
+                "id": "3487038",
+                "name": "Chương 1: Anh hùng cứu mỹ nhân"
+            }
+        ],
+        "TOTALCHAPTER": "450",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đô Thị",
+        "AUTHOR": "Độc Cô Thệ Thủy",
+        "TRANS": "Cơn Gió Lạnh",
+        "DESC": "Hắn là võ học kỳ tài, dùng độc cao thủ!<br />\r\n<br />\r\n\tXuống núi tìm kiếm Tiểu sư muội, lại bất ngờ trở thành hoa khôi bảo tiêu. . . <br />\r\n<br />\r\nTừ nay một cái giống như yêu nghiệt học sinh ra đời! <br />\r\n<br />\r\nHắn đuổi theo hoa khôi, chỉnh đốn ác bá, đô thị xưng Tôn tung hoành thiên hạ! <br />\r\n<br />\r\nTu Cổ Võ, diệt cường địch, càn quét Bát Phương bước lên đỉnh phong!",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

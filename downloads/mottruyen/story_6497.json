@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "6497",
+        "NAME": "Bất Tử Đạo Tổ",
+        "CHAPTER": [
+            {
+                "id": "2312287",
+                "name": "Chương 001: Đạo Tôn Trùng Sinh"
+            }
+        ],
+        "TOTALCHAPTER": "741",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo, Trùng Sinh",
+        "AUTHOR": "Tiên Tử Tha Mạng",
+        "TRANS": "HeartSick",
+        "DESC": "Kình Thiên Đạo Tôn Khương Viễn tu vi cao tuyệt, một thân Luyện Khí thực lực gần như đỉnh phong! <br />\r\nVốn nên cao cao tại thượng mà nhìn xuống chúng sinh, lại bởi vì cơ duyên xảo hợp lấy được một bộ Tiên Kinh, mà thành chúng chú mục, bị đuổi giết đến bước đường cùng, . . .",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

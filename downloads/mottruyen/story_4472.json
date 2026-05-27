@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "4472",
+        "NAME": "Tinh Đế",
+        "CHAPTER": [
+            {
+                "id": "1595738",
+                "name": "Chương 1: Tần gia nhị thiếu gia"
+            }
+        ],
+        "TOTALCHAPTER": "22",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo, Khoa Huyễn",
+        "AUTHOR": "Thất Huyền",
+        "TRANS": "terry_1442@yahoo.com",
+        "DESC": "Có một truyền thuyết là như vầy, đầy trời tinh thần, chính là chúng thần ánh mắt, bọn họ nhìn chăm chú vào ngươi, thông qua tinh thần, ban cho ngươi muốn gì đó......",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

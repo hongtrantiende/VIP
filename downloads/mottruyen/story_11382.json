@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "11382",
+        "NAME": "Phế Thần",
+        "CHAPTER": [
+            {
+                "id": "4244580",
+                "name": "Chương 1:"
+            }
+        ],
+        "TOTALCHAPTER": "9",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp, Huyền Ảo, Dị Giới",
+        "AUTHOR": "tieuukiemmtienn",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Ninh Xuyên nhìn chằm chằm tấm thạch bia to lớn trước mặt, ánh mắt dại ra, bên tai dường như nghe thấy tiếng sấm nổ.<br />\r\n<br />\r\nTrên thạch bia, bốn chữ vàng lẳng lặng mà chói mắt nằm đó:<br />\r\n<br />\r\n“Tư chất phế phẩm.”<br />\r\n<br />\r\nBốn chữ này, trong mắt tất cả mọi người xung quanh, không khác nào một phán quyết dành cho hắn. Ninh Xuyên nhìn thấy ánh mắt các thân huynh muội đồng tộc chứa đầy sự thương hại và khinh rẻ. Hắn nắm chặt tay, trong lòng nổi lên một nỗi chua xót vô kể. Hắn muốn oán trách, nhưng không biết nên trách ai đây, trách trời trách đất hay trách bản thân quá vô dụng?",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "10550",
+        "NAME": "Thiết Vận Tiên Đồ",
+        "CHAPTER": [
+            {
+                "id": "3514225",
+                "name": "Chương 1:: Ác nhân trọng sinh"
+            }
+        ],
+        "TOTALCHAPTER": "452",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp, Huyền Ảo, Trùng Sinh",
+        "AUTHOR": "Cuống Tiêu",
+        "TRANS": "Hảo",
+        "DESC": "Tiên Đồ mong manh, nhân đạo thăng trầm. Phàm nhân mượn vận có thể thuận lợi, tu sĩ thiết vận có thể phi tiên. Trương Nguyên Hạo nhất giới ác nhân, trọng sinh Tu Tiên Giới, làm một môn phái nhỏ hộ pháp.<br />\r\n<br />\r\nTư chất bình thường? Huyết mạch tồi? Không có vấn đề, ta có thiết vận khả năng! Dựa vào cướp đoạt khí vận, đem từng bước Đăng Tiên<br />\r\n<br />\r\ntruyện mới ngày 2 chương",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

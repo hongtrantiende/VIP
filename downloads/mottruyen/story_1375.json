@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "1375",
+        "NAME": "Muôn Đời Vĩnh Hằng",
+        "CHAPTER": [
+            {
+                "id": "570691",
+                "name": "Chương 1 : Kinh Thập Phương"
+            }
+        ],
+        "TOTALCHAPTER": "245",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo",
+        "AUTHOR": "Thái Hồ Bá Vương",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Thế gia mọc l&ecirc;n san s&aacute;t như rừng, t&ocirc;ng m&ocirc;n ng&agrave;n vạn, V&ocirc; Địch ho&agrave;ng triều.\r\n<br />Kinh Thập Phương, h&agrave;o ph&uacute; đại tộc n&ocirc; bộc th&acirc;n phận, lại ho&agrave;i cường giả chi t&acirc;m, mộ hổ ch&iacute; hướng, theo một c&aacute;i h&egrave;n mọn như cỏ c&acirc;y sinh linh, đi về hướng ch&iacute; cao đỉnh phong.\r\n<br />Trường Sinh chi lộ, c&oacute; tiến kh&ocirc;ng lui ! Hết thảy tu luyện b&igrave;nh cảnh, ta tự một quyền oanh ph&aacute;...!\r\n<br />B&acirc;́t Tử chỉ l&agrave; bắt đầu, vĩnh hằng mới l&agrave; mục ti&ecirc;u.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

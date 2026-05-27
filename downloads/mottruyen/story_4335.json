@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "4335",
+        "NAME": "Ma Cơ Truyền Thuyết",
+        "CHAPTER": [
+            {
+                "id": "1563902",
+                "name": "Chương 0:"
+            }
+        ],
+        "TOTALCHAPTER": "50",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo, Dị Năng, Khoa Huyễn",
+        "AUTHOR": "Duyên Bút Đao",
+        "TRANS": "hanthientuyet",
+        "DESC": "Một cái nội tâm cuồng dã bạo đồ, một cái cường quyền súng trong tay. Khi mất đi giá trị lợi dụng sau khi, hắn bị đưa đến người máy nghiên cứu cơ cấu, trở thành một cụ đáng thương vật thí nghiệm. Vì yêu người không chịu xâm phạm, hắn thỏa hiệp.<br />\r\n<br />\r\nNhưng khi trước mặt hắn van khép lại thời điểm, hắn lại tức giận phát hiện, tại hắn cách đó không xa một cái khác điều chế trong máng, đang nằm hắn nữ nhân yêu mến.<br />\r\n<br />\r\nGiờ khắc này, hắn mất đi hết thảy.<br />\r\n<br />\r\nThời gian trôi mau, tỉnh lại lần nữa lúc đã dường như đã có mấy đời, hắn kinh ngạc phát hiện, chính mình đã tới một cái thế giới mới, một cái ma đạo văn minh thế giới.<br />\r\n<br />\r\nTrong ngượng ngùng, tay hắn một lần nữa ngồi rồi quen thuộc cơ giáp thao tác tay cầm.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

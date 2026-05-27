@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "6494",
+        "NAME": "Tiên Lộ Mờ Ảo",
+        "CHAPTER": [
+            {
+                "id": "3463148",
+                "name": "Chương 1: Lê Hoàng."
+            }
+        ],
+        "TOTALCHAPTER": "15",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp",
+        "AUTHOR": "KingLhP",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Lê Hoàng vốn là một tên ăn mày nhưng do cơ duyên sáo hợp Hoàng đã được nhận vào môn phái tu tiên bắt đầu cuộc hành trình tu tiên đầy mờ ảo, hay cùng xem Hoàng với hai bàn tay trắng bước lên con đường tu tiên thế nào nhé.<br />\r\n---------------------<br />\r\n Do lần đầu tiên mình viết lên chắc chắn sẽ có sai xót, mong các bạn thông cảm và góp ý cho mình để mình viết truyện hay hơn.<br />\r\n------------<br />\r\n<br />\r\n Edit lại toàn bộ.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

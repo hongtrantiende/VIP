@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "7714",
+        "NAME": "Tưởng Tượng Hàng Lâm Hiện Thực",
+        "CHAPTER": [
+            {
+                "id": "2712861",
+                "name": "Chương 1: Người khổng lồ"
+            }
+        ],
+        "TOTALCHAPTER": "777",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Dị Năng, Khoa Huyễn, Xuyên Không",
+        "AUTHOR": "Bảo Khả Mộng",
+        "TRANS": "Mortimer",
+        "DESC": "Nếu có một ngày, anime, trò chơi, trong phim ảnh quái vật, hàng lâm đến trong hiện thực...<br />\r\n<br />\r\nHàng lâm lưu khai sơn tác 《 Cực Hạn Khủng Cụ 》, vô hạn lưu 《 Mộng Tưởng Tiến Hóa 》 tác giả, trở về chi tác.<br />\r\n<br />\r\nTác giả của bộ Mộng Tưởng Tiến Hóa, nghỉ 2 năm và giờ quay lại. Phong cách giờ vẫn vậy, một món thập cẩm với võ hiệp, phim, game, truyện, hoạt hình và cơ số thứ khác, vài tên NVP não tào nhằm tăng bá cho main, gái gú đầy người và trên hết đọc đủ sướng.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "4230",
+        "NAME": "Ngũ Hành Thiên",
+        "CHAPTER": [
+            {
+                "id": "1534893",
+                "name": "Chương 1: Quyết định"
+            }
+        ],
+        "TOTALCHAPTER": "719",
+        "IMG": "https://static.cdnno.com/poster/ngu-hanh-thien/150.jpg",
+        "CAT": "Huyền Ảo",
+        "AUTHOR": "Phương Tưởng",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Vạn giới dung hợp, linh lực tiêu tan, trải qua trăm vạn năm tu chân thế giới ầm ầm đổ nát, Man Hoang quy mô lớn xâm lấn, ngũ hành thiên trở thành người tu chân phòng tuyến cuối cùng.Ngàn năm sau khi, đến từ cựu thổ thấp kém thiếu niên, lấy cu li thân, thâm nhập Man Hoang ba năm, đặc cách thu được tiến vào ngũ hành thiên đào tạo sâu cơ hội. Khát vọng nắm giữ vận mệnh mà một lòng theo đuổi trở nên mạnh mẽ thiếu niên, mang theo như dã thú bản năng chiến đấu, nhấc lên một hồi hoa lệ bão táp.Truyện mới của thím Tưởng.",
+        "THUMB": "https://static.cdnno.com/poster/ngu-hanh-thien/150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

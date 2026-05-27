@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "8422",
+        "NAME": "Hệ Thống Cốt Truyện",
+        "CHAPTER": [
+            {
+                "id": "2886426",
+                "name": "Chương 1:  Hệ Thống Cốt Truyện"
+            }
+        ],
+        "TOTALCHAPTER": "4",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo, Dị Năng, Xuyên Không",
+        "AUTHOR": "dang12",
+        "TRANS": "Nhiều Converter",
+        "DESC": "HÙNG ĐĂNG, một thanh niên ham đọc truyện nhân vật chính có hệ thống phụ trợ .Trong một lần sau khi ước mình được xuyên không đến một thế giới và có hệ thống phụ trợ rồi đi ngủ thì khi tỉnh dậy đã thấy điều ước thành sự thật.<br />\r\nCó hệ thống mà nghịch dại suốt thôiiiiiiiiiiiiiiii. Đến tác giả cũng phải bó tay với Đăng.<br />\r\nCó bạn gái là hóa thân của thiên đạo mà suốt ngày đắc tội với thiên đạo rồi chả hiểu sao mà thiên đạo và Đăng thành người yêu được.<br />\r\nNhân vật chính nghịch cực ngu luôn, đọc sẽ thấy rất nhiều đoạn hài đó. Chấm được mỗi cái kỳ duyên khá tốt được cái hệ thống nó bá.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

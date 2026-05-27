@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "7718",
+        "NAME": "[12 CHÒM SAO] VƯƠNG TRIỀU HOÀNG ĐẠO",
+        "CHAPTER": [
+            {
+                "id": "2713747",
+                "name": "Chương 1"
+            }
+        ],
+        "TOTALCHAPTER": "91",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Ngôn Tình",
+        "AUTHOR": "Nhi_Cherry",
+        "TRANS": "Nhi",
+        "DESC": "Bạch Dương – Đại Vương gia. Là một tướng quân dũng mãnh, chinh chiến sa trường quanh năm, ít khi hồi thành.<br />\r\n<br />\r\nSư Tử - Nhị Vương gia. Tính cách bá đạo, nắm giữ trong tay chức Võ lâm minh chủ. Uy lực vô song.<br />\r\n<br />\r\nMa Kết – Tam Vương gia. Tính tình trầm tĩnh, suy xét kĩ càng, giúp gỡ rối không ít những việc rối ren trong triều.<br />\r\n<br />\r\nThiên Yết – Đương kim Hoàng Thượng. Tính cách âm lãnh, khó gần, ít nói, là một “minh quân”.<br />\r\n<br />\r\nSong Tử - Ngũ Vương gia. Trăng hoa, đam mê tửu sắc, có tài nhưng không thích tham gia việc triều chính, ham chơi vô độ.<br />\r\n<br />\r\nNhân Mã – Lục Vương gia. Hòa đồng, vui vẻ, thích náo nhiệt. Hay bị Song Tử “cám dỗ” tới những nơi không đứng đắn. Là một người võ nghệ tinh anh.<br />\r\n<br />\r\nThiên Bình – Công chúa nước láng giềng. Hòa nhã, nhan sắc “hoa nhường nguyệt thẹn”.<br />\r\n<br />\r\nSong Ngư – Con gái của một “tiểu quan” ở một tri phủ nhỏ. Mềm yếu, hiền lành, hay khóc. Nhưng đừng nên chọc tức nàng ta, hậu quả khó lường.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

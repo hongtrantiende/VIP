@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "12770",
+        "NAME": "Anh Hùng Vô Địch Nguyệt Lộc Công Tước",
+        "CHAPTER": [
+            {
+                "id": "4120791",
+                "name": "Chương 1: Thần bí khách tới"
+            }
+        ],
+        "TOTALCHAPTER": "473",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Dị Giới, Quân Sự",
+        "AUTHOR": "Thanh Thái Ngưu Nhục Diện",
+        "TRANS": "Quang Huy",
+        "DESC": "Thân là Công Quốc tiểu Vương tử, dĩ nhiên. . .<br />\r\n<br />\r\n\tTrong giấc mộng bị bắt đi<br />\r\n<br />\r\n\tTỉnh dậy cha mẹ bị giết, chủ thành bị chiếm, bản thân bị truy nã<br />\r\n<br />\r\n\tRốt cuộc phát sinh cái gì?<br />\r\n<br />\r\n\tCòn có thể Đông Sơn tái khởi sao?<br />\r\n<br />\r\n\tĐây là một cái anh hùng vô địch thế giới, dựa vào các ma pháp anh hùng vô địch<br />\r\n<br />\r\nTruyện đang ra (Hiện tai có  >450 chương)",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

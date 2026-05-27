@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "12213",
+        "NAME": "Thánh Vũ Tinh Thần",
+        "CHAPTER": [
+            {
+                "id": "3977507",
+                "name": "Chương Một chương mở đầu tiểu thuyết: Thánh Vũ Tinh Thần tác giả: Loạn thế Cuồng Đao"
+            }
+        ],
+        "TOTALCHAPTER": "28",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp, Huyền Ảo",
+        "AUTHOR": "Loạn thế Cuồng Đao",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Sự tình là như thế này, 2017 năm mùa hè, tại Thái Dương Hệ bên ngoài, ở vào Tử Vi Tinh vực mấy đại siêu cấp võ đạo tông môn, muốn xây dựng một tòa xưa nay chưa từng có đại hình truyền tống trận pháp, lấy thuận tiện bọn hắn đối với hệ ngân hà nam bộ tinh vực khai phát, mà tòa trận pháp này tiên lực mạch xung vừa vặn phải đi qua Địa Cầu, cho nên, Địa Cầu muốn bị hủy nhà . Mà người Địa Cầu đối với cái này, hoàn toàn không biết gì cả",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

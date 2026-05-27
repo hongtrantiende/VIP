@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "2714",
+        "NAME": "Hỗn Tại Đường Triều Đại Lý Tự",
+        "CHAPTER": [
+            {
+                "id": "890232",
+                "name": "Chương 01: Đông Đô Lạc Dương Tô gia phường dệt - Quyển 1"
+            }
+        ],
+        "TOTALCHAPTER": "108",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Lịch Sử",
+        "AUTHOR": "Công Tử Lệnh Y",
+        "TRANS": "Tiểu La",
+        "DESC": "Năm đ&oacute;!<br /><br />&Ocirc;n Đ&igrave;nh Qu&acirc;n c&ograve;n rất ưa th&iacute;ch ở tr&ecirc;n trường thi đ&aacute;m người ăn gian.<br /><br />L&yacute; Thương ẩn vẫn c&ograve;n viết một &iacute;t mịt mờ m&ecirc; ly v&ocirc; đề.<br /><br />Đỗ Mục c&ograve;n chưa bắt đầu khổ ng&acirc;m thương nữ kh&ocirc;ng biết vong quốc hận.<br /><br />Năm đ&oacute;, T&ocirc; V&ocirc; Danh vừa mới tiến Đại L&yacute; Tự, m&agrave; hắn chỉ c&oacute; một mục ti&ecirc;u, đ&oacute; ch&iacute;nh l&agrave; trở th&agrave;nh Đại L&yacute; Tự khanh!<br /><br />Đ&acirc;y l&agrave; một c&aacute;i trong muộn thời nh&agrave; Đường kỳ, một c&aacute;i thần th&aacute;m ph&aacute; &aacute;n chuyện cũ.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

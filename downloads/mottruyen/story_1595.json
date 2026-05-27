@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "1595",
+        "NAME": "Bách Luyện Thành Ma",
+        "CHAPTER": [
+            {
+                "id": "653103",
+                "name": "Chương 1: Thất Ma lão tổ"
+            }
+        ],
+        "TOTALCHAPTER": "58",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Dị Giới",
+        "AUTHOR": "Niết Bàn Chi Vũ",
+        "TRANS": "trang4mat",
+        "DESC": "Bách luyện thành ma, Thiên luyện thành Phật. Đối với Lăng Tiêu mà nói, hắn càng ưa thích thành ma, cho nên, bách luyện là đủ!<br />\r\n<br />\r\nNhư thế nào cái luyện pháp? Đơn giản tựu là trông thấy khó chịu âm hắn vài cái, muốn âm chính mình giẫm hắn mấy cước, muốn giẫm chính mình mấy cước tựu đánh gãy răng hắn dừng lại:một chầu...<br />\r\n<br />\r\nVề phần dám cùng chính mình đoạt nữ nhân cùng đoạt tiền , trực tiếp đã diệt!",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

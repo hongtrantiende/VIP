@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "8093",
+        "NAME": "Bài Viết Số 3...",
+        "CHAPTER": [
+            {
+                "id": "2806996",
+                "name": "Chương 0 : giới thiệu về ta"
+            }
+        ],
+        "TOTALCHAPTER": "1",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Xuyên Không",
+        "AUTHOR": "tieuthungoc.ak56@",
+        "TRANS": "Nhiều Converter",
+        "DESC": "...",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

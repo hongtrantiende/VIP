@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "5665",
+        "NAME": "Trọng Lâm Cự Tích",
+        "CHAPTER": [
+            {
+                "id": "2019559",
+                "name": "Chính văn 1. Sống lại thằn lằn"
+            }
+        ],
+        "TOTALCHAPTER": "4",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Dị Giới",
+        "AUTHOR": "Nhiều Converter",
+        "TRANS": "hoangtuananh",
+        "DESC": "Nơi này Cự Tích ẩn hiện, chú ý an toàn! ! !<br />\r\n<br />\r\nGiảng thuật một cái từ nhỏ tu luyện Kim Chung tráo bộ đội đặc chủng Trần Nam, sống lại làm một chích tùng lâm Cự Tích. Bởi vì tu luyện Kim Chung tráo kích phát hắn trong cơ thể Cự Long gien, chậm rãi trở thành vĩ đại Cự Long. Cùng với tại trong lúc này phát sinh các loại thám hiểm chuyện xưa. Cuốn sách này sẽ cho ngài từng bước một giảng thuật tùng lâm thần bí: thực nhân ngư, rừng rậm đại hỏa, Lôi Bạo, nghĩ triều, thần bí sinh vật, thực nhân bộ lạc, Viễn cổ thần miếu, quỷ dị dòng nước xoáy một chút mạo hiểm chuyện xưa.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "7000",
+        "NAME": "Hành Trình Vô Tận",
+        "CHAPTER": [
+            {
+                "id": "2483206",
+                "name": "Chương 1: Khởi Đầu"
+            }
+        ],
+        "TOTALCHAPTER": "26",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp, Huyền Ảo, Xuyên Không, Đồng Nhân, Trùng Sinh",
+        "AUTHOR": "flavius",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Đ&acirc;y l&agrave; truyện đầu tay m&igrave;nh viết từ kh&aacute; l&acirc;u rồi nhưng được nửa chừng thỉ bỏ dở.<br /> Lần n&agrave;y đăng lại để mọi người đọc chơi th&ocirc;i.<br /> <br /> Sau một thời gian rất d&agrave;i đọc truyện online, đặc biệt như mấy trang truyenhjxx hay tuchangioi n&ecirc;n cảm thấy rất hứng th&uacute; l&agrave;m t&aacute;c giả một phen. <br /> Truyện m&igrave;nh viết khi bắt đầu xem thể loại convert th&agrave;nh ra nhiễm văn phong cực nặng, tiếp đ&oacute; do độc giả chủ yếu l&agrave; c&aacute;c bạn nữ khiến thể loại lai sang dạng đ&aacute;ng y&ecirc;u ng&ocirc;n t&igrave;nh.<br /> <br /> Nhiều lỗi ch&iacute;nh tả, h&agrave;nh văn k&eacute;m lưu lo&aacute;t v&agrave; ch&iacute;nh m&igrave;nh đọc lại cũng cảm thấy tức cười.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

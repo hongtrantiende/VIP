@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "11016",
+        "NAME": "Xuyên Qua Thế Giới Thần Thoại Hy Lạp",
+        "CHAPTER": [
+            {
+                "id": "3642421",
+                "name": "Chương 1 : Nữ Thần bình hoa"
+            }
+        ],
+        "TOTALCHAPTER": "1",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Xuyên Không, Đồng Nhân",
+        "AUTHOR": "talahunam",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Tô Trân không ngờ rằng mình lại xuyên và thế giới Thần Thoại Hy Lạp. Nơi đây khoa học kĩ thuật chưa phát triển mà chỉ có thần linh. Mà xuyên qua thì thôi, cớ sao lại xuyên vào một vị nữ thần bình hoa, một điểm giá trị vũ lực cũng không có! Hơn nữa Thần cách của nàng là gì? Căn bản là Tô Trân không có Thần cách! Hãy xem Tô Trân làm sao sống sót qua thế giới này đi!",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

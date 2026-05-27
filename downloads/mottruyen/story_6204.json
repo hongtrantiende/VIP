@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "6204",
+        "NAME": "Quỷ Dị Vườn Trường",
+        "CHAPTER": [
+            {
+                "id": "2209814",
+                "name": "Chương 1: Tin tức tốt"
+            }
+        ],
+        "TOTALCHAPTER": "15",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Linh Dị",
+        "AUTHOR": "Nhật Phi Vũ",
+        "TRANS": "concuasam",
+        "DESC": "Đây là nhìn như lớn bình thường trường học vườn, thế nhưng ly kỳ chuyện cổ quái nhưng liên tiếp phát sinh. Mỹ Lệ Khả Nhân  hoa khôi của trường, tiêu sái lỗi lạc  Cao Giàu Đẹp Trai học bá, còn có này từng việc từng việc từng kiện gọi người không thể tưởng tượng nổi  thám hiểm kinh nghiệm. . . . . .",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

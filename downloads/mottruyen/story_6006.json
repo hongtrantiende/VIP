@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "6006",
+        "NAME": "Chơi nát dị thế giới",
+        "CHAPTER": [
+            {
+                "id": "2166625",
+                "name": "Chương 1:"
+            }
+        ],
+        "TOTALCHAPTER": "17",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp, Dị Giới, Xuyên Không",
+        "AUTHOR": "Nhạc Lão",
+        "TRANS": "croatia",
+        "DESC": "23 tuổi Lãnh Tình đần độn sống qua ngày, một ngày xảo ngộ Tinh tông trưởng lão, như vậy đi vào tu luyện con đường trở thành Tinh tông gần trăm năm đệ tử kiệt xuất nhất. Giải quyết xong phàm trần sau đó, bởi vì địa cầu linh khí mỏng manh, lo lắng thọ nguyên tận lúc cũng không đạt được cần cấp độ, như vậy bế quan. Lần nữa xuất quan lúc đã là hai trăm năm sau.<br />\r\n<br />\r\nĐi nước Mỹ cướp bóc mới nhất trí não, càn quét siêu thị súng ống đạn được kho vật tư chiến lược nhà kho. Du lịch toàn cầu nửa năm sau bị thế giới khác không gian pháp sư trong lúc vô tình kéo đến một một thế giới lạ lẫm, đã bắt đầu quét ngang thế giới khác hành trình. Chưa bao giờ sát sanh lạnh tình tại nơi này dã man vũ khí lạnh thời đại lại đại khai sát giới, giết lượt Thú Tộc Ma tộc Thần Tộc. Cuối cùng thống nhất toàn cầu 3 khối đại lục, kết hợp khoa học kỹ thuật ma pháp đạo thuật vũ kỹ, thành lập một loại hoàn toàn mới văn minh, dẫn đầu toàn cầu tiến nhập du hành vũ trụ thời đại.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

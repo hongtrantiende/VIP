@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "9753",
+        "NAME": "Đấu Phá Chi Vô Thượng Chi Cảnh",
+        "CHAPTER": [
+            {
+                "id": "6618243",
+                "name": "Chương 1: Kết thúc cũng là một loại bắt đầu"
+            }
+        ],
+        "TOTALCHAPTER": "1834",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo",
+        "AUTHOR": "Dạ Vũ Văn Linh 0",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Ngươi thường nói, báo thù mới là ta sứ mệnh, nhưng ngươi nhưng không biết, thủ hộ ngươi, mới là số mệnh cả đời của ta.<br />\r\n<br />\r\n\tChế độ cấp bậc: Đấu Đế, Đấu Tiên, Đấu Thần, Đế Chi Bất Hủ",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

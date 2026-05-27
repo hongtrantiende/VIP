@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "2485",
+        "NAME": "Siêu Cấp Hoàng Kim Tả Thủ",
+        "CHAPTER": [
+            {
+                "id": "817950",
+                "name": "Chương 1:  kỳ dị rùa biển"
+            }
+        ],
+        "TOTALCHAPTER": "247",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đô Thị",
+        "AUTHOR": "La Hiểu",
+        "TRANS": "trang4mat",
+        "DESC": "C&oacute; kỳ tr&acirc;n đồ cổ, c&oacute; văn vật tranh chữ, c&oacute; si&ecirc;u tuyệt gi&aacute;m định v&agrave; thưởng thức, c&oacute; kh&oacute; lường y thuật, cũng c&oacute; đổ thạch tim đập, cũng c&oacute; nhi nữ t&igrave;nh trường!  Tay tr&aacute;i ho&agrave;ng kim, mị lực nh&acirc;n sinh",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

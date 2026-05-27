@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "11088",
+        "NAME": "Ta Là Vân Trung Hạc",
+        "CHAPTER": [
+            {
+                "id": "3659443",
+                "name": "Tự chương"
+            }
+        ],
+        "TOTALCHAPTER": "5",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Kiếm Hiệp, Xuyên Không, Đồng Nhân",
+        "AUTHOR": "Hạ Phương Thánh",
+        "TRANS": "Kim Nam",
+        "DESC": "Thiên Long thế giới ta là Vân Trung Hạc",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

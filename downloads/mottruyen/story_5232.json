@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "5232",
+        "NAME": "Pokemon yêu nghiệt",
+        "CHAPTER": [
+            {
+                "id": "1849711",
+                "name": "Chương 1: Khởi đầu mới."
+            }
+        ],
+        "TOTALCHAPTER": "20",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đồng Nhân",
+        "AUTHOR": "Hắc Dạ Vẫn Nguyệt",
+        "TRANS": "CatH",
+        "DESC": "Một trạch nam chuyên dụng sửa chữa hệ thống, khi hắn đến Pokemon thế giới sẽ làm thế giới này xuất hiện bao nhiêu biến động? Chỉ biết là đối với phần lớn  nội dung vở kịch làm ra bao nhiêu hiệu ứng hồ điệp? Muốn biết thì mời theo dõi nội dung đến tột cùng .",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

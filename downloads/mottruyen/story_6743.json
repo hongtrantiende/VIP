@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "6743",
+        "NAME": "Fate/Stay Night Tiếng Việt",
+        "CHAPTER": [
+            {
+                "id": "2406213",
+                "name": "Chương 0A: Cuộc gặp mặt"
+            }
+        ],
+        "TOTALCHAPTER": "13",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đô Thị, Huyền Ảo, Khoa Huyễn, Lịch Sử, Đồng Nhân",
+        "AUTHOR": "Nishiwaki Datto",
+        "TRANS": "BooKooMan",
+        "DESC": "Người có được Chén Thánh sẽ có thể biến mọi điều ước trở thành sự thật.<br />\r\n<br />\r\nCuộc chiến Chén Thánh.<br />\r\nMột nghi lễ tuyệt vời nhằm thực thể hóa Thánh tích vĩ đại, Chén Thánh.<br />\r\nCó hai điều kiện để tham gia nghi lễ này.<br />\r\nTrở thành một Pháp sư, và trở thành một \"Master\" được chọn bởi Chén Thánh.<br />\r\nKhông nhất thiết phải là một Pháp sư thành thục nếu muốn đạt được tư cách.<br />\r\n<br />\r\nSẽ có 7 Masters được chọn, và 7 loại Servants tương ứng.<br />\r\n<br />\r\nChỉ có một Chén Thánh.<br />\r\nNếu ngươi mong muốn một điều ước cho riêng mình.<br />\r\nThì hãy chứng minh bản thân, như một người mạnh nhất.<br />\r\n<br />\r\n- Một tiểu thuyết cũ rất hay nhưng hình như nhiều người chưa đọc, nên mình quyết định sẽ ngồi dịch trơn toàn bộ Route này. Hoàn toàn không phải copy từ nguồn khác.<br />\r\n<br />\r\n- Nếu khó tưởng tượng ra các nhân vật quá, các bạn xem cái này nhé: http://anime47.com/phim/fate-stay-night-unlimited-blade-works-2014-2015/m5041.html<br />\r\n<br />\r\n- Hãy comment góp ý thật nhiều nhé, trong quá trình viết truyện dịch không thể tránh khỏi sai sót, hahaha...",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

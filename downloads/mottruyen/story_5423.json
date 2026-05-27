@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "5423",
+        "NAME": "Mỹ nữ lai tập",
+        "CHAPTER": [
+            {
+                "id": "1921666",
+                "name": "Chương 01: Hồng nhan họa thủy"
+            }
+        ],
+        "TOTALCHAPTER": "160",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đô Thị",
+        "AUTHOR": "Vũ Dị",
+        "TRANS": "๖ۣۜHuyễn ๖ۣۜNguyệt",
+        "DESC": "Một ngày làm một việc thiện hoạ phúc khôn lường , Chu Vân mèo mù vớ cá rán, thu được thần kỳ dị năng, tiếp xúc được xã hội loài người thần bí nhất... Dị năng lĩnh vực. <br />\r\n<br />\r\nĐây là tai nạn bắt đầu, hay vẫn là duyên phận khởi điểm? Bất kể, tuổi thật tương đương với độc thân năm đếm chính mình, hay là trước dùng dị năng tán gái đi ~",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

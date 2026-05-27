@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "11666",
+        "NAME": "Vô Lại Tu Tiên",
+        "CHAPTER": [
+            {
+                "id": "4418858",
+                "name": "Chương 1: Thế tử điện hạ sái lưu manh"
+            }
+        ],
+        "TOTALCHAPTER": "2",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp",
+        "AUTHOR": "Tả Vô Phi",
+        "TRANS": "nguyenthanhtuan066@gmil.com",
+        "DESC": "Trần Húc: sư phụ tu luyện có \"Điểu\" dùng<br />\r\nSư phụ: tu luyện tốt lắm, có thể sử dụng \"Điểu\"<br />\r\nTrần Húc: ta luyện",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

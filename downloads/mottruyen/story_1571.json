@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "1571",
+        "NAME": "Trùm Tài Nguyên",
+        "CHAPTER": [
+            {
+                "id": "681416",
+                "name": "Chương 1: Cảm giác kỳ lạ!"
+            }
+        ],
+        "TOTALCHAPTER": "24",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đô Thị, Võng Du, Trùng Sinh",
+        "AUTHOR": "Nguyệt Hạ Đích Cô Lang",
+        "TRANS": "Quan Trường",
+        "DESC": "Tr&ugrave;m T&agrave;i Nguy&ecirc;n của t&aacute;c giả Nguyệt Hạ Đ&iacute;ch C&ocirc; Lang (con c&aacute;o c&ocirc; độc dưới trăng) viết về cuộc đời của một người t&aacute;i sinh t&ecirc;n Phương Minh Viễn. Phương Minh Viễn bảy tuổi, l&agrave; học sinh lớp 2, nhưng thực chất l&agrave; người đ&atilde; 30 tuổi t&aacute;i sinh v&agrave;o đầu những năm 80. Phương Minh Viễn sẽ tận dụng ưu thế t&aacute;i sinh của m&igrave;nh thế n&agrave;o? C&oacute; bao nhi&ecirc;u kh&oacute; khăn cần phải vượt qua? Cậu phải l&agrave;m thế n&agrave;o để tạo ra được cuộc sống m&agrave; cậu hằng mơ ước? Dấn th&acirc;n v&agrave;o thương trường? Phải chiến đấu với bao nhi&ecirc;u thế lực từ quan đến thương? Liệu một cậu b&eacute; bảy tuổi với tr&iacute; tuệ vượt xa thời đại c&oacute; thể thuyết phục mọi người c&ugrave;ng tham gia một cuộc phi&ecirc;u lưu? Cậu l&agrave;m thế n&agrave;o để x&acirc;y dựng được một đế chế kinh tế, thống trị c&aacute;c nguồn t&agrave;i nguy&ecirc;n quan trọng của nền kinh tế, trở th&agrave;nh một &ocirc;ng Tr&ugrave;m T&agrave;i Nguy&ecirc;n?",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

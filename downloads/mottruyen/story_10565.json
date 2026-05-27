@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "10565",
+        "NAME": "Huyết Ma Thần",
+        "CHAPTER": [
+            {
+                "id": "3517278",
+                "name": "Chương 1  :  Chào Đời"
+            }
+        ],
+        "TOTALCHAPTER": "3",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp, Huyền Ảo, Xuyên Không",
+        "AUTHOR": "fireor10@",
+        "TRANS": "Nhiều Converter",
+        "DESC": "ae đọc rồi tham khảo có vài phần khong nghĩ ra tại hạ phải học hỏi cod gì các thí chủ lượng thứ ",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

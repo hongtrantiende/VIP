@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "3975",
+        "NAME": "Nghịch Mạch Thiên Kiêu",
+        "CHAPTER": [
+            {
+                "id": "1446500",
+                "name": "Chương 1: Sách mới thiết lập, bối cảnh"
+            }
+        ],
+        "TOTALCHAPTER": "654",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo",
+        "AUTHOR": "Phi Ca Đái Lộ",
+        "TRANS": "Yến Virus",
+        "DESC": "Mu&ocirc;n đời đến nay, người mang nghịch mạch người, chỉ cần tr&ugrave;ng k&iacute;ch Tụ Linh kỳ, trong cơ thể linh lực tựu sẽ tự động ti&ecirc;u t&aacute;n, kh&oacute; c&oacute; th&agrave;nh tựu. Thiếu ni&ecirc;n Trịnh Thần người mang nghịch mạch, nhiều lần Tụ Linh thất bại, rơi v&agrave;o phế vật danh tiếng, rồi lại tại dưới cơ duy&ecirc;n xảo hợp, qu&aacute;n th&ocirc;ng nghịch mạch, do phế vật biến th&agrave;nh tuyệt thế tu luyện thi&ecirc;n t&agrave;i, lĩnh ngộ trận đạo, say m&ecirc; luyện kh&iacute;, kỳ ngộ đoạt bảo, lục ti&ecirc;n th&iacute; thần, từng bước một trở th&agrave;nh uy chấn ho&agrave;n vũ một đời Thi&ecirc;n Ki&ecirc;u!",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

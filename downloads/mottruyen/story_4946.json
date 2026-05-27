@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "4946",
+        "NAME": "Tam Quốc Chi Đệ Nhất Muội Khống",
+        "CHAPTER": [
+            {
+                "id": "1739019",
+                "name": "Chương 1:  Hán Mạt gặp Đại Loạn"
+            }
+        ],
+        "TOTALCHAPTER": "389",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Quân Sự, Lịch Sử, Xuyên Không, Trùng Sinh",
+        "AUTHOR": ".........",
+        "TRANS": "tangthuvien",
+        "DESC": "Xuyên qua, lại là Lạc Thần ca ca!<br />\r\n<br />\r\nVì muội tử, phạt Viên Thiệu! Vì muội tử, diệt Tào Tháo! Vì muội tử, thống trung nguyên! Nguyên lai cả đời hán mạt chỉ vì muội mà giết!<br />\r\n<br />\r\nĐối với Điêu Thuyền, chộp tới cho muội tử làm nha hoàn<br />\r\n<br />\r\nĐối với Thái Diễm, ngoặt vội tới cho muội tử làm nhạc sĩ<br />\r\n<br />\r\nĐối với Lữ Linh Khỉ, lừa gạt tới cho muội tử làm hộ vệ<br />\r\n<br />\r\nĐối với Tôn Thượng Hương, đoạt tới cho muội tử làm muội tử",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

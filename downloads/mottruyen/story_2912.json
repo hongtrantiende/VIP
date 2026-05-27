@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "2912",
+        "NAME": "Thần Thoại Nhập Xâm",
+        "CHAPTER": [
+            {
+                "id": "986213",
+                "name": "Chương 1: Mộng cảnh"
+            }
+        ],
+        "TOTALCHAPTER": "131",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Khoa Huyễn",
+        "AUTHOR": "Mạt Vũ",
+        "TRANS": "Huyễn Lang, Duy Anh",
+        "DESC": "Giản đơn m&agrave; n&oacute;i, đ&acirc;y l&agrave; một c&aacute;i thu được thần thoại truyền thừa sau khi, tung ho&agrave;nh thi&ecirc;n hạ, ch&acirc;n đạp Iron Man, quyền đả Spider-Man, S.H.I.E.L.D., The Avengers to&agrave;n bộ gạt ng&atilde;, tr&agrave;n ngập hắc &aacute;m, b&aacute;o th&ugrave; cố sự.<br /><br />Một c&aacute;i tr&agrave;n ngập tinh thần trọng nghĩa hắc &aacute;m anh h&ugrave;ng qu&aacute; tr&igrave;nh trưởng th&agrave;nh.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "2318",
+        "NAME": "Bất Bại Thánh Vương",
+        "CHAPTER": [
+            {
+                "id": "774620",
+                "name": "Chương 1: Phế vật thiếu niên"
+            }
+        ],
+        "TOTALCHAPTER": "17",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp",
+        "AUTHOR": "Cửu Cung Hồn",
+        "TRANS": "trang4mat",
+        "DESC": "Hắn kh&ocirc;ng c&aacute;ch n&agrave;o tu luyện Ch&acirc;n Nguy&ecirc;n lực, tại Thần Ch&acirc;u Đế Quốc ch&iacute;nh l&agrave; một vị nổi tiếng xa gần phế vật.<br /> <br /> Gia tộc c&ocirc; đơn, bị người phỉ nhổ, thiếu ni&ecirc;n trong nội t&acirc;m đ&egrave; n&eacute;n v&ocirc; tận khổ sở l&ograve;ng chua x&oacute;t.<br /> <br /> &Acirc;u yếm người rời đi, lại để cho ch&aacute;n chường ảm đạm thiếu ni&ecirc;n l&acirc;m v&agrave;o tuyệt vọng.<br /> <br /> Tại đ&acirc;y v&ocirc; tận thế giới, thiếu ni&ecirc;n cam nguyện biến th&agrave;nh phế vật?<br /> <br /> Thiếu ni&ecirc;n lại sẽ diễn lại c&aacute;i dạng g&igrave; Truyền Kỳ?<br /> <br /> Hết thảy đều ở... Kiếm Chi Thủy Tổ, uy hiếp Thương Khung.<br /> <br /> V&otilde; Chi Thủy Tổ, vũ ph&aacute; hư kh&ocirc;ng. Ng&agrave;n vạn thế giới, quần h&ugrave;ng cũng l&ecirc;n, vạn thần tranh b&aacute;, ai chủ ch&igrave;m nổi?",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

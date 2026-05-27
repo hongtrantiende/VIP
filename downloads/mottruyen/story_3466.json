@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "3466",
+        "NAME": "Kỳ Tổ",
+        "CHAPTER": [
+            {
+                "id": "1201500",
+                "name": "Chương 1: Phụ thể"
+            }
+        ],
+        "TOTALCHAPTER": "268",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo",
+        "AUTHOR": "Thương Thiên Bạch Hạc",
+        "TRANS": "Huyễn Lang",
+        "DESC": "Thi&ecirc;n Quang Đại Lục, đạo Phật ph&aacute;p Y&ecirc;u ngang dọc đan v&agrave;o.<br /><br />L&ocirc;i Trạch Cổ Uy&ecirc;n, giới thi&ecirc;n Thần Minh r&egrave;n phong c&aacute;ch cổ, L&ocirc;i Đ&igrave;nh xỏ xuy&ecirc;n qua Thi&ecirc;n Địa.<br /><br />Nhi&ecirc;n Tẫn Chi Hải, V&atilde;ng Thi&ecirc;n Chi Kiếm chỉ Thanh Thi&ecirc;n, băng hỏa hai cực một niệm<br /><br />Đ&agrave;o chỉ tr&ecirc;n n&uacute;i, phương t&ocirc;n thần m&uacute;a gặp chỉ tuyết, hoa đ&agrave;o bay lượn nhẹ nh&agrave;ng<br /><br />Cổ lăng Phật trước, đ&egrave;n hỏa dừng đốt truyền Nh&acirc;n Quả, 2 tay &aacute;o C&agrave;n Kh&ocirc;n định duy&ecirc;n<br /><br />1 đời Kỳ Tổ, thừa cổ đạo kỳ &yacute;, h&agrave;nh tẩu Nh&acirc;n Gian!<br /><br />Bạch hạc s&aacute;ch mới, thỉnh c&aacute;c vị ủng hộ nhiều hơn, cảm tạ&nbsp;",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

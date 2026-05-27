@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "1341",
+        "NAME": "Hollywood Chi Đế Quốc Quật Khởi",
+        "CHAPTER": [
+            {
+                "id": "553734",
+                "name": "Chương 1: Rượu đỏ của Jessica"
+            }
+        ],
+        "TOTALCHAPTER": "115",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đô Thị",
+        "AUTHOR": "Thiên Tứ Nhất Nhật",
+        "TRANS": "Truy Hồn",
+        "DESC": "Hollywood cuối thế kỷ 20, vừa nhắc tới c&ocirc;ng ty điện ảnh.<br /><br />Mọi người đầu ti&ecirc;n nghĩ đến đ&uacute;ng l&agrave;, 8 c&ocirc;ng ty điện ảnh lớn lũng đoạn 90% thị trường điện ảnh.<br /><br />Thẳng đến khi hắn xuất hiện đ&aacute;nh vỡ hết thảy.<br /><br />M&agrave; mục ti&ecirc;u của hắn l&agrave; đem lũng đoạn tiến h&agrave;nh đến c&ugrave;ng, cục diện Hollywood tương lai chỉ c&oacute; một nh&agrave; độc đại.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

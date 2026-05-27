@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "1054",
+        "NAME": "Miểu Sát",
+        "CHAPTER": [
+            {
+                "id": "394324",
+                "name": "Chương 1: Thức tỉnh - Quyển 1"
+            }
+        ],
+        "TOTALCHAPTER": "500",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo",
+        "AUTHOR": "Tiêu Tiềm",
+        "TRANS": "Nhiều Converter",
+        "DESC": "V&agrave;o khoảnh khắc linh hồn thức tỉnh, một thế giới mới liền hiện ra ở trước mắt... Đ&acirc;y l&agrave; một thế giới xa lạ - một thế giới của ph&ugrave; ch&uacute;!\r\n<br />V&ocirc; số B&iacute; cảnh, v&ocirc; số ph&ugrave; th&uacute;... Thậm ch&iacute; c&ograve;n c&oacute; thế giới ph&ugrave; ch&uacute; c&agrave;ng cao cấp hơn. Qu&aacute;ch Thập Nhị giống như l&agrave; l&iacute;nh qu&egrave;n qua s&ocirc;ng, miểu s&aacute;t bất kỳ kẻ địch n&agrave;o ngăn cản m&igrave;nh sinh tồn!\r\n&nbsp;\r\nHắn cần phải kh&ocirc;ng ngừng trở n&ecirc;n mạnh mẽ, cần phải t&igrave;m kiếm ph&ugrave; ch&uacute; mạnh mẽ hơn. Khi hắn đứng tr&ecirc;n đỉnh của thế giới ph&ugrave; ch&uacute;, hắn c&ograve;n c&oacute; thể tiếp tục đi tới kh&ocirc;ng?",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

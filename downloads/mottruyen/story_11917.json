@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "11917",
+        "NAME": "Vũ Chủ Bát Hoang",
+        "CHAPTER": [
+            {
+                "id": "3908765",
+                "name": "Chương 1: Thương Lam Lâm Lãng"
+            }
+        ],
+        "TOTALCHAPTER": "100",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp, Huyền Ảo",
+        "AUTHOR": "旋转星辰",
+        "TRANS": "Aki",
+        "DESC": "\"Đạp Thiên Khung, phá Cửu Tiêu \"<br />\r\n<br />\r\n\t\"Nếu một đi không trở lại...\"<br />\r\n<br />\r\n\t\"Liền một đi không trở lại!\"",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

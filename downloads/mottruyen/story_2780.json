@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "2780",
+        "NAME": "Kiếm Ngạo Cửu Thiên",
+        "CHAPTER": [
+            {
+                "id": "914265",
+                "name": "Chương 1: Hàn đàm kì ngộ"
+            }
+        ],
+        "TOTALCHAPTER": "719",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo",
+        "AUTHOR": "Dạ Sắc Phóng Giả",
+        "TRANS": "Mitkhuot, Pvdongvcb",
+        "DESC": "Một kiếm kinh Thương Mang , ngạo thị cửu thi&ecirc;n thượng !<br /><br />Thiếu ni&ecirc;n Tần V&acirc;n v&igrave; b&aacute;o th&ugrave; cha cứu vớt mẹ đẻ , lấy kh&ocirc;ng c&oacute; &yacute; nghĩa Đại Yến Tần thị chi thứ đệ tử th&acirc;n phận , trải qua chật vật khảo nghiệm b&aacute;i nhập Thi&ecirc;n Th&agrave;nh Kiếm T&ocirc;ng m&ocirc;n hạ học tập V&ocirc; Thượng kiếm đạo . H&agrave;o tộc &aacute;m đấu t&ocirc;ng m&ocirc;n tranh phong , từng bước s&aacute;t cơ khắp nơi kinh t&acirc;m , hắn bằng trường kiếm trong tay c&ugrave;ng một bầu m&aacute;u n&oacute;ng , đạp ph&aacute; chướng ngại qu&eacute;t ngang cường địch , sẽ th&agrave;nh Thương Mang Cửu Ch&acirc;u Bất Diệt Kiếm Thần truyền thuyết !",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

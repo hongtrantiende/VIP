@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "5529",
+        "NAME": "Tu Chân Y Sinh",
+        "CHAPTER": [
+            {
+                "id": "1966320",
+                "name": "Chương 1:Không Cam Lòng"
+            }
+        ],
+        "TOTALCHAPTER": "72",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đô Thị",
+        "AUTHOR": "Lý Hoàn Loạn",
+        "TRANS": "MrKiss",
+        "DESC": "Lục Hi&ecirc;n một sinh vi&ecirc;n đại học b&igrave;nh thường, vốn l&agrave; chỉ muốn t&igrave;m một c&ocirc;ng việc tốt, kết quả chịu khổ thủ trưởng ức hiếp, bạn g&aacute;i bỏ, một đường khổ rồi đến c&ugrave;ng. Do vận may run rủi nhận được thần b&iacute; tổ ti&ecirc;n truyền thừa, trở th&agrave;nh ch&oacute;i lọi tu ch&acirc;n giả, v&otilde; đạo y thuật, kỳ  m&ocirc;n độn gi&aacute;p, mọi thứ hạ b&uacute;t th&agrave;nh văn, từ đ&acirc;y hướng đi nh&acirc;n sinh đỉnh cao, quyền đ&aacute;nh tiểu lưu manh, ch&acirc;n đạp con nh&agrave; gi&agrave;u, tinh tướng l&agrave;m mất mặt như thế kh&ocirc;ng &iacute;t, hết thảy mỹ nữ đều nhảy v&agrave;o &ocirc;m đồm ho&agrave;i b&atilde;o. Dũng m&atilde;nh nh&acirc;n sinh kh&ocirc;ng cần giải th&iacute;ch.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

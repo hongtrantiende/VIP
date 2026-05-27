@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "9600",
+        "NAME": "Chờ Cơn Bão Tan",
+        "CHAPTER": [
+            {
+                "id": "3245340",
+                "name": "Chương 1 ."
+            }
+        ],
+        "TOTALCHAPTER": "4",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Ngôn Tình",
+        "AUTHOR": "caythuong0210@",
+        "TRANS": "Ky Jung",
+        "DESC": "Truyện nhẹ nhàng nhưng cảm xúc của nhân vật sâu sắc.<br />\r\nGiới thiệu:<br />\r\nCô vì cái chết của anh trai mà hôn mê ba năm. Ngày ngày suy nghĩ của cô như một người xuyên không.<br />\r\nAnh vì cái chết của em gái mà từ bỏ tình yêu. Ngày ngày dằn vặt vì đã không làm tốt một người anh.<br />\r\nLà bác sĩ, anh đã vô cảm trước cái chết của bệnh nhân. Nhưng rồi, chỉ vài phút ngủ quên, anh thành người vô trách nhiệm. Nhớ đến em gái, anh quyết định chăm sóc cho cô.<br />\r\nSau ba năm, cô lại phải đối mặt, nhưng trí nhớ trống rỗng. Cô cho rằng anh là anh trai mình.<br />\r\nCô dựa dẫm vào anh, anh quan tâm tới cô .<br />\r\nNhưng, vẫn phải nhớ lại, cô phát hiện anh không giống kí ức của cô. Còn anh lại chưa từng xem cô là em gái, anh yêu cô.<br />\r\nMột ngày nắng nhẹ, Trần Nam ôm chặt Thùy Du , hai người cùng nhìn chân trời. Được gặp nhau là một hạnh phúc.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

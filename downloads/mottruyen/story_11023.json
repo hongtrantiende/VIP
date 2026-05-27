@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "11023",
+        "NAME": "Trọng Sinh Chi Ngân Hà Chí Tôn",
+        "CHAPTER": [
+            {
+                "id": "3643010",
+                "name": "Chương 1: Trọng sinh"
+            }
+        ],
+        "TOTALCHAPTER": "760",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo, Dị Giới, Trùng Sinh",
+        "AUTHOR": "Mộ Ca",
+        "TRANS": "808",
+        "DESC": "Vì cướp đoạt chí bảo, thân là Tinh Quân Liên Thành bị Tinh Chủ thủ hạ truy sát ngàn năm, cuối cùng ôm hận vẫn lạc. Trọng sinh, hắn ngoài ý muốn phát hiện, lúc trước cướp đoạt viên kia tinh thần hạt giống cũng không phải là đơn giản như vậy, lại có thể thai nghén tinh thần?\"Tinh Chủ thì như thế nào? Bất quá là quản lý một khỏa chủ tinh mà thôi! Ta tinh thần thụ nghĩ thai nghén ít nhiều liền thai nghén ít nhiều!\" \"Vực Chủ thì như thế nào? Bất quá là nắm trong tay một cái tinh vực mà thôi! Ta một ý niệm, chúng tinh huyễn diệt, vô số tinh vực thai nghén mà ra!\" \"Vô tận Tinh Hải, ta làm chúa tể!\" ...",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

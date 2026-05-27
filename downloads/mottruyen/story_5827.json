@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "5827",
+        "NAME": "Minh triều mưu sinh sổ tay",
+        "CHAPTER": [
+            {
+                "id": "2090337",
+                "name": "Chương 1: Cha"
+            }
+        ],
+        "TOTALCHAPTER": "252",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Lịch Sử",
+        "AUTHOR": "Phủ Thiên ( 府天 )",
+        "TRANS": "Nhũ Phong",
+        "DESC": "Gia có ruộng tốt chừng trăm mẫu, cũng coi như giàu có tiểu địa chủ.<br />\r\n<br />\r\n\tLàm sao tuổi mới mười bốn lại đột nhiên bị người gọi cha, mới vừa đắc thủ công danh mắt thấy lại phải bay rồi, tiểu tú tài uông phu lâm biểu thị áp lực sơn đại.<br />\r\n<br />\r\n\tUông thị gia huấn điều thứ nhất: Vạn ác dâm dẫn đầu, bách thiện hiếu làm đầu.<br />\r\n<br />\r\n\tLong vạn chi giao, thói đời xa mị, phong nguyệt phù hoa, mưu sinh nhưng rất khó, uông tiểu quan nhân không đi tầm thường lộ hành trình, liền như vậy bắt đầu.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

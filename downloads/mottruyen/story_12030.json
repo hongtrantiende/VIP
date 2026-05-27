@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "12030",
+        "NAME": "Vạn Cổ Thiên Tông",
+        "CHAPTER": [
+            {
+                "id": "3934867",
+                "name": "Chương 1: Sư phụ, ngươi bộ này đường không được a"
+            }
+        ],
+        "TOTALCHAPTER": "1406",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo, Xuyên Không",
+        "AUTHOR": "Vạn Cổ Kiếm Trần",
+        "TRANS": "1",
+        "DESC": "Vạn Cổ Thiên Tông giới thiệu tóm tắt: <br />\r\n<br />\r\n\tNhiệt huyết thăng cấp, cuồng bạo hệ thống; tông môn kiến thiết, nghiền ép Thiên Kiêu! !<br />\r\n<br />\r\n\tThái Cổ bách tộc, vực ngoại trở về; các thần hoàng hôn, yêu ma tàn phá, nhân tộc không được an bình!<br />\r\n<br />\r\n\tĐoạn Sầu làm người hai đời, mang theo thần kỳ thiên tông hệ thống, giáng lâm ở này ầm ầm sóng dậy sử thi thế giới!<br />\r\n<br />\r\n\tQuảng thu yêu nghiệt Thiên Kiêu, bước lên đại đạo đỉnh cao, bảo hộ nhân tộc vạn cổ trường tồn, thành tựu chúng sinh kính ngưỡng vô thượng tổ sư!",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

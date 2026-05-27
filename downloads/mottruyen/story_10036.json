@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "10036",
+        "NAME": "Dị Thứ Nguyên Chi Chiến",
+        "CHAPTER": [
+            {
+                "id": "3380470",
+                "name": "Chương 1 : Địa Ngục Hàng Lâm"
+            }
+        ],
+        "TOTALCHAPTER": "3",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo, Dị Năng, Khoa Huyễn, Đồng Nhân",
+        "AUTHOR": "DongTa",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Trời đất sụp đổ, quỷ dữ nổi l&ecirc;n, anh h&ugrave;ng chết trận, hồng nhan bạc phận, ta Edward Romulus sẽ thay đổi tất cả. <br /> Cảnh giới:<br /> &bull;\tNh&acirc;n tộc : Cơ quan nh&acirc;n tỏa 5 tầng<br /> &bull;\tMa ph&aacute;p sư: Học đồ, Ma ph&aacute;p sư, Đại ma ph&aacute;p sư, Ma đạo sư, Đại ma đạo sư, Ma thần<br /> &bull;\tNhẫn giả: hạ nhẫn, trung nhẫn, thượng nhẫn, kage, lục đạo<br /> &bull;\tDị nh&acirc;n: D,C,B,A,S<br /> &bull;\tQuỷ: Tiểu quỷ, Quỷ ma, Quỷ vật, Quỷ Dữ, Ma vương",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

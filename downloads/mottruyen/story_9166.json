@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "9166",
+        "NAME": "Hệ Thống Tu Tiên Giả",
+        "CHAPTER": [
+            {
+                "id": "3142233",
+                "name": "Chương 1: Lục Vô Thần"
+            }
+        ],
+        "TOTALCHAPTER": "4",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp, Huyền Ảo, Dị Năng, Võng Du, Dị Giới, Khoa Huyễn, Xuyên Không",
+        "AUTHOR": "Aminxter",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Thiếu niên lang làm sao sống sót được ở tu tiên giới?<br />\r\n\"Cứ thế mà sống a.\"<br />\r\nNgươi không có linh căn, cũng chỉ như là phế vật.<br />\r\nThiếu niên trầm mặc.<br />\r\n\"Có cách nào không? \"<br />\r\nTa cho ngươi hệ thống.<br />\r\n\"Ta không có linh căn a.\"<br />\r\nHệ thống có!<br />\r\n\"Ta không biết luyện đơn a\"<br />\r\nHệ thống có!<br />\r\n\"Ta không có phương pháp tu luyện.\"<br />\r\nHệ thống có tất cả!<br />\r\nThiếu niên lại trầm mặc.<br />\r\n\"Vậy hãy cho ta hệ thống!\"<br />\r\nBán cho ta linh hồn của ngươi, ngươi sẽ có hệ thống! <br />\r\n\" Được thôi! Hãy cho ta hệ thống, linh hồn này là của ngươi!\"<br />\r\nTừ đó trở đi, thời đại của phàm nhân bắt đầu!",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

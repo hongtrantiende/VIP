@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "3234",
+        "NAME": "Thư Nhãn",
+        "CHAPTER": [
+            {
+                "id": "1125423",
+                "name": "Chương 1: Tiểu thuyết có thể chữa bệnh"
+            }
+        ],
+        "TOTALCHAPTER": "285",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đô Thị",
+        "AUTHOR": "Ta Phải Về Hỏa Tinh",
+        "TRANS": "Ducthinh92",
+        "DESC": "Đọc c&aacute;i g&igrave; tiểu thuyết, học kỹ năng g&igrave;.<br /><br />Đọc suy l&yacute; tiểu thuyết, học tập tư duy; đọc cảnh s&aacute;t tiểu thuyết, học tập thương ph&aacute;p;<br /><br />Đọc trộm mộ tiểu thuyết, học tập trộm thuật; đọc b&aacute;c sĩ tiểu thuyết, học tập y thuật;<br /><br />Đọc tiểu thuyết v&otilde; hiệp, học tập v&otilde; c&ocirc;ng; đọc dị năng tiểu thuyết, học tập dị năng.<br /><br />Trong truyền thuyết, đọc ti&ecirc;n hiệp tiểu thuyết c&ograve;n c&oacute; thể th&agrave;nh ti&ecirc;n. . .<br /><br />Lưu Tinh, một t&ecirc;n tiểu thuyết m&ecirc;, ngẫu nhi&ecirc;n thức tỉnh một đ&ocirc;i thư nh&atilde;n, học được đặc th&ugrave; xem kỹ xảo, từ đ&acirc;y dựa v&agrave;o đọc tiểu thuyết đi tới nh&acirc;n sinh đỉnh cao. . .<br /><br />\"Cầm - th&uacute;, thả ra đ&oacute; quyển tiểu thuyết, để cho ta tới đọc!\"",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

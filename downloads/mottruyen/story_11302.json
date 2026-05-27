@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "11302",
+        "NAME": "Thiên Cấm Quyết",
+        "CHAPTER": [
+            {
+                "id": "3743234",
+                "name": "Chương 1: Kì lạ!"
+            }
+        ],
+        "TOTALCHAPTER": "1",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo, Dị Giới",
+        "AUTHOR": "huvothan",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Thế nhân tu thần luyện tiên , mà hắn diệt thiên. Hắn cả đời muốn hoàn thành nhiệm vụ: chính là nghịch thiên mà đi diệt tuyệt chư tiên thần phật !<br />\r\n<br />\r\nMa tính đã không đoạn , Đạo nguyên thần cũng không thành . Thiên ý khó buông tha thì đã sao . Chỉ cần Hắn bất diệt Hắn cũng sẽ quay lại chỉ để làm xong một việc : Diệt Thiên Trảm Thần .",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

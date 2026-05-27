@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "10100",
+        "NAME": "Đại Đạo Hệ Thống Xuyên Việt",
+        "CHAPTER": [
+            {
+                "id": "3393168",
+                "name": "Chương 1: Xuyên Việt Trọng Sinh"
+            }
+        ],
+        "TOTALCHAPTER": "18",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Kiếm Hiệp, Đồng Nhân",
+        "AUTHOR": "theanhdz",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Đây là bộ viết mak mình tập sáng tác <br />\r\nCó thể có nhiều sạn <br />\r\nMong đừng gạch đá<br />\r\nsau The Breaker là Hiệp Khách Giang hồ nha",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

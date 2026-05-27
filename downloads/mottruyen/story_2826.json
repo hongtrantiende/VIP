@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "2826",
+        "NAME": "Kiếm Thần Trùng Sinh",
+        "CHAPTER": [
+            {
+                "id": "941512",
+                "name": "Chương 1: Hải Thiên"
+            }
+        ],
+        "TOTALCHAPTER": "3186",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Dị Giới",
+        "AUTHOR": "Thiên Lôi Trư",
+        "TRANS": "trang4mat",
+        "DESC": "Đ&atilde; từng tung ho&agrave;nh Hồn Kiếm đại lục một đời Kiếm Thần V&ocirc; Thi&ecirc;n, bị người đuổi giết ph&iacute;a dưới bất đắc dĩ tự bạo, lại như kỳ t&iacute;ch trọng sinh đ&atilde; đến một thiếu ni&ecirc;n trong cơ thể<br /><br />Từ nay về sau, Hồn Kiếm đại lục ở b&ecirc;n tr&ecirc;n thiếu đi một c&aacute;i Kiếm Thần V&ocirc; Thi&ecirc;n, lại lại th&ecirc;m một c&aacute;i tuyệt thế cao thủ &mdash;&mdash; Hải Thi&ecirc;ni!",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "7652",
+        "NAME": "Long Giới",
+        "CHAPTER": [
+            {
+                "id": "2696624",
+                "name": "Chương 1: Mở ra Long Giới"
+            }
+        ],
+        "TOTALCHAPTER": "20",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đô Thị",
+        "AUTHOR": "gainerkingpro",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Trần Hoàng Long từ một thanh niên thế kỷ 21 bình thường, trong một lần vô tình có được một chiếc nhẫn tên là Long Giới với nhiều sức mạnh thần kỳ, từ một người bình thường đi lên con đường cường giả! Long Giới sẽ mở ra cho bạn một thế giới hiện đại mà cũng đầy hư ảo! khiến bạn sẽ như hòa theo bước chân của nhân vật chính",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

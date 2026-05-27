@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "9455",
+        "NAME": "Tại Thất Phiến Môn Viên Quan Nhỏ Thời Gian",
+        "CHAPTER": [
+            {
+                "id": "3195485",
+                "name": "Chương 1: Đạo Thánh Môn một tên cuối cùng đệ tử"
+            }
+        ],
+        "TOTALCHAPTER": "119",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp, Kiếm Hiệp, Huyền Ảo",
+        "AUTHOR": "Tam Quan Do Tại",
+        "TRANS": "Cơn Gió Lạnh",
+        "DESC": "Lục Phiến Môn khai triển giang hồ nghiêm trị hoạt động, đưa đến Đạo Thánh Môn nghiệp vụ lâm vào đình trệ. <br />\r\n<br />\r\nVì giải quyết này một vấn đề khó khăn, Môn chủ Tây Môn Xuy Đăng quyết định phái đệ tử cuối cùng Tô Do Tại lén vào Lục Phiến Môn, cuốn vào một trận kinh thiên trong âm mưu. <br />\r\n<br />\r\n(*)Đạo Thánh Môn: Môn phái truyền thừa về chuyện ''mượn'' mà không hỏi...<br />\r\n<br />\r\n(*)Truyện chủ yếu theo phong cách hài hước!",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

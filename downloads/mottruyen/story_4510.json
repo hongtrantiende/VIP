@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "4510",
+        "NAME": "Học Sinh Tu Chân Cuồng Long",
+        "CHAPTER": [
+            {
+                "id": "1603133",
+                "name": "Chương 1: Biểu lộ ô long sự kiện!"
+            }
+        ],
+        "TOTALCHAPTER": "70",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đô Thị, Dị Năng, Trùng Sinh",
+        "AUTHOR": "Ngạo Tài",
+        "TRANS": "Thượng Quan Tà, nvccanh",
+        "DESC": "Tận thế siêu cấp Tiến Hóa giả Tần Mục xuyên qua đến 500 năm trước địa cầu, bám thân ở một cái gia tộc con rơi trên người.<br />\r\n<br />\r\nVũ lực trị tăng mạnh, giẫm ác bá, thiên địa tiêu dao!<br />\r\n<br />\r\nY thuật vô song, làm người chết sống lại!<br />\r\n<br />\r\nMới vào đan đạo, nhưng thiên tư yêu nghiệt, linh đan diệu dược tùy ý luyện chế!<br />\r\n<br />\r\nCổ võ?<br />\r\n<br />\r\nCái kia đều là chơi còn lại, ta là thiên thượng địa hạ, độc nhất vô nhị siêu cấp Tiến Hóa giả!",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

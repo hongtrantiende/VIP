@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "1100",
+        "NAME": "Tiên Hà Phong Bạo",
+        "CHAPTER": [
+            {
+                "id": "404769",
+                "name": "Chương 001: Thiếu niên Từ Huyền"
+            }
+        ],
+        "TOTALCHAPTER": "684",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp, Huyền Ảo",
+        "AUTHOR": "Khoái Xan Điếm",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Từ Huyền - một thiếu ni&ecirc;n thuộc v&agrave;o tầng ch&oacute;t của tu giới, tu vi chỉ  l&agrave; Luyện Thể ph&agrave;m sĩ, chỉ biết lao động kiếm kế sinh nhai, nhận hết mọi  khuất nhục.\r\n&nbsp;\r\nTrong l&ograve;ng hắn lu&ocirc;n c&oacute; một mộng tưởng tho&aacute;t khỏi vận mệnh  đau khổ thế nhưng hắn xuất th&acirc;n ngh&egrave;o kh&oacute; hơn nữa tư chất lại cực kỳ  b&igrave;nh thường v&igrave; vậy nguyện vọng nho nhỏ đ&oacute; cũng kh&ocirc;ng phải l&agrave; một chuyện  dễ d&agrave;ng. <br /><br />\r\nCho đến một lần ngo&agrave;i &yacute; muốn hắn dung hợp tr&iacute; nhớ kiếp trước của một  vị cường giả nghịch thi&ecirc;n mở ra đại m&ocirc;n \"Thể tu\", từ đ&oacute; về sau hắn bắt  đầu một con đường tu h&agrave;nh mới kh&aacute;c hẳn mọi người.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

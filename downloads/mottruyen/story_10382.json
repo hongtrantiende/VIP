@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "10382",
+        "NAME": "Tiêu Dao Thiên Hạ",
+        "CHAPTER": [
+            {
+                "id": "3485932",
+                "name": "Chương 1 : Xuyên qua"
+            }
+        ],
+        "TOTALCHAPTER": "24",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Khoa Huyễn, Xuyên Không",
+        "AUTHOR": "mmach",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Truyện Việt !!<br />\r\n<br />\r\nỞ một cái thế giới mà Tu Chân Giả tay phá núi, chân đoạn trường hà.<br />\r\n<br />\r\nCó tồn tại một tửu điếm gọi \"Vãng Lai Tửu Quán\".<br />\r\n<br />\r\np/s : hết :v",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

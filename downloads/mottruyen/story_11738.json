@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "11738",
+        "NAME": "Khi Ta 17",
+        "CHAPTER": [
+            {
+                "id": "3864180",
+                "name": "Chap 1:"
+            }
+        ],
+        "TOTALCHAPTER": "19",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Ngôn Tình",
+        "AUTHOR": "Mộc Trà",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Đây là hố tớ không chủ đào nên đôi khi đăng không được thường xuyên. Bác nào nhảy vào thì thông cảm cho tớ với. Mong các bác có phút giây thư giãn khi đọc truyện. Không có thiếu gia vài trăm quốc tịch, giỏi võ karate hay biết dùng súng hoặc thuộc băng đảng xã hội nào đó. Cũng không có tiểu thư sở hữu tập đoàn xuyên quốc gia hay đi bar nhưng vẫn đạt điểm tốt. Chỉ là một cô nhóc bình thường với ước mơ trở thành một tiểu thuyết gia lớn. Một chàng trai đúng nghĩa hot boy, ngầu chất đống. Một cô bạn thân thô bạo và lanh chanh. Một cậu bạn thân cùng tuổi nhưng cư xử như một ông lão...Một câu chuyện bình thường tới mức không thể hơn, nhưng mong nó sẽ làm bạn vui vẻ....",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "3432",
+        "NAME": "Thánh Nhân Môn Đồ",
+        "CHAPTER": [
+            {
+                "id": "1190020",
+                "name": "Chương 01: Kỳ quái thế giới"
+            }
+        ],
+        "TOTALCHAPTER": "271",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo",
+        "AUTHOR": "Tịch Mịch Độc Nam Hoa",
+        "TRANS": "Chanlinh",
+        "DESC": "Địa cầu lệch khoa sinh xuy&ecirc;n vi&ecirc;̣t th&agrave;nh Dị Giới thi&ecirc;n t&agrave;i, hắn c&oacute; thể kh&ocirc;ng g&aacute;nh chịu nổi thi&ecirc;n t&agrave;i danh tiếng?<br /><br />Ph&iacute;a đ&ocirc;ng thi từ ca ph&uacute;, cầm kỳ thư họa, l&agrave;m sao c&oacute; thể th&agrave;nh tựu con đường tu hành?<br /><br />Ph&iacute;a t&acirc;y truy nguy&ecirc;n tinh tượng, nguy&ecirc;n tố chu kỳ, cấu tr&uacute;c l&agrave; dạng g&igrave; ma ph&aacute;p?<br /><br />Đ&acirc;y cũng l&agrave; 《 Th&aacute;nh Nh&acirc;n M&ocirc;n Đồ 》 c&acirc;u chuyện, Tịch Mịch Độc Nam Hoa đ&atilde; ho&agrave;n th&agrave;nh hơn ba trăm vạn chữ vạn lập tinh phẩm 《 Ti&ecirc;n Vương 》, Nh&acirc;n phẩm cam đoan, hi vọng mọi người có th&ecirc;̉ y&ecirc;n t&acirc;m đọc.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

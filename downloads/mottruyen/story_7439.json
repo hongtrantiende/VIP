@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "7439",
+        "NAME": "Trận Tiên",
+        "CHAPTER": [
+            {
+                "id": "2631755",
+                "name": "Chương 1: Trận Pháp Sư"
+            }
+        ],
+        "TOTALCHAPTER": "4",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp",
+        "AUTHOR": "Vô nguyệt bất đăng lâu",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Sách cổ nói rằng, thiên hạ tu sĩ, Kiếm Tiên đệ nhất. Hôm nay Phương Lợi quật khởi, đương sửa chi, Kiếm Tiên phía trên, còn có Trận Tiên! Lưỡng Nghi Vi Trần Đại Trận, Cửu Khúc Hoàng Hà Đại Trận, Tru Tiên Kiếm Trận... Phương Lợi chậm rãi mà đi, từng bước một vạch trần Thượng Cổ đại trận cái khăn che mặt.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

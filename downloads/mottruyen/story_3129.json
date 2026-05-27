@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "3129",
+        "NAME": "Đế tạo",
+        "CHAPTER": [
+            {
+                "id": "1065118",
+                "name": "Chương 1: Gặp rủi ro huynh muội"
+            }
+        ],
+        "TOTALCHAPTER": "55",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo, Xuyên Không",
+        "AUTHOR": "Đại tần tiểu binh",
+        "TRANS": "Vân Phàm (TTV)",
+        "DESC": "Mang theo DNF game phục vụ khí xuyên qua, thành tựu nghịch thiên nhân sinh.<br />\r\n<br />\r\nKhông thể học tập kiếm thuật? Ta sáng tạo một Kiếm thánh! Không thể tu luyện phép thuật? Ta sáng tạo một ma đạo!<br />\r\n<br />\r\nGiáo Hoàng nói ta là dị đoan? Làm cái thánh kỵ nhất thống giáo đình! Hắc ám hội nghị muốn giết ta? Tử Linh pháp sư, diệt hắn!<br />\r\n<br />\r\nChớ ở trước mặt ta hả hê, ta tiểu hào ngươi đều đánh không lại.<br />\r\n<br />\r\nSáng tạo các thần? Sáng lập thế giới? Không không không, ta không phải cái gì Sáng Thế thần, ta chỉ là một điểu tia trạch người chơi nam mà thôi.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

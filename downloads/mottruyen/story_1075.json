@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "1075",
+        "NAME": "Cuồng Dã Diễm Tiêu Diêu",
+        "CHAPTER": [
+            {
+                "id": "341390",
+                "name": "Chương 1: Hung hăng càn quấy phóng xe như bay"
+            }
+        ],
+        "TOTALCHAPTER": "1587",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đô Thị, Dị Năng",
+        "AUTHOR": "Thân Vương",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Đỉnh cấp s&aacute;t thủ Ti&ecirc;u Thần, dựa v&agrave;o một bộ c&ocirc;ng ph&aacute;p do Đồ Long giả lưu  lại《 Cầm long b&iacute; điển 》, tuy&ecirc;n thệ phải đ&aacute;nh hạ một mảnh hậu cung thật  lớn!<br /><br />Ngươi hỏi trong hậu cung c&oacute; bao nhi&ecirc;u người? Ta chỉ c&oacute; thể  n&oacute;i cho ngươi biết, hiện tại đ&atilde; c&oacute; mười mấy, tương lai đường c&ograve;n rất  d&agrave;i...",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "12734",
+        "NAME": "Đúc Lại Thần Đàn",
+        "CHAPTER": [
+            {
+                "id": "4109208",
+                "name": "Chương 1:  thế giới thú vị (Thượng)"
+            }
+        ],
+        "TOTALCHAPTER": "233",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đô Thị, Dị Giới, Xuyên Không",
+        "AUTHOR": "Nhị Ca Đích Tiểu Hào",
+        "TRANS": "VoVo",
+        "DESC": "Phong Thần đài hoàn toàn tan vỡ, cuối cùng một tia thần tính bị bụi bậm của lịch sử chôn vùi, nhuộm máu nhân vật chính, linh hồn xuyên qua đến dị giới đô thị. Ở chỗ này, có rực rỡ nhân khí kỹ năng. Từ nay, nhân vật chính bắt đầu tại dị giới vòng fan con đường. Làm tài tử chẳng qua là bước đầu tiên của hắn, mục tiêu cuối cùng của hắn là trở thành tín ngưỡng của cái thế giới này, đúc lại thần đàn!<br />\r\n<br />\r\n=== === ===<br />\r\n<br />\r\nXuyên Việt==>Đô Thị version Dị Giới==>Kiếm Fan tạo Tín Ngưỡng==> Thành Thần.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

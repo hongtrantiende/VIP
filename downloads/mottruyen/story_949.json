@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "949",
+        "NAME": "Siêu Cấp Hệ Thống",
+        "CHAPTER": [
+            {
+                "id": "254309",
+                "name": "Chương 01: Siêu cấp hệ thống"
+            }
+        ],
+        "TOTALCHAPTER": "301",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đô Thị, Dị Năng",
+        "AUTHOR": "Phong Điên Cuồng Tiếu Cường",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Si&ecirc;u Cấp Hacker Nhạc Phong trong khi chấp h&agrave;nh nhiệm vụ th&igrave; trọng sanh, nhưng lại ph&aacute;t hiện ch&iacute;nh m&igrave;nh trở th&agrave;nh người thực vật.\r\n<br />Bất qu&aacute;, hắn t&igrave;m được một loại phương ph&aacute;p khống chế th&acirc;n thể mới. Tại trong n&atilde;o của m&igrave;nh chế tạo một c&aacute;i si&ecirc;u cấp hệ thống!!! Muốn c&oacute; k&yacute; ức kh&ocirc;ng? -- Xếp đặt một c&aacute;i văn kiện hệ thống, sau đ&oacute; c&aacute;ch thức h&oacute;a. Đại n&atilde;o muốn khống chế hai tay? -- bi&ecirc;n một tr&igrave;nh khu động khống chế tay. Th&acirc;n thể l&agrave; ổ cứng, thần kinh xung mạch l&agrave; số liệu, tr&iacute; nhớ l&agrave; trạng th&aacute;i của số liệu",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

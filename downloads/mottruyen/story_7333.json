@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "7333",
+        "NAME": "Nho Võ Tranh Phong",
+        "CHAPTER": [
+            {
+                "id": "2606068",
+                "name": "Chương 1: : Tam thế Luân Hồi"
+            }
+        ],
+        "TOTALCHAPTER": "1262",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo, Dị Giới",
+        "AUTHOR": "Tình thương cô nguyệt",
+        "TRANS": "๖ۣۜTiếu ๖ۣۜHồng ๖ۣۜTrần",
+        "DESC": "Ngàn năm trước xuyên qua dị thế , thành tựu một đời Nho Thánh , lại gặp Vũ Đế ám toán bỏ mình. Ngàn năm sau tái thế trọng sinh , Vũ Đế tàn sát nho đạo truyền thừa , độc tôn thiên hạ , phi thăng thiên ngoại chi thiên. Ngày xưa Nho Thánh Tần Phong đối mặt Vũ Đế tượng thần , nắm chặt kiếm trong tay : \"Thiên Ngoại Thiên gặp lại ngày , chính là ngươi nợ máu trả bằng máu , thân tử đạo tiêu lúc!\"<br />\r\n<br />\r\nCầu thanks, Cầu vote tốt !!!",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "6164",
+        "NAME": "Anh Hùng Liên Minh Vô Địch Triệu Hoán",
+        "CHAPTER": [
+            {
+                "id": "2200398",
+                "name": "Chương 1: Vô địch suy hàng"
+            }
+        ],
+        "TOTALCHAPTER": "814",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp, Huyền Ảo, Võng Du, Dị Giới",
+        "AUTHOR": "Quân Mạc Sầu",
+        "TRANS": "MrKiss",
+        "DESC": "Ch&iacute;nh chơi anh h&ugrave;ng li&ecirc;n minh, kết quả kh&ocirc;ng hiểu ra sao xuy&ecirc;n qua rồi!<br /> <br /> Triệu ho&aacute;n hệ thống mở ra!<br /> <br /> Được rồi, v&ocirc; địch th&aacute;ng ng&agrave;y bắt đầu từ đ&oacute;, để ta xem trước một ch&uacute;t trước hết cho gọi ra đến ch&iacute;nh l&agrave; ai?<br /> <br /> P/s:T&aacute;c giả viết kh&aacute; h&agrave;i hước.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

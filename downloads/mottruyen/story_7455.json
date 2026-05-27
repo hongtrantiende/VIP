@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "7455",
+        "NAME": "Mạnh Nhất Trong Lịch Sử Hệ Thống",
+        "CHAPTER": [
+            {
+                "id": "2637405",
+                "name": "Chương 1: Đại nhân vật triệu hoán hệ thống"
+            }
+        ],
+        "TOTALCHAPTER": "150",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp, Dị Giới, Xuyên Không, Trùng Sinh",
+        "AUTHOR": "Trong gió áo bào đen",
+        "TRANS": "xemtruyen",
+        "DESC": "Xuyên qua đến Thiên linh đại lục, lâm đá bên trong xuất hiện một đại nhân vật triệu hoán hệ thống.<br />\r\n<br />\r\n\t\"Đồng dạng là hạ phẩm tông môn Thiết Kiếm môn cũng dám đến khiêu khích chúng ta? Tây Môn Xuy Tuyết, ngươi đi ngược bọn họ.\"<br />\r\n<br />\r\n\t\"Yêu hoàng tông Tam Hoàng một trong, mỹ hầu hoàng muốn tới diệt ta cả nhà? Ngộ không, hầu ca, cái này không thể nhẫn nhịn, xem ngươi rồi!\"<br />\r\n<br />\r\n\t\"Thư Thánh Các nói chúng ta là một đám mãng phu chỉ có thể đánh đánh giết giết? Lý bạch, đi giáo dạy bọn họ tả thơ!\"<br />\r\n<br />\r\n\t\"Thiên Phật Thánh Địa những hòa thượng kia nói chúng ta là ma đầu, muốn tịnh hóa chúng ta, này thật giống có chút vướng tay chân a. . .\"<br />\r\n<br />\r\n\tNhư Lai phật tổ đứng dậy: \"Bản tọa hôm nay vừa vặn ngứa tay.\"",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

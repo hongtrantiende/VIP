@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "7803",
+        "NAME": "Huyền Thoại Du Lịch Giả",
+        "CHAPTER": [
+            {
+                "id": "2730905",
+                "name": "Chương 1: Gặp gỡ hệ thống"
+            }
+        ],
+        "TOTALCHAPTER": "9",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp, Dị Năng, Dị Giới, Xuyên Không, Đồng Nhân",
+        "AUTHOR": "01229411995",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Main có số phận bắt hạnh. Một hôm, nhận được hệ thống du lịch xuyên qua các thế giới để tu luyện từng bước từng bước mở ra thân phận thật của mình.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

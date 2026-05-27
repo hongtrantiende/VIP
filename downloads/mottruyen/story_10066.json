@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "10066",
+        "NAME": "Vạn Cổ Tiên Vực",
+        "CHAPTER": [
+            {
+                "id": "3388605",
+                "name": "Chương 1: Luyện khí"
+            }
+        ],
+        "TOTALCHAPTER": "20",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo",
+        "AUTHOR": "Siêu Phàm Đích Ngã",
+        "TRANS": "Daivuong",
+        "DESC": "V&ocirc; Tận Thời Kh&ocirc;ng, hạo h&atilde;n vũ trụ, từ xưa đến nay, kh&ocirc;ng người c&oacute; thể d&ograve; x&eacute;t cuối c&ugrave;ng. Thời Gian Trường H&agrave; kh&ocirc;ng ngừng nghỉ chảy xu&ocirc;i, hết thảy tựa hồ cũng đ&atilde; được quyết định từ l&acirc;u. Vạn thế Vạn Giới vạn vật, hết thảy đến v&igrave; sao tồn tại. V&ocirc; Tận Lu&acirc;n Hồi, lại ma diệt kh&ocirc;ng c&oacute; trong l&ograve;ng kh&aacute;t vọng. Thi&ecirc;n địa từ ta ngự động, một c&aacute;i bị vứt bỏ h&agrave;i tử, như thế n&agrave;o Si&ecirc;u Tho&aacute;t Thi&ecirc;n Địa Th&uacute;c Phược (tr&oacute;i buộc), s&aacute;ng tạo T&acirc;n Trật Tự! ! !",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

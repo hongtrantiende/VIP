@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "11890",
+        "NAME": "Huyền Vũ Liệt Thiên",
+        "CHAPTER": [
+            {
+                "id": "4084120",
+                "name": "Chương 1: Hoang Lĩnh Kinh Hồn"
+            }
+        ],
+        "TOTALCHAPTER": "52",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo",
+        "AUTHOR": "Lam Đình",
+        "TRANS": "nguyenthanhtuan066@gmil.com",
+        "DESC": "Người \" Tam Âm Tuyệt Mạch\", sử thư ghi lại, phàm người mắc bệnh này không những cả đời không thể tu võ, đồng thời hầu như không một người có thể may mắn sống quá mười ba tuổi. Vận mệnh đóng cửa tất cả may mắn , lại mở một cánh cửa mới, khiến cho ở trong tuyệt cảnh quanh co, khi đạp thây biển máu đặt lên đỉnh phong là lúc, hoảng sợ phát hiện một cái kinh thiên bí mật. Gần cuối quay đầu lại, kinh giác dưới chân mình mảnh thế giới này màn che hằng hà như hạt cát, nhỏ như hạt bụi. Đi con đường nào...",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

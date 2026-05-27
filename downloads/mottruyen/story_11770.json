@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "11770",
+        "NAME": "Vũ Cực Đỉnh Phong",
+        "CHAPTER": [
+            {
+                "id": "3872552",
+                "name": "Xuyên không phế nhưng tiêu chuẩn"
+            }
+        ],
+        "TOTALCHAPTER": "1",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo, Khoa Huyễn",
+        "AUTHOR": "anhyeudieu123",
+        "TRANS": "Vũ Thần Vũ",
+        "DESC": "Dật thiếu gia, Dật thiếu gia!... Ô ô…<br />\r\n<br />\r\nNước Đại Hoa, bên trong một tòa phủ đệ tráng lệ tại phủ Thiên Đô, vang lên một trận khóc than bi thương của một phụ nhân.<br />\r\n<br />\r\nTòa phủ đệ này chiếm diện tích cực rộng, chỉ sợ không dưới vạn mẫu. Đình viện san sát, đầm hồ giả sơn, mái quỳnh lâu uốn cong đầy khí thế, cây cối xanh tươi um tùm… Nhưng chỗ thanh âm phát ra lại phát ra từ trong một căn phòng cũ nát, nhỏ bé.<br />\r\n<br />\r\nToàn bộ người trong phủ Thiên Đô, sợ rằng cũng chẳng xa lạ gì với chỗ phủ đệ này. Chỉ vì chủ nhân tòa phủ đệ này chính là La gia, một trong ba đại thế gia của phủ Thiên Đô.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

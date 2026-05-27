@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "4204",
+        "NAME": "Vĩnh Bất Hạ Tuyến",
+        "CHAPTER": [
+            {
+                "id": "1527602",
+                "name": "Chương 1: Ba không ngoạn gia"
+            }
+        ],
+        "TOTALCHAPTER": "118",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Võng Du",
+        "AUTHOR": "Tư Mã",
+        "TRANS": "satordie",
+        "DESC": "Truyền thuyết internet trong c&oacute; linh hồn tồn tại, th&uacute; vị ch&iacute;nh l&agrave;, c&oacute; ch&uacute;t truyền thuyết l&agrave; ch&acirc;n thật tồn tại.<br /><br />M&agrave; hắn, l&agrave; một c&aacute;i ngẫu nhi&ecirc;n dưới t&igrave;nh huống bị giam cầm tại internet b&ecirc;n trong đ&iacute;ch linh hồn.<br /><br />Phi&ecirc;u đ&atilde;ng linh hồn bị vượt qua n&atilde;o tr&iacute; khả năng hấp dẫn, hắn th&agrave;nh một g&atilde; vĩnh viễn c&ograve;n l&acirc;u mới c&oacute; thể logout ngoạn gia.<br /><br />Nghịch thi&ecirc;n tr&ograve; chơi thuộc t&iacute;nh, v&ocirc; địch vận kh&iacute; nh&acirc;n phẩm, trời sinh chiến đấu &yacute; thức, so người kh&aacute;c c&agrave;ng nhiều l&agrave; tr&ograve; chơi thời gian.<br /><br />Nh&acirc;n sinh cuộc sống ch&iacute;nh l&agrave; tr&ograve; chơi, tr&ograve; chơi ch&iacute;nh l&agrave; nh&acirc;n sinh cuộc sống.<br /><br />Vĩnh viễn kh&ocirc;ng hạ tuyến! Chế tạo thăng cấp nhất cuồng bạo chiến đấu ph&aacute;p sư!",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "1184",
+        "NAME": "Sử Thượng Đệ Nhất Yêu",
+        "CHAPTER": [
+            {
+                "id": "450658",
+                "name": "Chương 1: Đồ điện cũng điên cuồng"
+            }
+        ],
+        "TOTALCHAPTER": "174",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đô Thị, Huyền Ảo",
+        "AUTHOR": "Thủy Thiện",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Nh&acirc;n vật ch&iacute;nh t&ecirc;n l&agrave; Trần Mặc, l&agrave; một người b&igrave;nh thường gặp đầy ngo&agrave;i x&atilde; hội, đột nhi&ecirc;n c&oacute; được v&agrave;i khả năng đặc biệt v&agrave; từ đ&oacute; lu&ocirc;n gặp xui xẻo với \"năng lực\" của m&igrave;nh. Hắn c&oacute; 4 con pet l&agrave; 4 loại đồ điện: Oa Oa (nồi cơm), Nặc Nặc (di động), Bản Bản (Laptop), Xa Xa (xe điện), mỗi con đều c&oacute; 1 t&iacute;nh c&aacute;ch biến th&aacute;i ri&ecirc;ng tận lực ph&aacute; rối sau lưng hắn.&nbsp;<br /><br />V&igrave; thế mỗi ng&agrave;y của Trần Mặc sẽ dở kh&oacute;c dở cười thế n&agrave;o đ&acirc;y??",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

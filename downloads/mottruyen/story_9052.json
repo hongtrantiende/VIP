@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "9052",
+        "NAME": "Thế Giới Vô Hạn",
+        "CHAPTER": [
+            {
+                "id": "3076760",
+                "name": "Chương 1: Toshiro"
+            }
+        ],
+        "TOTALCHAPTER": "16",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Khoa Huyễn, Xuyên Không, Đồng Nhân",
+        "AUTHOR": "nhanlamtacpro",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Vô Hạn Khủng Bố ? Naruto? One Piece?<br />\r\nVô hạn thế giới, vô hạn vị diện, tất cả sẽ xuất hiện trong cuốn này.<br />\r\nMỗi tuần đăng 5c. Cứ 20 thanks thêm 1 chương. Chỉ đăng 1 truyện nên rất dễ quản lý.<br />\r\nMap chính là Vô Hạn Khủng Bố.<br />\r\nMap phụ : Nar, OP, SAO, Bleach, FT, .... chủ yếu là anime, vì map phim trong VHKB là chính.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

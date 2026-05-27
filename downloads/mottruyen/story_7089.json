@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "7089",
+        "NAME": "Độc Thánh",
+        "CHAPTER": [
+            {
+                "id": "2520863",
+                "name": "Chương 1: Lưu xuyên đại lục"
+            }
+        ],
+        "TOTALCHAPTER": "2",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo, Xuyên Không",
+        "AUTHOR": "miho1995",
+        "TRANS": "Nhiều Converter",
+        "DESC": "_Lý Hoài Nam người thừa kế của một gia tộc tu tiên vì chơi chán chê cuộc đời nên quyết định du lịch địa phủ, trước khi đi còn kéo thêm vài người đồng hành lấy lí do gửi 3 chỉ đọc trùng đùa giỡn, thuận tay mà nuôi ra 3 chỉ trùng vương.<br />\r\nBắt đầu mở ra truyền kỳ về vị tiên thánh mệnh danh âm hiểm vô sỉ nhất thế gian. Hộ vệ đi theo là 3 độc trùng thành tinh \"phun nước bọt độc chết ngươi\" cùng bốn tê thủ hạ \"bỏ đá xuống giếng\".<br />\r\n_\"Đánh không lại ngươi a! Thì t độc chết ngươi.<br />\r\nNgươi nói giết không được ta ngươi không làm nam nhân! Hảo a! Đây ga.y độc đưa hắn uống 1viên là được....<br />\r\nTa la Thánh, vạn cổ Vô Địch Thánh, nhưng xin lỗi nha, lòng ta là tiểu nhân!\"",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

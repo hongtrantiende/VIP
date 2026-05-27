@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "11424",
+        "NAME": "Tàn Phá Hồng Kông 1980",
+        "CHAPTER": [
+            {
+                "id": "3787618",
+                "name": "Chương 1: Thiếu gia nhà giàu sinh hoạt hằng ngày."
+            }
+        ],
+        "TOTALCHAPTER": "33",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đô Thị, Xuyên Không, Trùng Sinh",
+        "AUTHOR": "chungkhoanviet007@",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Trùng sinh trở về hồng kông những năm 1980 săn diễm ngành giải trí.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

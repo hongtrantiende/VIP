@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "2206",
+        "NAME": "Viêm Võ Truyền Thuyết",
+        "CHAPTER": [
+            {
+                "id": "749733",
+                "name": "Chương 1: Hàn Mặc"
+            }
+        ],
+        "TOTALCHAPTER": "49",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo",
+        "AUTHOR": "Nam Cung Tử Mặc",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Thần b&iacute; l&atilde;o sư Thi&ecirc;n Lộ, phế vật thiếu ni&ecirc;n quật khởi, thần vi&ecirc;m Đại Đế t&agrave;n hồn, Cuồng Lan đại lục rung chuyển!<br /> <br /> H&agrave;n Mặc, một c&aacute;i c&ocirc;ng nhận phế t&agrave;i, tại đại sư Thi&ecirc;n Lộ chỉ dẫn hạ, th&agrave;nh c&ocirc;ng k&iacute;ch hoạt vi&ecirc;m V&otilde; thể chất.<br /> <br /> Nhiều năm qua g&aacute;nh v&aacute;c b&ecirc;u danh hắn muốn liền vốn lẫn lời trả lại;<br /> <br /> V&ocirc; t&igrave;nh &yacute; ph&aacute;t hiện trong cơ thể t&agrave;n hồn, đến tột c&ugrave;ng l&agrave; ph&uacute;c l&agrave; họa?<br /> <br /> Tại đ&ocirc;ng đ&uacute;c quỷ kế dẫn dắt hạ, hắn đến tột c&ugrave;ng phải như thế n&agrave;o trưởng th&agrave;nh.<br /> <br /> Hết thảy đặc sắc, tựu tại vai ch&iacute;nh sinh ra Bắt Đầu!",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "4789",
+        "NAME": "Siêu Cường Điện Thoại Hệ Thống",
+        "CHAPTER": [
+            {
+                "id": "1693089",
+                "name": "Chương 1: Siêu cường điện thoại di động hệ thống"
+            }
+        ],
+        "TOTALCHAPTER": "1522",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo, Dị Năng",
+        "AUTHOR": "Miêu Yêu Đại Vương",
+        "TRANS": "Nhiều Converter",
+        "DESC": "thu được siêu cường điện thoại di động hệ thống, có thể download các loại APP.<br />\r\n<br />\r\n\tTrò chơi APP, có thể thăng cấp đánh quái, ở trò chơi thương thành cường lực đạo cụ.<br />\r\n<br />\r\n\tĐịa đồ APP, có thể định vị tầm bảo.<br />\r\n<br />\r\n\tTin tức APP, có thể nghe sóng gió bốn phương tám hướng, thú vị Bát Quái.<br />\r\n<br />\r\n\t...<br />\r\n<br />\r\n\tMỹ nhan camera, cũng thật có thể mỹ nhan.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

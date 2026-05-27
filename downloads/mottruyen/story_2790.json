@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "2790",
+        "NAME": "Yêu Tuyệt",
+        "CHAPTER": [
+            {
+                "id": "920793",
+                "name": "Chương Yêu Hành Đại Lục"
+            }
+        ],
+        "TOTALCHAPTER": "1117",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp, Huyền Ảo",
+        "AUTHOR": "Nhất Tịch Ngư Tiều Thoại",
+        "TRANS": "trang4mat",
+        "DESC": "Nếu như kh&ocirc;ng c&oacute; ta, ai sẽ hi&ecirc;̉u rõ những c&aacute;i kia xinh đẹp y&ecirc;u tinh tịch mịch c&ugrave;ng c&ocirc; độc! Thi&ecirc;n Địa chi lý, đạo ph&acirc;n &acirc;m dương, nhật vi dương chi đỉnh, nguyệt vi &acirc;m cực địa, Nhật Nguyệt tương hợp, mới l&agrave; tu ti&ecirc;n ch&iacute;nh đồ.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

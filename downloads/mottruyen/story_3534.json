@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "3534",
+        "NAME": "Tùy Mạt Chi Loạn Thần Tặc Tử",
+        "CHAPTER": [
+            {
+                "id": "1224208",
+                "name": "Chương 1: Tùy mạt, ngươi tốt"
+            }
+        ],
+        "TOTALCHAPTER": "1130",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Lịch Sử",
+        "AUTHOR": "Đọa Lạc Đích Lang Tể",
+        "TRANS": "Trinhtuananh",
+        "DESC": "Thế giới lớn như vậy, ta muốn đi ra xem một ch&uacute;t. Thể dục l&atilde;o sư L&yacute; T&iacute;n sống lại l&agrave; L&yacute; Uy&ecirc;n ch&iacute;nh l&agrave; thủ hạ, nguy&ecirc;n tưởng rằng c&oacute; thể &ocirc;m l&yacute; 2 đại thối, đ&aacute;ng tiếc l&agrave;, L&yacute; Uy&ecirc;n đem B&igrave;nh Dương c&ocirc;ng ch&uacute;a gả cho hắn người.<br /><br />L&yacute; Uy&ecirc;n, ngươi đ&atilde; ph&aacute; hủy chuyện tốt của ta, ta đ&acirc;y sẽ con g&aacute;i của ngươi, muốn con d&acirc;u của ngươi phụ, muốn của ngươi giang sơn.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

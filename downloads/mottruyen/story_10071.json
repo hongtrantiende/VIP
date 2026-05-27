@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "10071",
+        "NAME": "Hệ Thống Ám Sát",
+        "CHAPTER": [
+            {
+                "id": "3384130",
+                "name": "Chương 1 : Xuyên Không"
+            }
+        ],
+        "TOTALCHAPTER": "3",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Dị Năng, Võng Du, Dị Giới, Quân Sự, Xuyên Không, Đồng Nhân, Trùng Sinh",
+        "AUTHOR": "andrewlaanh",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Khi học sinh thành sát thủ <br />\r\nVà thầy giáo là mục tiêu",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "8001",
+        "NAME": "Trọng Sinh Nhật Bản Chi Trù Thần",
+        "CHAPTER": [
+            {
+                "id": "2782916",
+                "name": "Chương 1: Hài kịch nhân sinh"
+            }
+        ],
+        "TOTALCHAPTER": "269",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đô Thị, Trùng Sinh",
+        "AUTHOR": "thiên hồi chuyển z",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Tìm đường chết phát hạ đại chí nguyện to lớn, tình nguyện ăn liệu lý đến căng chết hạ vũ, đi vào một cái làm hắn hoàn toàn xa lạ thực kích chi linh thế giới.<br />\r\nCái gì, Trù Thần dưỡng thành?<br />\r\n“Ngươi muốn thỏa mãn không chỉ là người bình thường loại muốn ăn, còn có đủ loại yêu ma, bách quỷ dạ hành, dùng đồ ăn cảm hóa chúng nó!” Lão nhân khốc khốc đối hắn nói như thế.<br />\r\nVì thế, hạ vũ ở Trù Thần trên đường chạy như điên không thôi.<br />\r\n——————",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "3952",
+        "NAME": "Tiên Toái Hư Không",
+        "CHAPTER": [
+            {
+                "id": "1431325",
+                "name": "Chương 1 : Lăng Tiên - Quyển 1 : Lạc Vân Sơn"
+            }
+        ],
+        "TOTALCHAPTER": "1411",
+        "IMG": "https://static.cdnno.com/poster/tien-toai-hu-khong/150.jpg",
+        "CAT": "Tiên Hiệp",
+        "AUTHOR": "Huyễn Vũ",
+        "TRANS": "Hoàng Châu",
+        "DESC": "Cửu tử bất hối, đạo tâm vĩnh tồn, một cái rung động đến tâm can con đường tu tiên.Ba nghìn thế giới, Lục Đạo Luân Hồi, phàm nhân cũng có thể nhấc lên rộng lớn mạnh mẽ.Trong mưa gió, mà lại nhìn Lăng Tiên cửu thiên chi lộ!",
+        "THUMB": "https://static.cdnno.com/poster/tien-toai-hu-khong/150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

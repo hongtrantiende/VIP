@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "3989",
+        "NAME": "Hoàn Mỹ Kiếm Đạo Chí Tôn",
+        "CHAPTER": [
+            {
+                "id": "1455961",
+                "name": "Chương: Tự Chương"
+            }
+        ],
+        "TOTALCHAPTER": "114",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp, Huyền Ảo",
+        "AUTHOR": "Phong Tử Vô Hối",
+        "TRANS": "№.1ŤiểußạchKiểm",
+        "DESC": "Thượng cổ truyền thừa chín đại thiên đạo, Kim, Mộc, Thủy, Hỏa, Thổ, Sinh Mệnh, Hủy Diệt, Âm, Dương.<br />\r\n<br />\r\n\tĐồn đại chỉ cần hiểu rõ một loại thiên đạo, liền có thể trở thành Đạo Tổ chi vĩnh hằng tồn tại.<br />\r\n<br />\r\n\tMà xem Kỷ Vân làm sao ở đạo cơ bị hủy, từng bước một hướng đi thiên đạo bên trên cái kia vô thượng chí tôn con đường, dung hợp chín đại thiên đạo, đạt tới hoàn mỹ chí tôn, thành tựu Bất Diệt Thân Thể!",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

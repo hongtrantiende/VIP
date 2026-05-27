@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "4594",
+        "NAME": "Thần y Liễu Hạ Huệ",
+        "CHAPTER": [
+            {
+                "id": "1630547",
+                "name": "Chương 001: Ta cũng là cái bác sĩ"
+            }
+        ],
+        "TOTALCHAPTER": "101",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đô Thị",
+        "AUTHOR": "Đông Môn Xuy Ngưu",
+        "TRANS": "zzlanhwlungzz",
+        "DESC": "Nha đầu đến, thúc thúc giúp ngươi kiểm tra thân thể!<br />\r\n<br />\r\n...<br />\r\n<br />\r\nĐao giải phẫu hội cầm, châm cứu cũng biết đùa nghịch.<br />\r\n<br />\r\nTrung y, Tây y đều không nói chơi.<br />\r\n<br />\r\nTa chính là thần y Liễu Hạ Huệ.<br />\r\n<br />\r\nĐô thị sân trường đặc biệt MM hoá trang lên sân khấu!<br />\r\n<br />\r\nTinh khiết YY tiểu thuyết! Không phải y học điển tịch! Ưa thích tích cực, y thuật người phóng khoáng lạc quan chớ nhập!",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "6375",
+        "NAME": "Vô Địch Anh Hùng Hệ Thống",
+        "CHAPTER": [
+            {
+                "id": "4034249",
+                "name": "Chương 1: Xui xẻo xuyên việt"
+            }
+        ],
+        "TOTALCHAPTER": "797",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo, Xuyên Không",
+        "AUTHOR": "Vong Xuyên Tam Đồ",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Xuyên việt dị thế, anh hùng bám thân.<br />\r\n<br />\r\n\tKiếm Thần truyền nhân? Không có ý tứ, Thiên Kiếm vô danh, Kiếm thánh độc cô, Tây Môn Xuy Tuyết, cái này có một đống Kiếm Thần.<br />\r\n<br />\r\n\tCó một không hai mãnh tướng? Thực sự là xin lỗi, bá vương Hạng Võ, Xi Vưu Điển Vi, Chiến Thần Yến Quy Nhân, ai dám một trận chiến?<br />\r\n<br />\r\n\tCái gì, ngươi là thần linh hàng thế? Tới tới tới, nơi này có một vị vứt bỏ Thiên Đế dạy ngươi làm thần. . .",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

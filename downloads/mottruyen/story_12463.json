@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "12463",
+        "NAME": "Hỏa Ảnh Chi Ta Có Cái Hệ Thống",
+        "CHAPTER": [
+            {
+                "id": "4044199",
+                "name": "Chương 1: Quan thế âm, Nhạc Bất Quần tỷ tỷ, ách cho ta quay về a"
+            }
+        ],
+        "TOTALCHAPTER": "5",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Xuyên Không, Đồng Nhân",
+        "AUTHOR": "Narius333",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Chú:  1. Đây Là truyên đầu tay của ta hiện h đăng chương 1 để làm cái đề cương rõ ràng rồi viết tiếp.<br />\r\n           2. Vì học ngữ văn khá tệ nên sẽ gắn tham khảo chuyện đầu nhân khác( ta viết sai nhưng để đó ta viết ta tùy hứng).<br />\r\n           3. ách ta chỉ là viết thêm cho dài<br />\r\nĐây là một cái mô típ cũ, một câu chuyện cũ, ách hẵn là cũng có đặc sắc .",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

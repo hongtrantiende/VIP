@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "3351",
+        "NAME": "Bá Hoàng Kỷ",
+        "CHAPTER": [
+            {
+                "id": "5764865",
+                "name": "Chương 1:  Bánh ngô đưa tới huyết án"
+            }
+        ],
+        "TOTALCHAPTER": "971",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo, Dị Giới",
+        "AUTHOR": "Đạp Tuyết Chân Nhân",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Truyện dừng do nói xấu VN! (C966)",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

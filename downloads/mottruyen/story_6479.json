@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "6479",
+        "NAME": "Thành Tiên Kiếp",
+        "CHAPTER": [
+            {
+                "id": "2308022",
+                "name": "Chương 1 : Khúc Dạo Đầu"
+            }
+        ],
+        "TOTALCHAPTER": "3",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp, Huyền Ảo",
+        "AUTHOR": "Side",
+        "TRANS": "Tà Đế - truyencv",
+        "DESC": "Cổ xưa thời kỳ.<br />\r\n<br />\r\nPhàm nhân thua trận trở lại phàm giới, quyết chí ngàn năm sau dẫn theo toàn quân một lần nữa công phá Thượng Giới.<br />\r\n<br />\r\nChín trăm năm sau, một thiếu niên nô lệ của Tần Quốc, bị sung làm nô binh tiên phong trong quân đội nhà Tần. Bất ngờ trong trận chiến với Ninh Quốc mà táng thân dưới vực sâu không đáy, nhưng cũng như thế mà gặp gỡ Đạo Chủ đời thứ nhất của Tru Thiên Đạo, một thế lực mạnh mẽ cổ xưa. Quyết định thu hắn làm đồ đệ và hắn đã đồng ý…<br />\r\n<br />\r\nVà thế là một truyền kỳ, một thần thoại cổ xưa, một câu chuyện về đệ nhất cường giả đạp đổ Chư Thiên Vạn Giới, về một thiếu niên với giấc mộng trở thành thần tiên chân chính bắt đầu…",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

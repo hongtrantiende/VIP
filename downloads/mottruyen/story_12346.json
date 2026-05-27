@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "12346",
+        "NAME": "Long Ngạo Thương Khung",
+        "CHAPTER": [
+            {
+                "id": "4015711",
+                "name": "Chương 1: Bay"
+            }
+        ],
+        "TOTALCHAPTER": "20",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp, Huyền Ảo, Dị Năng",
+        "AUTHOR": "TD20",
+        "TRANS": "Đệ Nhất Nguyệt",
+        "DESC": "Truyện tiên hiệp của tác giả Việt Nam, nói về thế giới tu long <br />\r\nrắn nhỏ vì ước mơ bay lượn vô tình bước vào con đường tu long ước muốn liệt ngạo với trời xanh ...<br />\r\n với các cảnh giới như Long Khí cảnh, Long Dịch cảnh, Long Đan Cảnh, Long Anh cảnh, Hóa Long cảnh...",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

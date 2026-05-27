@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "3862",
+        "NAME": "Vô Thượng Hoàng Đồ",
+        "CHAPTER": [
+            {
+                "id": "1357132",
+                "name": "Chương 1:  Sơ đến Thanh Xuyên"
+            }
+        ],
+        "TOTALCHAPTER": "769",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Khoa Huyễn",
+        "AUTHOR": "Hàn Hương Tịch Mịch",
+        "TRANS": "trang4mat",
+        "DESC": "Thiếu ni&ecirc;n dị giới tr&ugrave;ng sinh, m&agrave; lại xem ho&agrave;n khố t&agrave;i tử như thế n&agrave;o dựa v&agrave;o kiếp trước tr&iacute; nhớ c&ugrave;ng t&uacute;c tuệ, Vấn Đỉnh Ti&ecirc;n đạo, từng bước một đạp v&agrave;o ho&agrave;ng đồ sự thống trị! Vạn ph&aacute;p tranh phong, luận s&aacute;ng nay ai chủ Thi&ecirc;n Địa?",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

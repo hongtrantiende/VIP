@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "2210",
+        "NAME": "Đại Ma Chủ",
+        "CHAPTER": [
+            {
+                "id": "751852",
+                "name": "Chương 1 : Tử hình - Quyển 1"
+            }
+        ],
+        "TOTALCHAPTER": "154",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo",
+        "AUTHOR": "Nhất Bút Tả Xuân Thu",
+        "TRANS": "Hungprods, Cuồng Đế",
+        "DESC": "Đại Ma Chủ: tại giết ch&oacute;c trong quật khởi, tại huy ho&agrave;ng trong Vĩnh Sinh...",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

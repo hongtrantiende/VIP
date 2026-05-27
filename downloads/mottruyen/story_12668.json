@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "12668",
+        "NAME": "Pokemon Chưởng Khống Giả",
+        "CHAPTER": [
+            {
+                "id": "4097331",
+                "name": "Cơ sở thiết lập"
+            }
+        ],
+        "TOTALCHAPTER": "587",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đồng Nhân",
+        "AUTHOR": "Tinh Vũ",
+        "TRANS": "0o0Killua0o0",
+        "DESC": "Vô cùng mênh mông thế giới pokemon, sinh tồn ngày Địa Tinh Linh, mỗi một con Pokemon cũng có vô hạn tiềm năng, tam đoạn tiến hóa không phải là điểm cuối, con đường tiến hóa Vĩnh Vô Chỉ Cảnh!<br />\r\n<br />\r\n\tMỗi một lần tiến hóa đều là một lần thuế biến, thuộc tính có thể thay đổi, Đặc Tính cũng có thể thay đổi, như thế nào tạo nên Pokemon hoàn mỹ nhất!<br />\r\n<br />\r\n\tLoạn thế buông xuống, tuyệt sắc thiên tài tầng tầng lớp lớp xuất hiện, cộng vũ khuynh thành!<br />\r\n<br />\r\n\tMột lần nữa làm lại, thề phải đào tạo được vượt qua hết thảy Thần Tích Pokemon, Nghịch Chuyển Càn Khôn!",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

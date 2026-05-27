@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "6826",
+        "NAME": "Du Lịch Đại Hàng Hải",
+        "CHAPTER": [
+            {
+                "id": "2436577",
+                "name": "Chương 0:Kíp nổ"
+            }
+        ],
+        "TOTALCHAPTER": "632",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Võng Du",
+        "AUTHOR": "Kỵ Sĩ Rồng",
+        "TRANS": "♚๖ۣۜKabigon♌♔",
+        "DESC": "Giới thiệu:<br /> <br /> Hắn đ&atilde; từng l&agrave; Điện Tử Cạnh Kỹ Cận Chiến Vương Giả, đứng ở thế giới đỉnh cao nhất cao thủ, ch&aacute;n gh&eacute;t Cao Thủ Tịch Mịch thời gian, hắn trở lại lạc Du H&iacute; Thế Giới, đi tới nơi n&agrave;y c&aacute;i thời đại Đại H&agrave;ng Hải, tay hắn cầm Hải Tặc Loan Đao, mặt mang kh&ocirc; l&acirc;u bịt mắt, tại cuồng phong trong s&oacute;ng dữ đi thuyền, hỏa lực bay t&aacute;n loạn b&ecirc;n trong đ&agrave;m tiếu, loan đao trong tay soi s&aacute;ng ra n&eacute;t mặt tươi cười, ngẩng đầu, nh&igrave;n lấy tung bay cờ x&iacute; h&ocirc; to: \" Rose, ta l&agrave; Jack, I love you...\"",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

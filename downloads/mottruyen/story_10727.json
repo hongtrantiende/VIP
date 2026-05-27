@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "10727",
+        "NAME": "Tiến Nhập Điện Ảnh",
+        "CHAPTER": [
+            {
+                "id": "3562455",
+                "name": "HP001 hoan nghênh đi vào Vu sư thế giới!"
+            }
+        ],
+        "TOTALCHAPTER": "525",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Xuyên Không",
+        "AUTHOR": "Thanh Mạc Sơn",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Nằm ngửa tại hắc ven hồ, gió thổi lên Hogwarts cây liễu;<br />\r\n<br />\r\n\tDạo bước New York đầu đường, Phục Cừu Giả cùng máy móc quân đoàn tranh phong;<br />\r\n<br />\r\n\tĐông Thắng Thần Châu chi đỉnh, Tử Hà tiên tử nở rộ ngây thơ mỉm cười;<br />\r\n<br />\r\n-------------------------------------------------------------------------------------------------------------------------<br />\r\n<br />\r\n\tThông tục phiên bản:<br />\r\n<br />\r\n\tNgươi muốn nhìn một trận phim, vẫn là tiến vào phim?<br />\r\n--------------------------------------------------------------------------------------------------------------------------<br />\r\nps: kiếm truyện mệt quá đành đào hố mới cho anh em nhập vậy",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

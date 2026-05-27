@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "9643",
+        "NAME": "Bệnh Chó Dại Kẻ Truyền Nhiễm",
+        "CHAPTER": [
+            {
+                "id": "3255624",
+                "name": "Chương 1:  Nhất Mao Bệnh phế phẩm trạm thu mua"
+            }
+        ],
+        "TOTALCHAPTER": "308",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Dị Năng",
+        "AUTHOR": "Ngư Dữ Dư",
+        "TRANS": "♚๖ۣۜKabigon♌♔",
+        "DESC": "Ngô Bệnh nói \"Ta tốt không may! Thật tốt không may! Lão tử cũng là sửa cái xe nát, không trêu ai không chọc ai lại bị một cái chó chết cho cắn, tuy nhiên đừng lo lắng lão tử đã báo thù, yên tâm nói thế nào ta cũng là trải qua Sơ Trung người, sẽ không đi cắn chó, chỉ là đem nó ăn mà thôi.\"<br />\r\n<br />\r\n\tKhông may hài tử Ngô Bệnh bị chó điên cắn bị thương, lại bị Hắc Tâm bác sĩ tiêm vào quá thời hạn chó dại vắcxin phòng bệnh, kết quả lại thu hoạch được kỳ dị lực lượng... .",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

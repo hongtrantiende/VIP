@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "2451",
+        "NAME": "Sử Thượng Tối Cường Chí Tôn",
+        "CHAPTER": [
+            {
+                "id": "808483",
+                "name": "Chương 1:   Thiếu niên ở sơn thôn"
+            }
+        ],
+        "TOTALCHAPTER": "67",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo",
+        "AUTHOR": "Túy Vũ Trường Kiếm",
+        "TRANS": "۩£oli»Thanh±Tâm",
+        "DESC": "Võ đạo,   võ đạo,   luyện được là võ,   tu chính là nói.<br />\r\n<br />\r\nMột cái thiếu niên ở sơn thôn,   mang theo thần bí cảnh trong mơ,   dứt khoát mà nhưng bước vào võ đạo.<br />\r\n<br />\r\nTheo hắn quật khởi,   đủ loại bí mật dần dần trồi lên mặt nước.<br />\r\n<br />\r\nVạn năm lúc trước cường giả một tên tiếp theo một tên trở về,   Cường võ thời đại triệt để hàng lâm.<br />\r\n<br />\r\nVõ đạo hội trên kinh diễm toàn trường,   luân hồi cảnh trung quét ngang Tứ Phương.<br />\r\n<br />\r\nLúc hắn Đăng Lâm đỉnh phong,   kiếm chỉ ẩn tộc,   ngạo nghễ nói:   ẩn tộc,   ta đã trở về!",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

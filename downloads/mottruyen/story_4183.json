@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "4183",
+        "NAME": "Võ Hiệp Tiên Hiệp Thế Giới Đạo Nhân",
+        "CHAPTER": [
+            {
+                "id": "1521487",
+                "name": "Chương 1: Xuyên qua"
+            }
+        ],
+        "TOTALCHAPTER": "743",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Kiếm Hiệp",
+        "AUTHOR": "Thiên Đạo Chân Nhân",
+        "TRANS": "Liu",
+        "DESC": "V&otilde; hiệp ti&ecirc;n hiệp trong thế giới đạo nh&acirc;n, đang chậm r&atilde;i xuy&ecirc;n qua tr&ecirc;n đường l&atilde;nh hội đạo ch&acirc;n &yacute;. Xạ Đi&ecirc;u trong thế giới, hắn d&ugrave;ng B&agrave;i V&acirc;n Chưởng c&ugrave;ng Hồng Thất C&ocirc;ng quyết đấu; Đại Đường b&ecirc;n trong thế giới, hắn chỉ v&agrave;o Ninh Đạo Kỳ n&oacute;i: \"C&aacute;nh cửa n&agrave;y đệ nhất cao thủ vị tr&iacute; ngươi đ&ecirc;́n để để\" . . .",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

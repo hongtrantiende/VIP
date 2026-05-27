@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "11043",
+        "NAME": "Mùa Đông Ấm Áp",
+        "CHAPTER": [
+            {
+                "id": "3657308",
+                "name": "Chương 1 :liên Võ Đạo"
+            }
+        ],
+        "TOTALCHAPTER": "30",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Ngôn Tình",
+        "AUTHOR": "HoangMinhThu",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Trong lòng cô tồn tại một người ,cứ tưởng sẽ mãi không bao giờ quên đó . Trước giờ cô đều nghĩ : mình sẽ mãi mãi không bao giờ quên được người đó . Nhưng rồi lại có một người người con trai khác xuất hiện . Anh được mệnh danh là : Giám đốc lạnh lùng ,là người mà cô bị ép cưới  Cô cứ nghĩ mình rất ghét anh nhưng mỗi lúc cãi nhau thì anh lại càng đi vào lòng cô . Cuối cùng cô cũng phải chấp nhân : mình là \" yêu \" anh rồi . Chính anh đã chinh phục được trái tim cô .Ai có lẽ cũng có mối tình đầu nhưng nó chưa chắc là mối tình cuối ,người đó sẽ vĩnh vĩnh ở một góc nào đó trong trái tim cô và cũng chỉ là một thứ gọi là \" quá khứ \"",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

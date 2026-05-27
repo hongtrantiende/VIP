@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "10010",
+        "NAME": "Hệ Thống Hokage Ở Harry Potter",
+        "CHAPTER": [
+            {
+                "id": "3370865",
+                "name": "Chương 1 : Xuyên Việt Harry Potter"
+            }
+        ],
+        "TOTALCHAPTER": "4",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Khoa Huyễn, Xuyên Không, Đồng Nhân, Trùng Sinh",
+        "AUTHOR": "Ta Mới Tập Viết",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Truyện kể về 1 thanh niên FA mang theo hệ thống xông xáo Harry Potter. Liệu hắn có cởi bỏ hết bí ẩn ở thế giới tràn ngập huyền bí này hay không? Hãy đón xem tác phẩm ( kể trước nhiều mất hay, đọc từ từ sẽ đi từ bất ngờ này sang bất ngờ khác)<br />\r\n<br />\r\nPs: Truyện đầu tay các bác gạch đá dữ dội vào",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

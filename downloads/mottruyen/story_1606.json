@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "1606",
+        "NAME": "Mạt Thế Liệp Sát Giả",
+        "CHAPTER": [
+            {
+                "id": "658853",
+                "name": "Chương 1: Hung ngưu"
+            }
+        ],
+        "TOTALCHAPTER": "30",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đô Thị, Dị Năng",
+        "AUTHOR": "Phi Ảnh",
+        "TRANS": "TTV",
+        "DESC": "20XX năm, thế giới bị đột như k&igrave; đến rất nhiều qu&aacute;i vật sở chiếm cứ. Nh&acirc;n Loại ho&agrave;n to&agrave;n biến th&agrave;nh dị loại trong miệng thực vật. C&aacute;c Quốc ch&iacute;nh phủ tại đ&aacute;nh mất rất nhiều qu&acirc;n đội dưới t&igrave;nh huống xu vu hỏng mất. Th&agrave;nh thị bị ma vật ph&aacute; hủy th&agrave;nh phế khư, muốn sống s&oacute;t, chỉ c&oacute; thể từ giữa s&aacute;t xuất một c&aacute;i đường m&aacute;u. Đ&aacute;ng sợ ma vật đến tột c&ugrave;ng theo h&agrave; m&agrave; đến? C&oacute; được khoa kĩ Nh&acirc;n Loại lại n&ecirc;n như thế n&agrave;o đối mặt? S&aacute;t! S&aacute;t! S&aacute;t! V&ocirc; c&ugrave;ng giết ch&oacute;c, huyết tinh giết ch&oacute;c, vi vạch trần cuối c&ugrave;ng m&ecirc; để, chỉ c&oacute; thể giết sạch hết thảy thứ!",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

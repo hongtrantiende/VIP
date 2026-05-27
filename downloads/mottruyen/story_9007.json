@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "9007",
+        "NAME": "Đạo Gia Truyền Thừa Hệ Thống",
+        "CHAPTER": [
+            {
+                "id": "3055774",
+                "name": "Chương 1: Họa không đến một lần"
+            }
+        ],
+        "TOTALCHAPTER": "306",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đô Thị",
+        "AUTHOR": "Vân triều vũ mộ",
+        "TRANS": "๖ۣۜTiếu ๖ۣۜHồng ๖ۣۜTrần",
+        "DESC": "Chán nản thanh niên , tại nhân sinh đứng đầu không được như ý lúc , tình cờ phát hiện mình từ nhỏ đeo ở trên người ngọc bội , lại là một cái đạo gia truyền thừa hệ thống , có được lấy cổ xưa lại thần bí đạo gia truyền thừa!<br />\r\n<br />\r\n\tVận mệnh , sau đó sửa lại.<br />\r\n<br />\r\n\tTừ đây bằng vào đạo gia năm thuật núi , y , mệnh , tướng , bói đạo thống truyền thừa , bước lên một cái kỳ huyễn mà bất khả tư nghị nói đường , hồng trần luyện tâm , đại đạo Vô Cực...",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

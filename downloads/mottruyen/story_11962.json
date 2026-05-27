@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "11962",
+        "NAME": "Vương Bài Thánh Y",
+        "CHAPTER": [
+            {
+                "id": "3920601",
+                "name": "Chương 1: Trong tuyết nguy cơ"
+            }
+        ],
+        "TOTALCHAPTER": "35",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đô Thị, Ngôn Tình",
+        "AUTHOR": "Tảo Khởi Đích Phi Điểu",
+        "TRANS": "ShmilyLavender",
+        "DESC": "Tại một chỗ khám bệnh đơn sơ, bên trong vậy mà ẩn giấu đi một cao nhân y thuật siêu cường. Bất cần đời, hắn mơ mơ hồ hồ cuốn vào đến từng tràng ngươi lừa ta gạt cửa hàng trong nước xoáy. Mỹ nữ cảnh sát cảm mến, cao Lãnh tổng giám đốc tính tình, hắn như thế nào tại giữa hai bên kẽ hở cầu sinh? Học y sư môn một lần nữa tẩy bài, tổ chức sát thủ từng bước ép sát, hắn lại như thế nào tại trùng điệp trong khốn cảnh tìm kiếm phụ mẫu đều mất manh mối? Đương hết thảy bí ẩn bị giải khai, hắn phát hiện mình bất quá là một cái tôm tép nhãi nhép, nhưng khi ngoại địch thế lực xâm nhập lúc, hắn lại liều lĩnh cống hiến lực lượng của mình, hắn người mang tuyệt thế y thuật, nhưng lại thường thường bồi hồi tại thời khắc sinh tử, hắn phẩy tay áo bỏ đi, . . .",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

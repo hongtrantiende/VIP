@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "3824",
+        "NAME": "Ngạo Tuyệt Tu Thần",
+        "CHAPTER": [
+            {
+                "id": "1324487",
+                "name": "Chương 1:  Lăng Ngạo Thiên"
+            }
+        ],
+        "TOTALCHAPTER": "939",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Khoa Huyễn",
+        "AUTHOR": "Cửu Cung Hồn",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Một c&aacute;i b&igrave;nh thường thiếu ni&ecirc;n, gặp gia tộc vứt bỏ, nhận hết tộc nh&acirc;n nhục mạ tr&agrave;o ph&uacute;ng. Thiếu ni&ecirc;n kh&ocirc;ng cam l&ograve;ng, ly khai gia tộc về sau, tại một c&aacute;i sơn cốc b&ecirc;n trong trong l&uacute;c v&ocirc; t&igrave;nh t&igrave;m được một cuốn cấp thấp c&ocirc;ng ph&aacute;p, l&agrave; đ&atilde; bắt đầu tu luyện. Thiếu ni&ecirc;n kh&ocirc;ng l&agrave;m người h&acirc;m mộ thi&ecirc;n ph&uacute;, nhưng lại c&oacute; kinh người tốc độ tu luyện. Cường đại Cao cấp c&ocirc;ng ph&aacute;p t&iacute;nh to&aacute;n c&aacute;i g&igrave;? Cường đại ph&aacute;p bảo lại t&iacute;nh to&aacute;n c&aacute;i g&igrave;? Lăng Ngạo Thi&ecirc;n dựa v&agrave;o tốc độ kinh người c&ugrave;ng lực lượng, một đường qu&aacute; quan trảm tướng, Nh&acirc;n giới, Ti&ecirc;n Giới, Thần giới nghe tin đ&atilde; sợ mất mật!",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

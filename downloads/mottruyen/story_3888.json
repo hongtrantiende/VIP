@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "3888",
+        "NAME": "Khoảng Khắc Ngọt Ngào",
+        "CHAPTER": [
+            {
+                "id": "1382339",
+                "name": "Chương 1: Giới thiệu nhân vật"
+            }
+        ],
+        "TOTALCHAPTER": "4",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Ngôn Tình",
+        "AUTHOR": "Yuu",
+        "TRANS": "Hiện đại, tình cảm",
+        "DESC": "\" Tường Vy.. Tường Vy... em đừng đi mà... tỉnh lại đi!!!!!... \" - giọng anh  khản đặc gọi tên nó, lay lay nó. Anh ôm nó thật chặt vào lòng như nó sẽ có thể rời xa anh mãi mãi bất cứ lúc nào.<br />\r\nAnh trách bản thân không bảo vệ được nó......<br />\r\nHai con người, hai số phận,.... họ yêu nhau nhưng cuộc sống có quá nhiều cay đắng, hận thù, ghen tức xen lẫn tình cảm yêu thương khiến họ khao khát có được khoảng khắc ngọt ngào khi ở bên nhau.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "3623",
+        "NAME": "Sinh nhật của ta là quỷ tiết",
+        "CHAPTER": [
+            {
+                "id": "1253083",
+                "name": "Chương 1 : Hộ thân tử long"
+            }
+        ],
+        "TOTALCHAPTER": "6",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Khoa Huyễn, Linh Dị",
+        "AUTHOR": "Huyễn Tâm",
+        "TRANS": "Lớp CV",
+        "DESC": "ngàn năm luân hồi đích thân thế , có lực lượng thần bí đích chủ thượng .<br />\r\n　　 một con đủ để hủy diệt thế giới linh cổ , lật tay phản đứng hàng mệnh cách , phúc tay phục lập càn khôn . ngàn năm luân hồi thân , huề chí hữu một vị , tiểu quỷ một con , linh cổ một cái , chiến ảnh ma , đi u phủ , sinh tử bồi hồi , ý thức thức tỉnh .<br />\r\n　　 ta là thiên sát cô tinh , cũng nhưng độc bộ thiên hạ ！",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

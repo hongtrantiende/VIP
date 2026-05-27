@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "8469",
+        "NAME": "Thiết Tiên Truyền Nhân Tại Đô Thị",
+        "CHAPTER": [
+            {
+                "id": "2976183",
+                "name": "Chương 1: Thiết Tiên truyền thừa"
+            }
+        ],
+        "TOTALCHAPTER": "305",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp, Đô Thị",
+        "AUTHOR": "Tiểu Tiểu Vũ",
+        "TRANS": "Hoàng Châu",
+        "DESC": "Nh&agrave; b&igrave;nh luận mỹ thực Cổ Tranh bị Thiết Ti&ecirc;n tuyển chọn, trở th&agrave;nh   truyền nh&acirc;n của Thiết Ti&ecirc;n ở đ&ocirc; thị, dưới c&aacute;c loại thử th&aacute;ch của Thiết Ti&ecirc;n Lệnh Kh&iacute; Linh, tăng l&ecirc;n tự th&acirc;n, cuối c&ugrave;ng trở th&agrave;nh từ trước tới nay vĩ đại nhất Thực Ti&ecirc;n.<br /> <br /> (Cổ Tranh: \"Ti&ecirc;n giới đối với nguy&ecirc;n liệu nấu ăn cũng ph&acirc;n chia đẳng cấp? Tr&ecirc;n Địa cầu tốt nhất nguy&ecirc;n liệu nấu ăn chỉ l&agrave; phổ th&ocirc;ng cấp bậc? Ngươi để cho ta d&ugrave;ng hiện hữu nguy&ecirc;n liệu nấu ăn l&agrave;m ra cấp bậc cao nhất mỹ thực, Kh&iacute; Linh ngươi đi ra, ta tuyệt đối kh&ocirc;ng đ&aacute;nh ngươi! )",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

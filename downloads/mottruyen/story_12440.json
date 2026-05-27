@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "12440",
+        "NAME": "Vô Hạn Thứ Nguyên",
+        "CHAPTER": [
+            {
+                "id": "4039104",
+                "name": "Chương  0 : Sự khởi đầu ?"
+            }
+        ],
+        "TOTALCHAPTER": "1",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Khoa Huyễn, Xuyên Không, Đồng Nhân",
+        "AUTHOR": "dinhanhngo@",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Tiến độ chưa rõ . Tình tiết chưa rõ . Nhân vật chưa rõ.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

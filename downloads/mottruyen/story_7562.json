@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "7562",
+        "NAME": "Đô Thị Đại Tiên Nông",
+        "CHAPTER": [
+            {
+                "id": "2679092",
+                "name": "Chương 1: Thần kỳ máy thu thanh"
+            }
+        ],
+        "TOTALCHAPTER": "420",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp, Đô Thị, Huyền Ảo, Dị Giới",
+        "AUTHOR": "Băng Hỏa Lan San - 冰火阑珊",
+        "TRANS": "Nvccanh",
+        "DESC": "Một tên đại học tốt nghiệp sinh, về đến cố hương sau, bất ngờ phát hiện trong nhà kiểu cũ máy thu thanh có thể tiếp thu được một cái khác tiên hiệp thế giới âm thanh, hơn nữa có thể đem tiên hiệp thế giới vật phẩm bắt được trên thực tế đến. Thế là, mượn tiên hiệp thế giới vật phẩm, Chu Vũ bắt đầu ở quê hương cuộc sống hạnh phúc. Dưỡng dưỡng hoa, trồng cây, vài con động vật vây bên cạnh.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

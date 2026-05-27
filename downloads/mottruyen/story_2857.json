@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "2857",
+        "NAME": "Đạo Tặc Vương Tọa",
+        "CHAPTER": [
+            {
+                "id": "958351",
+                "name": "Chương 1 \tTình huống thế nào?"
+            }
+        ],
+        "TOTALCHAPTER": "1056",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo",
+        "AUTHOR": "Vũ Thủy",
+        "TRANS": "Tanikaze, boydxvip001",
+        "DESC": "Ta l&agrave; một t&ecirc;n đạo tặc.<br /><br />Ở c&aacute;i n&agrave;y t&ocirc;ng m&ocirc;n san s&aacute;t, thế gia phức tạp trong thế giới, bọn họ cất giấu tr&acirc;n bảo, đan dược, cao cấp chiến kỹ, kh&ocirc;ng một kh&ocirc;ng bị ta coi l&agrave; vật trong t&uacute;i.<br /><br />Nghi vấn thực lực của ta?<br /><br />Lường gạt ta l&agrave; r&aacute;c rưởi?<br /><br />Một c&aacute;i l&atilde;nh huyết kỹ năng, ch&iacute;nh l&agrave; 100% tấn c&ocirc;ng dữ dội hiệu quả, đ&acirc;y ch&iacute;nh l&agrave; gấp đ&ocirc;i thương tổn.<br /><br />Một c&aacute;i tiềm h&agrave;nh để ta v&ocirc; tung v&ocirc; ảnh ảnh, để ngươi đối với ta kh&ocirc;ng cảm gi&aacute;c ch&uacute;t n&agrave;o.<br /><br />Thi&ecirc;n t&agrave;i? Y&ecirc;u nghiệt? Tất cả đều l&agrave; ta đ&aacute; k&ecirc; ch&acirc;n!",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

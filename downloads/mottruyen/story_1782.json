@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "1782",
+        "NAME": "Võ Lộng Thương Khung",
+        "CHAPTER": [
+            {
+                "id": "734102",
+                "name": "Chương 1 : Mĩ nữ cứu anh hùng"
+            }
+        ],
+        "TOTALCHAPTER": "368",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo",
+        "AUTHOR": "Tiểu Bạch Thỏ 0227",
+        "TRANS": "Sulokida",
+        "DESC": "Một c&aacute;i trời sinh đan điền tổn hại, x&aacute;c định v&ocirc; ph&aacute;p tu luyện thiếu ni&ecirc;n, đưa tới v&ocirc; số người đ&ugrave;a cợt, đột nhi&ecirc;n c&oacute; một ng&agrave;y hắn bị hai người l&atilde;o bất tử đoạt x&aacute;... . . . .",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

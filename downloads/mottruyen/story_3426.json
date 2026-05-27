@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "3426",
+        "NAME": "Thiên Đạo Hoàng Tọa",
+        "CHAPTER": [
+            {
+                "id": "1189122",
+                "name": "Chương 1: May mắn Đại Chuyển Bàn"
+            }
+        ],
+        "TOTALCHAPTER": "45",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo",
+        "AUTHOR": "Hàm Diệp Nhị Tiếu",
+        "TRANS": "Tranhaongok",
+        "DESC": "Thi&ecirc;n Đạo Ho&agrave;ng Tọa t&aacute;c giả: H&agrave;m Diệp Nhị Tiếu<br /><br />Thi&ecirc;n Đạo Ho&agrave;ng Tọa Thi&ecirc;n Vũ đại lục, v&otilde; giả l&agrave;m đầu.<br /><br />Địa Cầu thiếu ni&ecirc;n Tần Dương hồn xuy&ecirc;n m&agrave; đến, b&aacute;m th&acirc;n h&agrave;n m&ocirc;n con ch&aacute;u.<br /><br />Thần kỳ tr&oacute;i chặt may mắn Đại Chuyển B&agrave;n, mở ra nghịch thi&ecirc;n lữ.<br /><br />C&ocirc;ng Ph&aacute;p B&iacute; Tịch, Linh Đan Diệu Dược, Thần Binh Lợi Kh&iacute;, &Yacute; Cảnh Ph&aacute;p Tắc. . .<br /><br />Chỉ cần nh&acirc;n phẩm được, hết thảy cầm được đến!",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

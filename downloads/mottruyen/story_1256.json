@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "1256",
+        "NAME": "Pháp Sư Áo Nghĩa",
+        "CHAPTER": [
+            {
+                "id": "497466",
+                "name": "Chương 1: Mai Lâm"
+            }
+        ],
+        "TOTALCHAPTER": "1057",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Dị Giới",
+        "AUTHOR": "Nguyệt Trung Âm",
+        "TRANS": "thuytinhls",
+        "DESC": "Chỉ cần c&oacute; thể tạo th&agrave;nh một c&aacute;i ổn định Ph&aacute;p thuật m&ocirc; h&igrave;nh, bất luận kẻ n&agrave;o đều c&oacute; thể trở th&agrave;nh ph&aacute;p sư! Đ&acirc;y l&agrave; ph&aacute;p sư chung cực &aacute;o nghĩa!<br /><br />Chuyển kiếp trở th&agrave;nh qu&yacute; tộc chi tử, mang theo kiếp trước si&ecirc;u cấp lượng tử m&aacute;y t&iacute;nh, Ph&aacute;p thuật m&ocirc; h&igrave;nh hạ b&uacute;t th&agrave;nh văn. .",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

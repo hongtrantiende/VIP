@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "3323",
+        "NAME": "Yêu Xà Đạo",
+        "CHAPTER": [
+            {
+                "id": "1155721",
+                "name": "Chương 1: Sống lại thành xà - Quyển 1 : Xà lộ nhấp nhô"
+            }
+        ],
+        "TOTALCHAPTER": "256",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp",
+        "AUTHOR": "Lưu Thiểu Trùng",
+        "TRANS": "Lạc Tà",
+        "DESC": "Bởi v&igrave; x&agrave; h&oacute;a m&atilde;ng, bởi v&igrave; m&atilde;ng phi thăng. Ai n&oacute;i c&ugrave;ng cấp b&ecirc;n trong, thần th&uacute; mạnh nh&acirc;́t? Do thi sơn huyết hải trong đi ra phổ th&ocirc;ng con rắn nhỏ, liền nhất định phải thường một thường Ch&acirc;n long m&ugrave;i vị",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

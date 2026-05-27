@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "7270",
+        "NAME": "Thiên Tài Tại Dị Giới",
+        "CHAPTER": [
+            {
+                "id": "2586085",
+                "name": "Chương 1 trọng sinh"
+            }
+        ],
+        "TOTALCHAPTER": "1",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo",
+        "AUTHOR": "buih1576@",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Tại Chân Linh Đại Lục, một đệ tử đại gia tộc bởi vì một biến cố kỳ dị mà từ người bình thường trở thành thiên tài, không chỉ cảm nhận trở nên nhạy cảm mà khả năng lĩnh ngộ cũng tăng vọt chỉ cần gặp qua là không thể quên, trở thành một tồn tại biến thái.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "5736",
+        "NAME": "Hồng hoang Vũ Tiên",
+        "CHAPTER": [
+            {
+                "id": "2061558",
+                "name": "Chương 1: Xem Hải Sơn"
+            }
+        ],
+        "TOTALCHAPTER": "308",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp, Xuyên Không",
+        "AUTHOR": "Hư Môn Chi Ngoại",
+        "TRANS": "Tiêu Dao",
+        "DESC": "Năm th&aacute;ng lưu chuyển, Hồng hoang mới bắt đầu, hư kh&ocirc;ng v&ocirc; tận mấy trăm tỷ năm dựng dục một quả kỳ ch&acirc;u, t&ecirc;n l&agrave;: C&agrave;n Kh&ocirc;n!<br /> <br /> Nhưng v&agrave;o thi&ecirc;n đạo, xuy&ecirc;n qua c&aacute;t bụi thế giới.<br /> <br /> Dương Quan cầm C&agrave;n Kh&ocirc;n Ch&acirc;u, xuy&ecirc;n qua v&ocirc; tận thời kh&ocirc;ng, thu thập V&ocirc; Thượng tuyệt học, th&agrave;nh tựu Hồng hoang tuyệt đỉnh chưởng m&ocirc;n!",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

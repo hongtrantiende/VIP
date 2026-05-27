@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "4212",
+        "NAME": "Thiên Tống",
+        "CHAPTER": [
+            {
+                "id": "1528413",
+                "name": "Chương 1: Sao chổi"
+            }
+        ],
+        "TOTALCHAPTER": "301",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Quân Sự, Lịch Sử",
+        "AUTHOR": "Hà Tả",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Một cảnh s&aacute;t cao cấp nổi tiếng cấp quốc tế với ti&ecirc;u chuẩn đạo đức của m&igrave;nh, xuy&ecirc;n việt đến những năm cuối của Bắc Tống với gian thần đầy rẫy v&agrave; một t&ecirc;n ho&agrave;ng đế ngu ngốc.<br /> <br /> <br /> Bộ truyện kh&ocirc;ng phải l&agrave; truyện tranh b&aacute;, cũng kh&ocirc;ng phải truyện thống trị thiết huyết.<br /> <br /> Cường thế kh&ocirc;ng thể l&agrave;m chủ tất cả, th&ocirc;ng minh l&agrave; căn bản của hết thảy. C&oacute; lẽ 40% th&ocirc;ng minh, 40% cố gắng, cộng th&ecirc;m 20% may mắn ch&iacute;nh l&agrave; tất cả m&agrave; bộ truyện muốn n&oacute;i.<br /> <br /> PS: Truyện lịch sử c&oacute; BUG, truyện lịch sử kh&ocirc;ng BUG kh&ocirc;ng phải truyện lịch sử hay.<br /> <br /> Bộ truyện n&agrave;y được viết bởi H&agrave; Tả, đậm chất h&agrave;i hước xem kẽ yếu tố tranh đấu, &acirc;m mưu t&iacute;nh kế. Hi vọng mọi người đọc truyện vui vẻ!",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

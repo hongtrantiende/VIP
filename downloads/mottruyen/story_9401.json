@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "9401",
+        "NAME": "Tiên Hiệp Tả Đạo",
+        "CHAPTER": [
+            {
+                "id": "3178387",
+                "name": "Chương 1: Mở đầu"
+            }
+        ],
+        "TOTALCHAPTER": "60",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp, Huyền Ảo, Linh Dị",
+        "AUTHOR": "Trích Thủy Tam Thiên",
+        "TRANS": "Tjpjmj",
+        "DESC": "Tiểu đạo đồng thành tựu bán tiên <br />\r\nMa đạo nhiều duy ta ngự<br />\r\n<br />\r\nAe like ,vote 10* và đánh giá cuối mỗi chương. Thankk ae",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

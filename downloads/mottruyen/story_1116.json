@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "1116",
+        "NAME": "Hoành Tảo Hoang Vũ",
+        "CHAPTER": [
+            {
+                "id": "396606",
+                "name": "Chương 1: Phá Đỉnh  "
+            }
+        ],
+        "TOTALCHAPTER": "902",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp, Kiếm Hiệp",
+        "AUTHOR": "Cô Đơn Địa Phi",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Nh&acirc;n thể c&oacute; 360 khiếu huyệt c&oacute; thể thu nạp linh kh&iacute; cung cấp cho v&otilde; giả  khả năng nghịch thi&ecirc;n đoạt thi&ecirc;n địa tạo h&oacute;a th&agrave;nh tựu đại đạo v&ocirc;  thượng. Nhưng kh&ocirc;ng phải cứ sinh ra l&agrave; c&oacute; thể thu nạp linh kh&iacute; m&agrave; cần  th&ocirc;ng qua tu luyện m&agrave; c&aacute;c khiếu huyệt mới c&oacute; thể thu nạp linh kh&iacute;.<br /><br />L&acirc;m  Lạc căn cốt yếu k&eacute;m, 17 tuổi mới k&iacute;ch hoạt được 3 khiếu huyệt nhưng  bỗng một ng&agrave;y hắn ta bị một c&aacute;i đỉnh từ tr&ecirc;n trời rơi tr&uacute;ng đầu biến  th&agrave;nh tr&ograve; cười của cả gia tộc nhưng từ đ&oacute; hắn lại gặp được thi&ecirc;n đại kỳ  ngộ mờ ra cho hắn một con đường th&ocirc;ng thi&ecirc;n.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

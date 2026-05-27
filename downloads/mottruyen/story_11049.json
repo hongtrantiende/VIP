@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "11049",
+        "NAME": "Hí Thiên",
+        "CHAPTER": [
+            {
+                "id": "3648883",
+                "name": "Chương 1: Trở về."
+            }
+        ],
+        "TOTALCHAPTER": "1",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp, Huyền Ảo, Xuyên Không",
+        "AUTHOR": "kkonhi",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Một tên Thần Đế vì đoạt được một bản công pháp có khả năng bước ra bước cuối cùng hóa thành Tiên nhân mà đưa tới họa sát thân.<br />\r\n\"Ta Lâm Hi không phải trái hồng mềm, các ngươi từng cái sẽ CHẾT\"<br />\r\nĐược Thời Không Thiên Lô đưa trở về quá khứ. Lâm Hi bắt đầu lại con đường thành Tiên của mình. Hắn cần sức mạnh để trả thù, và hơn hết là thủ hộ người thân.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

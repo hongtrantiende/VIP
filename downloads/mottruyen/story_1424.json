@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "1424",
+        "NAME": "Cực Phẩm Không Gian Nông Trường",
+        "CHAPTER": [
+            {
+                "id": "589216",
+                "name": "Chương 1: Tháng bảy Lưu Hỏa"
+            }
+        ],
+        "TOTALCHAPTER": "342",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đô Thị",
+        "AUTHOR": "Hổ Khẩu Nam",
+        "TRANS": "Oll",
+        "DESC": "Ngo&agrave;i &yacute; muốn đạt được một c&aacute;i thần kỳ thế giới, Trần Đại Vĩ nh&acirc;n sinh bởi vậy cải biến.<br /><br />Nu&ocirc;i c&aacute;, trồng trọt, xử l&yacute; nh&agrave; xưởng, cho người xem bệnh, b&ecirc;n người mỹ nữ như m&acirc;y.<br /><br />C&agrave;ng l&agrave;m cho hắn khiếp sợ ch&iacute;nh l&agrave; trong kh&ocirc;ng gian lại dấu diếm một đạo Th&ocirc;ng Thi&ecirc;n chi m&ocirc;n.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

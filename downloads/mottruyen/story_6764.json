@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "6764",
+        "NAME": "Thần Hoàng Cửu Thiên",
+        "CHAPTER": [
+            {
+                "id": "2415399",
+                "name": "Chương 1: Diệp Tinh Thần"
+            }
+        ],
+        "TOTALCHAPTER": "1943",
+        "IMG": "https://static.cdnno.com/poster/than-hoang-cuu-thien/150.jpg",
+        "CAT": "Huyền Ảo",
+        "AUTHOR": "Diệp Chi Phàm",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Chiến Thần đại lục, thiên kiêu vô số, một đường sát phạt dứt khoát, quét ngang cửu thiên, thành tựu vô thượng Thần Hoàng.",
+        "THUMB": "https://static.cdnno.com/poster/than-hoang-cuu-thien/150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

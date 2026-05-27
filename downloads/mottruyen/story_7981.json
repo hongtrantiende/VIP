@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "7981",
+        "NAME": "Võ Thần Lĩnh Vực",
+        "CHAPTER": [
+            {
+                "id": "2780955",
+                "name": "Chương 1: Võ Hoàng trọng sinh"
+            }
+        ],
+        "TOTALCHAPTER": "630",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo, Trùng Sinh",
+        "AUTHOR": "Úc Chân Vũ",
+        "TRANS": "808",
+        "DESC": "Một đời Võ Hoàng Thẩm Túng, bị cao thủ vây công mà chết, xuyên việt đến nhận hết khi dễ chán nản trên người thiếu niên. Ba ngàn thế giới, trọng trèo lên đỉnh phong, ngày khác bễ nghễ Tinh Vũ, vương giả trở về, bọn ngươi có dám đánh một trận?",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

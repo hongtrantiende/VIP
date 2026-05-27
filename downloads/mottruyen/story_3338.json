@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "3338",
+        "NAME": "Binh Phong La Mã",
+        "CHAPTER": [
+            {
+                "id": "1160533",
+                "name": "Chương 1: Tây Nam Phi Ưng"
+            }
+        ],
+        "TOTALCHAPTER": "42",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Lịch Sử",
+        "AUTHOR": "Tứ Mỹ Nam Nhân",
+        "TRANS": "Phucddcm7749",
+        "DESC": "Hoa Hạ chiến sĩ đặc chủng Trần Kiếm xuy&ecirc;n qua đến hơn hai ng&agrave;n năm trước La M&atilde; cổ đại Cộng H&ograve;a thời đại thời k&igrave; cuối, đ&oacute; l&agrave; một binh phong anh h&ugrave;ng thi&ecirc;n hạ xuất hiện lớp lớp thời đại, xuất hiện vĩ đại Qu&acirc;n Sự Gia ki&ecirc;m Ch&iacute;nh Trị Gia Pompey, Caesar, Anthony, Octavius, n&ocirc; lệ khởi nghĩa l&atilde;nh tụ ki&ecirc;m qu&acirc;n sự thi&ecirc;n t&agrave;i Spartacus.<br /><br />Ch&uacute;ng ta cố sự từ Thrace cổ đại d&atilde;y n&uacute;i Rila bắt đầu &mdash;&mdash; Thrace cổ đại, Spartacus cố hương &mdash;&mdash;<br /><br />Chiến sĩ đặc chủng, sắt th&eacute;p qu&acirc;n đo&agrave;n, Hoa Hạ binh ph&aacute;p, tướng ở cổ xưa La M&atilde; Đế Quốc b&ecirc;n trong, nhấc l&ecirc;n t&acirc;n ng&ocirc;ng cuồng tự đại binh phong cố sự &mdash;&mdash;<br /><br />Chiến, sắt th&eacute;p qu&acirc;n đo&agrave;n mở đường!<br /><br />Chiến chiến, qu&acirc;n sự khoa học kỹ thuật phụ trợ!<br /><br />Chiến chiến chiến, Hoa Hạ binh ph&aacute;p quyết thắng bại!<br /><br />Vung binh qu&eacute;t ngang Địa Trung Hải, nam nhi kiếm chỉ thi&ecirc;n hạ con đường!",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

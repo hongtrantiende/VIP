@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "10716",
+        "NAME": "Cực Phẩm Hầu Gia",
+        "CHAPTER": [
+            {
+                "id": "3558598",
+                "name": "Chương 1: Chuyển sinh Lục Vũ"
+            }
+        ],
+        "TOTALCHAPTER": "117",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp",
+        "AUTHOR": "Khoai Lang",
+        "TRANS": "cstdlifecstd",
+        "DESC": "'Ta có một cái sở trường, ngỗ nghịch Thương Thiên!' 'Ta có một cái thiếu hụt, tùy ngộ nhi an.' 'Ta có một cái chứng bệnh, không sợ muôn vàn khó khăn.' hắn gọi Lục Vũ, tên tự Trà thánh. Trà thánh Lục Vũ lấy trà kinh thế người, hắn cái này Lục Vũ, lấy mưu động thiên địa. Khi chim nhỏ đứng lặng ở đầu cành cây hôn môi chồi non trên óng ánh nước sương, mọi người biết đó là mùa xuân đến rồi. Đương đại người cuộn mình đang ổ chăn xóa đi khóe mắt một bên không dám lướt xuống nước mắt châu, người. . .",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

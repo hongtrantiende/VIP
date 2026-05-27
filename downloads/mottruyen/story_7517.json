@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "7517",
+        "NAME": "Thứ Tử Phong Lưu",
+        "CHAPTER": [
+            {
+                "id": "2657041",
+                "name": "Chương 1"
+            }
+        ],
+        "TOTALCHAPTER": "796",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Võng Du, Khoa Huyễn",
+        "AUTHOR": "Thượng Sơn Đả Lão Hổ Nghạch",
+        "TRANS": "Damvuong",
+        "DESC": "Vốn là cái bình phàm thiếu niên, ngoài ý muốn được đến quang não, một sớm trở lại đại minh Chính Đức trong năm, trở thành thân sĩ gia tộc một cái tư sinh tử.<br />\r\nSính làm vợ, bôn làm thiếp, lão cha cư nhiên là cùng nương tư bôn mới sinh hạ chính mình, mẹ đẻ thân phận hèn mọn, làm con vợ lẽ, diệp xuân thu thề muốn sống ra một cái xuất sắc nhân sinh.<br />\r\nTại gia tộc không bị coi trọng? Vậy khoa cử tới đánh ngươi mặt!<br />\r\nMẹ đẻ xuất thân thấp hèn hạ, không ngại liền vì nàng đi thảo cáo mệnh!<br />\r\nTrên triều đình đả kích ngấm ngầm hay công khai, vô phương, vô phương, ngươi có trương lương kế, ta từng có tường thang.<br />\r\nBạn quân thật sự như bạn hổ? Bằng không, bằng không, mà hôm nay tử là Chính Đức.<br />\r\nTruyền kỳ nhân sinh vừa mới bắt đầu, mỹ nữ quá nhiều thêu hoa mắt, cưới kiều thê, lập nhà cao cửa rộng, diệp xuân thu từ đây không hề điệu thấp làm người, chính là như vậy cuồng túm khí phách ngoan tạc thiên, tốt đẹp sinh hoạt từ đây mở ra.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

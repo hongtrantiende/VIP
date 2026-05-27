@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "10603",
+        "NAME": "Chung Cực Thị Vệ",
+        "CHAPTER": [
+            {
+                "id": "3527410",
+                "name": "Chương 1: Nàng miếng vải đen trong tay ta đâu"
+            }
+        ],
+        "TOTALCHAPTER": "125",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đô Thị",
+        "AUTHOR": "Kiếm khách",
+        "TRANS": "Haron",
+        "DESC": "Ngày xưa cao thủ thần bí, không ngờ công lực tan hết; trở lại đô thị, lại chinh con đường cường giả, thề phải giải khai thân thế của mình chi mê. Hắn bản điệu thấp, làm sao mỹ nữ lão bản nương, ngạo kiều tổng giám đốc, nóng bỏng hoa khôi cảnh sát, thanh thuần giáo hoa... Từng cái xông vào tính mạng của hắn bên trong.<br />\r\ncầu vote cuối chương truyện",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

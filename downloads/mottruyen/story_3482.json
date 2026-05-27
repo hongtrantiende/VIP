@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "3482",
+        "NAME": "Đại Ma Tiên Thiên Hạ",
+        "CHAPTER": [
+            {
+                "id": "1208284",
+                "name": "Chương 1: Cơ duyên - Quyển 1 Sơ Nhập"
+            }
+        ],
+        "TOTALCHAPTER": "49",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp",
+        "AUTHOR": "Lữ Gia Tiên Sinh",
+        "TRANS": "Carivp",
+        "DESC": "Vốn l&agrave; b&igrave;nh thường thiếu ni&ecirc;n, nhưng có ly kỳ th&acirc;n thế, được trong c&otilde;i u minh chỉ dẫn, chung bước l&ecirc;n ti&ecirc;n, ma song tu con đường.<br /><br />Thần, người, ma, y&ecirc;u, linh, quỷ, trong thi&ecirc;n địa Lục Đại chủng tộc, mặc ta tự tại bay lượn!<br /><br />C&oacute; được hay kh&ocirc;ng ma, kh&ocirc;ng kh&ocirc;ng tại chủng tộc, m&agrave; l&agrave; l&ograve;ng người...<br /><br />Đứng ở thi&ecirc;n giới đỉnh được ch&uacute;ng sinh c&uacute;ng b&aacute;i, kh&ocirc;ng bằng c&ugrave;ng ngươi quy ẩn n&uacute;i rừng xem c&aacute;i kia nước chảy cầu nhỏ...",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

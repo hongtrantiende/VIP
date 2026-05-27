@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "4349",
+        "NAME": "Võng Du chi Tà Nguyệt Tu La",
+        "CHAPTER": [
+            {
+                "id": "1565279",
+                "name": "Tự chương"
+            }
+        ],
+        "TOTALCHAPTER": "255",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Võng Du",
+        "AUTHOR": "Tả thi",
+        "TRANS": "Blood&amp;Rose",
+        "DESC": "Một g&atilde; th&acirc;n c&oacute; Thị Linh Ma Đồng thiếu ni&ecirc;n, v&igrave; giải cứu ch&iacute;nh m&igrave;nh bị nhốt muội muội, dứt kho&aacute;t bước v&agrave;o 《 Mệnh Vận 》 c&aacute;i n&agrave;y tr&ograve; chơi. M&agrave; tiến v&agrave;o 《 Mệnh Vận 》 mới ph&aacute;t hiện, hết thảy hết thảy, to&agrave;n bộ ph&aacute; vỡ hắn nhận thức. Sai chỗ thế giới tr&ograve; chơi, trọng điệp vị diện kh&ocirc;ng gian! Đều bị như một đo&agrave;n sương m&ugrave; l&agrave;m phức tạp lấy hắn. Kiếp trước Thần Ma thế ch&acirc;n vạc, h&ocirc;m nay vạn v&ograve;ng tuổi hồi trở lại, đến tột c&ugrave;ng l&agrave; c&aacute;i g&igrave; lại để cho hắn th&agrave;nh tựu hiện tại? M&agrave; vậy l&agrave; c&aacute;i g&igrave; lại để cho hắn rơi v&agrave;o Th&acirc;m Uy&ecirc;n, th&agrave;nh tựu Tu La? M&agrave; hắn lại hội tr&igrave;nh diễn như thế n&agrave;o...",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "6776",
+        "NAME": "Ám Muội Dưỡng Thành Hệ Thống",
+        "CHAPTER": [
+            {
+                "id": "2416984",
+                "name": "Chương 1: Giá thảm trọng"
+            }
+        ],
+        "TOTALCHAPTER": "621",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đô Thị, Khoa Huyễn",
+        "AUTHOR": "Liễu Giang Nam",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Một thiếu niên bình thường, may mắn dung hợp được một Siêu cấp hệ thống  . Siêu cấp hệ thống này có thật nhiều công năng siêu cấp cường hãn , làm cho hắn từ một kẻ tài trí bình thường rất nhanh biến thành siêu cấp  thiên tài, đột phá nhân thể giác quan thứ sáu, sau đó rốt cuộc lại lại đột phá nhân thể giác quan thứ 7, giác quan thứ 8, giác quan thứ 9,giác quan thứ 10, giác quan thứ 11, giác quan thứ 12.. Từng bước sở hữu tuyệt thế lực lượng.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

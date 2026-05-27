@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "4158",
+        "NAME": "Ngu Nhạc Hàn Ngu",
+        "CHAPTER": [
+            {
+                "id": "1516442",
+                "name": "Chương 1: Tam Điều trúng mục tiêu một điều cuối cùng Mệnh"
+            }
+        ],
+        "TOTALCHAPTER": "1125",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đô Thị",
+        "AUTHOR": "Tả Ngạn Thiển Hành",
+        "TRANS": "Landland",
+        "DESC": "Nội dung giới thiệu vắn tắt: L&agrave;ng Giải Tr&iacute; kh&ocirc;ng phải l&agrave; d&ugrave;ng để giải tr&iacute; sao?<br /><br />L&acirc;m An Nhi&ecirc;n quay đầu lại nh&igrave;n một ch&uacute;t thực tế t&agrave;n khốc sinh hoạt, cuối c&ugrave;ng quyết định c&ograve;n l&agrave; đi về ph&iacute;a trước, bởi v&igrave; ph&iacute;a trước c&oacute; Nhất Đại BOA Mỹ Nữ đang đến gần, nhiều năm thượng l&agrave; thục nữ, ng&agrave;y tết ch&iacute;nh l&agrave; Laury, c&ograve;n c&oacute;. . . &Aacute;ch, giữa năm l&agrave; c&aacute;i g&igrave;?",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

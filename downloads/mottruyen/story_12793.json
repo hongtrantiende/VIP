@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "12793",
+        "NAME": "Trần Cốt",
+        "CHAPTER": [
+            {
+                "id": "6518228",
+                "name": "Chương 01: Ngộ nhập"
+            }
+        ],
+        "TOTALCHAPTER": "509",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo",
+        "AUTHOR": "Lâm Như Uyên",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Cái gọi là thiên mệnh, bất quá là có lẽ có trói buộc .<br />\r\n<br />\r\n\tNếu muốn đạp phá tinh hà, lập chí tiến lên, xưa nay không muộn<br />\r\n<br />\r\nMột bản Tinh Phẩm<br />\r\n*** đã kịp tác ***",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "12293",
+        "NAME": "Mạnh Nhất Đan Sư",
+        "CHAPTER": [
+            {
+                "id": "3999969",
+                "name": "Chương 1: Giáo Huấn Kẻ Ăn Chơi Trác Táng"
+            }
+        ],
+        "TOTALCHAPTER": "445",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đô Thị, Huyền Ảo",
+        "AUTHOR": "Tân Bản Hồng Song Hỉ",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Không có cao thủ nào là không thể chinh phục! Liền xem là đan dược có luyện được hay không!<br />\r\n<br />\r\nThiên Huyền Đại Lục luyện đan sư Tần Nhược ở Đan thành là lúc, đã chịu mấy cái đối thủ liên hợp đoạt đan, ở bị đánh lén thân bị trọng thương vô lực xoay chuyển trời đất dưới tình huống lựa chọn tự bạo.<br />\r\n<br />\r\nLinh hồn chưa diệt hắn, bám vào trên người con thứ ba của một trong Hoa Hạ sáu đại gia tộc Tần gia chủ sự người.<br />\r\n<br />\r\nBản thân làm Hoa Hạ đại gia tộc công tử, hẳn là muốn gió được gió muốn mưa được mưa, nhưng Tần Nhược bất đồng, ở mười năm trước bị gia tộc xa lánh ra tới, nói trắng ra là chính là một cái công tử bị vứt bỏ .<br />\r\n<br />\r\nVì cái gì? Bởi vì Tần gia là cổ võ gia tộc, mà Tần Nhược bởi vì trời sinh tư chất không được vô pháp tập võ.<br />\r\n<br />\r\nNày đối luyện đan sư Tần Nhược không là vấn đề, đan dược có thể giải quyết, không phải sao!",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

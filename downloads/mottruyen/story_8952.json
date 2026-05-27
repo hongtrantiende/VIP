@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "8952",
+        "NAME": "Vạn Cổ Đệ Nhất Cường Giả",
+        "CHAPTER": [
+            {
+                "id": "3044992",
+                "name": "1, ngắm nhìn bầu trời"
+            }
+        ],
+        "TOTALCHAPTER": "413",
+        "IMG": "https://static.cdnno.com/poster/van-co-de-nhat-cuong-gia/150.jpg",
+        "CAT": "Khoa Huyễn",
+        "AUTHOR": "Ẩn Vi Giả",
+        "TRANS": "†๖ۣۜSóiღ†",
+        "DESC": "Một cái chuyển sinh vạn năm tu chân kỳ tài, một cái khoa học kỹ thuật cùng pháp bảo cùng tồn tại tu chân thời đại, một đoạn ầm ầm sóng dậy tu chân hành trình, đều ở vạn cổ đệ nhất cường giả",
+        "THUMB": "https://static.cdnno.com/poster/van-co-de-nhat-cuong-gia/150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

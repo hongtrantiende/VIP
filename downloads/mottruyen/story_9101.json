@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "9101",
+        "NAME": "Thánh Tổ",
+        "CHAPTER": [
+            {
+                "id": "3101741",
+                "name": "Chương 1: La Liệt"
+            }
+        ],
+        "TOTALCHAPTER": "2104",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo",
+        "AUTHOR": "Ngạo Thiên Vô Ngân",
+        "TRANS": "Hoàng Châu",
+        "DESC": "Đ&acirc;y l&agrave; một c&aacute;i ho&agrave;n to&agrave;n mới thăng cấp Phong Thần thế giới. Nơi n&agrave;y c&oacute; Trụ Vương, Khương Tử Nha, T&ocirc; Đ&aacute;t Kỷ, Dương Tiễn đều sẽ l&agrave; mới tinh định vị, nơi n&agrave;y c&oacute; ho&agrave;ng giả, Hỏa V&acirc;n Động Tam Ho&agrave;ng; nơi n&agrave;y c&oacute; Th&aacute;nh nh&acirc;n, Đạo m&ocirc;n Tam Thanh; nơi n&agrave;y cũng c&oacute; thượng cổ Thần Ma, Xi Vưu, H&igrave;nh Thi&ecirc;n; nơi n&agrave;y đem c&oacute; một t&ecirc;n l&agrave; La Liệt thiếu ni&ecirc;n, mở ra một c&aacute;i \"Ta kh&ocirc;ng phải anh h&ugrave;ng, nhưng cũng c&aacute;i thế v&ocirc; song\" mới Phong Thần thời đại!",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "1489",
+        "NAME": "Vô Tận Võ Trang",
+        "CHAPTER": [
+            {
+                "id": "622468",
+                "name": "Chương 0 : Tự (thượng)"
+            }
+        ],
+        "TOTALCHAPTER": "1421",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Khoa Huyễn",
+        "AUTHOR": "Duyên Phận",
+        "TRANS": "Sưu Tầm",
+        "DESC": "Nơi n&agrave;y l&agrave; thi&ecirc;n đường, bởi v&igrave; nơi n&agrave;y c&oacute; được tr&ecirc;n địa cầu c&oacute; được hết thảy. Tất cả ngươi kh&aacute;t vọng v&agrave; kh&ocirc;ng chiếm được, ở chỗ n&agrave;y cũng c&oacute; thể nhận được; nơi n&agrave;y l&agrave; Địa Ngục, bởi v&igrave; mỗi người đ&ocirc; phải ở chỗ n&agrave;y gian khổ gi&atilde;y dụa, sau đ&oacute; ở ph&acirc;n kh&ocirc;ng r&otilde; thiệt giả trong thế giới T&uacute;y Sinh Mộng Tử.<br /> <br /> Nơi n&agrave;y, ch&iacute;nh l&agrave; v&ocirc; hạn giết ch&oacute;c thế giới...",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

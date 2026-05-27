@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "11694",
+        "NAME": "Đọc Rồi Biết",
+        "CHAPTER": [
+            {
+                "id": "3852609",
+                "name": "Chương Một đất nước Chibi"
+            }
+        ],
+        "TOTALCHAPTER": "13",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đô Thị, Ngôn Tình",
+        "AUTHOR": "Thịt Bò Đen Lớn",
+        "TRANS": "boycyjin",
+        "DESC": "Mọi người đều có cách riêng của họ về cuộc sống, tôi chỉ có thể nói rằng cuộc sống là một loại hỗn hợp.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

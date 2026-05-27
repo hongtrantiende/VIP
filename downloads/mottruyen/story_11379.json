@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "11379",
+        "NAME": "Tìm",
+        "CHAPTER": [
+            {
+                "id": "7385108",
+                "name": "Chương 0: Tiết tử"
+            }
+        ],
+        "TOTALCHAPTER": "3",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đô Thị, Ngôn Tình, Dị Giới",
+        "AUTHOR": "SnowyAngella",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Người ta nói tôi là độc dược chết người. Tôi thì chỉ muốn tìm kiếm một nơi chốn dừng chân. <br />\r\n----- Lý An Nhi -----<br />\r\n<br />\r\nEm giống như là chất gây nghiện, càng dùng càng mê say, càng mê say càng chìm đắm. Lằn ranh của tôi, vì em mà thay đổi.<br />\r\n----- Trần Gia Khiêm -----<br />\r\n<br />\r\nCó lẽ vì chúng ta quá giống nhau, nên trong khoảnh khắc ấy mới bất giác yêu nhau.<br />\r\n<br />\r\nCó lẽ vì chúng ta quá yêu nhau, nên trong khoảnh khắc ấy mới bất chấp đúng sai, hậu quả.<br />\r\n<br />\r\nVì đối phương mà dâng hiến bản thân toàn mỹ nhất.<br />\r\n<br />\r\nYêu là người, thương là người, chẳng có điều gì phải hối tiếc.<br />\r\n<br />\r\n~~~~~o0o~~~~~~",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

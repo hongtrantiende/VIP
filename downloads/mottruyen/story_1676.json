@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "1676",
+        "NAME": "Chưởng Ngự Tinh Thần",
+        "CHAPTER": [
+            {
+                "id": "685978",
+                "name": "Chương 1: Trọng sinh quần là áo lượt thời đại"
+            }
+        ],
+        "TOTALCHAPTER": "50",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo, Dị Giới",
+        "AUTHOR": "Trư Tam Bất",
+        "TRANS": "trang4mat",
+        "DESC": "Sống lại đến rồi c&aacute;i kia l&agrave;m hắn nghĩ lại m&agrave; kinh, tiếc nuối nặng nề quần &aacute;o lụa l&agrave; hoa m&ugrave;a kh&ocirc; quyền!<br /> <br /> Đợi chờ cừu nh&acirc;n của hắn, tương hội ch&iacute;nh x&aacute;c một người tiếp một người cơn &aacute;c mộng!<br /> <br /> Cả đời n&agrave;y, hắn muốn phụ th&acirc;n cờ hiệu cửa h&agrave;ng th&agrave;nh long t&acirc;m nguyện được đền b&ugrave;!<br /> <br /> Cả đời n&agrave;y, hắn muốn th&acirc;n bằng hảo hữu v&igrave; ta vẻ vang!<br /> <br /> Cả đời n&agrave;y, hắn muốn tiếc nuối kh&ocirc;ng hề nữa!<br /> <br /> Kho&aacute;i &yacute; &acirc;n cừu! Nắm trong tay hết thảy...",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

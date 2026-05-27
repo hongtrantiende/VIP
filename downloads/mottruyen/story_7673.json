@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "7673",
+        "NAME": "Siêu Cấp Thực Vật Cương Thi Hệ Thống",
+        "CHAPTER": [
+            {
+                "id": "2700832",
+                "name": "Chương 1:, Thái Dương hoa"
+            }
+        ],
+        "TOTALCHAPTER": "450",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo, Dị Giới, Khoa Huyễn, Xuyên Không",
+        "AUTHOR": "Cây trúc ái gấu trúc 0",
+        "TRANS": "ẩn sĩ cao nhân",
+        "DESC": "Tác phẩm tóm tắt:Tăng ca ngồi trên tối nay giao thông công cộng xe chơi thực vật đại chiến cương thi đỗ lỗi đồng chí thực vinh hạnh xuyên qua, đi tới có được ma pháp đấu khí ma huyễn thế giới, hơn nữa có được triệu hoán thực vật đại chiến cương thi giữa thực vật cùng cường đại cương thi năng lực! Cây trúc đã trở lại, hy vọng tân lão bằng hữu có thể nhiều tới cổ động",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

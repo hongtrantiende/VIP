@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "2317",
+        "NAME": "Táng Thần",
+        "CHAPTER": [
+            {
+                "id": "774630",
+                "name": "Chương 01: Bay tới Sói họa"
+            }
+        ],
+        "TOTALCHAPTER": "775",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo",
+        "AUTHOR": "Chúc Long Ngữ",
+        "TRANS": "No Name",
+        "DESC": "Đã cái này khắp trời Thần Vương, đều xem ta vi con sâu cái kiến kiến càng, ta đây Tần Ca liền chôn cất cái này thần, lập nhiều quy củ của ta! vi 《 Táng thần 》 cho điểm, lực nâng 《 Táng thần 》 đạp vào thần đàn!",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

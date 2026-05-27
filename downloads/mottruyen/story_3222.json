@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "3222",
+        "NAME": "Dị Thế Chung Cực Giáo Sư",
+        "CHAPTER": [
+            {
+                "id": "1117681",
+                "name": "Chương 1: Mạnh Nam lão sư"
+            }
+        ],
+        "TOTALCHAPTER": "938",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo, Dị Giới",
+        "AUTHOR": "Lương Tiểu Dĩ",
+        "TRANS": "thanggd",
+        "DESC": "V&otilde; đạo, luyện đan, r&egrave;n kh&iacute;, chế ph&ugrave;, cầm kỳ thư họa thậm ch&iacute; l&agrave; t&aacute;n g&aacute;i ... Chỉ cần ngươi nghĩ ra được, Mạnh l&atilde;o sư đều sẽ gi&aacute;o. hắn c&oacute; hệ thống, c&oacute; thể căn cứ học sinh ẩn giấu thuộc t&iacute;nh, t&ugrave;y theo t&agrave;i năng tới đ&acirc;u m&agrave; dạy. hắn khi đi học, học sinh phải l&agrave;m, chỉ l&agrave; ngon l&agrave;nh m&agrave; ngủ một giấc, đương nhi&ecirc;n, giấc ngủ chất lượng muốn xịn. Nhất ban phế vật học sinh, tại Mạnh l&atilde;o sư dạy dỗ dưới, hoa lệ m&agrave; đi tới đột k&iacute;ch ngược con đường.\r\nMạnh l&atilde;o sư thường n&oacute;i: \"Thi&ecirc;n ph&uacute; kh&ocirc;ng trọng yếu, quan trọng nhất l&agrave; ... C&oacute; c&aacute;i hảo l&atilde;o sư!\" \"Thi&ecirc;n t&agrave;i? L&atilde;o Tử đ&atilde; dạy r&aacute;c rưởi, đều c&oacute; thể đem những thi&ecirc;n t&agrave;i đ&oacute; đạp ở dưới ch&acirc;n!\"",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

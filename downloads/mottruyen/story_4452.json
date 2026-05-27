@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "4452",
+        "NAME": "Hán hùng",
+        "CHAPTER": [
+            {
+                "id": "1590119",
+                "name": "Chương 1: Xuyên qua"
+            }
+        ],
+        "TOTALCHAPTER": "30",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Quân Sự, Lịch Sử",
+        "AUTHOR": "Thiên Niên Long Vương l",
+        "TRANS": "ncc3tc",
+        "DESC": "Hắn thành lập một cái quốc gia trước nay chưa từng có tôn nghiêm.<br />\r\n<br />\r\nHắn cho một cái bộ tộc đứng thẳng ngàn năm tự tin.<br />\r\n<br />\r\nHắn quốc hiệu trở thành một dân tộc vĩnh viễn tên.<br />\r\n<br />\r\nMã tấu dưới oan hồn cùng trên yên ngựa đắc ý, không có một chút nào khác nhau, hết thảy sinh mệnh, đều là bình đẳng, bất luận người nào đều không có vô cớ cướp đoạt quyền lực.<br />\r\n<br />\r\nKhông ai có thể tùy tiện bắt nạt Đại Hán con dân, không ai có thể ở Đại Hán quốc thổ tiền nhiệm ý đánh cướp giết chóc. Bất luận kẻ địch của chúng ta cường đại đến mức nào, nhà Hán huyết mạch cuối cùng rồi sẽ khích lệ chúng ta cầm lấy đao kiếm, tranh thủ thuộc về mình tôn nghiêm cùng vinh dự.<br />\r\n<br />\r\nMuốn để nhóm này thảo nguyên Thát tử lĩnh giáo nhà Hán binh sĩ vũ dũng, dùng bọn họ núi thây sông máu đúc ra Đại Hán dân tộc huy hoàng.<br />\r\n<br />\r\nVân Khiếu hướng trời gào thét, Đại Hán mạnh mẽ lên.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

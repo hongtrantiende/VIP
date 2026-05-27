@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "7109",
+        "NAME": "GATE",
+        "CHAPTER": [
+            {
+                "id": "2529414",
+                "name": "Chương 0.5 : Lễ Tốt Nghiệp"
+            }
+        ],
+        "TOTALCHAPTER": "9",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo",
+        "AUTHOR": "jenovacells",
+        "TRANS": "Nhiều Converter",
+        "DESC": "\"Ngươi là ai ?\"<br />\r\n   \"Ta là ngươi.\"<br />\r\n\"Vậy ta là ai ?\"<br />\r\n   \"Ngươi cũng là ta.\"<br />\r\n\"Chúng ta là ai ?\" <br />\r\n   \"Chúa.\" hắn mỉm cười nói.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "8492",
+        "NAME": "Dị Thần",
+        "CHAPTER": [
+            {
+                "id": "2912646",
+                "name": "Chương 1: Thành hiện thật rồi !"
+            }
+        ],
+        "TOTALCHAPTER": "1",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp, Khoa Huyễn",
+        "AUTHOR": "chuminga_chamingu181@",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Từ Trái Đất xuyên tới Đại Lục xa lạ gặp được nàng.<br />\r\n<br />\r\nVì nàng quần lâm thiên hạ. Công danh muôn đời.<br />\r\n<br />\r\nVì nàng giết thẳng Thiên Giới diệt vạn tiên. Truy xuống Địa Ngục hàng thiên ma.<br />\r\n<br />\r\nĐây là câu chuyện về thiếu niên tình cờ có được '' Hệ thống game''. Từ đó mở ra con đường tu luyện thành Dị Thần nhưng có được hệ thống không có nghĩa là tu luyện trên con đường bằng phẳng. Hắn sẽ trải qua nhứng biến cố nào, mời các bạn đón xem.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

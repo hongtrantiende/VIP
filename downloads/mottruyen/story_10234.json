@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "10234",
+        "NAME": "Đêm Sao Băng Tận Thế",
+        "CHAPTER": [
+            {
+                "id": "3433458",
+                "name": "Chương 1: TEST"
+            }
+        ],
+        "TOTALCHAPTER": "1",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Dị Năng",
+        "AUTHOR": "Kirazen",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Main chính là 1 người bình thường và cực kì bình thường nhưng chỉ sau 1 trận sao băng a ấy đã có 1 năng lực bá đạo để chống lại các thực thể mang sức mạnh vĩ đại không loài người nào chống lại đc(có harem nhá?)",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

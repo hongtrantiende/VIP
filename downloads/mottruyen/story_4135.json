@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "4135",
+        "NAME": "Du nhiên sơn trang",
+        "CHAPTER": [
+            {
+                "id": "1508800",
+                "name": "Chương 1: Bị hiểu lầm tự sát"
+            }
+        ],
+        "TOTALCHAPTER": "384",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đô Thị",
+        "AUTHOR": "Lại tại hương thôn",
+        "TRANS": "Suntran",
+        "DESC": "Một lần kh&ocirc;ng phải tự s&aacute;t, lại bị ngộ nhận l&agrave; tự s&aacute;t trải qua, một từ tr&ecirc;n trời gi&aacute;ng xuống, ch&iacute;nh mở ra n&agrave;o đ&oacute; tr&ograve; chơi điện thoại di động, để Đường Long sinh hoạt ph&aacute;t sinh biến h&oacute;a long trời lở đất!<br /><br />Mất hứng th&agrave;nh phố lớn nhanh tiết tấu?<br /><br />Xem mệt mỏi giữa người v&agrave; người ngươi lừa ta gạt?<br /><br />chịu đủ lắm rồi mỗi ng&agrave;y v&igrave; sinh hoạt m&agrave; b&ocirc;n ba ngày?<br /><br />Game phụ thể, từ đ&acirc;y oa ở n&ocirc;ng th&ocirc;n, cam là lười n&ocirc;ng!",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

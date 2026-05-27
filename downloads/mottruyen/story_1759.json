@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "1759",
+        "NAME": "Quan Sơn Dạ Hành",
+        "CHAPTER": [
+            {
+                "id": "726048",
+                "name": "Chương 1 : Biển sâu xác chết trôi - Quyển 1"
+            }
+        ],
+        "TOTALCHAPTER": "37",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Linh Dị",
+        "AUTHOR": "Cửu Thập Nhị Linh Hồn",
+        "TRANS": "Hungprods",
+        "DESC": "Tầm long d&ograve; x&eacute;t mộ, đ&ecirc;m đi quan sơn; ph&acirc;n kim định huyệt, thăng quan ph&aacute;t t&agrave;i. Ta l&agrave; đương đại Ph&aacute;t Kh&acirc;u m&ocirc;n truyền nh&acirc;n, đến c&ugrave;ng ta c&ugrave;ng đi trộm mộ a!",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

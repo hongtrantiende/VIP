@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "1577",
+        "NAME": "Chiến Thử",
+        "CHAPTER": [
+            {
+                "id": "645428",
+                "name": "Chương 1: Hắc thử - Quyển 1"
+            }
+        ],
+        "TOTALCHAPTER": "33",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo",
+        "AUTHOR": "Nguyệt Phong",
+        "TRANS": "Giangnam189",
+        "DESC": "Vạn Dương sống lại vi thử, nhấc l&ecirc;n một hồi Thao thiết chiến thử dị giới chinh chiến cuộc h&agrave;nh tr&igrave;nh!",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

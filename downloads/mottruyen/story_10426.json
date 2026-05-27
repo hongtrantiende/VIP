@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "10426",
+        "NAME": "Thái Bạch Kiếm Tôn",
+        "CHAPTER": [
+            {
+                "id": "3488571",
+                "name": "Chương 1: Sống lại"
+            }
+        ],
+        "TOTALCHAPTER": "937",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp, Huyền Ảo, Dị Giới",
+        "AUTHOR": "Thái Bạch Kiếm Thanh",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Thái Bạch Kiếm Tôn giới thiệu tóm tắt:   thế gian có tôn đỉnh, trấn thủ với thiên địa, hằng cổ bất diệt.<br />\r\n<br />\r\n\tThế gian có một chiêu kiếm, tru tứ phương tà ma, vĩnh hằng Bất Hủ.<br />\r\n<br />\r\n\tThiếu niên Luân Hồi vạn năm, sống lại thời đại thượng cổ, hắn đến, vạch trần một hồi bị chôn dấu với năm tháng Trường Hà bên trong kinh thiên bí ẩn.<br />\r\n<br />\r\n\tMột thế giới hoàn toàn mới, liền như vậy đến!<br />\r\n       cầu nguyệt phiếu",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

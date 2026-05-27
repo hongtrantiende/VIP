@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "10110",
+        "NAME": "Vui Chơi Giải Trí Cao Thủ",
+        "CHAPTER": [
+            {
+                "id": "3396568",
+                "name": "Chương 1: Giận dữ mắng mỏ Giáo Vụ Xử chủ nhiệm"
+            }
+        ],
+        "TOTALCHAPTER": "559",
+        "IMG": "https://static.cdnno.com/poster/vui-choi-giai-tri-cao-thu/150.jpg",
+        "CAT": "Đô Thị, Khoa Huyễn, Xuyên Không",
+        "AUTHOR": "phong cảnh vô tình",
+        "TRANS": "Tiêu Dao",
+        "DESC": "hắn là  toàn thế giới mê ca nhạc nhiều nhất người, nhưng hết lần này đến lần khác không có chính thức bước vào Giới nghệ sĩ.<br />\r\n<br />\r\n\tHắn nhiều lần thu hoạch được Nobel Văn Học Thưởng, nhưng hết lần này tới lần khác còn tại Võng Thượng viết Võng Văn.<br />\r\n<br />\r\n\tHắn không vẽ Manga, không điện ảnh, nhưng kịch bản đều là xuất từ tay hắn.<br />\r\n<br />\r\n\t« The Times » xưng \"Từ khi Diệp Dư tiên sinh xuất đạo về sau, còn lại vui chơi giải trí hành nghiệp công ty liền có thể đảo bế.\"<br />\r\n<br />\r\n\tHắn là  Diệp Dư, hắn Uy mình túi muối.",
+        "THUMB": "https://static.cdnno.com/poster/vui-choi-giai-tri-cao-thu/150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

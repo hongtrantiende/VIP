@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "8145",
+        "NAME": "Khai Phóng",
+        "CHAPTER": [
+            {
+                "id": "2921062",
+                "name": "Chương 0: Quỷ Nghèo Xui Xẻo"
+            }
+        ],
+        "TOTALCHAPTER": "5",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp, Huyền Ảo, Xuyên Không",
+        "AUTHOR": "NHT",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Tạm Ngưng",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

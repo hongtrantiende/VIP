@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "11170",
+        "NAME": "Thần Cấp Khoa Học Kỹ Thuật",
+        "CHAPTER": [
+            {
+                "id": "3694581",
+                "name": "Chương 1: Vũ Thức Khoa Học Kỹ Thuật!!!"
+            }
+        ],
+        "TOTALCHAPTER": "181",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đô Thị, Ngôn Tình",
+        "AUTHOR": "Trọng sinh trứng gà",
+        "TRANS": "gautrucluyentruyen",
+        "DESC": "Bị giám đốc sa thải, về nhà tự chủ gây dựng sự nghiệp Tần vũ, mạc danh có được một loại đặc thù năng lực<br />\r\n“Phân giải”<br />\r\n“Cường hóa”<br />\r\n“Lắp ráp”<br />\r\nDựa vào một nhà di động món ăn bán lẻ cửa hàng làm giàu, đến có được chính mình khoa học kỹ thuật nhãn hiệu, Tần vũ thế tất phải làm hảo, làm đại chính mình nhãn hiệu.<br />\r\nĐây là một cái quá trình, nhưng cũng gần là vấn đề thời gian<br />\r\nToàn thế giới dùng khoa học kỹ thuật sản phẩm đều là ta công ty sinh sản!<br />\r\nKhoa học kỹ thuật thay đổi sinh hoạt, hoa vũ khoa học kỹ thuật thay đổi thế giới!<br />\r\n( đây là một thiên phát triển trung không thiếu sảng văn đô thị văn, fan đàn: 560452143 )",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

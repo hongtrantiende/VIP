@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "2598",
+        "NAME": "I Đấu Thần",
+        "CHAPTER": [
+            {
+                "id": "848863",
+                "name": "Chương 1: Người sống tế phẩm"
+            }
+        ],
+        "TOTALCHAPTER": "259",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo",
+        "AUTHOR": "Đại Ái Tiên Sinh",
+        "TRANS": "Hỗn Thiên Tà Đế",
+        "DESC": "Thập ức năm trước, Tiên Giới mạnh nhất bá chủ Tà Thiên thượng nhân cùng Bàn Cổ tộc kết oán, sau đó trộm lấy Bàn Cổ tộc chí cao bí tịch.<br /><br />Bàn Cổ tộc phái ra mạnh nhất chiến sĩ truy sát Tà Thiên thượng nhân, cũng đem Tà Thiên thượng nhân ở Tiên Giới thế lực toàn bộ phá hủy ~ nhưng Tà Thiên thượng nhân từ đây mất tích ~",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

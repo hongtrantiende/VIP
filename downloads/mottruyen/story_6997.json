@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "6997",
+        "NAME": "Nơi Ở Của Quỷ",
+        "CHAPTER": [
+            {
+                "id": "2482606",
+                "name": "Nguyên nhân tạo nên sự hận thù"
+            }
+        ],
+        "TOTALCHAPTER": "1",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Dị Năng",
+        "AUTHOR": "tieumon0211",
+        "TRANS": "Nhiều Converter",
+        "DESC": "anh ấy đang tìm hung thủ thật sự đã giết cha mẹ mình. Anh ấy có một năng lực đáng sợ nhưng nhờ nó mà anh đã phá được rất nhiều vụ án. hãy đọc truyện",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

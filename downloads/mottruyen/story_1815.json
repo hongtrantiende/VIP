@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "1815",
+        "NAME": "Luân Hồi",
+        "CHAPTER": [
+            {
+                "id": "745481",
+                "name": "Chương 1: Sống lại"
+            }
+        ],
+        "TOTALCHAPTER": "3",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Khoa Huyễn",
+        "AUTHOR": "6789",
+        "TRANS": "Việt Nam",
+        "DESC": "Không gian kịch chấn,dị tộc xâm lấn,con người đứng trước nguy cơ diệt tuyệt.<br />\r\n <br />\r\nVới hàng ngần triệu hoán thú cường đại,đỉnh câp huyết thống,sống lại 1 tiếng trước tận thế lâm phi chỉ có một nguyện vọng duy nhất------Trở lên cường đại!",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "2699",
+        "NAME": "Võ Hiệp Đại Tông Sư",
+        "CHAPTER": [
+            {
+                "id": "886572",
+                "name": "Chương 1: Luận võ"
+            }
+        ],
+        "TOTALCHAPTER": "550",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Kiếm Hiệp",
+        "AUTHOR": "Xích Kiên",
+        "TRANS": "Túy Kiếm Phong Trần",
+        "DESC": "Một c&aacute;i Nội Gia Quyền cao thủ tiến v&agrave;o thế giới v&otilde; hiệp.<br /><br />Từ đ&acirc;y, thế giới v&otilde; hiệp b&ecirc;n trong c&oacute; th&ecirc;m một nh&oacute;m v&otilde; thuật Trung Hoa cao thủ,<br /><br />C&agrave;ng th&ecirc;m ra hơn một c&aacute;i đại t&ocirc;ng sư.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

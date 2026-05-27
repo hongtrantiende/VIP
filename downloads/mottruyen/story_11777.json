@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "11777",
+        "NAME": "Đại Đường Trinh Quán Đệ Nhất Hoàn Khố",
+        "CHAPTER": [
+            {
+                "id": "4290030",
+                "name": "Chương 1: Phán Quan cũng muốn qua địa phương"
+            }
+        ],
+        "TOTALCHAPTER": "1661",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Quân Sự, Lịch Sử",
+        "AUTHOR": "Nguy Hiểm Thế Giới",
+        "TRANS": "dinhnhan",
+        "DESC": "Ruộng tốt ngàn khuynh dựa vào sơn sông, cha chỉ quan lớn tử đăng khoa. Thê thiếp thành đàn con cháu nhiều, trường sinh bất lão tổng còn sống.  Hiện đại sợi cỏ trạch nam bởi vì phán quan sai lầm, ám ảnh đại Đường thái tử Lý Thừa Càn.  Trên có thiên cổ nhất đế lão cha, dưới có muôn đời nhân kính ngụy chinh, tiền có Thiên Cổ hiền sau lão mụ, sau có muôn đời lão ma trình yêu tinh.  Bất quá này đó đều không trọng yếu, quan trọng là nơi này là đại Đường Trinh Quán năm, mà hắn là này cường đại đế quốc thái tử điện hạ; là thời đại này ngưu bức nhất quần áo lụa là —— hoàng nhị đại",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

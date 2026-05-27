@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "4494",
+        "NAME": "Tại Nông Thôn Đích Du Nhàn Sinh Hoạt",
+        "CHAPTER": [
+            {
+                "id": "1599550",
+                "name": "Chương 1: Té đi trở về"
+            }
+        ],
+        "TOTALCHAPTER": "20",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đô Thị",
+        "AUTHOR": "Cửu Nguyệt Hoa Nhi Phi",
+        "TRANS": "Dzinh",
+        "DESC": "Rời xa táo bạo đô thị...... Bước chậm điềm tĩnh nông thôn;<br />\r\n............<br />\r\nCáo biệt ngột ngạt huyên náo...... Ngước nhìn xanh thẳm bầu trời;<br />\r\nThả phi tâm tư giấc mơ...... An hưởng nhàn nhã sinh hoạt.<br />\r\nPhương Thụy nam phiêu năm năm về đến cố hương, ngẫu hoạch đến từ n vạn năm sau màu xanh lục tương lai hệ thống. Hệ thống có vẻ như rất trâu x, trồng không gian, nuôi trồng không gian, tinh thần quê hương đầy đủ mọi thứ. Chờ mở ra đi vào thì, Phương Thụy liền phiền muộn , vô dụng a. Theo không gian từng bước từng bước mở rộng, sinh hoạt càng ngày càng nhàn nhã, thế giới càng ngày càng đặc sắc......",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

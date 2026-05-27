@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "1314",
+        "NAME": "Quan Yêu",
+        "CHAPTER": [
+            {
+                "id": "537734",
+                "name": "Chương 1: Cứt chó vận"
+            }
+        ],
+        "TOTALCHAPTER": "1350",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đô Thị",
+        "AUTHOR": "Thanh Vân Chi Lộ Vô Chung Điểm",
+        "TRANS": "bakaneko",
+        "DESC": "L&agrave;m quan như y&ecirc;u, b&igrave;nh bước l&ecirc;n thẳng thanh v&acirc;n.<br /><br />Mỹ nh&acirc;n như hoa, nhất lộ khai đến đồ mị.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

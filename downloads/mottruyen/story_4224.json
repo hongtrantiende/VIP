@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "4224",
+        "NAME": "Thiên Long Chi Ngã Tự Tiêu Diêu",
+        "CHAPTER": [
+            {
+                "id": "1532386",
+                "name": "Chương 1: đại mộng sơ tỉnh đã ngàn năm"
+            }
+        ],
+        "TOTALCHAPTER": "565",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Kiếm Hiệp",
+        "AUTHOR": "Nhiệt Huyết Tuyết Nhân",
+        "TRANS": "Liu, Thái Hư Tử",
+        "DESC": "Tỉnh lại sau giấc ngủ, Vương Liệt xuy&ecirc;n qua đến Thi&ecirc;n Long B&aacute;t Bộ thế giới, một năm n&agrave;y, Kiều Phong vẫn kh&ocirc;ng c&oacute; sinh ra, V&ocirc; Nhai Tử c&ograve;n l&agrave; một tuổi trẻ anh ch&agrave;ng đẹp trai, từ đ&acirc;y tr&ecirc;n giang hồ c&oacute; th&ecirc;m c&aacute;i bất l&atilde;o qu&aacute;i vật đại hiệp, c&ugrave;ng V&ocirc; Nhai Tử xưng huynh gọi đệ, c&ugrave;ng Đoạn Ch&iacute;nh Thuần n&acirc;ng cốc n&oacute;i chuyện vui vẻ, cuối c&ugrave;ng c&ograve;n c&ugrave;ng Kiều Phong Đoạn Dự Hư Tr&uacute;c b&aacute;i lạy, xem L&atilde;o Ngoan Đồng Vương Liệt l&agrave;m sao đảo loạn Thi&ecirc;n long thế giới",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "12197",
+        "NAME": "Hán Hương",
+        "CHAPTER": [
+            {
+                "id": "4028184",
+                "name": "Chương 1: Tiên đoán"
+            }
+        ],
+        "TOTALCHAPTER": "611",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Lịch Sử",
+        "AUTHOR": "Kiết Dữ 2",
+        "TRANS": "ܓܨღ๖ۣۜK❍£☞",
+        "DESC": "Chúng ta tiếp nhận tổ tiên di sản, cái này khiến Trung Hoa rực rỡ mấy ngàn năm, chúng ta là như thế yên tâm thoải mái, chưa bao giờ nghĩ tới muốn trở về cái kia tại đốt rẫy gieo hạt bên trong đau khổ tìm kiếm đường ra thời đại. Phụng dưỡng cha mẹ chúng ta cực khổ tổ tiên, cũng từ đó tìm tới cố hương chân chính ý nghĩa, chính là quyển sách muốn kể chuyện xưa.<br />\r\n<br />\r\nTác giả định nghĩa nội dung: Dương quang",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

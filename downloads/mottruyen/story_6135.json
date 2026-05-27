@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "6135",
+        "NAME": "Khoa Kỹ Văn Minh Nhập Xâm Giả",
+        "CHAPTER": [
+            {
+                "id": "2194723",
+                "name": "Chương 1: Man Hoang văn minh tinh cầu"
+            }
+        ],
+        "TOTALCHAPTER": "259",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp, Khoa Huyễn",
+        "AUTHOR": "Vong Xuyên Lâm",
+        "TRANS": "Ťàn•Kiếм",
+        "DESC": "Đến từ khoa học kỹ thuật văn minh xuyên toa giả, trong lúc vô tình đi tới nơi này cái năng lượng cao tu hành văn minh thế giới, vì liên lạc với Liên Bang khai thác hạm đội, bất ngờ từng bước từng bước đi tới con đường tu hành đỉnh cao.<br />\r\n<br />\r\nỞ dọc theo con đường này, đóng vai kẻ xâm lấn nhân vật xuyên toa giả, lợi dụng tu hành văn minh cao cấp năng lượng, cải tạo tối ưu hóa Liên Bang cấp thấp khoa học kỹ thuật, lợi dụng Liên Bang khoa học kỹ thuật treo lên đánh thổ dân tu hành giả.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

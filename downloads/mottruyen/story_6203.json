@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "6203",
+        "NAME": "Dị Thế Phiên Bản Lỗi",
+        "CHAPTER": [
+            {
+                "id": "2212178",
+                "name": "Chương 1: Sung quân Dị Giới"
+            }
+        ],
+        "TOTALCHAPTER": "10",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Dị Năng, Dị Giới, Xuyên Không",
+        "AUTHOR": "Đa Tình",
+        "TRANS": "Phongthanh",
+        "DESC": "Một lần chơi liều, vạn lần lên. Nhân vật chính của chúng ta trong một lần chơi liều bị ngoại tinh nhân nhìn trúng. Thế là Anh từ giã trái đất để đi đến một thế giới khác. Ở đây Anh trở thành một phương Bá chủ. Mặc dù lúc đầu không được sống tốt cho lắm",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

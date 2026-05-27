@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "2433",
+        "NAME": "Nghịch Thiên Vũ Tôn",
+        "CHAPTER": [
+            {
+                "id": "803028",
+                "name": "Chương 1: Vân gia thiếu niên"
+            }
+        ],
+        "TOTALCHAPTER": "536",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo, Dị Giới",
+        "AUTHOR": "Hắc Dực Kiếm Sĩ",
+        "TRANS": "Đông Ky Sốt",
+        "DESC": "Hắn cũng kh&ocirc;ng phải thi&ecirc;n t&agrave;i cũng kh&ocirc;ng thi&ecirc;n ph&uacute;!<br /> <br /> Hắn m&ocirc;̣t đời nhấp nh&ocirc; kh&ocirc;ng ngừng! Nhưng hắn chưa bao giờ từ bỏ!<br /> <br /> Hắn, ch&iacute;nh l&agrave; V&acirc;n Kiếm!<br /> <br /> Cho d&ugrave; đi ngược l&ecirc;n trời, trả ra gi&aacute; cao, bỏ qua tất cả. . . Cũng phải thực hiện ch&iacute;nh nghĩa chi đạo!<br /> <br /> M&agrave; khi hắn gặp phải th&acirc;n phận t&ocirc;n qu&yacute; nữ thần. . . V&acirc;ng mệnh vận b&agrave;i bố thiếu nữ. . . Rơi xuống l&agrave;m ma Tinh Linh. . . Tr&agrave;n ngập c&aacute;m dỗ v&agrave; nguy hiểm mỹ nữ &Aacute;c Ma l&uacute;c, hắn lại sẽ như thế n&agrave;o đ&acirc;u. . .",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

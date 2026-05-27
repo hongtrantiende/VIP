@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "12339",
+        "NAME": "Hoán Hùng Chung Cực Tiến Hóa",
+        "CHAPTER": [
+            {
+                "id": "4014819",
+                "name": "Chương 1: Hoán Hùng thường ngày"
+            }
+        ],
+        "TOTALCHAPTER": "131",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đồng Nhân",
+        "AUTHOR": "Tam Diệp Miêu Thảo",
+        "TRANS": "someday",
+        "DESC": "Xuyên việt đi vào Ma Pháp Thế Giới, thành một cái Hoán Hùng. Không sai, đúng vậy cái nào đó Kiền Thúy Diện bên trên, tự mang mắt đen che đậy, dáo dác, có cái hoa văn cái đuôi to mê chi sinh vật. Từ đó đi đến một đầu đặc thù tiến hóa đường.<br />\r\n<br />\r\n\tHệ thống: Cuối cùng hình thái —— Teemo.<br />\r\n<br />\r\n\tLothar: GUN! Ngươi mới là Teemo, cả nhà ngươi đều Teemo.<br />\r\n<br />\r\n\tTóm lại, Tiến Hóa Chi Lộ dài từ từ, hố cha nữ trang không được gián đoạn. Đem đầu còn đến hỏi hệ thống, không được hố ngươi nha hố ai đi <br />\r\n<br />\r\n\tPS: Dị thú lưu, khôi hài,",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

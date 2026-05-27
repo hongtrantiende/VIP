@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "6892",
+        "NAME": "Đô Thị Thần Cấp Cường Giả",
+        "CHAPTER": [
+            {
+                "id": "2450066",
+                "name": "Chương 1: Trọng sinh"
+            }
+        ],
+        "TOTALCHAPTER": "903",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đô Thị, Xuyên Không",
+        "AUTHOR": "Đại Bạch Chi Chủ",
+        "TRANS": "Nhiều Converter",
+        "DESC": "tạm dừng do tinh thần hán",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

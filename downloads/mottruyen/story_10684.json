@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "10684",
+        "NAME": "Đạo Môn Chấn Hưng Hệ Thống",
+        "CHAPTER": [
+            {
+                "id": "6302807",
+                "name": "Chương 1: Thiên Địa Quan"
+            }
+        ],
+        "TOTALCHAPTER": "555",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp, Huyền Ảo, Khoa Huyễn",
+        "AUTHOR": "Ngôn Nhược Diệp",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Phật Đạo chi tranh, từ xưa đã có.<br />\r\n<br />\r\n Phật Môn đại hưng, Đạo Môn suy yếu.<br />\r\n<br />\r\nMột toà rách nát Đạo Quan, một vị lấy chấn hưng Đạo Môn làm nhiệm vụ của mình tuổi trẻ đạo sĩ.<br />\r\n<br />\r\n\t\"Vô thượng Thiên Tôn, vị này cư sĩ có thể nguyện vào ta Đạo Môn?\"",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

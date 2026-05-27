@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "5390",
+        "NAME": "Vạn Cổ Sát Đế",
+        "CHAPTER": [
+            {
+                "id": "1908998",
+                "name": "Chương 1:  Tuyệt địa đi ra thiếu niên"
+            }
+        ],
+        "TOTALCHAPTER": "775",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp, Huyền Ảo",
+        "AUTHOR": "Tuyết Tham",
+        "TRANS": "๖ۣۜKing๖ۣۜKiller",
+        "DESC": "Giết , không chứa từ bi chi niệm , không nắm giữ phụ nữ chi tâm . Đế Vương giận dữ , thây người nằm xuống trăm vạn . Lại nhìn , một người một chó , lao ra Đại Hoang , thần cản giết thần , phật cản giết phật!",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

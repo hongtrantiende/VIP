@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "5216",
+        "NAME": "Cửu U Vũ Đế",
+        "CHAPTER": [
+            {
+                "id": "1845550",
+                "name": "Chương 01: Ngoại Môn Đệ Tử"
+            }
+        ],
+        "TOTALCHAPTER": "105",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo",
+        "AUTHOR": "Thu Diệp Lạc Tử",
+        "TRANS": "ღ๖ۣۜHắc๖ۣۜTâm",
+        "DESC": "Muốn có bá đạo và cường thế sao<br />\r\n<br />\r\n\tĐụng đến ta huynh đệ, đụng nữ nhân ta, đều ắt phải chết<br />\r\n<br />\r\n\tNgươi có thiên Địa Tuyệt kỹ, nhưng không địch lại ta Cửu Sắc Hỏa Liên hoa<br />\r\n<br />\r\n\tNgươi có kiên cường hậu thuẫn, nhưng không địch lại ta ngàn vạn triệu hoán chi linh này<br />\r\n<br />\r\n\tCửu U Chi Hạ, vì Linh Hỏa sư, Linh Vũ Song Hưu, đặt chân vì Đế",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

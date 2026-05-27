@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "3741",
+        "NAME": "Vong Linh Tiến Hóa Hệ Thống",
+        "CHAPTER": [
+            {
+                "id": "1288408",
+                "name": "Chương 001 bộ xương pháp sư Triệu Luân"
+            }
+        ],
+        "TOTALCHAPTER": "282",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo",
+        "AUTHOR": "Nộ Tiếu",
+        "TRANS": "Suntran",
+        "DESC": "Nếu như tỉnh lại sau giấc ngủ biến th&agrave;nh một chiếc thịt ti&ecirc;u cốt gi&ograve;n bộ xương ph&aacute;p sư l&agrave;m sao b&acirc;y giờ<br /><br />Nếu như kh&ocirc;ng cẩn thận th&agrave;nh người t&acirc;̣n địch quốc bộ xương l&atilde;nh ch&uacute;a l&agrave;m sao b&acirc;y giờ<br /><br />Nếu như bị cao c&aacute;c vong linh bắt nạt đến cửa nh&agrave; l&agrave;m sao b&acirc;y giờ<br /><br />Đối với ph&aacute;p sư khống đồng thời c&oacute; được vong linh tiến h&oacute;a hệ thống Triệu Lu&acirc;n tới n&oacute;i, hết thảy vấn đề đơn giản l&agrave; h&ocirc;m nay tiến h&oacute;a một con vong linh vẫn l&agrave; tiến h&oacute;a hai con vong linh hoặc l&agrave; thẳng thắn tiến h&oacute;a đ&aacute;nh vong linh c&oacute; phải l&agrave; t&ocirc;́t hơn vấn đề",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

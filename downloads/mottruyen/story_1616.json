@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "1616",
+        "NAME": "Kiếm Khí Thông Huyền",
+        "CHAPTER": [
+            {
+                "id": "667559",
+                "name": "Chương 1: Bạch Kim viên cầu"
+            }
+        ],
+        "TOTALCHAPTER": "187",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp",
+        "AUTHOR": "Lục Nguyệt Thiền Minh",
+        "TRANS": "Nocturne, Mộ Dung Ý Nhy",
+        "DESC": "Si với kiếm, g&acirc;̀n như ma. Thiếu ni&ecirc;n được 《 Kiếm Kh&iacute; Th&ocirc;ng Huyền Thi&ecirc;n 》, nội h&agrave;m Bạch Kim Kiếm đan, Kiếm kh&iacute; v&ocirc; tận, ph&aacute; diệt ng&agrave;n vạn trở ngại. Một kiếm ph&aacute; vạn ph&aacute;p!",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "6338",
+        "NAME": "Thánh Quân",
+        "CHAPTER": [
+            {
+                "id": "2251925",
+                "name": "Chương :Giới thiệu"
+            }
+        ],
+        "TOTALCHAPTER": "1",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đô Thị, Ngôn Tình, Dị Năng",
+        "AUTHOR": "ducchamngoan2011@",
+        "TRANS": "Thánh Quân",
+        "DESC": "-Từ một cậu bé mồ côi.khuyết tật trở thành một vị thánh quân chưởng khống cả thế giới,thành lập một tổ chức đứng đầu thế giới,chống lại dị ma bảo vệ thế giới.<br />\r\n-Một đan sư đệ nhất thế giới,lấy đan nhập thần ,cứu vớt sinh linh.<br />\r\n-Một danh nhân đẹp trai,tài giỏi, giàu có nhất thế giới,chi phối kinh tế của cả thế giới.<br />\r\n<br />\r\nLiệu 3 người trên có liên hệ gì với nhau,xin bạn đón đọc Thánh Quân<br />\r\n<br />\r\nLấy Thần Vân Đỉnh,đệ nhất dược đỉnh để nấu mì tôm.Lấy Thiên Huyền Kiếm,đệ nhất thần kiếm để làm cá,.....và vô số hành động bá đạo cũng không kém hài hước sẽ có trong Thánh Quân",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

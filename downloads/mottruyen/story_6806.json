@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "6806",
+        "NAME": "Võng Du Thế Gia",
+        "CHAPTER": [
+            {
+                "id": "2428481",
+                "name": "Chương 01: Lớp học!"
+            }
+        ],
+        "TOTALCHAPTER": "708",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Võng Du",
+        "AUTHOR": "Tội quân tử",
+        "TRANS": "A Chán",
+        "DESC": "Nếu như, cái thế giới này thực sự Virtual Network trò chơi, như vậy nó hội diễn sinh ra cái dạng gì trò chơi chế độ. Như sự thật đồng dạng? Như bình thường game online đồng dạng? Game Online thế gia, mới được là Virtual Network trò chơi chính thức 《 khống chế 》 người!",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

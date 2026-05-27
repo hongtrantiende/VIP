@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "9966",
+        "NAME": "Tây Du Tăng Hoạt",
+        "CHAPTER": [
+            {
+                "id": "3361500",
+                "name": "Chương 1: Làm tăng là môn kỹ thuật làm việc"
+            }
+        ],
+        "TOTALCHAPTER": "124",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp, Huyền Ảo, Xuyên Không",
+        "AUTHOR": "Cực Địa Sa Mạc",
+        "TRANS": "Saya Yuki",
+        "DESC": "Vương Mẫu: \"Cái này Bàn Đào người nào cũng không cho động, đó là lưu cho ta hảo nữ tế Đường Tăng .\"<br />\r\n<br />\r\n\tQuan Âm: \"Y Đệ, xem ta ngày hôm nay y phục đẹp không ?\"<br />\r\n<br />\r\n\tBát Giới: \"Sư phụ, gặp Ôn hầu tử lại bị yêu quái bắt đi!\"<br />\r\n<br />\r\n\tTrần Y nhổ ra trong miệng xương gà đạo: \"Làm tăng là môn kỹ thuật làm việc, không phải ai cũng đều chơi tốt!\"<br />\r\n<br />\r\n\t. . .. . ....<br />\r\n<br />\r\n\tSản phẩm mới Tiên Hiệp chợt cười hoa cúc làm, không nhìn hối Đoạn Trường!<br />\r\n<br />\r\nCầu vote 10 cuối mỗi chương.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "3576",
+        "NAME": "Thịnh Thế Cự Tinh",
+        "CHAPTER": [
+            {
+                "id": "1238157",
+                "name": "Chương 1: Di động đến từ dị thời không"
+            }
+        ],
+        "TOTALCHAPTER": "187",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đô Thị",
+        "AUTHOR": "Vương Tử Quân",
+        "TRANS": "Kinzie",
+        "DESC": "Hai mươi mốt thế kỷ, Trung Quốc kinh tế tấn m&atilde;nh ph&aacute;t triển, nh&acirc;n d&acirc;n sinh hoạt tr&igrave;nh độ ng&agrave;y c&agrave;ng đề cao, nghiễm nhi&ecirc;n sắp đi v&agrave;o một h&acirc;n h&acirc;n hướng vinh thịnh thế.<br /><br />Nhưng tại vui chơi giải tr&iacute; lĩnh vực, mọi người xem l&agrave; Hollywood phim bom tấn, nghe l&agrave; Nhật H&agrave;n vũ kh&uacute;c, ch&uacute;ng ta ch&iacute;nh m&igrave;nh văn h&oacute;a sản nghiệp ở đ&acirc;u?<br /><br />Đ&acirc;y l&agrave; một th&acirc;n phụ nợ to trẻ tuổi nh&acirc;n, một đầu chui v&agrave;o giới giải tr&iacute; cố sự.<br /><br />Hắn đứng ở nơi đ&oacute;, ch&iacute;nh l&agrave; Hoa ngữ giới &acirc;m nhạc một t&ograve;a tấm bia to; Hắn đi qua địa phương, ch&iacute;nh l&agrave; Hoa ngữ điện ảnh chấn hưng chi lộ.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

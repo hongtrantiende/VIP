@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "8176",
+        "NAME": "Cực Phẩm Thấu Thị Tiểu Tiên Y",
+        "CHAPTER": [
+            {
+                "id": "4272142",
+                "name": "Chương 1: Mỹ nữ, không nên kích động"
+            }
+        ],
+        "TOTALCHAPTER": "1139",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đô Thị, Dị Năng",
+        "AUTHOR": "Lưu Thủy Khúc Thương",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Biết võ công, hiểu y thuật, thậm chí còn nắm giữ Nghịch Thiên mắt nhìn xuyên tường, ngang dọc ở mỹ nữ như mây đô thị bên trong, Tô Lăng biểu thị mị lực quá to lớn cũng là tội, tuyệt sắc Ngự Tỷ, hàng xóm tiểu muội, thanh thuần hoa khôi của trường, gợi cảm nữ tổng giám đốc... Bất tri bất giác làm sao đều quay chung quanh ở bên cạnh ta?",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

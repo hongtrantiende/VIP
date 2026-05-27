@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "2906",
+        "NAME": "Song Lân Hý Cầu",
+        "CHAPTER": [
+            {
+                "id": "985356",
+                "name": "Chương 1: Lời Mở đầu"
+            }
+        ],
+        "TOTALCHAPTER": "7",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đô Thị",
+        "AUTHOR": "Anh Tuc Pham",
+        "TRANS": "Nocturne",
+        "DESC": "Câu chuyện xoay quanh đoàn Lân sư rồng (viết tắt là LSR) Phù Đồng do võ sư Vovinam - Việt võ đạo Lê Phước và các môn sinh lập. Lấy bối cảnh cảnh đô thị Sài gòn (TP. Hồ Chí Minh) những năm 1999-2000 khá hỗn độn. Khi mà các thế lực xã hội đen của các ông trùm như Năm Cam đang hoành bá đạo. Sức mạnh đồng tiền làm khuynh đảo xã hội, chém giết, hận thù, tranh giành vì lợi ích cá nhân. Thầy Phước có một tuổi thơ vất vả, sớm bỏ nhà đi bụi, lớn lên trở thành giang hồ khét tiếng. Bù lại thầy rất đam mê võ vẽ kiểu bụi đời chợ lớn. Võ học đã nuôi dưỡng và thức tỉnh trong con người thầy vẫn còn một trái tim đầy tình người. Thầy đã sớm giác ngộ và cơ duyên trở thành môn sinh Việt võ đạo. Thầy sáng lập ra võ đường Vovinam Phù Đồng với các môn sinh chủ yếu là các em lang thang đánh giày, bán báo, vé số và cả những tay anh chị khét tiếng ở khu Mã lạng, đồ gốm, xóm Miễu, xóm chùa, xóm chổi. Thầy Phước đã cảm hóa họ thành người lương thiện, dạy cho họ lẽ sống cũng như cách tự bảo vệ bản thân, chống lại các thế lực cường quyền. Đoàn Lân Sư Rồng Phù Đổng ra đời, đưa võ thuật Việt nam lên tầm cao mới, đó sự kết hợp tinh túy mà dung hòa giữa võ thuật và nghệ thuật.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

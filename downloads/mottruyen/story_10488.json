@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "10488",
+        "NAME": "Trực Bá Chi Hoang Dã Khiêu Chiến",
+        "CHAPTER": [
+            {
+                "id": "3499008",
+                "name": "Chương 1: Hoang Dã Trực Bá Hệ Thống"
+            }
+        ],
+        "TOTALCHAPTER": "931",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đô Thị, Khoa Huyễn",
+        "AUTHOR": "Thổ Thổ Sĩ",
+        "TRANS": "hui235235",
+        "DESC": "Ta từng hành tẩu ở thế giới nóc nhà: Everest băng lãnh trên sườn núi;<br />\r\n<br />\r\n\tĐã từng xuyên qua tại tử vong sa mạc: Vung rồi a đại sa mạc khu không người bên trong;<br />\r\n<br />\r\n\tTa từng từ vạn mét không trung, cực hạn nhảy dù xác định vị trí tiến vào Yến Tử động;<br />\r\n<br />\r\n\tĐã từng chui vào trăm mét sâu tam giác Bermuda biển sâu, cùng đáy biển cá mập vật lộn!<br />\r\n<br />\r\n\tTa gọi Trần Húc, người Hoa, thế giới ngưu bức nhất hoang dã dẫn chương trình, các ngươi có thể gọi ta Húc gia, hiện tại, ta ngay tại Châu Mỹ, thế giới lớn nhất rừng mưa nhiệt đới bên trong tiến hành trực tiếp, mọi người có thể nhìn thấy, ta toàn thân trên dưới, chỉ mặc một đầu quần đùi, đúng vậy, ngay cả giày cũng không có mặc, lần này, ta muốn khiêu chiến không mang theo bất luận cái gì vật phẩm, tại rừng mưa cực hạn sinh tồn sáu mươi ngày!",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

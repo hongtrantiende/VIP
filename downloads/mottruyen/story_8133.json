@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "8133",
+        "NAME": "Đại Điểu Chân Tiên",
+        "CHAPTER": [
+            {
+                "id": "2814749",
+                "name": "Chương 1 : Tống Xích Tử."
+            }
+        ],
+        "TOTALCHAPTER": "1",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp",
+        "AUTHOR": "Vô Danh Văn Ngữ Sư",
+        "TRANS": "Nhiều Converter",
+        "DESC": "T&Ecirc;N CHỈ L&Agrave; NHẦM T&Yacute; HEHE, T&Ecirc;N THỰC C&Aacute;C BẠN TỰ DỊCH H&Aacute;N VIỆT NH&Aacute;!!<br /> NỘI DUNG : NH&Igrave;N TRUYỆN ĐỌC<br /> HỮU DUY&Ecirc;N NHẤN ĐỀ CỬ V&Ocirc; DUY&Ecirc;N N&Eacute;M THẦN PHIẾU A!!<br /> <br /> LỊCH : HỮU DUY&Ecirc;N S&Aacute;U CHƯƠNG TUẦN, V&Ocirc; DUY&Ecirc;N MỘT TUẦN BA CHƯƠNG.<br /> TRUYỆN L&Agrave; TRUYỆN KH&Ocirc;NG PHẢI ĐẦU TAY NHƯNG TRUYỆN CỦA V&Ocirc; DANH L&Agrave; TRUYỆN CỦA TRUYỆN Đ&Atilde; L&Agrave; ĐẦU TAY MỘT TRUYỆN C&Aacute;C ĐẠO HỮU ĐỌC NGHĨ TRUYỆN L&Agrave; TRUYỆN CỦA ĐẦU TAY HAY TRUYỆN L&Agrave; TRUYỆN KH&Ocirc;NG ĐẦU TAY CŨNG ĐƯỢC D&Ugrave; SAO N&Oacute; VẪN L&Agrave; TRUYỆN TH&Ocirc;I M&Agrave; HỊ HỊ",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

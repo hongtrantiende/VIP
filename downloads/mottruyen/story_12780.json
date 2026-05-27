@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "12780",
+        "NAME": "Phấn Đấu Tại Ban Đầu Đường",
+        "CHAPTER": [
+            {
+                "id": "4122906",
+                "name": "Chương 1: Đêm động phòng hoa chúc (sách mới cầu cất chứa)"
+            }
+        ],
+        "TOTALCHAPTER": "1109",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Lịch Sử",
+        "AUTHOR": "Ngưu băng ghế",
+        "TRANS": "Kostrya",
+        "DESC": "Hiện đại thanh niên trở lại Đại Đường Trinh Quán trong năm. Làm lấy một phần thể diện nha môn tồi, trông coi cái như hoa như ngọc con dâu, hiếu kính lấy một đôi cha mẹ, còn có một cái ngây thơ đáng yêu không lấy chồng muội muội. Hắn lập chí muốn làm một người tuân theo pháp luật, thanh liêm như nước, vì dân chờ lệnh hảo nha dịch. Chính như vàng tại nơi nào cũng có thể phát sáng đồng dạng, nhưng cuối cùng hắn còn là một cái không cẩn thận, đem trọn cái Đại Đường cho chơi vòng vo...",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

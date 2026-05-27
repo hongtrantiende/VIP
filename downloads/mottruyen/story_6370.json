@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "6370",
+        "NAME": "Nguyên Lôi",
+        "CHAPTER": [
+            {
+                "id": "2265195",
+                "name": "Chương 1: Phản bội"
+            }
+        ],
+        "TOTALCHAPTER": "5",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo, Trùng Sinh",
+        "AUTHOR": "Shenwilliams",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Tập viết: Tự nâng mình dậy sao sự phản bội, Lôi Minh quyết tâm vực dậy lần nữa trên đường tu luyện. Hạt châu màu đen là gì ? bí mật sẽ ở cuối truyện.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

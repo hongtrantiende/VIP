@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "9980",
+        "NAME": "Đại Đường Phong Hoa Lộ",
+        "CHAPTER": [
+            {
+                "id": "3364407",
+                "name": "Chương 1: Dương Danh Lập Vạn"
+            }
+        ],
+        "TOTALCHAPTER": "787",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Xuyên Không",
+        "AUTHOR": "Sơn Hạ Xuất Thủy",
+        "TRANS": "๖ۣۜJet ๖ۣۜBlack",
+        "DESC": "Hàn Dược là cái không ôm chí lớn Tiểu Côn Đồ, ngẫu nhiên xuyên việt Đường Triều, có cái con dâu nuôi từ bé, trồng vài mẫu, không có việc gì phát minh ít đồ, thuận tiện trêu đùa một chút muội tử, hắn cảm giác loại ngày này rất tốt, nếu như không có người đã quấy rầy lời nói tình nguyện cả một đời đều như vậy.<br />\r\n<br />\r\n\tNhưng mà nam nhân tổng muốn lớn lên, Tiểu Côn Đồ cũng sẽ từ từ biến thành người lớn vật, giơ tay nhấc chân, sẽ đương lăng tuyệt đính, tuế nguyệt là một thanh mổ heo đao, Hàn Dược đã từ từ thành một thanh kiếm sắc bén.<br />\r\n<br />\r\n\tĐại Đường phong hoa, ai múa dẫn đầu, đây là một cái tiểu lưu manh chậm rãi trưởng thành là đại nhân vật cố sự.<br />\r\n<br />\r\n\tCó trang bức, có khinh suất, có phát tài, đương nhiên cũng sẽ có muội tử...",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "9796",
+        "NAME": "Phệ Huyết Ma Châu",
+        "CHAPTER": [
+            {
+                "id": "3313702",
+                "name": "Chương 1: Học Phủ Phong Ba"
+            }
+        ],
+        "TOTALCHAPTER": "2",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp",
+        "AUTHOR": "LangKhach610",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Thiếu niên Thất Dạ  một giới phàm nhân, ngẫu nhiên có được thiên hạ kỳ vật Phệ Huyết Ma Châu, xoay chuyển càn khôn , bước vào tu tiên lộ, kỳ danh Hắc Bạch Lang Quân tiếu ngạo giang hồ.<br />\r\n                                                                     _Ken Harry( Bạch Lang)_ Truyện Việt 100% do mình tự sáng tác.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

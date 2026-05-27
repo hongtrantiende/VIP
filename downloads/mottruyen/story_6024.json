@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "6024",
+        "NAME": "Chân Tiên Kỳ Duyên II Phong Ma",
+        "CHAPTER": [
+            {
+                "id": "2168939",
+                "name": "Chương 1: Tử Hà Sơn gặp nạn"
+            }
+        ],
+        "TOTALCHAPTER": "462",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp",
+        "AUTHOR": "Mặc văn huân huân",
+        "TRANS": "Kyon",
+        "DESC": "Bao nhiêu phàm trần cầu tiên duyên, thành ma cầu tiên, tu đại đạo.<br />\r\n<br />\r\n\tTiên lộ gian nguy đường khó đi, chỉ có chính khí mở tiên lộ.<br />\r\n<br />\r\n    Đi dài hơn con đường, kiến thức nhiều đặc sắc hơn, bước ra rộng lớn hơn thiên địa, nhưng là trong cơ thể cái kia phong ấn...",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

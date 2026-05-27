@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "3565",
+        "NAME": "Siêu Cấp Lược Thực Giả Hệ Thống",
+        "CHAPTER": [
+            {
+                "id": "1235155",
+                "name": "Chương 1: Hệ thống phủ xuống"
+            }
+        ],
+        "TOTALCHAPTER": "555",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đô Thị",
+        "AUTHOR": "Thực Nguyệt Thuần Hắc",
+        "TRANS": "Thiensat12214",
+        "DESC": "Nh&acirc;n vật ch&iacute;nh đạt được một c&aacute;i hệ thống tiến h&oacute;a n&ecirc;n bắt đầu tiến h&oacute;a. Ở đ&acirc;y kh&ocirc;ng c&oacute; nhiệm vụ nhưng nh&acirc;n vật ch&iacute;nh phải giết động vật để đạt được điểm tiến h&oacute;a, cũng như gien của c&aacute;c lo&agrave;i động vật. Nếu như nh&acirc;n vật ch&iacute;nh c&oacute; đủ điểm tiến h&oacute;a th&igrave; c&oacute; thể dung nhập gien 100 lần sức mạnh của con kiến, s&oacute;ng si&ecirc;u &acirc;m của con dơi, 500 lần nhảy cao của bọ ch&eacute;t, hoặc thể chất si&ecirc;u cường của con gi&aacute;n...<br /><br />Nhược điểm của truyện l&agrave; nh&acirc;n vật dần dần trở n&ecirc;n lạnh l&ugrave;ng v&agrave; t&iacute;nh c&aacute;ch cũng vặn vẹo theo (v&igrave; mục đ&iacute;ch kh&ocirc;ng chừa thủ đoạn).",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

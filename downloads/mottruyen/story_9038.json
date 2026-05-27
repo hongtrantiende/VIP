@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "9038",
+        "NAME": "Độc Phi",
+        "CHAPTER": [
+            {
+                "id": "3067649",
+                "name": "Thí Nghiệm Thất Bại , Hồn Nhập Dị Giới"
+            }
+        ],
+        "TOTALCHAPTER": "6",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Xuyên Không",
+        "AUTHOR": "arian",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Nàng là một thiên tài của thế giới về y dược Đông-Tây<br />\r\nDo một lần bất cẩn mà linh hồn xuyên không về cổ đại không có trong lịch sử<br />\r\nỞ đây nàng làm nên một truyền kỳ<br />\r\nGiang hồ gọi nàng là Hoả Y Thần Y, nàng chữa bệnh tuỳ tâm, nhưng cũng hay giúp đỡ những người nghèo<br />\r\nTrong vương phủ mọi người đều truyền nhau câu nói: \" thà đắc tội vương gia cũng không dám đắc tội vương phi. <br />\r\nVì sao? Xem đi , vương gia còn phải nghe lời vương phi <br />\r\n- Vương phi! Nàng đừng chỉnh người nữa được không?<br />\r\n- Được!<br />\r\nVị vương gia nào đó vui mừng, chợt nghe vương phi lại nói tiếp:<br />\r\n- Nếu vậy vương gia ngài làm chuột thí nghiệm cho ta được không?<br />\r\n- Ài, thôi không sao, nàng cứ làm những gì nàng thích<br />\r\nVị vương gia nào đó vội vàng thay đổi, lại gần vương phi nói:<br />\r\n- Vương phi!<br />\r\n- Có gì sao?<br />\r\n- Hôm nay trong cung có tiệc!<br />\r\n- Thì sao?<br />\r\n- Nàng đi cùng ta vào cung được không?<br />\r\n- Ngài thấy ta rảnh lắm sao? Hửm?<br />\r\nVưing phi nhíu mày, vương gia đành im lặng rời đi",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

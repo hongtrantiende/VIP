@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "11785",
+        "NAME": "Xuyên Qua Từ Sơn Tặc Bắc",
+        "CHAPTER": [
+            {
+                "id": "3876246",
+                "name": "Chương 1: Chức nghiệp? Nạn dân!"
+            }
+        ],
+        "TOTALCHAPTER": "10",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Võng Du, Dị Giới, Xuyên Không",
+        "AUTHOR": "Nộ Khí",
+        "TRANS": "devileyes357",
+        "DESC": "Đương Lục Hải Không biết mình xuyên qua đến một cái thế giới trò chơi thời điểm hắn là mộng tách ra.<br />\r\n<br />\r\n\tĐương nhiên chính mình sở tại cái này một quốc gia lại là Đông Hán, hơn nữa còn là những năm cuối thời điểm, hắn cảm thấy mình là có thể kiểu như trâu bò.<br />\r\n<br />\r\n\tNhưng khi hắn biết quan binh lập tức liền muốn diệt bọn hắn cái này một cái sơn trại thời điểm, gia hỏa này liền đồ ngốc.<br />\r\nP/s: Cầu đề cử !",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "9700",
+        "NAME": "Mạt thế Liệp Ma tràng",
+        "CHAPTER": [
+            {
+                "id": "3269024",
+                "name": "Chương 1:, Ác Ma hạ xuống"
+            }
+        ],
+        "TOTALCHAPTER": "321",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Trùng Sinh, Mạt Thế",
+        "AUTHOR": "Thâm Hải Bích Tỳ",
+        "TRANS": "mr_ranma_kut3@yahoo.com",
+        "DESC": "Ác Ma hạ xuống, nhân loại thành  ác ma thức ăn, người may mắn còn sống sót đau khổ giãy giụa. Nhưng là, mạt thế cũng mang cho nhân loại ta tiến hóa thành Dị Năng Giả kỳ ngộ.<br />\r\n<br />\r\n\tTrương Tiểu Thạch từ mạt thế mười năm sau trọng sinh trở về, bằng vào đã biết tin tức, trở thành cực hạn Dị Năng Giả, một bước trước, dẫn Liệp Ma quân đoàn đem Trái Đất biến thành Liệp Ma tràng.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

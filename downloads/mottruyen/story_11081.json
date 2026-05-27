@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "11081",
+        "NAME": "Siêu Cấp Khách Sạn Hệ Thống",
+        "CHAPTER": [
+            {
+                "id": "3657857",
+                "name": "Chương 1: Khách sạn hệ thống"
+            }
+        ],
+        "TOTALCHAPTER": "52",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Võng Du, Dị Giới, Xuyên Không",
+        "AUTHOR": "Phi Phong Phi Vân",
+        "TRANS": "Tinhtetac",
+        "DESC": "Mang theo khách sạn hệ thống chuyển kiếp đến một cái Thực Lực Chí Thượng Thế Giới, có thể tăng lên gấp bội tốc độ tu luyện khách phòng, công năng cường đại bàn ăn, có thể chữa trị hết thảy linh thú chuồng ngựa, trù phòng, giếng nước, vườn ăn sáng, bình hoa, băng ghế, chén trà nhỏ...<br />\r\n<br />\r\n\tTrong khách sạn, Lâm Đông là duy nhất Vương. Ngoài khách sạn, Lâm Đông chỉ thiếu thời gian...",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

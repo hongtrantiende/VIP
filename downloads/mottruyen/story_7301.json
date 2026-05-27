@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "7301",
+        "NAME": "Cực Phẩm Phi Tiên",
+        "CHAPTER": [
+            {
+                "id": "6830891",
+                "name": "Chương 0 : Phần đệm"
+            }
+        ],
+        "TOTALCHAPTER": "4628",
+        "IMG": "https://static.cdnno.com/poster/cuc-pham-phi-tien/150.jpg",
+        "CAT": "Tiên Hiệp, Nữ Hiệp",
+        "AUTHOR": "Kim Linh Động",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Tiên cùng ma vĩnh hằng tranh đấu, cầm cùng kiếm tuyệt thế tình duyên, đây là một cái to lớn mà mỹ lệ tiên hiệp thế giới, một đôi thiếu nam thiếu nữ bước trên tu tiên lộ……",
+        "THUMB": "https://static.cdnno.com/poster/cuc-pham-phi-tien/150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

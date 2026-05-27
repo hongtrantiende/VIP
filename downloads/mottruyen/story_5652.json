@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "5652",
+        "NAME": "Mạt Nhật Giáo Hoàng",
+        "CHAPTER": [
+            {
+                "id": "2010996",
+                "name": "Chương . 1: Trở lại tận thế sơ"
+            }
+        ],
+        "TOTALCHAPTER": "542",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Khoa Huyễn",
+        "AUTHOR": "Bút Tích Huyền Phù",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Sống lại đến tận thế sơ, phát hiện trong đầu Thần Cách mảnh vỡ, truyền bá tín ngưỡng, thành lập giáo hội!<br />\r\n<br />\r\n\tCầm Diệu Quang vinh quang gieo rắc cho ở tận thế bên trong giãy dụa nhân loại, dành cho che chở!<br />\r\n<br />\r\n\tTín ngưỡng người đem được cứu rỗi!",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

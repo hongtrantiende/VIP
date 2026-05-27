@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "4850",
+        "NAME": "Cửu Tinh",
+        "CHAPTER": [
+            {
+                "id": "1707110",
+                "name": "Chương 1: Ta, là, ai!"
+            }
+        ],
+        "TOTALCHAPTER": "594",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Võng Du",
+        "AUTHOR": "Quả Vị Miêu",
+        "TRANS": "_BOSS_",
+        "DESC": "- Nếu như có một ngày ngươi chết đi. - Trước mặt ngươi có hai tuyển hạng: A: sống lại lần nữa B: xuyên qua dị giới - Ngươi sẽ tuyển chọn như thế nào? ..... - Dương quạt cất cao giọng hát ba ngàn dặm, cười dẫn hung tinh nhập mệnh cung! - Một thích khách vô danh, trên người chịu Tử Kim Tinh Tượng, eo quấn gia tài bạc triệu, đi đến thời đại yêu nghiệt mà kích động mãnh liệt.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

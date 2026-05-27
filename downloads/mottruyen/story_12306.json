@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "12306",
+        "NAME": "Ngự Kiếm Tiêu Dao",
+        "CHAPTER": [
+            {
+                "id": "4003751",
+                "name": "Chương 1: Qua đời"
+            }
+        ],
+        "TOTALCHAPTER": "1",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp",
+        "AUTHOR": "Nguyệt Kiều",
+        "TRANS": "Lãng Du",
+        "DESC": "một sơn dã thiếu niên, một sinh mệnh như con kiến, một con đường tu luyện không điểm dừng cùng bao nguy hiểm, một tu tiên giới vừa kỳ huyễn vừa đặc sắc. Khi trải qua lắng động của năm tháng, hắn rút cuộc ngự kiếm trên cao mắt nhìn xuống chúng sinh<br />\r\n<br />\r\nTa cầu là cái gì! Ta tu tiên ước nguyện ban đầu không phải là vì muốn khoái ý ân cừu, hết chuyện bất bình của thiên hạ à.<br />\r\n<br />\r\nTa cầu là cái gì! Ta tu tiên không phải là vì muốn tiêu dao cửu thiên, nhìn xuống chúng sinh à.<br />\r\n<br />\r\nTa cầu là cái gì! Ta tu tiên không phải là vì muốn giết hết những ác nhân tội ác chồng chất à.<br />\r\n<br />\r\nTa cầu là cái gì! Ta tu tiên không phải muốn trường sinh bất tử à.<br />\r\n<br />\r\nP/s: Lần đầu ta convert sẽ mắc nhiều lỗi. Lúc trước điền tên truyện sai mẫu nên bị xóa :(",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

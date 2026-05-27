@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "4378",
+        "NAME": "Tuyệt Thế Đường Môn Chi Huyền Vũ Trấn Thế",
+        "CHAPTER": [
+            {
+                "id": "1573458",
+                "name": "Chương 5: Cuối cùng cũng được hồn cốt"
+            }
+        ],
+        "TOTALCHAPTER": "94",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đồng Nhân",
+        "AUTHOR": "Tình Nhân Trúc",
+        "TRANS": "Mít and Tôm",
+        "DESC": "Đồng nhần Tuyệt Thế Đường M&ocirc;n",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

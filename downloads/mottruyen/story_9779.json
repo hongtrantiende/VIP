@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "9779",
+        "NAME": "Tống Trọng Sinh Chi Inuyasha",
+        "CHAPTER": [
+            {
+                "id": "3300911",
+                "name": "Chương thứ nhất : Kiếp trước"
+            }
+        ],
+        "TOTALCHAPTER": "5",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp, Ngôn Tình, Xuyên Không, Đồng Nhân",
+        "AUTHOR": "Cuộc sống bất quá như thế mà thôi",
+        "TRANS": "Natsumi",
+        "DESC": "Tu hành giới thiên tài , ở lúc độ kiếp bị đánh lén cuối cùng rơi xuống , kết quả chuyển kiếp đến động mạn thế giới , cũng chiếm cứ Inuyasha thân thể . ở Inuyasha thế giới cơ hồ vô địch hắn như cá gặp nước , trò chơi ở các mỹ nữ giữa , sau đó nắm giữ chuyển kiếp thời không năng lực , có thể tùy ý chuyển kiếp các thế giới , vì vậy cuộc sống trở nên nhiều hết mức tư nhiều màu đứng lên .",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

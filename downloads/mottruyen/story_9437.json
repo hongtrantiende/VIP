@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "9437",
+        "NAME": "Thả Câu Tinh Không",
+        "CHAPTER": [
+            {
+                "id": "3186505",
+                "name": "Chương 1 :thợ săn cùng mồi"
+            }
+        ],
+        "TOTALCHAPTER": "274",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo, Khoa Huyễn, Xuyên Không",
+        "AUTHOR": "Thánh nhân mô thức",
+        "TRANS": "♚๖ۣۜKabigon♌♔",
+        "DESC": "Lấy thân thể làm mồi, thả câu tinh không! Đây là một cái không chết nam cùng nữ ăn thịt người, cô nàng hacker, ba người bổ tới tận cùng vũ trụ nhiệt huyết cố sự...",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

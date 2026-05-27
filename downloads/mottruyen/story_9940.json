@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "9940",
+        "NAME": "Vô Thượng Cực Cảnh",
+        "CHAPTER": [
+            {
+                "id": "3363222",
+                "name": "Chương 1: Liễu Thanh Lam"
+            }
+        ],
+        "TOTALCHAPTER": "861",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo, Trùng Sinh",
+        "AUTHOR": "Nhất Niệm Như Hải",
+        "TRANS": "808",
+        "DESC": "Tập võ, hóa linh, tu thần! Tu luyện tam đại cảnh giới! Mặc dù ngươi phong hoa tuyệt đại, thiên phú dị bẩm, tu luyện thành Thần Vương, kết quả là hồng phấn khô lâu, không người chống đỡ được thời gian trường hà xâm nhập! Liễu Thanh Lam một đời Thần Vương, mang theo Phong Thần Ngọc chuyển thế mà đến, mỗi một cảnh giới muốn tu luyện đến vô thượng cực cảnh, truy tìm kia mờ ảo vĩnh sinh đại đạo!",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

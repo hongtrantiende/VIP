@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "12285",
+        "NAME": "Nghịch Ma",
+        "CHAPTER": [
+            {
+                "id": "3997109",
+                "name": "Chương 1: Thiên Nhân Đệ Nhất Môn"
+            }
+        ],
+        "TOTALCHAPTER": "1",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp, Huyền Ảo",
+        "AUTHOR": "Philete",
+        "TRANS": "Nhiều Converter",
+        "DESC": "“Nghịch thiên vì tiên, đỉnh thiên vì ma.<br />\r\n<br />\r\nMa tu là luyện thi, đoạt xá, thải bổ, giết người.<br />\r\n<br />\r\nMa tu là dám yêu dám hận, phóng đãng vô ưu <br />\r\n<br />\r\nMa tu là đỉnh thiên lập địa chí tử vô hối chi ma”<br />\r\n<br />\r\nMột kẻ phàm nhân bình thường, bởi vì gặp phải bi kịch mà vô tình mở ra Thiên Nhân môn, lại vì một khối Vô Nhai bia và đạp bước tu ma lộ.  Nhân sinh tịch mịch, phàm trần như khói...........nở nụ cười phai nhòa minh nguyệt. <br />\r\n<br />\r\nP/S: Ta lấy hình tượng main theo Huệ Thi Tiên Hoàng, còn Huệ Thi Tiên Hoàng là ai đố các đạo hữu tìm ra. Nên các bạn đọc thấy hơi quen quen, thì cũng không thắc mắc nhiều nha.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

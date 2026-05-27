@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "10726",
+        "NAME": "Nhị Thứ Nguyên Vô Hạn Kỹ Năng",
+        "CHAPTER": [
+            {
+                "id": "3566693",
+                "name": "Chương 1: Trùng Sinh"
+            }
+        ],
+        "TOTALCHAPTER": "5",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp, Võng Du, Xuyên Không",
+        "AUTHOR": "Truong2986",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Tóm tắt: nvc trùng sinh lại nhận được một hạt châu có khả năng như một cái hệ thống. Từ đây hắn bắt đầu quật khỏi lên con đường của mình.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

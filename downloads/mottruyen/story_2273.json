@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "2273",
+        "NAME": "Đan Võ Cuồng Tiên",
+        "CHAPTER": [
+            {
+                "id": "766548",
+                "name": "Chương 1: Phong Vương"
+            }
+        ],
+        "TOTALCHAPTER": "262",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo",
+        "AUTHOR": "Lý Thanh Ngưu",
+        "TRANS": "Yenoanh",
+        "DESC": "C&otilde;i đời n&agrave;y tu luyện chi đạo, vạn ph&aacute;p Quy Nhất.&nbsp;\r\n<br />Người ph&agrave;m Chu Phong đ&uacute;ng dịp v&agrave;o thượng cổ động phủ, nhận được v&ocirc; thượng tu luyện phương ph&aacute;p, m&agrave; nh&igrave;n ph&aacute; trời cao, động c&agrave;n kh&ocirc;n, đan v&otilde; song tu, đạt được mỹ nh&acirc;n lọt mắt xanh, bước l&ecirc;n cường giả đỉnh, tung ho&agrave;nh tr&ecirc;n trời dưới đất, th&agrave;nh tựu mu&ocirc;n đời ngoan nh&acirc;n...",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

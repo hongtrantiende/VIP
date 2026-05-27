@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "11511",
+        "NAME": "Lựa Chọn Tử Vong",
+        "CHAPTER": [
+            {
+                "id": "3812998",
+                "name": "Chương 1: 1 trò chơi"
+            }
+        ],
+        "TOTALCHAPTER": "136",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Võng Du",
+        "AUTHOR": "tham lam giả",
+        "TRANS": "harukj",
+        "DESC": "Một căn phòng, trong đó có mười người chơi, chín người chơi và một con ma. Trong ba mươi phút nói chuyện, bạn phải lựa chọn giữa sự sống và cái chết. Nếu bạn muốn sống sót, đừng lựa chọn tử vong...",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

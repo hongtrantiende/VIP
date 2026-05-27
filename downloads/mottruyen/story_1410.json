@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "1410",
+        "NAME": "Phong Lưu Ma Quân",
+        "CHAPTER": [
+            {
+                "id": "587038",
+                "name": "Chương 1: Chôn sống"
+            }
+        ],
+        "TOTALCHAPTER": "98",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo",
+        "AUTHOR": "Công Thư Quan Chú",
+        "TRANS": "Đi_tìm_hạnh_phúc",
+        "DESC": "Một c&aacute;i th&acirc;n thế đ&aacute;ng thương thiếu ni&ecirc;n, bị người ch&ocirc;n sống, ngo&agrave;i &yacute; muốn được đến tuyệt thế Ma kinh!<br /><br />Xem một c&aacute;i h&egrave;n mọn thiếu ni&ecirc;n, như thế n&agrave;o đạp thi&ecirc;n đường, diệt Ti&ecirc;n Phật, t&agrave;n s&aacute;t vạn thần, hứng ma đạo, 'Tai họa' c&aacute;c Lộ ti&ecirc;n tử thần nữ, th&agrave;nh tựu sử thượng thứ nhất Ch&acirc;n Ma!<br /><br />Đối mặt n&agrave;y d&acirc;y dưa kh&ocirc;ng ngớt, v&igrave; hắn tranh đoạt t&igrave;nh nh&acirc;n c&aacute;c lộ tuyệt sắc ti&ecirc;n tử c&ugrave;ng y&ecirc;u nhi&ecirc;u ma nữ, Chu Hạo kỳ thật rất muốn đối với c&aacute;c n&agrave;ng h&ocirc; to một tiếng: \"Thực xin lỗi, c&aacute;c mỹ nữ, bản th&acirc;n kh&ocirc;ng tiếp thụ quy tắc ngầm!\"",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

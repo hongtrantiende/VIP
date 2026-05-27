@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "12353",
+        "NAME": "Nữ Sát Thủ Xuyên Không",
+        "CHAPTER": [
+            {
+                "id": "4019989",
+                "name": "Chương 1 : Nữ Sát Thủ Xuyên Không."
+            }
+        ],
+        "TOTALCHAPTER": "2",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Dị Năng, Xuyên Không, Nữ Hiệp",
+        "AUTHOR": "Phong_Truc",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Vân Tuyết là nữ sát thủ đứng nhất nhì thế giới ngầm, được mọi người biết với cái tên Tường Vi, trong một ngày nhàm cmn chán, cô tìm mua cuốn truyện NP đang HOT có tên ' Vân Sở, Bọn Anh Yêu Em '.<br />\r\n<br />\r\nSau một đêm ngon giấc, cô phát hiện mình hoa lệ xuyên không, hơn nữa còn xuyên vào nhân vật nữ phụ có kết quả chẳng mấy tốt đẹp là bao với lý do củ chuối : Bị bắt nhầm hồn.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

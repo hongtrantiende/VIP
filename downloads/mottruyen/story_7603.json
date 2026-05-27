@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "7603",
+        "NAME": "Sống lại chi Siêu Anh Hùng !",
+        "CHAPTER": [
+            {
+                "id": "4142311",
+                "name": "Chương 1 : Xuyện Việt cùng hệ thống !"
+            }
+        ],
+        "TOTALCHAPTER": "1",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Dị Giới, Khoa Huyễn, Xuyên Không",
+        "AUTHOR": "Nguyễn Lê Hoài",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Hàn Phong xuyên qua thế giới khác  !<br />\r\nMain nhân được ( Siêu Anh Hùng Hệ  Thống ) biến thành các nhân vật do Toei sản xuất ! ( Kamen Rider , Metal hero , ......)<br />\r\n<br />\r\nNơi này có những Kẻ có khả năng biến thành quái vật và tấn công kẻ khác , Main là người sẽ chiến đấu với những kẻ đó !<br />\r\n<br />\r\n-Những người được gọi là anh hùng không phải do sức mạnh họ có được mà là do con đường họ chọn !-",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

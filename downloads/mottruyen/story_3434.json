@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "3434",
+        "NAME": "Cực Phẩm Thầy Tướng",
+        "CHAPTER": [
+            {
+                "id": "1190519",
+                "name": "Chương 1 thiếu niên cùng vị hôn thê"
+            }
+        ],
+        "TOTALCHAPTER": "297",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đô Thị",
+        "AUTHOR": "Tiêu Sắt Lãng",
+        "TRANS": "Người Qua Đường Giáp",
+        "DESC": "Con nh&agrave; gi&agrave;u? Kh&ocirc;ng, hay lại l&agrave; thầy tướng nghề nghiệp n&agrave;y tương đối c&oacute; tiền đồ.<br /><br />Th&aacute;i Nhất ph&aacute;i nắm thi&ecirc;n hạ đạo m&ocirc;n cầm đầu, mười t&aacute;m tuổi thiếu ni&ecirc;n Hứa B&aacute;n Sinh, biết chuyện thi&ecirc;n hạ.<br /><br />Thi&ecirc;n Đạo kh&oacute; chịu, ta nghịch thi&ecirc;n.<br /><br />Thiếp th&acirc;n thiếu nữ xinh đẹp hộ vệ, sự nghiệp th&agrave;nh c&ocirc;ng th&agrave;nh thục ngự tỷ, c&aacute;i g&igrave; cần c&oacute; đều c&oacute;.<br /><br />Si&ecirc;u cấp con nh&agrave; gi&agrave;u vị h&ocirc;n th&ecirc;? Ta muốn từ h&ocirc;n!",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

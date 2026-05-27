@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "1212",
+        "NAME": "Kiếm Linh",
+        "CHAPTER": [
+            {
+                "id": "470301",
+                "name": "Chương 1: Lục Hiên"
+            }
+        ],
+        "TOTALCHAPTER": "1199",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo",
+        "AUTHOR": "Phôi Bảo",
+        "TRANS": "dinhnhan",
+        "DESC": "Thiên Kiếm đại lục, tông môn vạn ngàn, cường giả như rừng.Vì phòng ngừa tỷ tỷ bị thiếu niên hư ép cưới, Lục Hiên không thể không nỗ lực tu luyện, gia nhập tông môn tìm kiếm che chở.Một cái kiếm hình tinh thể lai lịch bí ẩn gặp may đúng dịp hòa vào trong cơ thể Lục Hiên, vô số hàng đầu công pháp, mạnh mẽ võ kỹ, không thiếu gì cả!Một cái võ đạo truyền kỳ, bắt đầu từ đó.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

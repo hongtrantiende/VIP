@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "3756",
+        "NAME": "Phệ Thần Pháp Tắc",
+        "CHAPTER": [
+            {
+                "id": "1292575",
+                "name": "Chương 1: Tử vong là một đoạn khởi đầu mới"
+            }
+        ],
+        "TOTALCHAPTER": "843",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo",
+        "AUTHOR": "Lạc Trần",
+        "TRANS": "Trung421",
+        "DESC": "Nếu kh&ocirc;ng c&aacute;ch n&agrave;o oanh oanh liệt liệt tử, vậy th&igrave; oanh oanh liệt liệt sống lại một lần! Đời n&agrave;y, hoặc l&agrave; tan xương n&aacute;t thịt, hoặc l&agrave; bước l&ecirc;n đỉnh cao!",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

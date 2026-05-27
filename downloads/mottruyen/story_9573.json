@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "9573",
+        "NAME": "Thiên Chi Vẫn Lạc",
+        "CHAPTER": [
+            {
+                "id": "3234975",
+                "name": "Lời Dẫn :   Lưu Tinh Thiểm"
+            }
+        ],
+        "TOTALCHAPTER": "3",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp",
+        "AUTHOR": "Hàn Dịch Hiên",
+        "TRANS": "longthanpq1997",
+        "DESC": "Nhân sinh trên đời mệnh ta do trời ?<br />\r\nLý Thiên Dịch an nhược bạch bất tiết nhất cố. Xem nhân vật chính Luân Hồi về sau hoàn thành một cái thiên đại kế hoạch, nghịch thiên chi lộ ai dám tranh phong...<br />\r\nNhất triêu du mộng thành bại tiên,<br />\r\n<br />\r\n\tLưỡng nhãn sinh kế phàm nhân gian.<br />\r\n<br />\r\n\tĐạo thành chi nhật toái linh hư,<br />\r\n<br />\r\n\tTúy tửu mộng tử vẫn lạc thiên!<br />\r\n<br />\r\n\tThiên khốc liễu, khốc đích dung liễu mỹ tửu, toái liễu bôi thù!",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

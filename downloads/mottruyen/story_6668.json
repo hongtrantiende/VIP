@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "6668",
+        "NAME": "Đại Hải Tặc Buggy",
+        "CHAPTER": [
+            {
+                "id": "2366304",
+                "name": "Chương 1: Này cái la bàn nhìn rất quen mắt!"
+            }
+        ],
+        "TOTALCHAPTER": "100",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đồng Nhân",
+        "AUTHOR": "Chém một cái phải giết",
+        "TRANS": "๖ۣTrứng»๖ۣThần",
+        "DESC": "Cướp biển của thế giới, thế giới người mạnh mẽ nhất , sự t&aacute;i sinh Buggy đội trưởng, thề sẽ sống rực rỡ nhất. <br /> <br /> ๖ۣTrứng&raquo;๖ۣThần xuất phẩm tất si&ecirc;u phẩm ........................................",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

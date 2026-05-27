@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "1118",
+        "NAME": "Yêu Thần",
+        "CHAPTER": [
+            {
+                "id": "398014",
+                "name": "Chương 1: Yêu tộc"
+            }
+        ],
+        "TOTALCHAPTER": "780",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo",
+        "AUTHOR": "Xấu Tới Linh Hồn",
+        "TRANS": "Đi_tìm_hạnh_phúc",
+        "DESC": "Xuy&ecirc;n qua dị giới, thế nhưng trở th&agrave;nh một g&atilde; bị động bị đ&aacute;nh sống bia ngắm, nghĩ đến cả đời n&agrave;y cứ như vậy bi th&uacute;c sống s&oacute;t<br /><br />Thế n&agrave;o Th&agrave;nh Tưởng ngẫu nhi&ecirc;n gặp kỳ ngộ, trở th&agrave;nh như thế n&agrave;o cũng đ&aacute;nh kh&ocirc;ng chết l&agrave; kh&ocirc;ng chết Tiểu Cường<br /><br />Dựa v&agrave;o biến th&aacute;i đặc biệt năng lực, hắn rốt cục trở th&agrave;nh v&ocirc; thượng Ch&iacute; T&ocirc;n, một c&acirc;u \"Chư Thi&ecirc;n vạn giới, duy ng&atilde; độc t&ocirc;n\" vang vọng mặt đất, ai d&aacute;m kh&ocirc;ng",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

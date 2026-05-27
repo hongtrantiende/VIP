@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "8242",
+        "NAME": "Võ Hiệp To Lớn",
+        "CHAPTER": [
+            {
+                "id": "2836863",
+                "name": "Chương 1: Hàng lâm Võ Hiệp Thế Giới"
+            }
+        ],
+        "TOTALCHAPTER": "80",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Kiếm Hiệp, Xuyên Không",
+        "AUTHOR": "Kỹ Thuật Trạch",
+        "TRANS": "huypt3522",
+        "DESC": "Độc Cô Cửu Kiếm Hàng Long Thập Bát Chưởng Long Tượng Ba Nhược Công Cửu Âm Chân Kinh Lục Mạch Thần Kiếm Bài Vân Chưởng Tam Phân Quy Nguyên Khí...<br />\r\n<br />\r\n\tXuyên Việt Thế Giới: Tiếu Ngạo Giang Hồ Thần Điêu Hiệp Lữ Ỷ Thiên Đồ Long Ký Thiên Long Bát Bộ Phong Vân<br />\r\n<br />\r\n\tƯa thích lời nói mời sưu tầm đề cử cảm ơn mọi người.<br />\r\n<br />\r\n\tPS: Thời gian đổi mới ban đêm 8 điểm tuyên bố trễ nhất 11 điểm.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

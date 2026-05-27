@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "8867",
+        "NAME": "Hồi Sinh Thành Kobold",
+        "CHAPTER": [
+            {
+                "id": "3024997",
+                "name": "Chương 1 :"
+            }
+        ],
+        "TOTALCHAPTER": "3",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Dị Giới, Khoa Huyễn, Trùng Sinh",
+        "AUTHOR": "lehungphat1999",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Tác phẩm ăn theo Re:Monster",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

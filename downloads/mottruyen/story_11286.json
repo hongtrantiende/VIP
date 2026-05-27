@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "11286",
+        "NAME": "[Fairy Tail] Brave Shine - Ánh Sáng Quả Cảm",
+        "CHAPTER": [
+            {
+                "id": "3736618",
+                "name": "Chương 1: Nỗi buồn - Tin Tưởng"
+            }
+        ],
+        "TOTALCHAPTER": "1",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo, Ngôn Tình, Dị Năng",
+        "AUTHOR": "PeCemini0506",
+        "TRANS": "Nhiều Converter",
+        "DESC": "\"Nguyện ước của tôi sẽ vượt qua không gian và thời gian...<br />\r\n<br />\r\n   Ánh sáng quả cảm của tôi...\"",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

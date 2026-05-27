@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "7578",
+        "NAME": "Bảo Điển",
+        "CHAPTER": [
+            {
+                "id": "2686686",
+                "name": "Bảo điển sơ đề chi quyển phần đệm"
+            }
+        ],
+        "TOTALCHAPTER": "660",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp, Đô Thị",
+        "AUTHOR": "Lục Sự Tham Quân",
+        "TRANS": "Hoàng Châu",
+        "DESC": "Thượng cổ bảo điển, đại năng giả cư chi, thời loạn lạc v&igrave; l&agrave; ma, thịnh thế v&igrave; l&agrave; hiền.<br /> <br /> Văn Vương được bảo điển ngộ Dịch Kinh, th&agrave;nh tựu hậu thế tám trăm năm giang sơn kh&iacute; vận.<br /> <br /> Trương Gi&aacute;c đ&ecirc;ược bảo điển ngộ Th&aacute;i B&igrave;nh Thanh Lĩnh Đạo, lấy h&ocirc; mưa gọi gi&oacute; Vung Đậu Th&agrave;nh Binh chi ảo thuật, quật họ Lưu long mạch, h&ocirc; \"Trời xanh đ&atilde; chết, Ho&agrave;ng Thi&ecirc;n l&agrave;m lập\", lập Ho&agrave;ng C&acirc;n Đạo, ph&aacute; Lưu H&aacute;n kh&iacute; vận, mở thời loạn lạc chi nguy&ecirc;n.<br /> <br /> Lại truyền thuyết Lưu An được bảo điển ngộ Đan đạo, ban ng&agrave;y phi ti&ecirc;n, g&agrave; ch&oacute; l&ecirc;n trời.<br /> <br /> Thời gian đến 21 thế kỷ, huyện th&agrave;nh nhỏ học sinh cấp ba thu được bảo điển n&agrave;y, bởi vậy phong v&acirc;n tế hội, m&agrave; nh&igrave;n hắn l&agrave;m sao vui ở hồng trần, tiếu ngạo đ&ocirc; thị!",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

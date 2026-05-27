@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "4919",
+        "NAME": "Phong Giới Vấn Đạo",
+        "CHAPTER": [
+            {
+                "id": "1730153",
+                "name": "Chương 1: Bách quan tấu chương"
+            }
+        ],
+        "TOTALCHAPTER": "18",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp",
+        "AUTHOR": "Ôn Thanh Tế Ngữ",
+        "TRANS": "Phong Gia",
+        "DESC": "Lạc hoa vũ, ngươi phiêu diêu mỹ lệ<br />\r\n<br />\r\nMùi hoa nhân, đem ngày xưa tình câu khởi<br />\r\n<br />\r\n\tTa nguyện ý, hóa lục bình nằm giữa hồ<br />\r\n<br />\r\nChỉ cùng ngươi, hiện lên năm tháng rung động<br />\r\n<br />\r\nMột cái gia đạo sa sút, cả nhà đem trảm nghèo túng cậu ấm. Lại có thi nhân khó có thể buồn miên tâm cảnh. Tối hậu vì được cứu trợ hồi hồng nhan tri kỷ, không thể làm gì khác hơn là bước trên tu tiên vấn đạo chi lộ. Lưu lạc suốt đời chỉ vì cầu được khởi tử hồi sinh thuật. Cuối cùng đạp phá Phong Giới, vấn đạo trên thế gian.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

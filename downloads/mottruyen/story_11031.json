@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "11031",
+        "NAME": "Tối Cường Đại Năng Hệ Thống",
+        "CHAPTER": [
+            {
+                "id": "4005066",
+                "name": "Chương 1: Xin lỗi ca chỉ là truyền thuyết"
+            }
+        ],
+        "TOTALCHAPTER": "1",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo, Võng Du, Đồng Nhân",
+        "AUTHOR": "☠Đấū ✟ĥầɳஇ",
+        "TRANS": "Nhiều Converter",
+        "DESC": "",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

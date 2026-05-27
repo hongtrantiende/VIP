@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "5111",
+        "NAME": "Long Huyết Sôi Trào",
+        "CHAPTER": [
+            {
+                "id": "1811858",
+                "name": "Chương 01: Lục gia Long Thiên"
+            }
+        ],
+        "TOTALCHAPTER": "1786",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo",
+        "AUTHOR": "Nhược An Tức",
+        "TRANS": "DarkHero",
+        "DESC": "Được Long huyết, lấy được thần th&ocirc;ng, lấy s&ocirc;i tr&agrave;o th&uacute; huyết, chiến hắn c&aacute;i Thi&ecirc;n Băng Địa Liệt, Ngật t&agrave;n Nguyệt thương!<br /> <br /> Cản ta ti&ecirc;́n l&ecirc;n bước ch&acirc;n người, chết!<br /> <br /> Bằng v&agrave;o cường ngạnh nắm đấm, ca ca tử vong ch&acirc;n tướng từng bước một để lộ...<br /> <br /> \"Một ng&agrave;y n&agrave;o đ&oacute;, ta sẽ để cho Long đồ đằng tung bay to&agrave;n bộ đại lục.\"<br /> <br /> \"Ta l&agrave; Long Thi&ecirc;n, Phi Long Tại Thi&ecirc;n!",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

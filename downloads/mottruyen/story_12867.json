@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "12867",
+        "NAME": "Đại Minh Chí Thánh",
+        "CHAPTER": [
+            {
+                "id": "4155191",
+                "name": "Chương  1: Tin tức khí tượng"
+            }
+        ],
+        "TOTALCHAPTER": "284",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Lịch Sử, Xuyên Không",
+        "AUTHOR": "Á Lịch Sơn Đại Dận Chân",
+        "TRANS": "HacTamx",
+        "DESC": "Tô Bạch Y xuyên qua trở lại Minh mạt, bên người mang theo giáo sư hệ thống, không muốn xưng bá, không muốn làm quan, không muốn đọc sách, tốt lắm, ta liền đàng hoàng dạy học đi.<br />\r\n<br />\r\n\tDạy, dạy đến cái thái bình thịnh thế<br />\r\n<br />\r\n\tDạy, dạy đến cái vạn quốc đến chầu.<br />\r\n<br />\r\n\tDạy, dạy đến cái minh dương thiên hạ.<br />\r\n<br />\r\n\tDạy, thành tựu thiên cổ nhất thánh.<br />\r\n<br />\r\n\t\"Thí thiên cổ nhất thánh!\"<br />\r\n<br />\r\n\t\"Tô Bạch Y, ngươi không biết hổ thẹn!\" Trần Viên Viên trợn tròn đôi mắt, đem một tấm hình quăng ở trên mặt hắn, không quá ba giây đồng hồ, lại mặt hồng xấu hổ thấp giọng nói: \"Nếu như ngươi chịu dạy ta vẽ vời, vẽ ta thân thể việc này, liền hòa nhau rồi...\"",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

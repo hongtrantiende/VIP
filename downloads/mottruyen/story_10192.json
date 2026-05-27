@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "10192",
+        "NAME": "Vô Hạn Lược Mỹ",
+        "CHAPTER": [
+            {
+                "id": "3421329",
+                "name": "Chương 1 : Bình Thường Đem Đi Qua"
+            }
+        ],
+        "TOTALCHAPTER": "20",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo, Đồng Nhân",
+        "AUTHOR": "Tiểu Trư Nhi",
+        "TRANS": "»Kira«",
+        "DESC": "Thân mang Mini chủ thần, xuyên qua vô hạn thế giới, tiến vào chủ thần không gian đại sát tứ phương, chung quanh chiếm đoạt danh hiệu, các đại ảnh thị động mạn mỹ nữ không một không thu! Một lần tiến vào Tây Du Ký trung, Vương Mẫu Hằng Nga Nữ Oa cũng không buông tha, phàm là là có thể đoạt lấy mỹ nữ, trư chân hết thảy không có buông tha!",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

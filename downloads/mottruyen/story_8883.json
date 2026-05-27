@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "8883",
+        "NAME": "Tu Tiên Lộ",
+        "CHAPTER": [
+            {
+                "id": "3028272",
+                "name": "Chương 1 : Đệm chương"
+            }
+        ],
+        "TOTALCHAPTER": "1",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp",
+        "AUTHOR": "Nhiều Converter",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Truyện kể về Tiêu Dương, một người chân chính đạp lên các thiên tài, mở ra những bí ẩn thời Hoang Cổ từ xưa đến nay, một người đánh đổi rất nhiều thứ để cùng với mọi người bước lên Tiên Lộ....",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

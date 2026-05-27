@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "11439",
+        "NAME": "Tối Đại Quyền Hạn",
+        "CHAPTER": [
+            {
+                "id": "3790575",
+                "name": "Chương 1:"
+            }
+        ],
+        "TOTALCHAPTER": "25",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo, Võng Du, Trùng Sinh",
+        "AUTHOR": "Phì Ngư Mã Giáp",
+        "TRANS": "Nhiều Converter",
+        "DESC": "chế tác trò chơi thành công Lâm Vẫn ngoài ý muốn chết đột ngột, xuyên qua đến chính mình chế luyện trò chơi thế giới, kết quả có cái này thế giới quyền hạn lớn nhất !",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

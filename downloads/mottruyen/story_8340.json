@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "8340",
+        "NAME": "Naruto Luffy Tung Hoàng Thiên Hạ",
+        "CHAPTER": [
+            {
+                "id": "2878587",
+                "name": "Chương 1: Đi tới Foosha thôn"
+            }
+        ],
+        "TOTALCHAPTER": "528",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đồng Nhân",
+        "AUTHOR": "Nửa đêm thiểm quang",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Hokage Thế giới Naruto, xuyên qua đến rồi One Piece thế giới, xuyên qua thời điểm mười hai tuổi, đi xuyên qua về sau sáu tuổi, cùng Luffy cùng nhau lớn lên, sau đó lên Luffy thuyền, cùng Luffy cùng nhau tiến hành mạo hiểm lữ trình!",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

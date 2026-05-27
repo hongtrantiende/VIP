@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "2398",
+        "NAME": "Nhất Thế Chi Tôn",
+        "CHAPTER": [
+            {
+                "id": "794404",
+                "name": "Chương 1: Xảo trá"
+            }
+        ],
+        "TOTALCHAPTER": "1397",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo",
+        "AUTHOR": "Ái Tiềm Thủy Đích Ô Tặc",
+        "TRANS": "Kinzie",
+        "DESC": "Ta một đời n&agrave;y, kh&ocirc;ng hỏi trước kia, kh&ocirc;ng cầu kiếp sau, chỉ oanh oanh liệt liệt, kho&aacute;i &yacute; &acirc;n cừu, bại tẫn c&aacute;c tộc anh kiệt, ngạo cười lục đạo thần ma !",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

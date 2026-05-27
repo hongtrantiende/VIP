@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "2781",
+        "NAME": "Pokemon Chi Phong Nguyệt Vô Biên",
+        "CHAPTER": [
+            {
+                "id": "915963",
+                "name": "Chương 1: Xuyên việt cùng Pokemon đản"
+            }
+        ],
+        "TOTALCHAPTER": "95",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đồng Nhân",
+        "AUTHOR": "Nhạn Ly",
+        "TRANS": "Ronkute",
+        "DESC": "Diệp Phong , một c&aacute;i sắp đi v&agrave;o s&acirc;n trường đại học trạch nam(*) , trong l&uacute;c v&ocirc; t&igrave;nh xuy&ecirc;n vi&ecirc;̣t đ&atilde; đến Pokemon thế giới . Nh&igrave;n hắn như thế n&agrave;o trong c&aacute;i thế giới n&agrave;y si&ecirc;u việt Thi&ecirc;n Vương , si&ecirc;u việt qu&aacute;n qu&acirc;n , thậm ch&iacute; si&ecirc;u việt Tinh Linh Chưởng m&ocirc;n nh&acirc;n .",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

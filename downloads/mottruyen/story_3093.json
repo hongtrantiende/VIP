@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "3093",
+        "NAME": "Ngu Nhạc Đế Quốc Hệ Thống",
+        "CHAPTER": [
+            {
+                "id": "1053058",
+                "name": "Chương 1: Gặp lại 1997"
+            }
+        ],
+        "TOTALCHAPTER": "355",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đô Thị",
+        "AUTHOR": "Bảo Ca",
+        "TRANS": "Hổ",
+        "DESC": "Tại giới giải tr&iacute; lăn lộn mười năm vai phụ diễn vi&ecirc;n Diệp Minh mang theo tương lai đế quốc giải tr&iacute; hệ thống trở về 97 năm,\r\n<br />Năm đ&oacute;, hai mươi hai tuổi Diệp Minh, hai mươi ba tuổi T&ocirc; c&oacute; Bằng, hăng h&aacute;i, thanh xu&acirc;n v&ocirc; địch\r\n<br />Năm đ&oacute;, hai mươi mốt tuổi Triệu hơi, L&acirc;m T&acirc;m Như, mười s&aacute;u tuổi Phạm nho nh&atilde;, t&iacute;nh trẻ con vị tho&aacute;t. Thanh đạm như c&uacute;c.\r\n<br />Cộng đồng hội tụ tại một người t&ecirc;n l&agrave; quỳnh xa dưới cờ, lẳng lặng tr&aacute;n ph&oacute;ng thuộc về mỹ lệ của bọn họ.\r\n<br />Một c&aacute;i giới giải tr&iacute; Đế Vương từ Ho&agrave;n Ch&acirc;u C&aacute;ch C&aacute;ch bắt đầu, bước l&ecirc;n h&agrave;nh tr&igrave;nh.<br />Người trọng sinh Diệp Minh lợi dụng hệ thống si&ecirc;u cấp, chế tạo một c&aacute;i to lớn đế quốc giải tr&iacute;.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "9559",
+        "NAME": "Tuyệt Phẩm Xuyên Không",
+        "CHAPTER": [
+            {
+                "id": "3228570",
+                "name": "Chương 1: Xuyên CMN Không"
+            }
+        ],
+        "TOTALCHAPTER": "2",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp, Kiếm Hiệp, Xuyên Không",
+        "AUTHOR": "anhhungxanga",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Xuyên không tới chân linh dai lục. Chàng thiếu niên Thiên Vũ từ một phế vật trở thành một tuyệt thế kiếm khách. Truyện có một số thứ giống với KDDT của Kiếm Du Thái Hư nhưng thật ra khác hoàn toàn.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

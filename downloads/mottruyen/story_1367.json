@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "1367",
+        "NAME": "Thần Binh Thiên Hạ",
+        "CHAPTER": [
+            {
+                "id": "569587",
+                "name": "Chương 1: Ai mới là phế vật ?"
+            }
+        ],
+        "TOTALCHAPTER": "30",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo, Khoa Huyễn",
+        "AUTHOR": "Bạch Bào Tàng Đao",
+        "TRANS": "Sữa",
+        "DESC": "Tại đ&acirc;y phiến thần kỳ tr&ecirc;n đại lục, binh hồn, l&agrave; duy nhất vương đạo!<br /><br />Mọi người Ngưng Kh&iacute; cầm binh hồn, luyện binh h&oacute;a th&agrave;nh h&igrave;nh, ngự binh giết địch, ngo&agrave;i ng&agrave;n dặm; bố binh th&agrave;nh trận, ngao du hư kh&ocirc;ng, ph&aacute; to&aacute;i cửu trọng thi&ecirc;n, leo l&ecirc;n đại lục ch&iacute; cao điểm.<br /><br />Ngự binh bay l&ecirc;n l&acirc;m thi&ecirc;n hạ, bạch b&agrave;o t&agrave;ng đao v&igrave; ai cuồng!",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

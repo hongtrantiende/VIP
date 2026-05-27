@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "3317",
+        "NAME": "Thần Thoại Đại Tống",
+        "CHAPTER": [
+            {
+                "id": "1155117",
+                "name": "Chương 1: Đại Tống hoàng tộc"
+            }
+        ],
+        "TOTALCHAPTER": "185",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Kiếm Hiệp",
+        "AUTHOR": "Lôi Thuẫn",
+        "TRANS": "Thái Hư Tử",
+        "DESC": "Đại phong b&atilde;o t&aacute;p, mang tất cả vạn dặm, nhật nguyệt chỗ l&acirc;m, đều v&igrave; Đại Tống! H&oacute;a th&acirc;n Đại Tống ho&agrave;ng tộc đệ ngũ tử, chỉ v&igrave; v&atilde;n ng&agrave;y đ&oacute; khoảnh, cứu ta nh&agrave; H&aacute;n văn minh!.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

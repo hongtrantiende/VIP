@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "1335",
+        "NAME": "Giả Cán Bộ",
+        "CHAPTER": [
+            {
+                "id": "551929",
+                "name": "Chương 1 : Giả hàng ngoại - Quyển 1"
+            }
+        ],
+        "TOTALCHAPTER": "61",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đô Thị",
+        "AUTHOR": "Sơn Thủy Phù Đồ",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Kh&ocirc;ng c&oacute; dị năng, c&oacute; khi l&agrave;, kh&ocirc;ng ngừng đấu tranh t&acirc;m!<br /><br />Xuất th&acirc;n bần h&agrave;n Dương Tử Hi&ecirc;n, ngo&agrave;i &yacute; muốn sống lại tại một c&aacute;i c&oacute; ti&ecirc;n thi&ecirc;n t&iacute;nh tr&iacute; lực tật bệnh tiểu c&aacute;n bộ tr&ecirc;n người.<br /><br />Trở th&agrave;nh một g&atilde; quang vinh sống lại giả c&aacute;n bộ.<br /><br />Trả đến 90 ni&ecirc;n đại c&aacute;i kia t&igrave;nh cảm m&atilde;nh liệt thi&ecirc;u đốt trăm phế đợi hưng thời đại.<br /><br />Từ nay về sau, con đường l&agrave;m quan s&aacute;ng kiếm!",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

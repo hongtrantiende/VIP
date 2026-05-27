@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "10967",
+        "NAME": "Tiêu Dao Đại Đạo",
+        "CHAPTER": [
+            {
+                "id": "3637208",
+                "name": "Chương 1: Tên côn đồ"
+            }
+        ],
+        "TOTALCHAPTER": "390",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo, Dị Giới, Trùng Sinh",
+        "AUTHOR": "Vong Trần",
+        "TRANS": "808",
+        "DESC": "\"Ta là lưu manh ta sợ ai, đánh không lại bỏ chạy, đánh thắng được liền đoạt.\" \"Ngươi cốt khí đâu này? Ngươi tôn nghiêm đâu này?\" \"Cốt khí hầm cách thủy, thuận tiện vung điểm tôn nghiêm\" bất quá muốn xúc phạm ta điểm mấu chốt ngươi liền xong rồi. Người sống một đời, hoặc tiêu sái, hoặc kích tình, hoặc vô vi. . . Một bộ tiểu thuyết, một đoạn nhân sinh.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "3438",
+        "NAME": "Thông Thiên Kiếm Chủ",
+        "CHAPTER": [
+            {
+                "id": "1190991",
+                "name": "Chương 1: Giang Thần"
+            }
+        ],
+        "TOTALCHAPTER": "361",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo",
+        "AUTHOR": "Kiếm Du Thái Hư",
+        "TRANS": "Kinzie",
+        "DESC": "Một kiếm th&ocirc;ng thi&ecirc;n, kiếm chủ trầm ph&ugrave;.<br /><br /><br />Thiếu ni&ecirc;n Giang Thần ấu ni&ecirc;n thời k&igrave; ngo&agrave;i &yacute; muốn được đến một bộ Hư V&ocirc; Kiếm Thể đại ph&aacute;p, hắn vốn đ&atilde; tư chất kh&ocirc;ng k&eacute;m, từ đ&oacute; đi l&ecirc;n d&agrave;i l&acirc;u m&agrave; truyền kỳ v&otilde; đạo chi lộ.<br /><br /><br />V&ocirc; địch m&atilde;nh th&uacute;, vực ngoại sinh vật, thế giới chi m&ecirc;, thần ma truyền thuyết, n&agrave;y chỉ l&agrave; bắt đầu.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

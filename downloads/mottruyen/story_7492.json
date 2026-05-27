@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "7492",
+        "NAME": "Phệ Luân",
+        "CHAPTER": [
+            {
+                "id": "2650458",
+                "name": "Tiêu Diêu Đại Lục"
+            }
+        ],
+        "TOTALCHAPTER": "2",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp, Dị Năng, Nữ Hiệp",
+        "AUTHOR": "mrtieuca",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Trời đất hồng hoang thứ có thể nuốt gọn được tất cả chỉ có lỗ đen haha ta thôn thiên nuốt địa đoạt giai nhân san bằng cửu giới. Truyện do tác giả trẻ mới sáng tác lần đầu nên có ghì sơ sẫy mong mọi người bỏ qua hì.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

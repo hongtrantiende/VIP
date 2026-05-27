@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "11006",
+        "NAME": "legend",
+        "CHAPTER": [
+            {
+                "id": "3639497",
+                "name": "Chương 66"
+            }
+        ],
+        "TOTALCHAPTER": "38",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo",
+        "AUTHOR": "Nhiều Converter",
+        "TRANS": "Nhiều Converter",
+        "DESC": "....",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "8541",
+        "NAME": "Nghịch Thời Không Thành Thánh",
+        "CHAPTER": [
+            {
+                "id": "2931623",
+                "name": "Chương 1: Lê Hoa Quan"
+            }
+        ],
+        "TOTALCHAPTER": "567",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp, Xuyên Không, Đồng Nhân",
+        "AUTHOR": "Ba Hạ Khách",
+        "TRANS": "❦๖ۣۜNocturneღ❧",
+        "DESC": "Một chiếc bảo kính, xuyên qua thời không, ở Thục Sơn bên trong luyện kiếm, ở Tây Du bên trong thành Phật, Phong Thần đại chiến có bóng người của hắn, tuyên cổ Hồng Hoang cũng từng du lịch. qua trăm khổ, vượt ngàn kiếp, sẽ thành thánh.<br />\r\n<br />\r\n--------------------Ƹ̵̡Ӝ̵̨̄Ʒ--------------------❦๖ۣۜNocturneღ❧--------------------Ƹ̵̡Ӝ̵̨̄Ʒ------------------------<br />\r\n<br />\r\nMap 1: Thục Sơn Kiếm Hiệp Truyện <br />\r\nMap 2: Tây Du Ký <br />\r\nMap 3: Hồng Hoang sơ khai",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

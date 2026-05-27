@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "2173",
+        "NAME": "Kiếm Ngạo Thiên Thương",
+        "CHAPTER": [
+            {
+                "id": "748005",
+                "name": "Chương 01: Tưởng Kinh Thiên"
+            }
+        ],
+        "TOTALCHAPTER": "10",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo",
+        "AUTHOR": "Ngũ Tích Lục Thú",
+        "TRANS": "trang4mat",
+        "DESC": "Hắn l&agrave; Cự Khuyết người thừa kế, v&otilde; đạo tuyệt thế thi&ecirc;n t&agrave;i.<br /><br />Hắn to&agrave;n tộc bị diệt, lưng đeo Cự Khuyết một m&igrave;nh đột xuất v&ograve;ng v&acirc;y.<br /><br />Hắn chạy qua đại sa mạc, t&aacute;i nhập Nam Cương, nhập Trung Nguy&ecirc;n, định b&aacute;t hoang, qu&eacute;t ngang Lục Hợp.<br /><br />Hắn liều lĩnh, b&aacute; đạo, kh&ocirc;ng ai b&igrave; nổi. Hắn hung hăng càn qu&acirc;́y, lạnh l&ugrave;ng, s&aacute;t phạt quyết đo&aacute;n.<br /><br />Hắn T&ecirc; Thi&ecirc;n Liệt Địa, mở ra một đầu Vương giả chi lộ.<br /><br />Hắn ngừng ch&acirc;n, nh&igrave;n quanh, cũng đ&atilde; m&ecirc;nh m&ocirc;ng kh&ocirc;ng thấy địch thủ, c&aacute;i kia đ&atilde; từng bị hắn nh&igrave;n l&ecirc;n nguy nga tuyệt đỉnh, hiện đ&atilde; đều bị hắn đạp tại dưới ch&acirc;n.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

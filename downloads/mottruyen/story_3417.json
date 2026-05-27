@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "3417",
+        "NAME": "Siêu Cấp Hệ Thống Sao Chép",
+        "CHAPTER": [
+            {
+                "id": "1185606",
+                "name": "Chương 1:Sống lại"
+            }
+        ],
+        "TOTALCHAPTER": "84",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đô Thị",
+        "AUTHOR": "Lăng Canh Tân",
+        "TRANS": "Anhemnhathan",
+        "DESC": "Trở lại mười năm trước , mang theo một Bus 《 si&ecirc;u cấp sao ch&eacute;p hệ thống 》 , từ nay Chu Dương người ,của ............... .\r\n<br /> Kỹ năng c&oacute; thể sao ch&eacute;p , vật phẩm c&oacute; thể sao ch&eacute;p , thậm ch&iacute; ngay cả người cũng c&oacute; thể sao ch&eacute;p ！",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

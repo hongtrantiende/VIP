@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "8245",
+        "NAME": "IMI - Thực Nghiệm Đảo",
+        "CHAPTER": [
+            {
+                "id": "2837564",
+                "name": "Chương 1 : Thiếu niên lạnh, thiếu nữ nóng và hòn đảo rộng."
+            }
+        ],
+        "TOTALCHAPTER": "86",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo, Dị Năng, Dị Giới, Khoa Huyễn",
+        "AUTHOR": "zozohoho",
+        "TRANS": "Nhiều Converter",
+        "DESC": "800 thiên tài từ khắp thế giới tập hợp tại hòn đảo này, dùng siêu năng lực, khoa học kỹ thuật, võ công và mưu mẹo tham gia một tràng giết chóc, nhằm chiếm lấy tất cả của đối phương.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

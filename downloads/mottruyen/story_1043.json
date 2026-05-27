@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "1043",
+        "NAME": "Chân Linh Cửu Biến",
+        "CHAPTER": [
+            {
+                "id": "319269",
+                "name": "Hệ thống thiết lập"
+            }
+        ],
+        "TOTALCHAPTER": "1574",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp, Huyền Ảo",
+        "AUTHOR": "Thụy Thu",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Truyện kể về qu&aacute; tr&igrave;nh một tu sĩ phổ th&ocirc;ng phấn đấu tu luyện, trưởng th&agrave;nh, bao gồm cả qu&aacute; tr&igrave;nh ph&aacute;t triển của một m&ocirc;n ph&aacute;i với bao quyền mưu, &aacute;m s&aacute;t, chiến đấu, lợi &iacute;ch v&agrave; phấn đấu.\r\n&nbsp;\r\nĐ&oacute; l&agrave; một tr&agrave;ng nh&acirc;n y&ecirc;u hai tộc đối kh&aacute;ng, rồi đại kiếp đến gần, để c&aacute;c b&ecirc;n hợp tung li&ecirc;n ho&agrave;nh tranh đấu cho sự tồn tại. <br /><br />Trong truyện, tu sĩ Lục B&igrave;nh đệ tử của Ch&acirc;n Linh ph&aacute;i chuy&ecirc;n tu thủy hệ c&ocirc;ng ph&aacute;p những bằng nổ lực của m&igrave;nh đ&atilde; từng bước th&agrave;nh c&ocirc;ng về luyện ph&ugrave;, luyện đan, tu th&agrave;nh thần th&ocirc;ng gi&agrave;nh lấy tiếng n&oacute;i cho ch&iacute;nh m&igrave;nh, chống lại những &acirc;m mưu đ&atilde; ẩn giấu th&acirc;m s&acirc;u trong tu ch&acirc;n giới h&agrave;ng vạn năm.<br /><br />",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

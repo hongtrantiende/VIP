@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "12812",
+        "NAME": "Chí Tôn Cuồng Đế Hệ Thống",
+        "CHAPTER": [
+            {
+                "id": "4135676",
+                "name": "Chương 1: Lão tử là Thái Tử"
+            }
+        ],
+        "TOTALCHAPTER": "1033",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo",
+        "AUTHOR": "Dưa Hấu Không Có Nước",
+        "TRANS": "Hoàng Châu",
+        "DESC": "Ngươi là thiên tài tuyệt thế rất trâu bò? Thật không tiện, lão tử có hệ thống, thăng cấp đơn giản như uống nước. Ngươi có Chí Tôn Thần khí rất trâu bò? Thôi đi, thượng cổ thần kiếm lão tử nắm đến xỉa răng. Ngươi là nghiêng nước nghiêng thành mỹ nhân tuyệt thế? Khái khái, mỹ nhân chúng ta bàn luận cuộc sống, nói chuyện lý tưởng chứ. . . Đánh nổ tất cả trang bức trước mặt lão tử, lão tử cần phải làm là, giả bộ mình cực kỳ hơn người khác  có thể giả bộ! Cái gì, có người không phục? Toàn bộ giẫm bạo! . . .",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

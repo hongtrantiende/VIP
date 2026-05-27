@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "1250",
+        "NAME": "Thục Sơn Bàng Môn Chi Tổ",
+        "CHAPTER": [
+            {
+                "id": "492505",
+                "name": "Chương 1: Chiêu hồn"
+            }
+        ],
+        "TOTALCHAPTER": "1901",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp",
+        "AUTHOR": "Ngọc Trảo Tuấn",
+        "TRANS": "Kensin_Kaoru",
+        "DESC": "Truyện n&oacute;i về Chung Nguy&ecirc;n (t&ecirc;n gần giống của Đại L&atilde;o Gia :v) một học sinh mới, ở trong một thế giới c&oacute; thể tu luyện th&agrave;nh ti&ecirc;n. Hơn nữa, hắn thực dễ d&agrave;ng liền b&aacute;i v&agrave;o m&ocirc;n đ&igrave;nh ti&ecirc;n gia.\r\n<br />Thế nhưng, hắn c&ograve;n chưa kịp hưng phấn liền ph&aacute;t hiện: thế giới n&agrave;y l&agrave; Thục Sơn. Thục Sơn vốn cũng kh&ocirc;ng c&oacute; g&igrave;, d&ugrave; sao hắn rất quen thuộc...\r\n<br />Sư tổ hắn đ&uacute;ng l&agrave; Hồng Ph&aacute;t l&atilde;o tổ.\r\n<br />Hồng Ph&aacute;t l&atilde;o tổ, Gi&aacute;o chủ một phương, b&agrave;ng m&ocirc;n t&ocirc;ng, nhưng kết cục cũng rất th&ecirc; thảm, rất đau x&oacute;t. Ch&iacute;nh c&aacute;i gọi l&agrave; nữ sợ gả sai chồng, nam sợ đi sai đường!\r\n<br />Đối mặt với sinh tử nguy nan, đương nhi&ecirc;n l&agrave; Chung Nguy&ecirc;n kh&ocirc;ng cam l&ograve;ng bu&ocirc;ng bỏ, li&ecirc;n tục vươn l&ecirc;n... V&igrave; thế, hắn tạo cơ sở vững v&agrave;ng, s&uacute;c t&iacute;ch thực lực cộng th&ecirc;m nhiều mặt tr&ugrave; t&iacute;nh...\r\n<br />Mạng ta do ta kh&ocirc;ng do trời! Con đường đấu tranh bắt đầu nghịch thi&ecirc;n m&agrave; đi...",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

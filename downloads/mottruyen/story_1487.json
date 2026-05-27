@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "1487",
+        "NAME": "Tiên Tông Truyền Kỳ",
+        "CHAPTER": [
+            {
+                "id": "620851",
+                "name": "Chương 1:. Cướp đoạt"
+            }
+        ],
+        "TOTALCHAPTER": "583",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp",
+        "AUTHOR": "Ngụy Tử Phòng",
+        "TRANS": "Mỹ Mến, Greenphoenix",
+        "DESC": "Một g&atilde; c&oacute; thể v&ocirc; hạn triệu ho&aacute;n b&oacute;ng d&aacute;ng tiểu tu sĩ, sẽ cho Ti&ecirc;n Hiệp Thế Giới mang đến như thế n&agrave;o biến h&oacute;a đ&acirc;u n&agrave;y?<br /><br />Đại Mạc sa mạc mạo hiểm, Ma vực tung ho&agrave;nh, hải ngoại kinh thi&ecirc;n cuộc chiến, Man Hoang sinh tử lựa chọn. . .<br /><br />Nhưng m&agrave;, khi hắn trải qua gian khổ, ph&aacute; tan nặng nề gian nguy, đến c&aacute;i kia ch&iacute; cao v&ocirc; thượng truyền kỳ thời điểm, lại ph&aacute;t hiện một c&aacute;i kinh thi&ecirc;n b&iacute; mật. . .",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

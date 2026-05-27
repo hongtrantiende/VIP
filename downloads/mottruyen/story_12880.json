@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "12880",
+        "NAME": "Chiến Thần Hình Thiên",
+        "CHAPTER": [
+            {
+                "id": "4159629",
+                "name": "Chương 1 : Sống lại"
+            }
+        ],
+        "TOTALCHAPTER": "104",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp, Xuyên Không",
+        "AUTHOR": "bầu trời quỷ",
+        "TRANS": "đức",
+        "DESC": "Xuyên qua hồng hoang trở thành Bàn Cổ sau đại vu Hình Thiên, huyết thống biến dị, tính cách cuồng ngạo, đi ra một cái thuộc về mình Thông Thiên đại đạo!<br />\r\n<br />\r\nbuf kd , np gì cho mình có động lực up truyện đê",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "7181",
+        "NAME": "I'm Falling In Love",
+        "CHAPTER": [
+            {
+                "id": "2571081",
+                "name": "Chương 1: Bạch Thiếu Triết - Con Người Vô Cùng Khó Hiểu!"
+            }
+        ],
+        "TOTALCHAPTER": "5",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Ngôn Tình",
+        "AUTHOR": "meomiu",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Có thể khi đọc truyện này, nhiều bạn sẽ suy nghĩ tôi bịa ra theo truyện All in love ( Cố Tây Tước ) hoặc Anh không thích thế giới này anh chỉ thích em ( Kiều Nhất ). Nhưng đây chính là câu chuyện tình yêu thật sự của tôi và bạn nào đó - một người bạn, một người chồng tuyệt vời mà tôi phải cảm ơn Thượng Đế đã cho tôi được cùng anh ấy vượt qua những vui buồn trong cuộc sống.<br />\r\n     Tên nhân vật tất cả đều được thay đổi dựa theo tên nhân vật của một bộ truyện teen do em họ viết bỏ dở. Ban đầu cũng muốn lấy tên thật nhưng em họ cứ luôn miệng nài nỉ nào là giúp nó hoàn thành ước nguyện, nào là giúp bảo vệ hạnh phúc gia đình chị...nên tôi đành đồng ý.<br />\r\n     Có người từng nói :\" Tình yêu không cần phải hoàn hảo, nó chỉ cần chân thật.\" Đúng vậy, thế giới này không ai hoàn hảo, tôi và lão cũng vậy. Điều chúng tôi có chính là sự chân thật trong tình yêu.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

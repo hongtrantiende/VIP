@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "4427",
+        "NAME": "Vũ Huyết Chí Tôn",
+        "CHAPTER": [
+            {
+                "id": "1582025",
+                "name": "Chương 1:  Sau khi lớn lên , ta muốn gả cho ngươi"
+            }
+        ],
+        "TOTALCHAPTER": "345",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo",
+        "AUTHOR": "Ngự Sử Đại Phu",
+        "TRANS": "Vân Phong",
+        "DESC": "Tụ Thi&ecirc;n Địa Căn Nguy&ecirc;n bản lập th&acirc;n;<br /> <br /> Lấy tinh hoa của Nhật Nguyệt sử dụng;<br /> <br /> Lấy Thể ph&aacute;ch tinh t&uacute;y thay Huyết mạch thăng hoa , l&agrave; v&igrave; Th&ocirc;ng Thi&ecirc;n ph&aacute;p tắc;<br /> <br /> Nhưng , ph&aacute;p tắc b&ecirc;n tr&ecirc;n ch&iacute;nh l&agrave; c&oacute; Huyết Thống Ch&iacute; T&ocirc;n th&agrave;nh tựu Vĩnh Sinh vương giả .<br /> <br /> (  trịnh trọng nhắc nhở: C&acirc;u chuyện n&agrave;y chỉ do hư cấu , nếu như c&oacute; tương đồng , chỉ do tr&ugrave;ng hợp , kh&ocirc;ng n&ecirc;n bắt chước . )",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

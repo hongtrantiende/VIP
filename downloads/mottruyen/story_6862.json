@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "6862",
+        "NAME": "Siêu Phàm Truyện",
+        "CHAPTER": [
+            {
+                "id": "2440417",
+                "name": "Chương 1: Trong số mệnh chi kiếp"
+            }
+        ],
+        "TOTALCHAPTER": "1116",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo",
+        "AUTHOR": "Tiêu Tiềm",
+        "TRANS": "Hoàng Châu",
+        "DESC": "Vạn ngàn tinh cầu, vô tận tu chân.<br />\r\n<br />\r\n\tĐạo diễn chi tranh, vạn năm không thôi.<br />\r\n<br />\r\n\tDiễn tu tiểu sư phụ Mễ Tiểu Kinh, gặp diệt môn, bởi vậy dấn thân vào đến mênh mông cuồn cuộn vận mệnh dòng sông bên trong.<br />\r\n<br />\r\n\tNgười mang Diễn tu chí bảo, lại đắc đạo gia lão quái trợ giúp, một đường tu hành, tu chân thế giới cuộn tranh từ từ triển khai.<br />\r\n<br />\r\n\tHuyền bí pháp bảo, hung hiểm bí cảnh.<br />\r\n<br />\r\n\tĐạo gia tiên nhân, một niệm động thiên địa, diễn gia đại tu, chân ngôn ép tứ phương.<br />\r\n<br />\r\n\tVũ trụ mênh mông, huyền diệu đạo pháp, vạn chữ chân ngôn.<br />\r\n<br />\r\n\tMễ Tiểu Kinh người mang đạo diễn phương pháp song tu, nghịch thiên nhắm thẳng vào, đạp gió lốc mà lên.<br />\r\n<br />\r\n\tTa ý muốn siêu phàm, đạp bước trường sinh tiên.<br />\r\n<br />\r\nTruyện cùng tác giả: Siêu Cấp Tiên Hóa",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

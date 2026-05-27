@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "8033",
+        "NAME": "Chiến Đấu Thiên Tài Tại Đấu Phá",
+        "CHAPTER": [
+            {
+                "id": "2797745",
+                "name": "Chương 0 + 1 :Sơ đến Đại Lục lời dẫn"
+            }
+        ],
+        "TOTALCHAPTER": "10",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đồng Nhân",
+        "AUTHOR": "Phiêu Kỵ tàn lụi",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Truyện này ta đọc xong rồi thấy cũng hay làm thử cho ae đọc lại. Nếu ít người đọc thì xin dorp. tổng hơp ra chỉ 1 câu hợp với truyện. ( Bố bá từ đầu tới Cuối Tiêu viêm tuổi tý)",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

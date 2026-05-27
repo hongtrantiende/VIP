@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "1643",
+        "NAME": "Ngũ Hành Nguyên Linh",
+        "CHAPTER": [
+            {
+                "id": "674593",
+                "name": "Chương 1: Phế vật văn hạo"
+            }
+        ],
+        "TOTALCHAPTER": "1027",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo",
+        "AUTHOR": "Huyết Hữu Nhân Sinh",
+        "TRANS": "Betonamu, trang4mat",
+        "DESC": "Văn Hạo, một c&aacute;i được xưng l&agrave; phế vật Ngũ H&agrave;nh th&acirc;n thể, vĩnh viễn cũng kh&ocirc;ng c&oacute; khả năng trở th&agrave;nh V&otilde; Giả tiểu h&agrave;i tử, lại kh&ocirc;ng hiểu đạt được sở hữu t&acirc;́t cả V&otilde; Giả đều đi&ecirc;n cuồng Ngũ H&agrave;nh thần ngọc, cũng b&aacute;i một g&atilde; tồn tại ở Ngũ H&agrave;nh thần ngọc trong hai vạn năm linh hồn vi sư, một c&aacute;i phế vật, một c&aacute;i lưỡng vạn năm trước c&ocirc; tịch linh hồn, một c&aacute;i thế nh&acirc;n thậm ch&iacute; nghĩ lấy được Thần Vật, đem l&agrave;m loại n&agrave;y kỳ dị tổ hợp gặp được c&ugrave;ng một chỗ, đại lục tất nhi&ecirc;n sẽ bởi v&igrave; v&igrave; bọn họ m&agrave; run rẩy.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

@@ -75,6 +75,10 @@ export interface Novel {
   /** Keep novel locally (skip bulk upload / auto-cleaning syncing) */
   keepLocal?: boolean;
   overallEvaluation?: string;
+  /** ID of the original novel if this is a rewrite project */
+  referenceNovelId?: string;
+  /** The core idea/direction for rewriting the novel */
+  rewriteIdea?: string;
   createdAt: Date;
   updatedAt: Date;
 }
@@ -522,7 +526,8 @@ export type WritingAgentRole =
   | "outline"
   | "writer"
   | "review"
-  | "rewrite";
+  | "rewrite"
+  | "rewrite_extract";
 
 export type WritingStepStatus =
   | "pending"

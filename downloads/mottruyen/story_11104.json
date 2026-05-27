@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "11104",
+        "NAME": "Trọng Sinh Chi Ta là Đường Vũ Linh",
+        "CHAPTER": [
+            {
+                "id": "3666640",
+                "name": "Chương 1: Tiên Nữ Ánh Trăng"
+            }
+        ],
+        "TOTALCHAPTER": "1",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Ngôn Tình, Nữ Hiệp, Đồng Nhân",
+        "AUTHOR": "Noura",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Tiêu linh nhi là một trong những siêu trộm nổi tiếng nhất thế giới,với biệt danh là \" Tiên nữ ánh trăng\"  một lần thực hiện vụ trộm tuy thành công nhưng sơ suất mà xuyên không đến đấu la đại lục < tuyệt thế đường môn > ........<br />\r\n  <br />\r\n  Xuyên thành Đường Tam nữ nhi.<br />\r\n  <br />\r\n  Cp :  Đường Vũ Linh x Hoắc Vũ Hạo",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "12696",
+        "NAME": "Mỹ Mạn Chi Tối Cường Harry Potter",
+        "CHAPTER": [
+            {
+                "id": "4101765",
+                "name": "Chương 1: Thiết lĩnh Tinh linh vương: nhìn gì nhìn, sao Đông Bắc lại không thể có tinh linh sao?"
+            }
+        ],
+        "TOTALCHAPTER": "127",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đồng Nhân",
+        "AUTHOR": "Ta Là Sảng Văn",
+        "TRANS": "Vân Anh",
+        "DESC": "Đội viên đội thiếu niên tiền phong Harry Potter từ nhỏ học một thân mình đồng da sắt, độc xông đồng nhân trận, đứng chổng ngược hoa mai cái cọc, chân trần qua núi đao, dùng trym kéo xe vận tải, bắt đầu con đường tu tiên, nhầm tu ma pháp tại New York, quyền đánh Batman, chân đá Iron man, đầu cụng X-men..hình như nhầm nữa, Harry Potter học ở Anh mới đúng.<br />\r\n( bản câu chuyện và nhân vật chỉ do hư cấu, như có tương đồng, chỉ do trùng hợp, không nên bắt chước. )",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

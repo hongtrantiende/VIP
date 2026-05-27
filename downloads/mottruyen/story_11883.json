@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "11883",
+        "NAME": "Phù Giới Chi Chủ",
+        "CHAPTER": [
+            {
+                "id": "3901658",
+                "name": "Chương 1: Tạp dịch Hàn Phong"
+            }
+        ],
+        "TOTALCHAPTER": "760",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp",
+        "AUTHOR": "Đương Niên Phân Phương",
+        "TRANS": "VoVo",
+        "DESC": "Một cái ở bên trong môn phái bị người ta bắt nạt củi mục Hàn Phong, dựa vào cha nuôi để lại một tấm tàn phù, thức tỉnh hồn lực, vẽ phù như có thần giúp, thậm chí còn có thể chữa trị tất cả phù khí, phù bảo thậm chí còn trận pháp truyền tống, từ nay xông ra một mảnh uy danh hiển hách.<br />\r\n<br />\r\n\tỞ cái thế giới này, ngũ hành đều đủ, võ giả, khí tu, hồn sư tự đi con đường của mình, đặc biệt nhất  là Phù sư, người yếu có thể luyện chế phù lục, cường giả có thể chế phù bày trận, đùa bỡn thiên địa!<br />\r\n<br />\r\n\tLại xem nho nhỏ Phù sư Hàn Phong như thế nào vui vẻ sung sướng, khống chế hết thảy!",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

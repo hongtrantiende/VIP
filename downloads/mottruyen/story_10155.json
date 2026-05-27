@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "10155",
+        "NAME": "Tử Thần Đỏ",
+        "CHAPTER": [
+            {
+                "id": "3428700",
+                "name": "Chương 1: Ám Dạ Quân Đoàn"
+            }
+        ],
+        "TOTALCHAPTER": "11",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Dị Giới, Khoa Huyễn, Quân Sự",
+        "AUTHOR": "Psychoclone",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Key là một kẻ không nhà cửa, cha mẹ, lẫn ký ức.<br />\r\n<br />\r\nHắn vốn chỉ định sống cuộc đời của mình một cách thật bình lặng. Nhưng đâu đó trong hắn vẫn có một khát khao cháy bỏng, khát khao chiến đấu và chiến thắng.<br />\r\n<br />\r\nNhững tưởng cái khát khao đó sẽ mãi ngủ yên, cho tới một ngày,...<br />\r\n<br />\r\nTử Thần Đỏ xuất hiện.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

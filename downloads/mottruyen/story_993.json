@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "993",
+        "NAME": "Thánh Vương",
+        "CHAPTER": [
+            {
+                "id": "268006",
+                "name": "Chương 1: Vi tình sở hoặc"
+            }
+        ],
+        "TOTALCHAPTER": "1591",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo",
+        "AUTHOR": "Mộng Nhập Thần Cơ",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Lam Nhi lẳng lặng thu c&aacute;i hộp lại, tr&ecirc;n khu&ocirc;n mặt xuất hiện một loại thần sắc tỉnh rụi: &ldquo;B&acirc;y giờ ta c&ograve;n c&oacute; chuyện, kh&ocirc;ng thể cao chạy xa bay được, chuyện n&agrave;y hẳn n&oacute;i sau đi ha&rdquo;<br /><br />Nghe xong những lời n&agrave;y, Dương Kỳ liền bước lui ph&iacute;a sau ba bước, thần sắc t&aacute;i nhợt kh&ocirc;ng c&ograve;n t&iacute; m&aacute;u n&agrave;o: &ldquo;Lam nhi, ta mạo hiểm nguy hiểm thật nhiều như vậy, từ trong phủ đệ Th&agrave;nh chủ trộm đi Phục Long đan n&agrave;y, ch&iacute;nh l&agrave; v&igrave; n&agrave;ng đ&atilde; đ&aacute;p ứng ta, muốn c&ugrave;ng nhau cao chạy xa bay, vậy m&agrave; hiện tại ngươi đ&atilde; đổi &yacute;? Tại sao? Tại sao phải l&agrave;m như vậy?<br /><br />&ldquo;Để ta đến n&oacute;i cho ngươi biết l&agrave; tại sao!&rdquo;<br /><br />Một thanh &acirc;m được truyền ra từ b&ecirc;n trong khu rừng c&acirc;y, một nam tử trẻ tuổi th&acirc;n mặc kh&ocirc;i gi&aacute;p bước ra, nam tử n&agrave;y cực kỳ anh tuấn, v&oacute;c d&aacute;ng cao gầy, vẻ mặt ngạo kh&iacute;, d&ugrave;ng một loại &aacute;nh mắt cao cao tại thượng nh&igrave;n Dương Kỳ.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

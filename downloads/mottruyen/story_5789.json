@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "5789",
+        "NAME": "Ngư dược nông môn",
+        "CHAPTER": [
+            {
+                "id": "2073405",
+                "name": "Chương 1: Người một nhà"
+            }
+        ],
+        "TOTALCHAPTER": "324",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Ngôn Tình, Xuyên Không, Nữ Hiệp",
+        "AUTHOR": "Phong Cửu Lam",
+        "TRANS": "Lão Di",
+        "DESC": "Dấn thân vào nhà nông Đỗ Tiểu Ngư phát hiện , thì ra tiểu nông nữ thật chẳng phải dễ làm thế. . .<br />\r\n<br />\r\nThiếu đất phải mua ruộng , không ăn thịt phải khai nguyên , không nhìn ra bệnh phải tự học y , ngoài trồng gạo ra còn phải tìm kiếm cây công nghiệp thích hợp , nói chung , thuần dựa trời ăn cơm tuyệt vô căn cứ !<br />\r\n<br />\r\nCho nên , nàng phải sống đến già học đến già , nông thư tuyệt không rời tay , cao thủ làm ruộng tuyệt không buông tha , Đỗ Tiểu Ngư tin tưởng , chỉ phải cố gắng , tháng ngày sẽ một ngày tốt hơn , tất cả đều quyết định bởi thái độ của nàng  !",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

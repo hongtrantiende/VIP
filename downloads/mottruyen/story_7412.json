@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "7412",
+        "NAME": "Mỹ Thực Thần Y",
+        "CHAPTER": [
+            {
+                "id": "2622388",
+                "name": "Chương 4 2 thứ nguyên mĩ thiếu nữ"
+            }
+        ],
+        "TOTALCHAPTER": "261",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đô Thị, Dị Năng",
+        "AUTHOR": "Cửu thiên chi thủy",
+        "TRANS": "Masatvuong1601",
+        "DESC": "Mỹ thực c&ograve;n c&oacute; thể chữa bệnh?<br /> Kh&ocirc;ng sai, ở phồn hoa thương nghiệp phố, nơi đ&oacute; c&oacute; một nh&agrave; phi thường kỳ lạ tiểu điếm.<br /> Kia tiểu điếm đồ ăn, kh&ocirc;ng chỉ c&oacute; mỹ vị tuyệt lu&acirc;n, c&ograve;n c&oacute; thể chữa bệnh!<br /> &ldquo;L&atilde;o bản, ta th&acirc;n thể c&oacute; ch&uacute;t kh&ocirc; n&oacute;ng, cho ta tới một ch&eacute;n canh su&ocirc;ng mặt.&rdquo;<br /> &ldquo;L&atilde;o bản, ta ng&agrave;y h&ocirc;m qua ngủ đến kh&ocirc;ng hảo c&oacute; ch&uacute;t quầng th&acirc;m mắt, ngươi cho ta tới một phần dưa chuột phiến.&rdquo;<br /> &ldquo;L&atilde;o bản, ngươi cho ta tới một phần bạch củ cải x&agrave;o thịt ti, l&agrave;m ta mỹ mỹ bạch.&rdquo;",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

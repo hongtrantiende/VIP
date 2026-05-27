@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "4180",
+        "NAME": "Bóng đá hoàng đế",
+        "CHAPTER": [
+            {
+                "id": "1521372",
+                "name": "Chương 1: Tần Hùng - Quyển 1: Kiếm chưa rời vỏ đã sắc"
+            }
+        ],
+        "TOTALCHAPTER": "603",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Cạnh Kỹ",
+        "AUTHOR": "Thiên Thiên Bất Hưu",
+        "TRANS": "Vohansat",
+        "DESC": "Ta gọi Tần h&ugrave;ng. Ta d&atilde; t&acirc;m bừng bừng. Ta vĩnh kh&ocirc;ng bu&ocirc;ng tha. Ta chuy&ecirc;n ch&uacute; như một. Ta hướng tới thống trị. Ta từng bước từng bước, từng bước từng bước, đi về ph&iacute;a lục ấm thế giới vương tọa! B&oacute;ng đ&aacute; s&aacute;p nhập v&agrave;o ta sinh mạng, lục ấm tr&agrave;ng cho ta c&aacute;nh, ở đ&oacute; nhiệt huyết d&acirc;ng tr&agrave;o tr&ecirc;n chiến trường, ta, ch&uacute;a tể hết thảy! 2003 năm m&ugrave;a h&egrave;, một vị mắc c&oacute; thấp nguy uất ức chứng Trung Quốc thanh ni&ecirc;n đi H&agrave; Lan, c&ugrave;ng 02-03 một đời phương hưng kh&ocirc;ng ngả Ajax những thi&ecirc;n t&agrave;i lau ra k&iacute;ch t&igrave;nh tia lửa, ch&acirc;u &Acirc;u b&oacute;ng đ&aacute; từ đ&oacute; trở đi, phong v&acirc;n đột biến!<br /><br />",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

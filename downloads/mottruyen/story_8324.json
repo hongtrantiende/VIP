@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "8324",
+        "NAME": "Vạn Giới Hành Khúc",
+        "CHAPTER": [
+            {
+                "id": "2863768",
+                "name": "Chương 1:  Ám sát"
+            }
+        ],
+        "TOTALCHAPTER": "391",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp, Huyền Ảo",
+        "AUTHOR": "Ba Sơn Tiểu Cố",
+        "TRANS": "Cơn Gió Lạnh",
+        "DESC": "Ba Ngàn Giới, Trường Sinh Ca, Đăng Bỉ Ngạn, Kết Đạo Quả. <br />\r\n<br />\r\nTạo Hóa Như Liên Hoa Thủ Toạ, Nhất Kiếm Vạn Đạo Tan! <br />\r\n<br />\r\nThiếu niên Cố Tiểu Trần có tấm bia đá có thể xuyên toa vạn giới.<br />\r\n<br />\r\nMuốn xem phong cảnh bất đồng vị diện,muốn xem những cuộc chiến đấu mỹ mãn,đều có ở Vạn Giới Hành Khúc.<br />\r\n<br />\r\n''Ta có thể chết nhưng ngươi không thể đánh bại ta'' Cố Tiểu Triệu.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

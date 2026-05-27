@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "11111",
+        "NAME": "Hệ Thống Chi Siêu Cấp Cảnh Sát",
+        "CHAPTER": [
+            {
+                "id": "3669080",
+                "name": "Chương 1: Côn đồ trọng sinh làm cảnh sát"
+            }
+        ],
+        "TOTALCHAPTER": "51",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đô Thị, Huyền Ảo",
+        "AUTHOR": "Ngưu Bức Bất Giải Thích",
+        "TRANS": "Tinhtetac",
+        "DESC": "Thân làm hắc bang tiểu đầu mục Hách Soái ở trong tranh đấu bị người đâm chết, sau khi sống lại dĩ nhiên ngoài ý muốn thu được mang theo thuỷ tinh cung thuộc tính [ cảnh thần hệ thống ].<br />\r\n<br />\r\n\tCôn đồ biến thành cảnh sát?<br />\r\n<br />\r\n\tVì vậy, hắn trở thành trong cảnh sát mặt nhất hỗn đản, bại hoại, không làm việc đàng hoàng, không theo sáo lộ cảnh sát.<br />\r\n<br />\r\n\tToàn bộ hệ thống công an đối với hắn nhức đầu không thôi.<br />\r\n<br />\r\n\tNhìn hắn như thế nào lũ phá kỳ án, treo lên đánh ác Phỉ, trở thành Hoa Hạ lợi hại nhất cảnh sát.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

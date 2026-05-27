@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "8391",
+        "NAME": "Chí Tôn Đan Đế",
+        "CHAPTER": [
+            {
+                "id": "2879051",
+                "name": "Chương 1: Từ đường phong vân"
+            }
+        ],
+        "TOTALCHAPTER": "1216",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo, Trùng Sinh",
+        "AUTHOR": "Thông Lâm",
+        "TRANS": "808",
+        "DESC": "Đan tôn Lục Vũ luyện chế tiên đan thất bại, về sau trọng sinh trở thành thế gia thiếu chủ, có kiếp trước vô số thần công bí pháp cùng luyện đan ký ức, có kiếp này trùng tu đánh xuống kiên cố cơ sở, Lục Vũ nhất định bước ra một mảnh huy hoàng đại lộ, đạp đan đạo đỉnh phong, danh dương thiên hạ, mỹ nhân ái mộ, trảm phá thiên địa, tiêu dao trường sinh. Còn có cái gì có thể chống đỡ được hắn quật khởi? !",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

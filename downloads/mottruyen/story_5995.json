@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "5995",
+        "NAME": "Linh hồn sói",
+        "CHAPTER": [
+            {
+                "id": "2163156",
+                "name": "Chương 1: Ráp xác"
+            }
+        ],
+        "TOTALCHAPTER": "40",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo, Ngôn Tình, Dị Giới",
+        "AUTHOR": "tiennhan9512",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Con người và quái vật nếu như có chung một thế giới quan thì liệu có thể đến với nhau?",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

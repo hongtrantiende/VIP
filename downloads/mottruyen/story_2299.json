@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "2299",
+        "NAME": "Quân Lâm Cửu Thiên",
+        "CHAPTER": [
+            {
+                "id": "771747",
+                "name": "Chương 1: Người sa cơ thất thế"
+            }
+        ],
+        "TOTALCHAPTER": "65",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp",
+        "AUTHOR": "Bất Nhạc Vô Ngữ",
+        "TRANS": "trang4mat",
+        "DESC": "Thẩm Thanh, một cái xuống dốc tiểu gia tộc thiếu gia.<br />\r\n<br />\r\nMột cái âm mưu, làm hắn từ nay về sau đạp vào nghịch thiên chi lộ...<br />\r\n<br />\r\n☆☆☆☆☆<br />\r\n<br />\r\nTu chân đẳng cấp vừa xem: Luyện Khí, Trúc Cơ, Kim Đan, Nguyên Anh, Hóa Thần...",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

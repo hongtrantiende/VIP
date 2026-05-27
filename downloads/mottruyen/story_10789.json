@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "10789",
+        "NAME": "Ta Là Ta Thê",
+        "CHAPTER": [
+            {
+                "id": "3581292",
+                "name": "Chương 1: Thời gian, Nghịch lưu"
+            }
+        ],
+        "TOTALCHAPTER": "165",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Ngôn Tình, Xuyên Không, Trùng Sinh",
+        "AUTHOR": "Loạn Thế Ngân Nương",
+        "TRANS": "ngocboy666",
+        "DESC": "Đảo ngược thời gian, Thu Dịch đã biến thành cô gái, thế nhưng ở thời điểm này, vẫn như cũ có một cái nam tính hắn tồn tại...<br />\r\n<br />\r\n    \"Ta là ta sao? Ta đến cùng là ai?\"<br />\r\n<br />\r\n    Đương nữ tính mình gặp gỡ nam tính mình, lại hội va chạm ra thế nào đốm lửa đây?<br />\r\n<br />\r\n    Tất cả đều ở ( ta là ta thê ).",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

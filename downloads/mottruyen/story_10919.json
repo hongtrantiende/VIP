@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "10919",
+        "NAME": "Thu Thập Hệ Thống",
+        "CHAPTER": [
+            {
+                "id": "3627275",
+                "name": "Chap1: Cái Gì Vậy?"
+            }
+        ],
+        "TOTALCHAPTER": "1",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Võng Du, Dị Giới, Xuyên Không",
+        "AUTHOR": "nguoinhenanh@",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Bạn đã chán những hệ thống quá bá ư!<br />\r\n=>  Thu thập hệ thống sẽ dành cho bạn<br />\r\nNhân vật chính, một kẻ cuồng truyện bị mọi người khinh bỉ, và lúc ấy hệ thống đã xuất hiện<br />\r\nCòn những cái khác đọc sẽ biết",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

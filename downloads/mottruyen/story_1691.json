@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "1691",
+        "NAME": "Trào Phúng",
+        "CHAPTER": [
+            {
+                "id": "690802",
+                "name": "Chương 1: Kỳ hoa trong phế vật"
+            }
+        ],
+        "TOTALCHAPTER": "258",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo, Võng Du, Dị Giới",
+        "AUTHOR": "Áo Bỉ Gia",
+        "TRANS": "Kuden",
+        "DESC": "L&acirc;m Chu rất kinh ngạc ph&aacute;t hiện, chỉ cần c&oacute; người tr&agrave;o ph&uacute;ng hắn, c&ocirc;ng lực của hắn liền bắt đầu tăng trưởng. Tr&agrave;o ph&uacute;ng c&agrave;ng nhiều người, c&ocirc;ng lực tăng trưởng đ&ecirc;́n liền c&agrave;ng nhanh.<br /> <br /> D&ugrave; cho c&aacute;ch mười vạn t&aacute;m ng&agrave;n dặm, bất kỳ ai khuya khoắt b&ecirc;n trong nghị luận tr&agrave;o ph&uacute;ng hắn, c&ocirc;ng lực của hắn đều sẽ tăng trưởng.<br /> <br /> \"Nghe n&oacute;i kh&ocirc;ng? L&acirc;m Chu phế vật kia lại tự xưng v&otilde; c&ocirc;ng đệ nhất thi&ecirc;n hạ, quả thực ta cười đến muốn rụng răng, ha ha ha ha...\"<br /> <br /> \"C&aacute;i kia L&acirc;m Chu a, lại c&ograve;n n&oacute;i V&acirc;n Sa đệ nhất đẹp trai Lục c&ocirc;ng tử kh&ocirc;ng bằng hắn, c&oacute; người kh&ocirc;ng biết li&ecirc;m sỉ như vậy sao?\"<br /> <br /> \"...\"<br /> <br /> \"...\"<br /> <br /> N&agrave;y hơn nửa đ&ecirc;m b&ecirc;n trong ngủ gi&aacute;c đột nhi&ecirc;n lại thăng cấp, ai đang giễu cợt bổn thiếu gia?",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

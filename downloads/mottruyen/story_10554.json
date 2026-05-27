@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "10554",
+        "NAME": "Marvel Đại Rút Thưởng",
+        "CHAPTER": [
+            {
+                "id": "3516558",
+                "name": "Chương 1: Báo thù"
+            }
+        ],
+        "TOTALCHAPTER": "170",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Dị Năng, Xuyên Không, Đồng Nhân",
+        "AUTHOR": "Hành Giả Tự Tri",
+        "TRANS": "︻ ╦̵̵╤───",
+        "DESC": "Dịch Thủy Hàn đại thù đến báo, thong dong chịu chết, lại vượt qua đến cùng rất nhiều phim thế giới dung hợp Marvel Vũ Trụ, hắn trả thu hoạch được anh hùng đại Rút Thưởng Hệ Thống.<br />\r\n<br />\r\n\tTại tân thế giới ôm ấp mới tương lai.<br />\r\n<br />\r\n\tHắn là không có thể trở thành anh hùng? Lại có hay không có thể quán triệt Tự Thân Ý Chí?<br />\r\n<br />\r\n\tHết thảy đều theo 《 Kick Ass 》 bắt đầu.<br />\r\n<br />\r\nCầu Vote - Kim dậu bạo chương.....",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

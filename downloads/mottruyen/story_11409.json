@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "11409",
+        "NAME": "Thần Tiên Nông Tràng",
+        "CHAPTER": [
+            {
+                "id": "3785658",
+                "name": "Chương 1:"
+            }
+        ],
+        "TOTALCHAPTER": "184",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đô Thị",
+        "AUTHOR": "Tiểu mễ hùng",
+        "TRANS": "๖ۣۜTiếu ๖ۣۜHồng ๖ۣۜTrần",
+        "DESC": "Lý Phong không cẩn thận kế tiếp một món tên là 《 Thần Tiên nông trường 》 thủ du , từ đây mở ra một cái thần kỳ thế giới đại môn.<br />\r\n<br />\r\n\tLoại linh thảo , trộm tiên quả , dưỡng Thần Thú , theo vạn tiên lục đục với nhau...<br />\r\n<br />\r\n\tChỉ có không nghĩ tới , không có không làm được!",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "7916",
+        "NAME": "Dương Thần",
+        "CHAPTER": [
+            {
+                "id": "2766390",
+                "name": "Chương 1 : Thiên ý dân ý"
+            }
+        ],
+        "TOTALCHAPTER": "47",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo",
+        "AUTHOR": "Mộng Nhập Thần Cơ",
+        "TRANS": "Chàng Vàng Hoe",
+        "DESC": "Thế gian là một Đại Khổ hải.<br />\r\nNgười đang trong biển.<br />\r\nThân thể đúng là thuyền.<br />\r\nLinh hồn nhỏ bé đúng là thuyền trong người.<br />\r\nThuyền chở người, vẫn hướng miền mơ ước chạy.<br />\r\nĐúng là tu luyện thân thể, chắc chắn thân thuyền, cho đến khổ hải miền mơ ước?<br />\r\nHay là tu luyện linh hồn nhỏ bé, khiến thuyền trong người quen thuộc kỹ năng bơi đây?<br />\r\nTu võ đạo đã lớn tiên.<br />\r\nTu tiên nói thành thần tiên.<br />\r\nMuốn chọn loại nào đây?",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

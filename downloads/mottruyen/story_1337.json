@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "1337",
+        "NAME": "Hạo Kiếp Trùng Tu",
+        "CHAPTER": [
+            {
+                "id": "552815",
+                "name": "Chương 1: Tiểu Bàn Tử"
+            }
+        ],
+        "TOTALCHAPTER": "221",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp",
+        "AUTHOR": "Vân Hạc Chân Nhân",
+        "TRANS": "Tiểu Ngưu",
+        "DESC": "Thi&ecirc;n kiếp bu&ocirc;ng xuống, linh mạch đứt đoạn, Thượng Cổ Hoang Th&uacute; chen ch&uacute;c m&agrave; ra, Tu Ch&acirc;n Giới l&acirc;m v&agrave;o trước nay chưa c&oacute; hỗn loạn c&ugrave;ng tai nạn.<br /><br />Dương Vũ mang theo hạo kiếp sau mấy chục năm tr&iacute; nhớ, về tới thi&ecirc;n kiếp bu&ocirc;ng xuống trong ng&agrave;y h&ocirc;m ấy.<br /><br />Như thế n&agrave;o mới c&oacute; thể ngăn cản trận n&agrave;y thi&ecirc;n kiếp, bước về ph&iacute;a Trường Sinh đại đạo, bước tr&ecirc;n c&aacute;i n&agrave;y Tu Ch&acirc;n Giới đỉnh phong!",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

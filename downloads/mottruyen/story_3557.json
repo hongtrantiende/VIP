@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "3557",
+        "NAME": "Dota Tử Vong Học Viện",
+        "CHAPTER": [
+            {
+                "id": "1230036",
+                "name": "Chương 1: Thần bí học viện"
+            }
+        ],
+        "TOTALCHAPTER": "721",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Võng Du",
+        "AUTHOR": "Áo Đinh Tín Sử",
+        "TRANS": "Suntran",
+        "DESC": "Một bất ngờ cơ hội, để Hồ Ti Minh gia nhập dota học viện to&agrave; n&agrave;y si&ecirc;u tho&aacute;t ở thế giới hiện thực ở ngo&agrave;i học viện, c&oacute; sức mạnh kh&ocirc;ng thể tưởng tượng được ở đ&acirc;y, trở n&ecirc;n mạnh mẽ l&agrave; duy nhất bất biến vĩnh hằng chủ đề học vi&ecirc;n ưu t&uacute; c&oacute; thể trở th&agrave;nh trong game anh h&ugrave;ng, thu được muốn tất cả soa đẳng sinh chỉ c&oacute; thể thu hoạch tử vong v&igrave; c&agrave;ng tốt hơn sống tiếp, Hồ Ti Minh kh&ocirc;ng thể kh&ocirc;ng hướng về \"Tốt nghiệp\" c&aacute;i n&agrave;y mục ti&ecirc;u cuối c&ugrave;ng khởi xướng nỗ lực",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "5633",
+        "NAME": "Vô hạn Thần Vương",
+        "CHAPTER": [
+            {
+                "id": "2001982",
+                "name": "Chương 1: Tiên lộ không cửa"
+            }
+        ],
+        "TOTALCHAPTER": "200",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp, Xuyên Không",
+        "AUTHOR": "Tuyết trên Linh Hồ",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Ta từng ở Thục Sơn cầu đạo, thưởng thức tiên lộ không cửa đắng chát.<br />\r\n<br />\r\n\tTa từng ở Xạ Điêu tung hoành, chứng kiến giang hồ phong ba.<br />\r\n<br />\r\n\tTa từng ở Đại Đường xưng bá, trở thành kia cửu ngũ chí tôn.<br />\r\n<br />\r\n\tTa từng ở Phong Vân Tiếu Ngạo, lĩnh hội trường sinh ảo diệu.<br />\r\n<br />\r\n\t. . .",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "5816",
+        "NAME": "Tu chân thiếu niên xông Hoa Đô",
+        "CHAPTER": [
+            {
+                "id": "2086254",
+                "name": "Chương 01: Cường hào theo ta làm bằng hữu"
+            }
+        ],
+        "TOTALCHAPTER": "10",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp, Đô Thị",
+        "AUTHOR": "Nằm sào",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Đạo môn đệ tử Tô Chân vào đời rèn luyện, lại phát hiện thế giới này cùng chính mình tưởng tượng có chút không giống, Hồ Ly Tinh không yêu hút tinh khí, đổi nghề làm chính năng lượng tràn đầy đại minh tinh;<br />\r\nCosplay thiếu nữ chết rồi cũng không quên làm trạch nữ truy mới phiên, tu chân giới thiên tài Thánh Nữ vì tiền khó khăn, trên người mặc người hầu gái phục chỉ vì làm công kiếm lời tiền thuê nhà...",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

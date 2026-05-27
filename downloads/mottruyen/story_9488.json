@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "9488",
+        "NAME": "Khoa Kỹ Đại Minh Tinh",
+        "CHAPTER": [
+            {
+                "id": "3240189",
+                "name": "Chương 1: Tiên Khu Hệ Thống"
+            }
+        ],
+        "TOTALCHAPTER": "30",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đô Thị, Dị Năng",
+        "AUTHOR": "Bổn Thiệt",
+        "TRANS": "๖ۜVân ๖ۜPhong™",
+        "DESC": "Một cái lập chí muốn trở thành một đời mới chương trình cha bình thường thiếu niên, bị một cái hệ thống đập trúng phía sau lợi hại, hắn, muốn trở thành...",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

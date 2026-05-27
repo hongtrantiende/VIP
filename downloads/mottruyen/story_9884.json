@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "9884",
+        "NAME": "Nhập Đạo Phá Thiên",
+        "CHAPTER": [
+            {
+                "id": "3335160",
+                "name": "Chương 1: Cô nhi Tần Mặc Vũ"
+            }
+        ],
+        "TOTALCHAPTER": "45",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp",
+        "AUTHOR": "Ngộ Kiến Hấp Huyết Quỷ",
+        "TRANS": "Nhiều Converter",
+        "DESC": "✶ Thể loại : Ti&ecirc;n Hiệp - V&otilde; Hiệp<br /> <br /> ✶ Lời giới thiệu :<br /> <br /> Nhập Vi, Nhi&ecirc;n, Kim Đan, Nguy&ecirc;n Anh, đắc đạo, th&agrave;nh Ti&ecirc;n, Xưng Đế, Ch&iacute; T&ocirc;n, sau đ&oacute; nhập đạo Ph&aacute; Thi&ecirc;n, th&agrave;nh tựu vĩnh hằng! Phi&ecirc;u Miểu Đại Lục, Th&aacute;nh Nh&acirc;n Cố Thổ, c&ocirc; nhi Mặc Vũ, nhập đạo Ph&aacute; Thi&ecirc;n, bước v&agrave;o vĩnh hằng!<br /> <br /> ✶ Top 2 s&aacute;ch tiềm năng !",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "5025",
+        "NAME": "Kiếm Đạo Thông Thần",
+        "CHAPTER": [
+            {
+                "id": "1765268",
+                "name": "Chương 01: Không ngừng vươn lên"
+            }
+        ],
+        "TOTALCHAPTER": "1889",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo",
+        "AUTHOR": "Lục Đạo Trầm Luân",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Ta kiếm, có thể khai sơn đoạn thạch,<br />\r\n<br />\r\nTa kiếm, có thể ngăn sông đoạn nước, T<br />\r\n<br />\r\nTa kiếm, có thể phá núi phân biển, <br />\r\n<br />\r\nTa kiếm, có thể phá thiên liệt địa, <br />\r\n<br />\r\nTa kiếm, đương thời có một không hai, <br />\r\n<br />\r\nTa kiếm đạo, có thể thông thần.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

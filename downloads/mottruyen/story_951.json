@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "951",
+        "NAME": "Thanh Phong Tu Tiên Lục",
+        "CHAPTER": [
+            {
+                "id": "244198",
+                "name": "Q1 - Chương 01:. Loạn thế thôn nhỏ"
+            }
+        ],
+        "TOTALCHAPTER": "626",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp",
+        "AUTHOR": "Khoái Nhạc Đích Bi Kịch",
+        "TRANS": "loveuati",
+        "DESC": "Nhậm Thanh Phong từ nhỏ gặp binh loạn m&agrave; tan n&aacute;t nh&agrave; cửa, cất bước du nhập giang hồ. Nhờ kỳ ngộ m&agrave; lấy đươc Thanh Phong cổ kiếm, c&ocirc;ng lực tiến v&agrave;o ti&ecirc;n thi&ecirc;n. Sau đ&oacute; trả th&ugrave; được cho gia đ&igrave;nh th&igrave; v&ocirc; t&igrave;nh gặp gỡ Tiểu Kiếm m&agrave; được dẫn dắt bước v&agrave;o tu ch&acirc;n giới.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

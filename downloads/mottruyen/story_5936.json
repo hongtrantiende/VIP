@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "5936",
+        "NAME": "Du hành qua các vũ trụ",
+        "CHAPTER": [
+            {
+                "id": "2185693",
+                "name": "Chương 1: Huyền Hoàng Hệ Thống"
+            }
+        ],
+        "TOTALCHAPTER": "8",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp, Xuyên Không, Đồng Nhân",
+        "AUTHOR": "codelyoko_99",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Là một chàng trai được một hệ thống bí ẩn nhận chủ, xuyên qua vô vàn những thế giới, xa lạ có, quen thuộc có, hắn đều dùng trái tim và nhiệt huyết của mình để làm con đường tiến về phía trước.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

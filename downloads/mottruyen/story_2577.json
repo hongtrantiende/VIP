@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "2577",
+        "NAME": "Đô Thị Tiêu Dao Binh Vương",
+        "CHAPTER": [
+            {
+                "id": "844908",
+                "name": "Chương 1: Tây Hà thôn chỗ khám bệnh"
+            }
+        ],
+        "TOTALCHAPTER": "60",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đô Thị",
+        "AUTHOR": "Huyễn Long",
+        "TRANS": "Tartarus",
+        "DESC": "Một đời binh vương thả xuống cừu hận, thả xuống mưa bom bão đạn tùng lâm sinh hoạt, quay về đô thị còn cuộc sống đô thị bên trong, quá nhìn như bình thường, nhưng không bình thường sinh hoạt ngang dọc hoa đều, liệp diễm vô số, còn hoa đều bên trong phong lưu, còn phong lưu bên trong bước lên đỉnh cao",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "7912",
+        "NAME": "Chủ Thần Quật Khởi",
+        "CHAPTER": [
+            {
+                "id": "2765603",
+                "name": "Chương 1: Xuyên qua"
+            }
+        ],
+        "TOTALCHAPTER": "855",
+        "IMG": "https://static.cdnno.com/poster/chu-than-quat-khoi/150.jpg",
+        "CAT": "Dị Giới, Xuyên Không",
+        "AUTHOR": "Văn Sao Công",
+        "TRANS": "Hoàng Châu",
+        "DESC": "Tỉnh lại sau giấc ngủ xuyên qua thành phản phái? Này kịch bản không đúng!<br />\r\n<br />\r\n\tCòn đoạt nhân gia em gái? Lại có một cái hung hăng tỷ tỷ? Kịch bản càng không đúng!<br />\r\n<br />\r\n\tLại còn có chủ thần không gian, chư thiên vạn giới? Ta nhất định là tại nằm mơ! Ngô Minh bình tĩnh địa mộc mặt, tiếp tục hành trình.",
+        "THUMB": "https://static.cdnno.com/poster/chu-than-quat-khoi/150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

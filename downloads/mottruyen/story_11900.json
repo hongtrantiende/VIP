@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "11900",
+        "NAME": "Sát Thủ Đô Thị",
+        "CHAPTER": [
+            {
+                "id": "3904087",
+                "name": "Chương 1 : Rời Núi"
+            }
+        ],
+        "TOTALCHAPTER": "4",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đô Thị",
+        "AUTHOR": "soul",
+        "TRANS": "Nhiều Converter",
+        "DESC": "main được nhận nhiệm vụ bảo vệ mộc tuấn  một thiếu gia của gia tộc mộc thị <br />\r\n<br />\r\nhành trình của main như thế nào hãy đọc và cảm nhận nhé<br />\r\n<br />\r\nmain lạnh lùng quyết đoán ít gái .",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

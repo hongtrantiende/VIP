@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "12751",
+        "NAME": "Vô Vọng Chi Tội",
+        "CHAPTER": [
+            {
+                "id": "4111692",
+                "name": "Chương 0: Sai Cũng Được"
+            }
+        ],
+        "TOTALCHAPTER": "45",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đô Thị",
+        "AUTHOR": "Huyễn Hải bán tiên",
+        "TRANS": "Kostrya",
+        "DESC": "Tiểu thuyết vô vọng chi tội giới thiệu vắn tắt:<br />\r\n<br />\r\n\tGần đoạn thời gian, G tỉnh Hắc Kim thành phố liên tiếp phát sinh mấy lên nữ nhân bị hại án, người chết tất cả đều thân mặc áo đỏ, tử trạng bi thảm.<br />\r\n<br />\r\n\tDưới cơ duyên xảo hợp, ta đã tham dự này vụ giết người, nhưng mà, tình tiết vụ án khác xa tưởng tượng đơn giản như vậy...<br />\r\n<br />\r\n\t\"Áo đỏ nữ án\" \"Nhân thể tự cháy \"\" mặt mèo lão thái\" ... Mỗi một chỗ vụ án, đều tại dân gian giữ kín như bưng, nghe nhầm đồn bậy. Bản án sau lưng, đến cùng cất dấu như thế nào chân tướng? Mà những cái kia người bị hại, bọn họ vì sao phải gặp này vô vọng chi tội?",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

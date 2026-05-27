@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "3528",
+        "NAME": "Tinh Hà Phách Huyết",
+        "CHAPTER": [
+            {
+                "id": "1221019",
+                "name": "Chương 1: Huyết tinh"
+            }
+        ],
+        "TOTALCHAPTER": "345",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Khoa Huyễn",
+        "AUTHOR": "Vương Bào",
+        "TRANS": "Suntran",
+        "DESC": "Vạn năm x&aacute;c ướp cổ Thổ tinh hiện thế, một giọt thần huyết họa loạn Tinh H&agrave;!<br /><br />2096 năm, Tinh H&agrave; thời đại, Địa Cầu khảo s&aacute;t đội ở Thổ tinh n&agrave;o đ&oacute; địa vạn năm s&ocirc;ng băng 3000 m&eacute;t nơi s&acirc;u xa, đ&agrave;o m&oacute;c ra một bộ d&agrave;i đến 99 m&eacute;t người khổng lồ x&aacute;c ướp cổ, cố sự bắt đầu từ đ&oacute;",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "3816",
+        "NAME": "Siêu Cấp Học Tập Hệ Thống",
+        "CHAPTER": [
+            {
+                "id": "1319770",
+                "name": "Chương 1:  siêu cấp học tập hệ thống"
+            }
+        ],
+        "TOTALCHAPTER": "429",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đô Thị",
+        "AUTHOR": "Minh Quân Thượng Úy",
+        "TRANS": "trang4mat",
+        "DESC": "Cấp ba nghỉ đ&ocirc;ng, Trương Văn Hạo ngo&agrave;i &yacute; muốn đ&atilde; nhận được đến từ tương lai si&ecirc;u cấp học tập hệ thống, hệ thống ở b&ecirc;n trong c&oacute; cổ kim kh&ocirc;ng tới nh&acirc;n loại sở hữu tri thức kỹ năng, thậm ch&iacute; liền những c&aacute;i kia si&ecirc;u tự nhi&ecirc;n kỹ năng cũng c&aacute;i g&igrave; cần c&oacute; đều c&oacute;.<br /><br />Học tập kh&ocirc;ng giỏi? C&oacute; đ&atilde; gặp qua l&agrave; kh&ocirc;ng qu&ecirc;n được kỹ năng;<br /><br />Th&acirc;n kh&ocirc;ng trường kỹ? C&aacute;c loại chức nghiệp kỹ năng t&ugrave;y tiện chọn;<br /><br />Kiếm tiền qu&aacute; &iacute;t? Mạnh nhất y thuật muốn hay kh&ocirc;ng? Tương lai khoa học kỹ thuật đến một bộ;<br /><br />Hay vẫn l&agrave; kh&oacute; chịu? Si&ecirc;u tự nhi&ecirc;n dị năng được kh&ocirc;ng?<br /><br />Phao kh&ocirc;ng đến c&ocirc; n&agrave;ng?<br /><br />Ngươi đặc sao tại đ&ugrave;a nghịch ta? Học được một th&acirc;n bản lĩnh, t&aacute;n g&aacute;i c&ograve;n cần người dạy?",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

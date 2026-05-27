@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "11097",
+        "NAME": "Hán Mạt Hùng Binh",
+        "CHAPTER": [
+            {
+                "id": "3663709",
+                "name": "Chương 1 ba tháng tam, sinh Hiên Viên"
+            }
+        ],
+        "TOTALCHAPTER": "1",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Quân Sự, Lịch Sử, Xuyên Không",
+        "AUTHOR": "Ngũ Trảo Thương Long",
+        "TRANS": "Nhiều Converter",
+        "DESC": "===================== luân hồi chỗ, thương tâm thiên cổ ly biệt. ======================= dục vãn ngân hà tẩy quốc sỉ, ======================= quét dọn hồng ma bổ thiên nứt. =================== hành hương vương, không phụ năm đó thề, nam nhi huyết!",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "1285",
+        "NAME": "Sarafu Long Dực Vãn Ca",
+        "CHAPTER": [
+            {
+                "id": "513218",
+                "name": "Chương 1: Màu vàng long dực"
+            }
+        ],
+        "TOTALCHAPTER": "180",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo",
+        "AUTHOR": "Quy Hề Bắc Minh",
+        "TRANS": "Kensin_Kaoru",
+        "DESC": "Nh&igrave;n ph&aacute;t ch&aacute;n kẻ xuy&ecirc;n việt Dị Giới b&aacute;n khoa học kỹ thuật, tạo c&ocirc;ng nghiệp. Tới xem một ch&uacute;t Cự Long l&agrave;m sao ch&agrave;o h&agrave;ng ma ph&aacute;p.<br /><br />Khi đệ nhất b&oacute; ma ph&aacute;p hỏa diễm tại Sarafu trụ d&acirc;n trước mắt lấp lo&eacute;, người l&agrave;m ph&eacute;p kh&aacute;i niệm đem cho c&aacute;i n&agrave;y thấp Ma vị diện mang đến triệt để biến c&aacute;ch.<br /><br />DND hướng, Cự Long nh&acirc;n vật ch&iacute;nh, b&agrave;i n&agrave;y nam chủ!!",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

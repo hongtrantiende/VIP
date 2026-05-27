@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "5439",
+        "NAME": "Hàn Ngu Chi Quang Ảnh Giao Thoa",
+        "CHAPTER": [
+            {
+                "id": "1930739",
+                "name": "Chương 1: Quang cùng ảnh gặp mặt lần đầu"
+            }
+        ],
+        "TOTALCHAPTER": "572",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đô Thị",
+        "AUTHOR": "Cơ Xiên",
+        "TRANS": "Truy Hồn",
+        "DESC": "Đ&acirc;y l&agrave; một c&acirc;u chuyện kh&iacute;ch lệ mọi người học tập tốt mỗi ng&agrave;y hướng l&ecirc;n...<br /><br />L&agrave;m chuyện xấu l&agrave; kh&ocirc;ng đ&uacute;ng...",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

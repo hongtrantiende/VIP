@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "4873",
+        "NAME": "Càng Thiên Thần Giám",
+        "CHAPTER": [
+            {
+                "id": "1713425",
+                "name": "Chương 1 : Hải Lãng"
+            }
+        ],
+        "TOTALCHAPTER": "1",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp, Huyền Ảo",
+        "AUTHOR": "Cước Đạp Thảo Địa",
+        "TRANS": "tknguyen",
+        "DESC": "Chính giữa liên lụy người, thần, ma, yêu chi tranh,<br />\r\n<br />\r\n\tThời đại biến thiên, xưa kia cường tái hiện, đồng minh cừu địch, đều hoàn toàn thay đổi.<br />\r\n<br />\r\n\tLà địch là bạn, tràn đầy ẩn số chưa biết (*).",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

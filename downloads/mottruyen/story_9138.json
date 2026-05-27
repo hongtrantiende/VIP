@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "9138",
+        "NAME": "Mạnh Nhất Thăng Cấp Hệ Thống",
+        "CHAPTER": [
+            {
+                "id": "3105469",
+                "name": "Chương 1: 1 kiện tu luyện"
+            }
+        ],
+        "TOTALCHAPTER": "291",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo",
+        "AUTHOR": "Khổ Thư Sinh",
+        "TRANS": "Luciper",
+        "DESC": "Thi&ecirc;n cấp v&otilde; học, luyện đan, luyện kh&iacute;, trận ph&aacute;p, kh&ocirc;ng dễ d&agrave;ng sao?<br /> <br /> Xem ta một kiện tu luyện trực tiếp học được!<br /> <br /> Tu vị kh&oacute; c&oacute; thể đột ph&aacute; sao?<br /> <br /> Đợi ta giết nh&acirc;n m&atilde; n&agrave;y tr&ecirc;n đột ph&aacute;!<br /> <br /> Sụp đổ Vương gia, tr&ugrave;ng kiến ng&agrave;y xưa huy ho&agrave;ng, tr&egrave;o l&ecirc;n tu đồ đỉnh cao!",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

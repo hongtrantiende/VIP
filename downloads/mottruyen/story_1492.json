@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "1492",
+        "NAME": "Thiên Long Bá Huyết",
+        "CHAPTER": [
+            {
+                "id": "622764",
+                "name": "Chương 1: Tai Vạ Đến Nơi"
+            }
+        ],
+        "TOTALCHAPTER": "100",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo",
+        "AUTHOR": "Chử Tửu Luận Già Phê",
+        "TRANS": "Gia Cát Nô",
+        "DESC": "Những kia đi&ecirc;n phong cường giả c&ograve;n đang l&agrave;m lấy th&agrave;nh thần chi mộng, con kiến h&ocirc;i b&igrave;nh thường ta, trong cơ thể chảy xu&ocirc;i cũng đ&atilde; thần linh chi huyết.<br /><br />C&aacute;i n&agrave;y huyết, x&uacute;c động, t&aacute;o bạo, cực kỳ b&aacute; đạo. . . . . .<br /><br />Tho&aacute;ng c&aacute;i lấy bất tử ta, chết đ&uacute;ng l&agrave; c&aacute;c ngươi.<br /><br />\r\n<br />Một c&aacute;i tu luyện kh&iacute; huyết c&ocirc;ng ph&aacute;p v&otilde; đạo thế giới, v&otilde; giả huyết dịch nhan sắc hợp lại theo lực lượng tăng l&ecirc;n m&agrave; thay đổi.<br /><br />Lực lượng hệ thống đẳng cấp chế độ: X&iacute;ch Huyết v&otilde; sĩ, Chanh Huyết v&otilde; tướng, Ho&agrave;ng Huyết Vũ Hầu, Lục Huyết Vũ Vương, Thanh Huyết Vũ Ho&agrave;ng, Lam Huyết vũ t&ocirc;ng, Tử Huyết Vũ T&ocirc;n, Đồng Huyết Vũ Th&aacute;nh, Kim Huyết Vũ Thần.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

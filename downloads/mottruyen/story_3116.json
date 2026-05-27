@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "3116",
+        "NAME": "Đô thị tiểu thú thần",
+        "CHAPTER": [
+            {
+                "id": "1060658",
+                "name": "Chương 01: Ai vô sỉ hơn?"
+            }
+        ],
+        "TOTALCHAPTER": "10",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đô Thị, Huyền Ảo, Dị Năng",
+        "AUTHOR": "Thuần khiết đích địa qua",
+        "TRANS": "ngọa kiếm vô tình",
+        "DESC": "Lưu Thanh đã lấy được từ Thần Thú cải tạo công nghệ cao ,hợp thành kim cương.<br />\r\nSau đó về sau kế thừa Thần Thú năng lực, triệu hoán, nhập vào thân, phục chế, thoái hóa, dung hợp......",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

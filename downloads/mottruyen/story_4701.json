@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "4701",
+        "NAME": "Huyền Giới Chi Môn",
+        "CHAPTER": [
+            {
+                "id": "1666700",
+                "name": "Tự chương"
+            }
+        ],
+        "TOTALCHAPTER": "1121",
+        "IMG": "https://static.cdnno.com/poster/huyen-gioi-chi-mon/150.jpg",
+        "CAT": "Tiên Hiệp",
+        "AUTHOR": "Vong Ngữ",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Trời giáng Thần vật! Dị huyết phụ thể!Quần Tiên sợ hãi! Vạn Ma tránh lui!Một gã từ Đông châu đại lục đi ra thiếu niên.Một cỗ sinh tử gắn bó Hồng Phấn Khô Lâu.Một cái lập chí trở thành chí cường giả câu chuyện.Một cái oai phong ngân hà, đại náo Tam Giới truyền thuyết.",
+        "THUMB": "https://static.cdnno.com/poster/huyen-gioi-chi-mon/150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

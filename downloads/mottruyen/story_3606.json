@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "3606",
+        "NAME": "Đô Thị Giải Trí Toàn Năng",
+        "CHAPTER": [
+            {
+                "id": "1247558",
+                "name": "Chương 01: Linh hồn chuyển kiếp"
+            }
+        ],
+        "TOTALCHAPTER": "361",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đô Thị",
+        "AUTHOR": "Tư Mã Thanh Vũ",
+        "TRANS": "Balaheoco",
+        "DESC": "Lưu Sĩ Nguy&ecirc;n sống lại ở một c&aacute;i c&ugrave;ng địa cầu tương tự trong thế giới, nơi n&agrave;y c&ugrave;ng vốn l&agrave; thế giới c&oacute; rất nhiều chỗ tương tự, nhưng l&agrave; kh&ocirc;ng đều l&agrave; giống nhau, tỷ như nơi n&agrave;y kh&ocirc;ng c&oacute; tr&ecirc;n địa cầu danh nh&acirc;n, nơi n&agrave;y giải tr&iacute; sự nghiệp tương đối ph&aacute;t đạt, nơi n&agrave;y kh&ocirc;ng c&oacute; 《 T&acirc;y Du K&yacute; 》.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

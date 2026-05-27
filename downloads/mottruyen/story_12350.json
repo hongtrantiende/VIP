@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "12350",
+        "NAME": "Thấu Thị Hệ Thống",
+        "CHAPTER": [
+            {
+                "id": "4016963",
+                "name": "Chương 1: Ông trời, ngươi chơi ta!"
+            }
+        ],
+        "TOTALCHAPTER": "6",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Võng Du, Dị Giới, Xuyên Không",
+        "AUTHOR": "________Ƭɦủ",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Một kẻ bị vận may vứt bỏ.<br />\r\n<br />\r\nMột cái biết tuốt hệ thống.<br />\r\n<br />\r\nMột thế giới mà chưa ai từng biết đến.<br />\r\n<br />\r\nTrong cuộc hành trình đi tìm bí mật của vũ trụ bao la, một vị thầy giáo đã để lại dấu ấn của mình ở những nơi bí ẩn nhất mà ít ai biết đến. Có chăng chỉ là những vị thần!<br />\r\n<br />\r\nP/s: truyện tự sáng tác, lấy ý tưởng từ truyện Đế Bá nhưng nội dung không giống.<br />\r\n~~~ Gạch đá bao nhiêu các bác cứ ném tới bh em xây được biệt thự nha~~~",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

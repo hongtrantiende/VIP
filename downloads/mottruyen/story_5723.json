@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "5723",
+        "NAME": "Tranh Bá Tam Quốc",
+        "CHAPTER": [
+            {
+                "id": "2127109",
+                "name": "Chương 1: : Hắc Sơn mưa lớn"
+            }
+        ],
+        "TOTALCHAPTER": "381",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Quân Sự, Lịch Sử, Xuyên Không, Trùng Sinh",
+        "AUTHOR": "Biệt Bộ Đại Ti Mã",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Giới thiệu t&oacute;m tắt: Chuyển kiếp Tam Quốc, lấy K&yacute; Ch&acirc;u l&agrave;m h&ograve;n đ&aacute; tảng, nặng thu H&agrave; Bắc nh&acirc;n t&agrave;i. Điền Phong Tự Thụ, mưu sĩ l&agrave; d&ugrave;ng; Qu&aacute;ch Gia Trương C&aacute;p, kh&ocirc;ng nữa ch&uacute;c T&agrave;o. Triệu V&acirc;n l&agrave;m sao c&oacute; thể từ Lưu Bị, Ch&acirc;n Mật kh&ocirc;ng phải l&agrave; Vi&ecirc;n Hi th&ecirc;! Chiến đấu C&ocirc;ng T&ocirc;n, diệt lỗ tai to, đảo Duyện Ch&acirc;u, xuất quan trung, đạp bằng Giang Đ&ocirc;ng, kiếm hướng tới, th&ugrave;y dữ tranh phong? Vương Đồ B&aacute; Nghiệp, đ&agrave;m tiếu trong tiếng!",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

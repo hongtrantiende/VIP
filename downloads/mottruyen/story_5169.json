@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "5169",
+        "NAME": "Vĩnh Hằng Cao Tháp",
+        "CHAPTER": [
+            {
+                "id": "1831794",
+                "name": "Chương 1: Mới bắt đầu"
+            }
+        ],
+        "TOTALCHAPTER": "126",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo",
+        "AUTHOR": "Thuần khiết đích hắc thỏ tử",
+        "TRANS": "Quá Lìu Tìu",
+        "DESC": "V&ocirc; hạn thế giới, truy cầu vĩnh hằng.<br /> 'Bước chậm tại trong b&oacute;ng ma, thăm d&ograve; kh&ocirc;ng biết.'<br /> 'Hai mắt nh&igrave;n chăm ch&uacute; thời gian trường h&agrave; qu&aacute; khứ c&ugrave;ng tương lai.'<br /> 'Thần b&iacute; quỷ dị huyết mạch chi lực, đi th&ocirc;ng Vạn Giới thế giới th&aacute;p cao , c&oacute; thể thực hiện bất luận c&aacute;i g&igrave; nguyện vọng Ch&acirc;n L&yacute; Chi M&ocirc;n.'<br /> Một c&aacute;i t&ecirc;n l&agrave; Ron người b&igrave;nh thường, mở ra v&ocirc; số thế giới kỳ diệu lữ tr&igrave;nh.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

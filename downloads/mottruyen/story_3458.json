@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "3458",
+        "NAME": "Bá Kiếm Độc Tôn",
+        "CHAPTER": [
+            {
+                "id": "1198770",
+                "name": "Chương 1: Hàn gia dòng độc đinh"
+            }
+        ],
+        "TOTALCHAPTER": "360",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo",
+        "AUTHOR": "Quỷ Vũ Sa",
+        "TRANS": "Tranhaongok",
+        "DESC": "Sống lại r&ocirc;̀i, vậy sẽ phải sống được so với kiếp trước c&agrave;ng th&ecirc;m đặc sắc!<br /><br />H&agrave;n Tinh l&agrave; nghĩ như vậy!<br /><br />Thế l&agrave; hắn trận chiến t&agrave; kiếm, ủng hồng nhan, mang theo một tốp nguyện &yacute; c&ugrave;ng ch&iacute;nh m&igrave;nh đồng sinh cộng tử hồ bằng cẩu hữu, bắt đầu rồi tại mới một đời b&ecirc;n trong giương nanh m&uacute;a vuốt!<br /><br />Thẳng đến. . . Một thanh b&aacute; kiếm, m&igrave;nh ta v&ocirc; địch!",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

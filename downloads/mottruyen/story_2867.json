@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "2867",
+        "NAME": "Toriko Chi Thiên Đế",
+        "CHAPTER": [
+            {
+                "id": "963031",
+                "name": "Chương 1: Mập Mạp Tuyết Lăng - Quyển 1"
+            }
+        ],
+        "TOTALCHAPTER": "281",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đồng Nhân",
+        "AUTHOR": "Tuyết Táng",
+        "TRANS": "Suriken",
+        "DESC": "Đ&acirc;y l&agrave; một thức ăn ngon thời đại, mọi người bị số lượng nhiều mỹ thực chỗ hấp dẫn!<br /><br />M&agrave; lại xem đỉnh cấp đồ tham ăn mập mạp giấy, tại đ&acirc;y mỹ thực thời đại Thi&ecirc;n đế truyền kỳ!<br /><br />Tiểu ch&ocirc;n cất tại trong quyển s&aacute;ch n&agrave;y, thu nhận sử dụng đại lượng thức ăn ngon, hy vọng c&oacute; thể hợp mọi người khẩu vị!",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

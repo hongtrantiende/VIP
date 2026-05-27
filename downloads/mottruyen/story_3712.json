@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "3712",
+        "NAME": "Võng Du Chi Ích Tà Quỳ Hoa",
+        "CHAPTER": [
+            {
+                "id": "1278421",
+                "name": "Chương 1:  trọng sinh"
+            }
+        ],
+        "TOTALCHAPTER": "315",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Võng Du",
+        "AUTHOR": "Nhất Dạ Tri Hạ Vũ",
+        "TRANS": "trang4mat",
+        "DESC": "Một c&aacute;i c&oacute; thể thay đổi biến vận mệnh tr&ograve; chơi<br /><br />Một c&aacute;i c&oacute; thể thay đổi biến thế giới tr&ograve; chơi<br /><br />Quỳ Hoa Bảo Điển, c&ocirc;ng như đại th&agrave;nh, trọng sinh h&ugrave;ng phong.<br /><br />Diệp Vũ tự bạo c&ugrave;ng cừu nh&acirc;n đồng quy vu tận, trọng sinh trở lại tốt nghiệp đại học, bị cừu nh&acirc;n y&ecirc;m căn thời đi&ecirc;̉m, kh&ocirc;ng muốn trọng trước khi đi thế chi lộ, bằng v&agrave;o kiếp trước tr&iacute; nhớ, tiến v&agrave;o tr&ograve; chơi thu hoạch Quỳ Hoa Bảo Điển, kh&ocirc;i phục th&acirc;n nam nhi, dẫn dắt v&otilde; học đỉnh phong.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

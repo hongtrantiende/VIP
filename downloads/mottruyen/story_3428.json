@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "3428",
+        "NAME": "Tiên Ấm Nông Trường",
+        "CHAPTER": [
+            {
+                "id": "1189866",
+                "name": "Chương 1: Bán báo thanh niên"
+            }
+        ],
+        "TOTALCHAPTER": "1696",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đô Thị",
+        "AUTHOR": "Cuồng Bôn Hải Mã",
+        "TRANS": "Mrtiendung",
+        "DESC": "Một bất ngờ được thần kỳ tiểu ấm, cho Tiêu Bình hoàn toàn cuộc sống khác.Từ đây hắn khốn đốn sinh hoạt có thể cải thiện, trồng trọt, làm nhà xưởng, làm cho người ta xem bệnh, cuộc sống tốt đẹp đang ở trước mắt!",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

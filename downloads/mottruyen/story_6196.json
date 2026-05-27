@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "6196",
+        "NAME": "Võ Ma Phong Vân",
+        "CHAPTER": [
+            {
+                "id": "2209335",
+                "name": "Chương 1: Phế vật Lâm Trần phi thượng"
+            }
+        ],
+        "TOTALCHAPTER": "814",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đô Thị, Dị Năng",
+        "AUTHOR": "仙幻云痕",
+        "TRANS": "Lucifer123",
+        "DESC": "Hắn là phế vật, nhưng là nắm giữ giả cả thế gian Vô Song phụ Hồn Châu. hắn gặp khuất nhục mà đi, gia tộc nhưng là trong khoảnh khắc diệt.<br />\r\n<br />\r\n\tThiên cổ bí ẩn xuất hiện, Thái Cổ dị chủng vì sao bao bọc? Yêu Ma thú chi hoàng giả gặp gỡ, bọn họ số mệnh tương đồng, có thể không đánh vỡ số mệnh gông xiềng?<br />\r\n<br />\r\n\tSự xuất hiện của hắn, đối với đại lục mà nói, đến tột cùng là cát là hung?",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

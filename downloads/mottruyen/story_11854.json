@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "11854",
+        "NAME": "Tiên Linh Môn",
+        "CHAPTER": [
+            {
+                "id": "3893558",
+                "name": "Chương 1: Khô Mộc Phùng Xuân"
+            }
+        ],
+        "TOTALCHAPTER": "227",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp",
+        "AUTHOR": "Tinh Nguyệt Vũ Dực",
+        "TRANS": "nguyenthanhtuan066@gmail.com",
+        "DESC": "Mười vạn năm trước, một trận tiên chiến buông xuống thế gian làm cho Tu Tiên Giới mất đi thiên địa linh khí, thiên địa linh khí biến mất, tất cả người tu tiên đều không thể tu luyện.<br />\r\n<br />\r\nCho đến linh môn  xuất hiện...... Tu luyện biến thành một loại khó  có thể thực hiện ......<br />\r\n<br />\r\nMột năm mười hai tháng, mỗi tháng linh môn chỉ mở ra bảy ngày, cho nên tu luyện giả tu luyện thời gian chỉ có ngắn ngủn tám mươi bốn ngày.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

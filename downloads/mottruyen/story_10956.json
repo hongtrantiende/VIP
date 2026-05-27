@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "10956",
+        "NAME": "Thiện Xạ Nhà Hán",
+        "CHAPTER": [
+            {
+                "id": "3632999",
+                "name": "Chương 1: Trọng sinh ở Hán Mạt"
+            }
+        ],
+        "TOTALCHAPTER": "83",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Quân Sự, Lịch Sử, Trùng Sinh",
+        "AUTHOR": "Vương Nhị Khăn - 王二巾",
+        "TRANS": "dotunglamntt",
+        "DESC": "main trọng sinh về thời Hán mạt, là con trai của Hoàng Trung , một trong năm vị Ngũ Hổ Tướng của Thục Hán<br />\r\nnắm trong tay bàn tay vàng, vòng quay chiếc nón kì diệu, liệu main sẽ làm gì trong thời loạn lạc này<br />\r\n",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "8679",
+        "NAME": "Siêu Cấp Tạo Phản Hệ Thống",
+        "CHAPTER": [
+            {
+                "id": "2969965",
+                "name": "Chương 1 :khởi động hệ thống"
+            }
+        ],
+        "TOTALCHAPTER": "25",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đô Thị, Kiếm Hiệp, Dị Giới, Quân Sự, Lịch Sử, Xuyên Không",
+        "AUTHOR": "Lạc Trần",
+        "TRANS": "ngohoangthanh271195@gmail.com",
+        "DESC": "Mỗi một cái Triều Đại có thể lên làm hoàng đế người, cũng là thân có nghi ngờ đại khí vận người, nhưng mà, Tiêu Phong nhiệm vụ là tạo bọn họ phản, mà lại xem Tiêu Phong như thế nào tạo phản, chiếm lấy bọn họ khí vận, tại hiện đại sinh hoạt bên trong, kiếm lấy tài phú, thắng cưới bạch phú mỹ, hướng đi Nhân Sinh Điên Phong.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

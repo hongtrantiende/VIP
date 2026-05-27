@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "3134",
+        "NAME": "Vạn Cổ Thần Thương",
+        "CHAPTER": [
+            {
+                "id": "1089020",
+                "name": "Chương 1: Xác ướp cổ - Quyển 1"
+            }
+        ],
+        "TOTALCHAPTER": "356",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo",
+        "AUTHOR": "Hắc Nhãn Bạch Phát",
+        "TRANS": "Nhu Phong",
+        "DESC": "Tu luyện giả, đoạt Thi&ecirc;n Địa tạo h&oacute;a, d&ugrave;ng dưỡng bản th&acirc;n.<br /><br />Tiềm Long cấp, Ch&acirc;n Linh cấp, thần t&agrave;ng cấp, thi&ecirc;n nh&acirc;n cấp, tọa vong cấp ( b&aacute;n thần ), mỗi một cấp lại c&oacute; Cửu Trọng Thi&ecirc;n, &yacute; vi Cửu Ngũ Ch&iacute; T&ocirc;n chi &yacute;, đột ph&aacute; ngồi qu&ecirc;n, tắc th&igrave; du ngoạn sơn thuỷ thần ti&ecirc;n.<br /><br />",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

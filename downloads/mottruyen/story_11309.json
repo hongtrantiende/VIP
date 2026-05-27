@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "11309",
+        "NAME": "Saiyan Truyền Thuyết Ngọc Rồng",
+        "CHAPTER": [
+            {
+                "id": "3747652",
+                "name": "Chương 1: Hướng thần long hứa nguyện"
+            }
+        ],
+        "TOTALCHAPTER": "280",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đồng Nhân",
+        "AUTHOR": "月夜孤宸",
+        "TRANS": "Nghĩa Phạm",
+        "DESC": "rách nát lúc quật khởi, trong tuyệt vọng phản kích,<br />\r\n<br />\r\n\tCó một loại nhiệt huyết, là ngọc rồng; có một loại hồn nhiên, là Son Goku; có một loại kiêu ngạo, là Vegeta; có một loại vô địch, là Vegito. . . Càng có một loại truyền thuyết là  người Saiyan, ôn lại lúc đó kinh điển, bất bại truyền kỳ. <br />\r\n<br />\r\nTruyện đã full",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

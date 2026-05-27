@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "7984",
+        "NAME": "Đô Thị Tu Chân Tiểu Nông Dân",
+        "CHAPTER": [
+            {
+                "id": "2781226",
+                "name": "Chương 1:  đem ngươi quất thành đầu heo"
+            }
+        ],
+        "TOTALCHAPTER": "556",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đô Thị",
+        "AUTHOR": "Tửu hang",
+        "TRANS": "๖ۣۜTiếu ๖ۣۜHồng ๖ۣۜTrần",
+        "DESC": "Lý Nhất Phi tại ra mắt thời điểm , bị bách hợp đánh , lại ngoài ý muốn lấy được năng lực đặc thù , tại trong đô thị làm một cái vui vẻ tiểu nông dân!  Cầu thanks, Cầu vote tốt !!!",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

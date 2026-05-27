@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "1438",
+        "NAME": "Phệ Thiên",
+        "CHAPTER": [
+            {
+                "id": "595859",
+                "name": "Chương 01: Hỏa thiêu Trác Gia Thôn!"
+            }
+        ],
+        "TOTALCHAPTER": "1282",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo",
+        "AUTHOR": "Hoàng Đường Kiều",
+        "TRANS": "Nóng Quá Đi - Đầm dài 20cm",
+        "DESC": "Một bản độc nhất v&ocirc; nhị tu luyện hồn ph&aacute;p, một thanh trảm thi&ecirc;n phệ hồn tuyệt thế Ma Đao, một thiếu ni&ecirc;n ph&aacute;t triển Truyền Kỳ c&acirc;u chuyện.  <br /><br />",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

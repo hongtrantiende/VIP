@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "1655",
+        "NAME": "Âm Dương Thiên Kinh",
+        "CHAPTER": [
+            {
+                "id": "677782",
+                "name": "Chương 01: đảo nhỏ thiếu niên"
+            }
+        ],
+        "TOTALCHAPTER": "72",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp",
+        "AUTHOR": "Tằng kinh tang hải",
+        "TRANS": "Betonamu",
+        "DESC": "Vô Cực nhi Thái Cực, Thái Cực sinh Lưỡng Nghi, được gọi là Âm Dương. Âm Dương người, Thiên Địa chi đạo vậy. Vạn vật chi kỷ cương, biến hóa chi cha mẹ, sinh sát chi bản thủy, Thần Minh chi phủ .<br />\r\n<br />\r\nThiếu niên Nam Cung bình, vì tu đạo, đi theo nghĩa phụ tại phương đông hành tẩu tu giới, không muốn đưa tới tu giới môn phái ngấp nghé, nghĩa phụ tại phương đông bị hại, Nam Cung bình chạy nạn ở bên trong, đạt được khai thiên tích địa lúc lưu lại 《 Âm Dương thiên kinh 》, từ nay về sau đi đến tu đạo chi lộ...<br />\r\n<br />\r\nGặp Tiên Quân sư phó, cùng mỹ nữ song tu, một đường quá quan trảm tướng, kỳ ngộ không ngừng, đặc sắc đều ở quyển sách 《 Âm Dương thiên kinh 》 trong.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

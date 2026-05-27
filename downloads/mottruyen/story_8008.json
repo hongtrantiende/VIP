@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "8008",
+        "NAME": "Xuất Phát Hải Tặc Vương",
+        "CHAPTER": [
+            {
+                "id": "2784875",
+                "name": "Chương 1 cô đảo thượng u buồn"
+            }
+        ],
+        "TOTALCHAPTER": "30",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Xuyên Không, Đồng Nhân",
+        "AUTHOR": "Thủy Mặc Thiên",
+        "TRANS": "Natsu",
+        "DESC": "Đột nhiên xuất hiện ở thế giới mới sau đó mới phát hiện là thế giới onepice.<br />\r\nKhông hệ thống chỉ còn cách tự thân tu luyện.<br />\r\n“Hải tặc vương? Đó là kết cục, ta chỉ nghĩ thể nghiệm quá trình, nhìn xem những cái đó khiếp sợ thế giới đại sự kiện!”<br />\r\n----------------------------------------------------------------<br />\r\nTuy là truyện CV nhưng 5c/1 ngày nha mn.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

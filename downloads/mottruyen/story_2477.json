@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "2477",
+        "NAME": "Chiến Thần",
+        "CHAPTER": [
+            {
+                "id": "812676",
+                "name": "Chương 1: Vương giả làm lại"
+            }
+        ],
+        "TOTALCHAPTER": "556",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp, Huyền Ảo, Khoa Huyễn",
+        "AUTHOR": "Đạp Tuyết chân nhân",
+        "TRANS": "๖ۣۜSốt Thơ Ngây",
+        "DESC": "Sống lại Vương giả, tại ầm ầm sóng dậy thời đại vũ trụ, dùng song kiếm viết Bất Hủ Chiến Thần truyền kỳ.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "12627",
+        "NAME": "Có Yêu Khí Khách Sạn",
+        "CHAPTER": [
+            {
+                "id": "4085556",
+                "name": "Tự truyện"
+            }
+        ],
+        "TOTALCHAPTER": "1467",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp, Huyền Ảo, Xuyên Không",
+        "AUTHOR": "Trình Nghiễn Thu",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Một cái có yêu khí hệ thống,<br />\r\n<br />\r\nMột vị có yêu khí chưởng quỹ,<br />\r\n<br />\r\nMột nhà có yêu khí khách sạn.<br />\r\n<br />\r\nBắc lên bếp thất tinh, ấm đồng nấu ba sông. Bày ra bàn bát tiên, chiêu đãi mười sáu phương.<br />\r\n<br />\r\nVui đón khách bốn biển, có hai cái miệng yêu. Gặp người cười một tiếng, áo trắng đổi váy đỏ.<br />\r\n<br />\r\nNgười vừa đi, chén chưa lạnh, có con lừa say ngã ở cạnh bàn.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "10472",
+        "NAME": "Nghịch Thiên Hệ Thống",
+        "CHAPTER": [
+            {
+                "id": "3496314",
+                "name": "Chương 1 : Sơ ngộ đấu phá thế giới"
+            }
+        ],
+        "TOTALCHAPTER": "6",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đồng Nhân",
+        "AUTHOR": "Vô Lệ",
+        "TRANS": "Nhiều Converter",
+        "DESC": "1 kẻ hay mơ mộng<br />\r\n1 hệ thống không gì không làm đc gặp nhau...<br />\r\nĐiều gì sẽ xảy ra ở dị giới ?",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

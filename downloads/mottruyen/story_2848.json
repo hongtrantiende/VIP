@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "2848",
+        "NAME": "Huyền Thiên Hồn Tôn",
+        "CHAPTER": [
+            {
+                "id": "955506",
+                "name": "Chương 1: Phần đệm"
+            }
+        ],
+        "TOTALCHAPTER": "1132",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo",
+        "AUTHOR": "Ám Ma Sư",
+        "TRANS": "Tanikaze",
+        "DESC": "Thi&ecirc;n Huyền đại lục!<br /> <br /> Uy chấn thi&ecirc;n hạ Ti&ecirc;u Dao hồn ho&agrave;ng Diệp Ti&ecirc;u Dao, bất ngờ ở Huyền vực ng&atilde; xuống!<br /> <br /> Trăm năm sau, hắn sống lại tại học vi&ecirc;n Diệp Huyền tr&ecirc;n người Lưu V&acirc;n quốc Tinh Huyền học viện bị người bắt nạt , từng bị người tr&agrave;o ph&uacute;ng phế v&otilde; hồn, tử mạch đến trong truyền thuyết nghịch thi&ecirc;n tam sinh v&otilde; hồn, hắn từ đ&acirc;y bước l&ecirc;n một đoạn lữ tr&igrave;nh khiếp sợ đại lục!",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

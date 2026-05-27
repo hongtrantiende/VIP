@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "7901",
+        "NAME": "Trọng Sinh Mạnh Nhất Thuẫn Chiến",
+        "CHAPTER": [
+            {
+                "id": "2761353",
+                "name": "Chương 169: Cường cường liên thủ"
+            }
+        ],
+        "TOTALCHAPTER": "287",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Võng Du",
+        "AUTHOR": "Miêu thúc tiểu điếm",
+        "TRANS": "trantandat202",
+        "DESC": "ad có xóa thì cho cái lí do. còn k cho e đọc hết bộ này",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

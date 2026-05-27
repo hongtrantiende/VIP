@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "10560",
+        "NAME": "Cô Nương Tu Hành",
+        "CHAPTER": [
+            {
+                "id": "3515941",
+                "name": "Chương 1: Từ Chân trả nghiệp."
+            }
+        ],
+        "TOTALCHAPTER": "21",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp, Huyền Ảo, Xuyên Không, Trùng Sinh",
+        "AUTHOR": "vanhieuvan1",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Dừng lại để viết hết truyện Vô Hạn Xuyên Không Tiên Bước, đánh dấu truyện này mình sẽ viết tiếp hehe.<br />\r\nhttp://truyencv.com/vo-han-xuyen-khong-tien-buoc/<br />\r\nMình dừng lại chẳng qua là do áp lực thi cử, hiện tại mình đã quay lại rồi đây.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

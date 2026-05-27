@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "8058",
+        "NAME": "Mạt Thế Tân Sinh Mệnh",
+        "CHAPTER": [
+            {
+                "id": "2796453",
+                "name": "Quyển 1: Tận Thế Sơ Tham. Chương 1:"
+            }
+        ],
+        "TOTALCHAPTER": "112",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Mạt Thế",
+        "AUTHOR": "Bại Thảo",
+        "TRANS": "Demona",
+        "DESC": "Ai có thể vượt lên trước một bước, xây dựng tân văn minh? <br />\r\n-------------<br />\r\nNăng lực của main là cảm giác và điều khiển nước. Không hệ thống, không trọng sinh.<br />\r\n<br />\r\nTruyện này ta làm để đọc sẵn up lên đây luôn. Nên có lẽ là up chương hơi chậm.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

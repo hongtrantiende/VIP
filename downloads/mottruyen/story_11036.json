@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "11036",
+        "NAME": "Vô Tận Vũ Lực",
+        "CHAPTER": [
+            {
+                "id": "3649928",
+                "name": "Chương 1:  Vô Tận Thế Giới"
+            }
+        ],
+        "TOTALCHAPTER": "564",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Võng Du",
+        "AUTHOR": "Văn Nhược Bất Thành",
+        "TRANS": "DragonTOP",
+        "DESC": "Đây là một cái có chút biến thái đậu bỉ tại các loại kỳ kỳ quái quái thế giới bên trong tìm đường chết cố sự...<br />\r\n<br />\r\n\tKhôi hài chúng ta là nghiêm túc!<br />\r\n*Nhớ vote 9-10* ủng hộ mình với 9-10 điểm cuối chương",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

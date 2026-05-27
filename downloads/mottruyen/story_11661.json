@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "11661",
+        "NAME": "Tai Tinh Vương",
+        "CHAPTER": [
+            {
+                "id": "3845693",
+                "name": "Chương 01 : Xuyên qua!"
+            }
+        ],
+        "TOTALCHAPTER": "2",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp, Huyền Ảo, Xuyên Không",
+        "AUTHOR": "Genji170896",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Thanh niên Hàn Tâm số nhọ tuyệt đỉnh, đang ngồi cúi đầu đọc tiểu thuyết thì bị quạt trần rơi trúng đầu liền xuyên qua. Tiếp đó hắn liền tiếp nhận một cái hệ thống - Tai Tinh Vương, vâng, hắn số nhọ chuỗi ngày tiếp tục, số mệnh bi thảm liệu dẫn đến những chuyện dở khóc dở cười nào đây?<br />\r\n<br />\r\nDõi theo từng bước chân hắn để xem hắn đen như nào nhé? <br />\r\n<br />\r\nP/s : Cảm tạ mọi người đã xem.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

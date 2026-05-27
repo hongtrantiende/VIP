@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "4504",
+        "NAME": "Pháp Hải Giới Sắc Ký",
+        "CHAPTER": [
+            {
+                "id": "1602353",
+                "name": "Chương 01: Cười nhập Đại Lâm Quyển 1: Đại Lâm tiếu sự"
+            }
+        ],
+        "TOTALCHAPTER": "42",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp",
+        "AUTHOR": "Ngô Hà Mễ",
+        "TRANS": "chanlinh",
+        "DESC": "Bát Linh Hậu phụ thân thiếu niên Pháp Hải, diễn dịch vừa ra pháp lực vô tiên, lệch ra mới hơn người đại ẩm ướt Truyền Kỳ ~<br />\r\n<br />\r\n\t\"Không có việc gì tổng nghịch cái gì thiên? Bần tăng thầm nghĩ hiên ngang lẫm liệt đi theo tại Thiên Đạo về sau, thừa dịp không chú ý, vụng trộm cho hắn một cục gạch mà thôi.\"<br />\r\n<br />\r\n\t\"Giới sắc cũng không khó, khó chính là ứng phó những cái kia trăm phương ngàn kế cản trở bần tăng giới sắc nữ thí chủ nhóm.\"<br />\r\n<br />\r\n\t\"Trinh nhi, nếm nói Phật hiệu như một, Phật không thị phi, Phật gặp hữu duyên dạy người độ hóa, gặp vô duyên dạy người Luân Hồi. Về sau Phật gặp gỡ bất ngờ ngươi, Phật hai rồi, Phật chẳng phân biệt được thị phi, Phật cũng không phổ độ chúng sinh rồi. Phật suy đồi rồi, Phật bị ngươi phổ độ rồi, nhưng là Phật vui mừng.\"<br />\r\n<br />\r\n\tQuyển sách tôn chỉ: Xem, tu chân cười sự tình, ngộ, bình tĩnh nhân sinh.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

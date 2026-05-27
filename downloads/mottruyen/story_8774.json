@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "8774",
+        "NAME": "Tiêu Dao Thiên Đế",
+        "CHAPTER": [
+            {
+                "id": "3005885",
+                "name": "Chương 1: Sơ Lược Vạn Thiên Đại Lục"
+            }
+        ],
+        "TOTALCHAPTER": "1",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Dị Giới, Khoa Huyễn, Xuyên Không",
+        "AUTHOR": "Trần Thanh Bình Yên",
+        "TRANS": "Nhiều Converter",
+        "DESC": "J.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "2546",
+        "NAME": "Toàn Năng Tu Luyện Hệ Thống",
+        "CHAPTER": [
+            {
+                "id": "837793",
+                "name": "Chương 1: Dương gia phế vật"
+            }
+        ],
+        "TOTALCHAPTER": "225",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp, Kiếm Hiệp, Huyền Ảo, Dị Giới",
+        "AUTHOR": "Thu Phong Lãm Nguyệt",
+        "TRANS": "masaki1991",
+        "DESC": "Ngoài ý muốn xuyên việt trở thành phế vật hắn, hạnh được ông trời rủ xuống thương, đưa tặng một bộ toàn năng tu luyện hệ thống, từ nay về sau vận mệnh chuyển hướng, điên cuồng thăng cấp, trảm Thánh thú, Diệt Thần Thú, bạo Vũ Thần, đạp vào cái kia Vô Thượng đỉnh phong chi lộ.<br />\r\nTán gái, giẫm người, cái kia bất quá là chút lòng thành mà thôi.<br />\r\nnói ngắn lại một câu: hệ thống nơi tay, thiên hạ ta có.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

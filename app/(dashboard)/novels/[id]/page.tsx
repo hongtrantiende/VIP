@@ -6,6 +6,7 @@ import { PdfTranslateDialog } from "@/components/novel/pdf-translate-dialog";
 import { HybridConverterDialog } from "@/components/novel/hybrid-converter-dialog";
 import { BulkTranslateDialog } from "@/components/bulk-translate-dialog";
 import { BulkReplaceDialog } from "@/components/novel/bulk-replace-dialog";
+import { BulkScanFixDialog } from "@/components/bulk-scan-fix-dialog";
 import { BulkResplitDialog } from "@/components/novel/bulk-resplit-dialog";
 import { SplitChapterDialog } from "@/components/novel/split-chapter-dialog";
 import { MergeChaptersDialog } from "@/components/novel/merge-chapters-dialog";
@@ -86,6 +87,7 @@ import {
   SparklesIcon,
   GlobeIcon,
   UsersIcon,
+  CombineIcon,
 } from "lucide-react";
 import {
   useParams,
@@ -103,6 +105,7 @@ export default function NovelDetailPage() {
   const router = useRouter();
   const pathname = usePathname();
   const [activeTab, setActiveTab] = useState("chapters");
+  const [activeSubTab, setActiveSubTab] = useState<"standard" | "ai">("standard");
   const { isAdmin } = useProfile();
   const novel = useNovel(id);
   const chapters = useChapters(id);
@@ -124,6 +127,8 @@ export default function NovelDetailPage() {
   const [translateChapterIds, setTranslateChapterIds] = useState<string[]>([]);
   const [pdfTranslateOpen, setPdfTranslateOpen] = useState(false);
   const [pdfTranslateChapterIds, setPdfTranslateChapterIds] = useState<string[]>([]);
+  const [scanFixOpen, setScanFixOpen] = useState(false);
+  const [scanFixChapterIds, setScanFixChapterIds] = useState<string[]>([]);
   const [replaceOpen, setReplaceOpen] = useState(false);
   const [replaceChapterIds, setReplaceChapterIds] = useState<string[]>([]);
   const [convertOpen, setConvertOpen] = useState(false);
@@ -179,10 +184,15 @@ export default function NovelDetailPage() {
     setConvertOpen(true);
   };
 
-  const handlePdfTranslate = (chapterIds: string[]) => {
+  const handlePdfTranslate = useCallback((chapterIds: string[]) => {
     setPdfTranslateChapterIds(chapterIds);
     setPdfTranslateOpen(true);
-  };
+  }, []);
+
+  const handleScanFix = useCallback((chapterIds: string[]) => {
+    setScanFixChapterIds(chapterIds);
+    setScanFixOpen(true);
+  }, []);
 
   const handleResplit = (chapterIds: string[]) => {
     setResplitChapterIds(chapterIds);
@@ -208,10 +218,11 @@ export default function NovelDetailPage() {
     if (!novel) return;
     try {
       toast.info("Đang tạo file EPUB, vui lòng đợi...");
-      const dbChapters = await db.chapters.where("novelId").equals(novel.id).sortBy("order");
+      const allDbChapters = await db.chapters.where("novelId").equals(novel.id).sortBy("order");
+      const dbChapters = allDbChapters.filter(c => activeSubTab === "ai" ? !!c.isAiWritten : !c.isAiWritten);
 
       if (!dbChapters || dbChapters.length === 0) {
-        throw new Error("Không có chương nào để xuất!");
+        throw new Error(activeSubTab === "ai" ? "Không có chương viết bằng AI nào để xuất!" : "Không có chương dịch & gốc nào để xuất!");
       }
 
       let coverBase64 = null;
@@ -253,7 +264,7 @@ export default function NovelDetailPage() {
     } catch (e: any) {
       toast.error(e.message || "Lỗi khi xuất EPUB");
     }
-  }, [novel]);
+  }, [novel, activeSubTab]);
 
   const handleTranslateTitle = async () => {
     if (!novel || !selectedProvider || !selectedModel) return;
@@ -308,7 +319,7 @@ export default function NovelDetailPage() {
   const handleExport = async () => {
     if (!novel) return;
     try {
-      const data = await exportNovel(novel.id);
+      const data = await exportNovel(novel.id, { subTab: activeSubTab });
       downloadNovelJson(data);
       toast.success(`Đã xuất "${novel.title}"`);
     } catch {
@@ -319,7 +330,7 @@ export default function NovelDetailPage() {
   const handleExportZip = async (mode: "translated" | "original" = "translated") => {
     if (!novel) return;
     try {
-      await downloadNovelChaptersZip(novel.id, mode);
+      await downloadNovelChaptersZip(novel.id, mode, activeSubTab);
       toast.success(`Đã xuất ZIP ${mode === "original" ? "Bản Gốc" : ""} "${novel.title}"`);
     } catch {
       toast.error("Xuất ZIP thất bại");
@@ -329,7 +340,7 @@ export default function NovelDetailPage() {
   const handleExportTxt = async (mode: "translated" | "original" = "translated") => {
     if (!novel) return;
     try {
-      await downloadNovelTxt(novel.id, mode);
+      await downloadNovelTxt(novel.id, mode, activeSubTab);
       toast.success(`Đã xuất TXT gộp ${mode === "original" ? "Bản Gốc" : ""} "${novel.title}"`);
     } catch {
       toast.error("Xuất TXT thất bại");
@@ -346,6 +357,9 @@ export default function NovelDetailPage() {
       toast.error("Xóa tiểu thuyết thất bại");
     }
   };
+
+
+
 
   if (novel === undefined) {
     return (
@@ -434,6 +448,7 @@ export default function NovelDetailPage() {
             </div>
 
             <div className="flex shrink-0 items-center gap-1">
+
               <Button
                 variant="default"
                 size="sm"
@@ -467,62 +482,88 @@ export default function NovelDetailPage() {
                 </TooltipTrigger>
                 <TooltipContent>Chỉnh sửa</TooltipContent>
               </Tooltip>
-              <DropdownMenu>
+              {activeSubTab === "ai" ? (
                 <Tooltip>
                   <TooltipTrigger asChild>
-                    <DropdownMenuTrigger asChild>
-                      <Button variant="ghost" size="icon">
-                        <FileArchiveIcon className="size-4" />
-                      </Button>
-                    </DropdownMenuTrigger>
+                    <Button variant="ghost" size="icon" onClick={() => handleExportZip("translated")}>
+                      <FileArchiveIcon className="size-4" />
+                    </Button>
                   </TooltipTrigger>
-                  <TooltipContent>Xuất ZIP (TXT)</TooltipContent>
+                  <TooltipContent>Tải chương viết bằng AI (ZIP)</TooltipContent>
                 </Tooltip>
-                <DropdownMenuContent align="end">
-                  <DropdownMenuLabel>Tải xuống ZIP</DropdownMenuLabel>
-                  <DropdownMenuSeparator />
-                  <DropdownMenuItem onClick={() => handleExportZip("translated")}>
-                    <LanguagesIcon className="mr-2 size-4" />
-                    Bản dịch AI
+              ) : (
+                <DropdownMenu>
+                  <Tooltip>
+                    <TooltipTrigger asChild>
+                      <DropdownMenuTrigger asChild>
+                        <Button variant="ghost" size="icon">
+                          <FileArchiveIcon className="size-4" />
+                        </Button>
+                      </DropdownMenuTrigger>
+                    </TooltipTrigger>
+                    <TooltipContent>Xuất ZIP (TXT)</TooltipContent>
+                  </Tooltip>
+                  <DropdownMenuContent align="end">
+                    <DropdownMenuLabel>Tải xuống ZIP</DropdownMenuLabel>
+                    <DropdownMenuSeparator />
+                    <DropdownMenuItem onClick={() => handleExportZip("translated")}>
+                      <LanguagesIcon className="mr-2 size-4" />
+                      Bản dịch AI
+                    </DropdownMenuItem>
+                    <DropdownMenuItem onClick={() => handleExportZip("original")}>
+                      <BookOpenIcon className="mr-2 size-4" />
+                      Văn bản gốc
+                    </DropdownMenuItem>
+                  <DropdownMenuItem onClick={() => setMergePartsOpen(true)}>
+                    <CombineIcon className="mr-2 h-4 w-4" />
+                    Gộp chương theo part
                   </DropdownMenuItem>
-                  <DropdownMenuItem onClick={() => handleExportZip("original")}>
-                    <BookOpenIcon className="mr-2 size-4" />
-                    Văn bản gốc
-                  </DropdownMenuItem>
-                </DropdownMenuContent>
-              </DropdownMenu>
+                  </DropdownMenuContent>
+                </DropdownMenu>
+              )}
 
-              <DropdownMenu>
+              {activeSubTab === "ai" ? (
                 <Tooltip>
                   <TooltipTrigger asChild>
-                    <DropdownMenuTrigger asChild>
-                      <Button variant="ghost" size="icon">
-                        <ScrollTextIcon className="size-4" />
-                      </Button>
-                    </DropdownMenuTrigger>
+                    <Button variant="ghost" size="icon" onClick={() => handleExportTxt("translated")}>
+                      <ScrollTextIcon className="size-4" />
+                    </Button>
                   </TooltipTrigger>
-                  <TooltipContent>Xuất TXT (Gộp)</TooltipContent>
+                  <TooltipContent>Tải chương viết bằng AI (TXT gộp)</TooltipContent>
                 </Tooltip>
-                <DropdownMenuContent align="end">
-                  <DropdownMenuLabel>Tải xuống TXT</DropdownMenuLabel>
-                  <DropdownMenuSeparator />
-                  <DropdownMenuItem onClick={() => handleExportTxt("translated")}>
-                    <LanguagesIcon className="mr-2 size-4" />
-                    Bản dịch AI
-                  </DropdownMenuItem>
-                  <DropdownMenuItem onClick={() => handleExportTxt("original")}>
-                    <BookOpenIcon className="mr-2 size-4" />
-                    Văn bản gốc
-                  </DropdownMenuItem>
-                </DropdownMenuContent>
-              </DropdownMenu>
+              ) : (
+                <DropdownMenu>
+                  <Tooltip>
+                    <TooltipTrigger asChild>
+                      <DropdownMenuTrigger asChild>
+                        <Button variant="ghost" size="icon">
+                          <ScrollTextIcon className="size-4" />
+                        </Button>
+                      </DropdownMenuTrigger>
+                    </TooltipTrigger>
+                    <TooltipContent>Xuất TXT (Gộp)</TooltipContent>
+                  </Tooltip>
+                  <DropdownMenuContent align="end">
+                    <DropdownMenuLabel>Tải xuống TXT</DropdownMenuLabel>
+                    <DropdownMenuSeparator />
+                    <DropdownMenuItem onClick={() => handleExportTxt("translated")}>
+                      <LanguagesIcon className="mr-2 size-4" />
+                      Bản dịch AI
+                    </DropdownMenuItem>
+                    <DropdownMenuItem onClick={() => handleExportTxt("original")}>
+                      <BookOpenIcon className="mr-2 size-4" />
+                      Văn bản gốc
+                    </DropdownMenuItem>
+                  </DropdownMenuContent>
+                </DropdownMenu>
+              )}
               <Tooltip>
                 <TooltipTrigger asChild>
                   <Button variant="ghost" size="icon" onClick={handleExportEpub}>
                     <BookDownIcon className="size-4" />
                   </Button>
                 </TooltipTrigger>
-                <TooltipContent>Xuất EPUB</TooltipContent>
+                <TooltipContent>{activeSubTab === "ai" ? "Tải chương viết bằng AI (EPUB)" : "Xuất EPUB"}</TooltipContent>
               </Tooltip>
               <Tooltip>
                 <TooltipTrigger asChild>
@@ -530,7 +571,7 @@ export default function NovelDetailPage() {
                     <DownloadIcon className="size-4" />
                   </Button>
                 </TooltipTrigger>
-                <TooltipContent>Xuất JSON</TooltipContent>
+                <TooltipContent>{activeSubTab === "ai" ? "Tải chương viết bằng AI (JSON)" : "Xuất JSON"}</TooltipContent>
               </Tooltip>
               <Tooltip>
                 <TooltipTrigger asChild>
@@ -605,18 +646,11 @@ export default function NovelDetailPage() {
             )}
           </TabsTrigger>
           <TabsTrigger
-            value="world-building"
+            value="world-and-chars"
             className="gap-1.5 px-2 py-1.5 sm:gap-2 sm:px-3"
           >
             <GlobeIcon className="size-3.5 text-blue-600 dark:text-blue-400" />
-            <span className="hidden sm:inline">Thế giới quan</span>
-          </TabsTrigger>
-          <TabsTrigger
-            value="characters"
-            className="gap-1.5 px-2 py-1.5 sm:gap-2 sm:px-3"
-          >
-            <UsersIcon className="size-3.5 text-violet-600 dark:text-violet-400" />
-            <span className="hidden sm:inline">Nhân vật</span>
+            <span className="hidden sm:inline">{novel?.referenceNovelId ? "Thông tin Rewrite Truyện" : "Thiết lập Truyện"}</span>
             {characters && characters.length > 0 && (
               <span className="inline-flex min-w-5 items-center justify-center rounded-full bg-violet-500/10 px-1.5 py-px text-[10px] font-semibold tabular-nums text-violet-700 dark:bg-violet-500/20 dark:text-violet-300">
                 {characters.length}
@@ -625,12 +659,11 @@ export default function NovelDetailPage() {
           </TabsTrigger>
         </TabsList>
 
-        <TabsContent value="world-building" className="mt-4">
+        <TabsContent value="world-and-chars" className="mt-4 space-y-8">
           <WorldBuildingTab novel={novel} />
-        </TabsContent>
-
-        <TabsContent value="characters" className="mt-4">
-          <CharactersTab characters={characters ?? []} novelId={id} />
+          <div className="border-t pt-8">
+            <CharactersTab characters={characters ?? []} novelId={id} />
+          </div>
         </TabsContent>
 
         <TabsContent value="chapters" className="mt-4">
@@ -646,10 +679,13 @@ export default function NovelDetailPage() {
             onReplace={handleReplace}
             onConvert={handleConvert}
             onPdfTranslate={handlePdfTranslate}
+            onScanFix={handleScanFix}
             onResplit={handleResplit}
             onSplitMultiple={handleSplitMultiple}
             onMergeMultiple={handleMergeMultiple}
             onMergeParts={handleMergeParts}
+            activeSubTab={activeSubTab}
+            onActiveSubTabChange={setActiveSubTab}
           />
         </TabsContent>
       </Tabs>
@@ -675,6 +711,14 @@ export default function NovelDetailPage() {
         onOpenChange={setPdfTranslateOpen}
         novelId={id}
         chapterIds={pdfTranslateChapterIds}
+        chapters={chapters ?? []}
+      />
+
+      <BulkScanFixDialog
+        open={scanFixOpen}
+        onOpenChange={setScanFixOpen}
+        novelId={id}
+        selectedChapterIds={scanFixChapterIds}
         chapters={chapters ?? []}
       />
 

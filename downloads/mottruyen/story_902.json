@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "902",
+        "NAME": "Tiểu Tiên Hữu Độc",
+        "CHAPTER": [
+            {
+                "id": "212739",
+                "name": "Chương 001: Mười năm"
+            }
+        ],
+        "TOTALCHAPTER": "305",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp",
+        "AUTHOR": "Đậu Tử Nhạ Đích Họa",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Nh&acirc;n vật ch&iacute;nh xuất ph&aacute;t từ một c&aacute;i v&otilde; học thế gia chuy&ecirc;n dụng độc. Tổ sư gia truyền lại l&agrave; tu luyện đại th&agrave;nh c&oacute; thể đắc đạo th&agrave;nh ti&ecirc;n cơ m&agrave; hậu bối ngu qu&aacute; ko luyện được n&ecirc;n cho rằng sư tổ ch&eacute;m gi&oacute;. \r\n&nbsp;\r\nĐến một ng&agrave;y ph&aacute;t hiện ra đ&uacute;ng l&agrave; c&oacute; người tu ch&acirc;n thật. Sau đ&oacute; ph&aacute;t hiện c&oacute; một c&aacute;i &acirc;m mưu khủng khiếp xuy&ecirc;n suốt ng&agrave;n năm. Nh&acirc;n vật ch&iacute;nh dựa theo c&ocirc;ng ph&aacute;p gia truyền dần dần đi t&igrave;m hiểu &acirc;m mưu kia.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

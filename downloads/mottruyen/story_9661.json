@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "9661",
+        "NAME": "Harry Potter: Ta Là Thánh Đấu Sĩ",
+        "CHAPTER": [
+            {
+                "id": "3259996",
+                "name": "Chương 1: Tai Nạn Bất Ngờ. Trở Thành Thánh Đấu Sĩ"
+            }
+        ],
+        "TOTALCHAPTER": "71",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Xuyên Không, Đồng Nhân, Trùng Sinh",
+        "AUTHOR": "Iosephus_Anh",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Một thanh niên tự kỷ của TK XXI, do sai lầm của một vị thần, mang theo sức mạnh của Thánh Đấu Sĩ, chết đi,  xuyên qua tời thế giới Harry Potter. <br />\r\nLiệu hắn sẽ làm thay đổi thế giới phù thủy như thế nào? Truyền thuyết về hắn có được ghi lại hay không?<br />\r\n<br />\r\nP/S: Đây là lần đầu em viết truyện. Hồi trước đi học, ngữ văn cũng chỉ được trên trung bình thôi, văn phong có thể không hay, nhưng mà ta hứa sẽ cố gắng viết cho xong. Mong mấy lão úng hộ, chỉ giáo để em có thể viết hay hơn.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

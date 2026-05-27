@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "5028",
+        "NAME": "Nông Phu Truyền Kỳ",
+        "CHAPTER": [
+            {
+                "id": "1765554",
+                "name": "Chương 1: Chán nản học sinh tốt nghiệp"
+            }
+        ],
+        "TOTALCHAPTER": "95",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đô Thị",
+        "AUTHOR": "Quan Hán Thì",
+        "TRANS": "Nvccanh",
+        "DESC": "Sau khi tốt nghiệp kh&ocirc;ng t&igrave;m được việc l&agrave;m? Kh&ocirc;ng sao, về nh&agrave; l&agrave;m ruộng đi!<br /><br />Hắn do điếu ti biến th&agrave;nh người gi&agrave;u c&oacute; chỉ l&agrave; mấy ng&agrave;y. . .<br /><br />Hắn loại rau dưa, nắp lều lớn, bao đập chứa nước, mở c&ocirc;ng ty. . . Hạt giống căn cứ. . .<br /><br />Hắn từng đến tr&ecirc;n thảo nguy&ecirc;n kỵ qua liệt m&atilde;, đ&atilde; từng đi qua P&ecirc;ru bắt Hồ Điệp. . .<br /><br />Hắn l&agrave; Hoa Hạ quốc gia đặc th&ugrave; cống hiến thưởng người đoạt giải. . .<br /><br />\"Mọi người khỏe! Ta l&agrave; Đường Th&acirc;m Viễn, ta n&agrave;y ch&iacute;nh m&igrave;nh x&aacute;ch muối!\"",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "6727",
+        "NAME": "Bách Bộ Xuyên Dương",
+        "CHAPTER": [
+            {
+                "id": "2391163",
+                "name": "1:"
+            }
+        ],
+        "TOTALCHAPTER": "62",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Dị Giới, Xuyên Không, Nữ Hiệp",
+        "AUTHOR": "Da_Lac_Suong",
+        "TRANS": "Nhionelove",
+        "DESC": "Tương Âm và người bạn thân bất ngờ bị đưa vào thế giới trong quyển tiểu thuyết Đấu La Đại Lục 2.<br />\r\n<br />\r\nTương Âm ở đây bắt đầu khai quải, phá hủy cơ duyên của nam chính.<br />\r\n<br />\r\nLúc này nàng lại gặp trọng sinh trở về nữ chính Đường Vũ Đồng, nhiều bí mật mà trong tiểu thuyết không hề có bị phanh phui.<br />\r\n<br />\r\nTình là lúc nào sinh ra? Không ai biết cả, chỉ biết yêu ngươi yêu đến lúc ta chết đi.<br />\r\n<br />\r\n(Xin lổi mọi người vì tên truyện nhé vì mình không đổi được nên thế)",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

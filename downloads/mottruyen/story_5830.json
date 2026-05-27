@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "5830",
+        "NAME": "Thấu thị cao thủ",
+        "CHAPTER": [
+            {
+                "id": "2093113",
+                "name": "Chương 1: Tùy hứng lão bà"
+            }
+        ],
+        "TOTALCHAPTER": "644",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đô Thị",
+        "AUTHOR": "Phúc Thủ",
+        "TRANS": "๖ۣۜBáo",
+        "DESC": "Hắn là sở hữu Thiên Nhãn Thông y đạo tài ba, thế giới ngầm nhất lưu binh vương, bởi vì cưới một người cực phẩm bốc đồng mỹ nữ lão bà, hắn trở về đô thị trở thành hộ hoa cao thủ! Xem bệnh một chút, tán gái, đánh một chút cao phú soái, đuổi theo hắc nhị đại . . .",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

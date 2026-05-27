@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "10140",
+        "NAME": "Long Hồn Võ Tôn",
+        "CHAPTER": [
+            {
+                "id": "3404768",
+                "name": "Chương 1: Xuyên việt dị giới"
+            }
+        ],
+        "TOTALCHAPTER": "1250",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo, Dị Giới, Xuyên Không",
+        "AUTHOR": "Tòng Thử Phấn Tiến",
+        "TRANS": "808",
+        "DESC": "bộ đội đặc chủng vương Đoạn Thần, thành công truy hồi X quốc thần khí Luyện Yêu Hồ, lại bị phản đồ bán đứng thân hãm lớp lớp vòng vây, cuối cùng lựa chọn cùng địch nhân đồng quy vu tận. Sau khi tỉnh lại, hắn lại phát hiện mình xuyên việt đến võ đạo thế giới, hơn nữa, thần khí Luyện Yêu Hồ trở thành Mệnh Hồn của hắn, có được thôn phệ vạn thú năng lực. Kỳ Lân Hỏa Sư, Nghiệt Long Băng Ly, Thánh Viêm Chu Tước, Lôi Quang Côn Bằng, vô luận loại nào cường đại Thần Thú, đều có thể bị Luyện Yêu Hồ thôn phệ, cũng hấp thu đến năng lực của bọn nó, hóa thành chính mình dùng! Từ đó, Đoạn Thần bắt đầu rồi một đoạn nghịch thiên siêu phàm, cùng thiên địa tranh phong quật khởi hành trình. Đoạt Long tộc truyền thừa, uẩn sinh Long Thần huyết mạch, hồn võ song tu, bất khuất thiếu niên lấy đỉnh phong xu thế, uy chấn thiên địa tam giới, ...",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

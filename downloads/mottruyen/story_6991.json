@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "6991",
+        "NAME": "Đạp Thiên Chiến Thần",
+        "CHAPTER": [
+            {
+                "id": "2480668",
+                "name": "Chương 1: Thượng Quan Vân Diêu"
+            }
+        ],
+        "TOTALCHAPTER": "25",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo",
+        "AUTHOR": "Hà Dĩ Sâm",
+        "TRANS": "๖ۣۜNam ๖ۣۜĐế ๖ۣۜVương",
+        "DESC": "Thiên phi vân lên càn khôn vĩnh, thuật rơi vãi bút lạc Lạc Dương lâu. <br />\r\nHành khúc hét giận dữ thiên vực đãng, thần kỹ vũ động anh hùng tâm!<br />\r\nMột kiếm mẫn ân cừu, cười một tiếng cửu tiêu động, một nhân tình nghĩa nồng, giận dữ vì hồng nhan!",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

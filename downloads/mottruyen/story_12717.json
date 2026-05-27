@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "12717",
+        "NAME": "Câu Chuyện Đời Thường Của Tôi",
+        "CHAPTER": [
+            {
+                "id": "4106430",
+                "name": "Chương 1: Nỗi Lòng Của Bản Thân"
+            }
+        ],
+        "TOTALCHAPTER": "5",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đô Thị, Huyền Ảo, Khoa Huyễn",
+        "AUTHOR": "myham999",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Một chàng trai trẻ với cuộc sống đầy dẫy đen đủi nhưng lại mang tới tiếng cười cho người đọc. <br />\r\nTruyện sẽ được viết theo dạng kể lại theo ngôi thứ nhất, và hoàn toàn do chính mình sáng tác.<br />\r\nTrong truyện sẽ có rất nhiều thứ nhạy cảm, nên hãy xem lại mình đã đủ 18 chưa nhé.<br />\r\nXin lưu ý truyện chỉ là tưởng tượng mình sẽ ko chịu trách nhiệm nếu có gì xảy ra tương tự trong đời thực",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

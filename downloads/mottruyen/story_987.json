@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "987",
+        "NAME": "Vô Lương Thần Y",
+        "CHAPTER": [
+            {
+                "id": "273819",
+                "name": "Chương 1:  lớn tuổi nam hoang mang"
+            }
+        ],
+        "TOTALCHAPTER": "903",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đô Thị, Dị Năng",
+        "AUTHOR": "Chú Bò Thật Thà",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Hắn,Đường Duệ Minh l&agrave; một t&ecirc;n lười học ham chơi, mặc d&ugrave; xuất th&acirc;n từ  ban l&acirc;m s&agrave;ng kho&aacute; năm ba trường y khoa Thượng Hải nhưng kiến thức trong  đầu kh&ocirc;ng c&oacute; lấy một mống.\r\n<br />Sở th&iacute;ch lớn nhất của hắn l&agrave; lẻn v&agrave;o c&aacute;c  c&ocirc;ng vi&ecirc;n ,xem l&eacute;n người ta h&ocirc;n h&iacute;t hoặc l&agrave;m tr&ograve;. Trong một lần t&igrave;nh cờ,  bị một &ocirc;ng gi&agrave; lừa b&aacute;n cho hắn cuốn s&aacute;ch &ldquo;trong l&ograve;ng thiếu nữ&rdquo; chỉ c&oacute;  v&agrave;i trang đầu diễn tả cảnh trai g&aacute;i ,c&ograve;n lại sau đ&oacute; to&agrave;n bộ nội dung đều  l&agrave; viết về Trung y b&iacute; tịch v&agrave; c&aacute;c toa thuốc kỳ qu&aacute;i, v&agrave; kể từ l&uacute;c đ&oacute;  cuộc đời hắn đ&atilde; bước sang trang mới.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

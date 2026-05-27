@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "4930",
+        "NAME": "Đô thị phách lối Huyết Vu",
+        "CHAPTER": [
+            {
+                "id": "1734121",
+                "name": "Chương 1:  phá Châu Tử 50 khối"
+            }
+        ],
+        "TOTALCHAPTER": "30",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đô Thị",
+        "AUTHOR": "Tiết tấu Bạo Biểu",
+        "TRANS": "Con Của Thần",
+        "DESC": "B&igrave;nh thường tiểu tử ngẫu nhi&ecirc;n đạt được một khỏa thần b&iacute; Huyết Ch&acirc;u, đi đến vi&ecirc;n thời cổ đại Huyết Vu chi đạo, từ đ&oacute; nghịch tập Nữ Thần, treo l&ecirc;n đ&aacute;nh Đệ nhị, đi ra ch&iacute;nh m&igrave;nh b&igrave;nh thường lồng giam, ở ti&ecirc;u x&agrave;i một ch&uacute;t trong đ&ocirc; thị đi đến ngưu bức đ&aacute;nh mặt kim quang đại đạo. <br /> <br /> **CV : ng&agrave;y đầu 10c , 5c / 1 tuần<br /> <br /> ( t&igrave;nh trạng : tạm dừng )<br /> <br /> ( l&yacute; do : chờ t/g ra -&gt; 350c )",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

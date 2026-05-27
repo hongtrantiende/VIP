@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "5144",
+        "NAME": "khoa học tu tiên",
+        "CHAPTER": [
+            {
+                "id": "1824765",
+                "name": "CHƯƠNG 1: Thí nghiệm chiết xuất và cấy ghép linh hồn"
+            }
+        ],
+        "TOTALCHAPTER": "23",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp, Xuyên Không",
+        "AUTHOR": "Lam Tinh Kiếp",
+        "TRANS": "thaohai",
+        "DESC": "Một gã thiên tài môn khoa học sinh vật trong một lần lấy mẫu thực nghiệm linh hồn nảy sinh biến cố , sau khi tỉnh lại phát hiện chính mình xuất hiện tại một cái tu chân thế giới.<br />\r\n<br />\r\n. . . . . .<br />\r\n<br />\r\nVạn năm lúc sau, Đỗ Phàm ngự kiếm trước luân hồi bàn, thì thào tự nói: \"Ta ở trên con đường tu tiên này thật lâu mà vẫn cô đơn 1 mình,ta cuối cũng cũng đến nơi ta hướng đến, cũng mất đi mục đích của ta, chính là ai lại hiểu được, ta tình nguyện không có được màcũng không bằng mất đi, nhưng là nó, dĩ nhiên tồn tại, không thể thay đổi. . . . . .\"<br />\r\n<br />\r\nThật lâu sau, lại truyền ra thanh âm cô tịch của Đỗ Phàm: \"Quên đi, nơi này đã không có thứ gì có thể khiến ta lưu luyến, không bằng, thành thần đi. . . . .",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

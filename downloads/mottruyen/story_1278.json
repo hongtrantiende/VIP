@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "1278",
+        "NAME": "Phúc Vận Thiên Kiêu",
+        "CHAPTER": [
+            {
+                "id": "507740",
+                "name": "Chương 1: Giấc mộng Nam Kha"
+            }
+        ],
+        "TOTALCHAPTER": "121",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo",
+        "AUTHOR": "Tịch Nguyệt Sơ Thất",
+        "TRANS": "Đi_tìm_hạnh_phúc",
+        "DESC": "Nơi n&agrave;y c&oacute; cường đại Vũ Tu, giơ tay nhấc ch&acirc;n, lật sơn ng&atilde; hải!<br /><br />Nơi n&agrave;y c&oacute; cường đại Ph&ugrave; Tu, một &yacute; niệm, long trời lở đất!<br /><br />Nơi n&agrave;y c&oacute; biến th&aacute;i Đan Tu, kh&ocirc;ng đồng dạng như vậy phương thức chiến đấu, k&igrave;nh bạo người &aacute;nh mắt.<br /><br />Nơi n&agrave;y c&oacute; hay thay đổi chiến tướng, bọn hắn nhường chiến đấu, đ&atilde; trở th&agrave;nh một loại nghệ thuật.<br /><br />Nơi n&agrave;y c&oacute;, v&ocirc; số chủng tộc, nơi n&agrave;y giảng thuật, một thi&ecirc;n t&agrave;i thiếu ni&ecirc;n quật khởi lịch tr&igrave;nh! Nơi n&agrave;y c&oacute; phấn kh&iacute;ch chuyện xưa! Người ở nơi n&agrave;o?",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "6935",
+        "NAME": "Ma Pháp Tiểu Phong",
+        "CHAPTER": [
+            {
+                "id": "2600242",
+                "name": "Chương 35: Đào giếng"
+            }
+        ],
+        "TOTALCHAPTER": "379",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Linh Dị",
+        "AUTHOR": "haimac0095359119",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Ca Đào Giếng đừng sem",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

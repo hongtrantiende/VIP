@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "12554",
+        "NAME": "Harry Potter Và Sự Trỗi Dậy Của Văn Minh",
+        "CHAPTER": [
+            {
+                "id": "4066142",
+                "name": "Chương 1: Claire Healy Acres"
+            }
+        ],
+        "TOTALCHAPTER": "163",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Dị Năng, Dị Giới, Đồng Nhân",
+        "AUTHOR": "Xuyết Khấp",
+        "TRANS": "Vô Trung Sinh Hữu",
+        "DESC": "Trọng sinh tại Harry Potter thế giới, dẫn chúng ta cảm nhận thế giới này ma pháp kỳ diệu .<br />\r\nKhông ai cảm thấy Vu Sư quá yếu đuối sao ? <br />\r\nCùng người phàm không khác mấy thân thể tư chất , khoảng cách khá gần ma trượng công kích khoảng cách , phong bế đích tư tưởng cùng xã hội quần thể ,chỉ cần một tên tay súng bắn tỉa là có thể nháy mắt giết một mảng lớn ! <br />\r\nĐây là một Ma pháp văn minh quật khởi cố sự, đây là một tên sau khi xuyên qua phù thủy quý tộc cứu vong đồ tồn cố sự về phần cản đường mỗ Hắc Ma Vương!",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

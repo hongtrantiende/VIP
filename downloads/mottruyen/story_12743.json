@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "12743",
+        "NAME": "Đô Thị Kiêu Hùng Hệ Thống",
+        "CHAPTER": [
+            {
+                "id": "4111235",
+                "name": "Chương  1: Giang Bạch sống lại"
+            }
+        ],
+        "TOTALCHAPTER": "2049",
+        "IMG": "https://static.cdnno.com/poster/do-thi-kieu-hung-he-thong/150.jpg",
+        "CAT": "Đô Thị, Xuyên Không",
+        "AUTHOR": "Phong Vũ Thiên Hạ",
+        "TRANS": "HacTamx",
+        "DESC": "Mỹ nữ? Các ngươi đều đừng quấn quít lấy ta, ta chỗ này quá nhiều không giúp được. Tiền? Ta yêu thích! Nhưng là cũng quá nhiều. Quyền lợi! Đây mới là ta yêu nhất, nhưng là ta quyền lợi đã lớn đến chính ta đều sợ hãi! Các ngươi gọi ta Giang ca? Đó là ta trước đây xưng hô, bây giờ người ta cũng gọi ta \"Giang tiên sinh\", bọn họ lão nói ta dậm chân một cái nửa cái thiên hạ đều run sợ, ngạch ta trên chân có hay không khí lực lớn như vậy a, bọn họ lão nói ta câu nói đầu tiên là gió tanh mưa máu? Đùa giỡn, ca ham muốn hòa bình, bọn họ lão nói ta hô mưa gọi gió trung ngoại đều biết? Đùa giỡn bọn họ biết cái gì a, vòng bọn họ nói chuyện với ta? ! Hệ Thống giáng lâm, tiểu bảo an Giang Bạch Kiêu Hùng Chi Lộ, dâng trào hướng lên trên, đã xảy ra là không thể ngăn cản.",
+        "THUMB": "https://static.cdnno.com/poster/do-thi-kieu-hung-he-thong/150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

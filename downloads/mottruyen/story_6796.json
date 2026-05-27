@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "6796",
+        "NAME": "Tuyệt phẩm tiểu nông dân",
+        "CHAPTER": [
+            {
+                "id": "2422488",
+                "name": "Chương 01: Thi đại học thất bại"
+            }
+        ],
+        "TOTALCHAPTER": "81",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đô Thị",
+        "AUTHOR": "Thương hiền mộng hồn",
+        "TRANS": "dantrontu",
+        "DESC": "Thiếu niên ở sơn thôn bị thân nhân bức bách ly biệt quê hương đi vào phồn hoa đô thị, trời sinh tinh cách trong sáng  để hắn thu được rất nhiều mỹ nữ ưu ái, mà một khối ngọc bội thần bí thì để hắn từ đó tung hoành đô thị, vui vẻ sung sướng!",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

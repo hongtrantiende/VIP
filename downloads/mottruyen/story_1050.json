@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "1050",
+        "NAME": "La Bàn Vận Mệnh",
+        "CHAPTER": [
+            {
+                "id": "365599",
+                "name": "Chương 1: Đồ cổ nhi"
+            }
+        ],
+        "TOTALCHAPTER": "960",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo",
+        "AUTHOR": "Thủy Bình Diện",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Bạn nghĩ sao khi một ng&agrave;y kia bạn c&oacute; cơ hội biến những điều ước của m&igrave;nh th&agrave;nh hiện thực?\r\n&nbsp;\r\nDương Thi&ecirc;n Vấn sau khi nhặt được một c&aacute;i la b&agrave;n m&agrave; kh&ocirc;ng ngờ đ&oacute; l&agrave; một c&aacute;i la b&agrave;n vận mệnh, c&aacute;i la b&agrave;n đ&atilde; thay đổi vận mệnh cuộc đời của anh ta. <br /><br />Cứ giải được một tầng mật m&atilde; th&igrave; sẽ được một ước nguyện, cứ như vậy Dương Thi&ecirc;n Vấn đ&atilde; từng bước đi l&ecirc;n con đường tu ti&ecirc;n, con đường trở th&agrave;nh một huyền thoại...",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

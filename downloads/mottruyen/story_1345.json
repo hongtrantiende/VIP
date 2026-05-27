@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "1345",
+        "NAME": "Diệt Tẫn Thương Khung",
+        "CHAPTER": [
+            {
+                "id": "557792",
+                "name": "Chương 01: Đường Huyền"
+            }
+        ],
+        "TOTALCHAPTER": "253",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo",
+        "AUTHOR": "Tiêu Phong",
+        "TRANS": "Dạ Hương Lan",
+        "DESC": "Nắm giữ Cổ Đế chi nh&atilde;n, đạp ph&aacute; Cửu Thi&ecirc;n Thương Khung!<br /><br />Đ&acirc;y l&agrave; một c&aacute;i thiếu ni&ecirc;n quật khởi h&agrave;nh tr&igrave;nh!<br /><br />Cũng l&agrave; một c&aacute;i đến từ địa cầu linh hồn trọng sinh chi lữ!<br /><br />B&agrave;ng bạc đại lục, mọc l&ecirc;n san s&aacute;t như rừng chủng tộc, s&aacute;ng ch&oacute;i v&otilde; đạo, ch&iacute; cao bảo vật, tại truy đuổi Bất Hủ tr&ecirc;n đường, v&ocirc; số thi&ecirc;n t&agrave;i va chạm, kịch liệt m&agrave; nhiệt huyết!<br /><br />Ngươi muốn, đều ở 《 Diệt Tẫn Thương Khung 》!",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

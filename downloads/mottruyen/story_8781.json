@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "8781",
+        "NAME": "Vạn Diễn Đạo Tôn",
+        "CHAPTER": [
+            {
+                "id": "3009638",
+                "name": "Chương 1: Trần Vị Danh :"
+            }
+        ],
+        "TOTALCHAPTER": "904",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp, Dị Giới",
+        "AUTHOR": "Tâm Như Bàn Thạch",
+        "TRANS": "๖ۣۜQuân ๖ۣۜVô ๖ۣۜTà",
+        "DESC": "Đạo Văn, một loại diễn dịch thiên địa huyền bí văn lạc, Đạo sinh vạn thiên, lĩnh ngộ về sau liền có tới xứng đôi lực lượng.<br />\r\n<br />\r\n\tCực Đạo, trong truyền thuyết người tu hành cảnh giới tối cao, trăm sông đổ về một biển, bất luận cái gì Đạo Văn tu luyện tới cực hạn đều có thể chưởng khống thế giới.<br />\r\n<br />\r\n\tBàn Cổ, Phục Hi, Nữ Oa, Chí Thánh Tiên Sư, những này Viễn Cổ Thần Linh biến mất phía sau đến tột cùng lại cất giấu như thế nào bí mật?<br />\r\n<br />\r\n\tTrần Vị Danh, một cái bị xem như phế vật sát thủ học đồ, vô pháp cảm ngộ bất luận cái gì Đạo Văn, lại tại sau khi giác tỉnh có được một đôi nhưng nhìn phá Đạo Văn quy luật con mắt, từ đó đi đến tu chân cực đạo con đường.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

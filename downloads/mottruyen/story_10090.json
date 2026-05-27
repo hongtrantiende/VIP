@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "10090",
+        "NAME": "Tuyết Đế",
+        "CHAPTER": [
+            {
+                "id": "3390774",
+                "name": "Chương 1 : Trấn Hồn Giới"
+            }
+        ],
+        "TOTALCHAPTER": "1",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp, Kiếm Hiệp, Dị Năng",
+        "AUTHOR": "theanhdz",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Truyện Do mình tập sáng tác. Có thể ko hay. Mong ae ủng hộ. Có thể hơi mang xu hướng tiên hiệp của tq",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

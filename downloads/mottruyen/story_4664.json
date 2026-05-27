@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "4664",
+        "NAME": "Phần Thiên Tuyệt Thần",
+        "CHAPTER": [
+            {
+                "id": "1652276",
+                "name": "Chương 1:  phản bội"
+            }
+        ],
+        "TOTALCHAPTER": "31",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp",
+        "AUTHOR": "Hồn Thánh",
+        "TRANS": "№.1ŤiểußạchKiểm",
+        "DESC": "Cái gì là chính? Cái gì là tà?<br />\r\n<br />\r\n\tNếu như Thiên Địa vô tình, ta Ninh Hóa thân Tà Quân.<br />\r\n<br />\r\n\tTiên, Ma, Yêu, cùng ta vô tình ý.<br />\r\n<br />\r\n\tChinh chiến Thiên Địa, trảm thần diệt ma, chỉ vì hồng nhan trọng sinh.<br />\r\n<br />\r\n\tThành công thì sao hả? Không có ngươi, hết thảy đều không có ý nghĩa.<br />\r\n<br />\r\n\tCùng trời tranh mệnh, quân lâm thiên hạ!<br />\r\n<br />\r\n\tHồng nhan ngọc vẫn bi trời xanh, chiến thể dục huyết lệ thương thiên!",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

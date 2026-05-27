@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "7608",
+        "NAME": "Chí Tôn Thần Ma",
+        "CHAPTER": [
+            {
+                "id": "2686367",
+                "name": "Chương 1: Bi thảm trọng sinh"
+            }
+        ],
+        "TOTALCHAPTER": "3568",
+        "IMG": "https://static.cdnno.com/poster/chi-ton-than-ma/150.jpg",
+        "CAT": "Tiên Hiệp, Huyền Ảo, Trùng Sinh",
+        "AUTHOR": "Thiên Ý Lưu Hương",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Thần Vũ Đại Lục , dương võ kính thần . Một đời thiên kiêu , Võ thánh trọng sinh . Thái nhất chân thủy , luyện thể nhập đạo . Quyền lay trời đất , chân đạp thiên kiêu . Tuyệt thế thiên đế , vạn pháp thành không . \"Có dũng khí coi rẻ ca nhân , hết thảy đập chết!\" \"Dám động ca nữ nhân , đều đã trầm miên!\" \"Ca chỉ là một thần thoại , không ai sánh bằng!\" —— đến từ « vô thượng thiên đế »",
+        "THUMB": "https://static.cdnno.com/poster/chi-ton-than-ma/150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

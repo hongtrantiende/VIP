@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "2325",
+        "NAME": "Tụ Linh Châu",
+        "CHAPTER": [
+            {
+                "id": "776012",
+                "name": "Chương 1 : Tiên Nhân Chiến Trường"
+            }
+        ],
+        "TOTALCHAPTER": "943",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo",
+        "AUTHOR": "Sư Tử Đông",
+        "TRANS": "Nguyễn Bảo Ngọc, Motngaythieue",
+        "DESC": "Sơn th&ocirc;n thiếu ni&ecirc;n gặp phải thần ch&acirc;u , từ nay bước l&ecirc;n con đường v&otilde; đạo . mị hoặc ma nữ 、 th&aacute;nh khiết ti&ecirc;n tử 、 xinh đẹp tinh linh , sắc th&aacute;i ri&ecirc;ng mỹ nữ v&acirc;y lượn b&ecirc;n người . cường đại Ma giới ch&iacute; t&ocirc;n 、 cao qu&yacute; ti&ecirc;n giới đế vương 、 quỷ dị y&ecirc;u giới đứng đầu , từng c&aacute;i một cường đại tồn tại cũng bởi v&igrave; hắn xuất hiện . v&igrave; sinh tồn , v&igrave; bảo vệ m&igrave;nh nữ nh&acirc;n , hắn chu to&agrave;n với những thứ n&agrave;y cường giả ở giữa , từng bước một bước l&ecirc;n cường giả tột c&ugrave;ng",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

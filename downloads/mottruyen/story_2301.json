@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "2301",
+        "NAME": "Trảm Long",
+        "CHAPTER": [
+            {
+                "id": "883026",
+                "name": "Chương 32: 30 cấp Lâm Uyển Nhi"
+            }
+        ],
+        "TOTALCHAPTER": "1374",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đô Thị, Võng Du",
+        "AUTHOR": "Thất Lạc Diệp",
+        "TRANS": "۩£oli»Thanh±Tâm, Mazi, Liu",
+        "DESC": "Hắn muốn thay đổi như chong ch&oacute;ng, trở tay l&agrave;m mưa!<br /> <br /> Hắn muốn ph&aacute; vỡ mệnh c&aacute;ch, thay đổi C&agrave;n Kh&ocirc;n!<br /> <br /> Hắn muốn giết hết phụ hắn chi nh&acirc;n, t&agrave;n s&aacute;t hết dối tr&aacute; thế hệ!<br /> <br /> Hắn muốn h&ocirc;m nay, lại che kh&ocirc;ng được mắt của ta!<br /> <br /> Hắn muốn c&aacute;i n&agrave;y đấy, lại v&ugrave;i bất trụ l&ograve;ng ta!<br /> <br /> Hắn muốn h&ocirc;m nay b&ecirc;n tr&ecirc;n Chư Thần, tan th&agrave;nh m&acirc;y kh&oacute;i!<br /> <br /> ...<br /> <br /> Hắn muốn 500 khối tiền, trước giao tiền thu&ecirc; nh&agrave;! !",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "12639",
+        "NAME": "Học Bá",
+        "CHAPTER": [
+            {
+                "id": "4377593",
+                "name": "Chương  1: Ta tới, mở mắt!"
+            }
+        ],
+        "TOTALCHAPTER": "40",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo",
+        "AUTHOR": "Tam Bàn",
+        "TRANS": "Con nhà người ta",
+        "DESC": "Nếu như tri thức tr&ecirc;n thế giới n&agrave;y biến mất hết chỉ trong một đ&ecirc;m, rơi xuống vực s&acirc;u lạc hậu ngu muội, ai sẽ ph&aacute;t hiện ra định luật vạn vật hấp dẫn?<br /> Vẫn sẽ bị quả t&aacute;o rơi tr&uacute;ng sao?<br /> Sẽ c&ograve;n một thanh ni&ecirc;n t&ecirc;n l&agrave; Einstein sao?<br /> Đ&acirc;y l&agrave; một thế giới m&agrave; tri thức ch&iacute;nh l&agrave; lực lượng.<br /> Học b&aacute; tr&ecirc;n Tr&aacute;i Đất xuy&ecirc;n tới, Lưu M&ocirc;ng ngắm nh&igrave;n bầu trời, thở d&agrave;i, s&acirc;u k&iacute;n trang bức: Ta tới, mời mở mắt!",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

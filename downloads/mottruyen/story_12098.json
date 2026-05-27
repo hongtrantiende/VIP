@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "12098",
+        "NAME": "One Piece Sự Giáng Lâm Của Vị Thần",
+        "CHAPTER": [
+            {
+                "id": "3946978",
+                "name": "Chương 1: Biển Angel"
+            }
+        ],
+        "TOTALCHAPTER": "1488",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Khoa Huyễn, Đồng Nhân",
+        "AUTHOR": "thiên triều thành chủ",
+        "TRANS": "Nhiều Converter",
+        "DESC": "( B.faloo mạng tiếng Trung cấp A ký kết tác phẩm: Hải tặc: Thần chi giáng lâm  )  Chính nghĩa tất thắng? Đây là đương nhiên! Bởi vì chỉ có bên thắng, mới là chính nghĩa!  P/s 1: Main xuyên không đến đảo mây, giết Enel cướp quả Goro Goro no Mi(*trái Sấm sét). Tu luyện xong bắt đầu đi đánh cướp cường hóa mình. Main này sát phạt quyết đoán, không có thánh mẫu. Trí thông minh thù đọc đến c25 vẫn thấy ổn, ko phải kiểu vô não :D P/s 2: Đây là truyện yêu cầu, truyện của trang B.faloo nên tốc độ ra chương thì không cần nói, scan ảnh gạch chân nên hên xui thôi. Có tí Kim đậu ăn chống đói chắc sẽ scan nhanh hơn, ahihi =))",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

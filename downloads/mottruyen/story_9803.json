@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "9803",
+        "NAME": "Tu La Võ Thần",
+        "CHAPTER": [
+            {
+                "id": "3308959",
+                "name": "Chương 1: Ngoại Môn Đệ Tử"
+            }
+        ],
+        "TOTALCHAPTER": "30",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo",
+        "AUTHOR": "Hiền Lành Ong Mật",
+        "TRANS": "kenzdark",
+        "DESC": "Luận tiềm lực, không tính thiên tài, nhưng huyền công võ kỹ, đều có thể vô sự tự thông. Luận mị lực, thiên kim tiểu thư tính là gì, yêu nữ Thánh nữ, đều yêu ta muốn ngừng mà không được. Luận thực lực, mặc cho ngươi có ngàn vạn chí bảo, nhưng định không địch lại ta giới linh đại quân. Ta là ai? Thiên hạ chúng sinh xem ta vì Tu La, lại không biết, ta lấy Tu La thành Võ Thần. Đẳng cấp: Linh Vũ, Nguyên Vũ, Huyền Vũ, thiên vũ, Vũ Quân, Võ Vương, Võ Đế, Vũ Tổ....",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

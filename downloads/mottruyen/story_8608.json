@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "8608",
+        "NAME": "Danh chấn Vạn Cổ",
+        "CHAPTER": [
+            {
+                "id": "2950911",
+                "name": "Chương 1:mở đầu"
+            }
+        ],
+        "TOTALCHAPTER": "44",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp",
+        "AUTHOR": "Thiên Lâu",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Danh chấn Vạn Cổ giới thiệu vắn tắt: đây là một nhân cách người chúa tể thiên địa thế giới.<br />\r\n<br />\r\n\tNhân cách chia Cửu Tỉnh, Nhất Tỉnh nhất trọng thiên. Ba tỉnh có thể siêu phàm, sáu tỉnh đệ nhị mệnh, Cửu Tỉnh như Tiên Thần.<br />\r\n<br />\r\n\tMà lại xem một giới bị lưu phóng chán nản công tử điện hạ, lấy giết chóc nhân cách tại biên cảnh quật khởi. Bảy năm ẩn nhẫn, cường thế trở về, Cửu Tử bất diệt, danh chấn Vạn Cổ!<br />\r\n======================================",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

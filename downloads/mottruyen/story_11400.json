@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "11400",
+        "NAME": "Siêu Thần Học Viện Chi Hư Không Kim Dực",
+        "CHAPTER": [
+            {
+                "id": "3786108",
+                "name": "Chương 1: Lương Băng"
+            }
+        ],
+        "TOTALCHAPTER": "371",
+        "IMG": "https://static.cdnno.com/poster/sieu-than-hoc-vien-chi-hu-khong-kim-duc/150.jpg",
+        "CAT": "Tiên Hiệp, Huyền Ảo, Khoa Huyễn",
+        "AUTHOR": "Chức nghiệp Gà mờ",
+        "TRANS": "Tiêu Dao",
+        "DESC": "từ Quỷ Cốc Sạn Đạo té xuống Khương Kỳ, vốn cho là mình chết chắc, chưa từng nghĩ, vừa mở mắt lại đi vào Siêu Thần Học Viện Trái Đất, tại một cái thần bí hệ thống tác dụng dưới, hắn trở thành Siêu Cấp Chiến Sĩ, từ đó, hắn bước lên chỉ huy Trái Đất tiến vào Hư Không thời đại con đường. .",
+        "THUMB": "https://static.cdnno.com/poster/sieu-than-hoc-vien-chi-hu-khong-kim-duc/150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

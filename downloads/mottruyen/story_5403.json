@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "5403",
+        "NAME": "Chính Thái Hàn Ngu",
+        "CHAPTER": [
+            {
+                "id": "1913156",
+                "name": "Chương 1: Mộng bắt đầu thời điểm"
+            }
+        ],
+        "TOTALCHAPTER": "706",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đô Thị",
+        "AUTHOR": "Phong Ma Sống Được Bộ Trưởng",
+        "TRANS": "๖ۣۜTà ๖ۣۜQuân",
+        "DESC": "Đ&atilde; từng ta lấy v&igrave; c&aacute;i thế giới n&agrave;y vứt bỏ ta m&agrave; đi, thẳng đến... Ta nh&igrave;n thấy n&agrave;y Ca Nhạc Hội.<br /> <br /> Về sau ta cho l&agrave; ta đạt được thế giới, nhưng thế giới vứt bỏ c&aacute;c n&agrave;ng... Thế l&agrave; ta trở lại qu&aacute; khứ.<br /> <br /> Ta đi v&agrave;o, ta cải biến, ta cho c&aacute;c n&agrave;ng hạnh ph&uacute;c, ta cho c&aacute;c n&agrave;ng th&agrave;nh c&ocirc;ng m&agrave; xứng đ&aacute;ng nhận được &mdash;&mdash; Ph&aacute;c Tr&iacute; Tiếp <br /> P/s: nữ c&oacute; SNSD, T-ara, IU....<br /> Main lợi dụng lợi thế tuổi nhỏ để chiếm tiện nghi nữ ch&iacute;nh..",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

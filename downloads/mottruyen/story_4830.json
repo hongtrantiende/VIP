@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "4830",
+        "NAME": "Ma Thực Đại Pháp Sư",
+        "CHAPTER": [
+            {
+                "id": "1701129",
+                "name": "Chương 1: Aaron · Green"
+            }
+        ],
+        "TOTALCHAPTER": "165",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo",
+        "AUTHOR": "Biến Dị Đại Tây Qua",
+        "TRANS": "Quá Lìu Tìu",
+        "DESC": "Aaron xuy&ecirc;n việt trọng sinh đến một cao ma vị diện, ở đ&acirc;y, tr&agrave;n ngập c&aacute;c loại thần b&iacute; c&ugrave;ng kh&ocirc;ng biết, c&oacute; c&aacute;c loại thần b&iacute; sự vật, Aaron mang theo một vi&ecirc;n hộ tống xuy&ecirc;n việt m&agrave; đến Thực Vật hạt giống, đi tới một c&aacute;i nghi&ecirc;n cứu bồi dưỡng Thực Vật, th&agrave;nh tựu Ma Thực Đại Ph&aacute;p Sư con đường!<br /><br />",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

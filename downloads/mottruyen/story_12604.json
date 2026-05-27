@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "12604",
+        "NAME": "Cửu Long Thiên Kiếm",
+        "CHAPTER": [
+            {
+                "id": "4081215",
+                "name": "Chương 1: Xuyên không dị giới."
+            }
+        ],
+        "TOTALCHAPTER": "7",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp, Dị Giới, Xuyên Không",
+        "AUTHOR": "01224309812",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Thiên địa  luân hồi diễn viên hóa thiên tông cân cả dị giới .<br />\r\nMình mới làm truyện nên ace thông cảm nha hihi",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

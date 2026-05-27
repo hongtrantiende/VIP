@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "4397",
+        "NAME": "Y Sư",
+        "CHAPTER": [
+            {
+                "id": "1577150",
+                "name": "Chương 1: Điển lễ"
+            }
+        ],
+        "TOTALCHAPTER": "738",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đô Thị",
+        "AUTHOR": "Thảo Tịch",
+        "TRANS": "Little Lucifer",
+        "DESC": "Bộ n&agrave;y n&oacute;i về t&acirc;y y kh&ocirc;ng n&oacute;i tới trung y nh&eacute; :v\r\nC&oacute; HỆ THỐNG phụ trợ nhưng m&agrave; đừng tưởng bở &lt;(\")\r\nC&oacute; hệ thống cũng phải tập d&agrave;i d&agrave;i mới pro được m&agrave; cũng kh&ocirc;ng phải bệnh g&igrave; cũng chữa được kh&ocirc;ng c&oacute; hệ thống vạn năng đ&acirc;u &lt;(\") n&oacute;i chung kh&ocirc;ng phải m&igrave; ăn liền &lt;(\") cẩn thận đọc.\r\n<br />T&oacute;m v&aacute;y! bộ n&agrave;y kể về một thanh ni&ecirc;n đ&oacute;a hoa tổ quốc nhờ sự trợ gi&uacute;p của hệ thống m&agrave; đi l&ecirc;n con đường chữa bệnh cứu người! l&agrave;m một đ&oacute;a hoa của tổ quốc! l&agrave;m một b&aacute;c sĩ tốt",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

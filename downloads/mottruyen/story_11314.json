@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "11314",
+        "NAME": "Mạt Thế Chi Thẻ Bài Đại Sư",
+        "CHAPTER": [
+            {
+                "id": "3750716",
+                "name": "Chương 1: Vị cuối cùng Card đại sư"
+            }
+        ],
+        "TOTALCHAPTER": "776",
+        "IMG": "https://static.cdnno.com/poster/mat-the-chi-card-dai-su/150.jpg",
+        "CAT": "Dị Giới, Mạt Thế",
+        "AUTHOR": "Diệu Thủ Ngẫu Thiên Thành",
+        "TRANS": "✓∕√๖ۣۜYurisa父",
+        "DESC": "Một cái ở trò chơi trong thế giới cực phẩm thiên tài, một cái sáng lập vô số huy hoàng Thẻ Bài đại sư, ở thông quan phó bản thời điểm, lại hết ý tiến nhập Dị Giới. Hắn chẳng những mang đến trò chơi hệ thống, còn tinh thông hầu như tất cả Thẻ Bài hợp thành.<br />\n<br />\nTa là phế vật? Không ngại, ta có hệ thống tăng level.<br />\n<br />\nNgươi có Hoàng Kim Thẻ Bài? Lão tử Kim Cương Thẻ Bài 1 tổ đè chết ngươi!<br />\n<br />\nTruyền kỳ Ma Thú thì thế nào? Thiên tài tuyệt thế thì lại thế nào? Toàn bộ ngã vào dưới chân của ta! Ngươi hỏi ta là ai? Xin gọi ta Thẻ Bài đại sư!",
+        "THUMB": "https://static.cdnno.com/poster/mat-the-chi-card-dai-su/150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

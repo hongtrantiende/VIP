@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "9781",
+        "NAME": "Hồng Sắc Chiến Thần Tiểu Hồ Tiên",
+        "CHAPTER": [
+            {
+                "id": "3301554",
+                "name": "Chương 1: Ưu thương Tiểu Hồ Tiên"
+            }
+        ],
+        "TOTALCHAPTER": "35",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp, Huyền Ảo, Ngôn Tình, Dị Giới, Nữ Hiệp",
+        "AUTHOR": "Hồng Hải Vô Ngân Động",
+        "TRANS": "ngoson227",
+        "DESC": "Hồng Hoang hoàng hại Yêu Mị sinh, năm hồ ly Địa Tiên Phàm Trần bên trong.<br />\r\n<br />\r\n\tHành thiện trừ ma lộ vẻ tiên uy, chỉnh đốn Hồ Tộc ở Tú Phong.<br />\r\n<br />\r\n\tPhụng năm hồ ly Lệnh Hồ tộc nhân trần thế, trừ bốn ác, giết Nghiệt Long, Diệt Hoàng tai, tiêu nạn lụt,<br />\r\n<br />\r\n\tNhưng mà tím Hồ Tộc ly kỳ mất tích, đưa tới hồng hỏa mầm cảnh giác,<br />\r\n<br />\r\n\tPhái bạch đại tướng quân thăm dò Vân Vụ Sơn bí mật, đuổi giết phản đồ Vân Hải Sơn.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

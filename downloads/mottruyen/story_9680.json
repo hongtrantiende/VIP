@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "9680",
+        "NAME": "Võng Du Chi Hỗn Độn Cường Thần",
+        "CHAPTER": [
+            {
+                "id": "3485195",
+                "name": "Chương 1 :"
+            }
+        ],
+        "TOTALCHAPTER": "1",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đô Thị, Võng Du, Khoa Huyễn",
+        "AUTHOR": "KatanaTatsu",
+        "TRANS": "Nhiều Converter",
+        "DESC": ".",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

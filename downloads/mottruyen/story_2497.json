@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "2497",
+        "NAME": "Thánh Kỵ Sĩ Triệu Đại Ngưu",
+        "CHAPTER": [
+            {
+                "id": "821384",
+                "name": "Chương 1: Đại Ngưu lần đầu tiên"
+            }
+        ],
+        "TOTALCHAPTER": "498",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Võng Du",
+        "AUTHOR": "Dạ Sắc Phóng Giả",
+        "TRANS": "Vivu9xx",
+        "DESC": "Kh&ocirc;ng sợ như thần đối thủ, chỉ sợ heo đồng đội! mang theo một đống trạch nam heo đồng đội, như thế n&agrave;o chiến thắng một đ&aacute;m mỹ nữ thần đối thủ? ch&iacute;nh trực, dũng cảm, thiện lương thanh ni&ecirc;n Triệu Đại Ngưu, tại mạnh nhất giả thuyết tr&ograve; chơi { ánh sáng chói lọi } ở b&ecirc;n trong sung sướng tiếng động lớn rầm rĩ, đặc sắc nhiệt huyết th&aacute;nh kỵ chi lộ!&nbsp;",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

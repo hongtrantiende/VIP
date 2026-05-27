@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "2569",
+        "NAME": "Đế Ngự Ma Đao",
+        "CHAPTER": [
+            {
+                "id": "842566",
+                "name": "Chương 1: Hàn Hiên"
+            }
+        ],
+        "TOTALCHAPTER": "20",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo",
+        "AUTHOR": "Mộng Nghệ Thương",
+        "TRANS": "Tiểu La",
+        "DESC": "Đại Thi&ecirc;n thế giới, Thi&ecirc;n địa dị đ&atilde;ng, vạn tộc đều xuất hiện, quần h&ugrave;ng c&ugrave;ng tồn tại, đường m&aacute;u tranh gi&agrave;nh đế, ai c&oacute; thể uy chấn Cửu Thi&ecirc;n? Một c&acirc;y ma đao, một b&igrave;nh rượu n&oacute;ng, H&agrave;n Hi&ecirc;n h&agrave;o h&ugrave;ng đạp huyết. Đọ sức vạn năm chi anh phong, đem vạn người chi địch. Muốn đạp ph&aacute; bờ b&ecirc;n kia tinh kh&ocirc;ng, chinh lượt Chư Thi&ecirc;n vạn giới. Ngươi d&aacute;m ngăn trở, duy nhất đao ngươi!",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

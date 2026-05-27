@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "1670",
+        "NAME": "Lăng Thiên Kiếm Thần",
+        "CHAPTER": [
+            {
+                "id": "684548",
+                "name": "Chương 1: Mất trí nhớ thiếu niên"
+            }
+        ],
+        "TOTALCHAPTER": "85",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo",
+        "AUTHOR": "Thái Hư Kiếm Ý",
+        "TRANS": "๖ۣۜNocturne, Motngaythieue",
+        "DESC": "Thế giới n&agrave;y xưa nay sẽ kh&ocirc;ng c&oacute; thần, c&oacute; bất qu&aacute; l&agrave; người mạnh mẽ m&agrave; th&ocirc;i. Khương Tiểu Ph&agrave;m vốn l&agrave; một người ph&agrave;m tục, bất ngờ thu được đạo ấn mảnh vỡ, đồng tu Phật đạo hai nh&agrave; v&ocirc; thượng Cổ Kinh, thần du Tử Vi, ngang dọc Ng&acirc;n H&agrave;, v&ocirc; địch dưới bầu trời sao, lấy bản th&acirc;n x&aacute;c minh v&ocirc; thượng đại đạo.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

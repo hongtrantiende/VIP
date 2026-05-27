@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "7930",
+        "NAME": "Long Hổ Vô Cực",
+        "CHAPTER": [
+            {
+                "id": "2772230",
+                "name": "Chương 1 : Võ Đang Bí Trủng"
+            }
+        ],
+        "TOTALCHAPTER": "8",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đô Thị, Kiếm Hiệp, Huyền Ảo, Đồng Nhân",
+        "AUTHOR": "Raikou",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Một bác sĩ đông y Hong Kong xuyên không đến Tân Tác Long Hổ Môn sau đó lại may mắn nhận được dị bảo có thể xuyên qua thời không thế là từ đây trên con đường đi tới đỉnh cao lại có thêm một cái tên mới .",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

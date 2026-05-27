@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "7418",
+        "NAME": "Cương Thi Bản Nguyên",
+        "CHAPTER": [
+            {
+                "id": "2624089",
+                "name": "Chương 1:  từ trên thi thể bước qua"
+            }
+        ],
+        "TOTALCHAPTER": "900",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp",
+        "AUTHOR": "Nhiều Converter",
+        "TRANS": "Nghiện",
+        "DESC": "Đây là một cái thượng cổ truyền kỳ, Viễn Cổ Thần Thoại, Ứng Vận mà Sinh thời đại. Đây là một cái hắc ám mê say, máu tươi mỹ lệ, điên cuồng thế giới. Nửa đêm, một cái không thể lộ ra ngoài ánh sáng Tiểu Cương Thi, tìm, chỉ là một ngụm máu tươi ấm no, lại hãm sâu Viễn Cổ Văn Minh, Thượng Cổ Di Tích bí ẩn. Nếu, hắn chỉ muốn nói —— ta thật chỉ là muốn uống một ngụm lại hương thơm lại Thuần \"Máu tươi\" !",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

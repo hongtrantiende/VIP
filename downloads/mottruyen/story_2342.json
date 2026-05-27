@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "2342",
+        "NAME": "Trong Nhà Dưỡng Cái Hồ Ly Tinh",
+        "CHAPTER": [
+            {
+                "id": "780749",
+                "name": "Chương 1:  Nhân Nguyên Kim Đan"
+            }
+        ],
+        "TOTALCHAPTER": "988",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp",
+        "AUTHOR": "Đường Xuyên",
+        "TRANS": "trang4mat",
+        "DESC": "Quyển s&aacute;ch giảng thuật ch&iacute;nh l&agrave; một g&atilde; b&igrave;nh thường b&igrave;nh thường sinh vi&ecirc;n c&ugrave;ng một g&atilde; đ&aacute;ng y&ecirc;u đẹp đẽ tiểu hồ ly kho&aacute;i hoạt song tu c&acirc;u chuyện ~~~<br /><br />==============================<br /><br />Năm 2010, thỉnh xem nh&acirc;n th&uacute;, khục khục, nh&acirc;n y&ecirc;u t&igrave;nh chưa xong...",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

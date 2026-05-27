@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "6328",
+        "NAME": "Vô Hạn Vĩnh Sinh Lục",
+        "CHAPTER": [
+            {
+                "id": "2248742",
+                "name": "Chương 1: Vĩnh Sinh Phương Hàn"
+            }
+        ],
+        "TOTALCHAPTER": "614",
+        "IMG": "https://static.cdnno.com/poster/vo-han-vinh-sinh-luc/150.jpg",
+        "CAT": "Xuyên Không",
+        "AUTHOR": "Thiển Mộ Lưu Thương",
+        "TRANS": "DarkHero",
+        "DESC": "Vượt ngang vạn giới, chinh chiến Chư Thiên. Vạn thế trường thanh, vĩnh thế trường tồn.<br />\r\n<br />\r\n<br />\r\n519c",
+        "THUMB": "https://static.cdnno.com/poster/vo-han-vinh-sinh-luc/150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

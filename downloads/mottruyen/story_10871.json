@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "10871",
+        "NAME": "Trọng Sinh Lục Bào",
+        "CHAPTER": [
+            {
+                "id": "3607776",
+                "name": "Chương 1: Thành Lục Bào Tô Văn đến Thục Sơn"
+            }
+        ],
+        "TOTALCHAPTER": "784",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp, Huyền Ảo",
+        "AUTHOR": "Thái Nguyên Tiên Tôn",
+        "TRANS": "MrKiss",
+        "DESC": "Một hiện đại linh hồn trọng sinh tại Thục Sơn thế giới Lục Bào lão tổ trên người. Không cẩn thận, thế giới hướng về không biết phương hướng chạy đi. Hồ Điệp cánh nhẹ nhàng một tấm, thế giới này trở nên không giống nhau. Hắn đến thay đổi thế giới này!<br />\r\n<br />\r\n\tHắn có thể mang cho thế giới này cái gì thay đổi? Thế giới này có thể mang cho hắn cái gì thay đổi đây?<br />\r\n<br />\r\n\tMà xem một người hiện đại làm sao tại Thục Sơn bên trong thế giới lấy Lục Bào lão tổ thân phận sinh tồn được.<br />\r\nThấy truyện bên tung của khá nhiều người đọc nên mình vừa đọc vừa convert không hứa hẹn số chương từng ngày :(.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

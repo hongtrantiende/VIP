@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "4058",
+        "NAME": "Nhất Kiếm Phi Tiên",
+        "CHAPTER": [
+            {
+                "id": "1496916",
+                "name": "Chương 1: Thiên hành kiện, quân tử lấy không ngừng vươn lên"
+            }
+        ],
+        "TOTALCHAPTER": "659",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp",
+        "AUTHOR": "Lưu Lãng Đích Cáp Mô",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Mu&ocirc;n v&agrave;n thử th&aacute;ch Liệt Hỏa l&ocirc;i đ&igrave;nh, mười năm đổi được một chi&ecirc;u kiếm &aacute;nh s&aacute;ng lạnh.<br /> <br /> Tiềm nha phục trảo mọi c&aacute;ch chịu đựng, chỉ v&igrave; h&ocirc;m nay vừa bay ng&uacute;t trời!",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

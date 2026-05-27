@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "12607",
+        "NAME": "Hiến Tế Chi Môn",
+        "CHAPTER": [
+            {
+                "id": "4082144",
+                "name": "Chương 1:: Tận thế lại một lần nữa"
+            }
+        ],
+        "TOTALCHAPTER": "10",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Khoa Huyễn, Mạt Thế",
+        "AUTHOR": "Hiên Viên Nhị Sư Huynh",
+        "TRANS": "Bỏ Của Chạy Lấy Ngưới",
+        "DESC": "Hiến tế cánh cửa giới thiệu tóm tắt: lại một lần nữa tận thế, sở thu được một toà thuộc về mình một người kỳ lạ hiến tế cánh cửa, chỉ muốn xuất ra đầy đủ hiến tế cống phẩm, là có thể hối đoái ngươi có thể tưởng tượng bất kỳ item.<br />\r\n<br />\r\n\tĐồ ăn, vũ khí, trang bị, pháp bảo, quyển sách, còn có chiến sủng cùng triệu hoán thú.<br />\r\n<br />\r\n\tGhi chú một câu: Trầm ngư, lạc nhạn, bế nguyệt, tu hoa tứ đại mỹ nữ cũng thuộc về triệu hoán thú, đồng thời là cao cấp triệu hoán thú!",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

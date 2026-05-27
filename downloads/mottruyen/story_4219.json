@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "4219",
+        "NAME": "Liệp Diễm Độc Y",
+        "CHAPTER": [
+            {
+                "id": "1530800",
+                "name": "Chương 1:  Vẽ Mặt , Ước Đấu  Quyển thứ nhất"
+            }
+        ],
+        "TOTALCHAPTER": "142",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo, Khoa Huyễn",
+        "AUTHOR": "Yêu Mị",
+        "TRANS": "thientunhi",
+        "DESC": "Dị giới đại lục, v&otilde; đạo ho&agrave;nh h&agrave;nh, người mạnh l&agrave; vua, kẻ yếu l&agrave;m n&ocirc;.<br /> <br /> Xuy&ecirc;n qua dị giới, Diệp V&ocirc; Song c&oacute; Độc Ma truyền thừa, Tu độc c&ocirc;ng, luyện độc kh&iacute;, d&ugrave;ng Độc S&aacute;t người, d&ugrave;ng Độc cứu người, Độc V&otilde; kết hợp, ho&agrave;nh h&agrave;nh thi&ecirc;n địa.<br /> <br /> Ta cười th&igrave; thi&ecirc;n địa c&ugrave;ng vui, ta căm tức, đất cằn ng&agrave;n dặm, ta cuồng th&igrave; vạn vật thần phục!",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

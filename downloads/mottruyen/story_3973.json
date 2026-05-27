@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "3973",
+        "NAME": "Tuyệt Phẩm Tiên Tôn",
+        "CHAPTER": [
+            {
+                "id": "1444585",
+                "name": "Chương 1: Nhặt được cái cái chai"
+            }
+        ],
+        "TOTALCHAPTER": "962",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Khoa Huyễn",
+        "AUTHOR": "Trì Biên Nhân",
+        "TRANS": "Yến Virus",
+        "DESC": "Cực phẩm Ti&ecirc;n Đế Lu&acirc;n Hồi tu ti&ecirc;n đường, c&oacute; chút h&egrave;n mọn bỉ ổi, tuyệt đối c&oacute; chút thuần khiết...<br /><br />Tuyệt phẩm Ti&ecirc;n T&ocirc;n: ca phẩm ch&iacute;nh l&agrave; thi&ecirc;n t&agrave;i địa bảo, Cực phẩm mỹ nh&acirc;n, th&agrave;nh tựu Tuyệt phẩm Ti&ecirc;n T&ocirc;n!",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

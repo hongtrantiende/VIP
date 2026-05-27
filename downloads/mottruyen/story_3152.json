@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "3152",
+        "NAME": "Tam Quốc Binh Chủ",
+        "CHAPTER": [
+            {
+                "id": "1074470",
+                "name": "Truy ngưu kỳ ngộ"
+            }
+        ],
+        "TOTALCHAPTER": "180",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Lịch Sử",
+        "AUTHOR": "Huyền Hoàng Phục Hưng",
+        "TRANS": "Kaitoubg",
+        "DESC": "Trọng sinh đến cuối thời Đ&ocirc;ng H&aacute;n c&oacute; thể l&agrave;m g&igrave;?<br /> <br /> Tranh b&aacute;?<br /> <br /> L&agrave;m ruộng?<br /> <br /> Cưa muội muội?<br /> <br /> M&agrave; lại xem &lsquo; H&aacute;n thất d&ograve;ng họ &rsquo;, đạt được thượng cổ binh gia truyền thừa Lưu Uy&ecirc;n &mdash;&mdash; Lưu tử hồng, như thế n&agrave;o hợp nhất m&atilde;nh tướng chủ mưu, thu cố gắng hết sức dung nhan tuyệt thế, đi&ecirc;n cuồng h&agrave;nh hạ tai to A Man, đau nhức nằm bẹp d&iacute; Lữ Bố T&ocirc;n Ki&ecirc;n, xưng b&aacute; h&aacute;n mạt!",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "10695",
+        "NAME": "Phần Thiên Kiếm Đế",
+        "CHAPTER": [
+            {
+                "id": "3553643",
+                "name": "Chương 1: Kiếm nhai ăn trộm"
+            }
+        ],
+        "TOTALCHAPTER": "121",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp",
+        "AUTHOR": "Thiên Kỵ Tuyệt Trần",
+        "TRANS": "cstdlifecstd",
+        "DESC": "Yêu nghiệt hoặc là rác rưởi chỉ ở một đường trong lúc đó, một cái chán nản trên người chịu nợ máu thiếu niên, tự võ hồn triệt để thức tỉnh cái kia một ngày lên, xảo hoạch Đế kiếm, nghịch thiên võ hồn có thể nuốt chửng vạn hồn ngưng vô thượng Thánh thể , khiến cho Thần Ma cúi đầu, dẫn mỹ nhân tận khom lưng!",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "2374",
+        "NAME": "Nữ Tổng Giám Đốc Thần Cấp Bảo Tiêu",
+        "CHAPTER": [
+            {
+                "id": "789662",
+                "name": "Chương 1: Giới thiệu đối tượng"
+            }
+        ],
+        "TOTALCHAPTER": "745",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đô Thị, Dị Năng",
+        "AUTHOR": "Mai Can Thái Thiếu Bính",
+        "TRANS": "Ganon",
+        "DESC": "T&ecirc;n s&aacute;ch c&ugrave;ng nội dung kh&ocirc;ng c&oacute; nhiều quan hệ,   đ&acirc;y l&agrave; một cuốn s&aacute;ch c&oacute; ch&uacute;t đ&ocirc; thị,   c&oacute; huyền huyễn,   c&oacute; ng&ocirc;n t&igrave;nh,   c&ograve;n c&oacute; kẹo đường chuyện xưa.\r\n&nbsp;\r\nC&ugrave;ng tac giả với&nbsp;C&ocirc; Vợ Tổng Gi&aacute;m Đốc Xinh Đẹp Của T&ocirc;i",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "6543",
+        "NAME": "Tân Lục Giới Tiên Tôn",
+        "CHAPTER": [
+            {
+                "id": "2326807",
+                "name": "Chương 1: Đào hoang thiếu niên"
+            }
+        ],
+        "TOTALCHAPTER": "213",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp, Võng Du",
+        "AUTHOR": "Phong Khởi Nhàn Vân",
+        "TRANS": "Hoàng Châu",
+        "DESC": "Ta muốn lục giới n&agrave;y vĩnh hằng bất diệt.  muốn Đại đạo n&agrave;y vượt qua ba ngàn.  Muốn  thế gian huy ho&agrave;ng n&agrave;y, kh&ocirc;ng trở ngại kh&ocirc;ng ngăn c&aacute;ch.  Muốn b&acirc;̀u trời m&ecirc;nh m&ocirc;ng n&agrave;y, lại phơi phới thần t&iacute;ch.  Muốn  chư thi&ecirc;n thời loạn lạc n&agrave;y, b&igrave;nh định.  Muốn nữ tử ta y&ecirc;u nhất , vĩnh viễn l&agrave;m bạn. . .<br /> <br /> T&aacute;c phẩm c&ugrave;ng t&aacute;c giả: Luyện Bảo Chuy&ecirc;n Gia, :Tinh Mộ,  Tu Thần,  Thi&ecirc;n Khung Cửu Biến.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

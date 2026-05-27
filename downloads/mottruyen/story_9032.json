@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "9032",
+        "NAME": "Thần Phẩm Đạo Thánh",
+        "CHAPTER": [
+            {
+                "id": "3066333",
+                "name": "Chương 1:  Thánh Đạo Bi"
+            }
+        ],
+        "TOTALCHAPTER": "769",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo",
+        "AUTHOR": "Thập nhị dực hắc ám sí thiên sứ",
+        "TRANS": "๖ۣۜTiếu ๖ۣۜHồng ๖ۣۜTrần",
+        "DESC": "Đây là một bộ tích cực hướng lên , thuần khiết hiền lành , tam quan đều chính tiểu thuyết huyền ảo.<br />\r\n<br />\r\n\tTrong sách không có Hoàng Kim ốc , còn không có thú tai người hầu gái , không có Ma giới yêu nữ , không có hấp dẫn tiên tử , càng không thể nào một chữ chiêu chi tức tới.<br />\r\n<br />\r\n\tỪ , như thế cũng phải viết bài thơ tài năng triệu hoán đi ra đi.<br />\r\n<br />\r\np/s: Truyện đã hoàn thành",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

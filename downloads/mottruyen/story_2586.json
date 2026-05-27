@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "2586",
+        "NAME": "Lão Tử Là Thôn Trưởng",
+        "CHAPTER": [
+            {
+                "id": "847156",
+                "name": "Chương 1: Dương ngã thôn uy"
+            }
+        ],
+        "TOTALCHAPTER": "121",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đô Thị",
+        "AUTHOR": "Ma Ngữ Băng Thương",
+        "TRANS": "Tãu Xì",
+        "DESC": "Th&acirc;m sơn c&ugrave;ng cốc một c&aacute;i n&ocirc;ng th&ocirc;n nhưng lại l&agrave; non xanh nước biếc chốn đ&agrave;o nguy&ecirc;n. Quyền khuynh thi&ecirc;n hạ tiểu th&ocirc;n trưởng, ph&uacute; khả địch quốc đại ph&uacute; &ocirc;ng. L&atilde;o tử địa b&agrave;n ta l&agrave;m chủ, đừng nắm trưởng th&ocirc;n kh&ocirc;ng l&agrave;m quan. <br /> Mời đ&oacute;n xem trưởng th&ocirc;n quyền sắc v&ocirc; song tr&ecirc;n con đường nghịch thi&ecirc;n.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

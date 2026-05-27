@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "9949",
+        "NAME": "Cuối Cùng Lãnh Chúa",
+        "CHAPTER": [
+            {
+                "id": "3375104",
+                "name": "Chương 1: Không thời gian giải thích"
+            }
+        ],
+        "TOTALCHAPTER": "20",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo, Dị Năng, Khoa Huyễn, Mạt Thế",
+        "AUTHOR": "ẩn ngữ giả",
+        "TRANS": "nunanunong",
+        "DESC": "Tai nạn giáng lâm, văn minh sụp đổ, thế giới bị hoàn toàn thay đổi.<br />\r\n<br />\r\n\tVặn vẹo, băng lãnh, hắc ám trật tự tại đất chết bên trên một chút xíu thành lập, máu tanh sắt thép chi thành đứng vững tại trong hoang vu.<br />\r\n<br />\r\n\t\"Đẩy ngang diệt địch nhân, một tay đỗi BO—— không đúng, ta chính là BOSS.\"<br />\r\n<br />\r\n\tĐây là giấu trong lòng vĩ đại mơ ước lãnh chúa Liễu Mục không ngừng phấn đấu(*trang bức) cố sự.<br />\r\n<br />\r\n\t\"Chỗ ánh mắt nhìn tới, đều là vùng đất của ta!\"",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

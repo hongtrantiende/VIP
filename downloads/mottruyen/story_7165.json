@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "7165",
+        "NAME": "Trọng Sinh Tổng Tài Ác Bá",
+        "CHAPTER": [
+            {
+                "id": "2568946",
+                "name": "Chương 1: Trở Lại quá khứ."
+            }
+        ],
+        "TOTALCHAPTER": "10",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Cạnh Kỹ",
+        "AUTHOR": "Nhiều Converter",
+        "TRANS": "Nhiều Converter",
+        "DESC": "11",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

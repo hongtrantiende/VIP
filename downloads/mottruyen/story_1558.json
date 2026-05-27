@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "1558",
+        "NAME": "La Phù",
+        "CHAPTER": [
+            {
+                "id": "638103",
+                "name": "Chương 1: Thất thải thuyền rồng, xanh thẳm châu hoa"
+            }
+        ],
+        "TOTALCHAPTER": "718",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo",
+        "AUTHOR": "Vô Tội",
+        "TRANS": "Cuongphoenix",
+        "DESC": "Nh&igrave;n như b&igrave;nh tĩnh tu đạo giới trung, nhưng lại cất dấu mấy trăm năm số mệnh chuyển h&oacute;a nguy cơ.<br /><br />Một g&atilde; ng&acirc;y thơ sơn d&atilde; thiếu ni&ecirc;n, tao ngộ rồi một c&aacute;i đại đại cha truyền con nối thần b&iacute; m&ocirc;n ph&aacute;i, trong l&uacute;c v&ocirc; &yacute; nhưng lại chuyển động thi&ecirc;n hạ phong v&acirc;n.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

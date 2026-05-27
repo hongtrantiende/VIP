@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "3398",
+        "NAME": "Vô Song Luân Hồi",
+        "CHAPTER": [
+            {
+                "id": "1178140",
+                "name": "Chương 1: Quảng trường vũ thanh niên"
+            }
+        ],
+        "TOTALCHAPTER": "779",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Khoa Huyễn",
+        "AUTHOR": "Hưng Bá Thiên",
+        "TRANS": "Chuminha",
+        "DESC": "Kh&aacute;m ph&aacute; The Matrix ch&acirc;n thực hư huyễn, Lưu Ảnh b&aacute;o th&ugrave; li&ecirc;n minh Vũ Thần B&aacute; Trảm;<br /><br />Tranh đấu Trung Hoa Phong V&acirc;n Bất Thế Kiếm Quyết, dẫn dắt Thục Sơn cổ kiếm thừa b&ocirc;n ngự phong;<br /><br />Quyết đấu Harry Potter ph&eacute;p thuật, nghịch chuyển X&mdash; men đi tương lai;<br /><br />Ngự sử Star Wars nguy&ecirc;n lực s&oacute;ng lớn, va chạm Avatar tinh cầu &yacute; thức. . .<br /><br />M&agrave; xem lạc quan khai l&atilde;ng, tiếu diện v&ocirc; hạn Cao Thi&ecirc;n T&acirc;m l&agrave;m sao lực khắc ngàn kh&oacute;, tr&iacute; ph&aacute; vạn hiểm, ngang dọc Chư Thi&ecirc;n, V&ocirc; Song Lu&acirc;n Hồi!",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "1239",
+        "NAME": "Dạo Bước Tại Thế Giới Võ Hiệp",
+        "CHAPTER": [
+            {
+                "id": "486915",
+                "name": "Chương 1: Không bằng cầm thú - Quyển 1"
+            }
+        ],
+        "TOTALCHAPTER": "683",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp, Xuyên Không",
+        "AUTHOR": "Tứ Hàm",
+        "TRANS": "Thích Vặn Vẹo",
+        "DESC": "Ta đ&atilde; gặp qua Tiểu Long Nữ ngốc, cũng nghe qua X&iacute;ch Luyện Ti&ecirc;n Tử tại b&ecirc;n tai ng&acirc;m khẻ t&igrave;nh l&agrave; vật chi.<br /><br />Ta cố c&ugrave;ng Nghi L&acirc;m c&ugrave;ng một chỗ dập đầu cầu qua phật, cũng c&ugrave;ng Gi&aacute;o chủ tại Hắc Mộc Nhai th&ecirc;u qua hoa.<br /><br />Ta từ Triệu Mẫn trong tay t&uacute;m lấy Ỷ Thi&ecirc;n Kiếm, lại cũng đ&atilde; gặp Chu Chỉ Nhược t&igrave;nh c&ugrave;ng lệ.<br /><br />Ta ăn xong Thương T&uacute; Tuần tự m&igrave;nh xuống bếp l&agrave;m thực vật, c&ugrave;ng Sư Phi Huy&ecirc;n luận lối đi nhỏ, cũng c&ugrave;ng Loan Loan ở đằng kia th&aacute;ng trước c&ugrave;ng một chỗ đi ch&acirc;n trần m&agrave; m&uacute;a.<br /><br />...<br />Ta l&agrave; ai?<br /><br />Nhất danh chạy tại v&otilde; hiệp thế giới c&ugrave;ng đ&ocirc; thị lữ người m&agrave; th&ocirc;i, c&agrave;n rỡ m&agrave; đến, thực sự n&ecirc;n tung ca kh&uacute;c m&agrave; đi.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

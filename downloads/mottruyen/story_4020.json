@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "4020",
+        "NAME": "Thần Thông Cái Thế",
+        "CHAPTER": [
+            {
+                "id": "1481409",
+                "name": "Chương 1: Thạch Quỳ Luân"
+            }
+        ],
+        "TOTALCHAPTER": "885",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Khoa Huyễn",
+        "AUTHOR": "Bố Trần",
+        "TRANS": "trang4mat",
+        "DESC": "Mưa gi&oacute; về sau, mới có th&ecirc;̉ nh&igrave;n thấy cầu vồng.<br /><br />Gặp trắc trở tr&ugrave;ng tr&ugrave;ng điệp điệp, mới c&oacute; thể tu c&aacute;i thế thần th&ocirc;ng!",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

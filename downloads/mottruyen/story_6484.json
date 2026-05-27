@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "6484",
+        "NAME": "Võ Hầu",
+        "CHAPTER": [
+            {
+                "id": "2309834",
+                "name": "Chương một Viên Lâm"
+            }
+        ],
+        "TOTALCHAPTER": "300",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp, Huyền Ảo, Dị Giới, Trùng Sinh",
+        "AUTHOR": "Hắc Sắc Mãng Ba",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Tôn Ngộ Không? Không phải!!! Đây chỉ là võ giả trọng sinh thành khỉ thôi!<br />\r\nVũ si trọng sinh, tái thế làm khỉ.<br />\r\n<br />\r\n\tTu võ nói, chưởng khí vận, tranh giành truyền thừa, diệt Ma tộc. Yêu tộc võ hầu<br />\r\n<br />\r\n\tChư thiên vạn giới, yêu vực dữ tợn<br />\r\n<br />\r\n\tTu võ mạch, chưởng mình mệnh, ngộ Thiên Cơ, phá thiên nói. Độc chưởng võ đạo.<br />\r\n<br />\r\n\tVũ chi cực trí, võ đạo ta nói",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

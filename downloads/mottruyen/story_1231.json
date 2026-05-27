@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "1231",
+        "NAME": "Tài Thần Đáo",
+        "CHAPTER": [
+            {
+                "id": "482633",
+                "name": "Chương 1: Điều điều đại lộ chưa hẳn thông La Mã"
+            }
+        ],
+        "TOTALCHAPTER": "168",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp",
+        "AUTHOR": "Hắc Thổ Mạo Thanh Yên",
+        "TRANS": "amorphous1234",
+        "DESC": "Nếu như muốn th&agrave;nh thần, c&aacute;i g&igrave; thần mới l&agrave; sự chọn lựa tốt nhất?<br /><br />Thi&ecirc;n thần qu&aacute; c&ocirc; đơn, dạ du thần sợ tối, m&ocirc;n thần ch&iacute;nh l&agrave; c&aacute;i coi cửa.<br /><br />Sơn thần trường đ&iacute;ch xấu, h&agrave; b&aacute; c&ograve;n kh&ocirc;ng biết bơi, &ocirc;n thần khiến người gh&eacute;t.<br /><br />C&ograve;n l&agrave; t&agrave;i thần hảo, tại đ&acirc;y tiền t&agrave;i vạn năng đ&iacute;ch x&atilde; hội, người gặp người th&iacute;ch, hoa gặp hoa nở, lấy tiền đập người? ngươi đập đ&iacute;ch qua ta t&agrave;i thần sao?<br /><br />Ngươi n&oacute;i ngươi kh&ocirc;ng tin t&agrave;i thần? Vậy ngươi gia tr&ecirc;n tường d&aacute;n đ&iacute;ch l&agrave; c&aacute;i g&igrave;?<br /><br />Hoạn c&oacute; Ti&ecirc;n Thi&ecirc;n t&iacute;nh bệnh tim đ&iacute;ch bần h&agrave;n tiểu tử, ngẫu nhi&ecirc;n được t&agrave;i thần truyền thừa, từ nay về sau nhất phi tr&ugrave;ng thi&ecirc;n!",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

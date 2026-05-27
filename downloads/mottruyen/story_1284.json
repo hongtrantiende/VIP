@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "1284",
+        "NAME": "Tân Dược Thần",
+        "CHAPTER": [
+            {
+                "id": "512248",
+                "name": "Chương 01: Chặn giết"
+            }
+        ],
+        "TOTALCHAPTER": "430",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo",
+        "AUTHOR": "Tĩnh Dạ Ký Tư",
+        "TRANS": "FallenAngels",
+        "DESC": "Tuổi trẻ Dược Sư bị gian nh&acirc;n h&atilde;m hại, xuy&ecirc;n việt đến vạn năm trước một c&aacute;i hạ đẳng qu&yacute; tộc tr&ecirc;n người thiếu ni&ecirc;n, nương tựa theo uy&ecirc;n b&aacute;c tri thức c&ugrave;ng cường h&atilde;n kỹ năng, tại nơi n&agrave;y ho&agrave;n tất những c&ocirc;ng việc c&ograve;n d&acirc;y dưa chưa l&agrave;m, cấp bậc s&acirc;m nghi&ecirc;m, quần h&ugrave;ng xuất hiện lớp lớp, huyết tinh v&ocirc; t&igrave;nh thời đại trong trổ hết t&agrave;i năng, trọng khải đỉnh phong chi lộ.<br /><br />Kh&ocirc;ng tr&egrave;o quyền qu&yacute;, kh&ocirc;ng cho h&agrave;o ph&uacute;, một đ&ocirc;i thiết quyền đ&aacute;nh ra trong s&aacute;ng C&agrave;n Kh&ocirc;n.<br /><br />Kh&ocirc;ng tham gia (s&acirc;m) Ti&ecirc;n Phật, kh&ocirc;ng b&aacute;i quỷ thần, b&aacute;t hoang Cửu Ch&acirc;u thập địa vạn t&ocirc;ng triều b&aacute;i.<br /><br />B&ecirc;n tr&ecirc;n Lăng Cửu ti&ecirc;u, hạ đạp Ho&agrave;ng Tuyền, thần quỷ nh&acirc;n y&ecirc;u Phật Ma tất cả đều thần phục.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

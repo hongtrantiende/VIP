@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "12533",
+        "NAME": "Đào Vận Cao Thủ Ở Đô Thị",
+        "CHAPTER": [
+            {
+                "id": "4059908",
+                "name": "Chương 1: Nữ Cảnh Sát Nóng Bỏng (1)"
+            }
+        ],
+        "TOTALCHAPTER": "35",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đô Thị, Ngôn Tình",
+        "AUTHOR": "Lạc Vũ Thần",
+        "TRANS": "Sindy0900",
+        "DESC": "Thần Ma thế giới một phương Thần Đế bởi vì ngoài ý muốn đi vào Địa Cầu, bản ngây thơ vô cùng hắn rồi lại không chịu nổi bên người tầng tầng lớp lớp mỹ nữ, nhưng mà nương theo lấy mỹ nữ mà đến còn có phiền toái đếm không hết... <br />\r\n<br />\r\nTrần Thiên rất bất đắc dĩ: \"Giả heo ăn thịt hổ cũng không phải là ta bổn ý, không biết làm sao các ngươi những thứ này con sâu cái kiến không phải muốn tìm chết, quái dị được người nào?\"<br />\r\n<br />\r\nLịch đăng: - 12h -> 21h",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

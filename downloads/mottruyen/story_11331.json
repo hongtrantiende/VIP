@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "11331",
+        "NAME": "Tinh Tế Thực Giáp Sư",
+        "CHAPTER": [
+            {
+                "id": "3761706",
+                "name": "Chương 1: Ngày Valentine tin dữ"
+            }
+        ],
+        "TOTALCHAPTER": "410",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Khoa Huyễn, Nữ Hiệp, Trùng Sinh",
+        "AUTHOR": "Hồ Thiên Bát Nguyệt",
+        "TRANS": "HeartSick",
+        "DESC": "Hoắc Du có một cái ngón tay vàng.<br />\r\n<br />\r\n\tNàng có thể nhìn thấu không phải là sinh mạng vật thể trong ngoài bộ kết cấu.<br />\r\n<br />\r\n\tNhư vậy. . . Sinh mạng vật thể đâu?<br />\r\n<br />\r\n\tTỷ như, thực vật?<br />\r\n<br />\r\n\tHoắc Du cảm thấy, nàng không thể lãng phí cái thiên phú này.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

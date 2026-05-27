@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "11621",
+        "NAME": "Cuộc Xâm Lược Của Rokujokan Sha! ?",
+        "CHAPTER": [
+            {
+                "id": "3838508",
+                "name": "Review các nhân vật trong RokuShin (SPOILER)"
+            }
+        ],
+        "TOTALCHAPTER": "68",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đô Thị, Huyền Ảo, Đồng Nhân",
+        "AUTHOR": "Takehaya",
+        "TRANS": "muonsachoalan",
+        "DESC": "Thanh niên nghiêm túc Satomi Koutarou vì không muốn ăn bám bố, quyết định ra ngoài tự lập cánh sinh. Tưởng rằng may mắn khi vớ được căn phòng 106 với rẻ như bèo 5k ¥ ~ 975k VND/tháng, nhưng số đời ếu như mơ, các rắc rối liên tiếp nảy sinh xung quanh căn phòng 6 tấm.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

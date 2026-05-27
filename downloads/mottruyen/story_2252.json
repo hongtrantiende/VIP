@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "2252",
+        "NAME": "Đại Thu Tàng Gia",
+        "CHAPTER": [
+            {
+                "id": "760301",
+                "name": "Chương 1: Trong nháy mắt vung lên 1  - Quyển 1"
+            }
+        ],
+        "TOTALCHAPTER": "44",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đô Thị",
+        "AUTHOR": "Quỷ Đồ",
+        "TRANS": "Manh Manh",
+        "DESC": "Thưởng thức đồ cổ, thưởng thức ra một đời tao nh&atilde;; thu gom đồ cổ, thu gom ra bạc triệu gia t&agrave;i.<br /><br />&mdash;&mdash;&mdash;&mdash;<br /><br />Đ&acirc;y l&agrave; một c&aacute;i D&acirc;n quốc chuy&ecirc;n nghiệp 'L&agrave;m giả' đại gia Vương Cực Đ&ocirc;ng, chết rồi linh hồn c&ugrave;ng hiện đại c&ugrave;ng t&ecirc;n tiểu bối tr&ugrave;ng hợp m&agrave; ph&aacute;t sinh thu gom cố sự.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

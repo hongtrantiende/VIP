@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "4815",
+        "NAME": "Thần Tộc Hạ Phàm",
+        "CHAPTER": [
+            {
+                "id": "1700191",
+                "name": "Chương 1: Thiếu niên cùng té gảy chân nữ hài"
+            }
+        ],
+        "TOTALCHAPTER": "142",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo, Dị Giới, Xuyên Không",
+        "AUTHOR": "Lăng Vô Thanh",
+        "TRANS": "→๖ۣۜNgôi",
+        "DESC": "Có một ngày, hắc sắc ma thủ che đậy gió xoáy<br />\r\n<br />\r\n\tCó một ngày, màu đỏ đại địa tái khởi khói lửa<br />\r\n<br />\r\n\tCó một ngày, Thượng Cổ Bách Tộc lại thấy ánh mặt trời<br />\r\n<br />\r\n\t. . .<br />\r\n<br />\r\n\tCó một ngày, Thần Tộc hàng lâm",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

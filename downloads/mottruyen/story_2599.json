@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "2599",
+        "NAME": "Cung Nữ Niết Bàn",
+        "CHAPTER": [
+            {
+                "id": "849055",
+                "name": "Chương 1:  chọn"
+            }
+        ],
+        "TOTALCHAPTER": "212",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Lịch Sử",
+        "AUTHOR": "Mộ Vân Lam",
+        "TRANS": "trang4mat",
+        "DESC": "Kh&ocirc;ng c&oacute;",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

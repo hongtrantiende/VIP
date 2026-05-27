@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "10495",
+        "NAME": "Âm Dương Môn",
+        "CHAPTER": [
+            {
+                "id": "3502400",
+                "name": "Chương 1: 80 năm trước"
+            }
+        ],
+        "TOTALCHAPTER": "285",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đô Thị, Huyền Ảo, Dị Năng, Khoa Huyễn, Linh Dị",
+        "AUTHOR": "Vô Say",
+        "TRANS": "0o0Killua0o0",
+        "DESC": "Đoán mệnh tại sao người mù chiếm đa số, Đào mộ vì sao hiếm có giàu có, bắt quỷ vì sao tiêu vong với bỏ mạng. Huyền Môn bên trong, kết quả có cái nào không muốn người biết bí mật cấm kỵ, ở Vô Say lực bút  mang ngươi đi vào quỷ bí kỳ thần Linh Dị thế giới !<br />\r\nTruyện đã full.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "7843",
+        "NAME": "Ám Dạ Thủ Vọng Giả",
+        "CHAPTER": [
+            {
+                "id": "2741396",
+                "name": "Chương 1: Tư Niệm"
+            }
+        ],
+        "TOTALCHAPTER": "240",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đô Thị, Dị Năng",
+        "AUTHOR": "Ảo Ảnh Tinh Không",
+        "TRANS": "Hide",
+        "DESC": "Trên cái thế giới này, có một đám người, bọn họ bị vận mệnh nhất định cùng người khác bất đồng bọn họ có người thường thật sự không có thiên phú, lại giống như những người khác nắm giữ Thất Tình Lục Dục bọn họ có thể lên trời xuống đất, không gì không thể, vẫn như cũ chạy không khỏi Sinh Lão Bệnh Tử, thế đại thay thế bọn họ gọi là: Dị Năng Giả",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

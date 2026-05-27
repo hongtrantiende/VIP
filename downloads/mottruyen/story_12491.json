@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "12491",
+        "NAME": "Mạt Thế Trọng Sinh Hắc Ám Quốc Độ",
+        "CHAPTER": [
+            {
+                "id": "4052582",
+                "name": "Chương 1: Sống lại"
+            }
+        ],
+        "TOTALCHAPTER": "1001",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Mạt Thế",
+        "AUTHOR": "Phao Tiêu Kê Trảo",
+        "TRANS": "Liu",
+        "DESC": "Bởi vị diện va chạm, Trùng tộc xâm lấn.<br />\r\n<br />\r\n\tBạch Côn tự tận thế sống lại, ở kiếp này ta đem đặt chân lên đỉnh cao nhất.<br />\r\n<br />\r\n\tBằng vào ta ba thước Thanh Phong, bại tận chư địch, dẹp yên chư thiên.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "11582",
+        "NAME": "Minh Phượng Thiên Hạ",
+        "CHAPTER": [
+            {
+                "id": "3828149",
+                "name": "Chương 1: Long Nữ gặp nạn"
+            }
+        ],
+        "TOTALCHAPTER": "1",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp",
+        "AUTHOR": "Phá Nguyệt Ô Toa",
+        "TRANS": "dthtin1",
+        "DESC": "Thân này đã nhập thế giới, dẫu có {vì:là} nữ tử như trước tiếu ngạo giang hồ.<br />\r\n<br />\r\n\tCầm thương tung hoành, chỉ cầu cả đời hiểu rõ.<br />\r\n<br />\r\n\tCó thể vì hiệp khách, có thể vì Tướng Quân, có thể vì sĩ phu, đến nỗi Hoàng Đế, cũng là có thể.<br />\r\n<br />\r\n\tThế gian này, phàm người ngăn ta, Sát!",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

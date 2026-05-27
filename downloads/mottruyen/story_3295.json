@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "3295",
+        "NAME": "Vô Vi Chí Thượng",
+        "CHAPTER": [
+            {
+                "id": "1150243",
+                "name": "Chương 1: Trời giáng Tần tử"
+            }
+        ],
+        "TOTALCHAPTER": "55",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo",
+        "AUTHOR": "Bạch Cư Nan",
+        "TRANS": "Vô Danh",
+        "DESC": "Th&aacute;i cổ trong năm, thi&ecirc;n thạch ng&atilde; xuống, đại đạo mới th&agrave;nh lập. Y&ecirc;u tộc c&ugrave;ng Nh&acirc;n tộc c&ugrave;ng tồn tại dựng l&ecirc;n chiếm nhất phương ranh giới. Thiếu ni&ecirc;n Tần Hi&ecirc;n sinh tại đ&acirc;y giữa, đi l&ecirc;n tu h&agrave;nh đại đạo, ph&aacute; tan trọng trọng g&ocirc;ng c&ugrave;m xiềng x&iacute;ch, kiếm chỉ trời cao, quyền ph&aacute;ch Cửu Ch&acirc;u. Ta rất b&igrave;nh thường, thế giới lại nguy&ecirc;n nh&acirc;n ta m&agrave; run !",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

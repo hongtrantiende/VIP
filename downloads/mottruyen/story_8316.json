@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "8316",
+        "NAME": "Nghịch Thiên Đấu Thần Toái Thương Khung",
+        "CHAPTER": [
+            {
+                "id": "2859192",
+                "name": "Chương 1 : Thiếu niên phi thường"
+            }
+        ],
+        "TOTALCHAPTER": "2",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo, Dị Giới, Xuyên Không",
+        "AUTHOR": "TranTieuPhong",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Drop",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

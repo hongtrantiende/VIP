@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "5018",
+        "NAME": "Văn Tặc",
+        "CHAPTER": [
+            {
+                "id": "1764083",
+                "name": "Chương 01: « Viên Nguyệt Loan Đao » tồn tại"
+            }
+        ],
+        "TOTALCHAPTER": "286",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đô Thị",
+        "AUTHOR": "Mộc Tử Tâm",
+        "TRANS": "MrBladeOz",
+        "DESC": "&laquo; Vi&ecirc;n Nguyệt Loan Đao &raquo;, &laquo; tiếu ngạo giang hồ &raquo;, &laquo; Thi&ecirc;n Long B&aacute;t Bộ &raquo;, &laquo; phong v&acirc;n &raquo;, &laquo; Tầm Tần k&yacute; &raquo;, &laquo; Đại Đường Song Long Truyện &raquo; một bộ bộ kinh điển t&aacute;c phẩm, bị hắn đổi đến ho&agrave;n to&agrave;n thay đổi, nh&acirc;n vật loạn nhập!<br /><br />C&ograve;n c&oacute; những c&aacute;i kia kinh điển phim c&ugrave;ng ca kh&uacute;c, cũng đều nhất nhất lọt v&agrave;o độc thủ của hắn!<br /><br />Hắn l&agrave; Triệu Nghi&ecirc;n! Hắn l&agrave; văn đ&agrave;n chi tặc!<br /><br />Hắn tại 2044 năm Đại Minh, đang trộm cướp ch&uacute;ng ta kinh điển t&aacute;c phẩm, ai c&oacute; thể ngăn cản hắn?",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

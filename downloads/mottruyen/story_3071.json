@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "3071",
+        "NAME": "Phim Mỹ Đại Ngoạn Gia",
+        "CHAPTER": [
+            {
+                "id": "1050221",
+                "name": "Chương 5: Tai nạn xe cộ"
+            }
+        ],
+        "TOTALCHAPTER": "164",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Khoa Huyễn",
+        "AUTHOR": "Hỏa Thối Gia Tử",
+        "TRANS": "Truy Hồn",
+        "DESC": "Iron Man: L&acirc;m l&agrave; huynh đệ của ta!<br /><br />Flash: Được rồi, được rồi, ta thừa nhận l&agrave; người nhanh nhất tr&ecirc;n thế giới... Một trong.<br /><br />Hermione: L&acirc;m gi&aacute;o sư, ma ph&aacute;p n&agrave;y ta thi triển c&oacute; ch&uacute;t kh&ocirc;ng tốt.<br /><br />Bella: Edward, xin ngươi c&aacute;ch ta xa một ch&uacute;t, L&acirc;m sẽ tức giận!<br /><br />Elena: L&acirc;m, hai nữ nh&acirc;n ph&iacute;a tr&ecirc;n kia l&agrave; ai?<br /><br />Đ&acirc;y l&agrave; c&acirc;u chuyện của một ngoạn gia lăn lộn trong phim truyền h&igrave;nh c&ugrave;ng phim điện ảnh Mỹ!",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

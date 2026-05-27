@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "12886",
+        "NAME": "Nguyên Tôn",
+        "CHAPTER": [
+            {
+                "id": "4167886",
+                "name": "Sách mới cảm nghĩ"
+            }
+        ],
+        "TOTALCHAPTER": "1506",
+        "IMG": "https://static.cdnno.com/poster/nguyen-ton-1/150.jpg",
+        "CAT": "Huyền Ảo",
+        "AUTHOR": "Thiên Tàm Thổ Đậu",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Đại Chu hoàng tử Chu Nguyên, nguyên bản có được Thánh Long chi mệnh, lại bị địch quốc Võ Vương lấy ức vạn Đại Chu con dân làm uy hiếp, mãng tước nuốt rồng, cướp đi nó Thánh Long khí vận.<br />\n<br />\nChu Nguyên nhập tổ địa, gặp Yêu Yêu; mở lại tám mạch, lại đạp hành trình.<br />\n<br />\nThiếu niên chấp bút, Long Xà vũ động; bổ ra loạn thế, thắp sáng thương khung.<br />\n<br />\nTrong thế giới khí chưởng càn khôn, đến tột cùng là mãng tước nuốt rồng, hay là Thánh Long quật khởi? !",
+        "THUMB": "https://static.cdnno.com/poster/nguyen-ton-1/150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

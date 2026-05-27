@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "6666",
+        "NAME": "Chủ Tể Phản Diện",
+        "CHAPTER": [
+            {
+                "id": "2365581",
+                "name": "Chương 1 : Địa Ngục Cùng Các Ngươi Tồn Tại"
+            }
+        ],
+        "TOTALCHAPTER": "11",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Huyền Ảo, Dị Giới, Khoa Huyễn, Xuyên Không",
+        "AUTHOR": "Tanaka",
+        "TRANS": "Nhiều Converter",
+        "DESC": "\"Ngươi hỏi ta là ai?\"<br />\r\n<br />\r\n \"Ta là kẻ nắm giữ hết thảy tội ác trên thế gian này, đại diện cho hắc ám cùng cực, ta chơi đùa với tội ác, lấy việc giết chóc sinh mệnh làm thú vui.\" <br />\r\n<br />\r\n\"Ta đi qua các thế giới và nguyền rũa chúng. Không một ai,  không một thế giới nào có thể thoát khỏi hay chống lại ta, không một ai\" <br />\r\n<br />\r\n\"Vậy ngươi đã biết ta là ai chưa hỡi người hùng của thời đại, Đứa Con Của Số Mệnh?\"",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "2772",
+        "NAME": "Bỉ Mông Tu Tiên",
+        "CHAPTER": [
+            {
+                "id": "908412",
+                "name": "Chương 1: Đao Hoàng phá hư không, khuất nhục bị giết"
+            }
+        ],
+        "TOTALCHAPTER": "325",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp, Huyền Ảo",
+        "AUTHOR": "Bạch Ngọc Long Hiệp",
+        "TRANS": "trang4mat",
+        "DESC": "Tu h&agrave;nh chi sĩ ai cũng truy cầu, Kim Đan đại đạo, tu ch&acirc;n th&agrave;nh ti&ecirc;n. Nhưng như thế n&agrave;o tu ch&acirc;n? Tu ch&acirc;n được gọi là tu ch&acirc;n ng&atilde;, th&agrave;nh tựu Ch&acirc;n Ti&ecirc;n. Như thế n&agrave;o Kim Đan đại đạo? Kim Đan đại đạo tựu l&agrave; tu tập Kim Đan, được chứng nhận đại đạo. Kim Đan th&agrave;nh, đại đạo hiện. Nhưng thế nh&acirc;n đều c&oacute; chỗ nhầm lẫn, đem Kim Đan nghiền n&aacute;t thai ngh&eacute;n Nguy&ecirc;n Anh. Đ&acirc;y l&agrave; lớn lao chỗ nhầm lẫn!<br /><br />M&agrave; lại xem một vị ngo&agrave;i &yacute; muốn thấy được tu ch&acirc;n ch&acirc;n l&yacute; ph&agrave;m nh&acirc;n, như thế n&agrave;o vận dụng dị tộc th&acirc;n thể được chứng nhận đại đạo!",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

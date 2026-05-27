@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "6269",
+        "NAME": "Project: King",
+        "CHAPTER": [
+            {
+                "id": "2230641",
+                "name": "Chương 1: Lê Minh"
+            }
+        ],
+        "TOTALCHAPTER": "4",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Dị Năng, Dị Giới, Khoa Huyễn, Quân Sự",
+        "AUTHOR": "Psychoclone",
+        "TRANS": "Nhiều Converter",
+        "DESC": "Một kẻ chỉ có trí thông minh nằm ở mức trung bình. Sinh ra trong cái thời đại loạn lạc, hắn có một thứ mà những kẻ xung quanh không có.<br />\r\n<br />\r\nDã Tâm.<br />\r\n<br />\r\nMột ngày hè nọ, hắn có một giấc mơ kì quái. Sau khi tỉnh dậy hắn phát hiện mình có một khả năng nghịch thiên. Hút lấy kiến thức và trí thông minh của kẻ khác. Một chuyện sẽ ra sao khi chú hổ con nay đã có được nanh vuốt của mình ? Liệu nó có chân chính trở thành chúa sơn lâm hay không hay giãy dụa rồi trở thành đồ chơi trong vườn thú.<br />\r\n<br />\r\n\"Ta trở thành vua, không phải để cai trị. Mà là để tái thiết lại toàn bộ thế giới này\"<br />\r\n<br />\r\nMinh Lịch ngày đầu tiên, năm thứ nhất.<br />\r\n<br />\r\nHoàng Đế Đế Quốc Mặt Trời ra chiếu chỉ.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

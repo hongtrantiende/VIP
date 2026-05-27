@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "7610",
+        "NAME": "Toàn Chức Gia Đinh",
+        "CHAPTER": [
+            {
+                "id": "2686722",
+                "name": "Chương 1 : kinh lôi"
+            }
+        ],
+        "TOTALCHAPTER": "585",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Tiên Hiệp, Kiếm Hiệp, Huyền Ảo",
+        "AUTHOR": "Lam Lĩnh Tiếu Tiếu Sinh",
+        "TRANS": "wdragon21",
+        "DESC": "Tiêu Dao là một gia đinh, một toàn chức gia đinh, nhân chức nghiệp cần, hắn cơ hồ tinh thông gì kỹ năng, mặc kệ là văn võ, cao nhã thấp kém, thậm chí nhận không ra người, làm để ngừa vạn nhất, hắn mỗi ngày còn cần tiếp tục cố gắng học tập tinh tiến!<br />\r\n<br />\r\nĐồng thời, ở hắn mười tuổi là lúc mà bắt đầu bồi dưỡng chính mình lão bản, làm cho nàng đi bước một đi hướng tuyệt thế cường giả đường!<br />\r\n<br />\r\n【 Tiêu Dao khẩu hiệu: ta chỉ là một tiểu gia đinh, có cái gì phiền toái đi tìm tiểu thư nhà chúng ta! Đánh nhau chịu tiếng xấu thay cho người khác cái gì, đương nhiên là các nàng đến gánh vác! ! 】",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

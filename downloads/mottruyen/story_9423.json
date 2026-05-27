@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "9423",
+        "NAME": "Tông Sư Bảo Điển",
+        "CHAPTER": [
+            {
+                "id": "3183471",
+                "name": "Chương 1: Mở đầu"
+            }
+        ],
+        "TOTALCHAPTER": "37",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Đô Thị, Huyền Ảo, Dị Năng, Linh Dị",
+        "AUTHOR": "Đêm tư thanh",
+        "TRANS": "Tjpjmj",
+        "DESC": "Toàn năng bảo điển ,vô địch tông sư<br />\r\n<br />\r\nkhông phải mỗi một cái điểu ty cũng có thể trở thành tông sư, cũng không phải mỗi một cái tông sư cũng có thể làm giàu. Tần ca không thể nghi ngờ là may mắn, bởi vì hắn lấy được một quyển tông sư bảo điển, một bước lên trời từ người phàm lột xác thành cao cao tại thượng tông sư. Hơn nữa cái này tông sư xem qua đích phạm vi còn chưa phải là giống vậy nghiễm. Hắn là võ đạo tông sư, nam quyền bắc chân, không chỗ nào không tinh. ...<br />\r\n<br />\r\n",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

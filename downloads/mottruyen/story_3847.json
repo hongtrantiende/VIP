@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "3847",
+        "NAME": "Tinh Luyện Chi Lộ",
+        "CHAPTER": [
+            {
+                "id": "1345710",
+                "name": "Chương 1: Thiếu niên Lý Dương"
+            }
+        ],
+        "TOTALCHAPTER": "1518",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Khoa Huyễn",
+        "AUTHOR": "Tinh Vẫn Lạc",
+        "TRANS": "Oll",
+        "DESC": "Tinh Thần đại lục, một mảnh d&ugrave;ng Tinh Thần Chi Lực l&agrave; bản, mạnh được yếu thua thế giới. Tinh lực tựu l&agrave; căn bản, thực lực mới được l&agrave; hết thảy. Đ&acirc;y l&agrave; một mảnh Luyện Tinh giả ho&agrave;nh h&agrave;nh đại lục, l&agrave; một c&aacute;i hết thảy đều d&ugrave;ng bổn mạng tinh l&agrave;m cơ sở đại lục. Một c&aacute;i xuất th&acirc;n thế gia thứ xuất đệ tử, đ&atilde; trải qua v&ocirc; số khốn khổ, cuối c&ugrave;ng nhất đi đến đỉnh phong. Tinh Thần đại lục thực lực ph&acirc;n chia: Tụ Kh&iacute; kỳ, Dẫn Tinh kỳ, Ngưng Hạch kỳ, Tinh Tượng kỳ, Ngưng Tượng kỳ, Ph&acirc;n Tinh kỳ, Th&agrave;nh Giới kỳ, Luyện Tinh kỳ, Thi&ecirc;n Tượng kỳ, c&ugrave;ng với trong truyền thuyết Ph&aacute; Giới kỳ. Thiếu ni&ecirc;n L&yacute; Dương, kh&ocirc;ng ngừng vươn l&ecirc;n, thề đem mặt trời &aacute;nh s&aacute;ng ch&oacute;i lọi vẩy khắp to&agrave;n bộ thế giới.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

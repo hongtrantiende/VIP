@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "3813",
+        "NAME": "Liệt Không",
+        "CHAPTER": [
+            {
+                "id": "1317037",
+                "name": "Chương 1:  tên điên lái xe"
+            }
+        ],
+        "TOTALCHAPTER": "1059",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Khoa Huyễn",
+        "AUTHOR": "Đình Vũ",
+        "TRANS": "trang4mat",
+        "DESC": "Thời đại vũ trụ, cũng kh&ocirc;ng phải chỉ c&oacute; cơ gi&aacute;p xưng h&agrave;o! Chinh chiến vũ kh&iacute;, c&ograve;n c&oacute; chiến cơ! !\"",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}

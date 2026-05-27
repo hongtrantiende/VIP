@@ -1,0 +1,22 @@
+{
+    "success": 1,
+    "data": {
+        "ID": "4786",
+        "NAME": "Tam Quốc Tinh Kỳ",
+        "CHAPTER": [
+            {
+                "id": "1692532",
+                "name": "Chương 1: Không hiểu trúng mũi tên"
+            }
+        ],
+        "TOTALCHAPTER": "35",
+        "IMG": "https://static.cdnno.com/poster//150.jpg",
+        "CAT": "Quân Sự, Lịch Sử, Xuyên Không, Trùng Sinh",
+        "AUTHOR": "Đông Phương Chức Chu",
+        "TRANS": "phithien257",
+        "DESC": "Cuốn sách này không có Bá Vương Khí!<br />\r\n<br />\r\nCũng không có tuyệt thế võ nghệ!<br />\r\n<br />\r\nCũng không có gần như yêu nhân trí lực!<br />\r\n<br />\r\nDựa vào chỉ là đối với lịch sử tiên tri, còn một điều điểm vận khí.<br />\r\n<br />\r\nXem một người bình thường, như thế nào rộng lớn mạnh mẽ, ầm ầm sóng dậy thời Tam quốc sáng tạo chính mình đấy. . . Hậu cung!<br />\r\n<br />\r\nTác giả viết không YY, lối hành văn đơn giản, dễ đọc, hấp dẫn. <br />\r\n<br />\r\nNVC không thông minh tuyệt đỉnh, không võ công như thần, chỉ có chút nắm bắt trước chiều hướng lịch sử. NVC cũng không xuyên việt là nổi tiếng ngay mà phát triển dần dần. Hiện mới có Quản Hợi, Liêu Hóa, Thái Sử Từ, Trần Lâm... đi theo.",
+        "THUMB": "https://static.cdnno.com/poster//150.jpg"
+    },
+    "errorCode": 0,
+    "errorMessage": ""
+}
