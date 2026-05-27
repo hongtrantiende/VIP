@@ -176,7 +176,7 @@ export async function checkIsVipStandaloneAction() {
     if (!user) return { isVip: false };
 
     const email = user.email?.toLowerCase() || "";
-    if (email === "nthanhnam2005@gmail.com" || email === "thanhxnam2005@gmail.com") return { isVip: true };
+    if (email === "nthanhnam@gmail.com") return { isVip: true };
 
     const { data } = await supabase
       .from("profiles")

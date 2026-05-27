@@ -98,8 +98,7 @@ export function useProfile() {
   const isUserAdmin = () => {
     const email = profile?.email?.toLowerCase();
     const admins = [
-      "nthanhnam2005@gmail.com",
-      "thanhxnam2005@gmail.com"
+      "nthanhnam@gmail.com"
     ];
     return admins.includes(email || "");
   };
@@ -118,7 +117,7 @@ export async function checkIsVipStandalone(): Promise<boolean> {
   if (_cachedProfile !== null) {
     if (_cachedFreeMode) return true;
     const email = _cachedProfile.email?.toLowerCase() || "";
-    if (email === "nthanhnam2005@gmail.com" || email === "thanhxnam2005@gmail.com") return true;
+    if (email === "nthanhnam@gmail.com") return true;
     if (!_cachedProfile.vip_until) return false;
     return new Date(_cachedProfile.vip_until) > new Date();
   }
