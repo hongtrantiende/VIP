@@ -71,6 +71,7 @@ import {
   EraserIcon,
 } from "lucide-react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useMemo, useRef, useState, useCallback, useEffect } from "react";
 import { toast } from "sonner";
 import { CopyXIcon, CombineIcon } from "lucide-react";
@@ -166,6 +167,7 @@ export function ChaptersTab({
   activeSubTab?: "standard" | "ai";
   onActiveSubTabChange?: (tab: "standard" | "ai") => void;
 }) {
+  const router = useRouter();
   const novel = useLiveQuery(() => db.novels.get(novelId), [novelId]);
   const isEditMode = novel?.customTranslateMode === "edit";
 
@@ -962,7 +964,13 @@ export function ChaptersTab({
             <DialogTitle>Tự động Rewrite Truyện</DialogTitle>
           </DialogHeader>
           <div className="p-4 pt-0">
-            <NovelSetup novelId={novelId} />
+            <NovelSetup 
+              novelId={novelId} 
+              onActionAction={(action, step) => {
+                setRewriteOpen(false);
+                router.push(`/novels/${novelId}/auto-write${step ? `?step=${step}` : ''}`);
+              }}
+            />
           </div>
         </DialogContent>
       </Dialog>

@@ -44,7 +44,7 @@ export function NovelSetup({
   onActionAction,
 }: {
   novelId: string;
-  onActionAction: (action: DashboardAction, startStep?: string) => void;
+  onActionAction?: (action: DashboardAction, startStep?: string) => void;
 }) {
   const novel = useNovel(novelId);
   const chapters = useChapters(novelId);
@@ -204,7 +204,7 @@ export function NovelSetup({
                   className={`text-sm cursor-pointer hover:border-primary/50 hover:bg-accent/30 transition-all duration-200 ${
                     step.done ? "border-green-500/20 bg-green-50/10 dark:bg-green-950/5" : ""
                   }`}
-                  onClick={() => onActionAction("chat", step.key)}
+                  onClick={() => onActionAction?.("chat", step.key)}
                   title={`Nhấp để tùy chỉnh / chỉnh sửa ${step.label.toLowerCase()}`}
                 >
                   <CardHeader className="py-2 px-3">
@@ -235,7 +235,7 @@ export function NovelSetup({
         {/* Actions */}
         {hasEnoughForWriting ? (
           <Button
-            onClick={() => onActionAction("skip")}
+            onClick={() => onActionAction?.("skip")}
             className="w-full"
             size="lg"
           >
@@ -248,7 +248,7 @@ export function NovelSetup({
               <>
                 <Button
                   variant="default"
-                  onClick={() => onActionAction("chat")}
+                  onClick={() => onActionAction?.("chat")}
                   className="w-full"
                   size="lg"
                 >
