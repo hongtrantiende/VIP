@@ -68,6 +68,7 @@ export function NovelSetup({
   const [adherence, setAdherence] = useState([70]);
   const [chapterCount, setChapterCount] = useState(10);
   const [autoExtractNames, setAutoExtractNames] = useState(true);
+  const [enableNsfw, setEnableNsfw] = useState(false);
   const abortRef = useRef<AbortController | null>(null);
 
   const hasWorld = !!(novel?.worldOverview || novel?.factions?.length);
@@ -176,6 +177,7 @@ export function NovelSetup({
         maxChapters: chapterCount > 0 ? chapterCount : undefined,
         abortSignal: controller.signal,
         autoExtractNames: autoExtractNames,
+        enableNsfw,
         onPhase: (phase) => setRewritePhase(phase),
       });
       
@@ -188,7 +190,7 @@ export function NovelSetup({
       setRewriting(false);
       setRewritePhase("");
     }
-  }, [novelId, idea, chapterCount, autoExtractNames]);
+  }, [novelId, idea, chapterCount, autoExtractNames, adherence, isRewriteProject, enableNsfw]);
 
   return (
     <ScrollArea className="h-full">
@@ -357,6 +359,22 @@ export function NovelSetup({
 
                   {isRewriteProject && (
                     <div className="space-y-2 pt-2 border-t">
+                      <div className="flex items-start gap-2 mb-3">
+                        <input 
+                          type="checkbox" 
+                          id="enableNsfwRewrite" 
+                          checked={enableNsfw}
+                          onChange={(e) => setEnableNsfw(e.target.checked)}
+                          className="rounded border-gray-300 text-rose-600 focus:ring-rose-500 h-3.5 w-3.5 mt-0.5"
+                        />
+                        <div className="space-y-0.5">
+                          <label htmlFor="enableNsfwRewrite" className="text-xs font-bold text-rose-600 dark:text-rose-400 cursor-pointer select-none">
+                            Bật chế độ NSFW (R-18+)
+                          </label>
+                          <p className="text-[10px] text-muted-foreground leading-tight">Yêu cầu AI viết cảnh H bạo dạn, trần trụi và chi tiết hơn. (Cần dùng model không kiểm duyệt)</p>
+                        </div>
+                      </div>
+
                       <div className="flex items-start gap-2">
                         <input 
                           type="checkbox" 

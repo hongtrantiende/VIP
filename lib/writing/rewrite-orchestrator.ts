@@ -2,7 +2,7 @@ import { db } from "@/lib/db";
 import { generateText, streamText } from "ai";
 import { resolveStep } from "@/lib/ai/resolve-step";
 import { searchNovelContext, storeNovelEmbeddings } from "@/lib/writing/rag-client";
-import { getDefaultPrompt } from "@/lib/writing/prompts";
+import { getDefaultPrompt, NSFW_INSTRUCTION } from "@/lib/writing/prompts";
 
 export interface RewritePipelineOptions {
   novelId: string;
@@ -11,10 +11,11 @@ export interface RewritePipelineOptions {
   onChunk?: (text: string) => void;
   maxChapters?: number;
   autoExtractNames?: boolean;
+  enableNsfw?: boolean;
 }
 
 export async function runRewritePipeline(options: RewritePipelineOptions) {
-  const { novelId, abortSignal, onPhase, onChunk, autoExtractNames } = options;
+  const { novelId, abortSignal, onPhase, onChunk, autoExtractNames, enableNsfw } = options;
 
   const novel = await db.novels.get(novelId);
   if (!novel) throw new Error("Không tìm thấy dự án Rewrite.");
@@ -146,6 +147,10 @@ ${ragContext ? ragContext : "Đây là chương đầu tiên, chưa có ngữ c�
 ${refContent}
 
 Hãy viết bản phóng tác mới cho chương này.`;
+    }
+
+    if (enableNsfw) {
+      systemPrompt += `\n\n# CHỈ DẪN VĂN PHONG ĐẶC BIỆT BỔ SUNG (BẮT BUỘC TUÂN THỦ DÙ LÀ REWRITE HAY DỊCH):\n${NSFW_INSTRUCTION}`;
     }
 
     const { text: newChapterContent } = await generateText({
