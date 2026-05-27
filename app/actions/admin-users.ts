@@ -12,10 +12,12 @@ import { getEnv } from "@/lib/env";
  */
 function createServiceRoleClient() {
   const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || getEnv("NEXT_PUBLIC_SUPABASE_URL");
-  const serviceKey = getEnv("SUPABASE_SERVICE_ROLE_KEY");
-  const anonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || getEnv("NEXT_PUBLIC_SUPABASE_ANON_KEY");
+  const serviceKey = process.env.SUPABASE_SERVICE_ROLE_KEY || getEnv("SUPABASE_SERVICE_ROLE_KEY");
 
-  return createAdminClient(supabaseUrl!, serviceKey || anonKey!);
+  if (!supabaseUrl) throw new Error("Missing NEXT_PUBLIC_SUPABASE_URL");
+  if (!serviceKey) throw new Error("Missing SUPABASE_SERVICE_ROLE_KEY. Vui lòng thêm biến này vào Cloudflare Settings > Variables and Secrets.");
+
+  return createAdminClient(supabaseUrl, serviceKey);
 }
 
 export async function getAllProfilesAction() {
