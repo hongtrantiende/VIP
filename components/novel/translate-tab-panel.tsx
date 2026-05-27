@@ -19,6 +19,7 @@ import { PromptTunerDialog } from "@/components/novel/prompt-tuner-dialog";
 import { StyleTunerDialog } from "@/components/novel/style-tuner-dialog";
 import { PronounTunerDialog } from "@/components/novel/pronoun-tuner-dialog";
 import { scanNovelStyle } from "@/lib/chapter-tools/scan-novel-style";
+import { NSFW_INSTRUCTION } from "@/lib/writing/prompts";
 import {
     useAIProvider,
     useApiInferenceProviders,
@@ -200,6 +201,7 @@ export function TranslateTabPanel({
     const [pronounMatrixEnabled, setPronounMatrixEnabled] = useState(false);
     const [isCleaning, setIsCleaning] = useState(false);
     const [cleanGarbage, setCleanGarbage] = useState(true);
+    const [nsfwMode, setNsfwMode] = useState(false);
     const [showStepsInfo, setShowStepsInfo] = useState(false);
     const [totalToProcess, setTotalToProcess] = useState(0);
     const abortRef = useRef<AbortController | null>(null);
@@ -656,6 +658,8 @@ export function TranslateTabPanel({
         setResults([]);
         setCurrentPhase("idle");
 
+        const finalStylePrompt = nsfwMode ? `${customStylePrompt.trim()}\n\n${NSFW_INSTRUCTION}` : customStylePrompt.trim();
+
         const commonCallbacks = {
             signal: controller.signal,
             delayMs: (settings.translateDelaySeconds ?? 0) * 1000,
@@ -677,7 +681,7 @@ export function TranslateTabPanel({
                     extractDict,
                     cleanGarbage,
                     customTranslatePrompt: novel?.customComprehensivePrompt || "",
-                    customStylePrompt: customStylePrompt,
+                    customStylePrompt: finalStylePrompt,
                     customPronounPrompt: customPronounPrompt,
                     twoPass, skipTranslated, errorAction,
                     ...commonCallbacks,
@@ -689,6 +693,7 @@ export function TranslateTabPanel({
                     qaModel: model3 || undefined,
                     qaEnabled: model3Enabled,
                     qaPrompt: customModel3Prompt || undefined,
+                    customStylePrompt: finalStylePrompt,
                     extractDict, cleanGarbage, skipTranslated, continuousMode: target === "all_untranslated", errorAction,
                     ...commonCallbacks,
                 });
@@ -700,7 +705,11 @@ export function TranslateTabPanel({
                     qaEnabled: model3Enabled,
                     qaPrompt: customModel3Prompt || undefined,
                     qtDictSources: [],
-                    promptType: "custom" as PromptType, extractDict, cleanGarbage, skipTranslated,
+                    promptType: "custom" as PromptType,
+                    customTranslatePrompt: inlinePrompt.trim(),
+                    customStylePrompt: finalStylePrompt,
+                    customPronounPrompt: customPronounPrompt,
+                    extractDict, cleanGarbage, skipTranslated,
                     continuousMode: target === "all_untranslated", errorAction,
                     ...commonCallbacks,
                 });
@@ -711,7 +720,7 @@ export function TranslateTabPanel({
                     chapterIds: targetChapterIds,
                     model,
                     novelCustomPrompt: inlinePrompt,
-                    customStylePrompt: customStylePrompt,
+                    customStylePrompt: finalStylePrompt,
                     customPronounPrompt: customPronounPrompt,
                     twoPass: twoPass,
                     qaModel: model3 || undefined,
@@ -735,7 +744,7 @@ export function TranslateTabPanel({
                 setStep("config");
             }
         }
-    }, [novelId, chapterIds, chapters, settings, resolveModel, activeMode, extractDict, skipTranslated, qtDictSources, extraModels, selectedProviderId, selectedModelId, defaultProvider, chatSettings, inlinePrompt, twoPass, model1ProviderId, model1ModelId, model2ProviderId, model2ModelId, model3Enabled, model3ProviderId, model3ModelId, customStylePrompt, customPronounPrompt, errorAction, novel]);
+    }, [novelId, chapterIds, chapters, settings, resolveModel, activeMode, extractDict, skipTranslated, qtDictSources, extraModels, selectedProviderId, selectedModelId, defaultProvider, chatSettings, inlinePrompt, twoPass, model1ProviderId, model1ModelId, model2ProviderId, model2ModelId, model3Enabled, model3ProviderId, model3ModelId, customStylePrompt, customPronounPrompt, errorAction, novel, nsfwMode]);
 
     const handleClose = () => {
         if (step === "processing" || translateJob?.isRunning) {
@@ -1040,6 +1049,14 @@ export function TranslateTabPanel({
                             <div>
                                 <span className="text-[11px] font-medium">Xóa bỏ ký tự lỗi (Khuyên dùng)</span>
                                 <p className="text-[10px] text-muted-foreground">Tự động dọn dẹp URL, quảng cáo, ký tự rác trước khi dịch.</p>
+                            </div>
+                        </label>
+
+                        <label className="flex items-start gap-2 rounded-lg border border-red-500/20 bg-red-500/5 p-2.5 cursor-pointer hover:bg-red-500/10">
+                            <Checkbox checked={nsfwMode} onCheckedChange={(c) => setNsfwMode(!!c)} className="mt-0.5 border-red-500 data-[state=checked]:bg-red-500" />
+                            <div>
+                                <span className="text-[11px] font-medium text-red-700 dark:text-red-400">Dịch NSFW (Cảnh H / R-18+) 🔞</span>
+                                <p className="text-[10px] text-muted-foreground">Kích hoạt bộ từ vựng và văn phong đặc tả cảnh nóng táo bạo.</p>
                             </div>
                         </label>
 

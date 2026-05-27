@@ -25,6 +25,7 @@ import { toast } from "sonner";
 import { CrownIcon, RefreshCwIcon, Trash2Icon, UserIcon, SparklesIcon, CalendarIcon } from "lucide-react";
 import { revokeAllModelAssignmentsAction } from "@/app/actions/admin-models";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { getAllProfilesAction, saveUserAdminAction } from "@/app/actions/admin-users";
 
 interface Profile {
   id: string;
@@ -399,15 +400,12 @@ export default function AdminPage() {
       if (chatModelSetting) setAdminChatModel(chatModelSetting.value);
     }
 
-    const { data: profilesData, error: profilesError } = await supabase
-      .from("profiles")
-      .select("*")
-      .order("email");
+    const profilesRes = await getAllProfilesAction();
 
-    if (profilesError) {
-      toast.error("Lỗi tải profiles: " + profilesError.message);
+    if (!profilesRes.success) {
+      toast.error("Lỗi tải profiles: " + profilesRes.error);
     } else {
-      setProfiles(profilesData as Profile[]);
+      setProfiles(profilesRes.data as Profile[]);
     }
     setLoading(false);
   };
@@ -488,21 +486,19 @@ export default function AdminPage() {
 
     const currentVnDate = new Date(new Date().toLocaleString("en-US", { timeZone: "Asia/Ho_Chi_Minh" })).toDateString();
 
-    const { error } = await supabase
-      .from("profiles")
-      .update({
-        display_name: updatedData.display_name.trim(),
-        vip_until: updatedData.vip_until,
-        admin_model_quota: updatedData.admin_model_quota,
-        admin_daily_quota_limit: updatedData.admin_daily_quota_limit,
-        admin_quota_last_reset: currentVnDate,
-        admin_assigned_model: updatedData.admin_assigned_model || null,
-      })
-      .eq("id", updatedData.id);
+    const result = await saveUserAdminAction({
+      id: updatedData.id,
+      display_name: updatedData.display_name,
+      vip_until: updatedData.vip_until,
+      admin_model_quota: updatedData.admin_model_quota,
+      admin_daily_quota_limit: updatedData.admin_daily_quota_limit,
+      admin_quota_last_reset: currentVnDate,
+      admin_assigned_model: updatedData.admin_assigned_model || null,
+    });
 
-    if (error) {
-      toast.error(`Cập nhật thất bại: ${error.message}`, { id: toastId });
-      throw error;
+    if (!result.success) {
+      toast.error(`Cập nhật thất bại: ${result.error}`, { id: toastId });
+      throw new Error(result.error);
     } else {
       toast.success("Cập nhật thông tin người dùng thành công!", { id: toastId });
       loadData();

@@ -1,0 +1,19 @@
+@import url('https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-serif: "Merriweather", ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
+}
+
+@layer utilities {
+  .chapter-content p {
+    @apply mb-6 leading-relaxed;
+  }
+  .chapter-content {
+    @apply text-justify;
+  }
+  .chapter-content > *:first-child::first-letter {
+    @apply text-[5rem] font-black float-left mr-4 mt-2 leading-[0.8] text-[#8B5E3C] uppercase;
+  }
+}

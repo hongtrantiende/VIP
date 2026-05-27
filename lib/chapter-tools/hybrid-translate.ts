@@ -58,11 +58,16 @@ Lưu ý QUAN TRỌNG: Chỉ trả về nội dung dịch đặt trong thẻ <con
 function buildGenreAwareSystemPrompt(
   novelCustomPrompt?: string,
   globalTranslatePrompt?: string,
+  customStylePrompt?: string,
 ): string {
   let prompt = globalTranslatePrompt?.trim() || HYBRID_POST_EDIT_BASE;
 
   if (novelCustomPrompt?.trim()) {
     prompt += `\n\n# BẮT BUỘC TUÂN THỦ TUYỆT ĐỐI PROMPT DỊCH / XƯNG HÔ / THỂ LOẠI SAU (ƯU TIÊN CAO NHẤT, TUYỆT ĐỐI KHÔNG TỰ Ý THÊM BỚT):\n${novelCustomPrompt.trim()}`;
+  }
+  
+  if (customStylePrompt?.trim()) {
+    prompt += `\n\n# CHỈ DẪN VĂN PHONG DỊCH BỔ SUNG:\n${customStylePrompt.trim()}`;
   }
 
   return prompt;
@@ -99,6 +104,7 @@ export interface HybridTranslateOptions {
   skipTranslated?: boolean;
   continuousMode?: boolean;
   globalTranslatePrompt?: string;
+  customStylePrompt?: string;
   errorAction?: "stop" | "skip"; // "stop" = dừng lại khi lỗi, "skip" = bỏ qua chương lỗi
   signal?: AbortSignal;
   delayMs?: number;
@@ -206,8 +212,9 @@ function buildPostEditPrompt(
   nameDict: Array<{ chinese: string; vietnamese: string; category: string }>,
   novelCustomPrompt?: string,
   globalTranslatePrompt?: string,
+  customStylePrompt?: string,
 ): string {
-  let prompt = buildGenreAwareSystemPrompt(novelCustomPrompt, globalTranslatePrompt);
+  let prompt = buildGenreAwareSystemPrompt(novelCustomPrompt, globalTranslatePrompt, customStylePrompt);
 
   // Add name dictionary context
   const relevantNames = nameDict.filter(
@@ -327,6 +334,7 @@ export async function runHybridTranslate(opts: HybridTranslateOptions): Promise<
     skipTranslated,
     continuousMode,
     globalTranslatePrompt,
+    customStylePrompt,
     signal,
     delayMs,
     onPhase,
@@ -806,7 +814,8 @@ ${cleaned}`;
               dictTranslatedContent,
               nameDict,
               novelCustomPrompt,
-              globalTranslatePrompt
+              globalTranslatePrompt,
+              customStylePrompt
             );
 
             const userPrompt = buildPostEditUserPrompt(
