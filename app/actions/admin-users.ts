@@ -23,8 +23,12 @@ export async function getAllProfilesAction() {
       .select("*")
       .order("email");
 
-    if (error) return { success: false, error: error.message };
+    if (error) {
+      console.error("Lỗi khi fetch profiles:", error);
+      return { success: false, error: error.message };
+    }
     
+    console.log(`getAllProfilesAction: Fetched ${data?.length} profiles. Using Service Key: ${!!process.env.SUPABASE_SERVICE_ROLE_KEY}`);
     return { success: true, data };
   } catch (err: any) {
     return { success: false, error: err.message };

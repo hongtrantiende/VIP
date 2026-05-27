@@ -260,6 +260,7 @@ function buildPostEditPrompt(
   extractDict: boolean = false,
   nameDict?: Array<{ chinese: string; vietnamese: string; category: string }>,
   globalTranslatePrompt?: string,
+  customStylePrompt?: string,
 ): string {
   let prompt = "";
 
@@ -302,6 +303,11 @@ function buildPostEditPrompt(
         prompt += `${n.chinese} → ${n.vietnamese}\n`;
       }
     }
+  }
+
+  // Inject customStylePrompt (bao gồm NSFW prompt nếu được bật)
+  if (customStylePrompt && customStylePrompt.trim()) {
+    prompt += `\n\n# CHỈ DẪN VĂN PHONG DỊCH BỔ SUNG (BẮT BUỘC TUÂN THỦ):\n${customStylePrompt.trim()}`;
   }
 
   return prompt;
@@ -927,7 +933,8 @@ ${cleaned}`;
                 opts.promptType,
                 effectiveExtractDict,
                 nameDict,
-                globalTranslatePrompt
+                globalTranslatePrompt,
+                opts.customStylePrompt
               );
 
               const userPrompt = buildPostEditUserPrompt(
