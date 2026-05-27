@@ -13,9 +13,13 @@ import { getEnv } from "@/lib/env";
 function createServiceRoleClient() {
   const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || getEnv("NEXT_PUBLIC_SUPABASE_URL");
   const serviceKey = process.env.SUPABASE_SERVICE_ROLE_KEY || getEnv("SUPABASE_SERVICE_ROLE_KEY");
+  const anonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || getEnv("NEXT_PUBLIC_SUPABASE_ANON_KEY");
 
   if (!supabaseUrl) throw new Error("Missing NEXT_PUBLIC_SUPABASE_URL");
   if (!serviceKey) throw new Error("Missing SUPABASE_SERVICE_ROLE_KEY. Vui lòng thêm biến này vào Cloudflare Settings > Variables and Secrets.");
+  if (serviceKey === anonKey) {
+    throw new Error("LỖI CẤU HÌNH CLOUDFLARE: Biến SUPABASE_SERVICE_ROLE_KEY đang bị trùng y hệt với ANON_KEY. Bạn đã copy nhầm khóa rồi! Hãy vào Supabase > Settings > API, copy đúng dòng 'service_role (secret)' và dán lại vào Cloudflare nhé.");
+  }
 
   return createAdminClient(supabaseUrl, serviceKey);
 }
