@@ -9,6 +9,10 @@ import {
   downloadAllDictsFromAdminDrive,
   uploadTxtToAdminDrive,
   listTxtFromAdminDrive,
+  uploadCommunityDictToAdminDrive,
+  downloadAllCommunityDictsFromAdminDrive,
+  listCommunityDictsFromAdminDrive,
+  deleteDriveFile,
   getDriveFileContent
 } from '@/lib/google-drive-admin-v2';
 import { NextResponse } from 'next/server';
@@ -60,6 +64,61 @@ export async function POST(req: Request) {
     if (action === 'download-all-dicts') {
       const allDicts = await downloadAllDictsFromAdminDrive();
       return NextResponse.json({ success: true, dicts: allDicts });
+    }
+
+    if (action === 'contribute-community') {
+      const genre = searchParams.get('genre') || 'core';
+      const content = await getPayload();
+      
+      if (!content || typeof content !== 'string') {
+        return NextResponse.json({ error: 'Missing content' }, { status: 400 });
+      }
+
+      await uploadCommunityDictToAdminDrive(genre, `contrib`, content);
+      return NextResponse.json({ success: true });
+    }
+
+    if (action === 'download-community-dicts') {
+      const allCommDicts = await downloadAllCommunityDictsFromAdminDrive();
+      return NextResponse.json({ success: true, dicts: allCommDicts });
+    }
+
+    if (action === 'merge-community-dicts') {
+      // 1. Lấy danh sách file nhỏ
+      const files = await listCommunityDictsFromAdminDrive();
+      if (files.length === 0) return NextResponse.json({ success: true, message: 'No files to merge' });
+
+      // 2. Download nội dung
+      const allCommDicts = await downloadAllCommunityDictsFromAdminDrive();
+
+      // 3. Với mỗi genre, lấy file gốc, nối từ vào, và upload lại
+      for (const [genre, newContent] of Object.entries(allCommDicts)) {
+        if (!newContent.trim()) continue;
+
+        const filename = `${genre}_names.txt`; // Giả sử gộp vào _names
+        
+        // Tải file gốc
+        const rawOldData = await downloadDictFromAdminDrive(filename, true);
+        let oldContent = '';
+        if (rawOldData) {
+          const bytes = rawOldData instanceof Uint8Array ? rawOldData : new Uint8Array(rawOldData as any);
+          const { decompressIfNeeded } = await import('@/lib/compression');
+          oldContent = await decompressIfNeeded(bytes);
+        }
+
+        // Nối từ
+        const mergedContent = oldContent + (oldContent && !oldContent.endsWith('\n') ? '\n' : '') + newContent;
+
+        // Upload đè file gốc
+        await uploadDictToAdminDrive(filename, mergedContent);
+      }
+
+      // 4. Xóa các file nhỏ
+      for (const file of files) {
+        await deleteDriveFile(file.id).catch(e => console.error(e));
+      }
+
+      return NextResponse.json({ success: true, mergedFiles: files.length });
     }
 
     if (action === 'list-txt') {

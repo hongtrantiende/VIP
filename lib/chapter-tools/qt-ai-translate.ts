@@ -55,7 +55,9 @@ NGHIÊM CẤM sử dụng bất kỳ định dạng Markdown nào (như in đậ
 3. **Ngữ cảnh**: Sửa câu bị dịch sai nghĩa do thiếu ngữ cảnh (đại từ nhầm, quan hệ nhầm).
 4. **Văn phong**: Sửa câu cứng/lủng củng cho tự nhiên hơn nhưng giữ đúng phong cách thể loại. KHÔNG thuần Việt hóa quá mức — giữ hơi thở nguyên tác.
 5. **Giữ nguyên**: Giữ nguyên cấu trúc đoạn văn, dấu ngắt dòng, định dạng gốc. KHÔNG thêm bớt nội dung.
-6. **Nếu có bảng tên riêng**: BẮT BUỘC dùng đúng tên dịch đã cho, KHÔNG tự ý đổi.
+6. **Không sót chữ Hán**: TUYỆT ĐỐI KHÔNG để sót bất kỳ chữ Hán (tiếng Trung) gốc nào trong phần <content>, kể cả trong ngoặc đơn. Toàn bộ phải được dịch hoặc phiên âm sang tiếng Việt.
+7. **Nếu có bảng tên riêng**: BẮT BUỘC dùng đúng tên dịch đã cho, KHÔNG tự ý đổi.
+8. KHÔNG giải thích thêm. Nếu không có từ nào cần trích xuất, để trống phần <names></names>.
 
 # Yêu cầu đầu ra (BẮT BUỘC THEO ĐÚNG FORMAT NÀY):
 <names>
@@ -89,6 +91,7 @@ Yêu cầu:
 - Tuân thủ tuyệt đối quy tắc dịch tên riêng từ danh sách được cung cấp.
 - Giữ nguyên cấu trúc dòng, đoạn văn, dấu câu gốc.
 - BẮT BUỘC dịch đầy đủ 100% nội dung, TUYỆT ĐỐI không tóm tắt, lược bỏ hay cắt bớt câu chữ. Giữ nguyên tất cả các dấu phân cảnh (như ===SCENE_BREAK===) ở vị trí gốc.
+- TUYỆT ĐỐI KHÔNG để sót bất kỳ chữ Hán (tiếng Trung) gốc nào trong bản dịch, kể cả trong ngoặc đơn. Mọi nội dung phải được chuyển sang tiếng Việt.
 - Không tự ý thêm bớt chi tiết cốt truyện.
 - NGHIÊM CẤM chèn bất kỳ định dạng Markdown nào như in đậm **, ###. Chỉ xuất văn bản thuần túy.`;/**
  * Build genre-aware post-edit prompt.
@@ -139,6 +142,7 @@ export interface QtAiTranslateOptions {
   extractDict?: boolean; // "Càng dịch càng hay" — extract names + upload to Supabase
   cleanGarbage?: boolean;
   skipTranslated?: boolean;
+  chunkMode?: "chunk" | "full";
   continuousMode?: boolean; // Tự động nạp chương mới nếu có
   globalTranslatePrompt?: string;
   errorAction?: "stop" | "skip"; // "stop" = dừng lại khi lỗi, "skip" = bỏ qua chương lỗi
@@ -149,6 +153,8 @@ export interface QtAiTranslateOptions {
   customStylePrompt?: string;
   customPronounPrompt?: string;
   delayMs?: number;
+  hanVietRatio?: number; // 0-100 ratio
+
 
   onPhase: (chapterId: string, phase: string) => void;
   onChapterStart: (chapterId: string, chapterTitle: string) => void;
@@ -486,6 +492,16 @@ export async function runQtAiTranslate(opts: QtAiTranslateOptions): Promise<void
   const workerModels = models && models.length > 0 ? models : (model ? [model] : []);
   if (workerModels.length === 0) throw new Error("No model provided");
 
+  // Fetch novel's custom translate prompt EARLY (needed for cold start scan too)
+  const novel = await db.novels.get(novelId);
+  let novelCustomPrompt = novel?.customTranslatePrompt || "";
+
+  if (opts.hanVietRatio !== undefined) {
+    const hv = opts.hanVietRatio;
+    const tv = 100 - hv;
+    novelCustomPrompt += `\n\n- Tỷ lệ từ vựng ưu tiên: ${hv}% Hán Việt, ${tv}% Thuần Việt (Quan trọng: Mức ${hv}% Hán Việt nghĩa là bạn phải tinh chỉnh mật độ từ Hán Việt trong bản dịch cho phù hợp).`;
+  }
+
   // Fetch initial name dictionary
   let nameDict = await getMergedNameDict(novelId);
 
@@ -515,9 +531,14 @@ CẤM DỊCH NỘI DUNG. CHỈ TRẢ VỀ JSON, KHÔNG GIẢI THÍCH GÌ THÊM.
 [VĂN BẢN]
 ${cleaned}`;
 
+          let coldStartSystem = "Bạn là chuyên gia trích xuất thực thể tiếng Trung và phiên âm Hán-Việt. Luôn trả về đúng định dạng JSON Array chứa các đối tượng có thuộc tính chinese (chữ Hán gốc), vietnamese (phiên âm Hán-Việt chuẩn), và dictType (phân loại: 'names', 'tuvung', 'ngucanh'). KHÔNG trả về định dạng mảng chuỗi đơn giản. KHÔNG trích xuất đại từ nhân xưng hay từ thông dụng.";
+          // Inject user's custom prompt into cold start scan
+          if (novelCustomPrompt?.trim()) {
+            coldStartSystem += `\n\n# QUY TẮC BỔ SUNG TỪ NGƯỜI DÙNG (ƯU TIÊN CAO NHẤT):\n${novelCustomPrompt.trim()}`;
+          }
           const result = await streamText({
             model: workerModels[0],
-            system: "Bạn là chuyên gia trích xuất thực thể tiếng Trung và phiên âm Hán-Việt. Luôn trả về đúng định dạng JSON Array chứa các đối tượng có thuộc tính chinese (chữ Hán gốc), vietnamese (phiên âm Hán-Việt chuẩn), và dictType (phân loại: 'names', 'tuvung', 'ngucanh'). KHÔNG trả về định dạng mảng chuỗi đơn giản. KHÔNG trích xuất đại từ nhân xưng hay từ thông dụng.",
+            system: coldStartSystem,
             prompt,
             abortSignal: signal,
           });
@@ -559,9 +580,7 @@ ${cleaned}`;
     }
   }
 
-  // Fetch novel's custom translate prompt (from genre scan)
-  const novel = await db.novels.get(novelId);
-  const novelCustomPrompt = novel?.customTranslatePrompt;
+  // novelCustomPrompt already loaded above (before cold start scan)
 
   let processedIds = new Set<string>();
   let currentTranslateIdx = 0;
@@ -655,6 +674,7 @@ ${cleaned}`;
           sourceText: cleanedContent,
           novelId,
           existingDict: existingDictMap,
+          customScanPrompt: novelCustomPrompt,
           signal,
         });
 
@@ -671,10 +691,11 @@ ${cleaned}`;
             model: opts.dictModel || workerModels[0],
             sourceText: cleanedContent,
             existingDict: existingDictMap,
+            customScanPrompt: novelCustomPrompt,
             signal,
           });
           if (newlyScannedPronouns.length > 0) {
-            const addedPronounCount = await autoUpdatePronounPrompt(novelId, newlyScannedPronouns);
+            const addedPronounCount = await autoUpdatePronounPrompt(novelId, newlyScannedPronouns, existingDictMap);
             console.log(`[3-Model Concurrent Pipeline QtAi] AI 2 hoàn thành: Đã tự động thêm ${addedPronounCount} quy tắc xưng hô mới.`);
           }
         } catch (scanPronounErr) {
@@ -881,7 +902,8 @@ ${cleaned}`;
             // Fetch the latest dictionary (to include words extracted by Lookahead)
             nameDict = await getMergedNameDict(novelId);
 
-            const chunks = chunkText(cleanedContent, 1600);
+            const chunkSize = opts.chunkMode === "full" ? 20000 : 1600;
+            const chunks = chunkText(cleanedContent, chunkSize);
             let finalAccumulatedContent = "";
             let finalParsedTitle: string | null = null;
             let totalExtractedNamesCount = 0;
@@ -949,8 +971,10 @@ ${cleaned}`;
 
               let accumulated = "";
               let lastError: unknown = null;
+              let activeSystemPrompt = systemPrompt;
+              let hasTriedNsfwFallback = false;
 
-              for (let attempt = 0; attempt <= MAX_PERSISTENT_ATTEMPTS; attempt++) {
+              for (let attempt = 0; attempt <= MAX_PERSISTENT_ATTEMPTS * 2; attempt++) {
                 if (signal?.aborted) {
                   const err = new Error("Aborted");
                   err.name = "AbortError";
@@ -968,7 +992,7 @@ ${cleaned}`;
 
                   const result = await streamText({
                     model: workerModel,
-                    system: systemPrompt,
+                    system: activeSystemPrompt,
                     prompt: userPrompt,
                     abortSignal: signal,
                     maxOutputTokens: 10000,
@@ -985,11 +1009,23 @@ ${cleaned}`;
                     const { generateText } = await import("ai");
                     const directRes = await generateText({
                       model: workerModel,
-                      system: systemPrompt,
+                      system: activeSystemPrompt,
                       prompt: userPrompt,
                       abortSignal: signal,
                     });
                     fullText = directRes.text;
+                  }
+
+                  // Empty response retry (potential safety block)
+                  if (!fullText.trim()) {
+                    if (!hasTriedNsfwFallback) {
+                      hasTriedNsfwFallback = true;
+                      console.warn(`[Auto-NSFW] Direct returned empty. Retrying with NSFW R-18+ prompt...`);
+                      const { NSFW_INSTRUCTION } = await import("@/lib/writing/prompts");
+                      activeSystemPrompt = `${activeSystemPrompt}\n\n# CHỈ DẪN VĂN PHONG ĐẶC BIỆT BỔ SUNG (BẮT BUỘC TUÂN THỦ DÙ LÀ REWRITE HAY DỊCH):\n${NSFW_INSTRUCTION}`;
+                      continue;
+                    }
+                    throw new Error("AI trả về nội dung trống nghi ngờ do bộ lọc an toàn");
                   }
 
                   accumulated = fullText;
@@ -999,9 +1035,27 @@ ${cleaned}`;
                   if (signal?.aborted || err?.name === "AbortError") throw err;
 
                   lastError = err;
+
+                  const errMsg = err instanceof Error ? err.message : String(err);
+                  const lowerErr = errMsg.toLowerCase();
+                  const isSafetyBlock = lowerErr.includes('safety') || 
+                                        lowerErr.includes('content filter') || 
+                                        lowerErr.includes('blocked') || 
+                                        lowerErr.includes('finish_reason') ||
+                                        lowerErr.includes('finishreason') ||
+                                        lowerErr.includes('candidate');
+
+                  if (isSafetyBlock && !hasTriedNsfwFallback) {
+                    hasTriedNsfwFallback = true;
+                    console.warn(`[Auto-NSFW] Direct safety block triggered. Retrying with NSFW R-18+ prompt...`, err);
+                    const { NSFW_INSTRUCTION } = await import("@/lib/writing/prompts");
+                    activeSystemPrompt = `${activeSystemPrompt}\n\n# CHỈ DẪN VĂN PHONG ĐẶC BIỆT BỔ SUNG (BẮT BUỘC TUÂN THỦ DÙ LÀ REWRITE HAY DỊCH):\n${NSFW_INSTRUCTION}`;
+                    continue;
+                  }
+
                   const classified = classifyError(err);
 
-                  if (attempt >= MAX_PERSISTENT_ATTEMPTS) {
+                  if (attempt >= MAX_PERSISTENT_ATTEMPTS * 2) {
                     throw new Error(`Chunk ${chunkIdx + 1} hết Token/lỗi AI: ${classified.message}`);
                   }
 
@@ -1071,12 +1125,15 @@ ${glossarySection}`;
 
                   let pass2ResultText = "";
                   let editError: unknown = null;
-                  for (let editAttempt = 0; editAttempt < 3; editAttempt++) {
+                  let activeEditSystemPrompt = editSystemPrompt;
+                  let hasTriedNsfwEditFallback = false;
+
+                  for (let editAttempt = 0; editAttempt < 6; editAttempt++) {
                     if (signal?.aborted) break;
                     try {
                       const res = await streamText({
                         model: opts.editorModel,
-                        system: editSystemPrompt,
+                        system: activeEditSystemPrompt,
                         prompt: editUserPrompt,
                         abortSignal: signal,
                       });
@@ -1088,16 +1145,47 @@ ${glossarySection}`;
                         const { generateText } = await import("ai");
                         const directRes = await generateText({
                           model: opts.editorModel,
-                          system: editSystemPrompt,
+                          system: activeEditSystemPrompt,
                           prompt: editUserPrompt,
                           abortSignal: signal,
                         });
                         fullText = directRes.text;
                       }
+
+                      // Empty response retry (potential safety block)
+                      if (!fullText.trim()) {
+                        if (!hasTriedNsfwEditFallback) {
+                          hasTriedNsfwEditFallback = true;
+                          console.warn(`[Auto-NSFW] Editor returned empty. Retrying with NSFW R-18+ prompt...`);
+                          const { NSFW_INSTRUCTION } = await import("@/lib/writing/prompts");
+                          activeEditSystemPrompt = `${activeEditSystemPrompt}\n\n# CHỈ DẪN VĂN PHONG ĐẶC BIỆT BỔ SUNG (BẮT BUỘC TUÂN THỦ DÙ LÀ REWRITE HAY DỊCH):\n${NSFW_INSTRUCTION}`;
+                          continue;
+                        }
+                        throw new Error("AI biên tập trả về nội dung trống nghi ngờ do bộ lọc an toàn");
+                      }
+
                       pass2ResultText = fullText;
                       if (pass2ResultText.trim()) break;
-                    } catch (err) {
+                    } catch (err: any) {
                       editError = err;
+                      
+                      const errMsg = err instanceof Error ? err.message : String(err);
+                      const lowerErr = errMsg.toLowerCase();
+                      const isSafetyBlock = lowerErr.includes('safety') || 
+                                            lowerErr.includes('content filter') || 
+                                            lowerErr.includes('blocked') || 
+                                            lowerErr.includes('finish_reason') ||
+                                            lowerErr.includes('finishreason') ||
+                                            lowerErr.includes('candidate');
+
+                      if (isSafetyBlock && !hasTriedNsfwEditFallback) {
+                        hasTriedNsfwEditFallback = true;
+                        console.warn(`[Auto-NSFW] Editor safety block triggered. Retrying with NSFW R-18+ prompt...`, err);
+                        const { NSFW_INSTRUCTION } = await import("@/lib/writing/prompts");
+                        activeEditSystemPrompt = `${activeEditSystemPrompt}\n\n# CHỈ DẪN VĂN PHONG ĐẶC BIỆT BỔ SUNG (BẮT BUỘC TUÂN THỦ DÙ LÀ REWRITE HAY DỊCH):\n${NSFW_INSTRUCTION}`;
+                        continue;
+                      }
+
                       await delay(1000);
                     }
                   }

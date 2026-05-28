@@ -285,6 +285,21 @@ export const useScraperQueueStore = create<ScraperQueueState>()(
               );
             } else {
               // Extension-based scraping path (existing behavior)
+              
+              // Show STV-specific guidance when starting
+              if (nextJob.adapter.name === "STV") {
+                toast.info("📖 Hãy mở tab SangTacViet, bấm vào Chương 1 để bắt đầu tải. Hệ thống đang chờ bạn...", {
+                  duration: 15000,
+                  id: `stv-guide-${nextJob.id}`,
+                });
+                // Update progress message
+                set((s) => {
+                  const j = s.jobs[nextJob.id];
+                  if (!j) return s;
+                  return { jobs: { ...s.jobs, [nextJob.id]: { ...j, progress: { ...j.progress, current: "⏳ Đang chờ bạn mở Chương 1 trên STV..." } } } };
+                });
+              }
+              
               await scrapeChapters(
                 nextJob.chaptersToScrape,
                 nextJob.adapter,

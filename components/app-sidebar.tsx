@@ -65,6 +65,7 @@ export const navConfig = [
   { title: "Phòng Đọc", href: "/reading-room", icon: GlobeIcon },
   { title: "Nhập sách", href: "/import", icon: UploadIcon },
   { title: "Import Truyện", href: "/scraper", icon: GlobeIcon },
+  { title: "Lướt Web", href: "/surf", icon: GlobeIcon },
   { title: "Quản lý từ điển", href: "/dictionary", icon: BookOpenIcon },
 ] as const;
 

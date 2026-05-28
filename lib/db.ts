@@ -283,6 +283,8 @@ export interface AnalysisSettings {
   editPrompt?: string;
   translateDelaySeconds?: number;
   translateConcurrency?: number;
+  translateChunkMode?: "chunk" | "full";
+  hanVietRatio?: number; // 0 to 100, where 100 is 100% Han Viet
 }
 
 // ─── Name Dictionary ─────────────────────────────────────────

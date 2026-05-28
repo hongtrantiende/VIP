@@ -43,24 +43,35 @@ Quy tắc:
 /**
  * Extract character names from source text that are NOT already in the dictionary.
  * Returns only truly new names.
+ * 
+ * @param customScanPrompt - Optional custom prompt from user settings.
+ *   If provided, it will be appended to the system prompt so the AI respects 
+ *   user's name translation preferences (e.g., keeping Japanese/English names as-is).
  */
 export async function scanNewNames(opts: {
   model: LanguageModel;
   sourceText: string;
   novelId: string;
   existingDict: Map<string, string>;
+  customScanPrompt?: string;
   signal?: AbortSignal;
 }): Promise<ExtractedName[]> {
-  const { model, sourceText, novelId, existingDict, signal } = opts;
+  const { model, sourceText, novelId, existingDict, customScanPrompt, signal } = opts;
 
   // Skip if text is too short (unlikely to have meaningful names)
   if (sourceText.length < 50) return [];
+
+  // Build system prompt: base + user's custom rules
+  let systemPrompt = SCAN_NAMES_SYSTEM;
+  if (customScanPrompt?.trim()) {
+    systemPrompt += `\n\n# QUY TẮC BỔ SUNG TỪ NGƯỜI DÙNG (ƯU TIÊN CAO NHẤT - BẮT BUỘC TUÂN THỦ):\n${customScanPrompt.trim()}`;
+  }
 
   try {
     const result = await generateStructured({
       model,
       schema: nameSchema,
-      system: SCAN_NAMES_SYSTEM,
+      system: systemPrompt,
       prompt: sourceText.slice(0, 2000), // Only scan first 2000 chars for speed
       abortSignal: signal,
     });
@@ -112,6 +123,21 @@ export async function autoAddNames(
 
   if (toAdd.length > 0) {
     await db.nameEntries.bulkAdd(toAdd);
+    
+    // Đẩy lên Cộng Đồng (Background)
+    const novel = await db.novels.get(novelId);
+    if (novel) {
+      // Mặc định lấy thể loại đầu tiên, nếu không có thì gán 'core'
+      const genre = (novel.genres && novel.genres.length > 0) ? novel.genres[0] : 'core';
+      const content = toAdd.map(n => `${n.chinese}=${n.vietnamese}`).join('\n');
+      
+      // Không cần await vì upload chạy ngầm không ảnh hưởng UI
+      fetch(`/api/dict/cloud-storage?action=contribute-community&genre=${encodeURIComponent(genre)}`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'text/plain; charset=utf-8' },
+        body: content
+      }).catch(err => console.error('Failed to push community dict:', err));
+    }
   }
 
   return toAdd.length;
@@ -137,9 +163,9 @@ const pronounSchema = jsonSchema<{ relations: ExtractedPronoun[] }>({
         type: "object",
         properties: {
           speakerCn: { type: "string", description: "Tên gốc tiếng Trung của người nói" },
-          speakerVi: { type: "string", description: "Tên phiên âm Hán-Việt của người nói" },
+          speakerVi: { type: "string", description: "Tên tiếng Việt của người nói — BẮT BUỘC lấy từ Bảng tên dịch chuẩn" },
           listenerCn: { type: "string", description: "Tên gốc tiếng Trung của người nghe" },
-          listenerVi: { type: "string", description: "Tên phiên âm Hán-Việt của người nghe" },
+          listenerVi: { type: "string", description: "Tên tiếng Việt của người nghe — BẮT BUỘC lấy từ Bảng tên dịch chuẩn" },
           speakerPronoun: { type: "string", description: "Đại từ người nói tự xưng (ví dụ: anh, ta, tôi, đệ, sư phụ)" },
           listenerPronoun: { type: "string", description: "Đại từ gọi người nghe (ví dụ: em, nàng, cô, huynh, đồ nhi)" },
         },
@@ -150,33 +176,48 @@ const pronounSchema = jsonSchema<{ relations: ExtractedPronoun[] }>({
   required: ["relations"],
 });
 
-const SCAN_PRONOUNS_SYSTEM = `Bạn là chuyên gia phân tích hội thoại và đại từ nhân xưng trong tiểu thuyết Trung-Việt.
+const SCAN_PRONOUNS_SYSTEM = `Bạn là chuyên gia phân tích hội thoại và đại từ nhân xưng trong tiểu thuyết.
 Nhiệm vụ: đọc đoạn văn tiếng Trung gốc và xác định cách xưng hô (đại từ nhân xưng) thực tế giữa các nhân vật trong hội thoại.
 Quy tắc:
 1. CHỈ trích xuất khi có hội thoại rõ ràng giữa 2 nhân vật và xác định được đại từ nhân xưng cụ thể của người nói và người nghe.
-2. Cung cấp cả tên tiếng Trung gốc (ví dụ: "林枫", "楚瑶") và tên tiếng Việt Hán Việt dịch chuẩn của người nói và người nghe. Hãy tham khảo Bảng tên dịch chuẩn được cung cấp.
-3. Trường "speakerCn" và "listenerCn" chứa chính xác chữ Hán gốc của nhân vật nói/nghe.
-4. Trường "speakerVi" và "listenerVi" chứa tên tiếng Việt dịch chuẩn tương ứng (viết hoa các chữ cái đầu).
-5. Trường "speakerPronoun" và "listenerPronoun" là các đại từ xưng hô tiếng Việt tự nhiên và phù hợp nhất với ngữ cảnh hội thoại (ví dụ: "anh", "em", "ta", "nàng", "tôi", "cô", "sư phụ", "đồ nhi").
-6. Trả về định dạng JSON theo đúng schema yêu cầu, không thêm bớt giải thích.`;
+2. Trường "speakerCn" và "listenerCn" chứa chính xác chữ Hán gốc của nhân vật nói/nghe.
+3. Trường "speakerVi" và "listenerVi" BẮT BUỘC phải COPY CHÍNH XÁC tên tiếng Việt từ [BẢNG TÊN DỊCH CHUẨN] được cung cấp. TUYỆT ĐỐI KHÔNG tự ý phiên âm hay dịch lại tên. Nếu tên không có trong bảng, hãy bỏ qua nhân vật đó.
+4. Trường "speakerPronoun" và "listenerPronoun" là các đại từ xưng hô tiếng Việt tự nhiên và phù hợp nhất với ngữ cảnh hội thoại (ví dụ: "anh", "em", "ta", "nàng", "tôi", "cô", "sư phụ", "đồ nhi").
+5. Trả về định dạng JSON theo đúng schema yêu cầu, không thêm bớt giải thích.`;
 
+/**
+ * Scan pronoun relationships between characters from source text.
+ * 
+ * @param customScanPrompt - Optional custom prompt from user settings.
+ *   Appended to system prompt so the AI respects user's naming conventions.
+ */
 export async function scanPronounRelations(opts: {
   model: LanguageModel;
   sourceText: string;
   existingDict: Map<string, string>;
+  customScanPrompt?: string;
   signal?: AbortSignal;
 }): Promise<ExtractedPronoun[]> {
-  const { model, sourceText, existingDict, signal } = opts;
+  const { model, sourceText, existingDict, customScanPrompt, signal } = opts;
 
   if (sourceText.length < 100) return [];
 
   try {
-    const dictContext = Array.from(existingDict.entries())
+    const relevantNames = Array.from(existingDict.entries())
+      .filter(([cn]) => sourceText.includes(cn));
+
+    const dictContext = relevantNames
       .slice(0, 150) // Giới hạn số lượng tên riêng tránh quá tải prompt
       .map(([cn, vi]) => `${cn} -> ${vi}`)
       .join("\n");
 
-    const prompt = `[BẢNG TÊN DỊCH CHUẨN]
+    // Build system prompt: base + user's custom rules
+    let systemPrompt = SCAN_PRONOUNS_SYSTEM;
+    if (customScanPrompt?.trim()) {
+      systemPrompt += `\n\n# QUY TẮC BỔ SUNG TỪ NGƯỜI DÙNG (ƯU TIÊN CAO NHẤT - BẮT BUỘC TUÂN THỦ):\n${customScanPrompt.trim()}`;
+    }
+
+    const prompt = `[BẢNG TÊN DỊCH CHUẨN — BẮT BUỘC DÙNG ĐÚNG TÊN NÀY, KHÔNG TỰ Ý DỊCH LẠI]
 ${dictContext}
 
 [VĂN BẢN TIẾNG TRUNG]
@@ -185,7 +226,7 @@ ${sourceText.slice(0, 3000)}`;
     const result = await generateStructured({
       model,
       schema: pronounSchema,
-      system: SCAN_PRONOUNS_SYSTEM,
+      system: systemPrompt,
       prompt,
       abortSignal: signal,
     });
@@ -197,9 +238,19 @@ ${sourceText.slice(0, 3000)}`;
   }
 }
 
+/**
+ * Auto-update the novel's pronoun prompt based on extracted pronoun relations.
+ * 
+ * CRITICAL: Uses `nameDict` to look up verified Vietnamese names instead of
+ * trusting AI-returned speakerVi/listenerVi (which are often wrong for
+ * Japanese/English names).
+ * 
+ * @param nameDict - The verified name dictionary (chinese -> vietnamese mapping)
+ */
 export async function autoUpdatePronounPrompt(
   novelId: string,
-  relations: ExtractedPronoun[]
+  relations: ExtractedPronoun[],
+  nameDict?: Map<string, string>
 ): Promise<number> {
   if (relations.length === 0) return 0;
   const now = new Date();
@@ -209,6 +260,23 @@ export async function autoUpdatePronounPrompt(
     .where("scope")
     .equals(novelId)
     .toArray();
+
+  // Build a lookup map from existing name entries (chinese -> vietnamese)
+  // This is the VERIFIED dictionary — always prioritize over AI-returned names
+  const verifiedNameMap = new Map<string, string>();
+  for (const e of existingEntries) {
+    if (e.category !== "xưng hô" && e.chinese && e.vietnamese) {
+      verifiedNameMap.set(e.chinese, e.vietnamese);
+    }
+  }
+  // Also merge the passed-in nameDict (which may be more complete/up-to-date)
+  if (nameDict) {
+    for (const [cn, vi] of nameDict.entries()) {
+      if (!verifiedNameMap.has(cn)) {
+        verifiedNameMap.set(cn, vi);
+      }
+    }
+  }
 
   const existingMap = new Map(existingEntries.map(e => [e.chinese, e]));
   const toAdd = [];
@@ -220,8 +288,14 @@ export async function autoUpdatePronounPrompt(
     if (!r.speakerCn || !r.listenerCn || !r.speakerPronoun || !r.listenerPronoun) continue;
 
     const formatName = (name: string) => name.trim().split(/\s+/).map(w => w.charAt(0).toUpperCase() + w.slice(1).toLowerCase()).join(" ");
-    const speakerFormatted = formatName(r.speakerVi || r.speakerCn);
-    const listenerFormatted = formatName(r.listenerVi || r.listenerCn);
+
+    // BUG FIX: Ưu tiên lấy tên từ từ điển đã xác minh, KHÔNG dùng tên AI trả về
+    // Nếu không tìm thấy trong dict thì mới fallback dùng tên AI trả về
+    const verifiedSpeaker = verifiedNameMap.get(r.speakerCn.trim());
+    const verifiedListener = verifiedNameMap.get(r.listenerCn.trim());
+    
+    const speakerFormatted = formatName(verifiedSpeaker || r.speakerVi || r.speakerCn);
+    const listenerFormatted = formatName(verifiedListener || r.listenerVi || r.listenerCn);
 
     const chineseKey = `${r.speakerCn.trim()}->${r.listenerCn.trim()}`;
     const vietnameseValue = `${r.speakerPronoun.trim()}->${r.listenerPronoun.trim()}|${speakerFormatted}->${listenerFormatted}`;

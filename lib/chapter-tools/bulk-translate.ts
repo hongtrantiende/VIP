@@ -206,6 +206,7 @@ export interface BulkTranslateOptions {
   signal?: AbortSignal;
   /** Delay in milliseconds between chapters to avoid rate limits. */
   delayMs?: number;
+  chunkMode?: "chunk" | "full";
 
   onChapterStart: (chapterId: string, chapterTitle: string) => void;
   onChapterComplete: (result: TranslateChapterResult) => void;
@@ -258,7 +259,8 @@ export async function runBulkTranslate(opts: BulkTranslateOptions): Promise<void
 
   // Use novel's scanned custom prompt (genre-aware) > manual override > settings default
   const novel = await db.novels.get(novelId);
-  const basePrompt = novel?.customTranslatePrompt?.trim()
+  const novelCustomPrompt = novel?.customTranslatePrompt?.trim() || "";
+  const basePrompt = novelCustomPrompt
     || customPrompt?.trim()
     || resolveChapterToolPrompts(settings).translate;
 
@@ -299,6 +301,7 @@ export async function runBulkTranslate(opts: BulkTranslateOptions): Promise<void
           sourceText: joinedContent,
           novelId,
           existingDict: nameDictMap,
+          customScanPrompt: novelCustomPrompt,
           signal,
         });
         if (newNames.length > 0) {
@@ -316,10 +319,11 @@ export async function runBulkTranslate(opts: BulkTranslateOptions): Promise<void
             model: nameScanModel,
             sourceText: joinedContent,
             existingDict: nameDictMap,
+            customScanPrompt: novelCustomPrompt,
             signal,
           });
           if (newlyScannedPronouns.length > 0) {
-            await autoUpdatePronounPrompt(novelId, newlyScannedPronouns);
+            await autoUpdatePronounPrompt(novelId, newlyScannedPronouns, nameDictMap);
           }
         } catch (scanPronounErr) {
           console.warn("[Lookahead] Lỗi quét xưng hô ngầm:", scanPronounErr);
@@ -392,6 +396,7 @@ export async function runBulkTranslate(opts: BulkTranslateOptions): Promise<void
             sourceText: joinedContent,
             novelId,
             existingDict: nameDictMap,
+            customScanPrompt: novelCustomPrompt,
             signal,
           });
           if (newNames.length > 0) {
@@ -409,10 +414,11 @@ export async function runBulkTranslate(opts: BulkTranslateOptions): Promise<void
               model: nameScanModel,
               sourceText: joinedContent,
               existingDict: nameDictMap,
+              customScanPrompt: novelCustomPrompt,
               signal,
             });
             if (newlyScannedPronouns.length > 0) {
-              await autoUpdatePronounPrompt(novelId, newlyScannedPronouns);
+              await autoUpdatePronounPrompt(novelId, newlyScannedPronouns, nameDictMap);
             }
           } catch (scanPronounErr) {
             console.warn(`[NameScan] Chương "${chapter.title}": Lỗi quét xưng hô:`, scanPronounErr);
@@ -460,15 +466,17 @@ export async function runBulkTranslate(opts: BulkTranslateOptions): Promise<void
       // Stream translation with retry logic
       let accumulated = "";
       let lastError: unknown = null;
+      let activeSystemPrompt = systemPrompt;
+      let hasTriedNsfwBulkFallback = false;
 
-      for (let attempt = 0; attempt <= MAX_RETRIES; attempt++) {
+      for (let attempt = 0; attempt <= MAX_RETRIES * 2; attempt++) {
         if (signal?.aborted) break;
 
         try {
           accumulated = "";
           const result = streamText({
             model,
-            system: systemPrompt,
+            system: activeSystemPrompt,
             prompt: userPrompt,
             abortSignal: signal,
           });
@@ -481,9 +489,16 @@ export async function runBulkTranslate(opts: BulkTranslateOptions): Promise<void
 
           // Check for empty response — treat as retryable with short delay
           if (!accumulated.trim()) {
+            if (!hasTriedNsfwBulkFallback) {
+              hasTriedNsfwBulkFallback = true;
+              console.warn(`[Auto-NSFW] Bulk returned empty. Retrying with NSFW R-18+ prompt...`);
+              const { NSFW_INSTRUCTION } = await import("@/lib/writing/prompts");
+              activeSystemPrompt = `${activeSystemPrompt}\n\n# CHỈ DẪN VĂN PHONG ĐẶC BIỆT BỔ SUNG (BẮT BUỘC TUÂN THỦ DÙ LÀ REWRITE HAY DỊCH):\n${NSFW_INSTRUCTION}`;
+              continue;
+            }
             const emptyErr = new Error("AI trả về nội dung trống — thử lại nhanh...");
             lastError = emptyErr;
-            console.warn(`[Translate] Chapter "${chapter.title}" trả về trống (lần ${attempt + 1}). Chờ 5s retry...`);
+            console.log(`[Translate] Chapter "${chapter.title}" trả về trống (lần ${attempt + 1}). Chờ 5s retry...`);
             await delay(RETRY_EMPTY_DELAY, signal);
             continue;
           }
@@ -495,10 +510,28 @@ export async function runBulkTranslate(opts: BulkTranslateOptions): Promise<void
 
           lastError = null;
           break; // Success — exit retry loop
-        } catch (err) {
+        } catch (err: any) {
           if (err instanceof Error && err.name === "AbortError") throw err;
 
           lastError = err;
+          
+          const errMsg = err instanceof Error ? err.message : String(err);
+          const lowerErr = errMsg.toLowerCase();
+          const isSafetyBlock = lowerErr.includes('safety') || 
+                                lowerErr.includes('content filter') || 
+                                lowerErr.includes('blocked') || 
+                                lowerErr.includes('finish_reason') ||
+                                lowerErr.includes('finishreason') ||
+                                lowerErr.includes('candidate');
+
+          if (isSafetyBlock && !hasTriedNsfwBulkFallback) {
+            hasTriedNsfwBulkFallback = true;
+            console.warn(`[Auto-NSFW] Bulk safety block triggered. Retrying with NSFW R-18+ prompt...`, err);
+            const { NSFW_INSTRUCTION } = await import("@/lib/writing/prompts");
+            activeSystemPrompt = `${activeSystemPrompt}\n\n# CHỈ DẪN VĂN PHONG ĐẶC BIỆT BỔ SUNG (BẮT BUỘC TUÂN THỦ DÙ LÀ REWRITE HAY DỊCH):\n${NSFW_INSTRUCTION}`;
+            continue;
+          }
+
           const classified = classifyError(err);
 
           if (!classified.retryable) {

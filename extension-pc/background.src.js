@@ -246,53 +246,132 @@ async function stvFetchChapter(payload, sendResponse) {
     const tabId = await findSTVTab(payload.chapterUrl);
     if (!tabId) { sendResponse({ success: false, error: "Mở 1 tab SangTacViet trước!" }); return; }
     
-    // Ensure the tab is active and its window is focused!
-    await chrome.tabs.update(tabId, { active: true });
-    try {
-      const tabInfo = await chrome.tabs.get(tabId);
-      if (tabInfo && tabInfo.windowId) {
-        await chrome.windows.update(tabInfo.windowId, { focused: true });
-      }
-    } catch (winErr) {
-      console.warn("[STV] Window focus error:", winErr);
-    }
-
-    // Check if the tab's current URL matches the target chapter URL.
-    // If they differ, navigate the tab to the target chapter URL.
-    let tabInfo;
-    try {
-      tabInfo = await chrome.tabs.get(tabId);
-    } catch {}
-    
-    const normPath = (str) => {
-      try {
-        const uObj = new URL(str);
-        return uObj.pathname.replace(/#.*$/, "").replace(/\?.*$/, "").replace(/\/$/, "");
-      } catch {
-        return str.replace(/#.*$/, "").replace(/\?.*$/, "").replace(/\/$/, "");
-      }
-    };
-
-    if (tabInfo && tabInfo.url && payload.chapterUrl) {
-      const currentNorm = normPath(tabInfo.url);
-      const targetNorm = normPath(payload.chapterUrl);
-      if (currentNorm !== targetNorm) {
-        console.log(`[STV] Tab URL (${tabInfo.url}) differs from target (${payload.chapterUrl}). Navigating...`);
-        await chrome.tabs.update(tabId, { url: payload.chapterUrl, active: true });
-        // Wait for navigation load
-        await waitForTabLoad(tabId, 15000);
-      }
-    }
-    
-    // 1. Wait for the user-specified delay BEFORE extracting.
-    // The user wants to wait e.g. 5 seconds (out of 7) to let the page fully load.
     const userDelay = payload.delayMs || 7000;
-    const waitBeforeExtract = Math.max(1000, userDelay - 2000); // e.g. 5000ms
-    
-    console.log(`[STV] Waiting ${waitBeforeExtract}ms before extracting text to ensure full load...`);
-    for (let i = 0; i < waitBeforeExtract / 500; i++) {
-      if (!stvScrapeActive) break;
-      await delay(500);
+    const isFirstChapter = payload.isFirstChapter === true;
+
+    // Only force focus the window if it's the very first chapter (where we need user to manually click)
+    // For subsequent chapters, just updating the tab is enough and prevents stealing focus from the user
+    if (isFirstChapter) {
+      await chrome.tabs.update(tabId, { active: true });
+      try {
+        const tabInfo = await chrome.tabs.get(tabId);
+        if (tabInfo && tabInfo.windowId) {
+          await chrome.windows.update(tabInfo.windowId, { focused: true });
+        }
+      } catch (winErr) {
+        console.warn("[STV] Window focus error:", winErr);
+      }
+    } else {
+      // For subsequent chapters, just make it active but don't steal OS focus
+      try { await chrome.tabs.update(tabId, { active: true }); } catch {}
+    }
+
+    if (!isFirstChapter) {
+      // ── SUBSEQUENT CHAPTERS: Click "Next" button ──
+      // First, capture the current content BEFORE clicking next
+      let prevContent = "";
+      try {
+        const prevResp = await chrome.tabs.sendMessage(tabId, { type: "EXTRACT_NOW" });
+        if (prevResp && prevResp.content) {
+          prevContent = prevResp.content.substring(0, 200); // first 200 chars for comparison
+        }
+      } catch {}
+
+      // Click the "Next chapter" button
+      console.log("[STV] Clicking next chapter button...");
+      try {
+        // Use scripting.executeScript to click the next button directly
+        // This is more reliable than sending a message to content script
+        await chrome.scripting.executeScript({
+          target: { tabId },
+          func: () => {
+            // Try multiple selectors for the "next" button
+            const nextBtn = document.querySelector('#navnextbot') 
+              || document.querySelector('#navnexttop')
+              || document.querySelector('a[id*="navnext"]');
+            if (nextBtn) {
+              nextBtn.click();
+              return true;
+            }
+            // Fallback: look for links with "Chương sau" or "Next" text
+            const links = document.querySelectorAll('a');
+            for (const a of links) {
+              const text = (a.textContent || '').trim().toLowerCase();
+              if (text.includes('chương sau') || text.includes('chương kế') || text.includes('tiếp') || text === 'next') {
+                a.click();
+                return true;
+              }
+            }
+            return false;
+          }
+        });
+      } catch (e) {
+        console.log("[STV] Click next error:", e.message);
+      }
+
+      // Wait for page navigation to complete
+      await waitForTabLoad(tabId, 15000);
+      
+      // Wait for content to actually change (not just page load)
+      console.log(`[STV] Waiting for content to change after clicking next...`);
+      const waitStart = Date.now();
+      const maxContentWait = Math.max(userDelay, 8000);
+      let contentChanged = false;
+      
+      for (let i = 0; i < maxContentWait / 500; i++) {
+        if (!stvScrapeActive) break;
+        await delay(500);
+        
+        try {
+          const checkResp = await chrome.tabs.sendMessage(tabId, { type: "EXTRACT_NOW" });
+          if (checkResp && checkResp.length > 200) {
+            const newContentHead = (checkResp.content || "").substring(0, 200);
+            // Content must be different from previous chapter
+            if (newContentHead !== prevContent) {
+              contentChanged = true;
+              console.log(`[STV] Content changed after ${Date.now() - waitStart}ms`);
+              break;
+            }
+          }
+        } catch {}
+      }
+      
+      if (!contentChanged) {
+        console.log("[STV] Content did not change after clicking next, will try extracting anyway...");
+      }
+    } else {
+      // ── FIRST CHAPTER: Wait for user to manually click into chapter 1 ──
+      // Poll until content appears (user clicks chapter 1 on STV tab)
+      console.log("[STV] First chapter - waiting for user to open chapter 1 on STV tab...");
+      const maxWaitForUser = 120000; // 2 minutes max wait
+      const pollInterval = 2000; // Check every 2 seconds
+      const waitStart = Date.now();
+      let contentFound = false;
+
+      for (let i = 0; i < maxWaitForUser / pollInterval; i++) {
+        if (!stvScrapeActive) break;
+        await delay(pollInterval);
+
+        try {
+          const resp = await chrome.tabs.sendMessage(tabId, { type: "EXTRACT_NOW" });
+          if (resp && resp.length > 200) {
+            contentFound = true;
+            console.log(`[STV] Content detected after ${Date.now() - waitStart}ms! User has opened chapter 1.`);
+            break;
+          }
+        } catch {}
+        
+        // Log progress every 10 seconds
+        if (i > 0 && i % 5 === 0) {
+          console.log(`[STV] Still waiting for user to open chapter 1... (${Math.round((Date.now() - waitStart) / 1000)}s)`);
+        }
+      }
+
+      if (!contentFound && stvScrapeActive) {
+        console.log("[STV] Timeout: user did not open chapter 1 within 2 minutes.");
+        sendResponse({ success: false, error: "Timeout: Vui lòng mở tab STV và bấm vào Chương 1 trước khi tải!", timedOut: true });
+        return;
+      }
     }
 
     if (!stvScrapeActive) {
@@ -300,42 +379,45 @@ async function stvFetchChapter(payload, sendResponse) {
       return;
     }
 
+    // ── EXTRACT content from current page ──
     let content = "", title = "";
     
-    // Clear any stale cache that might have been captured too early
+    // Clear stale cache
     contentCache.delete(tabId);
 
-    // 2. Extract NOW
-    for (let i = 0; i < 10; i++) {
+    for (let i = 0; i < 15; i++) {
       if (!stvScrapeActive) break;
       try {
         const resp = await chrome.tabs.sendMessage(tabId, { type: "EXTRACT_NOW" });
         if (resp && resp.length > 200) { 
           content = resp.content; 
-          title = resp.title; 
+          title = resp.title;
           break; 
         }
       } catch {}
       await delay(500);
     }
+
+    // Get current page URL for verification
+    let currentUrl = "";
+    try {
+      const tabState = await chrome.tabs.get(tabId);
+      currentUrl = tabState.url || "";
+    } catch {}
     
-    // 3. Trigger GO_NEXT for the next iteration
-    const shouldNext = payload.allowNext !== false && stvScrapeActive;
-    if (shouldNext && content.length > 200) {
-      try {
-        await chrome.tabs.sendMessage(tabId, { type: "GO_NEXT" });
-        // We let the page navigate, but we should wait the REMAINING time of the user's delay
-        // before returning, so the total interval respects the user's setting (e.g. 7s).
-        const remainingDelay = Math.max(0, userDelay - waitBeforeExtract);
-        console.log(`[STV] GO_NEXT triggered, waiting remaining ${remainingDelay}ms...`);
-        for (let i = 0; i < remainingDelay / 500; i++) {
-          if (!stvScrapeActive) break;
-          await delay(500);
-        }
-      } catch (e) { console.log("[STV] GO_NEXT Error:", e.message); }
-    }
+    console.log(`[STV] Extracted: title="${title}", length=${content.length}, url=${currentUrl}`);
     
-    sendResponse({ success: true, content, contentText: content, data: "", length: content.length, title, timedOut: content.length < 200, stopped: !stvScrapeActive });
+    sendResponse({ 
+      success: true, 
+      content, 
+      contentText: content, 
+      data: "", 
+      length: content.length, 
+      title, 
+      timedOut: content.length < 200, 
+      stopped: !stvScrapeActive,
+      currentUrl // Send back for verification
+    });
   } catch (error) { sendResponse({ success: false, error: error.message }); }
 }
 

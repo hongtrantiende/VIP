@@ -64,3 +64,6 @@ docs
 *.mp3
 *.apks
 untitled.zip
+
+# AI agent skills (downloaded, not project code)
+/.agents/

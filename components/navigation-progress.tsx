@@ -31,6 +31,8 @@ export function NavigationProgress() {
 
     // Intercept all link clicks to start the progress bar immediately
     useEffect(() => {
+        let safetyTimeout: ReturnType<typeof setTimeout> | null = null;
+
         function handleClick(e: MouseEvent) {
             const target = (e.target as HTMLElement).closest("a");
             if (!target) return;
@@ -59,12 +61,24 @@ export function NavigationProgress() {
                     return Math.min(prev + increment, 90);
                 });
             }, 80);
+
+            // Safety: auto-complete after 5 seconds if still loading
+            // This prevents the bar from being stuck at 80-90% forever
+            if (safetyTimeout) clearTimeout(safetyTimeout);
+            safetyTimeout = setTimeout(() => {
+                setProgress(100);
+                setTimeout(() => {
+                    setIsLoading(false);
+                    setProgress(0);
+                }, 300);
+            }, 5000);
         }
 
         document.addEventListener("click", handleClick);
         return () => {
             document.removeEventListener("click", handleClick);
             if (timerRef.current) clearInterval(timerRef.current);
+            if (safetyTimeout) clearTimeout(safetyTimeout);
         };
     }, [pathname]);
 

@@ -598,6 +598,35 @@ export async function listCommunityDictsFromAdminDrive() {
   return results;
 }
 
+export async function downloadAllCommunityDictsFromAdminDrive(): Promise<Record<string, string>> {
+  const files = await listCommunityDictsFromAdminDrive();
+  const results: Record<string, string[]> = {};
+
+  const CONCURRENCY = 5;
+  for (let i = 0; i < files.length; i += CONCURRENCY) {
+    const batch = files.slice(i, i + CONCURRENCY);
+    await Promise.all(batch.map(async (file) => {
+      try {
+        const content = await fetchDriveAPI(`https://www.googleapis.com/drive/v3/files/${file.id}?alt=media`);
+        const contentStr = typeof content === 'string' ? content : JSON.stringify(content);
+        
+        if (!results[file.genre]) results[file.genre] = [];
+        results[file.genre].push(contentStr);
+      } catch (err) {
+        console.error(`Error downloading community dict file ${file.name}:`, err);
+      }
+    }));
+  }
+
+  // Gộp tất cả các file của cùng 1 thể loại thành 1 string lớn cách nhau bằng \n
+  const finalResults: Record<string, string> = {};
+  for (const [genre, contents] of Object.entries(results)) {
+    finalResults[genre] = contents.join('\n');
+  }
+
+  return finalResults;
+}
+
 export async function getDriveFileContent(fileId: string, raw?: boolean) {
   const content = await fetchDriveAPI(`https://www.googleapis.com/drive/v3/files/${fileId}?alt=media`, {}, raw);
   if (raw) return content as Uint8Array;

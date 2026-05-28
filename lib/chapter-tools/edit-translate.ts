@@ -62,6 +62,7 @@ ${genreGuidelines}
 3. **Nhất quán tên riêng**: Giữ nguyên tên nhân vật, địa danh chính xác tuyệt đối.
 4. **Không sáng tác thêm & Bản dịch đầy đủ 100% (Tuyệt đối không tóm tắt)**: Không thêm bớt tình tiết ngoại truyện. BẮT BUỘC biên tập đầy đủ 100% nội dung, không tóm tắt ý, không cắt xén hay lược bỏ bất kỳ câu chữ nào.
 5. **Giữ cấu trúc và dấu phân cảnh**: Giữ nguyên số đoạn văn, dấu ngắt dòng. Nếu có dấu phân cách phân cảnh (như ===SCENE_BREAK===), bạn BẮT BUỘC phải giữ nguyên chính xác định dạng và vị trí của các dấu này, không tự ý xóa bỏ hay dịch nghĩa.
+6. **Không sót chữ Hán**: TUYỆT ĐỐI KHÔNG để sót bất kỳ chữ Hán (tiếng Trung) gốc nào trong bản dịch, kể cả trong ngoặc đơn. Toàn bộ phải được chuyển sang tiếng Việt.
 
 # Định dạng đầu ra:
 <content>
@@ -199,9 +200,10 @@ export interface EditTranslateOptions {
     qaEnabled?: boolean;
     qaPrompt?: string;
     globalEditPrompt?: string;
-    skipTranslated?: boolean;
     cleanGarbage?: boolean;
+    skipTranslated?: boolean;
     errorAction?: "stop" | "skip";
+    chunkMode?: "chunk" | "full";
     signal?: AbortSignal;
     delayMs?: number;
     onPhase?: (chapterId: string, phase: string) => void;
@@ -308,7 +310,9 @@ export async function runEditTranslate(opts: EditTranslateOptions) {
 
                 const origContent = await getOriginalContent(scene.id).catch(() => "");
 
-                const chunks = chunkText(currentContent, 2000);
+                // Split content to handle model limits
+                const chunkSize = opts.chunkMode === "full" ? 20000 : 2000;
+                const chunks = chunkText(currentContent, chunkSize);
                 let editedContent = "";
 
                 for (const chunk of chunks) {

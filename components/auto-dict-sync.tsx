@@ -76,6 +76,42 @@ export function AutoDictSync() {
           await new Promise((resolve) => setTimeout(resolve, 0));
         }
 
+        // Tải thêm từ điển Cộng Đồng (những từ mới mà mọi người vừa thêm chưa gộp vào gốc)
+        try {
+          const commParams = new URLSearchParams({ action: 'download-community-dicts' });
+          const commRes = await fetch(`/api/dict/cloud-storage?${commParams.toString()}`, { method: 'POST' });
+          if (commRes.ok) {
+            const commData = await commRes.json();
+            if (commData.success && commData.dicts) {
+              const allCommDicts: Record<string, string> = commData.dicts;
+              for (const [genre, text] of Object.entries(allCommDicts)) {
+                if (!mounted) return;
+                const clean = text.startsWith("\uFEFF") ? text.slice(1) : text;
+                if (!clean || clean.trim().length === 0) continue;
+                
+                const source = `${genre}_names` as DictSource; // Gộp vào names của thể loại đó
+                const entries = clean
+                  .split(/\r?\n/)
+                  .map((line) => {
+                    const idx = line.indexOf("=");
+                    if (idx < 1) return null;
+                    return {
+                      chinese: line.slice(0, idx).trim(),
+                      vietnamese: line.slice(idx + 1).trim(),
+                    };
+                  })
+                  .filter((e) => e !== null);
+
+                if (entries.length > 0) {
+                  await appendToDictSource(source, entries);
+                }
+              }
+            }
+          }
+        } catch (e) {
+          console.error("Lỗi khi tải từ điển cộng đồng ngầm:", e);
+        }
+
         // Đánh dấu đã sync
         localStorage.setItem("last_dict_sync", now.toString());
         console.log("[AutoDictSync] Đã tải xong từ điển từ server.");

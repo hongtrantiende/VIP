@@ -17,6 +17,7 @@ export const XTruyenAdapter: SiteAdapter = {
   name: "XTruyen",
   group: "vn",
   urlPattern: /xtruyen\.vn/,
+  chapterClickSelector: "body",
   chapterWaitSelector: "#chapter-reading-content",
 
   async getNovelInfo(html, url, onProgress) {
@@ -128,19 +129,22 @@ export const XTruyenAdapter: SiteAdapter = {
 
     if (!container && !contentText) return { title: "", content: "" };
 
-    // If we have contentText (from extension bridge innerText), it's cleaner
-    let rawText = contentText || "";
+    let rawText = "";
 
-    if (!rawText && container) {
-      // Remove ads and unwanted elements
+    // Luôn ưu tiên dùng container nếu tìm thấy để lấy toàn bộ các đoạn văn
+    if (container) {
+      // Xóa quảng cáo, mã nhúng và vòng xoay loading
       container
-        .querySelectorAll(".aam-ad-container, .carousel, script, style, .ads, .quangcao")
+        .querySelectorAll(".aam-ad-container, .carousel, script, style, .ads, .quangcao, #loading-box")
         .forEach((el) => el.remove());
 
       let htmlContent = (container as HTMLElement).innerHTML || "";
       rawText = htmlContent.replace(/<(br|hr)\s*\/?>/gi, '\n')
         .replace(/<\/(p|div|section|article|li)>/gi, '\n')
         .replace(/<[^>]+>/g, '');
+    } else {
+      // Chỉ dùng contentText làm dự phòng
+      rawText = contentText || "";
     }
 
     const title =

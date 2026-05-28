@@ -210,9 +210,9 @@ export interface ComprehensiveTranslateOptions {
     customPronounPrompt?: string;
     twoPass?: boolean; // Enable two-pass edit/polish pipeline
     skipTranslated?: boolean;
-    continuousMode?: boolean;
-    extractDict?: boolean;
+    extractDict?: boolean; // "Càng dịch càng hay" — extract names + upload to Supabase
     cleanGarbage?: boolean;
+    chunkMode?: "chunk" | "full";
     dictModel?: LanguageModel;
     qaModel?: LanguageModel;
     qaEnabled?: boolean;
@@ -257,6 +257,7 @@ export async function runComprehensiveTranslate(opts: ComprehensiveTranslateOpti
 
     const store = useBulkTranslateStore.getState();
     const novel = await db.novels.get(novelId);
+    const novelCustomPrompt = novel?.customTranslatePrompt?.trim() || "";
     const genreKeys = novel?.genres || (novel?.genre ? [novel.genre] : []);
     const genreText = genreKeys.map(k => GENRE_LABELS[k] || k).join(", ") || "Chưa xác định";
 
@@ -376,6 +377,7 @@ export async function runComprehensiveTranslate(opts: ComprehensiveTranslateOpti
                     sourceText: cleanedContent,
                     novelId,
                     existingDict: existingDictMap,
+                    customScanPrompt: novelCustomPrompt,
                     signal,
                 });
 
@@ -394,10 +396,11 @@ export async function runComprehensiveTranslate(opts: ComprehensiveTranslateOpti
                         model: dictModel || model,
                         sourceText: cleanedContent,
                         existingDict: existingDictMap,
+                        customScanPrompt: novelCustomPrompt,
                         signal,
                     });
                     if (newlyScannedPronouns.length > 0) {
-                        const addedPronounCount = await autoUpdatePronounPrompt(novelId, newlyScannedPronouns);
+                        const addedPronounCount = await autoUpdatePronounPrompt(novelId, newlyScannedPronouns, existingDictMap);
                         console.log(`[3-Model Concurrent Pipeline] AI 2 hoàn thành: Đã tự động thêm ${addedPronounCount} quy tắc xưng hô mới.`);
                     }
                 } catch (scanPronounErr) {
@@ -592,7 +595,8 @@ export async function runComprehensiveTranslate(opts: ComprehensiveTranslateOpti
                 dictTranslatedTitle = titleRes.plainText;
 
                 // Cut into chunks for AI
-                const chunks = chunkText(cleanedContent, 1600);
+                const chunkSize = opts.chunkMode === "full" ? 20000 : 1600;
+                const chunks = chunkText(cleanedContent, chunkSize);
                 let finalAccumulatedContent = "";
                 let finalParsedTitle: string | null = null;
                 let totalExtractedNamesCount = 0;
@@ -644,13 +648,15 @@ export async function runComprehensiveTranslate(opts: ComprehensiveTranslateOpti
                     let rawDraftOutput = "";
                     let draftSuccess = false;
                     let lastDraftError = null;
+                    let activeDraftSystem = draftSystem;
+                    let hasTriedNsfwDraftFallback = false;
 
-                    for (let attempt = 0; attempt <= MAX_PERSISTENT_ATTEMPTS; attempt++) {
+                    for (let attempt = 0; attempt <= MAX_PERSISTENT_ATTEMPTS * 2; attempt++) {
                         if (signal?.aborted) throw new Error("Aborted");
                         try {
                             const res = await streamText({
                                 model,
-                                system: draftSystem,
+                                system: activeDraftSystem,
                                 prompt: draftUser,
                                 abortSignal: signal,
                                 maxOutputTokens: 10000,
@@ -667,11 +673,23 @@ export async function runComprehensiveTranslate(opts: ComprehensiveTranslateOpti
                                 const { generateText } = await import("ai");
                                 const directRes = await generateText({
                                     model,
-                                    system: draftSystem,
+                                    system: activeDraftSystem,
                                     prompt: draftUser,
                                     abortSignal: signal,
                                 });
                                 text = directRes.text;
+                            }
+
+                            // Empty response retry (potential safety block)
+                            if (!text.trim()) {
+                                if (!hasTriedNsfwDraftFallback) {
+                                    hasTriedNsfwDraftFallback = true;
+                                    console.warn(`[Auto-NSFW] Draft returned empty. Retrying with NSFW R-18+ prompt...`);
+                                    const { NSFW_INSTRUCTION } = await import("@/lib/writing/prompts");
+                                    activeDraftSystem = `${activeDraftSystem}\n\n# CHỈ DẪN VĂN PHONG ĐẶC BIỆT BỔ SUNG (BẮT BUỘC TUÂN THỦ DÙ LÀ REWRITE HAY DỊCH):\n${NSFW_INSTRUCTION}`;
+                                    continue;
+                                }
+                                throw new Error("AI trả về nội dung trống nghi ngờ do bộ lọc an toàn");
                             }
 
                             rawDraftOutput = text;
@@ -680,6 +698,24 @@ export async function runComprehensiveTranslate(opts: ComprehensiveTranslateOpti
                         } catch (err: any) {
                             if (signal?.aborted || err?.name === "AbortError") throw err;
                             lastDraftError = err;
+                            
+                            const errMsg = err instanceof Error ? err.message : String(err);
+                            const lowerErr = errMsg.toLowerCase();
+                            const isSafetyBlock = lowerErr.includes('safety') || 
+                                                  lowerErr.includes('content filter') || 
+                                                  lowerErr.includes('blocked') || 
+                                                  lowerErr.includes('finish_reason') ||
+                                                  lowerErr.includes('finishreason') ||
+                                                  lowerErr.includes('candidate');
+
+                            if (isSafetyBlock && !hasTriedNsfwDraftFallback) {
+                                hasTriedNsfwDraftFallback = true;
+                                console.warn(`[Auto-NSFW] Draft safety block triggered. Retrying with NSFW R-18+ prompt...`, err);
+                                const { NSFW_INSTRUCTION } = await import("@/lib/writing/prompts");
+                                activeDraftSystem = `${activeDraftSystem}\n\n# CHỈ DẪN VĂN PHONG ĐẶC BIỆT BỔ SUNG (BẮT BUỘC TUÂN THỦ DÙ LÀ REWRITE HAY DỊCH):\n${NSFW_INSTRUCTION}`;
+                                continue;
+                            }
+
                             await new Promise((r) => setTimeout(r, PERSISTENT_RETRY_DELAY));
                         }
                     }
@@ -734,13 +770,15 @@ export async function runComprehensiveTranslate(opts: ComprehensiveTranslateOpti
                         let editSuccess = false;
                         let lastEditError = null;
                         let rawEditOutput = "";
+                        let activeEditSystem = editSystem;
+                        let hasTriedNsfwEditFallback = false;
 
-                        for (let attempt = 0; attempt <= MAX_PERSISTENT_ATTEMPTS; attempt++) {
+                        for (let attempt = 0; attempt <= MAX_PERSISTENT_ATTEMPTS * 2; attempt++) {
                             if (signal?.aborted) throw new Error("Aborted");
                             try {
                                 const res = await streamText({
                                     model,
-                                    system: editSystem,
+                                    system: activeEditSystem,
                                     prompt: editUser,
                                     abortSignal: signal,
                                     maxOutputTokens: 10000,
@@ -756,11 +794,23 @@ export async function runComprehensiveTranslate(opts: ComprehensiveTranslateOpti
                                     const { generateText } = await import("ai");
                                     const directRes = await generateText({
                                         model,
-                                        system: editSystem,
+                                        system: activeEditSystem,
                                         prompt: editUser,
                                         abortSignal: signal,
                                     });
                                     text = directRes.text;
+                                }
+
+                                // Empty response retry (potential safety block)
+                                if (!text.trim()) {
+                                    if (!hasTriedNsfwEditFallback) {
+                                        hasTriedNsfwEditFallback = true;
+                                        console.warn(`[Auto-NSFW] Editor returned empty. Retrying with NSFW R-18+ prompt...`);
+                                        const { NSFW_INSTRUCTION } = await import("@/lib/writing/prompts");
+                                        activeEditSystem = `${activeEditSystem}\n\n# CHỈ DẪN VĂN PHONG ĐẶC BIỆT BỔ SUNG (BẮT BUỘC TUÂN THỦ DÙ LÀ REWRITE HAY DỊCH):\n${NSFW_INSTRUCTION}`;
+                                        continue;
+                                    }
+                                    throw new Error("AI biên tập trả về nội dung trống nghi ngờ do bộ lọc an toàn");
                                 }
 
                                 rawEditOutput = text;
@@ -769,6 +819,24 @@ export async function runComprehensiveTranslate(opts: ComprehensiveTranslateOpti
                             } catch (err: any) {
                                 if (signal?.aborted || err?.name === "AbortError") throw err;
                                 lastEditError = err;
+                                
+                                const errMsg = err instanceof Error ? err.message : String(err);
+                                const lowerErr = errMsg.toLowerCase();
+                                const isSafetyBlock = lowerErr.includes('safety') || 
+                                                      lowerErr.includes('content filter') || 
+                                                      lowerErr.includes('blocked') || 
+                                                      lowerErr.includes('finish_reason') ||
+                                                      lowerErr.includes('finishreason') ||
+                                                      lowerErr.includes('candidate');
+
+                                if (isSafetyBlock && !hasTriedNsfwEditFallback) {
+                                    hasTriedNsfwEditFallback = true;
+                                    console.warn(`[Auto-NSFW] Editor safety block triggered. Retrying with NSFW R-18+ prompt...`, err);
+                                    const { NSFW_INSTRUCTION } = await import("@/lib/writing/prompts");
+                                    activeEditSystem = `${activeEditSystem}\n\n# CHỈ DẪN VĂN PHONG ĐẶC BIỆT BỔ SUNG (BẮT BUỘC TUÂN THỦ DÙ LÀ REWRITE HAY DỊCH):\n${NSFW_INSTRUCTION}`;
+                                    continue;
+                                }
+
                                 await new Promise((r) => setTimeout(r, PERSISTENT_RETRY_DELAY));
                             }
                         }

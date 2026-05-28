@@ -44,6 +44,7 @@ import {
   useGlobalNameEntries,
   useMergedNameEntries,
   useNovelNameEntries,
+  bulkDeleteNameEntries,
 } from "@/lib/hooks/use-name-entries";
 import { useNovel } from "@/lib/hooks/use-novels";
 import { useAllReplaceRules } from "@/lib/hooks/use-replace-rules";
@@ -202,6 +203,15 @@ export function NameDictPanel() {
 
   const handleDelete = async (id: string) => {
     await deleteNameEntry(id);
+  };
+
+  const handleDeleteAll = async () => {
+    if (filtered.length === 0) return;
+    if (window.confirm(`Bạn có chắc chắn muốn xóa toàn bộ ${filtered.length} từ đang hiển thị không?`)) {
+      const ids = filtered.map(e => e.id);
+      await bulkDeleteNameEntries(ids);
+      setPage(0);
+    }
   };
 
   const openEditDialog = (entry: NameEntry) => {
@@ -456,6 +466,17 @@ export function NameDictPanel() {
               title="Thêm mục"
             >
               <PlusIcon className="size-3.5" />
+            </Button>
+            
+            <Button
+              variant="outline"
+              size="icon-sm"
+              className="size-8 text-red-500 hover:text-red-600 hover:bg-red-50 dark:hover:bg-red-950"
+              onClick={handleDeleteAll}
+              disabled={filtered.length === 0}
+              title="Xóa tất cả đang hiển thị"
+            >
+              <Trash2Icon className="size-3.5" />
             </Button>
           </div>
 

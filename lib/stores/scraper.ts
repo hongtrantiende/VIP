@@ -1,5 +1,6 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
+// Force HMR reload 2
 import { detectAdapter } from "../scraper/adapters";
 import {
   sanitizeChapterContent,
@@ -525,7 +526,7 @@ export const useScraperStore = create<ScraperState>()(
           let logs: string[] = [];
 
           let extTitle: string | undefined = undefined;
-          if (adapter.name === "STV" && chapterLink.id) {
+          if ((adapter.name === "STV") || (adapter.name === "Fanqie Novel" && chapterLink.id)) {
             try {
               const res = await extensionDownloadSTVChapter(chapterLink.id, chapterLink.url);
               html = res.data ?? "";

@@ -60,6 +60,21 @@ export async function createNameEntry(
   const now = new Date();
   const id = crypto.randomUUID();
   await db.nameEntries.add({ ...data, id, createdAt: now, updatedAt: now });
+
+  // Đẩy lên Cộng Đồng (Background)
+  if (data.scope && data.scope !== "global") {
+    db.novels.get(data.scope).then(novel => {
+      if (novel) {
+        const genre = (novel.genres && novel.genres.length > 0) ? novel.genres[0] : 'core';
+        fetch(`/api/dict/cloud-storage?action=contribute-community&genre=${encodeURIComponent(genre)}`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'text/plain; charset=utf-8' },
+          body: `${data.chinese}=${data.vietnamese}`
+        }).catch(err => console.error('Failed to push community dict:', err));
+      }
+    });
+  }
+
   return id;
 }
 
@@ -72,6 +87,10 @@ export async function updateNameEntry(
 
 export async function deleteNameEntry(id: string): Promise<void> {
   await db.nameEntries.delete(id);
+}
+
+export async function bulkDeleteNameEntries(ids: string[]): Promise<void> {
+  await db.nameEntries.bulkDelete(ids);
 }
 
 export async function deleteNameEntriesByScope(

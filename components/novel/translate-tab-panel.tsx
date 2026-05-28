@@ -67,6 +67,7 @@ import { toast } from "sonner";
 import { useLiveQuery } from "dexie-react-hooks";
 import { Label } from "@/components/ui/label";
 import { Checkbox } from "@/components/ui/checkbox";
+import { Slider } from "@/components/ui/slider";
 import {
     Select,
     SelectContent,
@@ -205,6 +206,8 @@ export function TranslateTabPanel({
     const [isCleaning, setIsCleaning] = useState(false);
     const [cleanGarbage, setCleanGarbage] = useState(true);
     const [nsfwMode, setNsfwMode] = useState(false);
+    const [chunkMode, setChunkMode] = useState<"chunk" | "full">("chunk");
+    const [hanVietRatio, setHanVietRatio] = useState<number>(50);
     const [showStepsInfo, setShowStepsInfo] = useState(false);
     const [totalToProcess, setTotalToProcess] = useState(0);
     const abortRef = useRef<AbortController | null>(null);
@@ -337,6 +340,13 @@ export function TranslateTabPanel({
     const chatSettings = useChatSettings();
     const defaultProvider = useAIProvider(chatSettings?.providerId);
     const rawQuota = profile?.admin_model_quota || 0;
+
+    useEffect(() => {
+        if (settings) {
+            setChunkMode(settings.translateChunkMode || "chunk");
+            setHanVietRatio(settings.hanVietRatio ?? 50);
+        }
+    }, [settings]);
 
     // ── Handlers ──
     const handleProviderChange = async (val: string) => {
@@ -698,7 +708,9 @@ export function TranslateTabPanel({
                     qaEnabled: model3Enabled,
                     qaPrompt: customModel3Prompt || undefined,
                     customStylePrompt: finalStylePrompt,
+                    globalTranslatePrompt: settings?.translateHybridPrompt,
                     extractDict, cleanGarbage, skipTranslated, continuousMode: target === "all_untranslated", errorAction,
+                    chunkMode,
                     ...commonCallbacks,
                 });
             } else if (activeMode === "prompt") {
@@ -710,11 +722,13 @@ export function TranslateTabPanel({
                     qaPrompt: customModel3Prompt || undefined,
                     qtDictSources: [],
                     promptType: "custom" as PromptType,
-                    customTranslatePrompt: inlinePrompt.trim(),
+                    globalTranslatePrompt: settings?.translatePrompt,
                     customStylePrompt: finalStylePrompt,
                     customPronounPrompt: customPronounPrompt,
                     extractDict, cleanGarbage, skipTranslated,
                     continuousMode: target === "all_untranslated", errorAction,
+                    chunkMode,
+                    hanVietRatio,
                     ...commonCallbacks,
                 });
 
@@ -724,6 +738,7 @@ export function TranslateTabPanel({
                     chapterIds: targetChapterIds,
                     model,
                     novelCustomPrompt: inlinePrompt,
+                    globalEditPrompt: settings?.editPrompt,
                     customStylePrompt: finalStylePrompt,
                     customPronounPrompt: customPronounPrompt,
                     twoPass: twoPass,
@@ -733,12 +748,14 @@ export function TranslateTabPanel({
                     cleanGarbage: cleanGarbage,
                     skipTranslated: skipTranslated,
                     errorAction: errorAction,
+                    chunkMode,
                     ...commonCallbacks,
                 });
             } else if (activeMode === "scan-fix") {
                 await runScanFix({
                     novelId, chapterIds: targetChapterIds, model,
                     novelCustomPrompt: inlinePrompt,
+                    chunkMode,
                     ...commonCallbacks,
                 });
             }
@@ -1106,6 +1123,22 @@ export function TranslateTabPanel({
                             </div>
                         </label>
 
+                        <label className="flex items-start gap-2 rounded-lg border border-amber-500/20 bg-amber-500/5 p-2.5 cursor-pointer hover:bg-amber-500/10">
+                            <Checkbox 
+                                checked={chunkMode === "full"} 
+                                onCheckedChange={async (c) => {
+                                    const val = c ? "full" : "chunk";
+                                    setChunkMode(val);
+                                    await db.analysisSettings.update("default", { translateChunkMode: val });
+                                }} 
+                                className="mt-0.5 border-amber-500 data-[state=checked]:bg-amber-500" 
+                            />
+                            <div>
+                                <span className="text-[11px] font-medium text-amber-700 dark:text-amber-400">Dịch gộp cả chương (Tốc độ cao) ⚡</span>
+                                <p className="text-[10px] text-muted-foreground">Không chia nhỏ chương, giữ nguyên văn phong mạch lạc nhất. (Chỉ dùng cho API xịn như Gemini Pro 1.5 / Claude 3.5 để tránh lỗi)</p>
+                            </div>
+                        </label>
+
                         {(isVip || isAdmin) && (
                             <label className="flex items-start gap-2 rounded-lg border border-red-500/20 bg-red-500/5 p-2.5 cursor-pointer hover:bg-red-500/10">
                                 <Checkbox checked={nsfwMode} onCheckedChange={(c) => setNsfwMode(!!c)} className="mt-0.5 border-red-500 data-[state=checked]:bg-red-500" />
@@ -1115,6 +1148,34 @@ export function TranslateTabPanel({
                                 </div>
                             </label>
                         )}
+
+                        <div className="flex flex-col gap-2 rounded-lg border border-border/50 bg-muted/30 p-2.5">
+                            <div className="flex items-center justify-between">
+                                <span className="text-[11px] font-medium">Tỷ lệ từ vựng: {hanVietRatio}% Hán Việt / {100 - hanVietRatio}% Thuần Việt</span>
+                                <Button 
+                                    size="sm" 
+                                    variant="outline" 
+                                    className="h-6 text-[10px] px-2"
+                                    onClick={async () => {
+                                        await db.analysisSettings.update("default", { hanVietRatio: hanVietRatio });
+                                        toast.success("Đã lưu tỷ lệ dịch");
+                                    }}
+                                >
+                                    Lưu Tỷ Lệ
+                                </Button>
+                            </div>
+                            <Slider
+                                value={[hanVietRatio]}
+                                min={0}
+                                max={100}
+                                step={10}
+                                onValueChange={(vals) => setHanVietRatio(vals[0])}
+                                className="my-2"
+                            />
+                            <p className="text-[10px] text-muted-foreground">
+                                Kéo sang trái (0%) để AI ưu tiên dùng từ thuần Việt, dễ hiểu. Kéo sang phải (100%) để AI ưu tiên Hán Việt, đậm chất tu tiên / cổ trang.
+                            </p>
+                        </div>
 
                         <div className="flex items-center gap-2">
                             <Switch id="skip-tl" checked={skipTranslated} onCheckedChange={setSkipTranslated} />

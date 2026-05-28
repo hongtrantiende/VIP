@@ -42,7 +42,8 @@ NGHIÊM CẤM sử dụng bất kỳ định dạng Markdown nào (như in đậ
 4. **Văn phong**: Sửa câu cứng/lủng củng cho tự nhiên hơn nhưng giữ đúng phong cách thể loại. KHÔNG thuần Việt hóa quá mức — giữ hơi thở nguyên tác.
 5. **Bản dịch đầy đủ 100% (Tuyệt đối không tóm tắt)**: Biên tập trọn vẹn toàn bộ nội dung, không được lược dịch, không tóm tắt ý và không bỏ sót bất kỳ câu chữ nào.
 6. **Giữ nguyên dấu phân cảnh**: Nếu có các dấu phân cách phân cảnh (như \`===SCENE_BREAK===\`), bạn BẮT BUỘC phải giữ nguyên chính xác 100% vị trí và định dạng của các dấu này, không thay đổi, không dịch nghĩa, không tự viết lại.
-7. **Nếu có bảng tên riêng**: BẮT BUỘC dùng đúng tên dịch đã cho, KHÔNG tự ý đổi.
+7. **Không sót chữ Hán**: TUYỆT ĐỐI KHÔNG để sót bất kỳ chữ Hán (tiếng Trung) gốc nào trong phần <content>, kể cả trong ngoặc đơn. Toàn bộ phải được dịch hoặc phiên âm sang tiếng Việt.
+8. **Nếu có bảng tên riêng**: BẮT BUỘC dùng đúng tên dịch đã cho, KHÔNG tự ý đổi.
 
 # Yêu cầu đầu ra (BẮT BUỘC THEO ĐÚNG FORMAT NÀY):
 <content>
@@ -102,6 +103,7 @@ export interface HybridTranslateOptions {
   extractDict?: boolean;
   cleanGarbage?: boolean;
   skipTranslated?: boolean;
+  chunkMode?: "chunk" | "full";
   continuousMode?: boolean;
   globalTranslatePrompt?: string;
   customStylePrompt?: string;
@@ -170,7 +172,7 @@ ${cleaned}`;
 
       const result = await streamText({
         model,
-        system: "Bạn là chuyên gia trích xuất thực thể tiếng Trung và phiên âm Hán-Việt. Luôn trả về đúng định dạng JSON Array chứa các đối tượng có thuộc tính chinese (chữ Hán gốc), vietnamese (phiên âm Hán-Việt chuẩn), và dictType (phân loại: 'names', 'tuvung', 'ngucanh'). KHÔNG trả về định dạng mảng chuỗi đơn giản. KHÔNG trích xuất đại từ nhân xưng hay từ thông dụng.",
+        system: "Bạn là chuyên gia trích xuất thực thể tiếng Trung. Luôn trả về đúng định dạng JSON Array chứa các đối tượng có thuộc tính chinese (chữ Hán gốc), vietnamese (tên tiếng Việt chuẩn), và dictType (phân loại: 'names', 'tuvung', 'ngucanh'). KHÔNG trả về định dạng mảng chuỗi đơn giản. KHÔNG trích xuất đại từ nhân xưng hay từ thông dụng.",
         prompt,
         abortSignal: signal,
       });
@@ -387,9 +389,13 @@ CẤM DỊCH NỘI DUNG. CHỈ TRẢ VỀ JSON, KHÔNG GIẢI THÍCH GÌ THÊM.
 ${cleaned}`;
 
           onPhase?.(firstChapter[0].id, "model2"); // Tận dụng UI báo hiệu đang quét từ điển
+          let coldStartSystem = "Bạn là chuyên gia trích xuất thực thể tiếng Trung và phiên âm Hán-Việt. Luôn trả về đúng định dạng JSON Array chứa các đối tượng có thuộc tính chinese (chữ Hán gốc), vietnamese (phiên âm Hán-Việt chuẩn), và dictType (phân loại: 'names', 'tuvung', 'ngucanh'). KHÔNG trả về định dạng mảng chuỗi đơn giản. KHÔNG trích xuất đại từ nhân xưng hay từ thông dụng.";
+          if (novelCustomPrompt?.trim()) {
+            coldStartSystem += `\n\n# QUY TẮC BỔ SUNG TỪ NGƯỜI DÙNG (ƯU TIÊN CAO NHẤT):\n${novelCustomPrompt.trim()}`;
+          }
           const result = await streamText({
             model: dictModel || defaultModel,
-            system: "Bạn là chuyên gia trích xuất thực thể tiếng Trung và phiên âm Hán-Việt. Luôn trả về đúng định dạng JSON Array chứa các đối tượng có thuộc tính chinese (chữ Hán gốc), vietnamese (phiên âm Hán-Việt chuẩn), và dictType (phân loại: 'names', 'tuvung', 'ngucanh'). KHÔNG trả về định dạng mảng chuỗi đơn giản. KHÔNG trích xuất đại từ nhân xưng hay từ thông dụng.",
+            system: coldStartSystem,
             prompt,
             abortSignal: signal,
           });
@@ -518,6 +524,7 @@ ${cleaned}`;
           sourceText: cleanedContent,
           novelId,
           existingDict: existingDictMap,
+          customScanPrompt: novelCustomPrompt,
           signal,
         });
 
@@ -534,10 +541,11 @@ ${cleaned}`;
             model: dictModel || currentChapterModel,
             sourceText: cleanedContent,
             existingDict: existingDictMap,
+            customScanPrompt: novelCustomPrompt,
             signal,
           });
           if (newlyScannedPronouns.length > 0) {
-            const addedPronounCount = await autoUpdatePronounPrompt(novelId, newlyScannedPronouns);
+            const addedPronounCount = await autoUpdatePronounPrompt(novelId, newlyScannedPronouns, existingDictMap);
             console.log(`[3-Model Concurrent Pipeline] AI 2 hoàn thành: Đã tự động thêm ${addedPronounCount} quy tắc xưng hô mới.`);
           }
         } catch (scanPronounErr) {
@@ -762,9 +770,9 @@ ${cleaned}`;
 
 
           // Fetch the latest dictionary (to include words extracted by Lookahead)
-          nameDict = await getMergedNameDict(novelId);
-
-          const chunks = chunkText(cleanedContent, 1600);
+          // Split content to handle model limits
+          const chunkSize = opts.chunkMode === "full" ? 20000 : 1600;
+          const chunks = chunkText(cleanedContent, chunkSize);
           let finalAccumulatedContent = "";
           let finalParsedTitle: string | null = null;
           let totalExtractedNamesCount = 0;

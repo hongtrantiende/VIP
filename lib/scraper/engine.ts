@@ -1,5 +1,6 @@
 import { sanitizeText } from "../utils";
 import { extensionFetch, extensionDownloadSTVChapter, extensionStopScrape } from "./extension-bridge";
+// Force HMR reload 2
 import { cloakFetch } from "./cloak-client";
 import type { ChapterContent, ChapterLink, SiteAdapter } from "./types";
 
@@ -168,15 +169,21 @@ export async function scrapeChapters(
 
     while (attempts < 3 && !success) {
       try {
-        if ((adapter.name === "STV" || adapter.name === "Fanqie Novel") && chapter.id) {
-          const isFanqieRealUrl = adapter.name === "Fanqie Novel" && !chapter.url.startsWith('fanqie-dynamic');
+        const isSTV = adapter.name === "STV" || adapter.urlPattern?.test(chapter.url) || chapter.url.includes("sangtacviet");
+        const isFanqie = adapter.name === "Fanqie Novel";
+        
+        if (isSTV || (isFanqie && chapter.id)) {
+          const isFanqieRealUrl = isFanqie && !chapter.url.startsWith('fanqie-dynamic');
+          const isFirstChapter = i === 0;
           const res = await extensionDownloadSTVChapter(
-            chapter.id,
+            chapter.id || "",
             chapter.url,
             // For Fanqie real URLs: don't send allowNext (we navigate directly)
+            // For STV: allowNext is no longer used (click-next handled by extension)
             isFanqieRealUrl ? false : (i < chapters.length - 1 && !signal?.aborted),
             false,
-            safeDelayMs
+            safeDelayMs,
+            isSTV || isFanqie ? isFirstChapter : false
           );
           html = res.data ?? "";
           contentText = (res as any).contentText ?? res.content ?? undefined;

@@ -501,6 +501,28 @@ export function DictionaryManagement({ compact }: { compact?: boolean }) {
   };
 
 
+  const handleMergeCommunityDicts = async () => {
+    if (!confirm("Hệ thống sẽ lấy tất cả từ mới mọi người đóng góp và trộn vào từ điển gốc trên Drive. Quá trình này có thể mất vài phút. Bạn có chắc chắn không?")) return;
+    
+    const toastId = toast.loading("Đang gom và trộn từ điển cộng đồng trên Drive...");
+    try {
+      const params = new URLSearchParams({ action: 'merge-community-dicts' });
+      const res = await fetch(`/api/dict/cloud-storage?${params.toString()}`, { method: 'POST' });
+      if (!res.ok) throw new Error("Không thể trộn từ điển");
+
+      const data = await res.json();
+      if (!data.success) throw new Error(data.message || "Lỗi khi trộn");
+
+      if (data.mergedFiles === 0) {
+        toast.info("Không có file đóng góp mới nào cần trộn.", { id: toastId });
+      } else {
+        toast.success(`Đã trộn thành công ${data.mergedFiles} file đóng góp vào từ điển gốc!`, { id: toastId });
+      }
+    } catch (err: any) {
+      toast.error(`Lỗi: ${err.message}`, { id: toastId });
+    }
+  };
+
   const handleUploadGlobalToDrive = async () => {
     if (!drive.accessToken) {
       toast.error("Vui lòng kết nối Google Drive trước (Nút trên cùng)");
@@ -1174,6 +1196,15 @@ export function DictionaryManagement({ compact }: { compact?: boolean }) {
                 >
                   <CloudUploadIcon className="mr-1.5 size-3.5" />
                   Đóng góp tất cả
+                </Button>
+                <Button
+                  variant="outline"
+                  size="sm"
+                  onClick={handleMergeCommunityDicts}
+                  className="h-8 text-[11px] font-medium border-purple-500/30 text-purple-600 hover:bg-purple-500/10 dark:border-purple-500/20"
+                >
+                  <BotIcon className="mr-1.5 size-3.5" />
+                  Gộp Từ Điển Cộng Đồng
                 </Button>
               </div>
             </div>

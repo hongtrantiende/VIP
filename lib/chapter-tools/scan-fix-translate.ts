@@ -177,7 +177,8 @@ export async function runScanFix(opts: ScanFixOptions) {
                         relevantNames.map(n => `${n.chinese} → ${n.vietnamese}`).join("\n");
                 }
 
-                const chunks = chunkText(currentContent, 2000);
+                const chunkSize = opts.chunkMode === "full" ? 20000 : 2000;
+                const chunks = chunkText(currentContent, chunkSize);
                 let fixedContent = "";
 
                 for (const chunk of chunks) {
