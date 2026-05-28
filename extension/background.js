@@ -35,8 +35,8 @@ async function handleFetch(url, options = {}) {
   const logs = [];
   const log = (msg) => logs.push(`[${new Date().toLocaleTimeString()}] ${msg}`);
 
-  // 1. Try silent background fetch first if no special scraping is needed
-  if (!smartScrape) {
+  // 1. Try silent background fetch first if no special scraping/waiting is needed
+  if (!smartScrape && !waitSelector && !options.clickSelector) {
     try {
       log(`Attempting silent background fetch for ${url}`);
       const controller = new AbortController();
@@ -130,8 +130,24 @@ async function handleFetch(url, options = {}) {
     await chrome.tabs.update(tabId, { url });
     log(`Navigating hidden tab (id=${tabId}) to ${url}`);
 
-    // Wait for initial page load
-    await delay(3000); 
+    // Inject visibilityState=visible ASAP so JS/Cloudflare doesn't throttle.
+    (async () => {
+      for (let attempt = 0; attempt < 5; attempt++) {
+        await delay(500);
+        try {
+          await chrome.scripting.executeScript({
+            target: { tabId }, world: "MAIN",
+            func: () => {
+              Object.defineProperty(document, "hidden", { get: () => false, configurable: true });
+              Object.defineProperty(document, "visibilityState", { get: () => "visible", configurable: true });
+              Document.prototype.hasFocus = () => true;
+              document.addEventListener("visibilitychange", (e) => e.stopImmediatePropagation(), true);
+            }
+          });
+          break; // succeeded
+        } catch { /* try again */ }
+      }
+    })();
 
     // Block automatic browser translation
     try {
@@ -147,6 +163,26 @@ async function handleFetch(url, options = {}) {
       });
     } catch (e) {
       log(`Failed to inject translate-blocking script: ${e.message}`);
+    }
+
+    // Wait for selector if provided
+    if (waitSelector) {
+      for (let i = 0; i < (timeout / 500); i++) {
+        try {
+          const r = await chrome.scripting.executeScript({
+            target: { tabId },
+            args: [waitSelector],
+            func: (s) => {
+              const el = document.querySelector(s);
+              return el ? el.innerText.trim().length > 50 : false;
+            },
+          });
+          if (r && r[0] && r[0].result) break;
+        } catch {}
+        await delay(500);
+      }
+    } else {
+      await delay(3000); 
     }
 
     if (smartScrape === "XTRUYEN") {

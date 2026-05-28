@@ -584,20 +584,15 @@ async function handleFetch(url, waitSelector, clickSelector, timeout, forceActiv
         if (bestTabNorm !== targetNorm) {
           console.log(`[Fetch] Paths differ. Navigating tab ${tabId} to ${url} (background, no focus steal)`);
 
-          // For all sites including STV: navigate WITHOUT activating the tab.
-          // STV novel info is now fetched via silent fetch (static HTML), so chapter fetches
-          // are the main reuseTab path. Chapter content renders fine in a background tab
-          // when we inject the visibilityState spoof below.
           await chrome.tabs.update(tabId, { url });
           didNavigate = true;
 
-          // Inject visibilityState=visible ASAP so STV's JS doesn't throttle.
+          // Inject visibilityState=visible ASAP so JS/Cloudflare doesn't throttle.
           // Retry several times to catch the earliest possible moment after navigation.
-          if (url.includes("sangtacviet")) {
-            for (let attempt = 0; attempt < 5; attempt++) {
-              await delay(200);
-              try {
-                await chrome.scripting.executeScript({
+          for (let attempt = 0; attempt < 5; attempt++) {
+            await delay(200);
+            try {
+              await chrome.scripting.executeScript({
                   target: { tabId }, world: "MAIN",
                   func: () => {
                     Object.defineProperty(document, "hidden", { get: () => false, configurable: true });
@@ -609,8 +604,7 @@ async function handleFetch(url, waitSelector, clickSelector, timeout, forceActiv
                 break; // succeeded
               } catch { /* page not ready yet, try again */ }
             }
-          }
-        } else {
+          } else {
           console.log(`[Fetch] Paths are identical. No navigation needed.`);
           // Brief settle delay — page is already loaded, no need to activate
           await delay(500);
@@ -667,6 +661,26 @@ async function handleFetch(url, waitSelector, clickSelector, timeout, forceActiv
 
   try {
     if (didNavigate) {
+      // Inject visibilityState=visible ASAP so JS/Cloudflare doesn't throttle.
+      // Retry several times to catch the earliest possible moment after navigation.
+      (async () => {
+        for (let attempt = 0; attempt < 5; attempt++) {
+          await delay(500);
+          try {
+            await chrome.scripting.executeScript({
+              target: { tabId }, world: "MAIN",
+              func: () => {
+                Object.defineProperty(document, "hidden", { get: () => false, configurable: true });
+                Object.defineProperty(document, "visibilityState", { get: () => "visible", configurable: true });
+                Document.prototype.hasFocus = () => true;
+                document.addEventListener("visibilitychange", (e) => e.stopImmediatePropagation(), true);
+              }
+            });
+            break; // succeeded
+          } catch { /* page not ready yet, try again */ }
+        }
+      })();
+
       await waitForTabLoad(tabId, 30000);
       
       // Check if Cloudflare is present

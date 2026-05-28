@@ -17,6 +17,7 @@ export const XTruyenAdapter: SiteAdapter = {
   name: "XTruyen",
   group: "vn",
   urlPattern: /xtruyen\.vn/,
+  useSequentialTab: true,
   chapterWaitSelector: "#chapter-reading-content",
 
   async getNovelInfo(html, url, onProgress) {

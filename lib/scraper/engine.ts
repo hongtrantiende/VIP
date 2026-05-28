@@ -1,6 +1,6 @@
 import { sanitizeText } from "../utils";
 import { extensionFetch, extensionDownloadSTVChapter, extensionStopScrape } from "./extension-bridge";
-// Force HMR reload 2
+// Force HMR reload 3
 import { cloakFetch } from "./cloak-client";
 import type { ChapterContent, ChapterLink, SiteAdapter } from "./types";
 
