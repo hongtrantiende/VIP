@@ -114,81 +114,87 @@ export function PromptTunerDialog({
 
   const initialPromptText = useMemo(() => {
     if (mode === "stv-prompt") {
-      return `Bạn là chuyên gia biên tập và làm mượt bản dịch tiểu thuyết Trung-Việt chuyên nghiệp.
-Hãy phân tích mẫu truyện tiếng Trung và bản dịch thô tiếng Việt (STV) để sinh ra một System Prompt tinh chỉnh chuyên biệt nhằm hướng dẫn AI biên tập bản dịch thô thành tiếng Việt mượt mà văn học.
+      return `Bạn là chuyên gia thiết lập prompt làm mượt và hiệu đính STV (Sino-Vietnamese) chuyên nghiệp.
+Hãy phân tích mẫu truyện để tạo ra một System Prompt tối ưu nhất cho việc biên tập bản dịch STV thô cứng thành tiếng Việt mượt mà văn học.
 
-System Prompt được sinh phải đáp ứng các yêu cầu sau:
-- Biên tập đúng thể loại (Tiên Hiệp, Đô Thị, Hệ Thống, v.v.), phong cách viết của tác giả.
-- Đối chiếu bản gốc để sửa lỗi xưng hô, ngữ cảnh dịch sai lệch, và tên nhân vật.
-- Hành văn ổn định sát truyện, mượt mà tự nhiên, thuần Việt nhưng giữ chất văn học.
-- Đảm bảo sát nghĩa bản gốc Trung Quốc, tuyệt đối không tự ý thêm bớt tình tiết.
-- Viết ngắn gọn, chuẩn xác, không quá dài dòng cũng không quá sơ sài.
+Yêu cầu System Prompt được sinh ra cần hướng dẫn AI:
+1. **Làm mượt cấu trúc câu STV**: Thay thế các cụm từ thô cứng ("hướng về phía trước đi", "nhẹ nhõm một hơi", "bất quá", "chợt thốt lên") bằng văn phong thuần Việt trôi chảy.
+2. **Chuẩn hóa xưng hô & bối cảnh**: Đối chiếu các nhân vật để xưng hô tự nhiên, chính xác theo đúng thể loại truyện (Tiên hiệp cổ trang, hiện đại...).
+3. **Độ chính xác nguyên tác**: Không được tự ý cắt xén, tóm tắt cốt truyện hay thêm thắt tình tiết.
 
-Kết quả trả về chỉ gồm System Prompt biên tập tiếng Việt đặt trong khối code markdown \`\`\`. Không ghi thêm lời giải thích nào khác.`;
+Đầu ra chỉ gồm duy nhất System Prompt tiếng Việt đặt trong khối code markdown \`\`\`. Không ghi lời giải thích nào khác.`;
     }
 
     if (mode === "comprehensive") {
-      return `Bạn là chuyên gia biên dịch và thiết lập pipeline dịch thuật tiểu thuyết mạng Trung-Việt chuyên nghiệp.
-Hãy phân tích mẫu truyện gốc tiếng Trung để biên soạn một System Prompt dịch nháp tối ưu, hướng dẫn AI phối hợp bản gốc tiếng Trung và Hán Việt để dịch ra văn bản tiếng Việt nháp (draft) chất lượng cao.
+      return `Bạn là chuyên gia thiết lập prompt dịch thuật đa kênh (Multi-channel / Comprehensive Translation) chuyên nghiệp.
+Hãy phân tích mẫu truyện tiếng Trung để viết ra một System Prompt dịch thuật chất lượng cao, hướng dẫn AI phối hợp đối chiếu giữa bản gốc tiếng Trung và Hán Việt để dịch sang tiếng Việt.
 
-System Prompt được sinh phải đáp ứng các yêu cầu sau:
-- Dịch nháp chuẩn xác đúng thể loại truyện (Tiên Hiệp, Đô Thị, Hệ Thống, v.v.) và phong cách của truyện gốc.
-- Đảm bảo thế đúng tên riêng nhân vật, địa lý và quan hệ gia thế / xưng hô chuẩn bối cảnh.
-- Hành văn ổn định sát truyện, đúng phong cách, tuyệt đối không tự ý thêm bớt nội dung.
-- Viết ngắn gọn, chuẩn xác, không quá dài dòng cũng không quá sơ sài.
+Yêu cầu System Prompt được sinh ra cần hướng dẫn AI:
+1. **Dịch thuật chính xác**: Kết hợp ngữ nghĩa bản gốc tiếng Trung và phiên âm Hán Việt để chuyển ngữ chuẩn xác nhất.
+2. **Giữ gìn phong cách & bối cảnh**: Thể hiện đúng văn phong truyện (Tiên Hiệp cổ kính, Đô Thị hiện đại...) và bối cảnh tác phẩm.
+3. **Đồng nhất xưng hô & tên riêng**: Quy định xưng hô chuẩn xác dựa trên tôn ti trật tự và thế hệ nhân vật.
 
-Kết quả trả về chỉ gồm System Prompt dịch nháp đặt trong khối code markdown \`\`\`. Không ghi thêm lời giải thích nào khác.`;
+Đầu ra chỉ gồm duy nhất System Prompt tiếng Việt đặt trong khối code markdown \`\`\`. Không ghi lời giải thích nào khác.`;
     }
 
     if (mode === "edit") {
-      return `Bạn là chuyên gia biên tập, hiệu đính và làm mượt văn phong tiểu thuyết mạng Việt Nam chuyên nghiệp.
-Hãy phân tích mẫu truyện tiếng Việt hiện tại để sinh ra một System Prompt biên tập chuyên biệt nhằm hướng dẫn AI biên tập, chau chuốt câu từ, sửa lỗi ngữ pháp, hành văn mượt mà, đúng thể loại và thuần Việt nhất.
+      return `Bạn là chuyên gia biên tập và hiệu đính văn học tiếng Việt cấp cao.
+Hãy phân tích mẫu truyện để viết ra một System Prompt hướng dẫn AI biên tập, chau chuốt văn phong tiếng Việt sẵn có của truyện.
 
-System Prompt được sinh phải đáp ứng các yêu cầu sau:
-- Biên tập đúng thể loại (Tiên Hiệp, Đô Thị, Hệ Thống, v.v.), phong cách viết của tác giả.
-- Định hướng hành văn mượt mà, tự nhiên, thuần Việt nhưng giữ chất văn học.
-- Đảm bảo sửa các lỗi lặp từ, lỗi chính tả, câu cú lủng củng.
-- Tuyệt đối giữ nguyên cốt truyện, tình tiết và bối cảnh tên nhân vật. Không tự ý tóm tắt hay cắt xén nội dung.
-- Viết ngắn gọn, chuẩn xác, không quá dài dòng cũng không quá sơ sài.
+Yêu cầu System Prompt được sinh ra cần hướng dẫn AI:
+1. **Nâng cao chất lượng câu từ**: Sửa các lỗi câu cú lủng củng, lặp từ, sửa lỗi chính tả và làm cho giọng văn bay bổng, giàu chất thơ/chất văn học.
+2. **Tuyệt đối nhất quán**: Giữ nguyên cốt truyện, tình tiết, tên nhân vật và đại từ xưng hô đã được định vị sẵn trong bản dịch gốc.
+3. **Độ trung thực**: Không tóm tắt nội dung hay lược bỏ đoạn văn.
 
-Kết quả trả về chỉ gồm System Prompt biên tập tiếng Việt đặt trong khối code markdown \`\`\`. Không ghi thêm lời giải thích nào khác.`;
+Đầu ra chỉ gồm duy nhất System Prompt tiếng Việt đặt trong khối code markdown \`\`\`. Không ghi lời giải thích nào khác.`;
     }
 
     if (mode === "model2-prompt") {
-      return `Bạn là chuyên gia phân tích từ điển và lọc/biên dịch thuật ngữ Trung-Việt chuyên nghiệp.
-Hãy phân tích văn bản gốc để tạo ra một System Prompt định hình cách trích xuất, chuẩn hóa và tối ưu hóa từ điển thuật ngữ dịch thuật (names, tuvung, ngucanh) cho bộ truyện này.
+      return `Bạn là chuyên gia thiết lập prompt phân tích thuật ngữ và trích xuất thực thể (Named Entity Recognition) Trung-Việt hàng đầu.
+Hãy đọc kỹ mẫu văn bản từ 10 chương đầu của bộ truyện này để biên soạn một System Prompt quét từ điển cực kỳ chuẩn xác cho Model 2.
 
-System Prompt được sinh phải đáp ứng các yêu cầu sau:
-- Hướng dẫn AI cách trích xuất chuẩn xác các danh từ riêng, địa danh, tên chiêu thức, nhân vật, thuật ngữ bối cảnh từ nguyên tác.
-- Định hình quy tắc chuẩn hóa cách dịch Hán Việt hoặc dịch nghĩa các thuật ngữ này cho mượt mà, nhất quán.
-- Viết ngắn gọn, chuẩn xác, không quá dài dòng cũng không quá sơ sài.
+System Prompt dành cho Model 2 cần hướng dẫn AI cách quét và trích xuất từ điển theo các tiêu chuẩn sau:
+1. **Phạm vi trích xuất**:
+   - Tên nhân vật (nhân vật chính, phụ, các danh xưng đặc thù).
+   - Địa danh (tông môn, thành trì, bí cảnh, núi sông bối cảnh truyện).
+   - Thuật ngữ đặc trưng (linh dược, yêu thú, vũ khí, võ học, cảnh giới tu luyện).
+2. **Quy tắc phiên âm & dịch nghĩa**:
+   - Dịch nghĩa hoặc phiên âm Hán-Việt chuẩn xác, hợp ngữ cảnh thể loại của truyện này (ví dụ: Tiên Hiệp cần phiên âm cổ phong, Đô Thị cần dịch thuần Việt tự nhiên).
+   - Chỉ ra cách xử lý các từ Hán-Việt đa nghĩa, các từ ghép hoặc ẩn dụ tác giả thường dùng.
+3. **Quy tắc lọc nhiễu**:
+   - Tuyệt đối loại bỏ các đại từ nhân xưng thông thường (ta, hắn, ngươi, bọn họ) và các trạng từ, từ nối phổ biến.
+   - Tránh trích xuất trùng lặp các thực thể đã quá rõ ràng.
 
-Kết quả trả về chỉ gồm System Prompt quét từ điển bằng tiếng Việt đặt trong khối code markdown \`\`\`. Không ghi thêm lời giải thích nào khác.`;
+Yêu cầu đầu ra: Trả về kết quả chỉ gồm duy nhất đoạn System Prompt quét từ điển bằng tiếng Việt đặt trong khối code markdown \`\`\`. Tuyệt đối không thêm lời dẫn luận hay giải thích ngoài khối code.`;
     }
 
     if (mode === "model3-prompt") {
-      return `Bạn là một QA Bot (Giám sát & Tinh chỉnh) chất lượng cao cho dịch thuật tiểu thuyết mạng Trung-Việt chuyên nghiệp.
-Hãy phân tích mẫu truyện và bản dịch để sinh ra một System Prompt tối ưu hướng dẫn QA Bot rà soát lỗi dịch thuật, làm mịn câu cú, tăng tính trôi chảy và sửa các lỗi diễn đạt thô cứng.
+      return `Bạn là chuyên gia biên kịch, kiểm định dịch thuật và hiệu đính văn học Trung-Việt chuyên nghiệp.
+Hãy đọc mẫu truyện để thiết lập một System Prompt tối ưu nhất cho Model 3 (QA Bot - Giám sát & Tinh chỉnh nâng cao).
 
-System Prompt được sinh phải đáp ứng các yêu cầu sau:
-- Hướng dẫn cách phát hiện lỗi hành văn cứng nhắc, lặp từ, lỗi ngữ pháp hoặc xưng hô không nhất quán.
-- Cách tinh chỉnh câu văn để đạt văn phong tự nhiên, đậm chất văn học Việt Nam mà vẫn tuyệt đối giữ nguyên cốt truyện, tình tiết và bối cảnh.
-- Viết ngắn gọn, chuẩn xác, không quá dài dòng cũng không quá sơ sài.
+System Prompt dành cho Model 3 cần hướng dẫn QA Bot thực hiện quy trình audit và tinh chỉnh theo các tiêu chuẩn sau:
+1. **Rà soát & Sửa lỗi dịch thuật**:
+   - Phát hiện các lỗi ngữ pháp tiếng Việt, câu cú lủng củng, lặp từ hoặc hành văn bị ảnh hưởng bởi cấu trúc ngữ pháp tiếng Trung (Word-by-Word translation).
+   - Đối chiếu quy tắc xưng hô để đảm bảo tính nhất quán giữa các phân đoạn hội thoại.
+2. **Làm mịn & Nâng cao văn phong**:
+   - Chau chuốt câu từ để đạt độ mượt mà văn học tối đa, nhịp điệu trôi chảy, thuần Việt nhưng vẫn giữ trọn không khí bối cảnh gốc của tác giả.
+   - Tối ưu hóa các cụm từ ẩn dụ, thành ngữ Trung Quốc sang các cách diễn đạt tương đương, dễ hiểu và giàu hình ảnh trong tiếng Việt.
+3. **Giữ nguyên cốt truyện & cấu trúc**:
+   - Tuyệt đối không được tóm tắt, cắt xén nội dung, hoặc tự ý sáng tác thêm tình tiết mới.
+   - Giữ nguyên các tag phân đoạn, giữ nguyên cấu trúc định dạng nguyên tác.
 
-Kết quả trả về chỉ gồm System Prompt QA Bot bằng tiếng Việt đặt trong khối code markdown \`\`\`. Không ghi thêm lời giải thích nào khác.`;
+Yêu cầu đầu ra: Trả về kết quả chỉ gồm duy nhất đoạn System Prompt QA Bot bằng tiếng Việt đặt trong khối code markdown \`\`\`. Tuyệt đối không thêm lời dẫn luận hay giải thích ngoài khối code.`;
     }
 
-    return `Bạn là chuyên gia phân tích và dịch thuật tiểu thuyết Trung-Việt chuyên nghiệp.
-Hãy phân tích mẫu truyện và sinh ra một System Prompt ngắn gọn, đúng trọng tâm để hướng dẫn AI dịch trực tiếp từ tiếng Trung sang tiếng Việt.
+    return `Bạn là chuyên gia thiết lập prompt dịch thuật tiểu thuyết Trung-Việt chuyên nghiệp.
+Hãy phân tích mẫu truyện và sinh ra một System Prompt hướng dẫn AI dịch trực tiếp từ tiếng Trung sang tiếng Việt một cách tối ưu nhất cho riêng bộ truyện này.
 
-System Prompt được sinh phải đáp ứng các yêu cầu sau:
-- Dịch đúng thể loại (Tiên Hiệp, Đô Thị, Hệ Thống, v.v.), phong cách viết của tác giả.
-- Dịch đúng ngữ cảnh và tên riêng nhân vật / địa danh / chiêu thức.
-- Quy định hành văn ổn định sát truyện, xưng hô chuẩn xác giữa các nhân vật.
-- Dịch sát nghĩa gốc, tuyệt đối không được tự ý thêm bớt nội dung khi dịch.
-- Viết ngắn gọn, chuẩn xác, không quá dài dòng cũng không quá sơ sài.
+System Prompt được sinh ra cần hướng dẫn AI:
+1. **Định hình văn phong & thể loại**: Dịch chuẩn ngữ khí của tác giả, phù hợp với thể loại truyện (Tiên Hiệp cổ kính, Đô Thị hài hước...).
+2. **Xử lý tên riêng & xưng hô**: Dịch đúng tên nhân vật, môn phái, chiêu thức bối cảnh và thiết lập quy tắc đại từ nhân xưng thống nhất giữa các nhân vật chính phụ.
+3. **Độ mượt mà thuần Việt**: Dịch thoát ý nhưng sát nghĩa gốc, loại bỏ sự thô cứng của từ Hán-Việt tối nghĩa, không tự ý thêm bớt nội dung.
 
-Kết quả trả về chỉ gồm System Prompt bằng tiếng Việt đặt trong khối code markdown \`\`\`. Không ghi thêm lời giải thích nào khác.`;
+Đầu ra chỉ gồm duy nhất System Prompt bằng tiếng Việt đặt trong khối code markdown \`\`\`. Không ghi lời giải thích nào khác.`;
   }, [mode]);
 
   const handleProviderChange = async (providerId: string) => {
