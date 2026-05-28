@@ -170,6 +170,7 @@ export function TranslateTabPanel({
     const [model3Enabled, setModel3Enabled] = useState<boolean>(false);
     const [model3ProviderId, setModel3ProviderId] = useState<string>("");
     const [model3ModelId, setModel3ModelId] = useState<string>("");
+    const [customModel2Prompt, setCustomModel2Prompt] = useState<string>("");
     const [customModel3Prompt, setCustomModel3Prompt] = useState<string>("");
 
     const model1Models = useAIModels(model1ProviderId);
@@ -185,6 +186,8 @@ export function TranslateTabPanel({
     const [currentPhase, setCurrentPhase] = useState<Phase>("idle");
     const [currentChapterTitle, setCurrentChapterTitle] = useState("");
     const [tunerOpen, setTunerOpen] = useState(false);
+    const [tuner2Open, setTuner2Open] = useState(false);
+    const [tuner3Open, setTuner3Open] = useState(false);
     const [qtDictSources, setQtDictSources] = useState<string[]>(["tienhiep"]);
     const [extractDict, setExtractDict] = useState(true);
     const [skipTranslated, setSkipTranslated] = useState(true);
@@ -267,6 +270,7 @@ export function TranslateTabPanel({
             if (novel.customTranslatePrompt !== undefined) setInlinePrompt(novel.customTranslatePrompt);
             if (novel.customStylePrompt !== undefined) setCustomStylePrompt(novel.customStylePrompt);
             if (novel.customPronounPrompt !== undefined) setCustomPronounPrompt(novel.customPronounPrompt);
+            if (novel.customModel2Prompt !== undefined) setCustomModel2Prompt(novel.customModel2Prompt);
             if (novel.customModel3Prompt !== undefined) setCustomModel3Prompt(novel.customModel3Prompt);
             setStylePreset(novel.stylePreset ?? "default");
             setPronounMatrix(novel.pronounMatrix ?? "");
@@ -976,6 +980,31 @@ export function TranslateTabPanel({
                                         <SelectContent>{model2Models?.map(m => <SelectItem key={m.id} value={m.modelId}>{m.name || m.modelId}</SelectItem>)}</SelectContent>
                                     </Select>
                                 </div>
+                                
+                                {/* Cấu hình Prompt cho Model 2 */}
+                                <div className="rounded-lg border bg-card p-2.5 mt-1 space-y-2 border-emerald-500/10">
+                                    <div className="flex items-center justify-between">
+                                        <div className="flex items-center gap-2">
+                                            <span className="text-[11px] font-medium flex items-center gap-1.5 select-none">
+                                                <ScanSearchIcon className={cn("size-3.5", customModel2Prompt?.trim() ? "text-emerald-600" : "text-muted-foreground")} />
+                                                Prompt Quét từ điển
+                                            </span>
+                                            {customModel2Prompt?.trim() ? (
+                                                <span className="text-[9px] bg-emerald-500/10 text-emerald-700 dark:text-emerald-400 px-1.5 py-0.5 rounded border border-emerald-500/20 font-semibold flex items-center gap-0.5">
+                                                    <CheckCircle2Icon className="size-2.5 text-emerald-600" />
+                                                    Đã trang bị
+                                                </span>
+                                            ) : (
+                                                <span className="text-[9px] bg-muted text-muted-foreground px-1.5 py-0.5 rounded border border-muted-foreground/10 font-normal">
+                                                    Chưa có
+                                                </span>
+                                            )}
+                                        </div>
+                                        <Button variant="ghost" size="sm" className="h-6 text-[10px]" onClick={() => setTuner2Open(true)}>
+                                            <SparklesIcon className="size-3 mr-1" /> Mở Tuner
+                                        </Button>
+                                    </div>
+                                </div>
                             </div>
 
                             <div className="space-y-1.5 pt-2 border-t border-muted/30">
@@ -996,6 +1025,31 @@ export function TranslateTabPanel({
                                                 <SelectTrigger className="flex-1 h-8 text-xs"><SelectValue placeholder="Model..." /></SelectTrigger>
                                                 <SelectContent>{model3Models?.map(m => <SelectItem key={m.id} value={m.modelId}>{m.name || m.modelId}</SelectItem>)}</SelectContent>
                                             </Select>
+                                        </div>
+
+                                        {/* Cấu hình Prompt cho Model 3 */}
+                                        <div className="rounded-lg border bg-card p-2.5 mt-1 space-y-2 border-purple-500/10">
+                                            <div className="flex items-center justify-between">
+                                                <div className="flex items-center gap-2">
+                                                    <span className="text-[11px] font-medium flex items-center gap-1.5 select-none">
+                                                        <BotIcon className={cn("size-3.5", customModel3Prompt?.trim() ? "text-purple-600" : "text-muted-foreground")} />
+                                                        Prompt QA Bot
+                                                    </span>
+                                                    {customModel3Prompt?.trim() ? (
+                                                        <span className="text-[9px] bg-purple-500/10 text-purple-700 dark:text-purple-400 px-1.5 py-0.5 rounded border border-purple-500/20 font-semibold flex items-center gap-0.5">
+                                                            <CheckCircle2Icon className="size-2.5 text-purple-600" />
+                                                            Đã trang bị
+                                                        </span>
+                                                    ) : (
+                                                        <span className="text-[9px] bg-muted text-muted-foreground px-1.5 py-0.5 rounded border border-muted-foreground/10 font-normal">
+                                                            Chưa có
+                                                        </span>
+                                                    )}
+                                                </div>
+                                                <Button variant="ghost" size="sm" className="h-6 text-[10px]" onClick={() => setTuner3Open(true)}>
+                                                    <SparklesIcon className="size-3 mr-1" /> Mở Tuner
+                                                </Button>
+                                            </div>
                                         </div>
                                     </div>
                                 )}
@@ -1152,6 +1206,8 @@ export function TranslateTabPanel({
                 {step === "config" && bulkConfigContent}
 
                 <PromptTunerDialog open={tunerOpen} onOpenChange={setTunerOpen} novelId={novelId} mode={activeMode} />
+                <PromptTunerDialog open={tuner2Open} onOpenChange={setTuner2Open} novelId={novelId} mode="model2-prompt" />
+                <PromptTunerDialog open={tuner3Open} onOpenChange={setTuner3Open} novelId={novelId} mode="model3-prompt" />
                 <StyleTunerDialog open={styleTunerOpen} onOpenChange={setStyleTunerOpen} novelId={novelId} />
                 <PronounTunerDialog open={pronounTunerOpen} onOpenChange={setPronounTunerOpen} novelId={novelId} />
 

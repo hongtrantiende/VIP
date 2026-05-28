@@ -61,6 +61,7 @@ export interface Novel {
   customModel1ModelId?: string;
   customModel2ProviderId?: string;
   customModel2ModelId?: string;
+  customModel2Prompt?: string;
   customModel3Enabled?: boolean;
   customModel3ProviderId?: string;
   customModel3ModelId?: string;
