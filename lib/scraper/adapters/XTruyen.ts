@@ -59,67 +59,29 @@ export const XTruyenAdapter: SiteAdapter = {
       };
     }
 
-    // --- Determine total chapter count ---
-    // Method 1: Look for "Chương cuối" link which contains the last chapter number
-    let lastChapterNum = 0;
+    // --- Method: Fallback to crawler mode (Return only first chapter) ---
+    // Instead of generating synthetic URLs which might 404, we find the first chapter link
+    // and rely on the engine's dynamic `nextChapterUrl` crawler to fetch subsequent chapters.
+    const firstChapterNode = 
+      doc.querySelector("a.btn-chapter-first") ||
+      doc.querySelector("a[href*='/chuong-']") ||
+      doc.querySelector("a[href*='/chapter-']");
 
-    const allLinks = Array.from(doc.querySelectorAll("a[href]"));
-    for (const a of allLinks) {
-      const href = (a as HTMLAnchorElement).getAttribute("href") || "";
-      const match = href.match(/\/chuong-(\d+)\/?$/);
-      if (match) {
-        const num = parseInt(match[1], 10);
-        if (num > lastChapterNum) lastChapterNum = num;
+    if (firstChapterNode) {
+      const firstUrl = (firstChapterNode as HTMLAnchorElement).getAttribute("href") || "";
+      if (firstUrl) {
+        return {
+          title,
+          author,
+          description,
+          coverImage,
+          chapters: [{ title: "Chương Đầu", url: firstUrl, order: 0 }]
+        };
       }
     }
 
-    // Method 2: Look in script tags for chapter count info
-    if (!lastChapterNum) {
-      const scripts = Array.from(doc.querySelectorAll("script"));
-      for (const s of scripts) {
-        const content = s.textContent || "";
-        const m = content.match(/chuong-(\d+)/g);
-        if (m) {
-          for (const c of m) {
-            const num = parseInt(c.replace("chuong-", ""), 10);
-            if (num > lastChapterNum) lastChapterNum = num;
-          }
-        }
-      }
-    }
-
-    // Method 3: Look in the raw HTML text as last resort
-    if (!lastChapterNum) {
-      const rawMatches = html.match(/chuong-(\d+)/g);
-      if (rawMatches) {
-        for (const c of rawMatches) {
-          const num = parseInt(c.replace("chuong-", ""), 10);
-          if (num > lastChapterNum) lastChapterNum = num;
-        }
-      }
-    }
-
-    if (!lastChapterNum) {
-      console.error("XTruyen: Could not determine total chapter count.");
-      return { title, author, description, coverImage, chapters: [] };
-    }
-
-    // --- Generate all chapter URLs ---
-    const baseUrl = url.split("?")[0].replace(/\/$/, "");
-    const chapters: ChapterLink[] = [];
-
-    for (let i = 1; i <= lastChapterNum; i++) {
-      chapters.push({
-        title: `Chương ${i}`,
-        url: `${baseUrl}/chuong-${i}/`,
-        order: i - 1,
-      });
-    }
-
-    onProgress?.(chapters.length);
-    console.log(`XTruyen: Generated ${chapters.length} chapter URLs (1 → ${lastChapterNum})`);
-
-    return { title, author, description, coverImage, chapters };
+    console.error("XTruyen: Could not determine first chapter link.");
+    return { title, author, description, coverImage, chapters: [] };
   },
 
   async getChapterContent(html, _url, contentText) {
