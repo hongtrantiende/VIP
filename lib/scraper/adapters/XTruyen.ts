@@ -17,7 +17,6 @@ export const XTruyenAdapter: SiteAdapter = {
   name: "XTruyen",
   group: "vn",
   urlPattern: /xtruyen\.vn/,
-  useSequentialTab: true,
 
   async getNovelInfo(html, url, onProgress) {
     const doc = new DOMParser().parseFromString(html, "text/html");

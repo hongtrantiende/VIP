@@ -212,7 +212,7 @@ async function findSTVTab(targetUrl) {
     if (!t.url) return false;
     try {
       const h = new URL(t.url).hostname;
-      return h.includes("sangtacviet") || h.includes("fanqienovel") || h.includes("fanqie");
+      return h.includes("sangtacviet") || h.includes("fanqienovel") || h.includes("fanqie") || h.includes("xtruyen.vn");
     } catch {
       return false;
     }
@@ -241,10 +241,37 @@ async function findSTVTab(targetUrl) {
   return tabs[0].id;
 }
 
+const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+
 async function stvFetchChapter(payload, sendResponse) {
   try {
-    const tabId = await findSTVTab(payload.chapterUrl);
-    if (!tabId) { sendResponse({ success: false, error: "Mở 1 tab SangTacViet trước!" }); return; }
+    let tabId = await findSTVTab(payload.chapterUrl);
+    if (!tabId) {
+      // Automatically open the first chapter URL in a new focused active tab
+      const isSTV = payload.chapterUrl.includes("sangtacviet");
+      const isXTruyen = payload.chapterUrl.includes("xtruyen.vn");
+      const isFanqie = payload.chapterUrl.includes("fanqie");
+      
+      if (isSTV || isXTruyen || isFanqie) {
+        console.log(`[STV] No active tab found. Creating new focused active tab for ${payload.chapterUrl}`);
+        const newTab = await chrome.tabs.create({ url: payload.chapterUrl, active: true });
+        tabId = newTab.id;
+        
+        // Wait briefly for tab creation to settle and injectVisibilityState
+        await delay(1500);
+        
+        // Focus the window
+        try {
+          const tInfo = await chrome.tabs.get(tabId);
+          if (tInfo && tInfo.windowId) {
+            await chrome.windows.update(tInfo.windowId, { focused: true });
+          }
+        } catch {}
+      } else {
+        sendResponse({ success: false, error: "Vui lòng mở 1 tab truyện trước!" });
+        return;
+      }
+    }
     
     const userDelay = payload.delayMs || 7000;
     const isFirstChapter = payload.isFirstChapter === true;
@@ -283,7 +310,8 @@ async function stvFetchChapter(payload, sendResponse) {
           target: { tabId },
           func: () => {
             // Try multiple selectors for the "next" button
-            const nextBtn = document.querySelector('#navnextbot') 
+            const nextBtn = document.querySelector('a.next_page')
+              || document.querySelector('#navnextbot') 
               || document.querySelector('#navnexttop')
               || document.querySelector('a[id*="navnext"]');
             if (nextBtn) {
@@ -366,7 +394,7 @@ async function stvFetchChapter(payload, sendResponse) {
 
       if (!contentFound && stvScrapeActive) {
         console.log("[STV] Timeout: user did not open chapter 1 within 2 minutes.");
-        sendResponse({ success: false, error: "Timeout: Vui lòng mở tab STV và bấm vào Chương 1 trước khi tải!", timedOut: true });
+        sendResponse({ success: false, error: "Timeout: Vui lòng mở tab truyện và bấm vào Chương 1 trước khi tải!", timedOut: true });
         return;
       }
     }
@@ -377,7 +405,7 @@ async function stvFetchChapter(payload, sendResponse) {
     }
 
     // ── EXTRACT content from current page ──
-    let content = "", title = "";
+    let content = "", title = "", nextChapterUrl = "";
     
     // Clear stale cache
     contentCache.delete(tabId);
@@ -389,6 +417,7 @@ async function stvFetchChapter(payload, sendResponse) {
         if (resp && resp.length > 200) { 
           content = resp.content; 
           title = resp.title;
+          nextChapterUrl = resp.nextChapterUrl || "";
           break; 
         }
       } catch {}
@@ -402,7 +431,7 @@ async function stvFetchChapter(payload, sendResponse) {
       currentUrl = tabState.url || "";
     } catch {}
     
-    console.log(`[STV] Extracted: title="${title}", length=${content.length}, url=${currentUrl}`);
+    console.log(`[STV] Extracted: title="${title}", length=${content.length}, url=${currentUrl}, nextChapterUrl=${nextChapterUrl}`);
     
     sendResponse({ 
       success: true, 
@@ -413,7 +442,8 @@ async function stvFetchChapter(payload, sendResponse) {
       title, 
       timedOut: content.length < 200, 
       stopped: !stvScrapeActive,
-      currentUrl // Send back for verification
+      currentUrl, // Send back for verification
+      nextChapterUrl
     });
   } catch (error) { sendResponse({ success: false, error: error.message }); }
 }
