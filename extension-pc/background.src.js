@@ -438,7 +438,7 @@ async function handleFetch(url, waitSelector, clickSelector, timeout, forceActiv
   await rotateProxyIfNeeded();
 
   // 1. Try silent background fetch first if no clicking/special waiting is needed
-  if (!clickSelector) {
+  if (!clickSelector && !waitSelector) {
     try {
       console.log(`[Silent Fetch] Attempting silent background fetch for ${url}`);
       const controller = new AbortController();

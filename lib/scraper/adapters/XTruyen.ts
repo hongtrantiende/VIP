@@ -140,7 +140,10 @@ export const XTruyenAdapter: SiteAdapter = {
       let htmlContent = (container as HTMLElement).innerHTML || "";
       rawText = htmlContent.replace(/<(br|hr)\s*\/?>/gi, '\n')
         .replace(/<\/(p|div|section|article|li)>/gi, '\n')
-        .replace(/<[^>]+>/g, '');
+        .replace(/<[^>]+>/g, '')
+        .trim();
+        
+      if (!rawText) rawText = contentText || "";
     } else {
       // Chỉ dùng contentText làm dự phòng
       rawText = contentText || "";
