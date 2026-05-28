@@ -114,39 +114,47 @@ export function PromptTunerDialog({
 
   const initialPromptText = useMemo(() => {
     if (mode === "stv-prompt") {
-      return `Bạn là chuyên gia thiết lập prompt làm mượt và hiệu đính STV (Sino-Vietnamese) chuyên nghiệp.
-Hãy phân tích mẫu truyện để tạo ra một System Prompt tối ưu nhất cho việc biên tập bản dịch STV thô cứng thành tiếng Việt mượt mà văn học.
+      return `Bạn là chuyên gia biên tập và làm mượt bản dịch tiểu thuyết Trung-Việt chuyên nghiệp.
+Hãy phân tích mẫu truyện tiếng Trung và bản dịch thô tiếng Việt (STV) để sinh ra một System Prompt tinh chỉnh chuyên biệt nhằm hướng dẫn AI biên tập bản dịch thô thành tiếng Việt mượt mà văn học.
 
-Yêu cầu System Prompt được sinh ra cần hướng dẫn AI:
-1. **Làm mượt cấu trúc câu STV**: Thay thế các cụm từ thô cứng ("hướng về phía trước đi", "nhẹ nhõm một hơi", "bất quá", "chợt thốt lên") bằng văn phong thuần Việt trôi chảy.
-2. **Chuẩn hóa xưng hô & bối cảnh**: Đối chiếu các nhân vật để xưng hô tự nhiên, chính xác theo đúng thể loại truyện (Tiên hiệp cổ trang, hiện đại...).
-3. **Độ chính xác nguyên tác**: Không được tự ý cắt xén, tóm tắt cốt truyện hay thêm thắt tình tiết.
+System Prompt được sinh phải đáp ứng các yêu cầu sau:
+- Biên tập đúng thể loại (Tiên Hiệp, Đô Thị, Hệ Thống, v.v.), phong cách viết của tác giả.
+- Đối chiếu bản gốc để sửa lỗi xưng hô, ngữ cảnh dịch sai lệch, và tên nhân vật.
+- Hành văn ổn định sát truyện, mượt mà tự nhiên, thuần Việt nhưng giữ chất văn học.
+- Đảm bảo sát nghĩa bản gốc Trung Quốc, tuyệt đối không tự ý thêm bớt tình tiết.
+- Viết ngắn gọn, chuẩn xác, không quá dài dòng cũng không quá sơ sài.
+- **Tối ưu làm mượt cấu trúc câu STV**: Hướng dẫn AI phát hiện và tự động sửa các cụm từ thô cứng đặc trưng của bản dịch STV thô (như "hướng về phía trước đi", "nhẹ nhõm một hơi", "bất quá", "chợt thốt lên", "nói giọng mang theo...") thành văn phong thuần Việt uyển chuyển, bay bổng.
 
-Đầu ra chỉ gồm duy nhất System Prompt tiếng Việt đặt trong khối code markdown \`\`\`. Không ghi lời giải thích nào khác.`;
+Kết quả trả về chỉ gồm System Prompt biên tập tiếng Việt đặt trong khối code markdown \`\`\`. Không ghi thêm lời giải thích nào khác.`;
     }
 
     if (mode === "comprehensive") {
-      return `Bạn là chuyên gia thiết lập prompt dịch thuật đa kênh (Multi-channel / Comprehensive Translation) chuyên nghiệp.
-Hãy phân tích mẫu truyện tiếng Trung để viết ra một System Prompt dịch thuật chất lượng cao, hướng dẫn AI phối hợp đối chiếu giữa bản gốc tiếng Trung và Hán Việt để dịch sang tiếng Việt.
+      return `Bạn là chuyên gia biên dịch và thiết lập pipeline dịch thuật tiểu thuyết mạng Trung-Việt chuyên nghiệp.
+Hãy phân tích mẫu truyện gốc tiếng Trung để biên soạn một System Prompt dịch nháp tối ưu, hướng dẫn AI phối hợp bản gốc tiếng Trung và Hán Việt để dịch ra văn bản tiếng Việt nháp (draft) chất lượng cao.
 
-Yêu cầu System Prompt được sinh ra cần hướng dẫn AI:
-1. **Dịch thuật chính xác**: Kết hợp ngữ nghĩa bản gốc tiếng Trung và phiên âm Hán Việt để chuyển ngữ chuẩn xác nhất.
-2. **Giữ gìn phong cách & bối cảnh**: Thể hiện đúng văn phong truyện (Tiên Hiệp cổ kính, Đô Thị hiện đại...) và bối cảnh tác phẩm.
-3. **Đồng nhất xưng hô & tên riêng**: Quy định xưng hô chuẩn xác dựa trên tôn ti trật tự và thế hệ nhân vật.
+System Prompt được sinh phải đáp ứng các yêu cầu sau:
+- Dịch nháp chuẩn xác đúng thể loại truyện (Tiên Hiệp, Đô Thị, Hệ Thống, v.v.) và phong cách của truyện gốc.
+- Đảm bảo thế đúng tên riêng nhân vật, địa lý và quan hệ gia thế / xưng hô chuẩn bối cảnh.
+- Hành văn ổn định sát truyện, đúng phong cách, tuyệt đối không tự ý thêm bớt nội dung.
+- Viết ngắn gọn, chuẩn xác, không quá dài dòng cũng không quá sơ sài.
+- **Dịch thuật đa kênh chính xác**: Hướng dẫn AI đối chiếu logic từ vựng giữa bản gốc tiếng Trung và từ điển tên riêng/Hán Việt để tạo ra bản dịch nháp có tính đồng nhất cao nhất.
 
-Đầu ra chỉ gồm duy nhất System Prompt tiếng Việt đặt trong khối code markdown \`\`\`. Không ghi lời giải thích nào khác.`;
+Kết quả trả về chỉ gồm System Prompt dịch nháp đặt trong khối code markdown \`\`\`. Không ghi thêm lời giải thích nào khác.`;
     }
 
     if (mode === "edit") {
-      return `Bạn là chuyên gia biên tập và hiệu đính văn học tiếng Việt cấp cao.
-Hãy phân tích mẫu truyện để viết ra một System Prompt hướng dẫn AI biên tập, chau chuốt văn phong tiếng Việt sẵn có của truyện.
+      return `Bạn là chuyên gia biên tập, hiệu đính và làm mượt văn phong tiểu thuyết mạng Việt Nam chuyên nghiệp.
+Hãy phân tích mẫu truyện tiếng Việt hiện tại để sinh ra một System Prompt biên tập chuyên biệt nhằm hướng dẫn AI biên tập, chau chuốt câu từ, sửa lỗi ngữ pháp, hành văn mượt mà, đúng thể loại và thuần Việt nhất.
 
-Yêu cầu System Prompt được sinh ra cần hướng dẫn AI:
-1. **Nâng cao chất lượng câu từ**: Sửa các lỗi câu cú lủng củng, lặp từ, sửa lỗi chính tả và làm cho giọng văn bay bổng, giàu chất thơ/chất văn học.
-2. **Tuyệt đối nhất quán**: Giữ nguyên cốt truyện, tình tiết, tên nhân vật và đại từ xưng hô đã được định vị sẵn trong bản dịch gốc.
-3. **Độ trung thực**: Không tóm tắt nội dung hay lược bỏ đoạn văn.
+System Prompt được sinh phải đáp ứng các yêu cầu sau:
+- Biên tập đúng thể loại (Tiên Hiệp, Đô Thị, Hệ Thống, v.v.), phong cách viết của tác giả.
+- Định hướng hành văn mượt mà, tự nhiên, thuần Việt nhưng giữ chất văn học.
+- Đảm bảo sửa các lỗi lặp từ, lỗi chính tả, câu cú lủng củng.
+- Tuyệt đối giữ nguyên cốt truyện, tình tiết và bối cảnh tên nhân vật. Không tự ý tóm tắt hay cắt xén nội dung.
+- Viết ngắn gọn, chuẩn xác, không quá dài dòng cũng không quá sơ sài.
+- **Nâng cao chất lượng câu từ sao cho thuần Việt**: Hướng dẫn AI chau chuốt từ ngữ, làm giàu hình ảnh văn học tiếng Việt, loại bỏ lỗi cấu trúc câu bị động hoặc ảnh hưởng bởi ngữ pháp tiếng Trung.
 
-Đầu ra chỉ gồm duy nhất System Prompt tiếng Việt đặt trong khối code markdown \`\`\`. Không ghi lời giải thích nào khác.`;
+Kết quả trả về chỉ gồm System Prompt biên tập tiếng Việt đặt trong khối code markdown \`\`\`. Không ghi thêm lời giải thích nào khác.`;
     }
 
     if (mode === "model2-prompt") {
@@ -186,15 +194,18 @@ System Prompt dành cho Model 3 cần hướng dẫn QA Bot thực hiện quy tr
 Yêu cầu đầu ra: Trả về kết quả chỉ gồm duy nhất đoạn System Prompt QA Bot bằng tiếng Việt đặt trong khối code markdown \`\`\`. Tuyệt đối không thêm lời dẫn luận hay giải thích ngoài khối code.`;
     }
 
-    return `Bạn là chuyên gia thiết lập prompt dịch thuật tiểu thuyết Trung-Việt chuyên nghiệp.
-Hãy phân tích mẫu truyện và sinh ra một System Prompt hướng dẫn AI dịch trực tiếp từ tiếng Trung sang tiếng Việt một cách tối ưu nhất cho riêng bộ truyện này.
+    return `Bạn là chuyên gia phân tích và dịch thuật tiểu thuyết Trung-Việt chuyên nghiệp.
+Hãy phân tích mẫu truyện và sinh ra một System Prompt ngắn gọn, đúng trọng tâm để hướng dẫn AI dịch trực tiếp từ tiếng Trung sang tiếng Việt.
 
-System Prompt được sinh ra cần hướng dẫn AI:
-1. **Định hình văn phong & thể loại**: Dịch chuẩn ngữ khí của tác giả, phù hợp với thể loại truyện (Tiên Hiệp cổ kính, Đô Thị hài hước...).
-2. **Xử lý tên riêng & xưng hô**: Dịch đúng tên nhân vật, môn phái, chiêu thức bối cảnh và thiết lập quy tắc đại từ nhân xưng thống nhất giữa các nhân vật chính phụ.
-3. **Độ mượt mà thuần Việt**: Dịch thoát ý nhưng sát nghĩa gốc, loại bỏ sự thô cứng của từ Hán-Việt tối nghĩa, không tự ý thêm bớt nội dung.
+System Prompt được sinh phải đáp ứng các yêu cầu sau:
+- Dịch đúng thể loại (Tiên Hiệp, Đô Thị, Hệ Thống, v.v.), phong cách viết của tác giả.
+- Dịch đúng ngữ cảnh và tên riêng nhân vật / địa danh / chiêu thức.
+- Quy định hành văn ổn định sát truyện, xưng hô chuẩn xác giữa các nhân vật.
+- Dịch sát nghĩa gốc, tuyệt đối không được tự ý thêm bớt nội dung khi dịch.
+- Viết ngắn gọn, chuẩn xác, không quá dài dòng cũng không quá sơ sài.
+- **Mượt mà thuần Việt**: Dịch thoát ý tự nhiên, không lạm dụng từ Hán-Việt tối nghĩa thô cứng, cấu trúc câu tiếng Việt chuẩn ngữ pháp và mượt mà.
 
-Đầu ra chỉ gồm duy nhất System Prompt bằng tiếng Việt đặt trong khối code markdown \`\`\`. Không ghi lời giải thích nào khác.`;
+Kết quả trả về chỉ gồm System Prompt bằng tiếng Việt đặt trong khối code markdown \`\`\`. Không ghi thêm lời giải thích nào khác.`;
   }, [mode]);
 
   const handleProviderChange = async (providerId: string) => {
