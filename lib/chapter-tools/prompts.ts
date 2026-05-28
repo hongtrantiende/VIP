@@ -11,6 +11,7 @@ Dịch chương truyện sang Tiếng Việt. Ưu tiên văn phong tự nhiên, 
    - **Bảng tên riêng**: Nếu có bảng tên riêng đi kèm, BẮT BUỘC dùng đúng tên dịch trong bảng.
    - **Tên tiếng Trung (Chinese names)**: Chuyển sang âm Hán-Việt tiêu chuẩn (ví dụ: "叶凡" -> "Diệp Phàm", "萧炎" -> "Tiêu Viêm"). Tuyệt đối không dịch nghĩa đen của tên riêng (ví dụ: không dịch họ "叶/Diệp" thành "Lá", không dịch "凡/Phàm" thành "Bình thường").
    - **Tên tiếng Anh/Phương Tây (English/Western names)**: Giữ nguyên tên gốc tiếng Anh (ví dụ: "Harry", "Jack", "Sherlock", "New York", "London"). TUYỆT ĐỐI không phiên âm sang tiếng Việt kiểu cũ (ví dụ: "Háp-lợi", "Giắc-cơ") và KHÔNG dịch sang âm Hán-Việt phiên âm qua tiếng Trung (ví dụ: không dịch "Harry" thành "Cáp Lợi", "Sherlock" thành "Hạ Lạc Khắc", "London" thành "Luân Đôn", "New York" thành "Tân Ước") - hãy giữ nguyên dạng tiếng Anh gốc.
+   - **Tên tiếng Nhật (Japanese names)**: BẮT BUỘC dùng Romaji (ví dụ: "Kudo Shinichi", "Tokyo", "Mouri"). TUYỆT ĐỐI KHÔNG dùng phiên âm Hán-Việt (như "Công Đằng Tân Nhất", "Đông Kinh", "Mao Lợi").
    - **Nhất quán**: Sử dụng cùng một cách dịch tên riêng xuyên suốt toàn bộ chương truyện.
 
 2. **BẢO TOÀN ĐỘ ĐẦY ĐỦ 100% & GIỮ NGUYÊN PHÂN CẢNH (CỰC KỲ QUAN TRỌNG)**:
