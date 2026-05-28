@@ -261,9 +261,6 @@ async function stvFetchChapter(payload, sendResponse) {
       } catch (winErr) {
         console.warn("[STV] Window focus error:", winErr);
       }
-    } else {
-      // For subsequent chapters, just make it active but don't steal OS focus
-      try { await chrome.tabs.update(tabId, { active: true }); } catch {}
     }
 
     if (!isFirstChapter) {
