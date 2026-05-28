@@ -18,7 +18,6 @@ export const XTruyenAdapter: SiteAdapter = {
   group: "vn",
   urlPattern: /xtruyen\.vn/,
   useSequentialTab: true,
-  chapterWaitSelector: "#chapter-reading-content",
 
   async getNovelInfo(html, url, onProgress) {
     const doc = new DOMParser().parseFromString(html, "text/html");
@@ -123,31 +122,63 @@ export const XTruyenAdapter: SiteAdapter = {
     return { title, author, description, coverImage, chapters };
   },
 
-  getChapterContent(html, _url, contentText) {
+  async getChapterContent(html, _url, contentText) {
+    let rawText = "";
+
+    // 1. Tự động giải mã biến data_x nếu tìm thấy trong HTML (Rất nhanh, không cần mở tab)
+    const dataXMatch = html.match(/data_x\s*=\s*["']([^"']+)["']/);
+    if (dataXMatch) {
+      try {
+        const data_x = dataXMatch[1];
+        const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/';
+        const cipher = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ-_';
+        let translated = '';
+        for (const char of data_x) {
+          const idx = cipher.indexOf(char);
+          translated += idx > -1 ? alphabet[idx] : char;
+        }
+        const binary = Uint8Array.from(atob(translated), x => x.charCodeAt(0));
+        
+        const ds = new DecompressionStream('deflate');
+        const writer = ds.writable.getWriter();
+        writer.write(binary);
+        writer.close();
+        
+        let decryptedHtml = await new Response(ds.readable).text();
+        rawText = decryptedHtml.replace(/<(br|hr)\s*\/?>/gi, '\n')
+          .replace(/<\/(p|div|section|article|li)>/gi, '\n')
+          .replace(/<[^>]+>/g, '')
+          .trim();
+      } catch (e: any) {
+        console.error("XTruyen data_x decrypt error:", e.message);
+      }
+    }
+
     const doc = new DOMParser().parseFromString(html, "text/html");
     const container = doc.querySelector("#chapter-reading-content");
 
-    if (!container && !contentText) return { title: "", content: "" };
+    // 2. Nếu không có data_x, dùng container hoặc contentText làm dự phòng
+    if (!rawText) {
+      if (!container && !contentText) return { title: "", content: "" };
 
-    let rawText = "";
+      // Luôn ưu tiên dùng container nếu tìm thấy để lấy toàn bộ các đoạn văn
+      if (container) {
+        // Xóa quảng cáo, mã nhúng và vòng xoay loading
+        container
+          .querySelectorAll(".aam-ad-container, .carousel, script, style, .ads, .quangcao, #loading-box")
+          .forEach((el) => el.remove());
 
-    // Luôn ưu tiên dùng container nếu tìm thấy để lấy toàn bộ các đoạn văn
-    if (container) {
-      // Xóa quảng cáo, mã nhúng và vòng xoay loading
-      container
-        .querySelectorAll(".aam-ad-container, .carousel, script, style, .ads, .quangcao, #loading-box")
-        .forEach((el) => el.remove());
-
-      let htmlContent = (container as HTMLElement).innerHTML || "";
-      rawText = htmlContent.replace(/<(br|hr)\s*\/?>/gi, '\n')
-        .replace(/<\/(p|div|section|article|li)>/gi, '\n')
-        .replace(/<[^>]+>/g, '')
-        .trim();
-        
-      if (!rawText) rawText = contentText || "";
-    } else {
-      // Chỉ dùng contentText làm dự phòng
-      rawText = contentText || "";
+        let htmlContent = (container as HTMLElement).innerHTML || "";
+        rawText = htmlContent.replace(/<(br|hr)\s*\/?>/gi, '\n')
+          .replace(/<\/(p|div|section|article|li)>/gi, '\n')
+          .replace(/<[^>]+>/g, '')
+          .trim();
+          
+        if (!rawText) rawText = contentText || "";
+      } else {
+        // Chỉ dùng contentText làm dự phòng
+        rawText = contentText || "";
+      }
     }
 
     const title =
