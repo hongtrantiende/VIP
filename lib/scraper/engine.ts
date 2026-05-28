@@ -167,40 +167,35 @@ export async function scrapeChapters(
     let success = false;
     let lastError: any = null;
 
-    let extNextChapterUrl: string | undefined = undefined;
-
     while (attempts < 3 && !success) {
       try {
-        const isSTV = adapter.name === "STV" || adapter.urlPattern?.test(chapter.url) || chapter.url.includes("sangtacviet");
+        const isSTV = adapter.name === "STV" || chapter.url.includes("sangtacviet");
         const isFanqie = adapter.name === "Fanqie Novel";
-        const isXTruyen = adapter.name === "XTruyen" || chapter.url.includes("xtruyen.vn");
         
-        if (isSTV || (isFanqie && chapter.id) || isXTruyen) {
+        if (isSTV || (isFanqie && chapter.id)) {
           const isFanqieRealUrl = isFanqie && !chapter.url.startsWith('fanqie-dynamic');
           const isFirstChapter = i === 0;
           const res = await extensionDownloadSTVChapter(
             chapter.id || "",
             chapter.url,
             // For Fanqie real URLs: don't send allowNext (we navigate directly)
-            // For STV/XTruyen: allowNext is no longer used (click-next handled by extension)
+            // For STV: allowNext is no longer used (click-next handled by extension)
             isFanqieRealUrl ? false : (i < chapters.length - 1 && !signal?.aborted),
             false,
             safeDelayMs,
-            isFirstChapter
+            isSTV || isFanqie ? isFirstChapter : false
           );
           html = res.data ?? "";
           contentText = (res as any).contentText ?? res.content ?? undefined;
           timedOut = (res as any).timedOut ?? false;
           extTitle = res.title;
-          if ((res as any).nextChapterUrl) {
-            extNextChapterUrl = (res as any).nextChapterUrl;
-          }
           if (res.stopped) break;
         } else {
           const fetchRes = await extensionFetch(chapter.url, {
             waitSelector: adapter.chapterWaitSelector,
             clickSelector: adapter.chapterClickSelector,
             reuseTab: adapter.useSequentialTab,
+            activeTab: i === 0,
           });
           html = fetchRes.html;
           contentText = fetchRes.contentText;
@@ -212,9 +207,6 @@ export async function scrapeChapters(
           await adapter.getChapterContent(html, chapter.url, contentText),
         );
         content.order = chapter.order;
-        if (extNextChapterUrl) {
-          content.nextChapterUrl = extNextChapterUrl;
-        }
 
         // For Fanqie: ALWAYS use chapter.title from the list (PUA-encoded page titles are garbage)
         if (adapter.name === "Fanqie Novel") {
@@ -223,7 +215,7 @@ export async function scrapeChapters(
           content.title = extTitle || chapter.title;
         }
 
-        const isTabBased = adapter.name === "STV" || adapter.name === "Fanqie Novel" || adapter.name === "XTruyen";
+        const isTabBased = adapter.name === "STV" || adapter.name === "Fanqie Novel";
         if ((timedOut || content.content.length < 30) && !isTabBased) {
           throw new Error(`Lỗi lấy nội dung: Timeout hoặc quá ngắn (${content.content.length} ký tự)`);
         }
@@ -232,14 +224,14 @@ export async function scrapeChapters(
       } catch (err: any) {
         lastError = err;
         attempts++;
-        if (attempts >= 3 || adapter.name === "STV" || adapter.name === "Fanqie Novel" || adapter.name === "XTruyen") {
+        if (attempts >= 3 || adapter.name === "STV" || adapter.name === "Fanqie Novel") {
           break;
         }
         await delay(1500 * attempts);
       }
     }
 
-    if (!success && lastError && adapter.name !== "STV" && adapter.name !== "Fanqie Novel" && adapter.name !== "XTruyen") {
+    if (!success && lastError && adapter.name !== "STV" && adapter.name !== "Fanqie Novel") {
       throw lastError; // Bubble up after 3 attempts
     }
 
@@ -329,9 +321,10 @@ export async function scrapeChapters(
           }
         }
       } else {
-        // Check for gap in the middle
+        // Check for gap in the middle (only for dynamic click-based adapters like STV/Fanqie)
+        const isDynamicAdapter = adapter.name === "STV" || adapter.name === "Fanqie Novel";
         const nextInQueue = chapters[i + 1];
-        if (nextInQueue && !isEquivalentUrl(nextInQueue.url, content.nextChapterUrl)) {
+        if (isDynamicAdapter && nextInQueue && !isEquivalentUrl(nextInQueue.url, content.nextChapterUrl)) {
           const alreadyExists = chapters.some((ch) => isEquivalentUrl(ch.url, content.nextChapterUrl));
           if (!alreadyExists) {
             // It is a missing chapter! Insert it at index i + 1
@@ -391,6 +384,7 @@ export async function crawlNovel(
     const fetchRes = await extensionFetch(currentUrl, {
       waitSelector: adapter.chapterWaitSelector,
       clickSelector: adapter.chapterClickSelector,
+      activeTab: completed === 0,
     });
 
     const content = sanitizeChapterContent(

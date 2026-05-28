@@ -338,9 +338,9 @@ export default function ScraperLibraryPage() {
 
                     <div className="border-t pt-4 mt-2">
                       <Button variant="secondary" className="w-full sm:w-auto" asChild>
-                        <a href="/novel-studio-connector-pc.zip?v=1.0" download>
+                        <a href="/novel-studio-connector-pc.zip?v=2.0" download>
                           <DownloadIcon className="mr-2 w-4 h-4" />
-                          Tải Extension v1.0 (.zip)
+                          Tải Extension v2.0 (.zip)
                         </a>
                       </Button>
                     </div>

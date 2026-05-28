@@ -191,7 +191,7 @@ export function TranslateTabPanel({
     const [tuner3Open, setTuner3Open] = useState(false);
     const [qtDictSources, setQtDictSources] = useState<string[]>(["tienhiep"]);
     const [extractDict, setExtractDict] = useState(true);
-    const [skipTranslated, setSkipTranslated] = useState(true);
+    const [skipTranslated, setSkipTranslated] = useState(false);
     const [errorAction, setErrorAction] = useState<"stop" | "skip">("stop");
     const [twoPass, setTwoPass] = useState(true);
     const [inlinePrompt, setInlinePrompt] = useState("");
@@ -206,8 +206,8 @@ export function TranslateTabPanel({
     const [isCleaning, setIsCleaning] = useState(false);
     const [cleanGarbage, setCleanGarbage] = useState(true);
     const [nsfwMode, setNsfwMode] = useState(false);
-    const [chunkMode, setChunkMode] = useState<"chunk" | "full">("chunk");
-    const [hanVietRatio, setHanVietRatio] = useState<number>(50);
+    const [chunkMode, setChunkMode] = useState<"chunk" | "full">("full");
+    const [hanVietRatio, setHanVietRatio] = useState<number>(30);
     const [showStepsInfo, setShowStepsInfo] = useState(false);
     const [totalToProcess, setTotalToProcess] = useState(0);
     const abortRef = useRef<AbortController | null>(null);
@@ -343,8 +343,8 @@ export function TranslateTabPanel({
 
     useEffect(() => {
         if (settings) {
-            setChunkMode(settings.translateChunkMode || "chunk");
-            setHanVietRatio(settings.hanVietRatio ?? 50);
+            setChunkMode(settings.translateChunkMode || "full");
+            setHanVietRatio(settings.hanVietRatio ?? 30);
         }
     }, [settings]);
 

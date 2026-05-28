@@ -126,7 +126,7 @@ ${opts.sourceText.slice(0, 3000)}
 2. Trích xuất đầy đủ Tên riêng: Tên nhân vật, Tên địa danh, Cảnh giới, Môn phái, Chiêu thức, Đồ vật đặc biệt.
 3. Trích xuất đầy đủ Danh xưng: Đại từ nhân xưng, xưng hô đặc thù (VD: vi sư, lão phu, trẫm, thần thiếp...).
 4. Trích xuất đầy đủ Từ vựng chung: Từ lóng, cụm từ lặp, thành ngữ, cụm động từ, cụm tính từ đặc trưng của tiếng Trung.
-5. Phân loại bắt buộc vào một trong các loại từ điển sau (trường "category"):
+4. Phân loại bắt buộc vào một trong các loại từ điển sau (trường "category"):
    - "names": Tên riêng (nhân vật, tông môn, bí cảnh, thành phố...).
    - "names2": Bí danh, danh hiệu, tên khác.
    - "phienam": Phiên âm tên riêng, danh từ riêng (chỉ 1 chữ Hán).
@@ -135,9 +135,8 @@ ${opts.sourceText.slice(0, 3000)}
    - "ngucanh": Ngữ cảnh & Quy tắc dịch (Quy tắc đặc thù khi dịch từ/cụm từ cụ thể trong bối cảnh truyện).
    - "vietphrase": Từ điển phụ (Bổ sung từ vựng thông dụng đặc thù của thể loại, độ ưu tiên thấp hơn tên riêng/thuật ngữ).
 ${genreInstruction}
-8. **Tên riêng Nhật Bản/Phương Tây**: BẮT BUỘC phải dùng Romaji hoặc tiếng Anh nguyên gốc cho nghĩa tiếng Việt (vietnamese) (ví dụ: Kudo, Tokyo, Harry). TUYỆT ĐỐI KHÔNG dịch thành âm Hán-Việt (như Công Đằng, Đông Kinh, Cáp Lợi).
-9. Với mỗi mục, phải có context_zh (câu gốc chứa từ đó).
-10. BẮT BUỘC: Nghĩa tiếng Việt (vietnamese) PHẢI LÀ MỘT NGHĨA DUY NHẤT, chuẩn xác nhất. Tuyệt đối KHÔNG dùng dấu gạch chéo (/), KHÔNG liệt kê nhiều nghĩa (Ví dụ: Sai: "Tống Cẩu / Tống Chó", Đúng: "Tống Cẩu").
+7. Với mỗi mục, phải có context_zh (câu gốc chứa từ đó).
+8. BẮT BUỘC: Nghĩa tiếng Việt (vietnamese) PHẢI LÀ MỘT NGHĨA DUY NHẤT, chuẩn xác nhất. Tuyệt đối KHÔNG dùng dấu gạch chéo (/), KHÔNG liệt kê nhiều nghĩa (Ví dụ: Sai: "Tống Cẩu / Tống Chó", Đúng: "Tống Cẩu").
 </requirements>
 
 <output_format>Trả về JSON chứa mảng "suggestions".</output_format>

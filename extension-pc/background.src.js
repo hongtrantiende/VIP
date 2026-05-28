@@ -212,7 +212,7 @@ async function findSTVTab(targetUrl) {
     if (!t.url) return false;
     try {
       const h = new URL(t.url).hostname;
-      return h.includes("sangtacviet") || h.includes("fanqienovel") || h.includes("fanqie") || h.includes("xtruyen.vn");
+      return h.includes("sangtacviet") || h.includes("fanqienovel") || h.includes("fanqie");
     } catch {
       return false;
     }
@@ -241,37 +241,10 @@ async function findSTVTab(targetUrl) {
   return tabs[0].id;
 }
 
-const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
-
 async function stvFetchChapter(payload, sendResponse) {
   try {
-    let tabId = await findSTVTab(payload.chapterUrl);
-    if (!tabId) {
-      // Automatically open the first chapter URL in a new focused active tab
-      const isSTV = payload.chapterUrl.includes("sangtacviet");
-      const isXTruyen = payload.chapterUrl.includes("xtruyen.vn");
-      const isFanqie = payload.chapterUrl.includes("fanqie");
-      
-      if (isSTV || isXTruyen || isFanqie) {
-        console.log(`[STV] No active tab found. Creating new focused active tab for ${payload.chapterUrl}`);
-        const newTab = await chrome.tabs.create({ url: payload.chapterUrl, active: true });
-        tabId = newTab.id;
-        
-        // Wait briefly for tab creation to settle and injectVisibilityState
-        await delay(1500);
-        
-        // Focus the window
-        try {
-          const tInfo = await chrome.tabs.get(tabId);
-          if (tInfo && tInfo.windowId) {
-            await chrome.windows.update(tInfo.windowId, { focused: true });
-          }
-        } catch {}
-      } else {
-        sendResponse({ success: false, error: "Vui lòng mở 1 tab truyện trước!" });
-        return;
-      }
-    }
+    const tabId = await findSTVTab(payload.chapterUrl);
+    if (!tabId) { sendResponse({ success: false, error: "Mở 1 tab SangTacViet trước!" }); return; }
     
     const userDelay = payload.delayMs || 7000;
     const isFirstChapter = payload.isFirstChapter === true;
@@ -310,8 +283,7 @@ async function stvFetchChapter(payload, sendResponse) {
           target: { tabId },
           func: () => {
             // Try multiple selectors for the "next" button
-            const nextBtn = document.querySelector('a.next_page')
-              || document.querySelector('#navnextbot') 
+            const nextBtn = document.querySelector('#navnextbot') 
               || document.querySelector('#navnexttop')
               || document.querySelector('a[id*="navnext"]');
             if (nextBtn) {
@@ -394,7 +366,7 @@ async function stvFetchChapter(payload, sendResponse) {
 
       if (!contentFound && stvScrapeActive) {
         console.log("[STV] Timeout: user did not open chapter 1 within 2 minutes.");
-        sendResponse({ success: false, error: "Timeout: Vui lòng mở tab truyện và bấm vào Chương 1 trước khi tải!", timedOut: true });
+        sendResponse({ success: false, error: "Timeout: Vui lòng mở tab STV và bấm vào Chương 1 trước khi tải!", timedOut: true });
         return;
       }
     }
@@ -405,7 +377,7 @@ async function stvFetchChapter(payload, sendResponse) {
     }
 
     // ── EXTRACT content from current page ──
-    let content = "", title = "", nextChapterUrl = "";
+    let content = "", title = "";
     
     // Clear stale cache
     contentCache.delete(tabId);
@@ -417,7 +389,6 @@ async function stvFetchChapter(payload, sendResponse) {
         if (resp && resp.length > 200) { 
           content = resp.content; 
           title = resp.title;
-          nextChapterUrl = resp.nextChapterUrl || "";
           break; 
         }
       } catch {}
@@ -431,7 +402,7 @@ async function stvFetchChapter(payload, sendResponse) {
       currentUrl = tabState.url || "";
     } catch {}
     
-    console.log(`[STV] Extracted: title="${title}", length=${content.length}, url=${currentUrl}, nextChapterUrl=${nextChapterUrl}`);
+    console.log(`[STV] Extracted: title="${title}", length=${content.length}, url=${currentUrl}`);
     
     sendResponse({ 
       success: true, 
@@ -442,8 +413,7 @@ async function stvFetchChapter(payload, sendResponse) {
       title, 
       timedOut: content.length < 200, 
       stopped: !stvScrapeActive,
-      currentUrl, // Send back for verification
-      nextChapterUrl
+      currentUrl // Send back for verification
     });
   } catch (error) { sendResponse({ success: false, error: error.message }); }
 }
@@ -468,7 +438,9 @@ async function handleFetch(url, waitSelector, clickSelector, timeout, forceActiv
   await rotateProxyIfNeeded();
 
   // 1. Try silent background fetch first if no clicking/special waiting is needed
-  if (!clickSelector && !waitSelector) {
+  // DO NOT use silent fetch for XTruyen to comply with the active tab sequential scraping
+  const isXTruyen = url.includes("xtruyen.vn");
+  if (!clickSelector && !waitSelector && !isXTruyen) {
     try {
       console.log(`[Silent Fetch] Attempting silent background fetch for ${url}`);
       const controller = new AbortController();
@@ -612,9 +584,10 @@ async function handleFetch(url, waitSelector, clickSelector, timeout, forceActiv
         console.log(`[Fetch] targetNorm path: ${targetNorm}, bestTabNorm path: ${bestTabNorm}`);
 
         if (bestTabNorm !== targetNorm) {
-          console.log(`[Fetch] Paths differ. Navigating tab ${tabId} to ${url} (background, no focus steal)`);
+          const isXTruyen = url.includes("xtruyen.vn");
+          console.log(`[Fetch] Paths differ. Navigating tab ${tabId} to ${url} (isXTruyen: ${isXTruyen})`);
 
-          await chrome.tabs.update(tabId, { url });
+          await chrome.tabs.update(tabId, { url, active: isXTruyen });
           didNavigate = true;
 
           // Inject visibilityState=visible ASAP so JS/Cloudflare doesn't throttle.
@@ -648,15 +621,16 @@ async function handleFetch(url, waitSelector, clickSelector, timeout, forceActiv
   if (!isReused) {
     try {
       const isSTV = url.includes("sangtacviet");
+      const isXTruyen = url.includes("xtruyen.vn");
       if (reuseTab && !isSTV) {
         // Persistent-tab adapters (hetushu, 69shuba, etc.): create a background tab inside
         // the current window — no new window, no popup, no focus steal.
-        // The tab is kept alive across all chapters and cleaned up by stopScrape/closePersistentTab.
-        const tab = await chrome.tabs.create({ url, active: false });
+        // For XTruyen, create it as an ACTIVE tab so focus jumps to it immediately.
+        const tab = await chrome.tabs.create({ url, active: isXTruyen });
         tabId = tab.id;
         persistentTabIds.add(tabId); // register for later cleanup
         didNavigate = true;
-        console.log(`[Fetch] Created persistent background tab ${tabId} for reuseTab adapter.`);
+        console.log(`[Fetch] Created persistent tab ${tabId} for reuseTab adapter (active: ${isXTruyen}).`);
       } else {
         // STV or one-shot fetch: create a minimized window so the tab gets full JS execution
         // (no throttling from hidden state). STV needs visible tab to render chapter list.
@@ -711,7 +685,7 @@ async function handleFetch(url, waitSelector, clickSelector, timeout, forceActiv
         }
       })();
 
-      await waitForTabLoad(tabId, 30000);
+      await waitForTabLoad(tabId, url, 30000);
       
       // Check if Cloudflare is present
       let hasCf = false;
@@ -1014,12 +988,29 @@ async function waitForStableContent(tabId, maxWait) {
   }
 }
 
-function waitForTabLoad(tabId, ms) {
+function waitForTabLoad(tabId, targetUrl, ms = 30000) {
   return new Promise((resolve) => {
     const t = setTimeout(() => { chrome.tabs.onUpdated.removeListener(fn); resolve(); }, ms);
-    function fn(id, info) {
-      if (id === tabId && info.status === "complete") {
-        chrome.tabs.onUpdated.removeListener(fn); clearTimeout(t); resolve();
+    let targetPath = "";
+    try {
+      targetPath = new URL(targetUrl).pathname.replace(/\/$/, "");
+    } catch {
+      targetPath = targetUrl.replace(/\/$/, "");
+    }
+
+    async function fn(id, info) {
+      if (id === tabId) {
+        try {
+          const tab = await chrome.tabs.get(tabId);
+          const currentUrl = tab.url || "";
+          const isTarget = currentUrl.includes(targetPath);
+          const isComplete = tab.status === "complete";
+          if (isTarget && isComplete) {
+            chrome.tabs.onUpdated.removeListener(fn); clearTimeout(t); resolve();
+          }
+        } catch (e) {
+          console.warn("[waitForTabLoad] Error:", e.message);
+        }
       }
     }
     chrome.tabs.onUpdated.addListener(fn);

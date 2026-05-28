@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "Novel Studio Connector (Android)",
-  "version": "0.3.0",
+  "version": "2.0",
   "description": "Fetch novel content from external websites for Novel Studio. Optimized for Kiwi Browser on Android.",
   "permissions": ["tabs", "scripting"],
   "host_permissions": ["<all_urls>"],

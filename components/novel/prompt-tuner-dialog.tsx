@@ -173,7 +173,7 @@ System Prompt dành cho Model 2 cần hướng dẫn AI cách quét và trích x
    - Thuật ngữ đặc trưng (linh dược, yêu thú, vũ khí, võ học, cảnh giới tu luyện).
 2. **Quy tắc phiên âm & dịch nghĩa**:
    - Dịch nghĩa hoặc phiên âm Hán-Việt chuẩn xác, hợp ngữ cảnh thể loại của truyện này (ví dụ: Tiên Hiệp cần phiên âm cổ phong, Đô Thị cần dịch thuần Việt tự nhiên).
-   - **Tên người/Địa danh Nhật Bản, Phương Tây**: BẮT BUỘC dùng Romaji hoặc giữ nguyên tiếng Anh (ví dụ: Kudo Shinichi, Tokyo, Harry, London). TUYỆT ĐỐI KHÔNG phiên âm sang Hán-Việt (như Công Đằng Tân Nhất, Đông Kinh, Cáp Lợi, Luân Đôn).
+   - **Đặc biệt lưu ý với tên người/địa danh Nhật Bản**: Tuyệt đối KHÔNG dùng Hán-Việt (không dịch thành Công Đằng Tân Nhất, Mễ Hoa đinh...) mà BẮT BUỘC phải dùng tên phiên âm Romaji chuẩn (ví dụ: Kudo Shinichi, Beika...). System Prompt sinh ra phải nhấn mạnh quy tắc này nếu truyện thuộc bối cảnh Nhật Bản hoặc Đồng nhân.
    - Chỉ ra cách xử lý các từ Hán-Việt đa nghĩa, các từ ghép hoặc ẩn dụ tác giả thường dùng.
 3. **Quy tắc lọc nhiễu**:
    - Tuyệt đối loại bỏ các đại từ nhân xưng thông thường (ta, hắn, ngươi, bọn họ) và các trạng từ, từ nối phổ biến.

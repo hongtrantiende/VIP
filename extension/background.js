@@ -7,23 +7,28 @@ const delay = (ms) => new Promise((r) => setTimeout(r, ms));
 
 let hiddenTabId = null;
 
-async function getOrCreateHiddenTab() {
+async function getOrCreateHiddenTab(forceActive = false) {
   const data = await chrome.storage.local.get("hiddenTabId");
   let hTabId = data.hiddenTabId;
   
   if (hTabId) {
     try {
       const tab = await chrome.tabs.get(hTabId);
-      if (tab) return tab.id;
+      if (tab) {
+        if (forceActive) {
+          await chrome.tabs.update(tab.id, { active: true }).catch(() => {});
+        }
+        return tab.id;
+      }
     } catch {
       hTabId = null;
     }
   }
   
-  // Create a background tab (active: false) instead of a window for Kiwi Browser
+  // Create a background tab (active: forceActive) instead of a window for Kiwi Browser
   const tab = await chrome.tabs.create({
     url: "about:blank",
-    active: false,
+    active: forceActive,
   });
   
   await chrome.storage.local.set({ hiddenTabId: tab.id });
@@ -36,7 +41,9 @@ async function handleFetch(url, options = {}) {
   const log = (msg) => logs.push(`[${new Date().toLocaleTimeString()}] ${msg}`);
 
   // 1. Try silent background fetch first if no special scraping/waiting is needed
-  if (!smartScrape && !waitSelector && !options.clickSelector) {
+  // DO NOT use silent fetch for XTruyen to comply with the active tab sequential scraping
+  const isXTruyen = url.includes("xtruyen.vn");
+  if (!smartScrape && !waitSelector && !options.clickSelector && !isXTruyen) {
     try {
       log(`Attempting silent background fetch for ${url}`);
       const controller = new AbortController();
@@ -124,11 +131,14 @@ async function handleFetch(url, options = {}) {
   // 2. Fallback to real hidden tab (background tab for Kiwi)
   let tabId;
   try {
-    tabId = await getOrCreateHiddenTab();
+    const isXTruyen = url.includes("xtruyen.vn");
+    const forceActive = options.activeTab !== undefined ? options.activeTab : (isXTruyen || options.reuseTab);
+    
+    tabId = await getOrCreateHiddenTab(forceActive);
     
     // Navigate the hidden tab to the new URL
-    await chrome.tabs.update(tabId, { url });
-    log(`Navigating hidden tab (id=${tabId}) to ${url}`);
+    await chrome.tabs.update(tabId, { url, active: forceActive });
+    log(`Navigating hidden tab (id=${tabId}) to ${url} (forceActive: ${forceActive})`);
 
     // Inject visibilityState=visible ASAP so JS/Cloudflare doesn't throttle.
     (async () => {
@@ -163,6 +173,11 @@ async function handleFetch(url, options = {}) {
       });
     } catch (e) {
       log(`Failed to inject translate-blocking script: ${e.message}`);
+    }
+
+    // Wait for tab load for XTruyen or if no selector is provided
+    if (isXTruyen) {
+      await waitForTabLoad(tabId, url, 30000);
     }
 
     // Wait for selector if provided
@@ -247,7 +262,9 @@ async function handleFetch(url, options = {}) {
     return { ok: false, error: err.message, logs };
   } finally {
     // Navigate to blank to free memory, but keep window open for reuse
-    if (tabId) {
+    // DO NOT navigate to about:blank if reuseTab or XTruyen to allow seamless sequential crawling
+    const isXTruyen = url.includes("xtruyen.vn");
+    if (tabId && !options.reuseTab && !isXTruyen) {
       chrome.tabs.update(tabId, { url: "about:blank" }).catch(() => {});
     }
   }
@@ -274,3 +291,47 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
     return true;
   }
 });
+
+function waitForTabLoad(tabId, targetUrlOrMs, ms = 30000) {
+  return new Promise((resolve) => {
+    let targetUrl = null;
+    let timeoutMs = ms;
+
+    if (typeof targetUrlOrMs === "number") {
+      timeoutMs = targetUrlOrMs;
+    } else if (typeof targetUrlOrMs === "string") {
+      if (/^\d+$/.test(targetUrlOrMs)) {
+        timeoutMs = parseInt(targetUrlOrMs, 10);
+      } else {
+        targetUrl = targetUrlOrMs;
+      }
+    }
+
+    const t = setTimeout(() => { chrome.tabs.onUpdated.removeListener(fn); resolve(); }, timeoutMs);
+    let targetPath = "";
+    if (targetUrl) {
+      try {
+        targetPath = new URL(targetUrl).pathname.replace(/\/$/, "");
+      } catch {
+        targetPath = targetUrl.replace(/\/$/, "");
+      }
+    }
+
+    async function fn(id, info) {
+      if (id === tabId) {
+        try {
+          const tab = await chrome.tabs.get(tabId);
+          const currentUrl = tab.url || "";
+          const isTarget = targetPath ? currentUrl.includes(targetPath) : true;
+          const isComplete = tab.status === "complete";
+          if (isTarget && isComplete) {
+            chrome.tabs.onUpdated.removeListener(fn); clearTimeout(t); resolve();
+          }
+        } catch (e) {
+          console.warn("[waitForTabLoad] Error:", e.message);
+        }
+      }
+    }
+    chrome.tabs.onUpdated.addListener(fn);
+  });
+}
