@@ -263,203 +263,217 @@ export async function importNovel(file: File, options?: { preserveId?: boolean }
   const novelId = preserveId ? data.novel.id : crypto.randomUUID();
   const now = new Date();
 
-  // Map old IDs → new IDs
+  // Map old IDs → new IDs to resolve relationships instantly without pass-2 updates
   const chapterIdMap = new Map<string, string>();
   const characterIdMap = new Map<string, string>();
   const sceneIdMap = new Map<string, string>();
 
-  // Helper for DB operation
-  const dbOp = preserveId ? "put" : "add";
-
-  // Novel — merge v1 analysis data if present
-  const novelData = { ...data.novel };
-  if (data.version === 1 && Array.isArray(data.analyses) && data.analyses.length > 0) {
-    const a = data.analyses[0] as Record<string, unknown>;
-    if (a) {
-      if (a.genres) novelData.genres = a.genres as string[];
-      if (a.tags) novelData.tags = a.tags as string[];
-      if (a.synopsis) novelData.synopsis = a.synopsis as string;
-      if (a.worldOverview) novelData.worldOverview = a.worldOverview as string;
-      if (a.powerSystem) novelData.powerSystem = a.powerSystem as string;
-      if (a.storySetting) novelData.storySetting = a.storySetting as string;
-      if (a.timePeriod) novelData.timePeriod = a.timePeriod as string;
-      if (a.factions) novelData.factions = a.factions as Novel["factions"];
-      if (a.keyLocations) novelData.keyLocations = a.keyLocations as Novel["keyLocations"];
-      if (a.worldRules) novelData.worldRules = a.worldRules as string;
-      if (a.technologyLevel) novelData.technologyLevel = a.technologyLevel as string;
-      if (a.analysisStatus) novelData.analysisStatus = a.analysisStatus as Novel["analysisStatus"];
-      if (a.chaptersAnalyzed) novelData.chaptersAnalyzed = a.chaptersAnalyzed as number;
-      if (a.totalChapters) novelData.totalChapters = a.totalChapters as number;
-      if (a.error) novelData.analysisError = a.error as string;
-    }
-  }
-
-  await db.novels[dbOp]({
-    ...novelData,
-    id: novelId,
-    createdAt: preserveId ? new Date(novelData.createdAt) : now,
-    updatedAt: now,
-  });
-
-  // Chapters
   if (data.chapters?.length) {
     for (const ch of data.chapters) {
-      const newId = preserveId ? ch.id : crypto.randomUUID();
-      chapterIdMap.set(ch.id, newId);
-      await db.chapters[dbOp]({
-        originalTitle: ch.originalTitle || ch.title,
-        ...ch,
-        id: newId,
-        novelId,
-        createdAt: new Date(ch.createdAt),
-        updatedAt: new Date(ch.updatedAt),
-        analyzedAt: ch.analyzedAt ? new Date(ch.analyzedAt) : undefined,
-      });
+      chapterIdMap.set(ch.id, preserveId ? ch.id : crypto.randomUUID());
     }
   }
-
-  // Scenes (active + inactive versions)
   if (data.scenes?.length) {
     for (const sc of data.scenes) {
-      const newId = preserveId ? sc.id : crypto.randomUUID();
-      sceneIdMap.set(sc.id, newId);
-      await db.scenes[dbOp]({
-        ...sc,
-        id: newId,
-        novelId,
-        chapterId: chapterIdMap.get(sc.chapterId) ?? sc.chapterId,
-        // Remap activeSceneId for inactive versions
-        activeSceneId: sc.activeSceneId
-          ? (sceneIdMap.get(sc.activeSceneId) ?? sc.activeSceneId)
-          : undefined,
-        // Ensure version fields have defaults for old exports without them
-        version: sc.version ?? 0,
-        versionType: (sc.versionType ?? "manual") as SceneVersionType,
-        isActive: sc.isActive ?? 1,
-        createdAt: new Date(sc.createdAt),
-        updatedAt: new Date(sc.updatedAt),
-      });
+      sceneIdMap.set(sc.id, preserveId ? sc.id : crypto.randomUUID());
     }
   }
-
-  // Second pass: fix activeSceneId for scenes imported before their parent
-  if (data.scenes?.length) {
-    for (const sc of data.scenes) {
-      if (sc.activeSceneId && sceneIdMap.has(sc.activeSceneId)) {
-        const newId = sceneIdMap.get(sc.id)!;
-        const newActiveId = sceneIdMap.get(sc.activeSceneId)!;
-        await db.scenes.update(newId, { activeSceneId: newActiveId });
-      }
-    }
-  }
-
-  // Characters
   if (data.characters?.length) {
     for (const char of data.characters) {
-      const newId = preserveId ? char.id : crypto.randomUUID();
-      characterIdMap.set(char.id, newId);
-      await db.characters[dbOp]({
-        ...char,
-        id: newId,
-        novelId,
-        createdAt: new Date(char.createdAt),
-        updatedAt: new Date(char.updatedAt),
-      });
+      characterIdMap.set(char.id, preserveId ? char.id : crypto.randomUUID());
     }
   }
 
-  // Remap characterIds in chapters
-  if (characterIdMap.size > 0) {
-    for (const ch of data.chapters ?? []) {
-      if (ch.characterIds?.length) {
-        const newChId = chapterIdMap.get(ch.id);
-        if (newChId) {
-          await db.chapters.update(newChId, {
-            characterIds: ch.characterIds.map(
-              (cid) => characterIdMap.get(cid) ?? cid
-            ),
-          });
-        }
+  // Helper for DB operation
+  const dbOp = preserveId ? "put" : "add";
+  const bulkOp = preserveId ? "bulkPut" : "bulkAdd";
+
+  // Wrap everything inside a single IndexedDB transaction for massive speed gains
+  await db.transaction("rw", [
+    db.novels,
+    db.chapters,
+    db.scenes,
+    db.characters,
+    db.notes,
+    db.nameEntries,
+    db.replaceRules,
+    db.excludedNames
+  ], async () => {
+    // Novel — merge v1 analysis data if present
+    const novelData = { ...data.novel };
+    if (data.version === 1 && Array.isArray(data.analyses) && data.analyses.length > 0) {
+      const a = data.analyses[0] as Record<string, unknown>;
+      if (a) {
+        if (a.genres) novelData.genres = a.genres as string[];
+        if (a.tags) novelData.tags = a.tags as string[];
+        if (a.synopsis) novelData.synopsis = a.synopsis as string;
+        if (a.worldOverview) novelData.worldOverview = a.worldOverview as string;
+        if (a.powerSystem) novelData.powerSystem = a.powerSystem as string;
+        if (a.storySetting) novelData.storySetting = a.storySetting as string;
+        if (a.timePeriod) novelData.timePeriod = a.timePeriod as string;
+        if (a.factions) novelData.factions = a.factions as Novel["factions"];
+        if (a.keyLocations) novelData.keyLocations = a.keyLocations as Novel["keyLocations"];
+        if (a.worldRules) novelData.worldRules = a.worldRules as string;
+        if (a.technologyLevel) novelData.technologyLevel = a.technologyLevel as string;
+        if (a.analysisStatus) novelData.analysisStatus = a.analysisStatus as Novel["analysisStatus"];
+        if (a.chaptersAnalyzed) novelData.chaptersAnalyzed = a.chaptersAnalyzed as number;
+        if (a.totalChapters) novelData.totalChapters = a.totalChapters as number;
+        if (a.error) novelData.analysisError = a.error as string;
       }
     }
-  }
 
-  // Notes
-  if (data.notes?.length) {
-    for (const note of data.notes) {
-      await db.notes[dbOp]({
+    await db.novels[dbOp]({
+      ...novelData,
+      id: novelId,
+      createdAt: preserveId ? new Date(novelData.createdAt) : now,
+      updatedAt: now,
+    });
+
+    // Chapters (Remap relationship directly in 1 pass)
+    if (data.chapters?.length) {
+      const chaptersToImport = data.chapters.map(ch => {
+        const newId = chapterIdMap.get(ch.id)!;
+        return {
+          originalTitle: ch.originalTitle || ch.title,
+          ...ch,
+          id: newId,
+          novelId,
+          createdAt: new Date(ch.createdAt),
+          updatedAt: new Date(ch.updatedAt),
+          analyzedAt: ch.analyzedAt ? new Date(ch.analyzedAt) : undefined,
+          characterIds: ch.characterIds?.map(cid => characterIdMap.get(cid) ?? cid) || [],
+        };
+      });
+      await db.chapters[bulkOp](chaptersToImport);
+    }
+
+    // Scenes (Remap activeSceneId directly using pre-populated sceneIdMap)
+    if (data.scenes?.length) {
+      const scenesToImport = data.scenes.map(sc => {
+        const newId = sceneIdMap.get(sc.id)!;
+        return {
+          ...sc,
+          id: newId,
+          novelId,
+          chapterId: chapterIdMap.get(sc.chapterId) ?? sc.chapterId,
+          activeSceneId: sc.activeSceneId
+            ? (sceneIdMap.get(sc.activeSceneId) ?? sc.activeSceneId)
+            : undefined,
+          version: sc.version ?? 0,
+          versionType: (sc.versionType ?? "manual") as SceneVersionType,
+          isActive: sc.isActive ?? 1,
+          createdAt: new Date(sc.createdAt),
+          updatedAt: new Date(sc.updatedAt),
+        };
+      });
+      await db.scenes[bulkOp](scenesToImport);
+    }
+
+    // Characters
+    if (data.characters?.length) {
+      const charactersToImport = data.characters.map(char => {
+        const newId = characterIdMap.get(char.id)!;
+        return {
+          ...char,
+          id: newId,
+          novelId,
+          createdAt: new Date(char.createdAt),
+          updatedAt: new Date(char.updatedAt),
+        };
+      });
+      await db.characters[bulkOp](charactersToImport);
+    }
+
+    // Notes
+    if (data.notes?.length) {
+      const notesToImport = data.notes.map(note => ({
         ...note,
         id: preserveId ? note.id : crypto.randomUUID(),
         novelId,
         createdAt: new Date(note.createdAt),
         updatedAt: new Date(note.updatedAt),
-      });
+      }));
+      await db.notes[bulkOp](notesToImport);
     }
-  }
 
-  // Name Entries (scope remaps from old novelId to new novelId)
-  if (data.nameEntries?.length) {
-    for (const entry of data.nameEntries) {
-      const raw = entry as NameEntry & { category?: string; isRegex?: boolean; caseSensitive?: boolean; enabled?: boolean; order?: number };
-      const entryId = preserveId ? entry.id : crypto.randomUUID();
-      if (raw.category === "thay thế") {
-        await db.replaceRules[dbOp]({
-          id: entryId,
-          scope: novelId,
-          pattern: raw.chinese,
-          replacement: raw.vietnamese,
-          isRegex: raw.isRegex ?? false,
-          caseSensitive: raw.caseSensitive ?? false,
-          enabled: raw.enabled ?? true,
-          order: raw.order ?? 0,
-          createdAt: new Date(raw.createdAt),
-          updatedAt: new Date(raw.updatedAt),
-        });
-      } else if (raw.category === "loại trừ") {
-        await db.excludedNames[dbOp]({
-          id: entryId,
-          chinese: raw.chinese,
-          scope: novelId,
-          createdAt: new Date(raw.createdAt),
-          updatedAt: new Date(raw.updatedAt),
-        });
-      } else {
-        await db.nameEntries[dbOp]({
-          ...entry,
-          id: entryId,
-          scope: novelId,
-          createdAt: new Date(entry.createdAt),
-          updatedAt: new Date(entry.updatedAt),
-        });
+    // Name Entries & Replace Rules / Excluded Names
+    if (data.nameEntries?.length) {
+      const nameEntriesToImport: NameEntry[] = [];
+      const replaceRulesToImport: ReplaceRule[] = [];
+      const excludedNamesToImport: ExcludedName[] = [];
+
+      for (const entry of data.nameEntries) {
+        const raw = entry as any;
+        const entryId = preserveId ? entry.id : crypto.randomUUID();
+
+        if (raw.category === "thay thế") {
+          replaceRulesToImport.push({
+            id: entryId,
+            scope: novelId,
+            pattern: raw.chinese,
+            replacement: raw.vietnamese,
+            isRegex: raw.isRegex ?? false,
+            caseSensitive: raw.caseSensitive ?? false,
+            enabled: raw.enabled ?? true,
+            order: raw.order ?? 0,
+            createdAt: new Date(raw.createdAt),
+            updatedAt: new Date(raw.updatedAt),
+          });
+        } else if (raw.category === "loại trừ") {
+          excludedNamesToImport.push({
+            id: entryId,
+            chinese: raw.chinese,
+            scope: novelId,
+            createdAt: new Date(raw.createdAt),
+            updatedAt: new Date(raw.updatedAt),
+          });
+        } else {
+          nameEntriesToImport.push({
+            ...entry,
+            id: entryId,
+            scope: novelId,
+            createdAt: new Date(entry.createdAt),
+            updatedAt: new Date(entry.updatedAt),
+          });
+        }
+      }
+
+      if (nameEntriesToImport.length) {
+        await db.nameEntries[bulkOp](nameEntriesToImport);
+      }
+      if (replaceRulesToImport.length) {
+        await db.replaceRules[bulkOp](replaceRulesToImport);
+      }
+      if (excludedNamesToImport.length) {
+        await db.excludedNames[bulkOp](excludedNamesToImport);
       }
     }
-  }
 
-  // Replace Rules
-  if (data.replaceRules?.length) {
-    for (const rule of data.replaceRules) {
-      await db.replaceRules[dbOp]({
+    // Replace Rules (version 2 direct exports)
+    if (data.replaceRules?.length) {
+      const rulesToImport = data.replaceRules.map(rule => ({
         ...rule,
         id: preserveId ? rule.id : crypto.randomUUID(),
         scope: novelId,
         createdAt: new Date(rule.createdAt),
         updatedAt: new Date(rule.updatedAt),
-      });
+      }));
+      await db.replaceRules[bulkOp](rulesToImport);
     }
-  }
 
-  // Excluded Names
-  if (data.excludedNames?.length) {
-    for (const entry of data.excludedNames) {
-      await db.excludedNames[dbOp]({
+    // Excluded Names (version 2 direct exports)
+    if (data.excludedNames?.length) {
+      const excludedToImport = data.excludedNames.map(entry => ({
         ...entry,
         id: preserveId ? entry.id : crypto.randomUUID(),
         scope: novelId,
         createdAt: new Date(entry.createdAt),
         updatedAt: new Date(entry.updatedAt),
-      });
+      }));
+      await db.excludedNames[bulkOp](excludedToImport);
     }
-  }
+  });
 
   return novelId;
+}
 }
