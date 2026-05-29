@@ -520,41 +520,61 @@ export async function downloadDictFromAdminDrive(filename: string, raw?: boolean
   return content;
 }
 
-export async function downloadAllDictsFromAdminDrive(): Promise<Record<string, string>> {
-  if (_dictCache && Date.now() - _dictCache.timestamp < CACHE_TTL) {
-    return _dictCache.data;
+export async function downloadAllDictsFromAdminDrive(excludeList?: string[]): Promise<Record<string, string>> {
+  let cachedData = _dictCache?.data;
+  if (!_dictCache || Date.now() - _dictCache.timestamp >= CACHE_TTL) {
+    const masterId = await findOrCreateFolder(MASTER_FOLDER_NAME);
+    const dictFolderId = await findOrCreateFolder(DICT_FOLDER_NAME, masterId);
+
+    const q = encodeURIComponent(`'${dictFolderId}' in parents and trashed = false and mimeType != 'application/vnd.google-apps.folder'`);
+    const listRes = await fetchDriveAPI(`https://www.googleapis.com/drive/v3/files?q=${q}&fields=files(id,name)`);
+
+    const files = listRes.files || [];
+    if (files.length === 0) return {};
+
+    const results: Record<string, string> = {};
+
+    // Filter files before downloading to save network, memory and avoid worker timeout
+    const filesToDownload = files.filter((file: any) => {
+      let sourceName = file.name;
+      if (sourceName.endsWith('.txt')) sourceName = sourceName.slice(0, -4);
+      return !excludeList || !excludeList.includes(sourceName);
+    });
+
+    // Concurrency limit to prevent rate limits
+    const CONCURRENCY = 5;
+    for (let i = 0; i < filesToDownload.length; i += CONCURRENCY) {
+      const batch = filesToDownload.slice(i, i + CONCURRENCY);
+      await Promise.all(batch.map(async (file: any) => {
+        try {
+          const content = await fetchDriveAPI(`https://www.googleapis.com/drive/v3/files/${file.id}?alt=media`);
+          const contentStr = typeof content === 'string' ? content : JSON.stringify(content);
+          let sourceName = file.name;
+          if (sourceName.endsWith('.txt')) sourceName = sourceName.slice(0, -4);
+          results[sourceName] = contentStr;
+        } catch (err) {
+          console.error(`Error downloading dict ${file.name}:`, err);
+        }
+      }));
+    }
+
+    if (!excludeList || excludeList.length === 0) {
+      _dictCache = { timestamp: Date.now(), data: results };
+    }
+    return results;
   }
 
-  const masterId = await findOrCreateFolder(MASTER_FOLDER_NAME);
-  const dictFolderId = await findOrCreateFolder(DICT_FOLDER_NAME, masterId);
-
-  const q = encodeURIComponent(`'${dictFolderId}' in parents and trashed = false and mimeType != 'application/vnd.google-apps.folder'`);
-  const listRes = await fetchDriveAPI(`https://www.googleapis.com/drive/v3/files?q=${q}&fields=files(id,name)`);
-
-  const files = listRes.files || [];
-  if (files.length === 0) return {};
-
-  const results: Record<string, string> = {};
-
-  // Concurrency limit to prevent rate limits
-  const CONCURRENCY = 5;
-  for (let i = 0; i < files.length; i += CONCURRENCY) {
-    const batch = files.slice(i, i + CONCURRENCY);
-    await Promise.all(batch.map(async (file: any) => {
-      try {
-        const content = await fetchDriveAPI(`https://www.googleapis.com/drive/v3/files/${file.id}?alt=media`);
-        const contentStr = typeof content === 'string' ? content : JSON.stringify(content);
-        let sourceName = file.name;
-        if (sourceName.endsWith('.txt')) sourceName = sourceName.slice(0, -4);
-        results[sourceName] = contentStr;
-      } catch (err) {
-        console.error(`Error downloading dict ${file.name}:`, err);
+  if (excludeList && excludeList.length > 0) {
+    const filtered: Record<string, string> = {};
+    for (const [k, v] of Object.entries(cachedData || {})) {
+      if (!excludeList.includes(k)) {
+        filtered[k] = v;
       }
-    }));
+    }
+    return filtered;
   }
 
-  _dictCache = { timestamp: Date.now(), data: results };
-  return results;
+  return cachedData || {};
 }
 
 // ─── Community Dictionary Functions ────────────────────────

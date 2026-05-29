@@ -31,7 +31,7 @@ export function AutoDictSync() {
 
         // Không bắt buộc đăng nhập để nhận từ điển chung
         
-        const params = new URLSearchParams({ action: 'download-all-dicts' });
+        const params = new URLSearchParams({ action: 'download-all-dicts', exclude: 'core_vietphrase' });
         const res = await fetch(`/api/dict/cloud-storage?${params.toString()}`, { method: 'POST' });
         if (!res.ok) return;
         

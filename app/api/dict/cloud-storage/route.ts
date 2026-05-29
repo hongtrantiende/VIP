@@ -62,7 +62,9 @@ export async function POST(req: Request) {
     }
 
     if (action === 'download-all-dicts') {
-      const allDicts = await downloadAllDictsFromAdminDrive();
+      const exclude = searchParams.get('exclude') || '';
+      const excludeList = exclude.split(',').map(s => s.trim()).filter(Boolean);
+      const allDicts = await downloadAllDictsFromAdminDrive(excludeList);
       return NextResponse.json({ success: true, dicts: allDicts });
     }
 

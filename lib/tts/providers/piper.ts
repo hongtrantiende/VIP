@@ -36,6 +36,7 @@ export class PiperTTS implements TTSProvider {
   private pitch = 1.0;
   private apiUrl = "http://localhost:5000";
   private isInitialized = false;
+  private isConfigured = false;
 
   private isLocalUrl(url: string): boolean {
     try {
@@ -55,7 +56,7 @@ export class PiperTTS implements TTSProvider {
     const list = [...STATIC_PIPER_VOICES];
     const isBrowser = typeof window !== "undefined";
 
-    if (isBrowser) {
+    if (isBrowser && this.isConfigured) {
       try {
         const response = await fetch(`${this.apiUrl}/voices`, {
           method: "GET",
@@ -114,56 +115,58 @@ export class PiperTTS implements TTSProvider {
       }
     }
 
-    try {
-      const response = await fetch("/api/tts/piper", {
-        method: "GET",
-        headers: {
-          "x-piper-server-url": this.apiUrl || "http://localhost:5000",
-        },
-      });
+    if (this.isConfigured) {
+      try {
+        const response = await fetch("/api/tts/piper", {
+          method: "GET",
+          headers: {
+            "x-piper-server-url": this.apiUrl || "http://localhost:5000",
+          },
+        });
 
-      if (response.ok) {
-        const data = await response.json();
-        if (data && typeof data === "object") {
-          let serverVoices: Voice[] = [];
-          
-          if (Array.isArray(data)) {
-            serverVoices = data.map((v: any, index: number) => {
-              const name = typeof v === "string" ? v : v.name || v.id || `Voice ${index}`;
-              return {
-                id: typeof v === "string" ? v : v.id || name,
-                name: name,
-                fullName: `Piper - ${name}`,
-              };
-            });
-          } else {
-            const keys = Object.keys(data);
-            serverVoices = keys.map((key) => {
-              const info = data[key];
-              const name = info?.name || key;
-              return {
-                id: key,
-                name: name,
-                fullName: `Piper - ${name}`,
-              };
-            });
-          }
+        if (response.ok) {
+          const data = await response.json();
+          if (data && typeof data === "object") {
+            let serverVoices: Voice[] = [];
+            
+            if (Array.isArray(data)) {
+              serverVoices = data.map((v: any, index: number) => {
+                const name = typeof v === "string" ? v : v.name || v.id || `Voice ${index}`;
+                return {
+                  id: typeof v === "string" ? v : v.id || name,
+                  name: name,
+                  fullName: `Piper - ${name}`,
+                };
+              });
+            } else {
+              const keys = Object.keys(data);
+              serverVoices = keys.map((key) => {
+                const info = data[key];
+                const name = info?.name || key;
+                return {
+                  id: key,
+                  name: name,
+                  fullName: `Piper - ${name}`,
+                };
+              });
+            }
 
-          // Add server voices that are not already in the static list
-          for (const sv of serverVoices) {
-            const exists = list.some(
-              (v) =>
-                v.id === sv.id ||
-                v.name.toLowerCase() === sv.name.toLowerCase()
-            );
-            if (!exists) {
-              list.push(sv);
+            // Add server voices that are not already in the static list
+            for (const sv of serverVoices) {
+              const exists = list.some(
+                (v) =>
+                  v.id === sv.id ||
+                  v.name.toLowerCase() === sv.name.toLowerCase()
+              );
+              if (!exists) {
+                list.push(sv);
+              }
             }
           }
         }
+      } catch (e) {
+        console.warn("[PiperTTS] Failed to fetch dynamic voices list from local server:", e);
       }
-    } catch (e) {
-      console.warn("[PiperTTS] Failed to fetch dynamic voices list from local server:", e);
     }
 
     return list;
@@ -173,8 +176,10 @@ export class PiperTTS implements TTSProvider {
     // Treat the API key field in settings as the server URL
     if (apiKey && apiKey.trim().length > 0) {
       this.apiUrl = apiKey.trim();
+      this.isConfigured = true;
     } else {
       this.apiUrl = "http://localhost:5000";
+      this.isConfigured = false;
     }
   }
 
@@ -188,7 +193,7 @@ export class PiperTTS implements TTSProvider {
     const lengthScale = rate ? 1.0 / rate : 1.0;
 
     const isBrowser = typeof window !== "undefined";
-    if (isBrowser) {
+    if (isBrowser && this.isConfigured) {
       try {
         let cleanVoice = String(voiceId).replace(/^voices\//, "").replace(/^vi\//, "").replace(/\.onnx$/, "");
         const response = await fetch(`${this.apiUrl}`, {
