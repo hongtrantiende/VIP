@@ -56,7 +56,68 @@ export const CzbooksAdapter: SiteAdapter = {
 
   getChapterContent(html, _url, contentText) {
     const doc = new DOMParser().parseFromString(html, "text/html");
-    const chapterTitle = doc.querySelector("h1, .chapter-title, .name")?.textContent?.trim() || "";
+    
+    const titleTagText = doc.querySelector("title")?.textContent || "";
+    console.log("[Czbooks Adapter] --- Bắt đầu trích xuất chương ---");
+    console.log("[Czbooks Adapter] URL chương:", _url);
+    console.log("[Czbooks Adapter] Thẻ <title> của trang:", titleTagText);
+
+    // Tự động tìm và trích xuất tên tiểu thuyết từ thẻ <title> (Ví dụ: "《謝家的短命鬼長命百歲了》 第1章 庚帖 - CZBOOKS" -> "謝家的短命鬼長命百歲了")
+    let novelTitle = "";
+    if (titleTagText) {
+      const match = titleTagText.match(/《([^》]+)》/);
+      if (match) {
+        novelTitle = match[1].trim();
+      }
+    }
+    // Fallback: Lấy tên truyện từ h1
+    if (!novelTitle) {
+      const h1Text = doc.querySelector("h1")?.textContent?.trim() || "";
+      novelTitle = h1Text.replace(/[《》「」『』]/g, "").trim();
+    }
+    console.log("[Czbooks Adapter] Tên truyện đã nhận diện (novelTitle):", novelTitle);
+
+    // Ưu tiên các selector tiêu đề chương thực tế trước h1 (vốn thường là tên truyện trên czbooks)
+    let chapterTitle = doc.querySelector(".chapter-title, .name, h2")?.textContent?.trim() || "";
+    console.log("[Czbooks Adapter] Tiêu đề lấy từ selector (.chapter-title, .name, h2):", chapterTitle);
+
+    if (!chapterTitle && titleTagText) {
+      // Trích xuất phần tiêu đề chương từ thẻ <title> dạng "Tiêu đề - Tên truyện - CZBOOKS"
+      const parts = titleTagText.split(/\s+-\s+/);
+      if (parts.length > 0) {
+        chapterTitle = parts[0].trim();
+      }
+      console.log("[Czbooks Adapter] Tiêu đề lấy từ thẻ <title>:", chapterTitle);
+    }
+    if (!chapterTitle) {
+      chapterTitle = doc.querySelector("h1")?.textContent?.trim() || "";
+      console.log("[Czbooks Adapter] Tiêu đề fallback về h1:", chapterTitle);
+    }
+
+    // Tự động dọn dẹp nếu tiêu đề chương bị dính tên truyện
+    if (chapterTitle && novelTitle) {
+      const beforeCleanup = chapterTitle;
+      // Xóa tên truyện có ngoặc 《...》
+      chapterTitle = chapterTitle.replace(`《${novelTitle}》`, "").trim();
+      // Xóa tên truyện không ngoặc
+      chapterTitle = chapterTitle.replace(novelTitle, "").trim();
+      console.log("[Czbooks Adapter] Tiêu đề sau khi xóa novelTitle:", beforeCleanup, "->", chapterTitle);
+    }
+
+    // Dọn dẹp thêm các dấu ngoặc kép, gạch ngang và khoảng trắng thừa ở hai đầu
+    chapterTitle = chapterTitle
+      .replace(/^[《》「」『』\s\-—]+/, "")
+      .replace(/[《》「」『』\s\-—]+$/, "")
+      .trim();
+    console.log("[Czbooks Adapter] Tiêu đề sau khi dọn dẹp ngoặc thừa:", chapterTitle);
+
+    // Nếu dọn dẹp xong bị rỗng, fallback về tiêu đề ban đầu trong DOM
+    if (!chapterTitle) {
+      chapterTitle = doc.querySelector(".chapter-title, .name, h2")?.textContent?.trim() || "Chương mới";
+      console.log("[Czbooks Adapter] Tiêu đề bị rỗng sau dọn dẹp, fallback về:", chapterTitle);
+    }
+
+    console.log("[Czbooks Adapter] --- Kết thúc trích xuất tiêu đề chương:", chapterTitle, "---");
 
     // Always parse HTML to remove junk, fall back to contentText if empty
 

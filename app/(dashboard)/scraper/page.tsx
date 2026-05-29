@@ -12,26 +12,10 @@ import { toast } from "sonner";
 import { db } from "@/lib/db";
 import { detectAdapter } from "@/lib/scraper/adapters";
 import { extensionFetch, checkExtensionStatus, getExtensionId, setExtensionId } from "@/lib/scraper/extension-bridge";
-import { serverAnalyzeNovel } from "@/lib/scraper/server-scraper-client";
 import { createCustomAdapter, type CustomScraperConfig } from "@/lib/scraper/adapters/Universal";
 import { useScraperQueueStore } from "@/lib/stores/scraper-queue";
 import { JobDetailsModal } from "@/components/scraper/job-details-modal";
 import { SettingsIcon, BookIcon, PauseIcon, PlayIcon, TrashIcon, DownloadIcon, CheckCircleIcon, GlobeIcon, ZapIcon, LoaderIcon, SlidersHorizontalIcon, SkipForwardIcon } from "lucide-react";
-
-/** URLs that can be fetched server-side (no extension needed) */
-const SERVER_FETCH_DOMAINS = [
-  "chomered.com",
-  "welove-gourmet.com"
-];
-
-function isServerFetchable(url: string): boolean {
-  try {
-    const hostname = new URL(url).hostname.replace(/^www\./, "");
-    return SERVER_FETCH_DOMAINS.some(d => hostname === d || hostname.endsWith("." + d));
-  } catch {
-    return false;
-  }
-}
 
 export default function ScraperLibraryPage() {
   const [url, setUrl] = useState("");
@@ -104,54 +88,6 @@ export default function ScraperLibraryPage() {
     setIsAdding(true);
     useScraperQueueStore.getState().setFetchingInfo({ visible: true, url: finalUrl, count: 0 });
     try {
-      // ── Server-side fetch for supported sites (no extension needed) ──
-      // Chỉ dùng server fetch khi KHÔNG có extension — nếu có extension thì dùng adapter trực tiếp
-      // để tránh bị Cloudflare block IP khi fetch từng chương qua /api/scrape
-      if (isServerFetchable(finalUrl) && !extVersion) {
-        toast.info("⚡ Đang tải bằng Server (không cần Extension)...");
-        const novelInfo = await serverAnalyzeNovel(finalUrl);
-        if (novelInfo.chapters.length === 0) throw new Error("Không tìm thấy chương nào");
-
-        // Convert to adapter-compatible format
-        const adapterInfo = {
-          title: novelInfo.title,
-          author: novelInfo.author,
-          description: novelInfo.description,
-          coverImage: novelInfo.coverImage,
-          chapters: novelInfo.chapters.map((ch, i) => ({
-            title: ch.title,
-            url: ch.url,
-            order: i,
-          })),
-        };
-
-        setScrapedNovelInfo(adapterInfo);
-        // Create a minimal "server" adapter for the queue
-        setCurrentAdapter({ name: "Server", urlPattern: /.*/ });
-        setChapterDelay(2); // Server fetch is faster, less delay needed
-        setChapterFrom(1);
-        setChapterTo(adapterInfo.chapters.length);
-        setIsShowingChapters(false);
-
-        // Fetch all novels and check existing
-        const novels = await db.novels.toArray();
-        setAllNovels(novels);
-        let existingNovel = await db.novels.where("sourceUrl").equals(finalUrl).first();
-        if (!existingNovel) existingNovel = await db.novels.where("title").equals(novelInfo.title).first();
-        if (existingNovel) {
-          setSelectedNovelId(existingNovel.id);
-          const count = await db.chapters.where("novelId").equals(existingNovel.id).count();
-          setExistingChaptersCount(count);
-        } else {
-          setSelectedNovelId("new");
-          setExistingChaptersCount(0);
-        }
-
-        setIsConfirmOpen(true);
-        toast.success(`⚡ Server: Tìm thấy ${novelInfo.chapters.length} chương!`);
-        return;
-      }
-
       // ── Extension-based fetch (existing behavior) ──
       let adapter;
       let novelInfo;
@@ -289,15 +225,15 @@ export default function ScraperLibraryPage() {
             <SlidersHorizontalIcon className="h-4 w-4" />
           </Button>
           <Button onClick={handleAdd} disabled={isAdding || !url.trim()} className="min-w-[140px]">
-            {isAdding ? <LoaderIcon className="w-4 h-4 animate-spin mr-2" /> : (isServerFetchable(url) && !showCustomConfig ? <ZapIcon className="w-4 h-4 mr-2" /> : <DownloadIcon className="w-4 h-4 mr-2" />)}
-            {isAdding ? (scannedCount > 0 ? `Đã quét: ${scannedCount}` : "⚡ Đang tải...") : (isServerFetchable(url) && !showCustomConfig ? (extVersion ? "⚡ Tải (Extension)" : "⚡ Tải nhanh") : "Thêm")}
+            {isAdding ? <LoaderIcon className="w-4 h-4 animate-spin mr-2" /> : <DownloadIcon className="w-4 h-4 mr-2" />}
+            {isAdding ? (scannedCount > 0 ? `Đã quét: ${scannedCount}` : "⚡ Đang tải...") : "Thêm"}
           </Button>
 
           <Dialog>
             <DialogTrigger asChild>
               <Button variant="outline"><SettingsIcon className="w-4 h-4 mr-2" /> Hỗ trợ & Cài đặt</Button>
             </DialogTrigger>
-            <DialogContent className="max-w-2xl">
+            <DialogContent className="max-w-2xl sm:max-w-2xl">
               <DialogHeader>
                 <DialogTitle>Cài đặt & Hỗ trợ Scraper</DialogTitle>
               </DialogHeader>
@@ -326,23 +262,32 @@ export default function ScraperLibraryPage() {
                         </div>
                         <div className="flex flex-col gap-2 mt-2 bg-muted/30 p-4 rounded-lg border">
                           <p className="text-sm font-semibold text-red-500">Trạng thái: Chưa kết nối Extension</p>
-                          <ol className="list-inside list-decimal text-xs text-muted-foreground space-y-1.5 mt-1">
-                            <li>Tải và giải nén extension bản PC bên dưới.</li>
-                            <li>Mở <code className="bg-muted px-1 rounded">chrome://extensions</code>, bật <b>Developer mode</b>.</li>
-                            <li>Chọn <b>Load unpacked</b> &rarr; Trỏ tới thư mục vừa giải nén.</li>
-                            <li>Copy ID của extension dán vào ô bên trên và nhấn Lưu.</li>
+                          <ol className="list-inside list-decimal text-xs text-muted-foreground space-y-2 mt-1">
+                            <li>Tải phiên bản Extension (.zip) phù hợp ở bên dưới.</li>
+                            <li><b>Trên Máy tính (Chrome, Edge...)</b>: Giải nén file, mở <code className="bg-muted px-1 rounded">chrome://extensions</code>, bật <b>Developer mode</b>, chọn <b>Load unpacked</b> &rarr; trỏ tới thư mục vừa giải nén.</li>
+                            <li><b>Trên Android (Kiwi Browser)</b>: Mở menu ba chấm, chọn <b>Extensions</b>, bật <b>Developer mode</b>, chọn <b>+ (from .zip/.crx/.user.js)</b> và chọn trực tiếp file zip Android vừa tải về (không cần giải nén).</li>
+                            <li>Sao chép ID của extension dán vào ô bên trên và nhấn <b>Lưu</b>.</li>
                           </ol>
                         </div>
                       </div>
                     )}
 
-                    <div className="border-t pt-4 mt-2">
-                      <Button variant="secondary" className="w-full sm:w-auto" asChild>
-                        <a href="/novel-studio-connector-pc.zip?v=2.0" download>
-                          <DownloadIcon className="mr-2 w-4 h-4" />
-                          Tải Extension v2.0 (.zip)
-                        </a>
-                      </Button>
+                    <div className="border-t pt-4 mt-2 space-y-3">
+                      <Label className="text-xs text-muted-foreground font-semibold">TẢI XUỐNG TIỆN ÍCH KẾT NỐI (ZIP)</Label>
+                      <div className="flex flex-col sm:flex-row gap-3">
+                        <Button variant="secondary" className="w-full sm:w-auto justify-start" asChild>
+                          <a href="/novel-studio-connector-pc.zip?v=2.0" download>
+                            <DownloadIcon className="mr-2 w-4 h-4 text-primary" />
+                            Tải Extension PC (.zip)
+                          </a>
+                        </Button>
+                        <Button variant="secondary" className="w-full sm:w-auto justify-start" asChild>
+                          <a href="/novel-studio-connector-android.zip?v=2.0" download>
+                            <DownloadIcon className="mr-2 w-4 h-4 text-green-600 dark:text-green-400" />
+                            Tải Extension Android (.zip)
+                          </a>
+                        </Button>
+                      </div>
                     </div>
                   </div>
                 </TabsContent>
@@ -351,30 +296,30 @@ export default function ScraperLibraryPage() {
                   <div className="space-y-3">
                     <Label className="text-xs font-bold text-muted-foreground uppercase">CÁC WEB HỖ TRỢ TẢI</Label>
                     <div className="flex flex-wrap gap-2">
-                      <Button variant="outline" size="sm" className="border-blue-200 bg-blue-50 dark:bg-blue-950/20" asChild>
-                        <a href="https://chomered.com" target="_blank" rel="noreferrer"><ZapIcon className="mr-1.5 w-3 h-3 text-blue-500" /> Chomered</a>
+                      <Button variant="outline" size="sm" asChild>
+                        <a href="https://chomered.com" target="_blank" rel="noreferrer"><GlobeIcon className="mr-1.5 w-3 h-3 text-blue-500" /> Chomered</a>
                       </Button>
-                      <Button variant="outline" size="sm" className="border-blue-200 bg-blue-50 dark:bg-blue-950/20" asChild>
-                        <a href="https://welove-gourmet.com" target="_blank" rel="noreferrer"><ZapIcon className="mr-1.5 w-3 h-3 text-blue-500" /> Welove-gourmet</a>
+                      <Button variant="outline" size="sm" asChild>
+                        <a href="https://welove-gourmet.com" target="_blank" rel="noreferrer"><GlobeIcon className="mr-1.5 w-3 h-3 text-blue-500" /> Welove-gourmet</a>
                       </Button>
-                      <Button variant="outline" size="sm" className="border-blue-200 bg-blue-50 dark:bg-blue-950/20" asChild>
-                        <a href="https://www.bjtriz.com" target="_blank" rel="noreferrer"><ZapIcon className="mr-1.5 w-3 h-3 text-blue-500" /> Bjtriz</a>
+                      <Button variant="outline" size="sm" asChild>
+                        <a href="https://www.bjtriz.com" target="_blank" rel="noreferrer"><GlobeIcon className="mr-1.5 w-3 h-3 text-blue-500" /> Bjtriz</a>
                       </Button>
-                      <Button variant="outline" size="sm" className="border-blue-200 bg-blue-50 dark:bg-blue-950/20" asChild>
-                        <a href="https://parents-note.com" target="_blank" rel="noreferrer"><ZapIcon className="mr-1.5 w-3 h-3 text-blue-500" /> Parents-Note</a>
+                      <Button variant="outline" size="sm" asChild>
+                        <a href="https://parents-note.com" target="_blank" rel="noreferrer"><GlobeIcon className="mr-1.5 w-3 h-3 text-blue-500" /> Parents-Note</a>
                       </Button>
 
-                      <Button variant="outline" size="sm" className="border-blue-200 bg-blue-50 dark:bg-blue-950/20" asChild>
-                        <a href="https://www.piaotia.com/" target="_blank" rel="noreferrer"><ZapIcon className="mr-1.5 w-3 h-3 text-green-600" /> PiaoTian</a>
+                      <Button variant="outline" size="sm" asChild>
+                        <a href="https://www.piaotia.com/" target="_blank" rel="noreferrer"><GlobeIcon className="mr-1.5 w-3 h-3 text-green-600" /> PiaoTian</a>
                       </Button>
-                      <Button variant="outline" size="sm" className="border-blue-200 bg-blue-50 dark:bg-blue-950/20" asChild>
-                        <a href="https://www.jjwxc.net/" target="_blank" rel="noreferrer"><ZapIcon className="mr-1.5 w-3 h-3 text-purple-600" /> Jjwxc</a>
+                      <Button variant="outline" size="sm" asChild>
+                        <a href="https://www.jjwxc.net/" target="_blank" rel="noreferrer"><GlobeIcon className="mr-1.5 w-3 h-3 text-purple-600" /> Jjwxc</a>
                       </Button>
-                      <Button variant="outline" size="sm" className="border-blue-200 bg-blue-50 dark:bg-blue-950/20" asChild>
-                        <a href="https://www.guihualianpian.cn/" target="_blank" rel="noreferrer"><ZapIcon className="mr-1.5 w-3 h-3 text-orange-600" /> Guihua</a>
+                      <Button variant="outline" size="sm" asChild>
+                        <a href="https://www.guihualianpian.cn/" target="_blank" rel="noreferrer"><GlobeIcon className="mr-1.5 w-3 h-3 text-orange-600" /> Guihua</a>
                       </Button>
-                      <Button variant="outline" size="sm" className="border-blue-200 bg-blue-50 dark:bg-blue-950/20" asChild>
-                        <a href="https://www.timotxt.com/" target="_blank" rel="noreferrer"><ZapIcon className="mr-1.5 w-3 h-3 text-indigo-600" /> Timotxt</a>
+                      <Button variant="outline" size="sm" asChild>
+                        <a href="https://www.timotxt.com/" target="_blank" rel="noreferrer"><GlobeIcon className="mr-1.5 w-3 h-3 text-indigo-600" /> Timotxt</a>
                       </Button>
                       <Button variant="outline" size="sm" asChild>
                         <a href="https://sangtacviet.com" target="_blank" rel="noreferrer"><GlobeIcon className="mr-1.5 w-3 h-3 text-blue-500" /> SangTacViet</a>
@@ -404,7 +349,7 @@ export default function ScraperLibraryPage() {
                       <Button variant="outline" size="sm" asChild><a href="https://www.xbanxia.cc/" target="_blank" rel="noreferrer"><GlobeIcon className="mr-1.5 w-3 h-3 text-rose-500" /> XBanXia (半夏)</a></Button>
                       <Button variant="outline" size="sm" asChild><a href="https://www.52shuku.net/yanqing/" target="_blank" rel="noreferrer"><GlobeIcon className="mr-1.5 w-3 h-3 text-cyan-600" /> 52Shuku</a></Button>
                       <Button variant="outline" size="sm" asChild><a href="https://www.popo.tw/" target="_blank" rel="noreferrer"><GlobeIcon className="mr-1.5 w-3 h-3 text-pink-400" /> POPO</a></Button>
-                      <Button variant="outline" size="sm" className="border-amber-200 bg-amber-50 dark:bg-amber-950/20" asChild>
+                       <Button variant="outline" size="sm" asChild>
                         <a href="https://www.zhihu.com/question/661752607/answer/2036424617104037236" target="_blank" rel="noreferrer"><GlobeIcon className="mr-1.5 w-3 h-3 text-amber-600" /> Zhihu</a>
                       </Button>
                     </div>

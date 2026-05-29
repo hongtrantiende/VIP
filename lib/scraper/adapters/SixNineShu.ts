@@ -13,7 +13,14 @@ export const SixNineShuAdapter: SiteAdapter = {
     let doc = new DOMParser().parseFromString(html, "text/html");
     let currentBase = new URL(url);
 
-    // If we are on the book info page (.htm), we need to go to the chapter list page
+    // Extract novel details from the initial page first, as it contains full info (cover and author)
+    const title = doc.querySelector("h1, .bookname h1, .bookinfo h1, .book-title")?.textContent?.trim() || "";
+    const author = doc.querySelector(".booknav2 a[href*='author'], .author a, .bookinfo .author")?.textContent?.trim() || "";
+    
+    const coverImg = doc.querySelector(".bookimg2 img, .bookimg img, .book-cover img, .imgbox img, img[src*='p.69shuba'], img[src*='69shuba']");
+    const coverImage = coverImg ? new URL(coverImg.getAttribute("src") || "", currentBase).href : undefined;
+
+    // If we are on the book info page (.htm), we need to go to the chapter list page to get chapter links
     const isBookInfoPage = url.endsWith(".htm") || url.includes("/book/");
     const isChapterListPage = url.endsWith("/") && !url.includes("/txt/");
 
@@ -40,12 +47,6 @@ export const SixNineShuAdapter: SiteAdapter = {
         }
       }
     }
-
-    const title = doc.querySelector("h1, .bookname h1, .bookinfo h1, .book-title")?.textContent?.trim() || "";
-    const author = doc.querySelector(".booknav2 a[href*='author'], .author a, .bookinfo .author")?.textContent?.trim() || "";
-    
-    const coverImg = doc.querySelector(".bookimg2 img, .bookimg img, .book-cover img, .imgbox img, img[src*='p.69shuba'], img[src*='69shuba']");
-    const coverImage = coverImg ? new URL(coverImg.getAttribute("src") || "", currentBase).href : undefined;
 
     // Chapters are in <ul><li><a> - use a Map to deduplicate by URL
     const chapterLinks = doc.querySelectorAll("ul li a[href*='/txt/']");

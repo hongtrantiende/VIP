@@ -119,14 +119,21 @@ export async function analyzeNovelPage(url: string): Promise<ServerNovelInfo> {
   // 1. Title — extract and clean
   let rawTitle =
     $('meta[property="og:title"]').attr("content")?.trim() ||
+    $(".bookName, .bookText h1, .bookTitle h2, .book_info h1").first().text().trim() ||
     $("h1").first().text().trim() ||
     $("title").text().trim() ||
     "Không rõ tên truyện";
 
+  // Prevent generic navigation headers like "熱門" or "首页" from being captured as book title
+  if (rawTitle === "熱門" || rawTitle === "首页" || rawTitle === "首頁") {
+    const titleTag = $("title").text().trim();
+    rawTitle = titleTag.split(/[-_—|]/)[0]?.trim() || rawTitle;
+  }
+
   // Clean common suffixes: 【xxx】,最新章节,免費閱讀 - SiteName
   const title = rawTitle
     .replace(/[,，]\s*最新章[节節].*$/i, "")
-    .replace(/\s*[-–—|]\s*(糯米書棧|快看小說|腐看天地|chomered|welove|bjtriz|parents-note).*$/i, "")
+    .replace(/\s*[-–—|]\s*(糯米書棧|快看小說|腐看天地|番茄故事會|chomered|welove|bjtriz|parents-note).*$/i, "")
     .replace(/^【(.+?)】$/, "$1")  // Remove 【】 brackets
     .trim() || rawTitle;
 
@@ -184,27 +191,10 @@ export async function analyzeNovelPage(url: string): Promise<ServerNovelInfo> {
     } catch { }
   };
 
-  // ── Site-specific: chomered.com / welove-gourmet.com / bjtriz.com / parents-note.com ──
-  const hostname = new URL(url).hostname.replace(/^www\./, "");
-  if (
-    hostname.includes("chomered.com") ||
-    hostname.includes("welove-gourmet.com") ||
-    hostname.includes("bjtriz.com") ||
-    hostname.includes("parents-note.com")
-  ) {
-    // These sites use /book/chapter/ID for chapter URLs
-    // First pass: collect all unique chapter URLs
-    const chapterUrlSet = new Set<string>();
-    $("a").each((_i, el) => {
-      const href = $(el).attr("href") || "";
-      if (href.includes("/book/chapter/")) {
-        try { chapterUrlSet.add(new URL(href, url).toString()); } catch { }
-      }
-    });
-
-    // Second pass: pick the cleanest text for each URL (from the list section, not nav buttons)
+  // ── Site-specific: chomered.com ───────────────────────────────
+  if (hostname.includes("chomered.com")) {
     const chapterMap = new Map<string, string>();
-    $("a").each((_i, el) => {
+    $("#chapterlist a, .chapterlist a").each((_i, el) => {
       const href = $(el).attr("href") || "";
       if (!href.includes("/book/chapter/")) return;
 
@@ -212,10 +202,8 @@ export async function analyzeNovelPage(url: string): Promise<ServerNovelInfo> {
       try { absUrl = new URL(href, url).toString(); } catch { return; }
 
       const rawText = $(el).text().trim();
-      // Skip nav-like texts: 繼續閱讀 (continue reading), 最新 (latest), etc.
-      if (/繼續閱[讀读]|最新|免[费費]|閱讀/i.test(rawText) && !/第\d+章/.test(rawText)) return;
+      if (/繼續閱[讀读]|最新|免[费費]|閱讀|熱門/i.test(rawText) && !/第\d+章/.test(rawText)) return;
 
-      // Clean text: "1 第1章 免费" → "第1章", "10-28 最新 第6章" → "第6章"
       let cleanText = rawText
         .replace(/免[费費]/g, "")
         .replace(/\d+-\d+\s*最新\s*/g, "")
@@ -224,14 +212,12 @@ export async function analyzeNovelPage(url: string): Promise<ServerNovelInfo> {
 
       if (!cleanText) return;
 
-      // Prefer text that looks like a chapter title (第X章)
       const existing = chapterMap.get(absUrl);
       if (!existing || (/第\d+章/.test(cleanText) && !/第\d+章/.test(existing))) {
         chapterMap.set(absUrl, cleanText);
       }
     });
 
-    // Sort by chapter ID (numeric part of URL) and add
     const sortedEntries = [...chapterMap.entries()].sort((a, b) => {
       const idA = parseInt(a[0].split("/").pop() || "0");
       const idB = parseInt(b[0].split("/").pop() || "0");
@@ -241,6 +227,245 @@ export async function analyzeNovelPage(url: string): Promise<ServerNovelInfo> {
     for (const [chUrl, chTitle] of sortedEntries) {
       addChapter(chTitle, chUrl);
     }
+  }
+
+  // ── Site-specific: welove-gourmet.com ──────────────────────────
+  if (hostname.includes("welove-gourmet.com")) {
+    const chapterMap = new Map<string, string>();
+    $("#chapterlist a, .chapterlist a").each((_i, el) => {
+      const href = $(el).attr("href") || "";
+      if (!href.includes("/book/chapter/")) return;
+
+      let absUrl: string;
+      try { absUrl = new URL(href, url).toString(); } catch { return; }
+
+      const rawText = $(el).text().trim();
+      if (/繼續閱[讀读]|最新|免[费費]|閱讀|熱門/i.test(rawText) && !/第\d+章/.test(rawText)) return;
+
+      let cleanText = rawText
+        .replace(/免[费費]/g, "")
+        .replace(/\d+-\d+\s*最新\s*/g, "")
+        .replace(/^\d+\s+/, "")
+        .trim();
+
+      if (!cleanText) return;
+
+      const existing = chapterMap.get(absUrl);
+      if (!existing || (/第\d+章/.test(cleanText) && !/第\d+章/.test(existing))) {
+        chapterMap.set(absUrl, cleanText);
+      }
+    });
+
+    const sortedEntries = [...chapterMap.entries()].sort((a, b) => {
+      const idA = parseInt(a[0].split("/").pop() || "0");
+      const idB = parseInt(b[0].split("/").pop() || "0");
+      return idA - idB;
+    });
+
+    for (const [chUrl, chTitle] of sortedEntries) {
+      addChapter(chTitle, chUrl);
+    }
+  }
+
+  // ── Site-specific: bjtriz.com ──────────────────────────────────
+  if (hostname.includes("bjtriz.com")) {
+    const chapterMap = new Map<string, string>();
+    $("#chapterlist a, .chapterlist a").each((_i, el) => {
+      const href = $(el).attr("href") || "";
+      if (!href.includes("/book/chapter/")) return;
+
+      let absUrl: string;
+      try { absUrl = new URL(href, url).toString(); } catch { return; }
+
+      const rawText = $(el).text().trim();
+      if (/繼續閱[讀读]|最新|免[费費]|閱讀|熱門/i.test(rawText) && !/第\d+章/.test(rawText)) return;
+
+      let cleanText = rawText
+        .replace(/免[费費]/g, "")
+        .replace(/\d+-\d+\s*最新\s*/g, "")
+        .replace(/^\d+\s+/, "")
+        .trim();
+
+      if (!cleanText) return;
+
+      const existing = chapterMap.get(absUrl);
+      if (!existing || (/第\d+章/.test(cleanText) && !/第\d+章/.test(existing))) {
+        chapterMap.set(absUrl, cleanText);
+      }
+    });
+
+    const sortedEntries = [...chapterMap.entries()].sort((a, b) => {
+      const idA = parseInt(a[0].split("/").pop() || "0");
+      const idB = parseInt(b[0].split("/").pop() || "0");
+      return idA - idB;
+    });
+
+    for (const [chUrl, chTitle] of sortedEntries) {
+      addChapter(chTitle, chUrl);
+    }
+  }
+
+  // ── Site-specific: parents-note.com ────────────────────────────
+  if (hostname.includes("parents-note.com")) {
+    const chapterMap = new Map<string, string>();
+    $("#chapterlist a, .chapterlist a").each((_i, el) => {
+      const href = $(el).attr("href") || "";
+      if (!href.includes("/book/chapter/")) return;
+
+      let absUrl: string;
+      try { absUrl = new URL(href, url).toString(); } catch { return; }
+
+      const rawText = $(el).text().trim();
+      if (/繼續閱[讀读]|最新|免[费費]|閱讀|熱門/i.test(rawText) && !/第\d+章/.test(rawText)) return;
+
+      let cleanText = rawText
+        .replace(/免[费費]/g, "")
+        .replace(/\d+-\d+\s*最新\s*/g, "")
+        .replace(/^\d+\s+/, "")
+        .trim();
+
+      if (!cleanText) return;
+
+      const existing = chapterMap.get(absUrl);
+      if (!existing || (/第\d+章/.test(cleanText) && !/第\d+章/.test(existing))) {
+        chapterMap.set(absUrl, cleanText);
+      }
+    });
+
+    const sortedEntries = [...chapterMap.entries()].sort((a, b) => {
+      const idA = parseInt(a[0].split("/").pop() || "0");
+      const idB = parseInt(b[0].split("/").pop() || "0");
+      return idA - idB;
+    });
+
+    for (const [chUrl, chTitle] of sortedEntries) {
+      addChapter(chTitle, chUrl);
+    }
+  }
+
+  // ── Site-specific: fooddier.com ────────────────────────────────
+  if (hostname.includes("fooddier.com")) {
+    const chapterMap = new Map<string, string>();
+    $("#chapterlist a, .chapterlist a").each((_i, el) => {
+      const href = $(el).attr("href") || "";
+      if (!href.includes("/book/chapter/")) return;
+
+      let absUrl: string;
+      try { absUrl = new URL(href, url).toString(); } catch { return; }
+
+      const rawText = $(el).text().trim();
+      if (/繼續閱[讀读]|最新|免[费費]|閱讀|熱門/i.test(rawText) && !/第\d+章/.test(rawText)) return;
+
+      let cleanText = rawText
+        .replace(/免[费費]/g, "")
+        .replace(/\d+-\d+\s*最新\s*/g, "")
+        .replace(/^\d+\s+/, "")
+        .trim();
+
+      if (!cleanText) return;
+
+      const existing = chapterMap.get(absUrl);
+      if (!existing || (/第\d+章/.test(cleanText) && !/第\d+章/.test(existing))) {
+        chapterMap.set(absUrl, cleanText);
+      }
+    });
+
+    const sortedEntries = [...chapterMap.entries()].sort((a, b) => {
+      const idA = parseInt(a[0].split("/").pop() || "0");
+      const idB = parseInt(b[0].split("/").pop() || "0");
+      return idA - idB;
+    });
+
+    for (const [chUrl, chTitle] of sortedEntries) {
+      addChapter(chTitle, chUrl);
+    }
+  }
+
+  // ── Site-specific: petfama.com ─────────────────────────────────
+  if (hostname.includes("petfama.com")) {
+    const chapterMap = new Map<string, string>();
+    $("#chapterlist a, .chapterlist a").each((_i, el) => {
+      const href = $(el).attr("href") || "";
+      if (!href.includes("/book/chapter/")) return;
+
+      let absUrl: string;
+      try { absUrl = new URL(href, url).toString(); } catch { return; }
+
+      const rawText = $(el).text().trim();
+      if (/繼續閱[讀读]|最新|免[费費]|閱讀|熱門/i.test(rawText) && !/第\d+章/.test(rawText)) return;
+
+      let cleanText = rawText
+        .replace(/免[费費]/g, "")
+        .replace(/\d+-\d+\s*最新\s*/g, "")
+        .replace(/^\d+\s+/, "")
+        .trim();
+
+      if (!cleanText) return;
+
+      const existing = chapterMap.get(absUrl);
+      if (!existing || (/第\d+章/.test(cleanText) && !/第\d+章/.test(existing))) {
+        chapterMap.set(absUrl, cleanText);
+      }
+    });
+
+    const sortedEntries = [...chapterMap.entries()].sort((a, b) => {
+      const idA = parseInt(a[0].split("/").pop() || "0");
+      const idB = parseInt(b[0].split("/").pop() || "0");
+      return idA - idB;
+    });
+
+    for (const [chUrl, chTitle] of sortedEntries) {
+      addChapter(chTitle, chUrl);
+    }
+  }
+
+  // ── Site-specific: wealwomen.com ───────────────────────────────
+  if (hostname.includes("wealwomen.com")) {
+    const chapterMap = new Map<string, string>();
+    $("#pcChapterList a").each((_i, el) => {
+      const href = $(el).attr("href") || "";
+      if (!href.includes("/book/chapter/")) return;
+
+      let absUrl: string;
+      try { absUrl = new URL(href, url).toString(); } catch { return; }
+
+      const rawText = $(el).text().trim();
+      if (/繼續閱[讀读]|最新|免[费費]|閱讀|熱門/i.test(rawText) && !/第\d+章/.test(rawText)) return;
+
+      let cleanText = rawText
+        .replace(/免[费費]/g, "")
+        .replace(/\d+-\d+\s*最新\s*/g, "")
+        .replace(/^\d+\s+/, "")
+        .trim();
+
+      if (!cleanText) return;
+
+      const existing = chapterMap.get(absUrl);
+      if (!existing || (/第\d+章/.test(cleanText) && !/第\d+章/.test(existing))) {
+        chapterMap.set(absUrl, cleanText);
+      }
+    });
+
+    const sortedEntries = [...chapterMap.entries()].sort((a, b) => {
+      const idA = parseInt(a[0].split("/").pop() || "0");
+      const idB = parseInt(b[0].split("/").pop() || "0");
+      return idA - idB;
+    });
+
+    for (const [chUrl, chTitle] of sortedEntries) {
+      addChapter(chTitle, chUrl);
+    }
+  }
+
+  // ── Site-specific: guihualianpian.cn ───────────────────────────
+  if (hostname.includes("guihualianpian.cn")) {
+    $(".chapter-link").each((_i, el) => {
+      const href = $(el).attr("href") || "";
+      const text = $(el).text().trim();
+      if (href && text) {
+        addChapter(text, href);
+      }
+    });
   }
 
   // Strategy A: Links matching chapter patterns (Vietnamese + Chinese + English)

@@ -13,7 +13,26 @@ export const HeTuShuAdapter: SiteAdapter = {
     const doc = new DOMParser().parseFromString(html, "text/html");
     const currentBase = new URL(url);
 
-    const title = doc.querySelector("h2, h1, .book-title, .title")?.textContent?.trim() || "Unknown Title";
+    // Trích xuất tiêu đề truyện thông minh, bỏ qua breadcrumb dính ký tự '>'
+    let title = "Unknown Title";
+    let titleText = doc.querySelector(".book_info h2, .book_info h1, .book-title, .title, h2, h1")?.textContent?.trim() || "";
+    
+    const coverImg = doc.querySelector(".book_info img, .cover img, .book-cover img, img[src*='cover'], img[src*='hetushu']");
+    if (coverImg) {
+      const altText = coverImg.getAttribute("alt")?.trim() || "";
+      if (altText && altText.length > 2) {
+        titleText = altText;
+      }
+    }
+
+    if (titleText) {
+      if (titleText.includes(">")) {
+        const parts = titleText.split(">").map(p => p.trim());
+        title = parts[parts.length - 1] || titleText;
+      } else {
+        title = titleText;
+      }
+    }
     
     // Attempt to extract author
     let author = doc.querySelector(".author, a[href*='author'], a[class='0']")?.textContent?.trim() || "";
@@ -25,12 +44,9 @@ export const HeTuShuAdapter: SiteAdapter = {
     }
 
     // Attempt to extract cover
-    const coverImg = doc.querySelector(".book_info img, .cover img, .book-cover img, img[src*='cover'], img[src*='hetushu']");
     const coverSrc = coverImg ? (coverImg.getAttribute("data-src") || coverImg.getAttribute("data-original") || coverImg.getAttribute("src") || "") : "";
-    // Use direct URL — browser already has Cloudflare cookies from visiting the site,
-    // so <img> tags can load hetushu images directly without server-side proxy.
     const coverImage = coverSrc 
-      ? new URL(coverSrc, currentBase).toString()
+      ? `/api/proxy-image?url=${encodeURIComponent(new URL(coverSrc, currentBase).toString())}`
       : undefined;
 
     // Chapters are links that match /book/ID/XXXX.html

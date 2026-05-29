@@ -2,7 +2,7 @@ import { create } from "zustand";
 import { persist } from "zustand/middleware";
 import { db } from "../db";
 import { detectAdapter } from "../scraper/adapters";
-import { scrapeChapters, serverScrapeChapters } from "../scraper/engine";
+import { scrapeChapters } from "../scraper/engine";
 import { stripHtml, countWords } from "../utils";
 import type { ChapterLink, SiteAdapter } from "../scraper/types";
 import { toast } from "sonner";
@@ -10,14 +10,6 @@ import { checkAndIncrementUsage } from "../usage-limits";
 import { checkIsVipStandalone } from "../hooks/use-profile";
 
 import { createCustomAdapter, type CustomScraperConfig } from "../scraper/adapters/Universal";
-
-/** Minimal server-side adapter placeholder */
-const SERVER_ADAPTER: SiteAdapter = {
-  name: "Server",
-  urlPattern: /.*/,
-  getNovelInfo: () => ({ title: "", chapters: [] }),
-  getChapterContent: (html: string) => ({ title: "", content: html }),
-};
 
 export interface ScraperJob {
   id: string; // novelId
@@ -81,10 +73,8 @@ export const useScraperQueueStore = create<ScraperQueueState>()(
         let adapter;
         if (customConfig) {
           adapter = createCustomAdapter(customConfig);
-        } else if (adapterName === "Server") {
-          adapter = SERVER_ADAPTER;
         } else {
-          adapter = detectAdapter(url) || SERVER_ADAPTER;
+          adapter = detectAdapter(url) || createCustomAdapter({});
         }
 
         // Pre-scrape duplicate filtering
@@ -130,7 +120,7 @@ export const useScraperQueueStore = create<ScraperQueueState>()(
         const existingChapters = await db.chapters.where("novelId").equals(novelId).toArray();
         const count = existingChapters.length;
 
-        const adapter = detectAdapter(url) || SERVER_ADAPTER;
+        const adapter = detectAdapter(url) || createCustomAdapter({});
 
         const job: ScraperJob = {
           id: novelId,
@@ -168,280 +158,154 @@ export const useScraperQueueStore = create<ScraperQueueState>()(
         // Start scraping in background
         (async () => {
           try {
-            const isServer = nextJob.adapter.name === "Server";
-
-            if (isServer) {
-              // Server-side scraping path (no extension needed)
-              await serverScrapeChapters(
-                nextJob.chaptersToScrape,
-                (completed, total, currentTitle) => {
-                  set((s) => {
-                    const j = s.jobs[nextJob.id];
-                    if (!j) return s;
-                    return {
-                      jobs: {
-                        ...s.jobs,
-                        [nextJob.id]: {
-                          ...j,
-                          progress: {
-                            ...j.progress,
-                            completed: j.progress.total - j.chaptersToScrape.length,
-                            current: currentTitle,
-                          },
-                        },
-                      },
-                    };
-                  });
-                },
-                nextJob.abortController?.signal,
-                async (entry) => {
-                  const isVip = await checkIsVipStandalone();
-                  if (!checkAndIncrementUsage('download', 1, isVip)) {
-                    get().pauseJob(nextJob.id);
-                    toast.error("Hôm nay bạn đã dùng hết giới hạn 100 lượt tải chương miễn phí. Hãy nâng cấp VIP để dùng không giới hạn!");
-                    return;
-                  }
-
-                  if (entry.parsed.warning) {
-                    set((s) => {
-                      const j = s.jobs[nextJob.id];
-                      if (!j) return s;
-                      return { jobs: { ...s.jobs, [nextJob.id]: { ...j, warnCount: j.warnCount + 1 } } };
-                    });
-                  }
-
-                  const now = new Date();
-                  const normalizedTitle = entry.parsed.title.toLowerCase().trim();
-
-                  const existing = await db.chapters
-                    .where("novelId")
-                    .equals(nextJob.id)
-                    .toArray()
-                    .then(chs => chs.find(c => c.title.toLowerCase().trim() === normalizedTitle));
-
-                  if (existing) {
-                    const scenes = await db.scenes.where("chapterId").equals(existing.id).toArray();
-                    const activeScene = scenes.find(s => s.isActive === 1);
-                    if (activeScene) {
-                      await db.scenes.update(activeScene.id, {
-                        content: entry.parsed.content,
-                        versionType: "manual",
-                        wordCount: countWords(stripHtml(entry.parsed.content)),
-                        updatedAt: now,
-                      });
-                    }
-                  } else {
-                    const chapterId = crypto.randomUUID();
-                    const plainText = stripHtml(entry.parsed.content);
-                    const currentOrder = await db.chapters.where("novelId").equals(nextJob.id).count();
-
-                    await db.chapters.add({
-                      id: chapterId,
-                      novelId: nextJob.id,
-                      title: entry.parsed.title,
-                      originalTitle: entry.parsed.title,
-                      order: entry.parsed.order ?? currentOrder,
-                      createdAt: now,
-                      updatedAt: now,
-                    });
-
-                    await db.scenes.add({
-                      id: crypto.randomUUID(),
-                      chapterId,
-                      novelId: nextJob.id,
-                      title: entry.parsed.title,
-                      content: entry.parsed.content,
-                      order: 0,
-                      wordCount: countWords(plainText),
-                      version: 0,
-                      versionType: "manual",
-                      isActive: 1,
-                      createdAt: now,
-                      updatedAt: now,
-                    });
-                  }
-
-                  // Update remaining chapters
-                  set((s) => {
-                    const j = s.jobs[nextJob.id];
-                    if (!j) return s;
-                    return {
-                      jobs: {
-                        ...s.jobs,
-                        [nextJob.id]: {
-                          ...j,
-                          chaptersToScrape: j.chaptersToScrape.slice(1),
-                          progress: {
-                            ...j.progress,
-                            completed: j.progress.total - (j.chaptersToScrape.length - 1),
-                          }
-                        }
-                      }
-                    };
-                  });
-                },
-                nextJob.delayMs,
-                () => get().jobs[nextJob.id]?.status === "paused"
-              );
-            } else {
-              // Extension-based scraping path (existing behavior)
-              
-              // Show STV-specific guidance when starting
-              if (nextJob.adapter.name === "STV") {
-                toast.info("📖 Hãy mở tab SangTacViet, bấm vào Chương 1 để bắt đầu tải. Hệ thống đang chờ bạn...", {
-                  duration: 15000,
-                  id: `stv-guide-${nextJob.id}`,
-                });
-                // Update progress message
+            // Show STV-specific guidance when starting
+            if (nextJob.adapter.name === "STV") {
+              toast.info("📖 Hãy mở tab SangTacViet, bấm vào Chương 1 để bắt đầu tải. Hệ thống đang chờ bạn...", {
+                duration: 15000,
+                id: `stv-guide-${nextJob.id}`,
+              });
+              // Update progress message
+              set((s) => {
+                const j = s.jobs[nextJob.id];
+                if (!j) return s;
+                return { jobs: { ...s.jobs, [nextJob.id]: { ...j, progress: { ...j.progress, current: "⏳ Đang chờ bạn mở Chương 1 trên STV..." } } } };
+              });
+            }
+            
+            await scrapeChapters(
+              nextJob.chaptersToScrape,
+              nextJob.adapter,
+              (completed, total, currentTitle) => {
                 set((s) => {
                   const j = s.jobs[nextJob.id];
                   if (!j) return s;
-                  return { jobs: { ...s.jobs, [nextJob.id]: { ...j, progress: { ...j.progress, current: "⏳ Đang chờ bạn mở Chương 1 trên STV..." } } } };
-                });
-              }
-              
-              await scrapeChapters(
-                nextJob.chaptersToScrape,
-                nextJob.adapter,
-                (completed, total, currentTitle) => {
-                  set((s) => {
-                    const j = s.jobs[nextJob.id];
-                    if (!j) return s;
-                    // Progress relative to the START of this specific run
-                    // But we want to show overall progress.
-                    // Since we slice chaptersToScrape as we go, 
-                    // 'completed' here is always 1 for the first successful chapter in this batch.
-                    // Wait, the progress in the overlay is (job.progress.completed / job.progress.total).
-                    // So we should increment job.progress.completed.
-                    return {
-                      jobs: {
-                        ...s.jobs,
-                        [nextJob.id]: {
-                          ...j,
-                          progress: {
-                            ...j.progress,
-                            completed: j.progress.total - j.chaptersToScrape.length,
-                            current: currentTitle
-                          },
+                  return {
+                    jobs: {
+                      ...s.jobs,
+                      [nextJob.id]: {
+                        ...j,
+                        progress: {
+                          ...j.progress,
+                          completed: j.progress.total - j.chaptersToScrape.length,
+                          current: currentTitle
                         },
                       },
-                    };
-                  });
-                },
-                nextJob.abortController?.signal,
-                async (entry) => {
-                  const isVip = await checkIsVipStandalone();
-                  if (!checkAndIncrementUsage('download', 1, isVip)) {
-                    get().pauseJob(nextJob.id);
-                    toast.error("Hôm nay bạn đã dùng hết giới hạn 100 lượt tải chương miễn phí. Hãy nâng cấp VIP để dùng không giới hạn!");
-                    return;
-                  }
+                    },
+                  };
+                });
+              },
+              nextJob.abortController?.signal,
+              async (entry) => {
+                const isVip = await checkIsVipStandalone();
+                if (!checkAndIncrementUsage('download', 1, isVip)) {
+                  get().pauseJob(nextJob.id);
+                  toast.error("Hôm nay bạn đã dùng hết giới hạn 100 lượt tải chương miễn phí. Hãy nâng cấp VIP để dùng không giới hạn!");
+                  return;
+                }
 
-                  // Increment warnings if needed
-                  if (entry.timedOut || entry.parsed.content.length < 1 || entry.parsed.warning) {
-                    set((s) => {
-                      const j = s.jobs[nextJob.id];
-                      if (!j) return s;
-                      return { jobs: { ...s.jobs, [nextJob.id]: { ...j, warnCount: j.warnCount + 1 } } };
-                    });
-                  }
-
-                  const now = new Date();
-                  const normalizedTitle = entry.parsed.title.toLowerCase().trim();
-
-                  const existing = await db.chapters
-                    .where("novelId")
-                    .equals(nextJob.id)
-                    .toArray()
-                    .then(chs => chs.find(c => c.title.toLowerCase().trim() === normalizedTitle));
-
-                  if (existing) {
-                    const scenes = await db.scenes.where("chapterId").equals(existing.id).toArray();
-                    const activeScene = scenes.find(s => s.isActive === 1);
-                    if (activeScene) {
-                      await db.scenes.update(activeScene.id, {
-                        content: entry.parsed.content,
-                        versionType: "manual",
-                        wordCount: countWords(stripHtml(entry.parsed.content)),
-                        updatedAt: now,
-                      });
-                    }
-                  } else {
-                    const chapterId = crypto.randomUUID();
-                    const plainText = stripHtml(entry.parsed.content);
-                    const currentOrder = await db.chapters.where("novelId").equals(nextJob.id).count();
-
-                    await db.chapters.add({
-                      id: chapterId,
-                      novelId: nextJob.id,
-                      title: entry.parsed.title,
-                      originalTitle: entry.parsed.title,
-                      order: entry.parsed.order ?? currentOrder,
-                      createdAt: now,
-                      updatedAt: now,
-                    });
-
-                    await db.scenes.add({
-                      id: crypto.randomUUID(),
-                      chapterId,
-                      novelId: nextJob.id,
-                      title: entry.parsed.title,
-                      content: entry.parsed.content,
-                      order: 0,
-                      wordCount: countWords(plainText),
-                      version: 0,
-                      versionType: "manual",
-                      isActive: 1,
-                      createdAt: now,
-                      updatedAt: now,
-                    });
-                  }
-
-                  // Update remaining chapters so we can resume correctly
+                // Increment warnings if needed
+                if (entry.timedOut || entry.parsed.content.length < 1 || entry.parsed.warning) {
                   set((s) => {
                     const j = s.jobs[nextJob.id];
                     if (!j) return s;
-                    return {
-                      jobs: {
-                        ...s.jobs,
-                        [nextJob.id]: {
-                          ...j,
-                          chaptersToScrape: j.chaptersToScrape.slice(1),
-                          progress: {
-                            ...j.progress,
-                            completed: j.progress.total - (j.chaptersToScrape.length - 1),
-                          }
-                        }
-                      }
-                    };
-                  });
-                },
-                nextJob.delayMs,
-                () => get().jobs[nextJob.id]?.status === "paused",
-                (newChapter) => {
-                  set((s) => {
-                    const j = s.jobs[nextJob.id];
-                    if (!j) return s;
-                    const updatedChapters = [...j.chaptersToScrape];
-                    // Chèn chương mới ngay sau chương đang chạy để tuần tự hóa đúng
-                    updatedChapters.splice(1, 0, newChapter);
-                    return {
-                      jobs: {
-                        ...s.jobs,
-                        [nextJob.id]: {
-                          ...j,
-                          chaptersToScrape: updatedChapters,
-                          progress: {
-                            ...j.progress,
-                            total: j.progress.total + 1
-                          }
-                        }
-                      }
-                    };
+                    return { jobs: { ...s.jobs, [nextJob.id]: { ...j, warnCount: j.warnCount + 1 } } };
                   });
                 }
-              );
-            } // end isServer else
+
+                const now = new Date();
+                const normalizedTitle = entry.parsed.title.toLowerCase().trim();
+
+                const existing = await db.chapters
+                  .where("novelId")
+                  .equals(nextJob.id)
+                  .toArray()
+                  .then(chs => chs.find(c => c.title.toLowerCase().trim() === normalizedTitle));
+
+                if (existing) {
+                  const scenes = await db.scenes.where("chapterId").equals(existing.id).toArray();
+                  const activeScene = scenes.find(s => s.isActive === 1);
+                  if (activeScene) {
+                    await db.scenes.update(activeScene.id, {
+                      content: entry.parsed.content,
+                      versionType: "manual",
+                      wordCount: countWords(stripHtml(entry.parsed.content)),
+                      updatedAt: now,
+                    });
+                  }
+                } else {
+                  const chapterId = crypto.randomUUID();
+                  const plainText = stripHtml(entry.parsed.content);
+                  const currentOrder = await db.chapters.where("novelId").equals(nextJob.id).count();
+
+                  await db.chapters.add({
+                    id: chapterId,
+                    novelId: nextJob.id,
+                    title: entry.parsed.title,
+                    originalTitle: entry.parsed.title,
+                    order: entry.parsed.order ?? currentOrder,
+                    createdAt: now,
+                    updatedAt: now,
+                  });
+
+                  await db.scenes.add({
+                    id: crypto.randomUUID(),
+                    chapterId,
+                    novelId: nextJob.id,
+                    title: entry.parsed.title,
+                    content: entry.parsed.content,
+                    order: 0,
+                    wordCount: countWords(plainText),
+                    version: 0,
+                    versionType: "manual",
+                    isActive: 1,
+                    createdAt: now,
+                    updatedAt: now,
+                  });
+                }
+
+                // Update remaining chapters so we can resume correctly
+                set((s) => {
+                  const j = s.jobs[nextJob.id];
+                  if (!j) return s;
+                  return {
+                    jobs: {
+                      ...s.jobs,
+                      [nextJob.id]: {
+                        ...j,
+                        chaptersToScrape: j.chaptersToScrape.slice(1),
+                        progress: {
+                          ...j.progress,
+                          completed: j.progress.total - (j.chaptersToScrape.length - 1),
+                        }
+                      }
+                    }
+                  };
+                });
+              },
+              nextJob.delayMs,
+              () => get().jobs[nextJob.id]?.status === "paused",
+              (newChapter) => {
+                set((s) => {
+                  const j = s.jobs[nextJob.id];
+                  if (!j) return s;
+                  const updatedChapters = [...j.chaptersToScrape];
+                  updatedChapters.splice(1, 0, newChapter);
+                  return {
+                    jobs: {
+                      ...s.jobs,
+                      [nextJob.id]: {
+                        ...j,
+                        chaptersToScrape: updatedChapters,
+                        progress: {
+                          ...j.progress,
+                          total: j.progress.total + 1
+                        }
+                      }
+                    }
+                  };
+                });
+              }
+            );
 
             // Done
             set((s) => {
@@ -592,7 +456,7 @@ export const useScraperQueueStore = create<ScraperQueueState>()(
         if (state) {
           const rehydratedJobs: Record<string, ScraperJob> = {};
           for (const [id, job] of Object.entries(state.jobs as Record<string, any>)) {
-            const adapter = job.customConfig ? createCustomAdapter(job.customConfig) : (detectAdapter(job.url) || (job.adapter?.name === "Server" ? SERVER_ADAPTER : null));
+            const adapter = job.customConfig ? createCustomAdapter(job.customConfig) : (detectAdapter(job.url) || createCustomAdapter({}));
             if (!adapter) continue; // Skip if adapter is missing or invalid
 
             rehydratedJobs[id] = {

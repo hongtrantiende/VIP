@@ -26,5 +26,16 @@ export async function resolveStep(
 
   const provider = await db.aiProviders.get(cfg.providerId);
   if (!provider) return undefined;
-  return await getModel(provider, cfg.modelId);
+
+  let resolvedModelId = cfg.modelId;
+  try {
+    const aiModel = await db.aiModels.get(cfg.modelId);
+    if (aiModel) {
+      resolvedModelId = aiModel.modelId;
+    }
+  } catch (e) {
+    console.warn("Failed to retrieve aiModel from Dexie", e);
+  }
+
+  return await getModel(provider, resolvedModelId);
 }

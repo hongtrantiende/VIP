@@ -6,6 +6,7 @@ export const Novel543Adapter: SiteAdapter = {
   name: "Novel543",
   group: "cn",
   urlPattern: /novel543\.com/,
+  chapterWaitSelector: ".content.py-5, .content, .chapter-content .content, #content",
   useSequentialTab: false,
 
   async getNovelInfo(html, url, onProgress) {
@@ -210,7 +211,9 @@ export const Novel543Adapter: SiteAdapter = {
       if (!potentialNextUrl || potentialNextUrl === currentUrl) break;
 
       try {
-        const res = await extensionFetch(potentialNextUrl);
+        const res = await extensionFetch(potentialNextUrl, {
+          waitSelector: Novel543Adapter.chapterWaitSelector,
+        });
         const nextDoc = new DOMParser().parseFromString(res.html, "text/html");
 
         // Lấy tiêu đề của trang vừa tải và làm sạch

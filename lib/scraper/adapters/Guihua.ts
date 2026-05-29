@@ -25,7 +25,18 @@ export const GuihuaAdapter: SiteAdapter = {
     const chapters: { title: string; url: string; order: number }[] = [];
     const seenUrls = new Set<string>();
 
-    const links = Array.from(doc.querySelectorAll("a[href]"));
+    // First try .chapter-link which uniquely identifies chapter list items on guihualianpian
+    let links = Array.from(doc.querySelectorAll(".chapter-link"));
+    
+    // Fallback if .chapter-link class is not present on some pages
+    if (links.length === 0) {
+      const container = doc.querySelector(".two-col-chapters, .chapters, .catalog, .volume-list");
+      if (container) {
+        links = Array.from(container.querySelectorAll("a[href]"));
+      } else {
+        links = Array.from(doc.querySelectorAll("a[href]"));
+      }
+    }
 
     links.forEach((link) => {
       const href = link.getAttribute("href");
@@ -36,7 +47,10 @@ export const GuihuaAdapter: SiteAdapter = {
       
       const titleText = link.textContent?.trim() || "";
       if (titleText.length < 2) return;
-      if (titleText.includes("首页") || titleText.includes("上一页") || titleText.includes("下一页")) return;
+      
+      // Skip navigation, home, user, breadcrumbs, category, and author links
+      if (/首页|上一页|下一页|返回|专区|排行|书库|分类|作者|登录|注册|书架/i.test(titleText)) return;
+      if (link.closest(".top-wrap, .breadcrumb, .nav, .footer, .author, .novel-latest, #novel-latest")) return;
 
       const fullUrl = new URL(href, url).toString();
       const cleanUrl = fullUrl.split("#")[0];
@@ -62,7 +76,37 @@ export const GuihuaAdapter: SiteAdapter = {
 
   getChapterContent(html, _url, contentText) {
     const doc = new DOMParser().parseFromString(html, "text/html");
-    const chapterTitle = doc.querySelector("h1, h2, h3, .title")?.textContent?.trim() || "";
+    
+    // Extract Chapter Title
+    let chapterTitle = "";
+    
+    // 1. Try dedicated .chapter-name element
+    const chapterNameEl = doc.querySelector(".chapter-name, .chaptername");
+    if (chapterNameEl) {
+      chapterTitle = chapterNameEl.textContent?.trim() || "";
+    }
+    
+    // 2. Fallback to <title> split
+    if (!chapterTitle) {
+      const titleTag = doc.querySelector("title")?.textContent || "";
+      const parts = titleTag.split("-");
+      if (parts.length > 0) {
+        chapterTitle = parts[0].trim();
+      }
+    }
+    
+    // 3. Fallback to headers excluding comments or garbage
+    if (!chapterTitle) {
+      const headings = Array.from(doc.querySelectorAll("h1, h2, h3, .title, .title-chapter"));
+      for (const el of headings) {
+        const text = el.textContent?.trim() || "";
+        if (text && !/评论|comment|熱門|题材|首页/i.test(text)) {
+          chapterTitle = text;
+          break;
+        }
+      }
+    }
+
     // Always parse HTML to remove junk, fall back to contentText if empty
 
     // Attempt to find content

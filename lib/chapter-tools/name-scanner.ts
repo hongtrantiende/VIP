@@ -11,6 +11,7 @@ import { db } from "@/lib/db";
 interface ExtractedName {
   chinese: string;
   vietnamese: string;
+  dictType?: "names" | "tuvung" | "ngucanh";
 }
 
 const nameSchema = jsonSchema<{ names: ExtractedName[] }>({
@@ -21,22 +22,27 @@ const nameSchema = jsonSchema<{ names: ExtractedName[] }>({
       items: {
         type: "object",
         properties: {
-          chinese: { type: "string", description: "Tên gốc tiếng Trung" },
-          vietnamese: { type: "string", description: "Tên phiên âm Hán-Việt" },
+          chinese: { type: "string", description: "Tên gốc chữ Hán tiếng Trung xuất hiện trong văn bản" },
+          vietnamese: { type: "string", description: "Nghĩa dịch, phiên âm Hán-Việt hoặc Romaji tương ứng" },
+          dictType: { 
+            type: "string", 
+            enum: ["names", "tuvung", "ngucanh"], 
+            description: "Phân loại: 'names' (tên người, nhân vật, địa danh, tông môn, bang hội), 'tuvung' (vật phẩm, kỹ năng, vũ khí, võ công, thuật ngữ, cảnh giới), 'ngucanh' (thành ngữ, cụm từ ngữ cảnh đặc biệt)" 
+          }
         },
-        required: ["chinese", "vietnamese"],
+        required: ["chinese", "vietnamese", "dictType"],
       },
     },
   },
   required: ["names"],
 });
 
-const SCAN_NAMES_SYSTEM = `Bạn là chuyên gia phiên âm Hán-Việt. Nhiệm vụ: trích xuất TẤT CẢ tên riêng (nhân vật, địa danh, tông môn, bí kỹ) từ đoạn văn tiếng Trung và phiên âm Hán-Việt chuẩn xác.
+const SCAN_NAMES_SYSTEM = `Bạn là chuyên gia dịch thuật, phân tích từ vựng và phiên âm tên riêng từ tiếng Trung. Nhiệm vụ: trích xuất TẤT CẢ các thực thể tên riêng, thuật ngữ, địa danh, vật phẩm, kỹ năng từ đoạn văn tiếng Trung và đưa ra nghĩa dịch hoặc phiên âm tương ứng kèm theo phân loại chính xác.
 Quy tắc:
-- CHỈ trích xuất tên riêng (danh từ riêng), KHÔNG trích xuất từ vựng thông thường hay đại từ nhân xưng.
+- CHỈ trích xuất các danh từ riêng, thuật ngữ đặc trưng, vật phẩm, võ công kỹ năng. KHÔNG trích xuất từ vựng thông thường hay đại từ nhân xưng thông dụng.
 - Trường "chinese" BẮT BUỘC phải chứa chính xác chữ Hán gốc (chữ Trung Quốc) xuất hiện trong đoạn văn, KHÔNG được dịch nghĩa hay viết bằng Pinyin hoặc tiếng Anh.
-- Trường "vietnamese" là phiên âm Hán-Việt chuẩn xác và tự nhiên của tên riêng đó.
-- Phiên âm Hán-Việt chuẩn, nhất quán.
+- Trường "vietnamese" là nghĩa dịch tiếng Việt, phiên âm Hán-Việt chuẩn xác, hoặc phiên âm Romaji tương ứng (tùy thuộc hoàn toàn vào bối cảnh truyện và Quy tắc bổ sung từ người dùng).
+- Trường "dictType" phân loại chính xác nhóm từ vựng theo đúng quy chuẩn: 'names' cho tên nhân vật/địa danh/tông môn, 'tuvung' cho vật phẩm/kỹ năng/vũ khí/thuật ngữ tu luyện, 'ngucanh' cho cụm từ ngữ cảnh/thành ngữ đặc trưng.
 - Mỗi tên CHỈ 1 nghĩa duy nhất, KHÔNG dùng dấu gạch chéo.
 - Trả về JSON, không giải thích.`;
 
@@ -61,8 +67,53 @@ export async function scanNewNames(opts: {
   // Skip if text is too short (unlikely to have meaningful names)
   if (sourceText.length < 50) return [];
 
-  // Build system prompt: base + user's custom rules
-  let systemPrompt = SCAN_NAMES_SYSTEM;
+  // ── Smart Context Auto-Detection from novel metadata ──
+  let autoContextPrompt = "";
+  try {
+    const novel = await db.novels.get(novelId);
+    if (novel) {
+      const titleLower = novel.title.toLowerCase();
+      const descLower = (novel.description || "").toLowerCase();
+      const genreLower = (novel.genre || "").toLowerCase();
+      const genresList = (novel.genres || []).map(g => g.toLowerCase());
+      const tagsList = (novel.tags || []).map(t => t.toLowerCase());
+
+      const isJapanese = 
+        titleLower.includes("conan") || titleLower.includes("nhật bản") || titleLower.includes("anime") || titleLower.includes("manga") ||
+        descLower.includes("nhật bản") || descLower.includes("conan") ||
+        genreLower.includes("nhatban") || genreLower.includes("nhat") || genreLower.includes("japan") || genreLower.includes("conan") || genreLower.includes("anime") || genreLower.includes("manga") ||
+        genresList.some(g => g.includes("nhat") || g.includes("japan") || g.includes("conan") || g.includes("anime") || g.includes("manga") || g.includes("dongnhan")) ||
+        tagsList.some(t => t.includes("nhat") || t.includes("japan") || t.includes("conan") || t.includes("anime") || t.includes("manga"));
+
+      const isWestern = 
+        titleLower.includes("phương tây") || titleLower.includes("âu mỹ") || titleLower.includes("khoa học viễn tưởng") ||
+        descLower.includes("phương tây") || descLower.includes("âu mỹ") ||
+        genreLower.includes("tayphuong") || genreLower.includes("anhmy") || genreLower.includes("west") || genreLower.includes("fantasy") ||
+        genresList.some(g => g.includes("tayphuong") || g.includes("west") || g.includes("fantasy") || g.includes("anhmy")) ||
+        tagsList.some(t => t.includes("tayphuong") || t.includes("west") || t.includes("fantasy") || t.includes("anhmy"));
+
+      if (isJapanese) {
+        autoContextPrompt = `\n\n# CHỈ DẪN BỐI CẢNH TỰ ĐỘNG PHÁT HIỆN: NHẬT BẢN / ANIME / ROMAJI
+- Truyện thuộc bối cảnh Nhật Bản hoặc Anime/Manga Nhật Bản.
+- Tuyệt đối **KHÔNG** sử dụng âm Hán-Việt cho tên người và địa danh Nhật Bản.
+- **BẮT BUỘC** phải dịch hoặc phiên âm sang chuẩn **Romaji** hoặc tên tiếng Nhật gốc tương ứng (Ví dụ: 毛利小五郎 BẮT BUỘC dịch là "Mouri Kogoro", 工藤新一 BẮT BUỘC dịch là "Kudo Shinichi", TUYỆT ĐỐI KHÔNG dùng phiên âm Hán-Việt như "Mao Lợi Tiểu Ngũ Lang" hay "Công Đằng Tân Nhất").`;
+      } else if (isWestern) {
+        autoContextPrompt = `\n\n# CHỈ DẪN BỐI CẢNH TỰ ĐỘNG PHÁT HIỆN: PHƯƠNG TÂY / ÂU MỸ / LATIN
+- Truyện thuộc bối cảnh phương Tây, Âu Mỹ hoặc Fantasy ma pháp châu Âu.
+- Tuyệt đối **KHÔNG** dịch tên người và địa danh sang phiên âm Hán-Việt cổ kính.
+- **BẮT BUỘC** giữ nguyên tên tiếng Anh gốc hoặc phiên âm Latin phổ biến tương ứng (Ví dụ: Peter dịch là "Peter", Mary dịch là "Mary", London dịch là "London", TUYỆT ĐỐI KHÔNG dùng Hán-Việt như "Bỉ Đắc", "Mã Lệ", "Luân Đôn").`;
+      } else {
+        autoContextPrompt = `\n\n# CHỈ DẪN BỐI CẢNH TỰ ĐỘNG PHÁT HIỆN: CỔ TRANG / TIÊN HIỆP / HÁN VIỆT
+- Truyện thuộc bối cảnh Trung Quốc, cổ trang hoặc Tiên hiệp/Huyền huyễn.
+- **BẮT BUỘC** trích xuất và phiên âm chuẩn Hán-Việt viết hoa chữ cái đầu (Ví dụ: Tô Dật, Tiêu Viêm, Lâm Phong, Thanh Đường, võ công, pháp bảo...).`;
+      }
+    }
+  } catch (err) {
+    console.warn("[NameScan] Failed to auto-detect novel context:", err);
+  }
+
+  // Build system prompt: base + auto-detected context + user's custom rules
+  let systemPrompt = SCAN_NAMES_SYSTEM + autoContextPrompt;
   if (customScanPrompt?.trim()) {
     systemPrompt += `\n\n# QUY TẮC BỔ SUNG TỪ NGƯỜI DÙNG (ƯU TIÊN CAO NHẤT - BẮT BUỘC TUÂN THỦ):\n${customScanPrompt.trim()}`;
   }
@@ -111,15 +162,36 @@ export async function autoAddNames(
 
   const toAdd = names
     .filter((n) => !existingSet.has(n.chinese))
-    .map((n) => ({
-      id: crypto.randomUUID(),
-      scope: novelId,
-      chinese: n.chinese,
-      vietnamese: n.vietnamese,
-      category: "names" as const,
-      createdAt: now,
-      updatedAt: now,
-    }));
+    .map((n) => {
+      let vn = n.vietnamese.trim();
+      const type = n.dictType || "names";
+
+      // 1. Clear misplaced commas from names (e.g. 'Kisaki, Eri' -> 'Kisaki Eri')
+      if (type === "names") {
+        vn = vn.replace(/[,，]/g, " ").replace(/\s+/g, " ").trim();
+      }
+
+      // 2. Format capitalization according to category
+      if (type === "names") {
+        // Force Title Case for names/locations
+        vn = vn.split(/\s+/).map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(" ");
+      } else if (type === "tuvung" || type === "ngucanh") {
+        // Lowercase terminology/phrases to prevent random mid-sentence capitalizations
+        vn = vn.toLowerCase();
+        // Capitalize the first letter of the first word (Sentence Case)
+        vn = vn.charAt(0).toUpperCase() + vn.slice(1);
+      }
+
+      return {
+        id: crypto.randomUUID(),
+        scope: novelId,
+        chinese: n.chinese,
+        vietnamese: vn,
+        category: type as "names" | "tuvung" | "ngucanh",
+        createdAt: now,
+        updatedAt: now,
+      };
+    });
 
   if (toAdd.length > 0) {
     await db.nameEntries.bulkAdd(toAdd);

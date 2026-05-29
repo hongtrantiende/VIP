@@ -39,6 +39,27 @@ export async function GET(req: NextRequest) {
               "Cache-Control": "public, max-age=86400, s-maxage=86400, stale-while-revalidate=86400",
             },
           });
+        } else {
+          // Fallback cấp 2 qua WordPress Jetpack Image CDN (vô cùng mạnh mẽ để bypass Cloudflare / chống hotlink)
+          console.warn(`[proxy-image] Fallback 1 (wsrv) failed. Attempting fallback 2 via WordPress CDN for: ${url}`);
+          const cleanUrl = url.replace(/^https?:\/\//, "");
+          const wpUrl = `https://i0.wp.com/${cleanUrl}`;
+          const wpResponse = await fetch(wpUrl, {
+            headers: { "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) Chrome/122.0.0.0 Safari/537.36" },
+            redirect: "follow"
+          });
+          
+          if (wpResponse.ok) {
+            const wpContentType = wpResponse.headers.get("content-type") || "image/jpeg";
+            const wpArrayBuffer = await wpResponse.arrayBuffer();
+            console.log(`[proxy-image] Fallback 2 (WordPress) succeeded for: ${url}`);
+            return new NextResponse(wpArrayBuffer, {
+              headers: {
+                "Content-Type": wpContentType,
+                "Cache-Control": "public, max-age=86400, s-maxage=86400, stale-while-revalidate=86400",
+              },
+            });
+          }
         }
       }
 

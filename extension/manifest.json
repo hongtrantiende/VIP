@@ -3,8 +3,46 @@
   "name": "Novel Studio Connector (Android)",
   "version": "2.0",
   "description": "Fetch novel content from external websites for Novel Studio. Optimized for Kiwi Browser on Android.",
-  "permissions": ["tabs", "scripting"],
-  "host_permissions": ["<all_urls>"],
+  "background": {
+    "service_worker": "background.js",
+    "type": "module"
+  },
+  "permissions": [
+    "storage",
+    "tabs",
+    "scripting",
+    "proxy",
+    "webRequest",
+    "webRequestAuthProvider"
+  ],
+  "host_permissions": [
+    "<all_urls>"
+  ],
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "Novel Studio Connector"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "*://*.sangtacviet.com/*",
+        "*://*.sangtacviet.vip/*",
+        "*://*.sangtacviet.app/*"
+      ],
+      "js": ["stv-stealth.js"],
+      "run_at": "document_start",
+      "all_frames": false,
+      "world": "MAIN"
+    },
+    {
+      "matches": [
+        "<all_urls>"
+      ],
+      "js": ["content.js"],
+      "run_at": "document_idle",
+      "all_frames": true
+    }
+  ],
   "externally_connectable": {
     "matches": [
       "https://thienthu.vipg.workers.dev/*",
@@ -14,9 +52,5 @@
       "https://*.pages.dev/*",
       "https://*.vercel.app/*"
     ]
-  },
-  "background": {
-    "service_worker": "background.js"
-  },
-  "icons": {}
+  }
 }

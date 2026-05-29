@@ -304,7 +304,11 @@ function buildPostEditPrompt(
       ["nhân vật", "địa danh", "môn phái", "bang hội", "tên riêng", "thuật ngữ", "context mapping", "khác", "tuvung", "ngucanh"].includes(n.category)
     ).sort((a, b) => b.chinese.length - a.chinese.length);
     if (relevantNames.length > 0) {
-      prompt += `\n\n# Bảng tên riêng (BẮT BUỘC dùng đúng)\n`;
+      prompt += `\n\n# BẢNG TÊN RIÊNG & THUẬT NGỮ (⚠️ BẮT BUỘC TUÂN THỦ 100%):
+- Đây là danh sách dịch thuật đã được chuẩn hóa cho bộ truyện. 
+- BẮT BUỘC phải dùng chính xác vế bên phải tiếng Việt tương ứng cho vế chữ Hán bên trái.
+- TUYỆT ĐỐI NGHIÊM CẤM tự ý dịch khác, cấm dịch sang tiếng Anh, cấm tự phiên âm Latin/Pinyin tự do (Ví dụ: Không được dùng Bao Er, Peter... thay thế nếu từ điển đã định nghĩa nghĩa dịch tiếng Việt tương ứng).
+`;
       for (const n of relevantNames.slice(0, 150)) { // limit to 150 to avoid token bloat
         prompt += `${n.chinese} → ${n.vietnamese}\n`;
       }
@@ -1109,7 +1113,9 @@ ${cleaned}`;
                       ["nhân vật", "địa danh", "môn phái", "bang hội", "tên riêng", "thuật ngữ", "context mapping", "khác", "tuvung", "ngucanh"].includes(n.category)
                     ).sort((a, b) => b.chinese.length - a.chinese.length);
                     if (relevantNames.length > 0) {
-                      glossarySection = `\n\n# THÔNG TIN TỪ ĐIỂN TÊN RIÊNG & THUẬT NGỮ (ƯU TIÊN CAO NHẤT):\n${relevantNames.slice(0, 150).map(e => `${e.chinese} → ${e.vietnamese}`).join("\n")}`;
+                      glossarySection = `\n\n# BẢNG TÊN RIÊNG & THUẬT NGỮ CHUẨN (BẮT BUỘC TUÂN THỦ 100%):
+- TUYỆT ĐỐI NGHIÊM CẤM tự ý dịch khác các từ dưới đây, cấm dịch sang tiếng Anh, cấm tự phiên âm Latin/Pinyin tự do (Không được dùng Bao Er, Peter... thay thế). Phải dùng đúng từ tiếng Việt bên vế phải:
+${relevantNames.slice(0, 150).map(e => `${e.chinese} → ${e.vietnamese}`).join("\n")}`;
                     }
                   }
 

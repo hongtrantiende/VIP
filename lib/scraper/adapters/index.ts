@@ -9,6 +9,10 @@ import { JjwxcAdapter } from "./Jjwxc";
 import { XTruyenAdapter } from "./XTruyen";
 
 import { ChomeredAdapter } from "./Chomered";
+import { WeloveGourmetAdapter } from "./WeloveGourmet";
+import { BjtrizAdapter } from "./Bjtriz";
+import { ParentsNoteAdapter } from "./ParentsNote";
+import { FooddierAdapter } from "./Fooddier";
 import { Po18Adapter } from "./Po18";
 import { GuihuaAdapter } from "./Guihua";
 import { TimotxtAdapter } from "./Timotxt";
@@ -26,6 +30,8 @@ import { TruyenMoAdapter } from "./TruyenMo";
 import { HaiTangSoShuAdapter } from "./HaiTangSoShu";
 import { HeTuShuAdapter } from "./HeTuShu";
 import { XBanXiaAdapter } from "./XBanXia";
+import { PetfamaAdapter } from "./Petfama";
+import { WealwomenAdapter } from "./Wealwomen";
 
 const adapters: SiteAdapter[] = [
   STVAdapter,
@@ -38,6 +44,10 @@ const adapters: SiteAdapter[] = [
   XTruyenAdapter,
 
   ChomeredAdapter,
+  WeloveGourmetAdapter,
+  BjtrizAdapter,
+  ParentsNoteAdapter,
+  FooddierAdapter,
   Po18Adapter,
   GuihuaAdapter,
   TimotxtAdapter,
@@ -54,6 +64,8 @@ const adapters: SiteAdapter[] = [
   HaiTangSoShuAdapter,
   HeTuShuAdapter,
   XBanXiaAdapter,
+  PetfamaAdapter,
+  WealwomenAdapter,
   UniversalAdapter,  // Must be LAST — detectAdapter uses slice(0, -1) to skip it
 ];
 
@@ -74,4 +86,4 @@ export function getAdapters(): SiteAdapter[] {
   return adapters;
 }
 
-export { STVAdapter, UukanshuAdapter, PiaotiaAdapter, CuocengAdapter, SixNineShuAdapter, SixNineShuTwAdapter, JjwxcAdapter, XTruyenAdapter, ChomeredAdapter, FanqieAdapter, BookQQAdapter, WikiDichAdapter, UniversalAdapter, ZhihuAdapter, Novel543Adapter, Shuku52Adapter, WordpressAdapter, TruyenFullVisionAdapter, TruyenMoAdapter, HaiTangSoShuAdapter, HeTuShuAdapter, XBanXiaAdapter };
+export { STVAdapter, UukanshuAdapter, PiaotiaAdapter, CuocengAdapter, SixNineShuAdapter, SixNineShuTwAdapter, JjwxcAdapter, XTruyenAdapter, ChomeredAdapter, WeloveGourmetAdapter, BjtrizAdapter, ParentsNoteAdapter, FooddierAdapter, FanqieAdapter, BookQQAdapter, WikiDichAdapter, UniversalAdapter, ZhihuAdapter, Novel543Adapter, Shuku52Adapter, WordpressAdapter, TruyenFullVisionAdapter, TruyenMoAdapter, HaiTangSoShuAdapter, HeTuShuAdapter, XBanXiaAdapter, PetfamaAdapter, WealwomenAdapter };

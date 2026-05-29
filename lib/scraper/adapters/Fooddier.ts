@@ -267,10 +267,10 @@ const ICON_MAPPING: Record<string, string> = {
   "264": "齊",
 };
 
-export const ChomeredAdapter: SiteAdapter = {
-  name: "Chomered",
+export const FooddierAdapter: SiteAdapter = {
+  name: "Fooddier",
   group: "cn",
-  urlPattern: /chomered\.com/i,
+  urlPattern: /fooddier\.com/i,
   novelWaitSelector: ".bookbox, .bookinfo, #chapterlist, .chapterlist",
   chapterWaitSelector: ".novelcontent, .chapterlist",
 
@@ -282,7 +282,6 @@ export const ChomeredAdapter: SiteAdapter = {
       doc.querySelector(".bookbox .title b")?.textContent?.trim() ||
       doc.querySelector("h1")?.textContent?.trim() || "";
 
-    // Author is often near title or in meta
     let author = doc.querySelector(".bookbox .author span, .bookbox .author, .bookinfo .bookdetail dd a, .bookAuthor")?.textContent?.trim() || undefined;
     if (author && author.includes("作者 :")) {
       author = author.split("作者 :")[1].trim();
@@ -330,17 +329,14 @@ export const ChomeredAdapter: SiteAdapter = {
 
     let chapterTitle = "";
 
-    // First try <title> tag as it's the most reliable on welove-gourmet
     const titleTag = doc.querySelector("title");
     if (titleTag && titleTag.textContent) {
-      // Format usually: 《Book Title》... - 第1章
       const parts = titleTag.textContent.split("-");
       if (parts.length > 1) {
         chapterTitle = parts[parts.length - 1].trim();
       }
     }
 
-    // Fallback to h2 if title tag failed or didn't contain a dash
     if (!chapterTitle) {
       const h2 = doc.querySelector("h2");
       if (h2 && h2.textContent?.trim() && !h2.textContent.includes("熱門")) {
@@ -348,7 +344,6 @@ export const ChomeredAdapter: SiteAdapter = {
       }
     }
 
-    // Fallback to h1 and try to extract just the chapter part (e.g. "第1章")
     if (!chapterTitle) {
       const h1 = doc.querySelector("h1");
       if (h1 && h1.textContent?.trim() && !h1.textContent.includes("熱門")) {
@@ -361,7 +356,6 @@ export const ChomeredAdapter: SiteAdapter = {
     const contentEl = doc.querySelector(".novelcontent");
     if (!contentEl) return { title: chapterTitle, content: contentText || "" };
 
-    // Handle icon-based replacement
     contentEl.querySelectorAll('i[class^="icon-"]').forEach((i) => {
       const className = i.className;
       const match = className.match(/icon-(\d+)/);
@@ -373,10 +367,8 @@ export const ChomeredAdapter: SiteAdapter = {
       }
     });
 
-    // Clean up
     contentEl.querySelectorAll("script, style, .ad_splify, ins, .novel_share_container").forEach((el) => el.remove());
 
-    // Extract text from <p> tags to preserve formatting
     const paragraphs = Array.from(contentEl.querySelectorAll("p"));
     let text = "";
     if (paragraphs.length > 0) {
@@ -385,7 +377,6 @@ export const ChomeredAdapter: SiteAdapter = {
         .filter(t => t.length > 0)
         .join("\n\n");
     } else {
-      // Fallback: handle <br> tags if there are no <p> tags
       let htmlContent = contentEl.innerHTML;
       htmlContent = htmlContent.replace(/<br\s*\/?>/gi, '\n');
       const tempDiv = doc.createElement("div");
@@ -393,13 +384,8 @@ export const ChomeredAdapter: SiteAdapter = {
       text = tempDiv.textContent?.trim() || "";
     }
 
-    // Final cleanup
     text = text
-      .replace(/糯米書棧/g, "")
-      .replace(/www\.chomered\.com/g, "")
-      .replace(/welove-gourmet\.com/g, "")
-      .replace(/bjtriz\.com/g, "")
-      .replace(/parents-note\.com/g, "")
+      .replace(/fooddier\.com/g, "")
       .replace(/腐看天地/g, "")
       .trim();
 

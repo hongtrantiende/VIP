@@ -1,0 +1,181 @@
+# 🧠 Lessons Learned — Novel Studio
+
+> File này chứa bài học kinh nghiệm tích lũy qua quá trình phát triển dự án.
+> AI agent PHẢI đọc file này để tránh lặp lại lỗi cũ.
+> Khi phát hiện bài học mới, agent PHẢI tự động thêm vào đây.
+
+---
+
+## Format
+
+```
+### [YYYY-MM-DD] [CATEGORY] [SEVERITY] Tiêu đề ngắn
+
+**Context:** Mô tả tình huống
+**Problem:** Vấn đề gặp phải
+**Root Cause:** Nguyên nhân gốc
+**Lesson:** Bài học rút ra
+**Action:** Hành động cụ thể để tránh lặp lại
+```
+
+Categories: `BUG` | `ARCHITECTURE` | `PERFORMANCE` | `DX` | `DEPLOY` | `AI` | `DATA`
+Severity: `🔴 Critical` | `🟡 Important` | `🟢 Minor`
+
+---
+
+## Entries
+
+### [2025-01-XX] ARCHITECTURE 🟡 Important — Dexie transactions cho cascading deletes
+
+**Context:** Xóa novel cần xóa cả chapters, scenes, characters, notes liên quan.
+**Problem:** Nếu không dùng transaction, một phần data có thể bị orphaned khi crash giữa chừng.
+**Root Cause:** IndexedDB không có FK constraints tự động.
+**Lesson:** Luôn dùng `db.transaction('rw', [...tables], async () => { ... })` cho cascading operations.
+**Action:** Pattern này đã được document trong `rules.md` section 3 (Database). Mọi delete cascading PHẢI dùng transactions.
+
+---
+
+### [2025-01-XX] ARCHITECTURE 🟡 Important — Zustand stores chỉ cho ephemeral state
+
+**Context:** Ban đầu cân nhắc persist Zustand stores.
+**Problem:** Double source of truth giữa Dexie (persistent) và Zustand (nếu cũng persist).
+**Root Cause:** Dexie đã handle reactive queries via `useLiveQuery`. Persist Zustand = redundant sync layer.
+**Lesson:** Zustand = UI state only (panel open/close, loading indicators, temp selections). Data = Dexie only.
+**Action:** Enforced trong `rules.md` section 4. Không bao giờ persist Zustand stores.
+
+---
+
+### [2025-01-XX] PERFORMANCE 🟡 Important — QT engine PHẢI chạy trong Web Worker
+
+**Context:** QT (Quick Translate) engine xử lý bulk Chinese→Vietnamese conversion.
+**Problem:** Chạy trên main thread gây freeze UI khi convert chapters dài.
+**Root Cause:** Dictionary lookup + regex matching cho text lớn là CPU-intensive.
+**Lesson:** Mọi heavy text processing PHẢI đi qua Web Workers.
+**Action:** `lib/workers/qt-engine.worker.ts` và `lib/workers/replace-engine.worker.ts` xử lý offline.
+
+---
+
+### [2025-01-XX] AI 🟡 Important — WebGPU provider chỉ dùng cho chat
+
+**Context:** WebGPU (browser-based LLM) được thêm như AI provider option.
+**Problem:** WebGPU models quá chậm cho analysis/writing pipelines (cần nhiều calls liên tiếp).
+**Root Cause:** Browser WebGPU inference chậm hơn cloud API nhiều lần.
+**Lesson:** Guard WebGPU provider — chặn ở `api-inference.ts`, chỉ cho phép trong chat mode.
+**Action:** `resolveStep()` return `undefined` cho WebGPU providers trong pipeline context.
+
+---
+
+### [2025-01-XX] DATA 🟡 Important — Schema migration phải tăng version
+
+**Context:** Dexie dùng version-based schema migrations (`lib/db-migrations.ts`).
+**Problem:** Nếu quên tăng version, Dexie silently ignore schema changes → data corruption tiềm ẩn.
+**Root Cause:** Dexie chỉ chạy migration code khi detect version mới.
+**Lesson:** LUÔN tăng version number trong `db-migrations.ts` khi thay đổi schema. Current: v11.
+**Action:** Check `db-migrations.ts` trước khi modify schema. Tăng version + viết migration function.
+
+---
+
+### [2025-01-XX] DEPLOY 🟢 Minor — Next.js 16 breaking changes
+
+**Context:** Dự án dùng Next.js 16 — có nhiều breaking changes so với training data.
+**Problem:** AI agents thường generate code theo Next.js 14/15 patterns.
+**Root Cause:** Training data outdated.
+**Lesson:** LUÔN đọc `node_modules/next/dist/docs/` trước khi viết code Next.js. Heed deprecation notices.
+**Action:** Warning đã được đặt ở đầu `AGENTS.md`.
+
+---
+
+### [2025-01-XX] DX 🟢 Minor — OpenRouter cần extractJsonMiddleware
+
+**Context:** Gọi structured output (JSON) qua OpenRouter.
+**Problem:** Một số model trả JSON wrapped trong markdown code blocks.
+**Root Cause:** OpenRouter relay response as-is từ downstream providers.
+**Lesson:** Wrap OpenRouter và openai-compatible providers với `extractJsonMiddleware`.
+**Action:** Đã implement trong `lib/ai/provider.ts`.
+
+---
+
+---
+
+### [2026-05-29] DATA 🟡 Important — Bypass Font Obfuscation và Lọc Động Chương Trong Scraper
+
+**Context:** Cào nội dung và danh sách chương từ các trang truyện đặc thù như `petfama.com`.
+**Problem:** 
+1. Lấy nhầm các liên kết tiện ích "Tiếp tục đọc" và "Chương mới nhất" ở đầu trang dẫn đến lặp chương, lộn xộn thứ tự và sai tiêu đề nghiêm trọng.
+2. Nội dung chương bị mã hóa chống sao chép bằng thẻ icon trống `<i class="icon-xxx"></i>` kết hợp font-face, làm mất chữ tiếng Trung gốc khi cào.
+**Root Cause:**
+1. CSS selector chọn liên kết chương quá rộng (`a[href*='/book/chapter/']`) trên toàn trang mà không giới hạn trong container thực tế.
+2. Trang web nhúng động các quy tắc CSS dạng `.icon-xxx:before { content: "\Hex" }` để ánh xạ icon rỗng sang ký tự Unicode thực tế.
+**Lesson:**
+1. Khi lấy danh sách chương, luôn nhắm mục tiêu vào thẻ container cụ thể nhất của danh sách (ví dụ `#chapterlist`, `.chapterlist`) để tránh các nút tiện ích điều hướng đầu/cuối trang.
+2. Giải mã Font Obfuscation bằng cách dùng Regex trích xuất ánh xạ ký tự từ khối `<style>` của trang, sau đó sử dụng DOMParser duyệt qua các thẻ icon và thay thế bằng `doc.createTextNode(decodedChar)` để khôi phục nội dung gốc 100%.
+
+### [2026-05-29] BUG 🔴 Critical — Tránh Thẻ H1 Tiện Ích Ẩn Khi Trích Xuất Tiêu Đề Chương
+
+**Context:** Tải nội dung chương trên các trang như `petfama.com`, `wealwomen.com` bị đổi tên toàn bộ thành `"熱門"` và làm biến mất hoặc gộp đè các chương khác.
+**Problem:** Thẻ `h1` đầu tiên trên trang nội dung chương thực chất là các nút tìm kiếm popup ẩn của giao diện (chứa chữ `"熱門"`, `"題材"` v.v.), không phải là tiêu đề chương thực tế. Việc lấy sai tiêu đề trùng lặp làm hỏng cơ chế so khớp chương của IndexedDB dẫn đến ghi đè mất dữ liệu.
+**Root Cause:** Sử dụng `doc.querySelector("h1, h2...")` làm cho trình duyệt lấy ngay thẻ khớp đầu tiên trong DOM, vốn là thẻ `h1` menu ẩn thay vì tiêu đề chương thực nằm ở `h2` hoặc trong thẻ `<title>`.
+**Lesson:** Khi cào tiêu đề chương, cần đặc biệt lưu ý cấu trúc DOM để tránh các thẻ điều hướng ẩn đầu trang. Nên ưu tiên trích xuất từ thẻ `<title>` (thường chứa định dạng chuẩn sạch như `Tên truyện - Chương X`) hoặc thẻ `h2` chuyên biệt để đảm bảo độ tin cậy tuyệt đối.
+**Action:** Cập nhật `Petfama.ts` và `Wealwomen.ts` để ưu tiên bóc tách tiêu đề chương từ thẻ `<title>` và thẻ `h2` trước khi fallback về `h1`.
+
+
+### [2026-05-29] BUG 🟡 Important — Tránh Lấy Nhầm Các Liên Kết Ngoài Danh Mục Truyện (Guihua)
+
+**Context:** Cào danh sách chương trên `guihualianpian.cn` (hoặc các trang tương tự) gặp lỗi quét thừa 3 chương đầu (là các liên kết phân loại, liên kết tác giả, và liên kết chương mới nhất được ghim ở đầu trang).
+**Problem:** Danh sách chương xuất hiện các chương giả mạo hoặc không đúng trình tự, gây lỗi cấu trúc tiểu thuyết và trật tự chương trong thư viện.
+**Root Cause:** Sử dụng selector `a[href]` quá rộng trên toàn trang mà không nhắm mục tiêu vào các lớp CSS chuyên biệt hoặc thẻ container thực sự chứa danh sách chương, dẫn đến việc lấy nhầm các liên kết tiện ích có chứa chữ số hoặc các từ khóa liên quan ở header/sidebar.
+**Lesson:**
+1. Luôn ưu tiên sử dụng các lớp CSS chuyên biệt dành riêng cho liên kết chương (ví dụ `.chapter-link` trên `guihualianpian.cn`) thay vì các selector `a` chung chung.
+2. Kết hợp sử dụng `link.closest(...)` để chủ động loại bỏ các khối header (`.top-wrap`, `.breadcrumb`), sidebar (`.author`), hay khối chương mới nhất (`.novel-latest`) khi cần fallback duyệt các liên kết diện rộng.
+**Action:** Cập nhật `Guihua.ts` sử dụng `.chapter-link` làm selector chính, kết hợp fallback thông minh và lọc `link.closest(...)`.
+
+
+### [2026-05-29] BUG 🟡 Important — Tự Động Kích Hoạt Nút Tải Chương Lazy-load (STV)
+
+**Context:** Cào chương trên trang `sangtacviet.com` thông qua Chrome Extension.
+**Problem:** Một số chương (đặc biệt là chương 2 trở đi khi tự động bấm chuyển chương) trả về nội dung rỗng (`0 chữ`) mặc dù trang web trên trình duyệt đã hiển thị đầy đủ.
+**Root Cause:** Sáng Tác Việt hiển thị một bức tường chặn anti-bot / lazy-load với dòng chữ `"Nhấp vào để tải chương..."` (hoặc `"Nhấp vào để tải"`). Trình cào Extension chỉ thụ động chờ nội dung thay đổi mà không thực hiện hành động nhấp chuột, dẫn đến việc trang web không bao giờ tải nội dung truyện thực tế và trả về chuỗi rỗng.
+**Lesson:** Khi cào qua Extension trên các trang có cơ chế lazy-load bằng nút bấm chặn, cần bổ sung logic tự động phát hiện văn bản gợi ý của nút chặn (ví dụ `"Nhấp vào để tải"`) và thực hiện sự kiện `.click()` tự động ngay trong content script để kích hoạt quá trình tải nội dung thực tế trước khi trích xuất.
+**Action:** Cập nhật `content.js` của Extension để kiểm tra `innerText` của container, tự động click nút `"Nhấp vào để tải"` nếu phát hiện và đóng gói lại các extension ZIP.
+
+
+### [2026-05-29] BUG 🔴 Critical — Sửa Lỗi Truyền Sai Tham Số Khiến Trình Cào Bị Trễ 30 Giây (STV)
+
+**Context:** Tải danh sách chương qua Chrome Extension trên trang Sáng Tác Việt (`sangtacviet.com`).
+**Problem:** Trình cào lấy văn bản không đồng bộ, lấy quá sớm trước khi trang chuyển chương, hoặc bị đứt quãng khiến dữ liệu tải bị rỗng (0 chữ).
+**Root Cause:**
+1. Phương thức `waitForTabLoad` yêu cầu 3 tham số: `waitForTabLoad(tabId, targetUrl, timeoutMs)`. Tuy nhiên, trong `stv-handler.js`, mã nguồn lại gọi sai: `await waitForTabLoad(tabId, 15000)`.
+2. Do truyền sai vị trí (số `15000` bị gán vào tham số `targetUrl` của hàm), điều kiện kiểm tra URL trùng khớp của Extension luôn trả về `false`. Điều này ép buộc hàm `waitForTabLoad` phải chạy hết toàn bộ thời gian chờ timeout là **30 giây** cho mỗi chương trước khi nạp tiếp. 
+3. Thời gian trễ 30 giây này khiến luồng chạy của Extension và luồng đồng bộ trạng thái của ứng dụng bị mất đồng bộ hoàn toàn (out of sync).
+**Lesson:** Khi định nghĩa và gọi các hàm tiện ích dùng chung của Extension, phải luôn đối chiếu chính xác số lượng và kiểu dữ liệu của các tham số. Tránh gọi các hàm đợi tải trang bằng các giá trị thô/hardcode mà không chỉ định URL đích để tránh kích hoạt timeout vô lý làm treo luồng.
+**Action:** Sửa đổi lệnh gọi thành `await waitForTabLoad(tabId, payload.chapterUrl, 15000);` ở cả hai file `stv-handler.js` và đóng gói lại tiện ích.
+
+---
+
+
+### [2026-05-29] AI 🔴 Critical — Tự Động Phân Giải Tên Mô Hình AI từ UUID Tránh Lỗi "Model not found"
+
+**Context:** Sử dụng tính năng "Dịch tên truyện" hoặc "Phân loại hàng loạt (Batch Classify)" với các nhà cung cấp AI tùy chỉnh (như GGChan, Bắc Cực Tinh).
+**Problem:** Trình duyệt báo lỗi màu đỏ `"Model not found"` khi gửi yêu cầu dịch hoặc phân loại truyện.
+**Root Cause:**
+1. Trong IndexedDB, danh sách các mô hình AI (`db.aiModels`) được quản lý bằng các hàng ghi nhận với khóa chính `id` là các **UUID tự sinh** (ví dụ: `crypto.randomUUID()`), trong khi tên mã mô hình thực tế của nhà cung cấp được lưu ở cột `modelId` (ví dụ: `gcli-gemini-2.5-flash`).
+2. Giao diện dropdown chọn model AI liên kết trực tiếp `value={model.id}` (UUID), nên khi nhấn "Dịch", model ID gửi đi là UUID này.
+3. Hàm `resolveStep()` nhận vào cấu hình dạng `{ providerId, modelId }` nhưng lại gửi thẳng UUID này cho Vercel AI SDK làm tên mô hình, khiến các AI Provider trả về lỗi 404 `"Model not found"`.
+**Lesson:** Khi thiết kế cơ chế phân giải mô hình (`resolveStep`), luôn phải dự phòng trường hợp `modelId` được truyền vào từ giao diện là UUID khóa chính của DB. Cần chủ động tra cứu ngược IndexedDB để lấy ra `modelId` thực tế của nhà cung cấp trước khi nạp vào AI SDK.
+**Action:** Cập nhật `lib/ai/resolve-step.ts` để tự động tra cứu IndexedDB từ `cfg.modelId` và lấy `aiModel.modelId` thực tế nếu tìm thấy.
+
+---
+
+<!-- 
+  📝 TEMPLATE cho entry mới — copy paste khi thêm:
+  
+  ### [YYYY-MM-DD] CATEGORY SEVERITY — Title
+  
+  **Context:** 
+  **Problem:** 
+  **Root Cause:** 
+  **Lesson:** 
+  **Action:** 
+-->
+
+
