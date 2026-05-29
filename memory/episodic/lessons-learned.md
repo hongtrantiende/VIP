@@ -164,6 +164,38 @@ Severity: `🔴 Critical` | `🟡 Important` | `🟢 Minor`
 **Lesson:** Khi thiết kế cơ chế phân giải mô hình (`resolveStep`), luôn phải dự phòng trường hợp `modelId` được truyền vào từ giao diện là UUID khóa chính của DB. Cần chủ động tra cứu ngược IndexedDB để lấy ra `modelId` thực tế của nhà cung cấp trước khi nạp vào AI SDK.
 **Action:** Cập nhật `lib/ai/resolve-step.ts` để tự động tra cứu IndexedDB từ `cfg.modelId` và lấy `aiModel.modelId` thực tế nếu tìm thấy.
 
+### [2026-05-30] PERFORMANCE 🟡 Important — Thiết Lập Timeout Chủ Động Và Tránh Vòng Lặp Retry Chồng Chất Khi Dịch Hàng Loạt
+
+**Context:** Dịch hàng loạt (Bulk Translate) nhiều chương truyện bằng các Custom AI Provider (như GGChan, Bắc Cực Tinh) thường bị treo ngầm ở trạng thái "Đang dịch".
+**Problem:** 
+1. Cuộc gọi API thông qua proxy `/api/ai-proxy` bị treo vô hạn cho đến khi Cloudflare tự động ngắt sau 2 phút với mã 524.
+2. Cơ chế thử lại (retry) chồng chất 2 tầng (tối đa lên đến 28 lần: 7 lần trong * 4 lần ngoài) làm luồng dịch bị kẹt cứng hàng chục phút mà không báo lỗi ra UI.
+3. Người dùng đặt số luồng chạy song song quá cao (mặc định ban đầu là 3) làm phát sinh lỗi 429 Rate Limit liên tục.
+**Root Cause:**
+1. Thiếu cấu hình timeout chủ động cho hàm `fetch` trong proxy API.
+2. Thiết kế logic retry quá dày đặc và thiếu phân loại lỗi (tất cả các lỗi đều chờ 10s và thử lại nhiều lần vô lý).
+**Lesson:**
+1. Luôn thiết lập timeout chủ động (ví dụ 60 giây dùng `AbortController`) cho các cuộc gọi API mạng bên ngoài để phát hiện treo kết nối nhanh chóng.
+2. Phân loại lỗi thông minh khi retry: Giảm số lần thử lại tối đa xuống mức an toàn (tối đa 3 lần thử), phân tách độ trễ delay (15s cho lỗi 429 Rate Limit để hệ thống AI hồi phục, và chỉ 5s cho lỗi kết nối thường). Loại bỏ các vòng lặp retry chồng chất trùng lặp giữa các tầng.
+3. Giảm số luồng song song mặc định xuống 1 đối với các tác vụ AI nặng nề trên Custom Provider để tối đa hóa sự ổn định và tránh lỗi 429.
+**Action:** Cập nhật `route.ts` (thêm timeout 60s), `bulk-translate.ts` (tối ưu hóa 2 tầng retry, phân loại delayMs), và `bulk-translate-dialog.tsx` (concurrency mặc định = 1, thêm hướng dẫn UI).
+
+### [2026-05-30] AI 🔴 Critical — Tự Động Phát Hiện Và Dịch Lại Khi AI Trả Về Thiếu Ký Tự (Truncated) Do Silent NSFW Block
+
+**Context:** Dịch các chương truyện dài bằng các AI Provider có context window lớn (1 triệu tokens hoặc cao hơn). Tách phân đoạn không cần thiết vì làm mất thời gian và tăng số lượng API calls.
+**Problem:** AI đôi khi trả về bản dịch bị thiếu hụt nghiêm trọng một cách ngẫu nhiên (ví dụ: chương 5000 ký tự Trung chỉ dịch ra 400 ký tự Việt) do lỗi mạng, nghẽn dòng hoặc safety block tạm thời.
+**Root Cause:**
+1. Mô hình AI thỉnh thoảng ngừng tạo kết quả sớm hơn dự kiến do lỗi ngắt ngẫu nhiên từ server. So sánh trực tiếp độ dài ký tự giữa tiếng Trung (gốc) và tiếng Việt (dịch) là không chính xác do tiếng Việt có mật độ ký tự dài hơn tiếng Trung khoảng 1.3 - 1.5 lần, dẫn tới việc bỏ sót lỗi cụt chương ở các chương ngắn và trung bình.
+2. **Đặc biệt, sự thiếu hụt này phần lớn không phải là lỗi API thông thường, mà do chương chứa yếu tố nhạy cảm/cảnh nóng khiến AI tự động ngắt tạo chữ sớm (soft block) mà không hề ném lỗi an toàn (safety) ra API.** Nếu chỉ thực hiện retry ngoài với prompt gốc, AI vẫn sẽ tiếp tục dịch thiếu do vấp phải rào cản NSFW cũ.
+**Lesson:**
+1. Giữ nguyên việc dịch cả chương nguyên khối (liền mạch 100%) để tận dụng tối đa context window khổng lồ của các mô hình hiện đại mà không cần chia nhỏ phân đoạn làm tăng API calls.
+2. Tích hợp cơ chế **Kiểm định độ dài bản dịch (Length Validation Check)** thông minh: Quy đổi số ký tự gốc sang độ dài tiếng Việt kỳ vọng tối thiểu (bằng `Math.round(joinedContent.length * 1.3)`).
+3. Bản dịch bị coi là hụt nghiêm trọng nếu:
+   - Thiếu hụt quá 2000 ký tự so với độ dài tiếng Việt kỳ vọng.
+   - Đối với chương ngắn, độ dài bản dịch thậm chí ngắn hơn cả bản gốc tiếng Trung (vô lý vì tiếng Việt luôn dài hơn), hoặc bản dịch ngắn hơn 75% độ dài bản gốc tiếng Trung.
+4. **Xử lý NSFW chủ động trong vòng lặp**: Thực hiện kiểm định độ hụt ký tự ngay bên trong vòng lặp chính của chương. Nếu bản dịch bị hụt nghiêm trọng, hệ thống tự động chèn thêm prompt NSFW R-18+ bổ sung (`NSFW_INSTRUCTION`) vào prompt hệ thống và thực hiện dịch lại tại chỗ, giúp AI vượt qua bộ lọc an toàn và dịch đầy đủ nội dung. Nếu đã thử NSFW mà vẫn hụt chữ, mới ném lỗi ra ngoài cho vòng lặp retry ngoài xử lý.
+**Action:** Cập nhật `bulk-translate.ts` và `qt-ai-translate.ts` để kiểm tra độ hụt ký tự ngay trong vòng lặp dịch, tự động chèn prompt NSFW R-18+ và dịch lại tại chỗ khi phát hiện thiếu chữ.
+
 ---
 
 <!-- 

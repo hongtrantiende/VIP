@@ -281,11 +281,11 @@ export function BulkTranslateDialog({
   const [autoSave, setAutoSave] = useState(true); // <== Changed default to true
   const [skipTranslated, setSkipTranslated] = useState(true); // <== Added skipTranslated
   const [delaySeconds, setDelaySeconds] = useState(settings.translateDelaySeconds ?? 0);
-  const [concurrency, setConcurrency] = useState(settings.translateConcurrency ?? 3);
+  const [concurrency, setConcurrency] = useState(settings.translateConcurrency ?? 1);
 
   useEffect(() => {
     setDelaySeconds(settings.translateDelaySeconds ?? 0);
-    setConcurrency(settings.translateConcurrency ?? 3);
+    setConcurrency(settings.translateConcurrency ?? 1);
   }, [settings.translateDelaySeconds, settings.translateConcurrency]);
 
   const handleDelayChange = (val: string) => {
@@ -692,19 +692,24 @@ export function BulkTranslateDialog({
                       onChange={(e) => handleDelayChange(e.target.value)}
                     />
                   </div>
-                  <div className="flex items-center gap-4">
-                    <Label htmlFor="translate-concurrency" className="text-xs">
-                      Số luồng chạy song song
-                    </Label>
-                    <input
-                      id="translate-concurrency"
-                      type="number"
-                      min="1"
-                      max="20"
-                      className="h-8 w-16 rounded-md border bg-background px-2 text-center text-xs focus:ring-1 focus:ring-primary"
-                      value={concurrency}
-                      onChange={(e) => handleConcurrencyChange(e.target.value)}
-                    />
+                  <div className="space-y-1">
+                    <div className="flex items-center gap-4">
+                      <Label htmlFor="translate-concurrency" className="text-xs">
+                        Số luồng chạy song song
+                      </Label>
+                      <input
+                        id="translate-concurrency"
+                        type="number"
+                        min="1"
+                        max="20"
+                        className="h-8 w-16 rounded-md border bg-background px-2 text-center text-xs focus:ring-1 focus:ring-primary"
+                        value={concurrency}
+                        onChange={(e) => handleConcurrencyChange(e.target.value)}
+                      />
+                    </div>
+                    <p className="text-[10px] text-muted-foreground italic leading-normal max-w-lg">
+                      💡 Khuyên dùng: Nếu dùng các nhà cung cấp AI miễn phí/giá rẻ hoặc custom proxy (GGChan, Bắc Cực Tinh), vui lòng đặt Số luồng = 1 để tránh lỗi giới hạn lượt gọi (429 Rate Limit) hoặc treo kết nối.
+                    </p>
                   </div>
                 </div>
 

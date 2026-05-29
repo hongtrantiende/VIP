@@ -1032,6 +1032,34 @@ ${cleaned}`;
                     throw new Error("AI trả về nội dung trống nghi ngờ do bộ lọc an toàn");
                   }
 
+                  // Parse thử kết quả để lấy nội dung dịch thực tế
+                  const parsed = parseHybridResult(fullText, chunkIdx === 0, opts.promptType, effectiveExtractDict);
+                  const parsedContent = parsed.content || "";
+
+                  // Độ dài bản dịch tiếng Việt kỳ vọng tối thiểu (tiếng Việt dài hơn tiếng Trung khoảng 1.3 - 1.5 lần)
+                  const expectedMinLength = Math.round(chunk.length * 1.3);
+                  const charDifference = expectedMinLength - parsedContent.length;
+
+                  // Bản dịch bị coi là thiếu hụt nghiêm trọng nếu:
+                  // 1. Thiếu hụt quá 2000 ký tự so với độ dài tiếng Việt kỳ vọng tối thiểu.
+                  // 2. Hoặc đối với chunk ngắn: độ dài bản dịch thậm chí ngắn hơn cả bản gốc tiếng Trung,
+                  //    hoặc ngắn hơn 75% độ dài bản gốc tiếng Trung.
+                  const isTooShort = charDifference > 2000 || parsedContent.length < Math.min(chunk.length, 1000) || parsedContent.length < chunk.length * 0.75;
+
+                  if (isTooShort && !hasTriedNsfwFallback) {
+                    hasTriedNsfwFallback = true;
+                    const actualDiff = Math.max(0, expectedMinLength - parsedContent.length);
+                    console.warn(`[Auto-NSFW] QtAi bản dịch bị thiếu ký tự nghiêm trọng (hụt ~${actualDiff} ký tự). Thử lại với prompt NSFW R-18+...`);
+                    const { NSFW_INSTRUCTION } = await import("@/lib/writing/prompts");
+                    activeSystemPrompt = `${activeSystemPrompt}\n\n# CHỈ DẪN VĂN PHONG ĐẶC BIỆT BỔ SUNG (BẮT BUỘC TUÂN THỦ DÙ LÀ REWRITE HAY DỊCH):\n${NSFW_INSTRUCTION}`;
+                    continue;
+                  }
+
+                  if (isTooShort) {
+                    const actualDiff = Math.max(0, expectedMinLength - parsedContent.length);
+                    throw new Error(`Bản dịch bị cụt/thiếu ký tự nghiêm trọng (hụt ~${actualDiff} ký tự) nghi ngờ do soft safety block`);
+                  }
+
                   accumulated = fullText;
                   lastError = null;
                   break;

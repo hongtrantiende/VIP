@@ -21,73 +21,74 @@ import { checkIsVipStandalone } from "../hooks/use-profile";
 
 // ── Retry & Error Handling ──
 
-const MAX_RETRIES = 3;
-const RETRY_BASE_DELAY = 10000; // 10s for rate limits (reduced from 30s for speed)
-const RETRY_EMPTY_DELAY = 2000;  // 2s for empty responses (quick transient failure)
+const MAX_RETRIES = 2; // Tối đa 2 lần retry ngoài (tổng cộng 3 lần thử)
+const RETRY_BASE_DELAY = 5000; // 5s cho lỗi mạng/kết nối thường (nhanh hơn)
+const RETRY_429_DELAY = 15000;  // 15s cho lỗi rate limit (để AI provider hồi phục)
+const RETRY_EMPTY_DELAY = 2000;  // 2s cho response trống
 
 /** Classify API errors and decide if they are retryable */
-function classifyError(err: unknown): { retryable: boolean; message: string } {
+function classifyError(err: unknown): { retryable: boolean; message: string; delayMs: number } {
   const msg = err instanceof Error ? err.message : String(err);
   const lower = msg.toLowerCase();
 
   // Rate limit (429)
   if (lower.includes('rate limit') || lower.includes('429') || lower.includes('too many requests')) {
-    return { retryable: true, message: `Rate limit — đang chờ retry... (${msg})` };
+    return { retryable: true, message: `Rate limit — đang chờ retry... (${msg})`, delayMs: RETRY_429_DELAY };
   }
   // Server errors (500, 502, 503, 504)
   if (lower.includes('500') || lower.includes('502') || lower.includes('503') || lower.includes('504') || lower.includes('server error') || lower.includes('internal error')) {
-    return { retryable: true, message: `Server lỗi tạm thời — đang retry... (${msg})` };
+    return { retryable: true, message: `Server lỗi tạm thời — đang retry... (${msg})`, delayMs: RETRY_BASE_DELAY };
   }
   // Timeout
-  if (lower.includes('timeout') || lower.includes('timed out') || lower.includes('econnreset') || lower.includes('etimedout')) {
-    return { retryable: true, message: `Timeout — đang retry... (${msg})` };
+  if (lower.includes('timeout') || lower.includes('timed out') || lower.includes('econnreset') || lower.includes('etimedout') || lower.includes('hết hạn')) {
+    return { retryable: true, message: `Timeout — đang retry... (${msg})`, delayMs: RETRY_BASE_DELAY };
   }
   // Network / connection errors (common with third-party proxies like beijixingxing, catiecli)
   if (lower.includes('fetch failed') || lower.includes('econnrefused') || lower.includes('enotfound') || lower.includes('network') || lower.includes('dns')) {
-    return { retryable: true, message: `Lỗi kết nối proxy — đang retry... (${msg})` };
+    return { retryable: true, message: `Lỗi kết nối proxy — đang retry... (${msg})`, delayMs: RETRY_BASE_DELAY };
   }
   // Socket / connection dropped
   if (lower.includes('socket hang up') || lower.includes('socket') || lower.includes('epipe') || lower.includes('broken pipe') || lower.includes('ehostunreach') || lower.includes('econnaborted')) {
-    return { retryable: true, message: `Mất kết nối — đang retry... (${msg})` };
+    return { retryable: true, message: `Mất kết nối — đang retry... (${msg})`, delayMs: RETRY_BASE_DELAY };
   }
   // Gateway / upstream errors (proxy-specific)
   if (lower.includes('gateway') || lower.includes('upstream') || lower.includes('proxy') || lower.includes('bad gateway') || lower.includes('service unavailable')) {
-    return { retryable: true, message: `Lỗi gateway proxy — đang retry... (${msg})` };
+    return { retryable: true, message: `Lỗi gateway proxy — đang retry... (${msg})`, delayMs: RETRY_BASE_DELAY };
   }
   // SSL / TLS errors
   if (lower.includes('ssl') || lower.includes('tls') || lower.includes('certificate') || lower.includes('cert')) {
-    return { retryable: true, message: `Lỗi SSL/TLS — đang retry... (${msg})` };
+    return { retryable: true, message: `Lỗi SSL/TLS — đang retry... (${msg})`, delayMs: RETRY_BASE_DELAY };
   }
   // Empty / malformed response (proxy returned HTML error page or empty body)
   if (lower.includes('unexpected end') || lower.includes('unexpected token') || lower.includes('json') || lower.includes('empty') || lower.includes('trống') || lower.includes('no body') || lower.includes('invalid json')) {
-    return { retryable: true, message: `Response lỗi/rỗng từ proxy — đang retry... (${msg})` };
+    return { retryable: true, message: `Response lỗi/rỗng từ proxy — đang retry... (${msg})`, delayMs: RETRY_BASE_DELAY };
   }
   // Generic "failed to" errors
   if (lower.includes('failed to') || lower.includes('request failed') || lower.includes('unable to')) {
-    return { retryable: true, message: `Request thất bại — đang retry... (${msg})` };
+    return { retryable: true, message: `Request thất bại — đang retry... (${msg})`, delayMs: RETRY_BASE_DELAY };
   }
   // Model locked by another user (423 Locked) — NOT retryable
   if (lower.includes('423') || lower.includes('đang được sử dụng') || lower.includes('locked')) {
-    return { retryable: false, message: msg };
+    return { retryable: false, message: msg, delayMs: 0 };
   }
   // Auth errors (not retryable)
   if (lower.includes('401') || lower.includes('403') || lower.includes('unauthorized') || lower.includes('invalid api key') || lower.includes('authentication')) {
-    return { retryable: false, message: `Lỗi xác thực API key — kiểm tra lại cấu hình provider. (${msg})` };
+    return { retryable: false, message: `Lỗi xác thực API key — kiểm tra lại cấu hình provider. (${msg})`, delayMs: 0 };
   }
   // Model not found
   if (lower.includes('model not found') || lower.includes('404') || lower.includes('does not exist')) {
-    return { retryable: false, message: `Model không tồn tại hoặc không khả dụng. (${msg})` };
+    return { retryable: false, message: `Model không tồn tại hoặc không khả dụng. (${msg})`, delayMs: 0 };
   }
   // Insufficient quota
   if (lower.includes('quota') || lower.includes('insufficient') || lower.includes('billing')) {
-    return { retryable: false, message: `Hết quota/credit API. Kiểm tra billing. (${msg})` };
+    return { retryable: false, message: `Hết quota/credit API. Kiểm tra billing. (${msg})`, delayMs: 0 };
   }
   // Content filter
   if (lower.includes('content filter') || lower.includes('safety') || lower.includes('blocked')) {
-    return { retryable: false, message: `Nội dung bị chặn bởi bộ lọc an toàn. (${msg})` };
+    return { retryable: false, message: `Nội dung bị chặn bởi bộ lọc an toàn. (${msg})`, delayMs: 0 };
   }
   // Default: treat as retryable (proxy errors are unpredictable)
-  return { retryable: true, message: `Lỗi không xác định — đang retry... (${msg})` };
+  return { retryable: true, message: `Lỗi không xác định — đang retry... (${msg})`, delayMs: RETRY_BASE_DELAY };
 }
 
 async function delay(ms: number, signal?: AbortSignal): Promise<void> {
@@ -456,6 +457,10 @@ export async function runBulkTranslate(opts: BulkTranslateOptions): Promise<void
       if (context) {
         systemPrompt += `\n\n${context}`;
       }
+      // Bắt buộc bổ sung Quy tắc dịch tên riêng tối giản ở cuối
+      systemPrompt += `\n\n⚠️ QUY TẮC DỊCH TÊN RIÊNG (BẮT BUỘC PHẢI TUÂN THỦ):
+1. Bắt buộc dùng ĐÚNG 100% từ dịch trong "BẢNG TÊN RIÊNG" đi kèm (Ví dụ: "宝儿" phải dịch là "BoA", tuyệt đối CẤM dịch thành "Bảo Nhi" hay "bé cưng").
+2. Giữ nguyên dạng chữ Latin/tiếng Anh đối với tên riêng nước ngoài (Ví dụ: "BoA", "Yoko", "Conan", "Mouri"), tuyệt đối CẤM dịch sang âm Hán-Việt (như "Bảo Nhi", "Dương Tử", "Kha Nam", "Mao Lợi").`;
 
       // Build user prompt
       const cleanedJoinedContent = cleanGarbageLines(joinedContent);
@@ -463,13 +468,14 @@ export async function runBulkTranslate(opts: BulkTranslateOptions): Promise<void
         ? buildTranslateUserPrompt(cleanedJoinedContent, originalTitle, TITLE_SEPARATOR)
         : cleanedJoinedContent;
 
-      // Stream translation with retry logic
+      // Stream translation
       let accumulated = "";
       let lastError: unknown = null;
       let activeSystemPrompt = systemPrompt;
       let hasTriedNsfwBulkFallback = false;
 
-      for (let attempt = 0; attempt <= MAX_RETRIES * 2; attempt++) {
+      // Chỉ thử tối đa 2 lần (lần đầu + 1 lần fallback NSFW/rỗng) để tránh lặp lặp nghẽn
+      for (let attempt = 0; attempt <= 1; attempt++) {
         if (signal?.aborted) break;
 
         try {
@@ -487,20 +493,16 @@ export async function runBulkTranslate(opts: BulkTranslateOptions): Promise<void
             }
           }
 
-          // Check for empty response — treat as retryable with short delay
           if (!accumulated.trim()) {
             if (!hasTriedNsfwBulkFallback) {
               hasTriedNsfwBulkFallback = true;
               console.warn(`[Auto-NSFW] Bulk returned empty. Retrying with NSFW R-18+ prompt...`);
               const { NSFW_INSTRUCTION } = await import("@/lib/writing/prompts");
               activeSystemPrompt = `${activeSystemPrompt}\n\n# CHỈ DẪN VĂN PHONG ĐẶC BIỆT BỔ SUNG (BẮT BUỘC TUÂN THỦ DÙ LÀ REWRITE HAY DỊCH):\n${NSFW_INSTRUCTION}`;
+              await delay(RETRY_EMPTY_DELAY, signal);
               continue;
             }
-            const emptyErr = new Error("AI trả về nội dung trống — thử lại nhanh...");
-            lastError = emptyErr;
-            console.log(`[Translate] Chapter "${chapter.title}" trả về trống (lần ${attempt + 1}). Chờ 5s retry...`);
-            await delay(RETRY_EMPTY_DELAY, signal);
-            continue;
+            throw new Error("AI trả về nội dung trống");
           }
 
           const finishReason = await result.finishReason;
@@ -508,39 +510,44 @@ export async function runBulkTranslate(opts: BulkTranslateOptions): Promise<void
             console.warn(`Chapter ${chapter.title} may have been truncated.`);
           }
 
+          // Parse và kiểm tra độ hụt ký tự ngay trong vòng lặp để kích hoạt NSFW prompt nếu cần
+          const parsed = parseTranslateResult(accumulated, translateTitle);
+          const expectedMinLength = Math.round(joinedContent.length * 1.3);
+          const charDifference = expectedMinLength - parsed.content.length;
+          
+          const isTooShort = charDifference > 2000 || parsed.content.length < Math.min(joinedContent.length, 1000) || parsed.content.length < joinedContent.length * 0.75;
+
+          if (isTooShort && !hasTriedNsfwBulkFallback) {
+            hasTriedNsfwBulkFallback = true;
+            const actualDiff = Math.max(0, expectedMinLength - parsed.content.length);
+            console.warn(`[Auto-NSFW] Bản dịch bị thiếu ký tự nghiêm trọng (hụt ~${actualDiff} ký tự). Thử lại với prompt NSFW R-18+...`);
+            const { NSFW_INSTRUCTION } = await import("@/lib/writing/prompts");
+            activeSystemPrompt = `${activeSystemPrompt}\n\n# CHỈ DẪN VĂN PHONG ĐẶC BIỆT BỔ SUNG (BẮT BUỘC TUÂN THỦ DÙ LÀ REWRITE HAY DỊCH):\n${NSFW_INSTRUCTION}`;
+            await delay(RETRY_EMPTY_DELAY, signal);
+            continue;
+          }
+
           lastError = null;
-          break; // Success — exit retry loop
+          break;
         } catch (err: any) {
           if (err instanceof Error && err.name === "AbortError") throw err;
-
           lastError = err;
-          
+
           const errMsg = err instanceof Error ? err.message : String(err);
           const lowerErr = errMsg.toLowerCase();
           const isSafetyBlock = lowerErr.includes('safety') || 
                                 lowerErr.includes('content filter') || 
-                                lowerErr.includes('blocked') || 
-                                lowerErr.includes('finish_reason') ||
-                                lowerErr.includes('finishreason') ||
-                                lowerErr.includes('candidate');
+                                lowerErr.includes('blocked');
 
           if (isSafetyBlock && !hasTriedNsfwBulkFallback) {
             hasTriedNsfwBulkFallback = true;
-            console.warn(`[Auto-NSFW] Bulk safety block triggered. Retrying with NSFW R-18+ prompt...`, err);
+            console.warn(`[Auto-NSFW] Bulk safety block. Retrying with NSFW R-18+...`);
             const { NSFW_INSTRUCTION } = await import("@/lib/writing/prompts");
             activeSystemPrompt = `${activeSystemPrompt}\n\n# CHỈ DẪN VĂN PHONG ĐẶC BIỆT BỔ SUNG (BẮT BUỘC TUÂN THỦ DÙ LÀ REWRITE HAY DỊCH):\n${NSFW_INSTRUCTION}`;
+            await delay(RETRY_EMPTY_DELAY, signal);
             continue;
           }
-
-          const classified = classifyError(err);
-
-          if (!classified.retryable) {
-            throw new Error(classified.message);
-          }
-
-          const backoffMs = RETRY_BASE_DELAY;
-          console.warn(`[Translate] Lỗi: ${classified.message}. Chờ 30s để thử lại lần ${attempt + 1}...`);
-          await delay(backoffMs, signal);
+          throw err;
         }
       }
 
@@ -548,42 +555,55 @@ export async function runBulkTranslate(opts: BulkTranslateOptions): Promise<void
         throw lastError;
       }
 
-      // After all inner retries, if still empty — throw to worker-level retry
-      if (!accumulated.trim()) {
-        throw new Error("AI trả về nội dung trống sau nhiều lần thử — đang retry toàn bộ chương...");
-      }
-
       // Parse result
       const parsed = parseTranslateResult(accumulated, translateTitle);
+      let parsedTitle = parsed.title;
+      let parsedContent = parsed.content;
+
+      // Độ dài bản dịch tiếng Việt kỳ vọng tối thiểu (tiếng Việt dài hơn tiếng Trung khoảng 1.3 - 1.5 lần)
+      const expectedMinLength = Math.round(joinedContent.length * 1.3);
+      const charDifference = expectedMinLength - parsedContent.length;
+
+      // Bản dịch bị coi là thiếu hụt nghiêm trọng nếu:
+      // 1. Thiếu hụt quá 2000 ký tự so với độ dài tiếng Việt kỳ vọng tối thiểu.
+      // 2. Hoặc đối với chương ngắn (nơi chênh lệch tuyệt đối < 2000 ký tự nhưng tỉ lệ hụt lớn):
+      //    Độ dài bản dịch thậm chí ngắn hơn cả bản gốc tiếng Trung (vô lý vì tiếng Việt luôn dài hơn),
+      //    hoặc bản dịch ngắn hơn 75% độ dài bản gốc tiếng Trung.
+      const isTooShort = charDifference > 2000 || parsedContent.length < Math.min(joinedContent.length, 1000) || parsedContent.length < joinedContent.length * 0.75;
+
+      if (isTooShort) {
+        const actualDiff = Math.max(0, expectedMinLength - parsedContent.length);
+        console.warn(`[BulkTranslate] Bản dịch bị thiếu ký tự nghiêm trọng sau khi thử NSFW fallback: Gốc ${joinedContent.length} ký tự Trung, Dịch ${parsedContent.length} ký tự Việt (hụt khoảng ${actualDiff} ký tự so với kỳ vọng). Kích hoạt dịch lại chương...`);
+        throw new Error(`Bản dịch bị hụt quá 2000 ký tự hoặc ngắn bất thường so với bản gốc (hụt ~${actualDiff} ký tự) — đang tự động dịch lại...`);
+      }
 
       // Split back to scenes
       let sceneResults: { sceneId: string; content: string }[];
       if (isMultiScene) {
-        const parts = splitBySceneBreak(parsed.content);
+        const parts = splitBySceneBreak(parsedContent);
         if (parts.length === scenes.length) {
           sceneResults = scenes.map((s, i) => ({
             sceneId: s.id,
             content: parts[i],
           }));
         } else {
-          // Fallback to splitting by paragraph boundaries
-          const splitParts = splitTextIntoParts(parsed.content, scenes.length);
+          const splitParts = splitTextIntoParts(parsedContent, scenes.length);
           sceneResults = scenes.map((s, i) => ({
             sceneId: s.id,
             content: splitParts[i] || "",
           }));
         }
       } else {
-        sceneResults = [{ sceneId: scenes[0].id, content: parsed.content }];
+        sceneResults = [{ sceneId: scenes[0].id, content: parsedContent }];
       }
 
       const chapterResult: TranslateChapterResult = {
         chapterId: chapter.id,
         chapterTitle: chapter.title,
         originalTitle: originalTitle,
-        newTitle: parsed.title ?? undefined,
+        newTitle: parsedTitle ?? undefined,
         originalLineCount: joinedContent.split("\n").length,
-        translatedLineCount: parsed.content.split("\n").length,
+        translatedLineCount: parsedContent.split("\n").length,
         scenes: sceneResults,
       };
 
@@ -656,16 +676,17 @@ export async function runBulkTranslate(opts: BulkTranslateOptions): Promise<void
             });
             chapterSuccess = true; // Move to next chapter
           } else {
-            // Retryable — wait 30s and retry this SAME chapter
+            // Retryable — wait delayMs and retry this SAME chapter
+            const delaySec = classified.delayMs / 1000;
             console.warn(
-              `[BulkTranslate] Chương "${chapter.title}" lỗi (lần ${chapterRetries}): ${classified.message}. Chờ 30s retry...`
+              `[BulkTranslate] Chương "${chapter.title}" lỗi (lần ${chapterRetries}): ${classified.message}. Chờ ${delaySec}s retry...`
             );
             onChapterError({
               chapterId: chapter.id,
               chapterTitle: chapter.title,
-              message: `⏳ Retry lần ${chapterRetries}: ${classified.message} — đang chờ 30s...`,
+              message: `⏳ Thử lại lần ${chapterRetries}: ${classified.message} — đang chờ ${delaySec} giây...`,
             });
-            await delay(RETRY_BASE_DELAY, signal);
+            await delay(classified.delayMs, signal);
           }
         }
       }

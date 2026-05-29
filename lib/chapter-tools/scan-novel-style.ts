@@ -111,13 +111,15 @@ export async function scanNovelStyle(
 
   onProgress?.("Đang lưu...");
 
+  const promptWithRules = `${parsed}\n\n⚠️ QUY TẮC DỊCH TÊN RIÊNG (BẮT BUỘC):\n1. Bắt buộc dùng ĐÚNG 100% từ dịch trong "BẢNG TÊN RIÊNG" đi kèm (Ví dụ: "宝儿" phải dịch là "BoA", tuyệt đối CẤM dịch thành "Bảo Nhi" hay "bé cưng").\n2. Giữ nguyên dạng chữ Latin/tiếng Anh đối với tên riêng nước ngoài (Ví dụ: "BoA", "Yoko", "Conan", "Mouri"), tuyệt đối CẤM dịch sang âm Hán-Việt (như "Bảo Nhi", "Dương Tử", "Kha Nam", "Mao Lợi").`;
+
   // Save to novel
   await db.novels.update(novelId, {
-    customTranslatePrompt: parsed,
+    customTranslatePrompt: promptWithRules,
     genre: genre,
     styleScannedAt: new Date(),
     updatedAt: new Date(),
   });
 
-  return parsed;
+  return promptWithRules;
 }

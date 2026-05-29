@@ -151,11 +151,20 @@ export async function POST(req: NextRequest) {
       if (val) headersToSend[h] = val;
     }
 
-    const response = await fetch(targetUrl, {
-      method: "POST",
-      headers: headersToSend,
-      body,
-    });
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), 60000); // 60 seconds timeout
+
+    let response: Response;
+    try {
+      response = await fetch(targetUrl, {
+        method: "POST",
+        headers: headersToSend,
+        body,
+        signal: controller.signal,
+      });
+    } finally {
+      clearTimeout(timeoutId);
+    }
 
     // Proxy the response stream back to the client
     const resHeaders: Record<string, string> = {
@@ -174,9 +183,17 @@ export async function POST(req: NextRequest) {
     });
   } catch (error) {
     console.error("AI Proxy error:", error);
-    return new Response(JSON.stringify({ error: "Failed to proxy AI request" }), {
-      status: 500,
-      headers: { "Content-Type": "application/json" },
-    });
+    const isTimeout = error instanceof Error && error.name === "AbortError";
+    return new Response(
+      JSON.stringify({
+        error: isTimeout
+          ? "Thời gian chờ yêu cầu AI đã hết hạn (60 giây). Vui lòng thử lại sau."
+          : "Failed to proxy AI request",
+      }),
+      {
+        status: isTimeout ? 504 : 500,
+        headers: { "Content-Type": "application/json" },
+      }
+    );
   }
 }
