@@ -4,7 +4,8 @@
   "version": "2.0",
   "description": "Stealth novel scraper with proxy rotation & anti-bot",
   "background": {
-    "service_worker": "background.js"
+    "service_worker": "background.js",
+    "type": "module"
   },
   "permissions": [
     "storage",
