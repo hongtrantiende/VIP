@@ -476,4 +476,3 @@ export async function importNovel(file: File, options?: { preserveId?: boolean }
 
   return novelId;
 }
-}
