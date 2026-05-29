@@ -67,3 +67,30 @@ untitled.zip
 
 # AI agent skills (downloaded, not project code)
 /.agents/
+
+# Temporary test & scratch files
+/test*.js
+/test*.mjs
+/test*.html
+/check-*.js
+/scratch-*.js
+/scratch_*.js
+/read_pdf.*
+/build_pdf*
+
+# Temp directories
+/tmp/
+/tmp_ext/
+/downloads/
+/scratch/
+
+# Junk files
+*.log
+*_dump.html
+*_original.txt
+*_diff.txt
+
+# External projects (should live in their own repos)
+/story-web-scraper-extracted/
+/stv-realtime-translator/
+
