@@ -183,6 +183,33 @@
 
 ---
 
+### ADR-007: Kiến trúc Dịch thuật thế hệ 3 (Semantic Gen 3) & Real-time Inspector Panel
+
+**Date:** 2026-05-30
+**Status:** Accepted
+
+**Context:** 
+1. Việc dịch thuật bằng AI trước đây dễ bị trôi bối cảnh, dịch không nhất quán xưng hô và bỏ sót từ điển ở các chương truyện dài. Cần áp dụng quy tắc prompt mẫu (thể loại, bối cảnh, quy tắc dịch tên nhân vật, vật phẩm, kỹ năng, địa danh) để định hướng cho AI một cách chính xác nhất.
+2. Người dùng cần theo dõi trực quan dữ liệu gửi đi (System Prompt, User Prompt) và dữ liệu nhận về (Output) thời gian thực của cả Model 1 (Dịch chính) và Model 2 (Quét từ điển) để kiểm soát chất lượng và gỡ lỗi prompt.
+
+**Options Considered:**
+1. **Thiết kế rời rạc và thụ động** — Chỉ ghi log vào console hoặc file log ẩn. Người dùng không thể theo dõi trực tiếp trong khi dịch.
+2. **Kiến trúc luồng 3 giai đoạn kết hợp Inspector Panel tích hợp sẵn** — 
+   - *Giai đoạn 1:* Định vị XML cứng cho các từ khóa từ điển bằng thuật toán khớp chuỗi.
+   - *Giai đoạn 2:* Dùng Model 2 quét bối cảnh thoại để gắn thẻ động `<dialogue>` kèm quy tắc xưng hô.
+   - *Giai đoạn 3:* Dùng Model 1 dịch và tuân thủ các thẻ XML nội tuyến này, đồng thời loại bỏ thẻ khi xuất bản dịch sạch.
+   - *Hệ thống Inspector:* Lưu trữ cuộc gọi thời gian thực qua global store (`translate-logger.ts`), hiển thị trực quan dạng 2 Tabs (Model 1 & Model 2) chia đôi màn hình co giãn linh hoạt ngay trong khu vực dịch truyện.
+
+**Decision:** Chọn **phương án 2** để tối ưu hóa cả chất lượng dịch thuật và trải nghiệm gỡ lỗi của người dùng.
+
+**Consequences:**
+- ✅ Chất lượng dịch mượt mạ, nhất quán từ điển và xưng hô 100% nhờ các thẻ XML chỉ dẫn nội tuyến.
+- ✅ Người dùng có thể quan sát trực tiếp System Prompt mẫu, User Prompt gốc và Output bản dịch nhận về của từng phân đoạn dịch hoặc quét từ điển.
+- ✅ Dễ dàng tối ưu hóa và tinh chỉnh prompt mẫu dựa trên dữ liệu ghi nhận thực tế.
+- ⚠️ Yêu cầu hiệu năng hiển thị tối ưu để tránh hiện tượng giật lag khi cập nhật log dung lượng lớn liên tục (được giải quyết bằng việc chia trang, giới hạn số lượng dòng log hiển thị và tối ưu hóa CSS flexbox co giãn).
+
+---
+
 <!-- 
   📝 TEMPLATE — Copy khi thêm ADR mới:
   
