@@ -358,8 +358,8 @@ export async function runHybridTranslate(opts: HybridTranslateOptions): Promise<
 
   // Fetch novel's custom translate prompt (from genre scan)
   const novel = await db.novels.get(novelId);
-  const novelCustomPrompt = novel?.customStvPrompt;
-  const novelScanPrompt = novel?.customModel2Prompt?.trim() || "";
+  const novelCustomPrompt = novel?.customStvPrompt?.trim() || "";
+  const novelScanPrompt = novel?.customModel2Prompt?.trim() || novelCustomPrompt;
 
   let isFirst = true;
 
@@ -467,8 +467,8 @@ ${cleaned}`;
         continue;
       }
 
-      // Block if AI 2 gets > 2 chapters ahead of AI 1
-      while (scanIdx >= currentTranslateIdx + 2) {
+      // Block if AI 2 gets > 3 chapters ahead of AI 1
+      while (scanIdx >= currentTranslateIdx + 3) {
         await delay(100);
         if (signal?.aborted) break;
       }
@@ -487,9 +487,15 @@ ${cleaned}`;
         continue;
       }
 
+      if (chapter.dictionaryScanned) {
+        scannedChapterIds.add(chapId);
+        scanIdx++;
+        continue;
+      }
+
       // Check skipTranslated
       const scenes = await db.scenes.where("chapterId").equals(chapId).toArray();
-      if (skipTranslated && scenes.some(isSceneTranslated)) {
+      if (skipTranslated && scenes.length > 0 && scenes.every(isSceneTranslated)) {
         scannedChapterIds.add(chapId);
         scanIdx++;
         continue;
@@ -556,6 +562,7 @@ ${cleaned}`;
         console.warn(`[3-Model Concurrent Pipeline] Lỗi quét từ điển tại AI 2:`, scanErr);
       }
 
+      await db.chapters.update(chapId, { dictionaryScanned: true });
       store.setChapterStatus(novelId, chapId, "scanned");
       scannedChapterIds.add(chapId);
       scanIdx++;
@@ -599,7 +606,7 @@ ${cleaned}`;
       if (scenes.length === 0) continue;
       scenes.sort((a, b) => a.order - b.order);
 
-      if (skipTranslated && scenes.some(isSceneTranslated)) {
+      if (skipTranslated && scenes.length > 0 && scenes.every(isSceneTranslated)) {
         processedIds.add(cid);
         store.setChapterStatus(novelId, cid, "done");
         store.incrementCompleted(novelId);
@@ -837,8 +844,13 @@ ${cleaned}`;
 
             let accumulated = "";
             let lastError: unknown = null;
+            let activeSystemPrompt = systemPrompt;
+            let hasTriedNsfwFallback = false;
 
-            for (let attempt = 0; attempt <= MAX_PERSISTENT_ATTEMPTS; attempt++) {
+            // Giới hạn tối đa 4 lần thử để tránh treo vô tận khi bị safety block
+            const maxAttempts = 4;
+
+            for (let attempt = 0; attempt < maxAttempts; attempt++) {
               if (signal?.aborted) {
                 const err = new Error("Aborted");
                 err.name = "AbortError";
@@ -850,33 +862,92 @@ ${cleaned}`;
                   onChapterError({
                     chapterId: chapter.id,
                     chapterTitle: chapter.title,
-                    message: `Chunk ${chunkIdx + 1}: Thử lại lần ${attempt} sau 30s...`,
+                    message: `Chunk ${chunkIdx + 1}: Thử lại lần ${attempt} sau 10s...`,
                   });
+                  await delay(10000); // Đợi 10s để hệ thống hồi phục
                 }
 
                 const result = await generateText({
                   model: currentChapterModel,
-                  system: systemPrompt,
+                  system: activeSystemPrompt,
                   prompt: userPrompt,
                   abortSignal: signal,
                   maxOutputTokens: 10000,
                 });
 
-                accumulated = result.text ?? "";
+                let fullText = result.text ?? "";
+
+                // Empty response retry (potential safety block)
+                if (!fullText.trim()) {
+                  if (!hasTriedNsfwFallback) {
+                    hasTriedNsfwFallback = true;
+                    console.warn(`[Auto-NSFW] Hybrid returned empty. Retrying with NSFW R-18+ prompt...`);
+                    const { NSFW_INSTRUCTION } = await import("@/lib/writing/prompts");
+                    activeSystemPrompt = `${activeSystemPrompt}\n\n# CHỈ DẪN VĂN PHONG ĐẶC BIỆT BỔ SUNG (BẮT BUỘC TUÂN THỦ DÙ LÀ REWRITE HAY DỊCH):\n${NSFW_INSTRUCTION}`;
+                    continue;
+                  }
+                  throw new Error("AI trả về nội dung trống nghi ngờ do bộ lọc an toàn");
+                }
+
+                // Parse thử kết quả để lấy nội dung dịch thực tế
+                const parsed = parseHybridResult(fullText, chunkIdx === 0);
+                const parsedContent = parsed.content || "";
+
+                // Độ dài bản dịch tiếng Việt kỳ vọng tối thiểu (tiếng Việt dài hơn tiếng Trung khoảng 1.3 - 1.5 lần)
+                const expectedMinLength = Math.round(chunk.length * 1.3);
+                const charDifference = expectedMinLength - parsedContent.length;
+
+                // Bản dịch bị coi là thiếu hụt nghiêm trọng nếu:
+                // 1. Thiếu hụt quá 2000 ký tự so với độ dài tiếng Việt kỳ vọng tối thiểu.
+                // 2. Hoặc đối với chunk ngắn: độ dài bản dịch thậm chí ngắn hơn cả bản gốc tiếng Trung,
+                //    hoặc ngắn hơn 75% độ dài bản gốc tiếng Trung.
+                const isTooShort = charDifference > 2000 || parsedContent.length < Math.min(chunk.length, 1000) || parsedContent.length < chunk.length * 0.75;
+
+                if (isTooShort && !hasTriedNsfwFallback) {
+                  hasTriedNsfwFallback = true;
+                  const actualDiff = Math.max(0, expectedMinLength - parsedContent.length);
+                  console.warn(`[Auto-NSFW] Hybrid bản dịch bị thiếu ký tự nghiêm trọng (hụt ~${actualDiff} ký tự). Thử lại với prompt NSFW R-18+...`);
+                  const { NSFW_INSTRUCTION } = await import("@/lib/writing/prompts");
+                  activeSystemPrompt = `${activeSystemPrompt}\n\n# CHỈ DẪN VĂN PHONG ĐẶC BIỆT BỔ SUNG (BẮT BUỘC TUÂN THỦ DÙ LÀ REWRITE HAY DỊCH):\n${NSFW_INSTRUCTION}`;
+                  continue;
+                }
+
+                if (isTooShort) {
+                  const actualDiff = Math.max(0, expectedMinLength - parsedContent.length);
+                  throw new Error(`Bản dịch bị cụt/thiếu ký tự nghiêm trọng (hụt ~${actualDiff} ký tự) nghi ngờ do soft safety block`);
+                }
+
+                accumulated = fullText;
                 lastError = null;
                 break;
               } catch (err: any) {
                 if (signal?.aborted || err?.name === "AbortError") throw err;
 
                 lastError = err;
-                const classified = classifyError(err);
+                const errMsg = err instanceof Error ? err.message : String(err);
+                const lowerErr = errMsg.toLowerCase();
+                const isSafetyBlock = lowerErr.includes('safety') || 
+                                      lowerErr.includes('content filter') || 
+                                      lowerErr.includes('blocked') || 
+                                      lowerErr.includes('finish_reason') ||
+                                      lowerErr.includes('finishreason') ||
+                                      lowerErr.includes('candidate');
 
-                if (attempt >= MAX_PERSISTENT_ATTEMPTS) {
-                  throw new Error(`Chunk ${chunkIdx + 1} hết Token/lỗi AI: ${classified.message}`);
+                if (isSafetyBlock && !hasTriedNsfwFallback) {
+                  hasTriedNsfwFallback = true;
+                  console.warn(`[Auto-NSFW] Hybrid safety block triggered. Retrying with NSFW R-18+ prompt...`, err);
+                  const { NSFW_INSTRUCTION } = await import("@/lib/writing/prompts");
+                  activeSystemPrompt = `${activeSystemPrompt}\n\n# CHỈ DẪN VĂN PHONG ĐẶC BIỆT BỔ SUNG (BẮT BUỘC TUÂN THỦ DÙ LÀ REWRITE HAY DỊCH):\n${NSFW_INSTRUCTION}`;
+                  continue;
                 }
 
+                const classified = classifyError(err);
                 console.warn(`[Hybrid Retry] Chapter ${chapter.id} chunk ${chunkIdx} failed (attempt ${attempt}): ${classified.message}`);
-                await delay(PERSISTENT_RETRY_DELAY);
+
+                // Nếu đã thử kích hoạt NSFW rồi mà vẫn gặp lỗi/cụt chữ ở lượt tiếp theo, ném lỗi thoát ngay lập tức để tránh treo ngầm vô ích
+                if (hasTriedNsfwFallback) {
+                  throw err;
+                }
               }
             }
 

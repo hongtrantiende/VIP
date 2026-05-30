@@ -215,13 +215,29 @@ ${text}
 
 Hãy xử lý và chỉ trả về văn bản tiếng Trung đã chèn thẻ <dialogue> hoàn chỉnh:`;
 
+  const attemptController = new AbortController();
+  const onAbortMain = () => attemptController.abort();
+  if (signal) {
+    signal.addEventListener("abort", onAbortMain);
+  }
+
+  const timeoutId = setTimeout(() => {
+    console.warn(`[Dialogue Tagger] Quét thẻ hội thoại vượt quá 30 giây. Chủ động bỏ qua để tiến hành dịch chính...`);
+    attemptController.abort();
+  }, 30000);
+
   try {
     const result = await generateText({
       model,
       system,
       prompt,
-      abortSignal: signal,
+      abortSignal: attemptController.signal,
     });
+
+    clearTimeout(timeoutId);
+    if (signal) {
+      signal.removeEventListener("abort", onAbortMain);
+    }
 
     const output = result.text.trim();
     if (output) {
@@ -231,7 +247,11 @@ Hãy xử lý và chỉ trả về văn bản tiếng Trung đã chèn thẻ <di
       }
     }
   } catch (err) {
-    console.warn("[Semantic Tagger] Model 2 failed to tag dialogues, falling back to original tagged text:", err);
+    clearTimeout(timeoutId);
+    if (signal) {
+      signal.removeEventListener("abort", onAbortMain);
+    }
+    console.warn("[Dialogue Tagger] Model 2 failed to tag dialogues, falling back to original tagged text:", err);
   }
 
   return text;
@@ -309,7 +329,7 @@ export async function runSemanticTranslate(opts: SemanticTranslateOptions) {
   const store = useBulkTranslateStore.getState();
   const novel = await db.novels.get(novelId);
   const novelCustomPrompt = novel?.customTranslatePrompt?.trim() || "";
-  const novelScanPrompt = novel?.customModel2Prompt?.trim() || "";
+  const novelScanPrompt = novel?.customModel2Prompt?.trim() || novelCustomPrompt;
   const genreKeys = novel?.genres || (novel?.genre ? [novel.genre] : []);
   const genreText = genreKeys.map(k => GENRE_LABELS[k] || k).join(", ") || "Chưa xác định";
 
@@ -420,7 +440,7 @@ export async function runSemanticTranslate(opts: SemanticTranslateOptions) {
       onChapterStart(chapter.id, chapter.title);
 
       // Inline sequential dictionary scanner
-      if (extractDict) {
+      if (extractDict && !chapter.dictionaryScanned) {
         onPhase(chapter.id, "model2");
         store.setChapterStatus(novelId, chapter.id, "scanning");
         try {
@@ -464,6 +484,7 @@ export async function runSemanticTranslate(opts: SemanticTranslateOptions) {
         } catch (scanErr) {
           console.warn(`[Semantic Gen 3] Lỗi quét từ điển inline:`, scanErr);
         }
+        await db.chapters.update(chapter.id, { dictionaryScanned: true });
       }
 
       store.setChapterStatus(novelId, chapter.id, "translating");
@@ -565,7 +586,7 @@ export async function runSemanticTranslate(opts: SemanticTranslateOptions) {
         // ═══════════════════════════════════════════
         onPhase(chapter.id, "model1");
 
-        const chunkSize = chunkMode === "full" ? 25000 : 2000;
+        const chunkSize = chunkMode === "full" ? 8000 : 2000;
         const chunks = chunkText(fullyTaggedChineseContent, chunkSize);
         let finalAccumulatedContent = "";
         let finalParsedTitle: string | null = null;
@@ -596,18 +617,34 @@ export async function runSemanticTranslate(opts: SemanticTranslateOptions) {
           for (let attempt = 0; attempt <= MAX_PERSISTENT_ATTEMPTS * 2; attempt++) {
             if (signal?.aborted) throw new Error("Aborted");
 
+            const attemptController = new AbortController();
+            const onAbortMain = () => attemptController.abort();
+            if (signal) {
+              signal.addEventListener("abort", onAbortMain);
+            }
+
+            const timeoutId = setTimeout(() => {
+              console.warn(`[Timeout] Cuộc gọi AI vượt quá 100 giây. Chủ động hủy để thử lại...`);
+              attemptController.abort();
+            }, 100000);
+
             try {
               const res = await streamText({
                 model,
                 system: activeSystem,
                 prompt: userPrompt,
-                abortSignal: signal,
+                abortSignal: attemptController.signal,
                 maxOutputTokens: 15000,
               });
 
               let text = "";
               for await (const t of res.textStream) {
                 text += t;
+              }
+
+              clearTimeout(timeoutId);
+              if (signal) {
+                signal.removeEventListener("abort", onAbortMain);
               }
 
               if (!text.trim()) {
@@ -617,12 +654,12 @@ export async function runSemanticTranslate(opts: SemanticTranslateOptions) {
                   model,
                   system: activeSystem,
                   prompt: userPrompt,
-                  abortSignal: signal,
+                  abortSignal: attemptController.signal,
                 });
                 text = directRes.text;
               }
 
-              // Empty or truncated response safety check
+              // Empty response safety check
               if (!text.trim()) {
                 if (!hasTriedNsfwFallback) {
                   hasTriedNsfwFallback = true;
@@ -632,6 +669,42 @@ export async function runSemanticTranslate(opts: SemanticTranslateOptions) {
                   continue;
                 }
                 throw new Error("AI trả về nội dung trống");
+              }
+
+              // Parse thử kết quả để lấy nội dung dịch thực tế
+              let parsedContent = "";
+              const contentMatch = text.match(/<content>([\s\S]*?)<\/content>/i);
+              if (contentMatch) {
+                parsedContent = contentMatch[1].trim();
+              } else {
+                parsedContent = text.replace(/<\/?content>/gi, "").trim();
+              }
+              parsedContent = cleanResidualXmlTags(parsedContent);
+              parsedContent = parsedContent.replace(/^```[\s\S]*?\n/g, "").replace(/```$/g, "").trim();
+              parsedContent = parsedContent.replace(/\*\*/g, "").replace(/^###\s+/gm, "").trim();
+
+              // Độ dài bản dịch tiếng Việt kỳ vọng tối thiểu (tiếng Việt dài hơn tiếng Trung khoảng 1.3 - 1.5 lần)
+              const expectedMinLength = Math.round(chunk.length * 1.3);
+              const charDifference = expectedMinLength - parsedContent.length;
+
+              // Bản dịch bị coi là thiếu hụt nghiêm trọng nếu:
+              // 1. Thiếu hụt quá 2000 ký tự so với độ dài tiếng Việt kỳ vọng tối thiểu.
+              // 2. Hoặc đối với chunk ngắn: độ dài bản dịch thậm chí ngắn hơn cả bản gốc tiếng Trung,
+              //    hoặc ngắn hơn 75% độ dài bản gốc tiếng Trung.
+              const isTooShort = charDifference > 2000 || parsedContent.length < Math.min(chunk.length, 1000) || parsedContent.length < chunk.length * 0.75;
+
+              if (isTooShort && !hasTriedNsfwFallback) {
+                hasTriedNsfwFallback = true;
+                const actualDiff = Math.max(0, expectedMinLength - parsedContent.length);
+                console.warn(`[Auto-NSFW] Semantic bản dịch bị thiếu ký tự nghiêm trọng (hụt ~${actualDiff} ký tự). Thử lại với prompt NSFW R-18+...`);
+                const { NSFW_INSTRUCTION } = await import("@/lib/writing/prompts");
+                activeSystem = `${activeSystem}\n\n# CHỈ DẪN VĂN PHONG ĐẶC BIỆT BỔ SUNG (BẮT BUỘC TUÂN THỦ DÙ LÀ REWRITE HAY DỊCH):\n${NSFW_INSTRUCTION}`;
+                continue;
+              }
+
+              if (isTooShort) {
+                const actualDiff = Math.max(0, expectedMinLength - parsedContent.length);
+                throw new Error(`Bản dịch bị cụt/thiếu ký tự nghiêm trọng (hụt ~${actualDiff} ký tự) nghi ngờ do soft safety block`);
               }
 
               rawOutput = text;
@@ -652,21 +725,39 @@ export async function runSemanticTranslate(opts: SemanticTranslateOptions) {
 
               break;
             } catch (err: any) {
-              if (signal?.aborted || err?.name === "AbortError") throw err;
-              lastError = err;
+              clearTimeout(timeoutId);
+              if (signal) {
+                signal.removeEventListener("abort", onAbortMain);
+              }
 
-              const errMsg = err instanceof Error ? err.message : String(err);
-              const lowerErr = errMsg.toLowerCase();
-              const isSafetyBlock = lowerErr.includes('safety') || 
-                                    lowerErr.includes('content filter') || 
-                                    lowerErr.includes('blocked');
+              if (signal?.aborted) {
+                throw err;
+              }
 
-              if (isSafetyBlock && !hasTriedNsfwFallback) {
+              let processedError = err;
+              if (err?.name === "AbortError" && !signal?.aborted) {
+                processedError = new Error("Thời gian phản hồi từ AI vượt quá 100 giây (Timeout). Đang tự động thử lại...");
+              }
+
+              lastError = processedError;
+
+              const errMsg = processedError instanceof Error ? processedError.message : String(processedError);
+              console.warn(`[Semantic Gen 3] Lượt thử ${attempt} gặp lỗi:`, errMsg);
+
+              if (!hasTriedNsfwFallback) {
                 hasTriedNsfwFallback = true;
-                console.warn(`[Auto-NSFW] Semantic translation safety block. Retrying with NSFW R-18+...`);
+                console.warn(`[Auto-NSFW] Phát hiện lỗi ở lượt đầu. Tự động kích hoạt prompt NSFW R-18+ bổ sung và thử lại ngay...`);
                 const { NSFW_INSTRUCTION } = await import("@/lib/writing/prompts");
                 activeSystem = `${activeSystem}\n\n# CHỈ DẪN VĂN PHONG ĐẶC BIỆT BỔ SUNG (BẮT BUỘC TUÂN THỦ DÙ LÀ REWRITE HAY DỊCH):\n${NSFW_INSTRUCTION}`;
                 continue;
+              }
+
+              // Nếu đã thử kích hoạt NSFW rồi mà vẫn gặp lỗi/cụt chữ ở lượt tiếp theo, ném lỗi thoát ngay lập tức để tránh treo ngầm vô ích
+              if (hasTriedNsfwFallback) {
+                if (processedError?.name === "AbortError" || errMsg.includes("aborted")) {
+                  throw new Error("Cuộc gọi AI vượt quá giới hạn 100 giây ở cả lượt dịch thường và dịch NSFW. Vui lòng kiểm tra lại proxy/mạng hoặc đổi model khác.");
+                }
+                throw processedError;
               }
 
               await delay(PERSISTENT_RETRY_DELAY);

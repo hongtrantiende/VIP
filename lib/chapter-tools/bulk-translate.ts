@@ -261,7 +261,7 @@ export async function runBulkTranslate(opts: BulkTranslateOptions): Promise<void
   // Use novel's scanned custom prompt (genre-aware) > manual override > settings default
   const novel = await db.novels.get(novelId);
   const novelCustomPrompt = novel?.customTranslatePrompt?.trim() || "";
-  const novelScanPrompt = novel?.customModel2Prompt?.trim() || "";
+  const novelScanPrompt = novel?.customModel2Prompt?.trim() || novelCustomPrompt;
   const basePrompt = novelCustomPrompt
     || customPrompt?.trim()
     || resolveChapterToolPrompts(settings).translate;
@@ -283,9 +283,12 @@ export async function runBulkTranslate(opts: BulkTranslateOptions): Promise<void
   const scannedChapterIds = new Set<string>();
 
   /** Fire-and-forget: scan names for a chapter and update the shared dict */
-  function lookaheadScanNames(chapterId: string) {
+  async function lookaheadScanNames(chapterId: string) {
     if (scannedChapterIds.has(chapterId)) return; // already scanned
     scannedChapterIds.add(chapterId);
+
+    const dbChap = await db.chapters.get(chapterId);
+    if (dbChap?.dictionaryScanned) return;
 
     const scenes = scenesByChapter.get(chapterId) ?? [];
     if (scenes.length === 0) return;
@@ -330,6 +333,7 @@ export async function runBulkTranslate(opts: BulkTranslateOptions): Promise<void
         } catch (scanPronounErr) {
           console.warn("[Lookahead] Lỗi quét xưng hô ngầm:", scanPronounErr);
         }
+        await db.chapters.update(chapterId, { dictionaryScanned: true });
       } catch {
         // Non-critical — translation will still work, just without pre-scanned names
       }
@@ -365,7 +369,7 @@ export async function runBulkTranslate(opts: BulkTranslateOptions): Promise<void
       const originalTitle = await resolveChapterOriginalTitle(chapter);
 
       // Check if we should skip already translated chapters
-      if (skipTranslated && scenes.some(isSceneTranslated)) {
+      if (skipTranslated && scenes.length > 0 && scenes.every(isSceneTranslated)) {
         console.log(`[BulkTranslate] Bỏ qua chương đã dịch: ${chapter.title}`);
         onChapterComplete({
           chapterId: chapter.id,
@@ -390,7 +394,8 @@ export async function runBulkTranslate(opts: BulkTranslateOptions): Promise<void
       // ⚡ Pre-scan: detect NEW character names not yet in dictionary
       // Auto-add them before translating so this chapter + all future chapters use them
       // If this chapter was already scanned by lookahead, skip the scan
-      if (!scannedChapterIds.has(chapter.id)) {
+      const dbChapter = await db.chapters.get(chapter.id);
+      if (!scannedChapterIds.has(chapter.id) && !dbChapter?.dictionaryScanned) {
         scannedChapterIds.add(chapter.id);
         try {
           const newNames = await scanNewNames({
@@ -425,17 +430,21 @@ export async function runBulkTranslate(opts: BulkTranslateOptions): Promise<void
           } catch (scanPronounErr) {
             console.warn(`[NameScan] Chương "${chapter.title}": Lỗi quét xưng hô:`, scanPronounErr);
           }
+          await db.chapters.update(chapter.id, { dictionaryScanned: true });
         } catch {
           // Non-critical — continue translating even if name scan fails
         }
       }
 
-      // 🔭 Lookahead: if 2+ models, scan names for the NEXT chapter in background
+      // 🔭 Lookahead: if 2+ models, scan names for the NEXT 3 chapters in background
       // while this chapter's translation runs on the primary model
       if (allModels.length >= 2) {
-        const nextChapter = chapters[chapters.indexOf(chapter) + 1];
-        if (nextChapter) {
-          lookaheadScanNames(nextChapter.id);
+        const currentIndex = chapters.indexOf(chapter);
+        for (let offset = 1; offset <= 3; offset++) {
+          const nextChapter = chapters[currentIndex + offset];
+          if (nextChapter) {
+            lookaheadScanNames(nextChapter.id);
+          }
         }
       }
 

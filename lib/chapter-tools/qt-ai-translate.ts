@@ -645,6 +645,12 @@ ${cleaned}`;
         continue;
       }
 
+      if (chapter.dictionaryScanned) {
+        scannedChapterIds.add(chapId);
+        scanIdx++;
+        continue;
+      }
+
       // Find scenes
       const scenes = await db.scenes.where("chapterId").equals(chapId).toArray();
 
@@ -710,6 +716,7 @@ ${cleaned}`;
         console.warn(`[3-Model Concurrent Pipeline QtAi] Lỗi quét từ điển tại AI 2:`, scanErr);
       }
 
+      await db.chapters.update(chapId, { dictionaryScanned: true });
       store.setChapterStatus(novelId, chapId, "scanned");
       scannedChapterIds.add(chapId);
       scanIdx++;
@@ -907,7 +914,7 @@ ${cleaned}`;
             // Fetch the latest dictionary (to include words extracted by Lookahead)
             nameDict = await getMergedNameDict(novelId);
 
-            const chunkSize = opts.chunkMode === "full" ? 20000 : 1600;
+            const chunkSize = opts.chunkMode === "full" ? 8000 : 1600;
             const chunks = chunkText(cleanedContent, chunkSize);
             let finalAccumulatedContent = "";
             let finalParsedTitle: string | null = null;
@@ -986,6 +993,17 @@ ${cleaned}`;
                   throw err;
                 }
 
+                const attemptController = new AbortController();
+                const onAbortMain = () => attemptController.abort();
+                if (signal) {
+                  signal.addEventListener("abort", onAbortMain);
+                }
+
+                const timeoutId = setTimeout(() => {
+                  console.warn(`[Timeout] Cuộc gọi AI Post-Edit Draft vượt quá 100 giây. Chủ động hủy để thử lại...`);
+                  attemptController.abort();
+                }, 100000);
+
                 try {
                   if (attempt > 0) {
                     onChapterError({
@@ -999,13 +1017,18 @@ ${cleaned}`;
                     model: workerModel,
                     system: activeSystemPrompt,
                     prompt: userPrompt,
-                    abortSignal: signal,
+                    abortSignal: attemptController.signal,
                     maxOutputTokens: 10000,
                   });
 
                   let fullText = "";
                   for await (const chunkTxt of result.textStream) {
                     fullText += chunkTxt;
+                  }
+
+                  clearTimeout(timeoutId);
+                  if (signal) {
+                    signal.removeEventListener("abort", onAbortMain);
                   }
 
                   // Non-streaming fallback for proxy environments with buffering issues
@@ -1016,7 +1039,7 @@ ${cleaned}`;
                       model: workerModel,
                       system: activeSystemPrompt,
                       prompt: userPrompt,
-                      abortSignal: signal,
+                      abortSignal: attemptController.signal,
                     });
                     fullText = directRes.text;
                   }
@@ -1065,11 +1088,25 @@ ${cleaned}`;
                   lastError = null;
                   break;
                 } catch (err: any) {
-                  if (signal?.aborted || err?.name === "AbortError") throw err;
+                  clearTimeout(timeoutId);
+                  if (signal) {
+                    signal.removeEventListener("abort", onAbortMain);
+                  }
 
-                  lastError = err;
+                  if (signal?.aborted) {
+                    const abortErr = new Error("Aborted");
+                    abortErr.name = "AbortError";
+                    throw abortErr;
+                  }
 
-                  const errMsg = err instanceof Error ? err.message : String(err);
+                  let processedError = err;
+                  if (err?.name === "AbortError" && !signal?.aborted) {
+                    processedError = new Error("Thời gian phản hồi từ AI vượt quá 100 giây (Timeout). Đang tự động thử lại...");
+                  }
+
+                  lastError = processedError;
+
+                  const errMsg = processedError instanceof Error ? processedError.message : String(processedError);
                   const lowerErr = errMsg.toLowerCase();
                   const isSafetyBlock = lowerErr.includes('safety') || 
                                         lowerErr.includes('content filter') || 
@@ -1080,15 +1117,18 @@ ${cleaned}`;
 
                   if (isSafetyBlock && !hasTriedNsfwFallback) {
                     hasTriedNsfwFallback = true;
-                    console.warn(`[Auto-NSFW] Direct safety block triggered. Retrying with NSFW R-18+ prompt...`, err);
+                    console.warn(`[Auto-NSFW] Direct safety block triggered. Retrying with NSFW R-18+ prompt...`, processedError);
                     const { NSFW_INSTRUCTION } = await import("@/lib/writing/prompts");
                     activeSystemPrompt = `${activeSystemPrompt}\n\n# CHỈ DẪN VĂN PHONG ĐẶC BIỆT BỔ SUNG (BẮT BUỘC TUÂN THỦ DÙ LÀ REWRITE HAY DỊCH):\n${NSFW_INSTRUCTION}`;
                     continue;
                   }
 
-                  const classified = classifyError(err);
+                  const classified = classifyError(processedError);
 
                   if (attempt >= MAX_PERSISTENT_ATTEMPTS * 2) {
+                    if (processedError?.name === "AbortError" || errMsg.includes("aborted")) {
+                      throw new Error("Cuộc gọi AI Draft vượt quá giới hạn 100 giây ở cả lượt thường và dịch NSFW. Vui lòng kiểm tra proxy/mạng.");
+                    }
                     throw new Error(`Chunk ${chunkIdx + 1} hết Token/lỗi AI: ${classified.message}`);
                   }
 
@@ -1165,24 +1205,42 @@ ${glossarySection}`;
 
                   for (let editAttempt = 0; editAttempt < 6; editAttempt++) {
                     if (signal?.aborted) break;
+
+                    const attemptController = new AbortController();
+                    const onAbortMain = () => attemptController.abort();
+                    if (signal) {
+                      signal.addEventListener("abort", onAbortMain);
+                    }
+
+                    const timeoutId = setTimeout(() => {
+                      console.warn(`[Timeout] Cuộc gọi AI Post-Edit Editor vượt quá 100 giây. Chủ động hủy để thử lại...`);
+                      attemptController.abort();
+                    }, 100000);
+
                     try {
                       const res = await streamText({
                         model: opts.editorModel,
                         system: activeEditSystemPrompt,
                         prompt: editUserPrompt,
-                        abortSignal: signal,
+                        abortSignal: attemptController.signal,
                       });
                       let fullText = "";
                       for await (const chunkTxt of res.textStream) {
                         fullText += chunkTxt;
                       }
+
+                      clearTimeout(timeoutId);
+                      if (signal) {
+                        signal.removeEventListener("abort", onAbortMain);
+                      }
+
                       if (!fullText.trim()) {
                         const { generateText } = await import("ai");
                         const directRes = await generateText({
                           model: opts.editorModel,
                           system: activeEditSystemPrompt,
                           prompt: editUserPrompt,
-                          abortSignal: signal,
+                          abortSignal: attemptController.signal,
                         });
                         fullText = directRes.text;
                       }
@@ -1202,9 +1260,23 @@ ${glossarySection}`;
                       pass2ResultText = fullText;
                       if (pass2ResultText.trim()) break;
                     } catch (err: any) {
-                      editError = err;
+                      clearTimeout(timeoutId);
+                      if (signal) {
+                        signal.removeEventListener("abort", onAbortMain);
+                      }
+
+                      if (signal?.aborted) {
+                        break;
+                      }
+
+                      let processedError = err;
+                      if (err?.name === "AbortError" && !signal?.aborted) {
+                        processedError = new Error("Thời gian phản hồi biên tập từ AI vượt quá 100 giây (Timeout). Đang tự động thử lại...");
+                      }
+
+                      editError = processedError;
                       
-                      const errMsg = err instanceof Error ? err.message : String(err);
+                      const errMsg = processedError instanceof Error ? processedError.message : String(processedError);
                       const lowerErr = errMsg.toLowerCase();
                       const isSafetyBlock = lowerErr.includes('safety') || 
                                             lowerErr.includes('content filter') || 
@@ -1215,10 +1287,16 @@ ${glossarySection}`;
 
                       if (isSafetyBlock && !hasTriedNsfwEditFallback) {
                         hasTriedNsfwEditFallback = true;
-                        console.warn(`[Auto-NSFW] Editor safety block triggered. Retrying with NSFW R-18+ prompt...`, err);
+                        console.warn(`[Auto-NSFW] Editor safety block triggered. Retrying with NSFW R-18+ prompt...`, processedError);
                         const { NSFW_INSTRUCTION } = await import("@/lib/writing/prompts");
                         activeEditSystemPrompt = `${activeEditSystemPrompt}\n\n# CHỈ DẪN VĂN PHONG ĐẶC BIỆT BỔ SUNG (BẮT BUỘC TUÂN THỦ DÙ LÀ REWRITE HAY DỊCH):\n${NSFW_INSTRUCTION}`;
                         continue;
+                      }
+
+                      if (editAttempt >= 5) {
+                        if (processedError?.name === "AbortError" || errMsg.includes("aborted")) {
+                          throw new Error("Cuộc gọi AI Editor vượt quá giới hạn 100 giây ở cả lượt thường và biên tập NSFW. Vui lòng kiểm tra proxy/mạng.");
+                        }
                       }
 
                       await delay(1000);

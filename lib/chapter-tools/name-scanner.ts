@@ -133,14 +133,30 @@ NỘI DUNG QUY TẮC JSON BỔ SUNG TỪ NGƯỜI DÙNG:
 ${customScanPrompt.trim()}`;
   }
 
+  const attemptController = new AbortController();
+  const onAbortMain = () => attemptController.abort();
+  if (signal) {
+    signal.addEventListener("abort", onAbortMain);
+  }
+
+  const timeoutId = setTimeout(() => {
+    console.warn(`[NameScan] Quét từ mới vượt quá 30 giây. Chủ động hủy để tránh treo...`);
+    attemptController.abort();
+  }, 30000);
+
   try {
     const result = await generateStructured({
       model,
       schema: nameSchema,
       system: systemPrompt,
       prompt: sourceText.slice(0, 2000), // Only scan first 2000 chars for speed
-      abortSignal: signal,
+      abortSignal: attemptController.signal,
     });
+
+    clearTimeout(timeoutId);
+    if (signal) {
+      signal.removeEventListener("abort", onAbortMain);
+    }
 
     try {
       const { useAiTranslateLogStore } = await import("@/lib/ai/translate-logger");
@@ -164,6 +180,10 @@ ${customScanPrompt.trim()}`;
 
     return newNames;
   } catch (err) {
+    clearTimeout(timeoutId);
+    if (signal) {
+      signal.removeEventListener("abort", onAbortMain);
+    }
     // Non-critical: if name scan fails, just continue without it
     console.warn("[NameScan] Failed to scan names, continuing without:", err);
     return [];
@@ -303,6 +323,17 @@ export async function scanPronounRelations(opts: {
 
   if (sourceText.length < 100) return [];
 
+  const attemptController = new AbortController();
+  const onAbortMain = () => attemptController.abort();
+  if (signal) {
+    signal.addEventListener("abort", onAbortMain);
+  }
+
+  const timeoutId = setTimeout(() => {
+    console.warn(`[PronounScan] Quét xưng hô vượt quá 30 giây. Chủ động hủy để tránh treo...`);
+    attemptController.abort();
+  }, 30000);
+
   try {
     const relevantNames = Array.from(existingDict.entries())
       .filter(([cn]) => sourceText.includes(cn));
@@ -326,7 +357,7 @@ NỘI DUNG QUY TẮC JSON BỔ SUNG TỪ NGƯỜI DÙNG:
 ${customScanPrompt.trim()}`;
     }
 
-    const prompt = `[BẢNG TÊN DỊCH CHUẨN — BẮT BUỘC DÙNG ĐÚNG TÊN NÀY, KHÔNG TỰ Ý DỊCH LẠI]
+    const prompt = `[BẢNG TÊN DỊCH CHUẨN — BẮT BUỘC DÙ NG ĐÚNG TÊN NÀY, KHÔNG TỰ Ý DỊCH LẠI]
 ${dictContext}
 
 [VĂN BẢN TIẾNG TRUNG]
@@ -337,8 +368,13 @@ ${sourceText.slice(0, 3000)}`;
       schema: pronounSchema,
       system: systemPrompt,
       prompt,
-      abortSignal: signal,
+      abortSignal: attemptController.signal,
     });
+
+    clearTimeout(timeoutId);
+    if (signal) {
+      signal.removeEventListener("abort", onAbortMain);
+    }
 
     if (novelId) {
       try {
@@ -357,6 +393,10 @@ ${sourceText.slice(0, 3000)}`;
 
     return result.object.relations || [];
   } catch (err) {
+    clearTimeout(timeoutId);
+    if (signal) {
+      signal.removeEventListener("abort", onAbortMain);
+    }
     console.warn("[PronounScan] Failed to scan pronouns, continuing without:", err);
     return [];
   }

@@ -259,7 +259,7 @@ export async function runComprehensiveTranslate(opts: ComprehensiveTranslateOpti
     const store = useBulkTranslateStore.getState();
     const novel = await db.novels.get(novelId);
     const novelCustomPrompt = novel?.customTranslatePrompt?.trim() || "";
-    const novelScanPrompt = novel?.customModel2Prompt?.trim() || "";
+    const novelScanPrompt = novel?.customModel2Prompt?.trim() || novelCustomPrompt;
     const genreKeys = novel?.genres || (novel?.genre ? [novel.genre] : []);
     const genreText = genreKeys.map(k => GENRE_LABELS[k] || k).join(", ") || "Chưa xác định";
 
@@ -323,8 +323,8 @@ export async function runComprehensiveTranslate(opts: ComprehensiveTranslateOpti
                 continue;
             }
 
-            // Block if AI 2 gets > 2 chapters ahead of AI 1
-            while (scanIdx >= currentTranslateIdx + 2) {
+            // Block if AI 2 gets > 3 chapters ahead of AI 1
+            while (scanIdx >= currentTranslateIdx + 3) {
                 await new Promise((r) => setTimeout(r, 100));
                 if (signal?.aborted) break;
             }
@@ -338,6 +338,12 @@ export async function runComprehensiveTranslate(opts: ComprehensiveTranslateOpti
 
             const chapter = await db.chapters.get(chapId);
             if (!chapter) {
+                scannedChapterIds.add(chapId);
+                scanIdx++;
+                continue;
+            }
+
+            if (chapter.dictionaryScanned) {
                 scannedChapterIds.add(chapId);
                 scanIdx++;
                 continue;
@@ -412,6 +418,7 @@ export async function runComprehensiveTranslate(opts: ComprehensiveTranslateOpti
                 console.warn(`[3-Model Concurrent Pipeline] Lỗi quét từ điển tại AI 2:`, scanErr);
             }
 
+            await db.chapters.update(chapId, { dictionaryScanned: true });
             store.setChapterStatus(novelId, chapId, "scanned");
             scannedChapterIds.add(chapId);
             scanIdx++;
@@ -597,7 +604,7 @@ export async function runComprehensiveTranslate(opts: ComprehensiveTranslateOpti
                 dictTranslatedTitle = titleRes.plainText;
 
                 // Cut into chunks for AI
-                const chunkSize = opts.chunkMode === "full" ? 20000 : 1600;
+                const chunkSize = opts.chunkMode === "full" ? 8000 : 1600;
                 const chunks = chunkText(cleanedContent, chunkSize);
                 let finalAccumulatedContent = "";
                 let finalParsedTitle: string | null = null;
@@ -655,18 +662,35 @@ export async function runComprehensiveTranslate(opts: ComprehensiveTranslateOpti
 
                     for (let attempt = 0; attempt <= MAX_PERSISTENT_ATTEMPTS * 2; attempt++) {
                         if (signal?.aborted) throw new Error("Aborted");
+
+                        const attemptController = new AbortController();
+                        const onAbortMain = () => attemptController.abort();
+                        if (signal) {
+                            signal.addEventListener("abort", onAbortMain);
+                        }
+
+                        const timeoutId = setTimeout(() => {
+                            console.warn(`[Timeout] Cuộc gọi Comprehensive Draft vượt quá 100 giây. Chủ động hủy để thử lại...`);
+                            attemptController.abort();
+                        }, 100000);
+
                         try {
                             const res = await streamText({
                                 model,
                                 system: activeDraftSystem,
                                 prompt: draftUser,
-                                abortSignal: signal,
+                                abortSignal: attemptController.signal,
                                 maxOutputTokens: 10000,
                             });
 
                             let text = "";
                             for await (const t of res.textStream) {
                                 text += t;
+                            }
+
+                            clearTimeout(timeoutId);
+                            if (signal) {
+                                signal.removeEventListener("abort", onAbortMain);
                             }
 
                             // Streaming fallback
@@ -677,7 +701,7 @@ export async function runComprehensiveTranslate(opts: ComprehensiveTranslateOpti
                                     model,
                                     system: activeDraftSystem,
                                     prompt: draftUser,
-                                    abortSignal: signal,
+                                    abortSignal: attemptController.signal,
                                 });
                                 text = directRes.text;
                             }
@@ -694,28 +718,65 @@ export async function runComprehensiveTranslate(opts: ComprehensiveTranslateOpti
                                 throw new Error("AI trả về nội dung trống nghi ngờ do bộ lọc an toàn");
                             }
 
+                            // Parse thử kết quả để kiểm tra hụt chữ
+                            const parsedDraft = parseIntermediateResult(text);
+                            const parsedContent = parsedDraft.content || "";
+
+                            // Độ dài bản dịch tiếng Việt kỳ vọng tối thiểu (tiếng Việt dài hơn tiếng Trung khoảng 1.3 - 1.5 lần)
+                            const expectedMinLength = Math.round(chunk.length * 1.3);
+                            const charDifference = expectedMinLength - parsedContent.length;
+
+                            // Bản dịch bị coi là thiếu hụt nghiêm trọng nếu:
+                            // 1. Thiếu hụt quá 2000 ký tự so với độ dài tiếng Việt kỳ vọng tối thiểu.
+                            // 2. Hoặc đối với chunk ngắn: độ dài bản dịch thậm chí ngắn hơn cả bản gốc tiếng Trung,
+                            //    hoặc ngắn hơn 75% độ dài bản gốc tiếng Trung.
+                            const isTooShort = charDifference > 2000 || parsedContent.length < Math.min(chunk.length, 1000) || parsedContent.length < chunk.length * 0.75;
+
+                            if (isTooShort && !hasTriedNsfwDraftFallback) {
+                                hasTriedNsfwDraftFallback = true;
+                                const actualDiff = Math.max(0, expectedMinLength - parsedContent.length);
+                                console.warn(`[Auto-NSFW] Comprehensive Draft bản dịch bị thiếu ký tự nghiêm trọng (hụt ~${actualDiff} ký tự). Thử lại với prompt NSFW R-18+...`);
+                                const { NSFW_INSTRUCTION } = await import("@/lib/writing/prompts");
+                                activeDraftSystem = `${activeDraftSystem}\n\n# CHỈ DẪN VĂN PHONG ĐẶC BIỆT BỔ SUNG (BẮT BUỘC TUÂN THỦ DÙ LÀ REWRITE HAY DỊCH):\n${NSFW_INSTRUCTION}`;
+                                continue;
+                            }
+
+                            if (isTooShort) {
+                                const actualDiff = Math.max(0, expectedMinLength - parsedContent.length);
+                                throw new Error(`Bản dịch nháp bị cụt/thiếu ký tự nghiêm trọng (hụt ~${actualDiff} ký tự) nghi ngờ do soft safety block`);
+                            }
+
                             rawDraftOutput = text;
                             draftSuccess = true;
                             break;
                         } catch (err: any) {
-                            if (signal?.aborted || err?.name === "AbortError") throw err;
-                            lastDraftError = err;
-                            
-                            const errMsg = err instanceof Error ? err.message : String(err);
-                            const lowerErr = errMsg.toLowerCase();
-                            const isSafetyBlock = lowerErr.includes('safety') || 
-                                                  lowerErr.includes('content filter') || 
-                                                  lowerErr.includes('blocked') || 
-                                                  lowerErr.includes('finish_reason') ||
-                                                  lowerErr.includes('finishreason') ||
-                                                  lowerErr.includes('candidate');
+                            clearTimeout(timeoutId);
+                            if (signal) {
+                                signal.removeEventListener("abort", onAbortMain);
+                            }
 
-                            if (isSafetyBlock && !hasTriedNsfwDraftFallback) {
+                            if (signal?.aborted) {
+                                throw err;
+                            }
+
+                            lastDraftError = err;
+                            const errMsg = err instanceof Error ? err.message : String(err);
+                            console.warn(`[Comp Draft] Lượt thử ${attempt} gặp lỗi:`, errMsg);
+
+                            if (!hasTriedNsfwDraftFallback) {
                                 hasTriedNsfwDraftFallback = true;
-                                console.warn(`[Auto-NSFW] Draft safety block triggered. Retrying with NSFW R-18+ prompt...`, err);
+                                console.warn(`[Auto-NSFW] Lỗi lượt đầu ở Comp Draft. Tự động kích hoạt prompt NSFW R-18+ và thử lại...`);
                                 const { NSFW_INSTRUCTION } = await import("@/lib/writing/prompts");
                                 activeDraftSystem = `${activeDraftSystem}\n\n# CHỈ DẪN VĂN PHONG ĐẶC BIỆT BỔ SUNG (BẮT BUỘC TUÂN THỦ DÙ LÀ REWRITE HAY DỊCH):\n${NSFW_INSTRUCTION}`;
                                 continue;
+                            }
+
+                            // Nếu đã thử kích hoạt NSFW rồi mà vẫn gặp lỗi/cụt chữ ở lượt tiếp theo, ném lỗi thoát ngay lập tức để tránh treo ngầm vô ích
+                            if (hasTriedNsfwDraftFallback) {
+                                if (err?.name === "AbortError" || String(err).includes("aborted")) {
+                                    throw new Error("Cuộc gọi AI Draft vượt quá giới hạn 100 giây ở cả lượt thường và dịch NSFW. Vui lòng kiểm tra proxy/mạng.");
+                                }
+                                throw err;
                             }
 
                             await new Promise((r) => setTimeout(r, PERSISTENT_RETRY_DELAY));
@@ -777,17 +838,34 @@ export async function runComprehensiveTranslate(opts: ComprehensiveTranslateOpti
 
                         for (let attempt = 0; attempt <= MAX_PERSISTENT_ATTEMPTS * 2; attempt++) {
                             if (signal?.aborted) throw new Error("Aborted");
+
+                            const attemptController = new AbortController();
+                            const onAbortMain = () => attemptController.abort();
+                            if (signal) {
+                                signal.addEventListener("abort", onAbortMain);
+                            }
+
+                            const timeoutId = setTimeout(() => {
+                                console.warn(`[Timeout] Cuộc gọi Comprehensive Editor vượt quá 100 giây. Chủ động hủy để thử lại...`);
+                                attemptController.abort();
+                            }, 100000);
+
                             try {
                                 const res = await streamText({
                                     model,
                                     system: activeEditSystem,
                                     prompt: editUser,
-                                    abortSignal: signal,
+                                    abortSignal: attemptController.signal,
                                     maxOutputTokens: 10000,
                                 });
                                 let text = "";
                                 for await (const t of res.textStream) {
                                     text += t;
+                                }
+
+                                clearTimeout(timeoutId);
+                                if (signal) {
+                                    signal.removeEventListener("abort", onAbortMain);
                                 }
 
                                 // Streaming fallback
@@ -798,7 +876,7 @@ export async function runComprehensiveTranslate(opts: ComprehensiveTranslateOpti
                                         model,
                                         system: activeEditSystem,
                                         prompt: editUser,
-                                        abortSignal: signal,
+                                        abortSignal: attemptController.signal,
                                     });
                                     text = directRes.text;
                                 }
@@ -815,28 +893,56 @@ export async function runComprehensiveTranslate(opts: ComprehensiveTranslateOpti
                                     throw new Error("AI biên tập trả về nội dung trống nghi ngờ do bộ lọc an toàn");
                                 }
 
+                                // Parse thử kết quả biên tập để kiểm tra hụt chữ so với bản nháp
+                                const parsedEdit = parseIntermediateResult(text);
+                                const editContent = parsedEdit.content || "";
+
+                                // Bản dịch biên tập bị coi là hụt nghiêm trọng nếu ngắn hơn 75% độ dài bản dịch nháp
+                                const isEditTooShort = editContent.length < finalChunkContent.length * 0.75;
+
+                                if (isEditTooShort && !hasTriedNsfwEditFallback) {
+                                    hasTriedNsfwEditFallback = true;
+                                    console.warn(`[Auto-NSFW] Comprehensive Editor bản dịch bị hụt nghiêm trọng so với bản nháp (nháp: ${finalChunkContent.length}, biên tập: ${editContent.length}). Thử lại với prompt NSFW R-18+...`);
+                                    const { NSFW_INSTRUCTION } = await import("@/lib/writing/prompts");
+                                    activeEditSystem = `${activeEditSystem}\n\n# CHỈ DẪN VĂN PHONG ĐẶC BIỆT BỔ SUNG (BẮT BUỘC TUÂN THỦ DÙ LÀ REWRITE HAY DỊCH):\n${NSFW_INSTRUCTION}`;
+                                    continue;
+                                }
+
+                                if (isEditTooShort) {
+                                    throw new Error(`Bản dịch biên tập bị cụt/thiếu ký tự nghiêm trọng so với bản dịch nháp nghi ngờ do soft safety block`);
+                                }
+
                                 rawEditOutput = text;
                                 editSuccess = true;
                                 break;
                             } catch (err: any) {
-                                if (signal?.aborted || err?.name === "AbortError") throw err;
-                                lastEditError = err;
-                                
-                                const errMsg = err instanceof Error ? err.message : String(err);
-                                const lowerErr = errMsg.toLowerCase();
-                                const isSafetyBlock = lowerErr.includes('safety') || 
-                                                      lowerErr.includes('content filter') || 
-                                                      lowerErr.includes('blocked') || 
-                                                      lowerErr.includes('finish_reason') ||
-                                                      lowerErr.includes('finishreason') ||
-                                                      lowerErr.includes('candidate');
+                                clearTimeout(timeoutId);
+                                if (signal) {
+                                    signal.removeEventListener("abort", onAbortMain);
+                                }
 
-                                if (isSafetyBlock && !hasTriedNsfwEditFallback) {
+                                if (signal?.aborted) {
+                                    throw err;
+                                }
+
+                                lastEditError = err;
+                                const errMsg = err instanceof Error ? err.message : String(err);
+                                console.warn(`[Comp Editor] Lượt thử ${attempt} gặp lỗi:`, errMsg);
+
+                                if (!hasTriedNsfwEditFallback) {
                                     hasTriedNsfwEditFallback = true;
-                                    console.warn(`[Auto-NSFW] Editor safety block triggered. Retrying with NSFW R-18+ prompt...`, err);
+                                    console.warn(`[Auto-NSFW] Lỗi lượt đầu ở Comp Editor. Tự động kích hoạt prompt NSFW R-18+ và thử lại...`);
                                     const { NSFW_INSTRUCTION } = await import("@/lib/writing/prompts");
                                     activeEditSystem = `${activeEditSystem}\n\n# CHỈ DẪN VĂN PHONG ĐẶC BIỆT BỔ SUNG (BẮT BUỘC TUÂN THỦ DÙ LÀ REWRITE HAY DỊCH):\n${NSFW_INSTRUCTION}`;
                                     continue;
+                                }
+
+                                // Nếu đã thử kích hoạt NSFW rồi mà vẫn gặp lỗi/cụt chữ ở lượt tiếp theo, ném lỗi thoát ngay lập tức để tránh treo ngầm vô ích
+                                if (hasTriedNsfwEditFallback) {
+                                    if (err?.name === "AbortError" || String(err).includes("aborted")) {
+                                        throw new Error("Cuộc gọi AI Editor vượt quá giới hạn 100 giây ở cả lượt thường và biên tập NSFW. Vui lòng kiểm tra proxy/mạng.");
+                                    }
+                                    throw err;
                                 }
 
                                 await new Promise((r) => setTimeout(r, PERSISTENT_RETRY_DELAY));

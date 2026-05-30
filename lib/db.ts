@@ -94,6 +94,7 @@ export interface Chapter {
   characterIds?: string[];
   analyzedAt?: Date;
   isAiWritten?: boolean; // Chương được tự sáng tác/viết bằng AI
+  dictionaryScanned?: boolean; // Đã từng quét từ điển (Model 2) hay chưa
   createdAt: Date;
   updatedAt: Date;
 }
