@@ -359,6 +359,7 @@ export async function runHybridTranslate(opts: HybridTranslateOptions): Promise<
   // Fetch novel's custom translate prompt (from genre scan)
   const novel = await db.novels.get(novelId);
   const novelCustomPrompt = novel?.customStvPrompt;
+  const novelScanPrompt = novel?.customModel2Prompt?.trim() || "";
 
   let isFirst = true;
 
@@ -524,7 +525,7 @@ ${cleaned}`;
           sourceText: cleanedContent,
           novelId,
           existingDict: existingDictMap,
-          customScanPrompt: novelCustomPrompt,
+          customScanPrompt: novelScanPrompt,
           signal,
         });
 
@@ -541,7 +542,7 @@ ${cleaned}`;
             model: dictModel || currentChapterModel,
             sourceText: cleanedContent,
             existingDict: existingDictMap,
-            customScanPrompt: novelCustomPrompt,
+            customScanPrompt: novelScanPrompt,
             signal,
           });
           if (newlyScannedPronouns.length > 0) {

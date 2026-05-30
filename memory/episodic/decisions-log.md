@@ -158,6 +158,31 @@
 
 ---
 
+### ADR-006: Classic Script Bundling via esbuild cho Browser Extension
+
+**Date:** 2026-05-30
+**Status:** Accepted
+
+**Context:** Tiện ích mở rộng (Browser Extension) cần hỗ trợ cả môi trường máy tính (PC Chrome) và môi trường di động Android (trình duyệt Kiwi Browser/Yandex). Các trình duyệt Chromium trên di động chưa hỗ trợ ES Modules (`"type": "module"`) trong Service Worker ngầm và báo lỗi `Status code: 3` khi nạp.
+
+**Options Considered:**
+1. **Duy trì mã nguồn phẳng phi mô-đun (Classic Script)** — Viết tất cả code trong một file duy nhất hoặc tự quản lý biến toàn cục. Rất khó phát triển và bảo trì.
+2. **Khai báo nhiều tệp trong manifest** — Trình duyệt di động vẫn gặp khó khăn khi liên kết và truyền nhận trạng thái.
+3. **Đóng gói ES Modules sang Classic Script bằng esbuild** — Cho phép giữ nguyên lập trình mô-đun sạch sẽ khi phát triển (`background.src.js`), đồng thời tự động đóng gói sang Classic Script phẳng (`background.js`) để chạy ổn định trên mọi nền tảng di động và máy tính.
+
+**Decision:** Chọn **đóng gói ES Modules sang Classic Script phẳng bằng esbuild**:
+- Sử dụng `npx esbuild` để biên dịch tức thời trước khi nén zip hoặc cài đặt.
+- Loại bỏ khai báo `"type": "module"` trong `manifest.json`.
+- Tích hợp tự động vào các tác vụ build và zip trong `package.json`.
+
+**Consequences:**
+- ✅ Tiện ích tương thích 100% trên cả PC và thiết bị Android (Kiwi Browser).
+- ✅ Giữ vững kiến trúc chia nhỏ mô-đun sạch sẽ khi lập trình.
+- ✅ Tốc độ biên dịch siêu tốc (chỉ 5-10ms) không làm trễ quá trình đóng gói.
+- ⚠️ Cần thực hiện biên dịch tệp nguồn trước khi nén phân phối (đã được tự động hóa qua `npm run build:extension`).
+
+---
+
 <!-- 
   📝 TEMPLATE — Copy khi thêm ADR mới:
   

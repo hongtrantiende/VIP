@@ -88,6 +88,7 @@ export interface ScanFixOptions {
     novelCustomPrompt?: string;
     signal?: AbortSignal;
     delayMs?: number;
+    chunkMode?: "chunk" | "full";
     onPhase?: (chapterId: string, phase: string) => void;
     onChapterStart?: (chapterId: string, title: string) => void;
     onChapterComplete?: (res: ScanFixResult) => void;
@@ -101,6 +102,7 @@ export async function runScanFix(opts: ScanFixOptions) {
         chapterIds,
         model,
         novelCustomPrompt,
+        chunkMode,
         signal,
         delayMs = 0,
         onPhase = () => { },
@@ -177,7 +179,7 @@ export async function runScanFix(opts: ScanFixOptions) {
                         relevantNames.map(n => `${n.chinese} → ${n.vietnamese}`).join("\n");
                 }
 
-                const chunkSize = opts.chunkMode === "full" ? 20000 : 2000;
+                const chunkSize = chunkMode === "full" ? 20000 : 2000;
                 const chunks = chunkText(currentContent, chunkSize);
                 let fixedContent = "";
 

@@ -261,6 +261,7 @@ export async function runBulkTranslate(opts: BulkTranslateOptions): Promise<void
   // Use novel's scanned custom prompt (genre-aware) > manual override > settings default
   const novel = await db.novels.get(novelId);
   const novelCustomPrompt = novel?.customTranslatePrompt?.trim() || "";
+  const novelScanPrompt = novel?.customModel2Prompt?.trim() || "";
   const basePrompt = novelCustomPrompt
     || customPrompt?.trim()
     || resolveChapterToolPrompts(settings).translate;
@@ -302,7 +303,7 @@ export async function runBulkTranslate(opts: BulkTranslateOptions): Promise<void
           sourceText: joinedContent,
           novelId,
           existingDict: nameDictMap,
-          customScanPrompt: novelCustomPrompt,
+          customScanPrompt: novelScanPrompt,
           signal,
         });
         if (newNames.length > 0) {
@@ -320,7 +321,7 @@ export async function runBulkTranslate(opts: BulkTranslateOptions): Promise<void
             model: nameScanModel,
             sourceText: joinedContent,
             existingDict: nameDictMap,
-            customScanPrompt: novelCustomPrompt,
+            customScanPrompt: novelScanPrompt,
             signal,
           });
           if (newlyScannedPronouns.length > 0) {
@@ -397,7 +398,7 @@ export async function runBulkTranslate(opts: BulkTranslateOptions): Promise<void
             sourceText: joinedContent,
             novelId,
             existingDict: nameDictMap,
-            customScanPrompt: novelCustomPrompt,
+            customScanPrompt: novelScanPrompt,
             signal,
           });
           if (newNames.length > 0) {
@@ -415,7 +416,7 @@ export async function runBulkTranslate(opts: BulkTranslateOptions): Promise<void
               model: nameScanModel,
               sourceText: joinedContent,
               existingDict: nameDictMap,
-              customScanPrompt: novelCustomPrompt,
+              customScanPrompt: novelScanPrompt,
               signal,
             });
             if (newlyScannedPronouns.length > 0) {

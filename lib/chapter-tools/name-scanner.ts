@@ -42,7 +42,10 @@ Quy tắc:
 - CHỈ trích xuất các danh từ riêng, thuật ngữ đặc trưng, vật phẩm, võ công kỹ năng. KHÔNG trích xuất từ vựng thông thường hay đại từ nhân xưng thông dụng.
 - Trường "chinese" BẮT BUỘC phải chứa chính xác chữ Hán gốc (chữ Trung Quốc) xuất hiện trong đoạn văn, KHÔNG được dịch nghĩa hay viết bằng Pinyin hoặc tiếng Anh.
 - Trường "vietnamese" là nghĩa dịch tiếng Việt, phiên âm Hán-Việt chuẩn xác, hoặc phiên âm Romaji tương ứng (tùy thuộc hoàn toàn vào bối cảnh truyện và Quy tắc bổ sung từ người dùng).
-- Trường "dictType" phân loại chính xác nhóm từ vựng theo đúng quy chuẩn: 'names' cho tên nhân vật/địa danh/tông môn, 'tuvung' cho vật phẩm/kỹ năng/vũ khí/thuật ngữ tu luyện, 'ngucanh' cho cụm từ ngữ cảnh/thành ngữ đặc trưng.
+- Trường "dictType" phân loại chính xác nhóm từ vựng theo đúng quy chuẩn:
+  + 'names': Tên nhân vật (chính, phụ, các danh xưng riêng biệt), Địa danh (thành trì, bí cảnh, núi sông, tông môn, bang hội).
+  + 'tuvung': Vật phẩm (vũ khí, thần binh, linh dược, đạo cụ), Kỹ năng (võ học, công pháp, bí tịch, thần thông), Thuật ngữ (cảnh giới tu luyện, hiệu ứng hệ thống).
+  + 'ngucanh': Thành ngữ, cụm từ ngữ cảnh đặc trưng hoặc cách nói đặc sắc.
 - Mỗi tên CHỈ 1 nghĩa duy nhất, KHÔNG dùng dấu gạch chéo.
 - Trả về JSON, không giải thích.`;
 
@@ -115,7 +118,19 @@ export async function scanNewNames(opts: {
   // Build system prompt: base + auto-detected context + user's custom rules
   let systemPrompt = SCAN_NAMES_SYSTEM + autoContextPrompt;
   if (customScanPrompt?.trim()) {
-    systemPrompt += `\n\n# QUY TẮC BỔ SUNG TỪ NGƯỜI DÙNG (ƯU TIÊN CAO NHẤT - BẮT BUỘC TUÂN THỦ):\n${customScanPrompt.trim()}`;
+    systemPrompt += `\n\n# QUY TẮC BỔ SUNG TỪ NGƯỜI DÙNG (ƯU TIÊN CAO NHẤT - BẮT BUỘC TUÂN THỦ):
+Quy tắc bổ sung được cung cấp dưới dạng JSON chứa các chỉ dẫn dịch thuật chuyên biệt. Hãy phân tích kỹ các trường sau và áp dụng chúng một cách tuyệt đối khi trích xuất và dịch nghĩa:
+- "The_Loai" & "Boi_Canh": Xác định thể loại và bối cảnh chính xác để dịch chuẩn.
+- "Quy_Tac_Dich_Ten_Nhan_Vat": Áp dụng quy tắc này để dịch/phiên âm các thực thể có dictType là 'names' (tên người, nhân vật).
+- "Quy_Tac_Dich_Ten_Dia_Danh": Áp dụng để dịch/phiên âm các địa danh, tông môn, trường học thuộc dictType 'names'.
+- "Quy_Tac_Dich_Ten_Ky_Nang": Áp dụng để dịch/phiên âm võ học, công pháp, phép thuật thuộc dictType 'tuvung'.
+- "Quy_Tac_Dich_Ten_Vat_Pham": Áp dụng để dịch/phiên âm vũ khí, pháp bảo, vật phẩm thuộc dictType 'tuvung'.
+- "Quy_Tac_Dich_Ten_Su_Kien": Áp dụng cho các chương trình, sự kiện.
+- "Xung_Ho_Cot_Loi" & "Khi_Chat_Van_Phong": Tham khảo để định hình đại từ xưng hô và phong cách dịch.
+- "Quy_Tac_Khuyen_Khich" & "Quy_Tac_Nghiem_Cam": Các thuật ngữ khuyến khích và cấm đoán tuyệt đối không được vi phạm khi dịch.
+
+NỘI DUNG QUY TẮC JSON BỔ SUNG TỪ NGƯỜI DÙNG:
+${customScanPrompt.trim()}`;
   }
 
   try {
@@ -126,6 +141,19 @@ export async function scanNewNames(opts: {
       prompt: sourceText.slice(0, 2000), // Only scan first 2000 chars for speed
       abortSignal: signal,
     });
+
+    try {
+      const { useAiTranslateLogStore } = await import("@/lib/ai/translate-logger");
+      useAiTranslateLogStore.getState().addModel2Log(novelId, {
+        chapterTitle: `Quét từ điển (Chương dài ${sourceText.length} ký tự)`,
+        systemPrompt,
+        userPrompt: sourceText.slice(0, 2000),
+        output: JSON.stringify(result.object.names || [], null, 2),
+        timestamp: new Date(),
+      });
+    } catch (logErr) {
+      console.warn("Failed to log scan names:", logErr);
+    }
 
     const allNames = result.object.names || [];
 
@@ -269,8 +297,9 @@ export async function scanPronounRelations(opts: {
   existingDict: Map<string, string>;
   customScanPrompt?: string;
   signal?: AbortSignal;
+  novelId?: string;
 }): Promise<ExtractedPronoun[]> {
-  const { model, sourceText, existingDict, customScanPrompt, signal } = opts;
+  const { model, sourceText, existingDict, customScanPrompt, signal, novelId } = opts;
 
   if (sourceText.length < 100) return [];
 
@@ -286,7 +315,15 @@ export async function scanPronounRelations(opts: {
     // Build system prompt: base + user's custom rules
     let systemPrompt = SCAN_PRONOUNS_SYSTEM;
     if (customScanPrompt?.trim()) {
-      systemPrompt += `\n\n# QUY TẮC BỔ SUNG TỪ NGƯỜI DÙNG (ƯU TIÊN CAO NHẤT - BẮT BUỘC TUÂN THỦ):\n${customScanPrompt.trim()}`;
+      systemPrompt += `\n\n# QUY TẮC BỔ SUNG TỪ NGƯỜI DÙNG (ƯU TIÊN CAO NHẤT - BẮT BUỘC TUÂN THỦ):
+Quy tắc bổ sung được cung cấp dưới dạng JSON chứa các chỉ dẫn dịch thuật và mối quan hệ nhân xưng. Hãy phân tích kỹ các trường sau và áp dụng chúng một cách tuyệt đối để xác định đại từ nhân xưng:
+- "The_Loai" & "Boi_Canh": Xác định thể loại và bối cảnh để dịch chuẩn đại từ.
+- "Xung_Ho_Cot_Loi": Chỉ dẫn quan trọng nhất về cách xưng hô thực tế giữa các nhân vật chính/phụ (như Mouri Kogoro tự xưng ta/tôi, ba - con với Ran...). Hãy tuân thủ tuyệt đối quy tắc xưng xô này khi phân tích đối thoại.
+- "Khi_Chat_Van_Phong": Giọng điệu và phong thái xưng hô.
+- "Quy_Tac_Khuyen_Khich" & "Quy_Tac_Nghiem_Cam": Các đại từ khuyến khích hoặc nghiêm cấm sử dụng.
+
+NỘI DUNG QUY TẮC JSON BỔ SUNG TỪ NGƯỜI DÙNG:
+${customScanPrompt.trim()}`;
     }
 
     const prompt = `[BẢNG TÊN DỊCH CHUẨN — BẮT BUỘC DÙNG ĐÚNG TÊN NÀY, KHÔNG TỰ Ý DỊCH LẠI]
@@ -302,6 +339,21 @@ ${sourceText.slice(0, 3000)}`;
       prompt,
       abortSignal: signal,
     });
+
+    if (novelId) {
+      try {
+        const { useAiTranslateLogStore } = await import("@/lib/ai/translate-logger");
+        useAiTranslateLogStore.getState().addModel2Log(novelId, {
+          chapterTitle: `Quét xưng hô (Chương dài ${sourceText.length} ký tự)`,
+          systemPrompt,
+          userPrompt: prompt,
+          output: JSON.stringify(result.object.relations || [], null, 2),
+          timestamp: new Date(),
+        });
+      } catch (logErr) {
+        console.warn("Failed to log scan pronouns:", logErr);
+      }
+    }
 
     return result.object.relations || [];
   } catch (err) {

@@ -210,6 +210,7 @@ export interface ComprehensiveTranslateOptions {
     customPronounPrompt?: string;
     twoPass?: boolean; // Enable two-pass edit/polish pipeline
     skipTranslated?: boolean;
+    continuousMode?: boolean;
     extractDict?: boolean; // "Càng dịch càng hay" — extract names + upload to Supabase
     cleanGarbage?: boolean;
     chunkMode?: "chunk" | "full";
@@ -258,6 +259,7 @@ export async function runComprehensiveTranslate(opts: ComprehensiveTranslateOpti
     const store = useBulkTranslateStore.getState();
     const novel = await db.novels.get(novelId);
     const novelCustomPrompt = novel?.customTranslatePrompt?.trim() || "";
+    const novelScanPrompt = novel?.customModel2Prompt?.trim() || "";
     const genreKeys = novel?.genres || (novel?.genre ? [novel.genre] : []);
     const genreText = genreKeys.map(k => GENRE_LABELS[k] || k).join(", ") || "Chưa xác định";
 
@@ -377,7 +379,7 @@ export async function runComprehensiveTranslate(opts: ComprehensiveTranslateOpti
                     sourceText: cleanedContent,
                     novelId,
                     existingDict: existingDictMap,
-                    customScanPrompt: novelCustomPrompt,
+                    customScanPrompt: novelScanPrompt,
                     signal,
                 });
 
@@ -396,7 +398,7 @@ export async function runComprehensiveTranslate(opts: ComprehensiveTranslateOpti
                         model: dictModel || model,
                         sourceText: cleanedContent,
                         existingDict: existingDictMap,
-                        customScanPrompt: novelCustomPrompt,
+                        customScanPrompt: novelScanPrompt,
                         signal,
                     });
                     if (newlyScannedPronouns.length > 0) {

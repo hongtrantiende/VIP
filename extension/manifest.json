@@ -4,8 +4,7 @@
   "version": "2.0",
   "description": "Fetch novel content from external websites for Novel Studio. Optimized for Kiwi Browser on Android.",
   "background": {
-    "service_worker": "background.js",
-    "type": "module"
+    "service_worker": "background.js"
   },
   "permissions": [
     "storage",

@@ -499,6 +499,7 @@ export async function runQtAiTranslate(opts: QtAiTranslateOptions): Promise<void
   // Fetch novel's custom translate prompt EARLY (needed for cold start scan too)
   const novel = await db.novels.get(novelId);
   let novelCustomPrompt = novel?.customTranslatePrompt || "";
+  const novelScanPrompt = novel?.customModel2Prompt?.trim() || "";
 
   if (opts.hanVietRatio !== undefined) {
     const hv = opts.hanVietRatio;
@@ -678,7 +679,7 @@ ${cleaned}`;
           sourceText: cleanedContent,
           novelId,
           existingDict: existingDictMap,
-          customScanPrompt: novelCustomPrompt,
+          customScanPrompt: novelScanPrompt,
           signal,
         });
 
@@ -695,7 +696,7 @@ ${cleaned}`;
             model: opts.dictModel || workerModels[0],
             sourceText: cleanedContent,
             existingDict: existingDictMap,
-            customScanPrompt: novelCustomPrompt,
+            customScanPrompt: novelScanPrompt,
             signal,
           });
           if (newlyScannedPronouns.length > 0) {

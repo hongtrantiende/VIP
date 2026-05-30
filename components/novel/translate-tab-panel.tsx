@@ -28,6 +28,7 @@ import {
 import { runComprehensiveTranslate } from "@/lib/chapter-tools/comprehensive-translate";
 import { runEditTranslate } from "@/lib/chapter-tools/edit-translate";
 import { runScanFix } from "@/lib/chapter-tools/scan-fix-translate";
+import { runSemanticTranslate } from "@/lib/chapter-tools/semantic-translate";
 import { streamText } from "ai";
 import { runLocalNameScan, applyFix } from "@/lib/chapter-tools/local-name-scanner";
 import type { ScanIssue } from "@/lib/chapter-tools/local-name-scanner";
@@ -83,15 +84,17 @@ import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { useBulkTranslateStore } from "@/lib/stores/bulk-translate";
 import { cleanErrorCausingCharacters } from "@/lib/text-utils";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
+import { useAiTranslateLogStore } from "@/lib/ai/translate-logger";
 
 
 // ── Types ──
 type Phase = "idle" | "dict" | "ai" | "done" | "model1" | "model2" | "model3";
-type TranslateMode = "prompt" | "stv-prompt" | "edit" | "comprehensive" | "scan-fix";
+type TranslateMode = "prompt" | "stv-prompt" | "edit" | "comprehensive" | "scan-fix" | "semantic-markup";
 
 const MODES: { id: TranslateMode; label: string; icon: React.ElementType; color: string; desc: string }[] = [
     { id: "prompt", label: "Dịch Prompt", icon: SparklesIcon, color: "text-blue-600 dark:text-blue-400", desc: "Dịch thuần AI theo system prompt, không dùng từ điển" },
     { id: "stv-prompt", label: "STV + Prompt", icon: BookOpenIcon, color: "text-emerald-600 dark:text-emerald-400", desc: "Từ điển STV chuyển đổi thô → AI sửa lỗi theo prompt" },
+    { id: "semantic-markup", label: "Dịch Semantic (Gen 3)", icon: ZapIcon, color: "text-purple-600 dark:text-purple-400", desc: "Kiến trúc Thế hệ 3: Gắn thẻ XML từ điển và xưng hô động vào bản gốc trước khi gửi AI." },
     { id: "edit", label: "Biên Tập AI", icon: PenToolIcon, color: "text-amber-600 dark:text-amber-400", desc: "Biên tập & làm mịn bản dịch tiếng Việt cho trôi chảy, đúng từ điển, mượt mà theo thể loại" },
     { id: "scan-fix", label: "Quét & Sửa", icon: ShieldCheckIcon, color: "text-rose-600 dark:text-rose-400", desc: "Quét và phát hiện lỗi chính tả, viết sai tên nhân vật theo từ điển" },
 ];
@@ -134,6 +137,162 @@ function ExtraModelRow({
                 <SelectContent>{models?.map(m => <SelectItem key={m.id} value={m.modelId}>{m.name || m.modelId}</SelectItem>)}</SelectContent>
             </Select>
             <Button variant="ghost" size="icon-xs" onClick={onRemove}><Trash2Icon className="size-3" /></Button>
+        </div>
+    );
+}
+
+// ── Translate Inspector Panel sub-component ──
+function TranslateInspectorPanel({ novelId }: { novelId: string }) {
+    const [activeTab, setActiveTab] = useState<"model1" | "model2">("model1");
+    const logsModel1 = useAiTranslateLogStore((s) => s.model1Logs[novelId] || []);
+    const logsModel2 = useAiTranslateLogStore((s) => s.model2Logs[novelId] || []);
+
+    const [selectedModel1LogIdx, setSelectedModel1LogIdx] = useState(0);
+    const [selectedModel2LogIdx, setSelectedModel2LogIdx] = useState(0);
+
+    // Keep active selection in range
+    const activeModel1LogIdx = Math.min(selectedModel1LogIdx, Math.max(0, logsModel1.length - 1));
+    const activeModel2LogIdx = Math.min(selectedModel2LogIdx, Math.max(0, logsModel2.length - 1));
+
+    const model1Log = logsModel1[activeModel1LogIdx];
+    const model2Log = logsModel2[activeModel2LogIdx];
+
+    return (
+        <div className="flex flex-col h-[500px] max-h-[65vh] bg-background border rounded-lg overflow-hidden text-xs">
+            <div className="flex items-center justify-between px-3 py-2 bg-muted/40 border-b shrink-0">
+                <div className="flex items-center gap-1.5 font-semibold text-muted-foreground">
+                    <ScanSearchIcon className="size-4 text-primary animate-pulse" />
+                    <span>BẢNG KIỂM TRA PROMPT & OUTPUT (REAL-TIME)</span>
+                </div>
+                <div className="flex bg-muted p-0.5 rounded-md">
+                    <button
+                        onClick={() => setActiveTab("model1")}
+                        className={cn(
+                            "px-2.5 py-1 rounded-sm font-medium transition-all text-[11px]",
+                            activeTab === "model1" ? "bg-background text-foreground shadow-sm font-bold" : "text-muted-foreground hover:text-foreground"
+                        )}
+                    >
+                        Tab 1: Model 1 (Dịch chính)
+                    </button>
+                    <button
+                        onClick={() => setActiveTab("model2")}
+                        className={cn(
+                            "px-2.5 py-1 rounded-sm font-medium transition-all text-[11px]",
+                            activeTab === "model2" ? "bg-background text-foreground shadow-sm font-bold" : "text-muted-foreground hover:text-foreground"
+                        )}
+                    >
+                        Tab 2: Model 2 (Quét từ điển)
+                    </button>
+                </div>
+            </div>
+
+            <div className="flex-1 flex min-h-0">
+                {activeTab === "model1" ? (
+                    logsModel1.length === 0 ? (
+                        <div className="flex-1 flex flex-col items-center justify-center text-muted-foreground p-4 text-center">
+                            <LanguagesIcon className="size-8 mb-2 opacity-40 animate-pulse text-blue-500" />
+                            <span className="font-medium">Chưa có dữ liệu cuộc gọi Model 1.</span>
+                            <span className="text-[10px] opacity-70 mt-1 max-w-[280px]">Bắt đầu chạy dịch để quan sát Prompt gửi đi và kết quả nhận về tại đây.</span>
+                        </div>
+                    ) : (
+                        <div className="flex-1 flex min-h-0">
+                            {/* Sidebar chọn log */}
+                            <div className="w-1/3 border-r bg-muted/10 overflow-y-auto shrink-0">
+                                {logsModel1.map((log, idx) => (
+                                    <button
+                                        key={idx}
+                                        onClick={() => setSelectedModel1LogIdx(idx)}
+                                        className={cn(
+                                            "w-full text-left p-2 border-b transition-all flex flex-col gap-0.5 hover:bg-muted/50 text-[11px]",
+                                            activeModel1LogIdx === idx ? "bg-blue-500/10 text-blue-600 dark:text-blue-400 font-semibold border-l-2 border-l-blue-500" : "text-foreground"
+                                        )}
+                                    >
+                                        <span className="truncate w-full">{log.chapterTitle || `Dịch phân đoạn ${idx + 1}`}</span>
+                                        <span className="text-[9px] text-muted-foreground">{new Date(log.timestamp).toLocaleTimeString("vi")}</span>
+                                    </button>
+                                ))}
+                            </div>
+                            {/* Content chi tiết */}
+                            <div className="w-2/3 flex flex-col min-h-0 overflow-y-auto p-3 space-y-3 font-mono text-[11px]">
+                                {model1Log && (
+                                    <>
+                                        <div className="space-y-1 shrink-0">
+                                            <span className="font-bold text-blue-600 dark:text-blue-400 text-[10px] uppercase tracking-wider block">System Prompt (Chỉ dẫn dịch):</span>
+                                            <pre className="bg-muted p-2 rounded border text-[10px] whitespace-pre-wrap max-h-36 overflow-y-auto leading-relaxed">
+                                                {model1Log.systemPrompt}
+                                            </pre>
+                                        </div>
+                                        <div className="space-y-1 shrink-0">
+                                            <span className="font-bold text-amber-600 dark:text-amber-400 text-[10px] uppercase tracking-wider block">User Prompt (Văn bản gốc tiếng Trung):</span>
+                                            <pre className="bg-muted p-2 rounded border text-[10px] whitespace-pre-wrap max-h-36 overflow-y-auto leading-relaxed">
+                                                {model1Log.userPrompt}
+                                            </pre>
+                                        </div>
+                                        <div className="space-y-1 flex-1 min-h-0 flex flex-col">
+                                            <span className="font-bold text-emerald-600 dark:text-emerald-400 text-[10px] uppercase tracking-wider block">Output (Bản dịch nhận về):</span>
+                                            <pre className="bg-emerald-500/5 p-2 rounded border border-emerald-500/20 text-[10px] whitespace-pre-wrap flex-1 overflow-y-auto leading-relaxed text-emerald-800 dark:text-emerald-300">
+                                                {model1Log.output}
+                                            </pre>
+                                        </div>
+                                    </>
+                                )}
+                            </div>
+                        </div>
+                    )
+                ) : (
+                    logsModel2.length === 0 ? (
+                        <div className="flex-1 flex flex-col items-center justify-center text-muted-foreground p-4 text-center">
+                            <ScanSearchIcon className="size-8 mb-2 opacity-40 animate-pulse text-emerald-500" />
+                            <span className="font-medium">Chưa có dữ liệu cuộc gọi Model 2.</span>
+                            <span className="text-[10px] opacity-70 mt-1 max-w-[280px]">Model 2 chỉ hoạt động khi bạn bật tính năng &quot;Càng dịch càng hay&quot; hoặc dịch ở các chế độ có quét từ điển.</span>
+                        </div>
+                    ) : (
+                        <div className="flex-1 flex min-h-0">
+                            {/* Sidebar chọn log */}
+                            <div className="w-1/3 border-r bg-muted/10 overflow-y-auto shrink-0">
+                                {logsModel2.map((log, idx) => (
+                                    <button
+                                        key={idx}
+                                        onClick={() => setSelectedModel2LogIdx(idx)}
+                                        className={cn(
+                                            "w-full text-left p-2 border-b transition-all flex flex-col gap-0.5 hover:bg-muted/50 text-[11px]",
+                                            activeModel2LogIdx === idx ? "bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 font-semibold border-l-2 border-l-emerald-500" : "text-foreground"
+                                        )}
+                                    >
+                                        <span className="truncate w-full">{log.chapterTitle || `Quét từ điển ${idx + 1}`}</span>
+                                        <span className="text-[9px] text-muted-foreground">{new Date(log.timestamp).toLocaleTimeString("vi")}</span>
+                                    </button>
+                                ))}
+                            </div>
+                            {/* Content chi tiết */}
+                            <div className="w-2/3 flex flex-col min-h-0 overflow-y-auto p-3 space-y-3 font-mono text-[11px]">
+                                {model2Log && (
+                                    <>
+                                        <div className="space-y-1 shrink-0">
+                                            <span className="font-bold text-emerald-600 dark:text-emerald-400 text-[10px] uppercase tracking-wider block">System Prompt (Chỉ dẫn quét):</span>
+                                            <pre className="bg-muted p-2 rounded border text-[10px] whitespace-pre-wrap max-h-36 overflow-y-auto leading-relaxed">
+                                                {model2Log.systemPrompt}
+                                            </pre>
+                                        </div>
+                                        <div className="space-y-1 shrink-0">
+                                            <span className="font-bold text-amber-600 dark:text-amber-400 text-[10px] uppercase tracking-wider block">User Prompt (Mẫu truyện Trung):</span>
+                                            <pre className="bg-muted p-2 rounded border text-[10px] whitespace-pre-wrap max-h-36 overflow-y-auto leading-relaxed">
+                                                {model2Log.userPrompt}
+                                            </pre>
+                                        </div>
+                                        <div className="space-y-1 flex-1 min-h-0 flex flex-col">
+                                            <span className="font-bold text-blue-600 dark:text-blue-400 text-[10px] uppercase tracking-wider block">Output (Từ điển quét được dạng JSON):</span>
+                                            <pre className="bg-blue-500/5 p-2 rounded border border-blue-500/20 text-[10px] whitespace-pre-wrap flex-1 overflow-y-auto leading-relaxed text-blue-800 dark:text-blue-300">
+                                                {model2Log.output}
+                                            </pre>
+                                        </div>
+                                    </>
+                                )}
+                            </div>
+                        </div>
+                    )
+                )}
+            </div>
         </div>
     );
 }
@@ -540,7 +699,7 @@ export function TranslateTabPanel({
         let model2: any = null;
         let model3: any = null;
 
-        if (activeMode === "stv-prompt" || activeMode === "comprehensive" || activeMode === "prompt" || activeMode === "edit") {
+        if (activeMode === "stv-prompt" || activeMode === "comprehensive" || activeMode === "prompt" || activeMode === "edit" || activeMode === "semantic-markup") {
             const config1 = { providerId: model1ProviderId, modelId: model1ModelId };
             if (!config1.providerId || !config1.modelId) {
                 toast.error(activeMode === "edit" ? "Vui lòng cấu hình đầy đủ Model 1 (Biên tập chính)" : "Vui lòng cấu hình đầy đủ Model 1 (Dịch chính)");
@@ -554,13 +713,13 @@ export function TranslateTabPanel({
 
             const config2 = { providerId: model2ProviderId, modelId: model2ModelId };
             if (activeMode !== "edit" && (!config2.providerId || !config2.modelId)) {
-                toast.error("Vui lòng cấu hình đầy đủ Model 2 (Trích xuất từ điển)");
+                toast.error(activeMode === "semantic-markup" ? "Vui lòng cấu hình đầy đủ Model 2 (Phân tích bối cảnh & Xưng hô)" : "Vui lòng cấu hình đầy đủ Model 2 (Trích xuất từ điển)");
                 return;
             }
             if (config2.providerId && config2.modelId) {
                 model2 = await resolveChapterToolModel(config2, defaultProvider, chatSettings);
                 if (!model2 && activeMode !== "edit") {
-                    toast.error("Không tìm thấy cấu hình Model 2 (Trích xuất từ điển)");
+                    toast.error(activeMode === "semantic-markup" ? "Không tìm thấy cấu hình Model 2 (Phân tích bối cảnh & Xưng hô)" : "Không tìm thấy cấu hình Model 2 (Trích xuất từ điển)");
                     return;
                 }
             }
@@ -660,6 +819,7 @@ export function TranslateTabPanel({
         // Khởi tạo và đồng bộ trạng thái dịch vào global store
         const store = useBulkTranslateStore.getState();
         store.start(novelId, targetChapterIds, selectedProviderId, selectedModelId);
+        useAiTranslateLogStore.getState().clearLogs(novelId);
 
         const job = store.jobs[novelId];
         const controller = job?.abortController || new AbortController();
@@ -751,6 +911,22 @@ export function TranslateTabPanel({
                     chunkMode,
                     ...commonCallbacks,
                 });
+            } else if (activeMode === "semantic-markup") {
+                await runSemanticTranslate({
+                    novelId, chapterIds: targetChapterIds, model,
+                    dictModel: model2 || undefined,
+                    qaModel: model3 || undefined,
+                    qaEnabled: model3Enabled,
+                    qaPrompt: customModel3Prompt || undefined,
+                    extractDict, cleanGarbage, skipTranslated,
+                    continuousMode: target === "all_untranslated",
+                    customTranslatePrompt: inlinePrompt,
+                    customStylePrompt: finalStylePrompt,
+                    customPronounPrompt: customPronounPrompt,
+                    errorAction,
+                    chunkMode,
+                    ...commonCallbacks,
+                });
             } else if (activeMode === "scan-fix") {
                 await runScanFix({
                     novelId, chapterIds: targetChapterIds, model,
@@ -800,7 +976,7 @@ export function TranslateTabPanel({
     const bulkConfigContent = (
         <div className="space-y-4 py-2">
             {/* ── Mode Buttons ── */}
-            <div className="grid grid-cols-4 gap-2">
+            <div className="grid grid-cols-5 gap-1.5">
                 {MODES.map((mode) => {
                     const Icon = mode.icon;
                     const isActive = activeMode === mode.id;
@@ -813,14 +989,14 @@ export function TranslateTabPanel({
                                 await db.novels.update(novelId, { customTranslateMode: mode.id });
                             }}
                             className={cn(
-                                "flex flex-col items-center gap-1 rounded-lg border p-2 text-center transition-all",
+                                "flex flex-col items-center gap-1 rounded-lg border p-1.5 text-center transition-all",
                                 isActive
                                     ? "border-primary bg-primary/10 shadow-sm"
                                     : "border-muted bg-background hover:bg-muted/50"
                             )}
                         >
-                            <Icon className={cn("size-4", isActive ? mode.color : "text-muted-foreground")} />
-                            <span className={cn("text-[9px] font-medium leading-tight", isActive ? "text-foreground" : "text-muted-foreground")}>
+                            <Icon className={cn("size-3.5", isActive ? mode.color : "text-muted-foreground")} />
+                            <span className={cn("text-[8px] font-medium leading-tight", isActive ? "text-foreground" : "text-muted-foreground")}>
                                 {mode.label}
                             </span>
                         </button>
@@ -835,7 +1011,7 @@ export function TranslateTabPanel({
                         <ActiveIcon className={cn("size-4", activeModeConfig.color)} />
                         <span className="text-xs font-semibold">{activeModeConfig.label}</span>
                     </span>
-                    {(activeMode === "prompt" || activeMode === "stv-prompt") && (
+                    {(activeMode === "prompt" || activeMode === "stv-prompt" || activeMode === "semantic-markup") && (
                         <button
                             type="button"
                             onClick={() => setShowStepsInfo(true)}
@@ -861,7 +1037,7 @@ export function TranslateTabPanel({
                         {/* ── Mode-specific Setup Panels ── */}
 
                     {/* Cấu hình Prompt */}
-                    {(activeMode === "prompt" || activeMode === "stv-prompt" || activeMode === "comprehensive" || activeMode === "edit") && (() => {
+                    {(activeMode === "prompt" || activeMode === "stv-prompt" || activeMode === "comprehensive" || activeMode === "edit" || activeMode === "semantic-markup") && (() => {
                         const hasPrompt = activeMode === "stv-prompt"
                             ? !!novel?.customStvPrompt?.trim()
                             : activeMode === "comprehensive"
@@ -961,7 +1137,7 @@ export function TranslateTabPanel({
 
 
                     {/* ── AI Model Configuration ── */}
-                    {activeMode === "stv-prompt" || activeMode === "comprehensive" || activeMode === "prompt" || activeMode === "edit" ? (
+                    {activeMode === "stv-prompt" || activeMode === "comprehensive" || activeMode === "prompt" || activeMode === "edit" || activeMode === "semantic-markup" ? (
                         <div className="space-y-3.5 border-t pt-3.5">
                             <div className="space-y-1.5">
                                 <div className="flex justify-between items-center text-xs">
@@ -985,7 +1161,7 @@ export function TranslateTabPanel({
                                 <div className="space-y-1.5 pt-2 border-t border-muted/30">
                                     <div className="flex justify-between items-center text-xs">
                                         <Label className="text-xs font-bold text-emerald-600 dark:text-emerald-400">
-                                            Model 2: Quét từ điển (Khuyên dùng Flash)
+                                            {activeMode === "semantic-markup" ? "Model 2: Phân tích bối cảnh & Xưng hô (Khuyên dùng Flash)" : "Model 2: Quét từ điển (Khuyên dùng Flash)"}
                                         </Label>
                                     </div>
                                     <div className="flex gap-2">
@@ -1109,7 +1285,7 @@ export function TranslateTabPanel({
                     )}
 
                     <div className="space-y-2 pt-2 border-t border-muted/30">
-                        {(activeMode === "comprehensive" || activeMode === "prompt" || activeMode === "stv-prompt") && (
+                        {(activeMode === "comprehensive" || activeMode === "prompt" || activeMode === "stv-prompt" || activeMode === "semantic-markup") && (
                             <label className="flex items-start gap-2 rounded-lg border border-emerald-500/30 bg-emerald-500/5 p-2.5 cursor-pointer hover:bg-emerald-500/10">
                                 <Checkbox checked={extractDict} onCheckedChange={(c) => setExtractDict(!!c)} className="mt-0.5 border-emerald-500 data-[state=checked]:bg-emerald-500" />
                                 <div>
@@ -1220,7 +1396,7 @@ export function TranslateTabPanel({
                             disabled={
                                 selectedProviderId === "admin-provider"
                                     ? (!isAdmin && rawQuota <= 0)
-                                    : ((activeMode === "stv-prompt" || activeMode === "comprehensive" || activeMode === "prompt" || activeMode === "edit")
+                                    : ((activeMode === "stv-prompt" || activeMode === "comprehensive" || activeMode === "prompt" || activeMode === "edit" || activeMode === "semantic-markup")
                                         ? (!model1ProviderId || !model1ModelId || (activeMode !== "edit" && (!model2ProviderId || !model2ModelId)) || (model3Enabled && (!model3ProviderId || !model3ModelId)))
                                         : !currentModel)
                             }
@@ -1235,7 +1411,7 @@ export function TranslateTabPanel({
                             disabled={
                                 selectedProviderId === "admin-provider"
                                     ? (!isAdmin && rawQuota <= 0)
-                                    : ((activeMode === "stv-prompt" || activeMode === "comprehensive" || activeMode === "prompt" || activeMode === "edit")
+                                    : ((activeMode === "stv-prompt" || activeMode === "comprehensive" || activeMode === "prompt" || activeMode === "edit" || activeMode === "semantic-markup")
                                         ? (!model1ProviderId || !model1ModelId || (activeMode !== "edit" && (!model2ProviderId || !model2ModelId)) || (model3Enabled && (!model3ProviderId || !model3ModelId)))
                                         : !currentModel)
                             }
@@ -1257,7 +1433,10 @@ export function TranslateTabPanel({
 
     return (
         <Dialog open={open} onOpenChange={handleOpenChange}>
-            <DialogContent className="max-h-[90vh] overflow-y-auto transition-all duration-300 sm:max-w-lg">
+            <DialogContent className={cn(
+                "max-h-[95vh] overflow-y-auto transition-all duration-300 flex flex-col min-h-0",
+                (step === "processing" || step === "done") ? "sm:max-w-6xl w-[95vw]" : "sm:max-w-lg"
+            )}>
                 <DialogHeader>
                     <DialogTitle className="flex items-center gap-2">
                         <ZapIcon className="size-5 text-primary" />
@@ -1390,6 +1569,45 @@ export function TranslateTabPanel({
                                     </div>
                                 </div>
                             </>
+                        ) : activeMode === "semantic-markup" ? (
+                            <>
+                                <DialogHeader>
+                                    <DialogTitle className="flex items-center gap-2 text-sm font-bold">
+                                        <HelpCircleIcon className="size-5 text-blue-500" />
+                                        Quy Trình Dịch Semantic (Gen 3)
+                                    </DialogTitle>
+                                    <DialogDescription className="text-xs">
+                                        Chi tiết quy trình dịch thế hệ mới sử dụng định vị XML:
+                                    </DialogDescription>
+                                </DialogHeader>
+
+                                <div className="space-y-3.5 py-3 text-xs leading-relaxed">
+                                    <div className="space-y-1">
+                                        <span className="font-bold text-blue-600 dark:text-blue-400">Bước 1: Gắn Thẻ XML Từ Điển (Deterministic Tagger)</span>
+                                        <p className="text-muted-foreground">
+                                            Backend tự động đối chiếu từ điển truyện, thực hiện khớp tham lam và bao bọc các từ tiếng Trung trong thẻ XML &lt;name vi="..."&gt; hoặc &lt;item vi="..."&gt; trực tiếp trên văn bản gốc.
+                                        </p>
+                                    </div>
+                                    <div className="space-y-1">
+                                        <span className="font-bold text-blue-600 dark:text-blue-400">Bước 2: Phân Tích Bối Cảnh & Xưng Hô (Model 2 Flash)</span>
+                                        <p className="text-muted-foreground">
+                                            Model 2 (Flash) tiến hành rà soát các câu thoại tiếng Trung gốc, định vị người nói và người nghe dựa trên các thẻ nhân vật xung quanh để bao bọc thẻ &lt;dialogue speaker="..." listener="..." rule="..."&gt;.
+                                        </p>
+                                    </div>
+                                    <div className="space-y-1">
+                                        <span className="font-bold text-blue-600 dark:text-blue-400">Bước 3: Dịch thuật định hướng (Model 1 Pro)</span>
+                                        <p className="text-muted-foreground">
+                                            Model 1 (Pro) nhận văn bản gốc đã gắn thẻ XML đầy đủ, tuân thủ tuyệt đối thuộc tính 'vi' và quy tắc xưng hô 'rule' để chuyển ngữ mượt mà.
+                                        </p>
+                                    </div>
+                                    <div className="space-y-1">
+                                        <span className="font-bold text-blue-600 dark:text-blue-400">Bước 4: Thu Hoạch & Dọn Dẹp Bản Dịch</span>
+                                        <p className="text-muted-foreground">
+                                            Hệ thống làm sạch các thẻ XML còn sót lại, tạo ra văn bản dịch thuần Việt 100% trôi chảy và cập nhật các Scene trong cơ sở dữ liệu.
+                                        </p>
+                                    </div>
+                                </div>
+                            </>
                         ) : (
                             <>
                                 <DialogHeader>
@@ -1433,72 +1651,96 @@ export function TranslateTabPanel({
                     </DialogContent>
                 </Dialog>
 
-                {/* ── Processing View ── */}
-                {step === "processing" && (
-                    <div className="space-y-4 py-4">
-                        <div className="flex items-center justify-between text-sm">
-                            <span className="flex items-center gap-2">
-                                <Loader2Icon className="size-4 animate-spin text-primary" />
-                                {currentChapterTitle ? <span className="truncate max-w-[200px]">{currentChapterTitle}</span> : "Đang xử lý..."}
-                            </span>
-                            <span className="font-medium tabular-nums">{processedCount} / {totalToProcess}</span>
-                        </div>
-                        <Progress value={progress} className="h-2" />
-                        {currentPhase !== "idle" && (
-                            <div className="flex items-center gap-2 rounded-md bg-muted/50 px-3 py-2">
-                                {(currentPhase === "dict" || currentPhase === "model2") && (
-                                    <span className="flex items-center gap-1.5 text-xs text-emerald-600 dark:text-emerald-400 font-medium">
-                                        <ScanSearchIcon className="size-3.5 animate-pulse text-emerald-500" /> Model 2 [Flash]: Đang quét từ điển & phân tích...
-                                    </span>
-                                )}
-                                {(currentPhase === "ai" || currentPhase === "model1") && (
-                                    <span className="flex items-center gap-1.5 text-xs text-blue-600 dark:text-blue-400 font-medium">
-                                        <LanguagesIcon className="size-3.5 animate-pulse text-blue-500" /> {activeMode === "edit" ? "Model 1 [Pro]: Đang biên tập nội dung..." : "Model 1 [Pro]: Đang dịch nội dung chính..."}
-                                    </span>
-                                )}
-                                {currentPhase === "model3" && (
-                                    <span className="flex items-center gap-1.5 text-xs text-purple-600 dark:text-purple-400 font-medium">
-                                        <BotIcon className="size-3.5 animate-pulse text-purple-500" /> {activeMode === "edit" ? "Model 3 [QA Bot]: Giám sát & Tinh chỉnh bản biên tập..." : "Model 3 [QA Bot]: Giám sát & Tinh chỉnh bản dịch..."}
-                                    </span>
-                                )}
+                {/* ── Running / Done View ── */}
+                {(step === "processing" || step === "done") && (
+                    <div className="grid grid-cols-1 md:grid-cols-12 gap-6 py-4 flex-1 min-h-0">
+                        {/* Cột trái: Tiến độ và Trạng thái */}
+                        <div className="md:col-span-4 flex flex-col space-y-4 min-h-0">
+                            <div className="flex items-center justify-between text-sm shrink-0">
+                                <span className="flex items-center gap-2 font-medium">
+                                    {step === "processing" ? (
+                                        <>
+                                            <Loader2Icon className="size-4 animate-spin text-primary" />
+                                            {currentChapterTitle ? <span className="truncate max-w-[150px] font-bold">{currentChapterTitle}</span> : "Đang xử lý..."}
+                                        </>
+                                    ) : (
+                                        <span className="text-emerald-600 dark:text-emerald-400 font-bold flex items-center gap-1">
+                                            <CheckCircle2Icon className="size-4 text-emerald-500" />
+                                            Đã hoàn tất!
+                                        </span>
+                                    )}
+                                </span>
+                                <span className="font-semibold tabular-nums text-muted-foreground">{processedCount} / {totalToProcess}</span>
                             </div>
-                        )}
-                        {errors.length > 0 && (
-                            <div className="max-h-24 overflow-y-auto rounded-md bg-destructive/10 p-2 text-[10px] text-destructive">
-                                {errors.map((err, i) => <div key={i}>Chương &quot;{err.chapterTitle}&quot;: {err.message}</div>)}
-                            </div>
-                        )}
-                        <div className="flex gap-2">
-                            <Button variant="outline" onClick={() => onOpenChange(false)} className="w-full">Ẩn xuống nền</Button>
-                            <Button variant="destructive" onClick={handleClose} className="w-full gap-1.5">
-                                <StopCircleIcon className="size-4" /> Dừng
-                            </Button>
-                        </div>
-                    </div>
-                )}
+                            <Progress value={progress} className="h-2 shrink-0" />
 
-                {/* ── Done View ── */}
-                {step === "done" && (
-                    <div className="space-y-4 py-4 text-center">
-                        <div className="flex justify-center">
-                            {errors.length === totalToProcess
-                                ? <XCircleIcon className="size-12 text-destructive" />
-                                : <CheckCircle2Icon className="size-12 text-emerald-500" />}
-                        </div>
-                        <div>
-                            <p className="text-lg font-bold">{errors.length === 0 ? "Hoàn tất!" : "Đã xong (có lỗi)"}</p>
-                            <p className="text-sm text-muted-foreground">
-                                Đã xử lý {processedCount} / {totalToProcess} chương.
-                                {results.length > 0 && ` Thành công: ${results.length}.`}
-                                {errors.length > 0 && ` Lỗi: ${errors.length}.`}
-                            </p>
-                        </div>
-                        {errors.length > 0 && (
-                            <div className="max-h-32 overflow-y-auto rounded-md bg-destructive/10 p-2 text-left text-[10px] text-destructive">
-                                {errors.map((err, i) => <div key={i}>Chương &quot;{err.chapterTitle}&quot;: {err.message}</div>)}
+                            {step === "processing" && currentPhase !== "idle" && (
+                                <div className="flex items-center gap-2 rounded-md bg-muted/60 px-3 py-2 border border-muted shrink-0">
+                                    {(currentPhase === "dict" || currentPhase === "model2") && (
+                                        <span className="flex items-center gap-1.5 text-xs text-emerald-600 dark:text-emerald-400 font-semibold">
+                                            <ScanSearchIcon className="size-3.5 animate-pulse text-emerald-500" /> Model 2 [Flash]: Đang quét từ điển...
+                                        </span>
+                                    )}
+                                    {(currentPhase === "ai" || currentPhase === "model1") && (
+                                        <span className="flex items-center gap-1.5 text-xs text-blue-600 dark:text-blue-400 font-semibold">
+                                            <LanguagesIcon className="size-3.5 animate-pulse text-blue-500" /> {activeMode === "edit" ? "Model 1: Đang biên tập..." : "Model 1: Đang dịch..."}
+                                        </span>
+                                    )}
+                                    {currentPhase === "model3" && (
+                                        <span className="flex items-center gap-1.5 text-xs text-purple-600 dark:text-purple-400 font-semibold">
+                                            <BotIcon className="size-3.5 animate-pulse text-purple-500" /> Model 3: Đang QA tinh chỉnh...
+                                        </span>
+                                    )}
+                                </div>
+                            )}
+
+                            {step === "done" && (
+                                <div className="flex flex-col items-center justify-center p-6 border rounded-lg bg-muted/10 space-y-2 text-center shrink-0">
+                                    {errors.length === totalToProcess ? (
+                                        <XCircleIcon className="size-12 text-destructive" />
+                                    ) : (
+                                        <CheckCircle2Icon className="size-12 text-emerald-500" />
+                                    )}
+                                    <div>
+                                        <p className="text-sm font-bold">{errors.length === 0 ? "Thành công 100%" : "Đã xong (có lỗi)"}</p>
+                                        <p className="text-xs text-muted-foreground mt-0.5">
+                                            Đã xử lý {processedCount} / {totalToProcess} chương.
+                                            {results.length > 0 && ` Thành công: ${results.length}.`}
+                                            {errors.length > 0 && ` Lỗi: ${errors.length}.`}
+                                        </p>
+                                    </div>
+                                </div>
+                            )}
+
+                            {errors.length > 0 && (
+                                <div className="flex-1 min-h-[100px] max-h-[30vh] overflow-y-auto rounded-md bg-destructive/5 p-2.5 text-[10px] text-destructive border border-destructive/10 space-y-1">
+                                    <span className="font-semibold block text-[11px] mb-1">DANH SÁCH LỖI:</span>
+                                    {errors.map((err, i) => (
+                                        <div key={i} className="border-b border-destructive/10 pb-1 last:border-0">
+                                            Chương &quot;{err.chapterTitle}&quot;: {err.message}
+                                        </div>
+                                    ))}
+                                </div>
+                            )}
+
+                            <div className="flex gap-2 pt-2 mt-auto shrink-0">
+                                {step === "processing" ? (
+                                    <>
+                                        <Button variant="outline" size="sm" onClick={() => onOpenChange(false)} className="w-full text-xs">Ẩn xuống nền</Button>
+                                        <Button variant="destructive" size="sm" onClick={handleClose} className="w-full gap-1.5 text-xs">
+                                            <StopCircleIcon className="size-4" /> Dừng dịch
+                                        </Button>
+                                    </>
+                                ) : (
+                                    <Button onClick={handleClose} size="sm" className="w-full text-xs">Đóng cửa sổ</Button>
+                                )}
                             </div>
-                        )}
-                        <Button onClick={handleClose} className="w-full">Đóng</Button>
+                        </div>
+
+                        {/* Cột phải: Bảng Kiểm Tra (Inspector) */}
+                        <div className="md:col-span-8 flex flex-col border-t md:border-t-0 md:border-l md:pl-6 border-muted min-h-0">
+                            <TranslateInspectorPanel novelId={novelId} />
+                        </div>
                     </div>
                 )}
             </DialogContent>

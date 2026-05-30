@@ -198,6 +198,32 @@ Severity: `🔴 Critical` | `🟡 Important` | `🟢 Minor`
 
 ---
 
+### [2026-05-30] ARCHITECTURE 🟡 Important — Kiến Trúc Dịch Thuật Thế Hệ 3: Định Vị XML Nội Tuyến & Phân Tích Hội Thoại Song Song
+
+**Context:** Đảm bảo tính nhất quán từ điển 100% và kiểm soát đại từ xưng hô động chuẩn xác cho các chương tiểu thuyết dài.
+**Problem:** Nếu chỉ gửi từ điển rời ở đầu prompt, AI dễ bị trôi bối cảnh, bỏ quên hoặc dịch nhầm xưng hô nhân vật khi dịch văn bản dung lượng lớn.
+**Root Cause:** Attention mechanism của LLM bị phân tán ở các chương dài, và các mối quan hệ xưng hô đòi hỏi sự phân tích bối cảnh thoại phức tạp mà code backend thông thường không thể tự động hóa 100% bằng regex.
+**Lesson:** Kết hợp thuật toán Backend khớp chuỗi tham lam (Greedy Matching) không chồng lấn để chèn các thẻ `<name vi="...">` và `<item vi="...">` cứng, sau đó dùng Model 2 (Gemini Flash) phân tích bối cảnh thoại để bao bọc thẻ `<dialogue speaker="..." listener="..." rule="...">`. Cuối cùng Model 1 Pro chỉ cần dịch và tuân thủ thẻ, loại bỏ XML khi trả kết quả sạch.
+**Action:** Tạo module `semantic-translate.ts` thực thi quy trình 3 giai đoạn này và tích hợp vào UI `translate-tab-panel.tsx` với chế độ "Dịch Semantic (Gen 3)".
+
+---
+
+### [2026-05-30] BUG 🔴 Critical — Khắc Phục Lỗi Service Worker Status Code 3 Khi Cài Đặt Extension Trên Android (Kiwi)
+
+**Context:** Người dùng cài đặt tiện ích mở rộng (Extension) của Novel Studio trên trình duyệt Android (như Kiwi Browser) gặp lỗi đăng ký Service Worker thất bại với mã lỗi `Service worker registration failed. Status code: 3` (hoặc `An unknown error occurred when fetching the script`).
+**Problem:** Trình duyệt Android không thể đăng ký được service worker và tiện ích hoàn toàn không hoạt động, trong khi trên máy tính (PC) vẫn chạy bình thường.
+**Root Cause:**
+1. Tiện ích sử dụng kiến trúc mô-đun ES và khai báo `"type": "module"` trong khóa `"background"` của `manifest.json`.
+2. Trình duyệt Chromium trên thiết bị di động (Android Kiwi/Yandex) chưa hỗ trợ đầy đủ hoặc gặp lỗi khi phân giải ES Modules (`type: module`) trong môi trường Service Worker ngầm, dẫn đến việc không thể nạp tệp `background.js` trực tiếp.
+**Lesson:**
+1. Không khai báo `"type": "module"` cho Service Worker trong `manifest.json` của Extension nếu muốn hỗ trợ tối đa các thiết bị di động Android.
+2. Thay vì nạp động trực tiếp qua ES module imports, sử dụng công cụ đóng gói siêu tốc `esbuild` để biên dịch toàn bộ cấu trúc mô-đun thành một tệp `background.js` duy nhất theo chuẩn Classic Script phẳng (không chứa từ khóa `import` hoặc `export` ở phạm vi toàn cục).
+**Action:**
+1. Đổi tên tệp nguồn thành `background.src.js`, loại bỏ `"type": "module"` khỏi `manifest.json` ở cả phiên bản PC và Android.
+2. Thêm kịch bản tự động `build:extension` thông qua `npx esbuild` vào `package.json` và tích hợp thẳng trước các lệnh nén `zip:android`, `zip:pc`, và `zip:all` để đảm bảo tệp phân phối luôn được đóng gói đầy đủ và đồng bộ.
+
+---
+
 <!-- 
   📝 TEMPLATE cho entry mới — copy paste khi thêm:
   
@@ -208,6 +234,6 @@ Severity: `🔴 Critical` | `🟡 Important` | `🟢 Minor`
   **Root Cause:** 
   **Lesson:** 
   **Action:** 
--->
+  -->
 
 
