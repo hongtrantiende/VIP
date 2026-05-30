@@ -323,14 +323,16 @@ export async function runComprehensiveTranslate(opts: ComprehensiveTranslateOpti
                 continue;
             }
 
+            const chapId = currentQueue[scanIdx];
+            const absoluteScanIdx = allChapters.findIndex(c => c.id === chapId);
+
             // Block if AI 2 gets > 3 chapters ahead of AI 1
-            while (scanIdx >= currentTranslateIdx + 3) {
+            while (absoluteScanIdx >= 0 && absoluteScanIdx >= currentTranslateIdx + 3) {
                 await new Promise((r) => setTimeout(r, 100));
                 if (signal?.aborted) break;
             }
             if (signal?.aborted) break;
 
-            const chapId = currentQueue[scanIdx];
             if (scannedChapterIds.has(chapId)) {
                 scanIdx++;
                 continue;

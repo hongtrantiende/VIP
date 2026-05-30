@@ -69,8 +69,26 @@ export interface SemanticTranslateOptions {
 }
 
 // ── Helpers ──
-function delay(ms: number): Promise<void> {
-  return new Promise((resolve) => setTimeout(resolve, ms));
+function delay(ms: number, signal?: AbortSignal): Promise<void> {
+  return new Promise((resolve, reject) => {
+    if (signal?.aborted) {
+      return reject(new DOMException("Aborted", "AbortError"));
+    }
+    const timer = setTimeout(() => {
+      if (signal) {
+        signal.removeEventListener("abort", onAbort);
+      }
+      resolve();
+    }, ms);
+
+    function onAbort() {
+      clearTimeout(timer);
+      reject(new DOMException("Aborted", "AbortError"));
+    }
+    if (signal) {
+      signal.addEventListener("abort", onAbort);
+    }
+  });
 }
 
 function countWords(content: string): number {
@@ -360,7 +378,144 @@ export async function runSemanticTranslate(opts: SemanticTranslateOptions) {
   let processedIds = new Set<string>();
   let pollingAttempts = 0;
   let currentTranslateIdx = 0;
+  const scannedChapterIds = new Set<string>();
   let targetChapterIds: string[] = [];
+
+  // Background dictionary scanner worker (AI 2)
+  const runDictWorker = async () => {
+    let scanIdx = 0;
+    while (true) {
+      if (signal?.aborted) break;
+
+      // Pause loop
+      while (store.jobs[novelId]?.isPaused) {
+        await delay(500, signal);
+        if (signal?.aborted) break;
+      }
+      if (signal?.aborted) break;
+
+      // Dynamically fetch target chapters to handle additions
+      const allChapters = await db.chapters.where("novelId").equals(novelId).sortBy("order");
+      let currentQueue: string[] = [];
+      if (continuousMode) {
+        const startIndex = allChapters.findIndex(c => chapterIdSet.has(c.id));
+        const startIdx = startIndex >= 0 ? startIndex : 0;
+        currentQueue = allChapters.slice(startIdx).map(c => c.id);
+      } else {
+        currentQueue = allChapters.filter(c => chapterIdSet.has(c.id)).map(c => c.id);
+      }
+      targetChapterIds = currentQueue;
+
+      if (scanIdx >= currentQueue.length) {
+        await delay(1000, signal);
+        continue;
+      }
+
+      const chapId = currentQueue[scanIdx];
+      const absoluteScanIdx = allChapters.findIndex(c => c.id === chapId);
+
+      // Block if AI 2 gets > 3 chapters ahead of AI 1
+      while (absoluteScanIdx >= 0 && absoluteScanIdx >= currentTranslateIdx + 3) {
+        await delay(100, signal);
+        if (signal?.aborted) break;
+      }
+      if (signal?.aborted) break;
+
+      if (scannedChapterIds.has(chapId)) {
+        scanIdx++;
+        continue;
+      }
+
+      const chapter = await db.chapters.get(chapId);
+      if (!chapter) {
+        scannedChapterIds.add(chapId);
+        scanIdx++;
+        continue;
+      }
+
+      if (chapter.dictionaryScanned) {
+        scannedChapterIds.add(chapId);
+        scanIdx++;
+        continue;
+      }
+
+      // Find scenes
+      const chapterScenes = await db.scenes
+        .where("chapterId")
+        .equals(chapId)
+        .toArray();
+      chapterScenes.sort((a, b) => a.order - b.order);
+
+      // Check skipTranslated
+      if (skipTranslated && chapterScenes.length > 0 && chapterScenes.every(isSceneTranslated)) {
+        scannedChapterIds.add(chapId);
+        scanIdx++;
+        continue;
+      }
+
+      if (!extractDict) {
+        scannedChapterIds.add(chapId);
+        scanIdx++;
+        continue;
+      }
+
+      // Perform Model 2 scan
+      onPhase(chapId, "model2");
+      store.setChapterStatus(novelId, chapId, "scanning");
+      try {
+        console.log(`[Semantic Gen 3 Background Scanner] AI 2 Quét từ điển trước cho chương: ${chapter.title}`);
+        const existingDictEntries = await getMergedNameDict(novelId);
+        const existingDictMap = new Map(existingDictEntries.map(e => [e.chinese, e.vietnamese]));
+
+        const originalContents = await Promise.all(chapterScenes.map((s) => getOriginalContent(s.id)));
+        const cleanedContent = cleanGarbage ? cleanGarbageLines(originalContents.join(SCENE_BREAK)) : originalContents.join(SCENE_BREAK);
+
+        const newlyScannedNames = await scanNewNames({
+          model: dictModel || model,
+          sourceText: cleanedContent,
+          novelId,
+          existingDict: existingDictMap,
+          customScanPrompt: novelScanPrompt,
+          signal,
+        });
+
+        if (newlyScannedNames.length > 0) {
+          const addedCount = await autoAddNames(novelId, newlyScannedNames);
+          console.log(`[Semantic Gen 3 Background Scanner] AI 2 hoàn thành: Đã tự động thêm ${addedCount} từ mới.`);
+          for (const n of newlyScannedNames) {
+            existingDictMap.set(n.chinese, n.vietnamese);
+          }
+        }
+
+        try {
+          const newlyScannedPronouns = await scanPronounRelations({
+            model: dictModel || model,
+            sourceText: cleanedContent,
+            existingDict: existingDictMap,
+            customScanPrompt: novelScanPrompt,
+            signal,
+            novelId,
+          });
+          if (newlyScannedPronouns.length > 0) {
+            const addedPronounCount = await autoUpdatePronounPrompt(novelId, newlyScannedPronouns, existingDictMap);
+            console.log(`[Semantic Gen 3 Background Scanner] AI 2 hoàn thành: Đã tự động thêm ${addedPronounCount} quy tắc xưng hô mới.`);
+          }
+        } catch (scanPronounErr) {
+          console.warn(`[Semantic Gen 3 Background Scanner] Lỗi quét xưng hô:`, scanPronounErr);
+        }
+      } catch (scanErr) {
+        console.warn(`[Semantic Gen 3 Background Scanner] Lỗi quét từ điển tại AI 2:`, scanErr);
+      }
+
+      await db.chapters.update(chapId, { dictionaryScanned: true });
+      store.setChapterStatus(novelId, chapId, "scanned");
+      scannedChapterIds.add(chapId);
+      scanIdx++;
+    }
+  };
+
+  // Start background dictionary scanner worker
+  runDictWorker();
 
   // Primary worker (AI 1) for translation
   const runWorker = async () => {
@@ -428,7 +583,14 @@ export async function runSemanticTranslate(opts: SemanticTranslateOptions) {
       const activeChapterId = chapterToProcess.id;
 
       while (store.jobs[novelId]?.isPaused) {
-        await delay(500);
+        await delay(500, signal);
+        if (signal?.aborted) break;
+      }
+      if (signal?.aborted) break;
+
+      // Wait until AI 2 completes scanning for this chapter
+      while (!scannedChapterIds.has(activeChapterId)) {
+        await delay(100, signal);
         if (signal?.aborted) break;
       }
       if (signal?.aborted) break;
@@ -438,54 +600,6 @@ export async function runSemanticTranslate(opts: SemanticTranslateOptions) {
       const originalTitle = await resolveChapterOriginalTitle(chapter);
 
       onChapterStart(chapter.id, chapter.title);
-
-      // Inline sequential dictionary scanner
-      if (extractDict && !chapter.dictionaryScanned) {
-        onPhase(chapter.id, "model2");
-        store.setChapterStatus(novelId, chapter.id, "scanning");
-        try {
-          console.log(`[Semantic Gen 3] AI 2 Quét từ điển inline cho chương: ${chapter.title}`);
-          const existingDictEntries = await getMergedNameDict(novelId);
-          const existingDictMap = new Map(existingDictEntries.map(e => [e.chinese, e.vietnamese]));
-
-          const originalContents = await Promise.all(chapterScenes.map((s) => getOriginalContent(s.id)));
-          const cleanedContent = cleanGarbage ? cleanGarbageLines(originalContents.join(SCENE_BREAK)) : originalContents.join(SCENE_BREAK);
-
-          const newlyScannedNames = await scanNewNames({
-            model: dictModel || model,
-            sourceText: cleanedContent,
-            novelId,
-            existingDict: existingDictMap,
-            customScanPrompt: novelScanPrompt,
-            signal,
-          });
-
-          if (newlyScannedNames.length > 0) {
-            const addedCount = await autoAddNames(novelId, newlyScannedNames);
-            console.log(`[Semantic Gen 3] AI 2 đã thêm ${addedCount} từ mới vào từ điển.`);
-          }
-
-          try {
-            const newlyScannedPronouns = await scanPronounRelations({
-              model: dictModel || model,
-              sourceText: cleanedContent,
-              existingDict: existingDictMap,
-              customScanPrompt: novelScanPrompt,
-              signal,
-              novelId,
-            });
-            if (newlyScannedPronouns.length > 0) {
-              await autoUpdatePronounPrompt(novelId, newlyScannedPronouns, existingDictMap);
-              console.log(`[Semantic Gen 3] AI 2 đã cập nhật quy tắc xưng hô mới.`);
-            }
-          } catch (scanPronounErr) {
-            console.warn(`[Semantic Gen 3] Lỗi quét xưng hô:`, scanPronounErr);
-          }
-        } catch (scanErr) {
-          console.warn(`[Semantic Gen 3] Lỗi quét từ điển inline:`, scanErr);
-        }
-        await db.chapters.update(chapter.id, { dictionaryScanned: true });
-      }
 
       store.setChapterStatus(novelId, chapter.id, "translating");
 

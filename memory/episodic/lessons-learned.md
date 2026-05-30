@@ -242,6 +242,22 @@ Severity: `🔴 Critical` | `🟡 Important` | `🟢 Minor`
 
 ---
 
+### [2026-05-30] ARCHITECTURE 🟡 Important — Cơ Chế Quét Từ Điển Chạy Ngầm (Lookahead Worker) Và Đồng Bộ Hệ Chỉ Số Tuyệt Đối (Absolute Indexing)
+
+**Context:** Bộ quét từ điển (Model 2) được thiết kế để quét và thêm từ mới trước khi luồng dịch chính (Model 1) chạy, giúp AI dịch mượt mà hơn.
+**Problem:** 
+1. Tab Dịch Semantic Gen 3 trước đây sử dụng cơ chế quét tuần tự (inline sequential scanner), khiến luồng chính bị nghẽn chờ đợi Model 2 và làm mất tính năng quét đi trước (lookahead), từ điển luôn dừng bằng chương dịch.
+2. Tab Comprehensive và Quick Translate gặp lỗi lệch hệ chỉ số so khớp block lookahead khi người dùng bắt đầu dịch từ chương ở giữa truyện (ví dụ Chương 11, index 10). `scanIdx` chạy trên `currentQueue` (từ 0 đến 9) so sánh với `currentTranslateIdx` (index 10 trong `allChapters`) khiến điều kiện chặn `scanIdx >= currentTranslateIdx + 3` luôn luôn false. AI 2 quét một mạch đến hết truyện không phanh, gây lãng phí lớn token.
+**Root Cause:**
+1. Thiếu cấu trúc background worker song song trong orchestrator của Gen 3.
+2. So sánh lệch hệ chỉ số giữa tương đối (trong hàng đợi dịch) và tuyệt đối (trong toàn bộ novel).
+**Lesson:**
+1. Mọi pha quét từ điển / bối cảnh tiền xử lý (Model 2) PHẢI được thiết kế dưới dạng background worker chạy ngầm song song với luồng dịch chính (AI 1) để tận dụng tối đa sức mạnh đa luồng và tối ưu hóa thời gian chờ của người dùng.
+2. Khi thực hiện các cơ chế giới hạn lookahead chặn trước (ví dụ chặn trước tối đa 3 chương), luôn quy đổi chỉ số của chương đang quét về chỉ số tuyệt đối trong toàn bộ novel (`absoluteScanIdx` qua `findIndex` trên `allChapters`) để đảm bảo so sánh đồng nhất hệ chỉ số trong mọi trường hợp (dịch từ đầu hay giữa truyện).
+**Action:** Cập nhật `semantic-translate.ts` sang mô hình quét ngầm `runDictWorker`, đồng thời đồng bộ hóa so khớp block bằng chỉ số tuyệt đối `absoluteScanIdx` trong cả 3 tệp `semantic-translate.ts`, `qt-ai-translate.ts` và `comprehensive-translate.ts`.
+
+---
+
 <!-- 
   📝 TEMPLATE cho entry mới — copy paste khi thêm:
   
