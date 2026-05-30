@@ -224,6 +224,24 @@ Severity: `🔴 Critical` | `🟡 Important` | `🟢 Minor`
 
 ---
 
+### [2026-05-30] AI & BUG 🔴 Critical — Khắc phục Lỗi Signal Aborted Khi Timeout Dịch Thuật và Lưu Trạng Trạng Thái Quét Từ Điển Vĩnh Viễn
+
+**Context:** Dịch các chương nhạy cảm (18+) hoặc chương siêu dài qua proxy AI thường gặp lỗi crash giao diện báo đỏ `AbortError: signal is aborted without reason` và bị quét lại từ điển từ đầu mỗi khi nạp lại trang (F5).
+**Problem:**
+1. Thời gian timeout 60s hoặc 75s trước đây bị ngắn đối với các chương dài hoặc proxy nghẽn. Khi timeout phụ kích hoạt abort, khối catch rethrow bừa bãi làm crash luồng dịch.
+2. Trạng thái quét từ điển (Model 2) chỉ lưu tạm trên RAM Set, khi F5 lại bị mất sạch, ép buộc hệ thống phải quét lại từ đầu gây tốn thời gian và token.
+**Root Cause:**
+1. Khối `catch` so khớp lỗi `AbortError` chung chung mà không kiểm tra xem có phải do người dùng chủ động bấm Hủy dịch (`signal?.aborted === true`) hay không.
+2. Kích thước chunk tối đa của chế độ "Full" quá lớn (25000 ký tự với Semantic Gen 3 chứa đầy thẻ XML phình to) gây quá tải cho AI Pro.
+3. IndexedDB thiếu cơ chế lưu trữ cờ đã quét từ điển cho Chapter.
+**Lesson:**
+1. Chỉ dừng luồng khi người dùng thực sự bấm Hủy (`signal?.aborted`). Các timeout phụ abort phải được bọc lại thành lỗi rõ nghĩa (`Thời gian phản hồi vượt quá 100 giây`) và xử lý như lỗi thường để thử lại NSFW tại chỗ.
+2. Tối ưu kích thước chunk tối đa của chế độ dịch nguyên chương (Full) xuống mức **8000 ký tự** (bao gồm cả XML). Đảm bảo chương thường dịch trọn vẹn 1 chunk, còn chương siêu dài tự động chia nhỏ để AI xử lý cực nhanh, chống timeout 100%.
+3. Lưu cờ `dictionaryScanned?: boolean;` vào IndexedDB vĩnh viễn cho Chapter để khi F5 hoặc chạy lại, hệ thống skip ngay lập tức trong 1ms.
+**Action:** Cập nhật `semantic-translate.ts`, `qt-ai-translate.ts`, `comprehensive-translate.ts`, `bulk-translate.ts` để tăng timeout lên 100s, tối ưu chunk size 8000, và persist cờ `dictionaryScanned` vào IndexedDB.
+
+---
+
 <!-- 
   📝 TEMPLATE cho entry mới — copy paste khi thêm:
   
